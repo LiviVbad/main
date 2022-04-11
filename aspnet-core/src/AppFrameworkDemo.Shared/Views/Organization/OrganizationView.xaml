@@ -1,0 +1,86 @@
+﻿<ContentView
+    x:Class="AppFrameworkDemo.Shared.Views.OrganizationView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:extensions="clr-namespace:AppFrameworkDemo.Shared.Extensions.MarkupExtensions;assembly=AppFrameworkDemo.Shared"
+    xmlns:refresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+    xmlns:tree="clr-namespace:Syncfusion.XForms.TreeView;assembly=Syncfusion.SfTreeView.XForms">
+    <Grid>
+        <refresh:SfPullToRefresh IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}">
+            <refresh:SfPullToRefresh.PullableContent>
+                <tree:SfTreeView
+                    x:Name="SfTreeView"
+                    BackgroundColor="{DynamicResource GrayShadowColor}"
+                    ChildPropertyName="Items"
+                    ExpandActionTarget="Node"
+                    FocusBorderThickness="0"
+                    FullRowSelect="True"
+                    ItemHeight="55"
+                    ItemsSource="{Binding GridModelList}"
+                    SelectionBackgroundColor="Transparent">
+                    <tree:SfTreeView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <SwipeView BackgroundColor="Transparent">
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem
+                                                BackgroundColor="{DynamicResource Red}"
+                                                Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference SfTreeView}}"
+                                                CommandParameter="{Binding}"
+                                                Text="{extensions:Translate Remove}" />
+                                            <SwipeItem
+                                                BackgroundColor="{DynamicResource PrimaryColor}"
+                                                Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfTreeView}}"
+                                                CommandParameter="{Binding}"
+                                                Text="{extensions:Translate Edit}" />
+                                            <SwipeItem
+                                                BackgroundColor="{DynamicResource PrimaryColor}"
+                                                Command="{Binding Path=BindingContext.AddSubUnitCommand, Source={x:Reference SfTreeView}}"
+                                                CommandParameter="{Binding}"
+                                                Text="{extensions:Translate AddSubUnit}" />
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+
+                                    <StackLayout Padding="5,10" Orientation="Horizontal">
+                                        <Label
+                                            Style="{StaticResource IconLabelStyle}"
+                                            Text="&#xe66e;"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Margin="5,0,0,0"
+                                            Style="{StaticResource SimpleLabelStyle}"
+                                            Text="{Binding DisplayName}" />
+
+                                        <buttons:SfButton
+                                            Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfTreeView}}"
+                                            CommandParameter="{Binding}"
+                                            Style="{StaticResource TransparentButtonStyle}"
+                                            Text="{Binding MemberCount}"
+                                            TextColor="{DynamicResource PrimaryColor}" />
+                                        <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Members}" />
+
+                                        <buttons:SfButton
+                                            Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfTreeView}}"
+                                            CommandParameter="{Binding}"
+                                            Style="{StaticResource TransparentButtonStyle}"
+                                            Text="{Binding RoleCount}"
+                                            TextColor="{DynamicResource PrimaryColor}" />
+                                        <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Roles}" />
+                                    </StackLayout>
+                                </SwipeView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </tree:SfTreeView.ItemTemplate>
+                </tree:SfTreeView>
+            </refresh:SfPullToRefresh.PullableContent>
+        </refresh:SfPullToRefresh>
+
+        <buttons:SfButton
+            Margin="0,0,10,10"
+            Command="{Binding AddCommand}"
+            Style="{StaticResource AddButtonStyle}"
+            VerticalOptions="End" />
+    </Grid>
+</ContentView>

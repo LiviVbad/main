@@ -1,0 +1,36 @@
+﻿<ContentPage
+    x:Class="AppFrameworkDemo.Shared.Views.InitialScreenView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:AppFrameworkDemo.Shared.Behaviors;assembly=AppFrameworkDemo.Shared"
+    xmlns:busy="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+    xmlns:manager="clr-namespace:AppFrameworkDemo.Shared;assembly=AppFrameworkDemo.Shared"
+    xmlns:prism="http://prismlibrary.com"
+    BackgroundColor="{DynamicResource GrayShadowBackgroundColor}">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                HorizontalOptions="Center"
+                IsVisible="{Binding IsDisplayLayer}"
+                VerticalOptions="Center">
+                <!--  这里可以编写初始化屏幕的一些实现,如:等待动画、过渡画面  -->
+                <busy:SfBusyIndicator
+                    AnimationType="Gear"
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="100" />
+            </StackLayout>
+
+            <ContentView prism:RegionManager.RegionName="{x:Static manager:AppRegionManager.Index}" />
+        </Grid>
+    </ContentPage.Content>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding AppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

@@ -1,0 +1,8 @@
+﻿<ContentPage
+    x:Class="AppFrameworkDemo.Shared.Views.LanguageDetailsView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Grid BackgroundColor="{DynamicResource GrayShadowColor}">
+        <StackLayout Padding="10" />
+    </Grid>
+</ContentPage>

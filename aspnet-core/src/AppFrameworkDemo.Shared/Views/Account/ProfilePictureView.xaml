@@ -1,0 +1,31 @@
+﻿<ContentPage
+    x:Class="AppFrameworkDemo.Shared.Views.ProfilePictureView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:extensions="clr-namespace:AppFrameworkDemo.Shared.Extensions.MarkupExtensions;assembly=AppFrameworkDemo.Shared">
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Image
+            Margin="50"
+            HorizontalOptions="FillAndExpand"
+            Source="{Binding Photo}" />
+
+        <StackLayout Grid.Row="1">
+            <buttons:SfButton
+                Margin="0,10,0,10"
+                Command="{Binding ChangeProfilePictureCommand}"
+                Style="{StaticResource GradientButtonStyle}"
+                Text="{extensions:Translate ChangeProfilePicture}" />
+            <buttons:SfButton
+                Command="{Binding GoBackCommand}"
+                Style="{StaticResource GradientButtonStyle}"
+                Text="{extensions:Translate Close}" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
