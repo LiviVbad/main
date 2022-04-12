@@ -1,5 +1,4 @@
-﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Auditing;
+﻿using AppFrameworkDemo.Auditing;
 using AppFrameworkDemo.Auditing.Dto;
 using AppFrameworkDemo.Shared.Models;
 using System;
@@ -15,32 +14,50 @@ namespace AppFrameworkDemo.Shared.ViewModels
 
         public AuditLogViewModel(IAuditLogAppService appService)
         {
-            input=new GetAuditLogsInput()
+            input = new GetAuditLogsInput()
             {
-                StartDate=DateTime.Now.AddDays(-5),
-                EndDate=DateTime.Now
+                StartDate = DateTime.Now.AddDays(-30),
+                EndDate = DateTime.Now,
+                MaxResultCount = AppConsts.DefaultPageSize,
             };
-            this.appService=appService;
+            this.appService = appService;
         }
 
         public override async Task RefreshAsync()
         {
-            await SetBusyAsync(async () =>
-            {
-                await WebRequestRuner.Execute(
-                       () => appService.GetAuditLogs(input),
-                       result => RefreshSuccessed(result));
-            }); 
-        }
-
-        private async Task RefreshSuccessed(PagedResultDto<AuditLogListDto> result)
-        {
+            CurrentPage = 0;
+            input.SkipCount = 0;
             GridModelList.Clear();
 
-            foreach (var item in Map<List<AuditLogListModel>>(result.Items))
-                GridModelList.Add(item);
+            await GetAuditLogAsync();
+        }
 
-            await Task.CompletedTask;
+        public override async void LoadMore()
+        {
+            if (IsBusy) return;
+
+            if (GridModelList?.Count == TotalCount) return;
+
+            input.SkipCount = AppConsts.DefaultPageSize * ++CurrentPage;
+
+            await GetAuditLogAsync();
+        }
+
+        private async Task GetAuditLogAsync()
+        {
+            await SetBusyAsync(async () =>
+            {
+                await WebRequestRuner.Execute(() => appService.GetAuditLogs(input),
+                           async result =>
+                           {
+                               foreach (var item in Map<List<AuditLogListModel>>(result.Items))
+                                   GridModelList.Add(item);
+
+                               TotalCount = result.TotalCount;
+
+                               await Task.CompletedTask;
+                           });
+            });
         }
     }
 }

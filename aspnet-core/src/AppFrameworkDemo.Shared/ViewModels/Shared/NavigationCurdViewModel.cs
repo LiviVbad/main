@@ -22,7 +22,7 @@
             AddCommand = new DelegateCommand(Add);
             EditCommand = new DelegateCommand<T>(Edit);
             DeleteCommand = new DelegateCommand<T>(Delete);
-            ExecuteCommand = new DelegateCommand<string>(Execute);
+            LoadMoreCommand = new DelegateCommand(LoadMore);
             RefreshCommand = new DelegateCommand(async () => await RefreshAsync());
 
             GridModelList = new ObservableCollection<T>();
@@ -35,6 +35,16 @@
 
         #region ICurdAware
 
+        /// <summary>
+        /// 当前页
+        /// </summary>
+        public int CurrentPage { get; set; }
+
+        /// <summary>
+        /// 总数
+        /// </summary>
+        public int TotalCount { get; set; }
+
         private ObservableCollection<T> gridModelList;
 
         public ObservableCollection<T> GridModelList
@@ -43,13 +53,30 @@
             set { gridModelList = value; RaisePropertyChanged(); }
         }
 
+        /// <summary>
+        /// 添加
+        /// </summary>
         public DelegateCommand AddCommand { get; private set; }
-        public DelegateCommand<T> EditCommand { get; private set; }
-        public DelegateCommand<T> DeleteCommand { get; private set; }
-        public DelegateCommand RefreshCommand { get; private set; }
-        public DelegateCommand<string> ExecuteCommand { get; private set; }
 
-        public virtual void Execute(string cmd) { }
+        /// <summary>
+        /// 编辑选中项
+        /// </summary>
+        public DelegateCommand<T> EditCommand { get; private set; }
+
+        /// <summary>
+        /// 删除选中项
+        /// </summary>
+        public DelegateCommand<T> DeleteCommand { get; private set; }
+
+        /// <summary>
+        /// 刷新
+        /// </summary>
+        public DelegateCommand RefreshCommand { get; private set; }
+
+        /// <summary>
+        /// 加载更多数据命令
+        /// </summary>
+        public DelegateCommand LoadMoreCommand { get; private set; }
 
         public virtual async void Add()
         {
@@ -64,12 +91,11 @@
             await navigationService.NavigateAsync(GetPageName("Details"), param);
         }
 
+        public virtual void LoadMore() { }
+
         public virtual void Delete(T selectedItem) { }
 
-        public virtual Task RefreshAsync()
-        {
-            return Task.CompletedTask;
-        }
+        public virtual Task RefreshAsync() => Task.CompletedTask;
 
         public virtual string GetPageName(string methodName)
         {
@@ -82,7 +108,7 @@
         #endregion ICurdAware
 
         public override async void OnNavigatedTo(INavigationContext navigationContext)
-        { 
+        {
             await RefreshAsync();
         }
     }
