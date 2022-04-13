@@ -6,15 +6,23 @@ using Xamarin.Forms.Xaml;
 namespace AppFrameworkDemo.Shared.Extensions.MarkupExtensions
 {
     [ContentProperty("Text")]
-    public class TranslateExtension : IMarkupExtension
+    public class TranslateExtension : IMarkupExtension<BindingBase>
     {
         public string Text { get; set; }
 
-        public object ProvideValue(IServiceProvider serviceProvider)
+        object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)
         {
-            if (string.IsNullOrWhiteSpace(Text)) return Text;
+            return ProvideValue(serviceProvider);
+        }
 
-            return Local.Localize(Text);
+        public BindingBase ProvideValue(IServiceProvider serviceProvider)
+        {
+            return new Binding
+            {
+                Mode = BindingMode.OneWay,
+                Path = $"[{Text}]",
+                Source = LocalizationResourceManager.Instance,
+            };
         }
     }
 }

@@ -166,12 +166,11 @@ namespace AppFrameworkDemo.Shared.ViewModels
 
         protected async Task ChangeLanguage(LanguageInfo languageInfo)
         {
+            /*
+             *  设置当前的上下文语言,再次向Web服务中以当前语言请求资源,获取对应语言类型的本地化资源
+             */
             appContext.CurrentLanguage = languageInfo;
-            await AppConfigurationManager.GetAsync(() =>
-            {
-                messenger.Send(AppMessengerKeys.Logout);
-                return Task.CompletedTask;
-            });
+            await AppConfigurationManager.GetAsync();
         }
 
         #endregion 系统语言

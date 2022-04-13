@@ -45,7 +45,7 @@ namespace AppFrameworkDemo.Shared.Services.Account
             await WebRequestRuner.Execute(
                 async () => await userConfigurationService.GetAsync(AccessTokenManager.IsUserLoggedIn),
                 async result =>
-                { 
+                {
                     AppContext.Value.Configuration = result;
                     SetCurrentCulture();
 
@@ -55,11 +55,14 @@ namespace AppFrameworkDemo.Shared.Services.Account
                     AppContext.Value.CurrentLanguage = result.Localization.CurrentLanguage;
                     WarnIfUserHasNoPermission();
 
+                    //更新UI界面中的所有绑定多语言字符串文本
+                    LocalizationResourceManager.Instance.OnPropertyChanged();
+
                     if (successCallback != null)
-                        await successCallback(); 
+                        await successCallback();
                 },
                 _ =>
-                { 
+                {
                     return Task.CompletedTask;
                 });
         }
