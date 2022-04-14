@@ -3,7 +3,7 @@ using AppFrameworkDemo.Common;
 using AppFrameworkDemo.Editions;
 using AppFrameworkDemo.Editions.Dto;
 using AppFrameworkDemo.Shared.Localization;
-using AppFrameworkDemo.Shared.Models;
+using AppFramework.Application.Common.Models;
 using Prism.Commands;
 using Prism.Navigation;
 using System;

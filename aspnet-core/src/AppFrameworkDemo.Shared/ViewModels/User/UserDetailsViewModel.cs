@@ -3,7 +3,7 @@ using Acr.UserDialogs;
 using AppFrameworkDemo.Authorization.Users;
 using AppFrameworkDemo.Authorization.Users.Dto;
 using AppFrameworkDemo.Shared.Localization;
-using AppFrameworkDemo.Shared.Models;
+using AppFramework.Application.Common.Models;
 using AppFrameworkDemo.Shared.Services.Permission;
 using Prism.Commands;
 using Prism.Navigation;
@@ -189,7 +189,7 @@ namespace AppFrameworkDemo.Shared.ViewModels
 
                 if (IsNewUser)
                 {
-                    Model.Photo = ImageSource.FromResource(AssetsHelper.ProfileImagePlaceholderNamespace);
+                    //Model.Photo = ImageSource.FromResource(AssetsHelper.ProfileImagePlaceholderNamespace);
                     Model.User = new UserEditModel
                     {
                         IsActive = true,

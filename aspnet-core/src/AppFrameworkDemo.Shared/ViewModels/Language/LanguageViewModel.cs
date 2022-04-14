@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFrameworkDemo.Localization;
 using AppFrameworkDemo.Localization.Dto;
-using AppFrameworkDemo.Shared.Models;
+using AppFramework.Application.Common.Models;
 using Prism.Regions.Navigation;
 using System.Collections.Generic;
 using System.Threading.Tasks;

@@ -1,5 +1,5 @@
 ﻿using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Shared.Models;
+using AppFramework.Application.Common.Models;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;

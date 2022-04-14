@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFrameworkDemo.MultiTenancy;
 using AppFrameworkDemo.MultiTenancy.Dto;
-using AppFrameworkDemo.Shared.Models;
+using AppFramework.Application.Common.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

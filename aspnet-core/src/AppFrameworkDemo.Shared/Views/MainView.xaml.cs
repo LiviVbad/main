@@ -1,5 +1,5 @@
 ﻿using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Shared.Models;
+using AppFramework.Application.Common.Models;
 using AppFrameworkDemo.Shared.ViewModels;
 using Prism.Regions.Xaml;
 using Xamarin.Forms;

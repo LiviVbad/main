@@ -1,7 +1,7 @@
 ﻿using AppFrameworkDemo.ApiClient;
 using AppFrameworkDemo.ApiClient.Models;
 using AppFrameworkDemo.Sessions.Dto;
-using AppFrameworkDemo.Shared.Models;
+using AppFramework.Application.Common.Models;
 using AutoMapper;
 using System.Threading.Tasks;
 

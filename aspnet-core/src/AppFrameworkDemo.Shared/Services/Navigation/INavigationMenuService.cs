@@ -1,4 +1,4 @@
-﻿using AppFrameworkDemo.Shared.Models;
+﻿using AppFramework.Application.Common.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 

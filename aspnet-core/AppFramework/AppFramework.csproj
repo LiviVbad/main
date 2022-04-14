@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abp" Version="7.1.0" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="FluentValidation" Version="10.4.0" />
+    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+    <PackageReference Include="Syncfusion.Licensing" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.SfBusyIndicator.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.SfChart.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.SfNavigationDrawer.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.SfTreeView.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.Shared.WPF" Version="20.1.0.48" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppFramework.Application.Common\AppFramework.Shared.Common.csproj" />
+    <ProjectReference Include="..\src\AppFrameworkDemo.Application.Client\AppFrameworkDemo.Application.Client.csproj" />
+    <ProjectReference Include="..\src\AppFrameworkDemo.Application.Shared\AppFrameworkDemo.Application.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\Dashboard\" />
+    <Folder Include="Views\Auditlogs\" />
+    <Folder Include="Views\Index\" />
+    <Folder Include="Views\Organizations\" />
+    <Folder Include="Views\Roles\" />
+    <Folder Include="Views\Users\" />
+    <Folder Include="Views\Visual\" />
+  </ItemGroup>
+
+</Project>

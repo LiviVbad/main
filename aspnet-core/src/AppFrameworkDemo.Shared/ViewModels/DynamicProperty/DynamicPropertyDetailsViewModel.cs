@@ -1,6 +1,6 @@
 ﻿using AppFrameworkDemo.DynamicEntityProperties;
 using AppFrameworkDemo.DynamicEntityProperties.Dto;
-using AppFrameworkDemo.Shared.Models;
+using AppFramework.Application.Common.Models;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Threading.Tasks;

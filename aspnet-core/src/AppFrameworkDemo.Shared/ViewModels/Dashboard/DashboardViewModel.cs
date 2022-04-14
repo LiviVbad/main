@@ -1,7 +1,7 @@
 ﻿using AppFrameworkDemo.MultiTenancy.HostDashboard;
 using AppFrameworkDemo.MultiTenancy.HostDashboard.Dto;
 using AppFrameworkDemo.Shared.Localization;
-using AppFrameworkDemo.Shared.Models;
+using AppFramework.Application.Common.Models;
 using Prism.Regions.Navigation;
 using System;
 using System.Collections.ObjectModel;

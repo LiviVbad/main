@@ -1,6 +1,6 @@
 ﻿using AppFrameworkDemo.Auditing;
 using AppFrameworkDemo.Auditing.Dto;
-using AppFrameworkDemo.Shared.Models;
+using AppFramework.Application.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

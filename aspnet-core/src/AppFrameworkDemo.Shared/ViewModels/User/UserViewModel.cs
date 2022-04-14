@@ -2,7 +2,7 @@
 using AppFrameworkDemo.Authorization.Users;
 using AppFrameworkDemo.Authorization.Users.Dto;
 using AppFrameworkDemo.Authorization.Users.Profile;
-using AppFrameworkDemo.Shared.Models;
+using AppFramework.Application.Common.Models;
 using Prism.Navigation; 
 using System.Collections.Generic;
 using System.Threading.Tasks;

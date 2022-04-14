@@ -1,5 +1,5 @@
 ﻿using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Shared.Models;
+using AppFramework.Application.Common.Models;
 using AppFrameworkDemo.Shared.Services;
 using AppFrameworkDemo.Shared.Services.Account;
 using Prism.Commands;

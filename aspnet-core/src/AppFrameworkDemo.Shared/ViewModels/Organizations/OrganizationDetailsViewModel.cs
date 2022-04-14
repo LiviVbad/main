@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFrameworkDemo.Organizations;
 using AppFrameworkDemo.Organizations.Dto;
-using AppFrameworkDemo.Shared.Models;
+using AppFramework.Application.Common.Models;
 using AppFrameworkDemo.Shared.Services.Permission;
 using Prism.Commands;
 using Prism.Navigation;

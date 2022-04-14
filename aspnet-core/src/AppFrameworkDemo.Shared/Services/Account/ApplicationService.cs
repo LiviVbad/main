@@ -1,12 +1,12 @@
 ﻿using Abp.IO.Extensions;
 using Acr.UserDialogs;
+using AppFramework.Application.Common.Models;
 using AppFrameworkDemo.ApiClient;
 using AppFrameworkDemo.Authorization.Users.Profile;
 using AppFrameworkDemo.Authorization.Users.Profile.Dto;
 using AppFrameworkDemo.Dto;
 using AppFrameworkDemo.Shared.Controls;
-using AppFrameworkDemo.Shared.Localization;
-using AppFrameworkDemo.Shared.Models;
+using AppFrameworkDemo.Shared.Localization; 
 using AppFrameworkDemo.Shared.Services.Navigation;
 using AppFrameworkDemo.Shared.ViewModels;
 using FFImageLoading;
@@ -263,7 +263,7 @@ namespace AppFrameworkDemo.Shared.Services
             UserNameAndSurname = applicationContext.LoginInfo.User.Name + " " + applicationContext.LoginInfo.User.Surname;
 
             var permissions = applicationContext.Configuration.Auth.GrantedPermissions;
-            NavigationItems = navigationItemService.GetAuthMenus(permissions);
+            //NavigationItems = navigationItemService.GetAuthMenus(permissions);
 
             ApplicationInfo = $"{ApplicationName}\n" +
                               $"v{applicationContext.LoginInfo.Application.Version} " +

@@ -6,7 +6,7 @@ using AppFrameworkDemo.Editions.Dto;
 using AppFrameworkDemo.MultiTenancy;
 using AppFrameworkDemo.MultiTenancy.Dto;
 using AppFrameworkDemo.Shared.Localization;
-using AppFrameworkDemo.Shared.Models;
+using AppFramework.Application.Common.Models;
 using AppFrameworkDemo.Shared.Services.Permission;
 using MvvmHelpers;
 using Prism.Commands;

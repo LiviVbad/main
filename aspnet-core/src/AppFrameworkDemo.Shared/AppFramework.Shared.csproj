@@ -1,0 +1,356 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+ 
+	<ItemGroup>
+	  <Compile Remove="Component\Behaviors\EventToCommandBehavior.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Component\Assets\Fonts\Montserrat-Bold.ttf" />
+	  <None Remove="Component\Assets\Fonts\Montserrat-Medium.ttf" />
+	  <None Remove="Component\Assets\Fonts\Montserrat-Regular.ttf" />
+	  <None Remove="Component\Assets\Fonts\Montserrat-SemiBold.ttf" />
+	  <None Remove="Component\Assets\Fonts\UIFontIcons.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Component\Assets\Fonts\Montserrat-Bold.ttf" />
+		<EmbeddedResource Include="Component\Assets\Fonts\Montserrat-Medium.ttf" />
+		<EmbeddedResource Include="Component\Assets\Fonts\Montserrat-Regular.ttf" />
+		<EmbeddedResource Include="Component\Assets\Fonts\Montserrat-SemiBold.ttf" />
+		<EmbeddedResource Include="Component\Assets\Fonts\UIFontIcons.ttf" />
+		<EmbeddedResource Include="Component\Assets\Images\ad.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ae.png" />
+		<EmbeddedResource Include="Component\Assets\Images\af.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ag.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ai.png" />
+		<EmbeddedResource Include="Component\Assets\Images\al.png" />
+		<EmbeddedResource Include="Component\Assets\Images\am.png" />
+		<EmbeddedResource Include="Component\Assets\Images\an.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ao.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ar.png" />
+		<EmbeddedResource Include="Component\Assets\Images\as.png" />
+		<EmbeddedResource Include="Component\Assets\Images\at.png" />
+		<EmbeddedResource Include="Component\Assets\Images\au.png" />
+		<EmbeddedResource Include="Component\Assets\Images\aw.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ax.png" />
+		<EmbeddedResource Include="Component\Assets\Images\az.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ba.png" />
+		<EmbeddedResource Include="Component\Assets\Images\bb.png" />
+		<EmbeddedResource Include="Component\Assets\Images\bd.png" />
+		<EmbeddedResource Include="Component\Assets\Images\be.png" />
+		<EmbeddedResource Include="Component\Assets\Images\bf.png" />
+		<EmbeddedResource Include="Component\Assets\Images\bg.png" />
+		<EmbeddedResource Include="Component\Assets\Images\bh.png" />
+		<EmbeddedResource Include="Component\Assets\Images\bi.png" />
+		<EmbeddedResource Include="Component\Assets\Images\bj.png" />
+		<EmbeddedResource Include="Component\Assets\Images\bm.png" />
+		<EmbeddedResource Include="Component\Assets\Images\bn.png" />
+		<EmbeddedResource Include="Component\Assets\Images\bo.png" />
+		<EmbeddedResource Include="Component\Assets\Images\br.png" />
+		<EmbeddedResource Include="Component\Assets\Images\bs.png" />
+		<EmbeddedResource Include="Component\Assets\Images\bt.png" />
+		<EmbeddedResource Include="Component\Assets\Images\bv.png" />
+		<EmbeddedResource Include="Component\Assets\Images\bw.png" />
+		<EmbeddedResource Include="Component\Assets\Images\by.png" />
+		<EmbeddedResource Include="Component\Assets\Images\bz.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ca.png" />
+		<EmbeddedResource Include="Component\Assets\Images\catalonia.png" />
+		<EmbeddedResource Include="Component\Assets\Images\cc.png" />
+		<EmbeddedResource Include="Component\Assets\Images\cd.png" />
+		<EmbeddedResource Include="Component\Assets\Images\cf.png" />
+		<EmbeddedResource Include="Component\Assets\Images\cg.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ch.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ci.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ck.png" />
+		<EmbeddedResource Include="Component\Assets\Images\cl.png" />
+		<EmbeddedResource Include="Component\Assets\Images\cm.png" />
+		<EmbeddedResource Include="Component\Assets\Images\cn.png" />
+		<EmbeddedResource Include="Component\Assets\Images\co.png" />
+		<EmbeddedResource Include="Component\Assets\Images\cr.png" />
+		<EmbeddedResource Include="Component\Assets\Images\cs.png" />
+		<EmbeddedResource Include="Component\Assets\Images\cu.png" />
+		<EmbeddedResource Include="Component\Assets\Images\cv.png" />
+		<EmbeddedResource Include="Component\Assets\Images\cx.png" />
+		<EmbeddedResource Include="Component\Assets\Images\cy.png" />
+		<EmbeddedResource Include="Component\Assets\Images\cz.png" />
+		<EmbeddedResource Include="Component\Assets\Images\de.png" />
+		<EmbeddedResource Include="Component\Assets\Images\dj.png" />
+		<EmbeddedResource Include="Component\Assets\Images\dk.png" />
+		<EmbeddedResource Include="Component\Assets\Images\dm.png" />
+		<EmbeddedResource Include="Component\Assets\Images\do.png" />
+		<EmbeddedResource Include="Component\Assets\Images\dz.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ec.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ee.png" />
+		<EmbeddedResource Include="Component\Assets\Images\eg.png" />
+		<EmbeddedResource Include="Component\Assets\Images\eh.png" />
+		<EmbeddedResource Include="Component\Assets\Images\england.png" />
+		<EmbeddedResource Include="Component\Assets\Images\er.png" />
+		<EmbeddedResource Include="Component\Assets\Images\es.png" />
+		<EmbeddedResource Include="Component\Assets\Images\et.png" />
+		<EmbeddedResource Include="Component\Assets\Images\europeanunion.png" />
+		<EmbeddedResource Include="Component\Assets\Images\fam.png" />
+		<EmbeddedResource Include="Component\Assets\Images\fi.png" />
+		<EmbeddedResource Include="Component\Assets\Images\fj.png" />
+		<EmbeddedResource Include="Component\Assets\Images\fk.png" />
+		<EmbeddedResource Include="Component\Assets\Images\fm.png" />
+		<EmbeddedResource Include="Component\Assets\Images\fo.png" />
+		<EmbeddedResource Include="Component\Assets\Images\fr.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ga.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gb.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gd.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ge.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gf.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gh.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gi.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gl.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gm.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gn.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gp.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gq.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gr.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gs.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gt.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gu.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gw.png" />
+		<EmbeddedResource Include="Component\Assets\Images\gy.png" />
+		<EmbeddedResource Include="Component\Assets\Images\hk.png" />
+		<EmbeddedResource Include="Component\Assets\Images\hm.png" />
+		<EmbeddedResource Include="Component\Assets\Images\hn.png" />
+		<EmbeddedResource Include="Component\Assets\Images\hr.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ht.png" />
+		<EmbeddedResource Include="Component\Assets\Images\hu.png" />
+		<EmbeddedResource Include="Component\Assets\Images\id.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ie.png" />
+		<EmbeddedResource Include="Component\Assets\Images\il.png" />
+		<EmbeddedResource Include="Component\Assets\Images\in.png" />
+		<EmbeddedResource Include="Component\Assets\Images\io.png" />
+		<EmbeddedResource Include="Component\Assets\Images\iq.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ir.png" />
+		<EmbeddedResource Include="Component\Assets\Images\is.png" />
+		<EmbeddedResource Include="Component\Assets\Images\it.png" />
+		<EmbeddedResource Include="Component\Assets\Images\jm.png" />
+		<EmbeddedResource Include="Component\Assets\Images\jo.png" />
+		<EmbeddedResource Include="Component\Assets\Images\jp.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ke.png" />
+		<EmbeddedResource Include="Component\Assets\Images\kg.png" />
+		<EmbeddedResource Include="Component\Assets\Images\kh.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ki.png" />
+		<EmbeddedResource Include="Component\Assets\Images\km.png" />
+		<EmbeddedResource Include="Component\Assets\Images\kn.png" />
+		<EmbeddedResource Include="Component\Assets\Images\kp.png" />
+		<EmbeddedResource Include="Component\Assets\Images\kr.png" />
+		<EmbeddedResource Include="Component\Assets\Images\kw.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ky.png" />
+		<EmbeddedResource Include="Component\Assets\Images\kz.png" />
+		<EmbeddedResource Include="Component\Assets\Images\la.png" />
+		<EmbeddedResource Include="Component\Assets\Images\lb.png" />
+		<EmbeddedResource Include="Component\Assets\Images\lc.png" />
+		<EmbeddedResource Include="Component\Assets\Images\li.png" />
+		<EmbeddedResource Include="Component\Assets\Images\lk.png" />
+		<EmbeddedResource Include="Component\Assets\Images\lr.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ls.png" />
+		<EmbeddedResource Include="Component\Assets\Images\lt.png" />
+		<EmbeddedResource Include="Component\Assets\Images\lu.png" />
+		<EmbeddedResource Include="Component\Assets\Images\lv.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ly.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ma.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mc.png" />
+		<EmbeddedResource Include="Component\Assets\Images\md.png" />
+		<EmbeddedResource Include="Component\Assets\Images\me.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mg.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mh.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mk.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ml.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mm.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mn.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mo.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mp.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mq.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mr.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ms.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mt.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mu.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mv.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mw.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mx.png" />
+		<EmbeddedResource Include="Component\Assets\Images\my.png" />
+		<EmbeddedResource Include="Component\Assets\Images\mz.png" />
+		<EmbeddedResource Include="Component\Assets\Images\na.png" />
+		<EmbeddedResource Include="Component\Assets\Images\nc.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ne.png" />
+		<EmbeddedResource Include="Component\Assets\Images\nf.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ng.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ni.png" />
+		<EmbeddedResource Include="Component\Assets\Images\nl.png" />
+		<EmbeddedResource Include="Component\Assets\Images\no.png" />
+		<EmbeddedResource Include="Component\Assets\Images\np.png" />
+		<EmbeddedResource Include="Component\Assets\Images\nr.png" />
+		<EmbeddedResource Include="Component\Assets\Images\nu.png" />
+		<EmbeddedResource Include="Component\Assets\Images\nz.png" />
+		<EmbeddedResource Include="Component\Assets\Images\om.png" />
+		<EmbeddedResource Include="Component\Assets\Images\pa.png" />
+		<EmbeddedResource Include="Component\Assets\Images\pe.png" />
+		<EmbeddedResource Include="Component\Assets\Images\pf.png" />
+		<EmbeddedResource Include="Component\Assets\Images\pg.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ph.png" />
+		<EmbeddedResource Include="Component\Assets\Images\pk.png" />
+		<EmbeddedResource Include="Component\Assets\Images\pl.png" />
+		<EmbeddedResource Include="Component\Assets\Images\pm.png" />
+		<EmbeddedResource Include="Component\Assets\Images\pn.png" />
+		<EmbeddedResource Include="Component\Assets\Images\pr.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ps.png" />
+		<EmbeddedResource Include="Component\Assets\Images\pt.png" />
+		<EmbeddedResource Include="Component\Assets\Images\pw.png" />
+		<EmbeddedResource Include="Component\Assets\Images\py.png" />
+		<EmbeddedResource Include="Component\Assets\Images\qa.png" />
+		<EmbeddedResource Include="Component\Assets\Images\re.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ro.png" />
+		<EmbeddedResource Include="Component\Assets\Images\rs.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ru.png" />
+		<EmbeddedResource Include="Component\Assets\Images\rw.png" />
+		<EmbeddedResource Include="Component\Assets\Images\sa.png" />
+		<EmbeddedResource Include="Component\Assets\Images\sb.png" />
+		<EmbeddedResource Include="Component\Assets\Images\sc.png" />
+		<EmbeddedResource Include="Component\Assets\Images\scotland.png" />
+		<EmbeddedResource Include="Component\Assets\Images\sd.png" />
+		<EmbeddedResource Include="Component\Assets\Images\se.png" />
+		<EmbeddedResource Include="Component\Assets\Images\sg.png" />
+		<EmbeddedResource Include="Component\Assets\Images\sh.png" />
+		<EmbeddedResource Include="Component\Assets\Images\si.png" />
+		<EmbeddedResource Include="Component\Assets\Images\sj.png" />
+		<EmbeddedResource Include="Component\Assets\Images\sk.png" />
+		<EmbeddedResource Include="Component\Assets\Images\sl.png" />
+		<EmbeddedResource Include="Component\Assets\Images\sm.png" />
+		<EmbeddedResource Include="Component\Assets\Images\sn.png" />
+		<EmbeddedResource Include="Component\Assets\Images\so.png" />
+		<EmbeddedResource Include="Component\Assets\Images\sr.png" />
+		<EmbeddedResource Include="Component\Assets\Images\st.png" />
+		<EmbeddedResource Include="Component\Assets\Images\sv.png" />
+		<EmbeddedResource Include="Component\Assets\Images\sy.png" />
+		<EmbeddedResource Include="Component\Assets\Images\sz.png" />
+		<EmbeddedResource Include="Component\Assets\Images\tc.png" />
+		<EmbeddedResource Include="Component\Assets\Images\td.png" />
+		<EmbeddedResource Include="Component\Assets\Images\tf.png" />
+		<EmbeddedResource Include="Component\Assets\Images\tg.png" />
+		<EmbeddedResource Include="Component\Assets\Images\th.png" />
+		<EmbeddedResource Include="Component\Assets\Images\tj.png" />
+		<EmbeddedResource Include="Component\Assets\Images\tk.png" />
+		<EmbeddedResource Include="Component\Assets\Images\tl.png" />
+		<EmbeddedResource Include="Component\Assets\Images\tm.png" />
+		<EmbeddedResource Include="Component\Assets\Images\tn.png" />
+		<EmbeddedResource Include="Component\Assets\Images\to.png" />
+		<EmbeddedResource Include="Component\Assets\Images\tr.png" />
+		<EmbeddedResource Include="Component\Assets\Images\tt.png" />
+		<EmbeddedResource Include="Component\Assets\Images\tv.png" />
+		<EmbeddedResource Include="Component\Assets\Images\tw.png" />
+		<EmbeddedResource Include="Component\Assets\Images\tz.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ua.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ug.png" />
+		<EmbeddedResource Include="Component\Assets\Images\um.png" />
+		<EmbeddedResource Include="Component\Assets\Images\us.png" />
+		<EmbeddedResource Include="Component\Assets\Images\uy.png" />
+		<EmbeddedResource Include="Component\Assets\Images\uz.png" />
+		<EmbeddedResource Include="Component\Assets\Images\va.png" />
+		<EmbeddedResource Include="Component\Assets\Images\vc.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ve.png" />
+		<EmbeddedResource Include="Component\Assets\Images\vg.png" />
+		<EmbeddedResource Include="Component\Assets\Images\vi.png" />
+		<EmbeddedResource Include="Component\Assets\Images\vn.png" />
+		<EmbeddedResource Include="Component\Assets\Images\vu.png" />
+		<EmbeddedResource Include="Component\Assets\Images\wales.png" />
+		<EmbeddedResource Include="Component\Assets\Images\wf.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ws.png" />
+		<EmbeddedResource Include="Component\Assets\Images\ye.png" />
+		<EmbeddedResource Include="Component\Assets\Images\yt.png" />
+		<EmbeddedResource Include="Component\Assets\Images\za.png" />
+		<EmbeddedResource Include="Component\Assets\Images\zm.png" />
+		<EmbeddedResource Include="Component\Assets\Images\zw.png" />
+		<EmbeddedResource Include="Component\Assets\Fonts\iconfont.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="11.0.1" />
+		<PackageReference Include="FluentValidation" Version="10.4.0" />
+		<PackageReference Include="Prism.Forms.Regions" Version="8.1.97" />
+		<PackageReference Include="Syncfusion.Licensing" Version="20.1.0.47" />
+		<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="20.1.0.47" />
+		<PackageReference Include="Syncfusion.Xamarin.Core" Version="20.1.0.47" />
+		<PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="20.1.0.47" />
+		<PackageReference Include="Syncfusion.Xamarin.SfChart" Version="20.1.0.47" />
+		<PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="20.1.0.47" />
+		<PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="20.1.0.47" />
+		<PackageReference Include="Syncfusion.Xamarin.SfListView" Version="20.1.0.47" />
+		<PackageReference Include="Syncfusion.Xamarin.SfMaskedEdit" Version="20.1.0.47" />
+		<PackageReference Include="Syncfusion.Xamarin.SfNavigationDrawer" Version="20.1.0.47" />
+		<PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="20.1.0.47" />
+		<PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="20.1.0.47" />
+		<PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="20.1.0.47" />
+		<PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="20.1.0.47" />
+		<PackageReference Include="Syncfusion.Xamarin.SfTreeView" Version="20.1.0.47" />
+		<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.1" />
+		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Abp" Version="7.1.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+		<PackageReference Include="DryIoc.Microsoft.DependencyInjection" Version="5.1.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="Plugin.Permissions" Version="6.0.1" />
+		<PackageReference Include="Prism.Core" Version="8.1.97" />
+		<PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
+		<PackageReference Include="Prism.Forms" Version="8.1.97" />
+		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+		<PackageReference Include="System.Xml.XPath.XmlDocument" Version="4.3.0" />
+		<PackageReference Include="Xam.Plugin.Connectivity" Version="4.0.0.190-beta" />
+		<PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
+		<PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.1.1.1-beta" />
+		<PackageReference Include="Xam.Plugins.Settings" Version="4.1.0-beta" />
+		<PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\AppFramework.Application.Common\AppFramework.Shared.Common.csproj" />
+	  <ProjectReference Include="..\AppFrameworkDemo.Application.Client\AppFrameworkDemo.Application.Client.csproj" />
+	  <ProjectReference Include="..\AppFrameworkDemo.Application.Shared\AppFrameworkDemo.Application.Shared.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Views\Account\SettingsView.xaml.cs">
+	    <DependentUpon>SettingsView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Auditlog\AuditLogView.xaml.cs">
+	    <DependentUpon>AuditLogView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Shared\SkinView.xaml.cs">
+	    <DependentUpon>SkinView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Organization\OrganizationDetailsView.xaml.cs">
+	    <DependentUpon>OrganizationDetailsView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Organization\OrganizationView.xaml.cs">
+	    <DependentUpon>OrganizationView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Tenant\TenantView.xaml.cs">
+	    <DependentUpon>TenantView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Update="Views\Account\MyProfileView.xaml">
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </EmbeddedResource>
+	</ItemGroup>
+</Project>
