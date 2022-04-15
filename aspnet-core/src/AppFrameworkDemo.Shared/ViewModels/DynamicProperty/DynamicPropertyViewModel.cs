@@ -8,7 +8,7 @@ using AppFramework.Common.Core;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class DynamicPropertyViewModel : NavigationCurdViewModel<DynamicPropertyModel>
+    public class DynamicPropertyViewModel : RegionCurdViewModel<DynamicPropertyModel>
     {
         private readonly IDynamicPropertyAppService appService;
 

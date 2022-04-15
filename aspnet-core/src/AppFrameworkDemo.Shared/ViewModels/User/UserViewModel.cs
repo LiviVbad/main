@@ -10,7 +10,7 @@ using AppFramework.Common.Core;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class UserViewModel : NavigationCurdViewModel<UserListModel>
+    public class UserViewModel : RegionCurdViewModel<UserListModel>
     {
         #region 字段/属性
 

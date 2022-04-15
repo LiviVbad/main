@@ -1,4 +1,4 @@
-﻿namespace AppFramework.Shared
+﻿namespace AppFramework.Common.ViewModels
 {
     using System;
     using System.Collections.ObjectModel;

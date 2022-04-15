@@ -21,6 +21,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using AppFramework.Common.ViewModels;
 
 namespace AppFramework.Shared.Services
 {

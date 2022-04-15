@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class EditionViewModel : NavigationCurdViewModel<EditionListModel>
+    public class EditionViewModel : RegionCurdViewModel<EditionListModel>
     {
         private readonly IEditionAppService appService;
 

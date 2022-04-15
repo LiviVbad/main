@@ -8,7 +8,7 @@ using AppFramework.Common.Models;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class TenantViewModel : NavigationCurdViewModel<TenantListModel>
+    public class TenantViewModel : RegionCurdViewModel<TenantListModel>
     {
         private readonly ITenantAppService appService;
         private GetTenantsInput filter;

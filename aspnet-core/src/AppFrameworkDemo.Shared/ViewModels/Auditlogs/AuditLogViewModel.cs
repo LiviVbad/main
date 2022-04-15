@@ -7,7 +7,7 @@ using AppFramework.Common.Models;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class AuditLogViewModel : NavigationCurdViewModel<AuditLogListModel>
+    public class AuditLogViewModel : RegionCurdViewModel<AuditLogListModel>
     {
         private readonly IAuditLogAppService appService;
         public GetAuditLogsInput input;

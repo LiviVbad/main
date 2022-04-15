@@ -8,7 +8,7 @@ using AppFramework.Common.Core;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class RoleViewModel : NavigationCurdViewModel<RoleListModel>
+    public class RoleViewModel : RegionCurdViewModel<RoleListModel>
     {
         private readonly IRoleAppService appService;
 

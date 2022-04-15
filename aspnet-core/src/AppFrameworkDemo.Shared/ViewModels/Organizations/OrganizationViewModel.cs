@@ -12,7 +12,7 @@
     using AppFramework.Common.Models;
     using AppFramework.Common.Core;
 
-    public class OrganizationViewModel : NavigationCurdViewModel<OrganizationListModel>
+    public class OrganizationViewModel : RegionCurdViewModel<OrganizationListModel>
     {
         private readonly IOrganizationUnitAppService appService;
 

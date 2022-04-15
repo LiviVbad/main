@@ -1,4 +1,5 @@
-﻿using Prism.Regions.Navigation;
+﻿using AppFramework.Common.ViewModels;
+using Prism.Regions.Navigation;
 
 namespace AppFramework.Shared.ViewModels
 {

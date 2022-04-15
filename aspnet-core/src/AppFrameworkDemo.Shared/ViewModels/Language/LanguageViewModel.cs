@@ -9,7 +9,7 @@ using AppFramework.Common.Core;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class LanguageViewModel : NavigationCurdViewModel<LanguageListModel>, IRegionAware
+    public class LanguageViewModel : RegionCurdViewModel<LanguageListModel>, IRegionAware
     {
         private readonly ILanguageAppService appService;
 

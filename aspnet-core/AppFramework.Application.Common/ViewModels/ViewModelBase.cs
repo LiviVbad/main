@@ -1,9 +1,7 @@
-﻿namespace AppFramework.Shared.ViewModels
+﻿namespace AppFramework.Common.ViewModels
 {
     using AppFramework.Common.Core;
-    using AppFramework.Common.Services.Layer;
-    using AppFramework.Shared.Localization;
-    using AppFramework.Shared.Services.Layer;
+    using AppFramework.Common.Services.Layer; 
     using AutoMapper;
     using FluentValidation.Results;
     using Prism.Ioc;
@@ -44,7 +42,7 @@
             IsBusy = true;
             try
             {
-                applayer.Show(Local.Localize(loadingMessage));
+                applayer.Show(loadingMessage);
                 await func();
             }
             finally
@@ -71,7 +69,7 @@
                 {
                     stringBuilder.AppendLine(item.ErrorMessage);
                 }
-                AppDialogHelper.Warn(stringBuilder.ToString());
+                //AppDialogHelper.Warn(stringBuilder.ToString());
             }
             return validationResult;
         }
