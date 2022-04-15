@@ -1,6 +1,6 @@
 ﻿using Abp;
 
-namespace AppFrameworkDemo.Authorization.Users.Profile.Dto
+namespace AppFramework.Authorization.Users.Profile.Dto
 {
     public class GetFriendProfilePictureInput
     {

@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace AppFramework.Shared.Common.Services.Storage
+namespace AppFramework.Common.Services.Storage
 {
     /// <summary>
     /// 数据存储服务

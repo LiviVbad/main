@@ -1,11 +1,11 @@
-﻿using AppFrameworkDemo.ApiClient;
-using AppFramework.Application.Common.Models;
-using AppFrameworkDemo.Shared.Services;
-using AppFrameworkDemo.Shared.Services.Account;
+﻿using AppFramework.ApiClient; 
 using Prism.Commands;
 using Prism.Regions.Navigation;
+using AppFramework.Common.Services;
+using AppFramework.Common.Services.Account;
+using AppFramework.Common.Models;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class MainViewModel : RegionViewModel
     {

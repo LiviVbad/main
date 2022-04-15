@@ -1,10 +1,10 @@
-﻿using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.Authorization.Users.Profile.Dto;
+﻿using AppFramework.ApiClient;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.Authorization.Users.Profile.Dto;
 using System;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Authorization.Users.Profile
+namespace AppFramework.Authorization.Users.Profile
 {
     public class ProxyProfileAppService : ProxyAppServiceBase, IProfileAppService
     {

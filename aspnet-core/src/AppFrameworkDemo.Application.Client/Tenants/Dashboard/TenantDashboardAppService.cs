@@ -1,8 +1,8 @@
-﻿using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Tenants.Dashboard;
-using AppFrameworkDemo.Tenants.Dashboard.Dto;
+﻿using AppFramework.ApiClient;
+using AppFramework.Tenants.Dashboard;
+using AppFramework.Tenants.Dashboard.Dto;
 
-namespace AppFrameworkDemo.Application
+namespace AppFramework.Application
 {
     public class TenantDashboardAppService : ProxyAppServiceBase, ITenantDashboardAppService
     {

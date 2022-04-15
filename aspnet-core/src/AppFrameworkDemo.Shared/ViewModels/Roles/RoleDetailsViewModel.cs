@@ -1,15 +1,16 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Roles.Dto;
-using AppFramework.Application.Common.Models;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Roles.Dto; 
 using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using AppFramework.Common.Core;
+using AppFramework.Common.Models;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class RoleDetailsViewModel : NavigationViewModel
     {

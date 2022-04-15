@@ -1,8 +1,8 @@
 using Abp.Runtime.Validation;
-using AppFrameworkDemo.Common;
-using AppFrameworkDemo.Dto;
+using AppFramework.Common;
+using AppFramework.Dto;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments.Dto
+namespace AppFramework.MultiTenancy.Payments.Dto
 {
     public class GetPaymentHistoryInput : PagedAndSortedInputDto, IShouldNormalize
     {

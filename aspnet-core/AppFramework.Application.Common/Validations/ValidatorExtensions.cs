@@ -1,10 +1,10 @@
-﻿using AppFramework.Shared.Common.Models;
-using AppFrameworkDemo.MultiTenancy.Dto; 
+﻿using AppFramework.Common.Models;
+using AppFramework.MultiTenancy.Dto; 
 using FluentValidation; 
 using FluentValidation.Validators;
 using Prism.Ioc;
 
-namespace AppFramework.Shared.Common.Core.Validations
+namespace AppFramework.Common.Core.Validations
 {
     public static class ValidatorExtensions
     {

@@ -1,6 +1,6 @@
 ﻿using Prism.Regions.Navigation;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class RegionViewModel : ViewModelBase, IRegionAware
     {

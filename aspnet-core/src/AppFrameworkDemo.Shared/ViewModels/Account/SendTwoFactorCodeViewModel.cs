@@ -1,16 +1,15 @@
 ﻿using Acr.UserDialogs;
-using AppFrameworkDemo.ApiClient.Models;
-using AppFrameworkDemo.Authorization.Accounts;
-using AppFrameworkDemo.Shared.Core.Localization.Resources;
-using AppFrameworkDemo.Shared.Localization;
-using AppFrameworkDemo.Shared.Services.Account;
-using Prism.Commands;
-using Prism.Navigation;
+using AppFramework.Common.Services.Account;
+using AppFramework.ApiClient.Models;
+using AppFramework.Authorization.Accounts;
+using AppFramework.Shared.Core.Localization.Resources;
+using AppFramework.Shared.Localization; 
+using Prism.Commands; 
 using Prism.Services.Dialogs;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class SendTwoFactorCodeViewModel : DialogViewModel
     {

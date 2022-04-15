@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.WebHooks.Dto;
+using AppFramework.WebHooks.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.WebHooks
+namespace AppFramework.WebHooks
 {
     public interface IWebhookAttemptAppService
     {

@@ -1,9 +1,9 @@
-﻿using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.MultiTenancy.HostDashboard;
-using AppFrameworkDemo.MultiTenancy.HostDashboard.Dto;
+﻿using AppFramework.ApiClient;
+using AppFramework.MultiTenancy.HostDashboard;
+using AppFramework.MultiTenancy.HostDashboard.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Application.MultiTenancy.HostDashboard
+namespace AppFramework.Application.MultiTenancy.HostDashboard
 {
     public class HostDashboardAppService : ProxyAppServiceBase, IHostDashboardAppService
     {

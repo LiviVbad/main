@@ -1,9 +1,9 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Caching.Dto;
+using AppFramework.Caching.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Caching
+namespace AppFramework.Caching
 {
     public interface ICachingAppService : IApplicationService
     {

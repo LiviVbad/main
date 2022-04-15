@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.ApiClient
+namespace AppFramework.ApiClient
 {
     public class ModernHttpClientFactory : DefaultHttpClientFactory
     {

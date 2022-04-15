@@ -1,7 +1,7 @@
 ﻿using Prism.Mvvm;
 using System.Collections.ObjectModel;
 
-namespace AppFramework.Shared.Common.Models
+namespace AppFramework.Common.Models
 {
     public class FlatPermissionModel : BindableBase
     {

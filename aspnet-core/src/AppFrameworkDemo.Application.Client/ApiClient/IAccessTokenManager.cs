@@ -1,8 +1,8 @@
-﻿using AppFrameworkDemo.ApiClient.Models;
+﻿using AppFramework.ApiClient.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.ApiClient
+namespace AppFramework.ApiClient
 {
     public interface IAccessTokenManager
     {

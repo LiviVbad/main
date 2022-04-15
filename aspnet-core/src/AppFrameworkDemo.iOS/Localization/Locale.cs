@@ -1,5 +1,5 @@
-﻿using AppFrameworkDemo.Localization;
-using AppFrameworkDemo.Shared.Localization;
+﻿using AppFramework.Localization;
+using AppFramework.Shared.Localization;
 using Foundation;
 using System; 
 using System.Globalization; 
@@ -7,7 +7,7 @@ using System.Threading;
 
 [assembly:Xamarin.Forms.Dependency(typeof(Locale))]
 
-namespace AppFrameworkDemo.Localization
+namespace AppFramework.Localization
 {
     public class Locale : ILocale
     {

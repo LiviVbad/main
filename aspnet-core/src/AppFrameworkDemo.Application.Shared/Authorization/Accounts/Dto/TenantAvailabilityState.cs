@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Authorization.Accounts.Dto
+﻿namespace AppFramework.Authorization.Accounts.Dto
 {
     public enum TenantAvailabilityState
     {

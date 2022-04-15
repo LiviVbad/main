@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Dto
+namespace AppFramework.Dto
 {
     public class PagedInputDto : IPagedResultRequest
     {

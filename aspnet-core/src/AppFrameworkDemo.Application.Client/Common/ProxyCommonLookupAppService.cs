@@ -1,11 +1,11 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.Threading;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Common.Dto;
-using AppFrameworkDemo.Editions.Dto;
+using AppFramework.ApiClient;
+using AppFramework.Common.Dto;
+using AppFramework.Editions.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Common
+namespace AppFramework.Common
 {
     public class ProxyCommonLookupAppService : ProxyAppServiceBase, ICommonLookupAppService
     {

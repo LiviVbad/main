@@ -1,10 +1,10 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Authorization.Users.Delegation.Dto;
+using AppFramework.Authorization.Users.Delegation.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Authorization.Users.Delegation
+namespace AppFramework.Authorization.Users.Delegation
 {
     public interface IUserDelegationAppService : IApplicationService
     {

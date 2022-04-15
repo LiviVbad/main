@@ -1,15 +1,16 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Organizations;
-using AppFrameworkDemo.Organizations.Dto;
-using AppFramework.Application.Common.Models;
-using AppFrameworkDemo.Shared.Services.Permission;
+using AppFramework.Common.Core;
+using AppFramework.Common.Models;
+using AppFramework.Common.Services.Permission;
+using AppFramework.Organizations;
+using AppFramework.Organizations.Dto; 
 using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class OrganizationDetailsViewModel : NavigationViewModel
     {

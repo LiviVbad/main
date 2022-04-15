@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AppFramework.Shared.Common.Core
+namespace AppFramework.Common.Core
 {
     public interface IWeakAction
     {

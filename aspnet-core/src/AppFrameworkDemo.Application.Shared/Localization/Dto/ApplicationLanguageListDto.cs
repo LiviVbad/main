@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 
-namespace AppFrameworkDemo.Localization.Dto
+namespace AppFramework.Localization.Dto
 {
     public class ApplicationLanguageListDto : FullAuditedEntityDto
     {

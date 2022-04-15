@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 
-namespace AppFramework.Shared.Common.Models
+namespace AppFramework.Common.Models
 {
     public class UserLoginInfoPersistanceModel : EntityDto<long>
     {

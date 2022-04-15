@@ -1,11 +1,12 @@
-﻿using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.ApiClient.Models;
-using AppFrameworkDemo.Sessions.Dto;
-using AppFramework.Application.Common.Models;
+﻿using AppFramework.ApiClient;
+using AppFramework.ApiClient.Models;
+using AppFramework.Sessions.Dto; 
 using AutoMapper;
 using System.Threading.Tasks;
+using AppFramework.Common.Services.Storage;
+using AppFramework.Common.Models;
 
-namespace AppFrameworkDemo.Shared.Services.Storage
+namespace AppFramework.Shared.Services.Storage
 {
     public class AccountStorageService : IAccountStorageService
     {

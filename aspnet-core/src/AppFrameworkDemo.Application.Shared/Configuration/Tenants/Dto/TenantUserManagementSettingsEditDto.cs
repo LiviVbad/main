@@ -1,6 +1,6 @@
-using AppFrameworkDemo.Configuration.Host.Dto;
+using AppFramework.Configuration.Host.Dto;
 
-namespace AppFrameworkDemo.Configuration.Tenants.Dto
+namespace AppFramework.Configuration.Tenants.Dto
 {
     public class TenantUserManagementSettingsEditDto
     {

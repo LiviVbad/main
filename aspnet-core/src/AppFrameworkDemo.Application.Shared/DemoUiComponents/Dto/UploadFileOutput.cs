@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AppFrameworkDemo.DemoUiComponents.Dto
+namespace AppFramework.DemoUiComponents.Dto
 {
     public class UploadFileOutput
     {

@@ -1,11 +1,11 @@
 ﻿using Acr.UserDialogs;
-using AppFrameworkDemo.Authorization.Accounts;
-using AppFrameworkDemo.Authorization.Accounts.Dto;
-using AppFrameworkDemo.Shared.Localization;
+using AppFramework.Authorization.Accounts;
+using AppFramework.Authorization.Accounts.Dto;
+using AppFramework.Shared.Localization;
 using Prism.Commands;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class ForgotPasswordViewModel : DialogViewModel
     {

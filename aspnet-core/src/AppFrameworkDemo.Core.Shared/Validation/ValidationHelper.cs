@@ -1,7 +1,7 @@
 ﻿using Abp.Extensions;
 using System.Text.RegularExpressions;
 
-namespace AppFrameworkDemo.Validation
+namespace AppFramework.Validation
 {
     public static class ValidationHelper
     {

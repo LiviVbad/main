@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Authorization.Roles.Dto
+namespace AppFramework.Authorization.Roles.Dto
 {
     public class RoleEditDto
     {

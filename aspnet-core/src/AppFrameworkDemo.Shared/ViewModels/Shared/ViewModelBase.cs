@@ -1,7 +1,9 @@
-﻿namespace AppFrameworkDemo.Shared.ViewModels
+﻿namespace AppFramework.Shared.ViewModels
 {
-    using AppFrameworkDemo.Shared.Localization;
-    using AppFrameworkDemo.Shared.Services.Layer;
+    using AppFramework.Common.Core;
+    using AppFramework.Common.Services.Layer;
+    using AppFramework.Shared.Localization;
+    using AppFramework.Shared.Services.Layer;
     using AutoMapper;
     using FluentValidation.Results;
     using Prism.Ioc;

@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 
-namespace AppFrameworkDemo.Authorization.Accounts.Dto
+namespace AppFramework.Authorization.Accounts.Dto
 {
     //### This class is mapped in CustomDtoMapper ###
     public class CurrentTenantInfoDto : EntityDto

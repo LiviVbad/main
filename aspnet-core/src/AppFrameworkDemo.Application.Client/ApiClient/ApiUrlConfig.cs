@@ -1,7 +1,7 @@
 ﻿using Abp.Extensions;
 using System;
 
-namespace AppFrameworkDemo.ApiClient
+namespace AppFramework.ApiClient
 {
     public static class ApiUrlConfig
     {

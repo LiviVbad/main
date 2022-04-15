@@ -1,7 +1,7 @@
 using Abp.Auditing;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Authorization.Users.Profile.Dto
+namespace AppFramework.Authorization.Users.Profile.Dto
 {
     public class ChangePasswordInput
     {

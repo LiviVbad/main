@@ -3,7 +3,7 @@ using Abp.Web.Models;
 using System;
 using System.Linq;
 
-namespace AppFrameworkDemo.Extensions
+namespace AppFramework.Extensions
 {
     public static class ErrorInfoExtensions
     {

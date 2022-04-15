@@ -1,6 +1,6 @@
 ﻿using Abp.Configuration;
 
-namespace AppFrameworkDemo.Timing.Dto
+namespace AppFramework.Timing.Dto
 {
     public class GetTimezoneComboboxItemsInput
     {

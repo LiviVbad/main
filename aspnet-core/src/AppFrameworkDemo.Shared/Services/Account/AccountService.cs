@@ -1,16 +1,19 @@
 ﻿using Acr.UserDialogs;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.ApiClient.Models;
-using AppFrameworkDemo.Authorization.Users.Profile;
-using AppFrameworkDemo.Sessions;
-using AppFrameworkDemo.Sessions.Dto;
-using AppFrameworkDemo.Shared.Localization;
-using AppFrameworkDemo.Shared.Services.Storage;
+using AppFramework.Common.Core;
+using AppFramework.Common.Services;
+using AppFramework.Common.Services.Account;
+using AppFramework.Common.Services.Storage;
+using AppFramework.ApiClient;
+using AppFramework.ApiClient.Models;
+using AppFramework.Authorization.Users.Profile;
+using AppFramework.Sessions;
+using AppFramework.Sessions.Dto;
+using AppFramework.Shared.Localization; 
 using Prism.Mvvm;
 using Prism.Navigation;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Shared.Services.Account
+namespace AppFramework.Shared.Services.Account
 {
     public class AccountService : BindableBase, IAccountService
     {

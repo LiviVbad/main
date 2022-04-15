@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Notifications.Dto
+namespace AppFramework.Notifications.Dto
 {
     public class GetNotificationSettingsOutput
     {

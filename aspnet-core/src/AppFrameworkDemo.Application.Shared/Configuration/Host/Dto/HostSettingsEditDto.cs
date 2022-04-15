@@ -1,7 +1,7 @@
-﻿using AppFrameworkDemo.Configuration.Dto;
+﻿using AppFramework.Configuration.Dto;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Configuration.Host.Dto
+namespace AppFramework.Configuration.Host.Dto
 {
     public class HostSettingsEditDto
     {

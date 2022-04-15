@@ -1,9 +1,9 @@
 ﻿using Abp.Application.Services;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.Authorization.Users.Profile.Dto;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.Authorization.Users.Profile.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Authorization.Users.Profile
+namespace AppFramework.Authorization.Users.Profile
 {
     public interface IProfileAppService : IApplicationService
     {

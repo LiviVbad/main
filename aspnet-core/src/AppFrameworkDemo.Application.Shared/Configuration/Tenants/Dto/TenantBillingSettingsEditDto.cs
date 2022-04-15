@@ -1,4 +1,4 @@
-namespace AppFrameworkDemo.Configuration.Tenants.Dto
+namespace AppFramework.Configuration.Tenants.Dto
 {
     public class TenantBillingSettingsEditDto
     {

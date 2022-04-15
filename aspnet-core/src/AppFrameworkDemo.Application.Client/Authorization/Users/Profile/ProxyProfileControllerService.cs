@@ -1,9 +1,9 @@
-﻿using AppFrameworkDemo.Authorization.Users.Profile.Dto;
+﻿using AppFramework.Authorization.Users.Profile.Dto;
 using Flurl.Http.Content;
 using System;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Authorization.Users.Profile
+namespace AppFramework.Authorization.Users.Profile
 {
     public class ProxyProfileControllerService : ProxyControllerBase
     {

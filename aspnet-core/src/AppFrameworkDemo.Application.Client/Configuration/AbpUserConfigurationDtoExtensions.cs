@@ -1,6 +1,6 @@
 ﻿using Abp.Web.Models.AbpUserConfiguration;
 
-namespace AppFrameworkDemo.Configuration
+namespace AppFramework.Configuration
 {
     public static class AbpUserConfigurationDtoExtensions
     {

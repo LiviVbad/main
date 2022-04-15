@@ -1,9 +1,10 @@
 ﻿using System; 
 using System.Linq; 
-using System.Threading.Tasks; 
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.MultiTenancy;
+using System.Threading.Tasks;
+using AppFramework.Common;
+using AppFramework.ApiClient;
+using AppFramework.Configuration;
+using AppFramework.MultiTenancy;
 
 namespace AppFramework.Services.Account
 {
@@ -33,7 +34,7 @@ namespace AppFramework.Services.Account
             if (OnSessionTimeOut != null)
                 userConfigurationService.OnSessionTimeOut = OnSessionTimeOut;
 
-            await WebRuner.Execute(
+            await WebRequest.Execute(
                 async () => await userConfigurationService.GetAsync(accessTokenManager.IsUserLoggedIn),
                 async result =>
                 {

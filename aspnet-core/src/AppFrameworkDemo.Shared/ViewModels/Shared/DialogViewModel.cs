@@ -2,7 +2,7 @@
 using Prism.Services.Dialogs;
 using System;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public abstract class DialogViewModel : ViewModelBase, IDialogAware
     {

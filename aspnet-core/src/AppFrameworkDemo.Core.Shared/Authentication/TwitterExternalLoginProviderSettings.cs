@@ -1,6 +1,6 @@
 ﻿using Abp.Extensions;
 
-namespace AppFrameworkDemo.Authentication
+namespace AppFramework.Authentication
 {
     public class TwitterExternalLoginProviderSettings
     {

@@ -5,13 +5,13 @@ using System.Collections.ObjectModel;
 using System.Linq; 
 using System.Threading.Tasks; 
 using AppFramework.WindowHost;
-using Prism.Services.Dialogs;
-using AppFramework.Localization;
+using Prism.Services.Dialogs; 
 using Prism.Regions;
 using AppFramework.Services;
-using AppFrameworkDemo.Organizations.Dto;
-using AppFrameworkDemo.Organizations;
-using AppFramework.Application.Common.Models;
+using AppFramework.Organizations.Dto;
+using AppFramework.Organizations;
+using AppFramework.Common.Models;
+using AppFramework.Common;
 
 namespace AppFramework.ViewModels
 {
@@ -74,7 +74,7 @@ namespace AppFramework.ViewModels
 
         public async Task RefreshTreeView()
         {
-            await WebRuner.Execute(
+            await WebRequest.Execute(
                       () => appService.GetOrganizationUnits(),
                       result => Successed(result),
                       ex => Task.CompletedTask);
@@ -82,11 +82,11 @@ namespace AppFramework.ViewModels
 
         public async Task DeleteOrganizationUnit(OrganizationUnitModel organizationUnit)
         {
-            var question = await dialogHostService
-                .Question(Local.Localize("OrganizationUnitDeleteWarningMessage", organizationUnit.DisplayName));
-            if (question.Result == ButtonResult.OK)
+            //var question = await dialogHostService
+            //    .Question(Local.Localize("OrganizationUnitDeleteWarningMessage", organizationUnit.DisplayName));
+            //if (question.Result == ButtonResult.OK)
             {
-                await WebRuner.Execute(
+                await WebRequest.Execute(
                     () => appService.DeleteOrganizationUnit(new EntityDto<long>()
                     {
                         Id = organizationUnit.Id
@@ -106,7 +106,7 @@ namespace AppFramework.ViewModels
             {
                 var input = dialogResult.Parameters.GetValue<OrganizationUnitModel>("Value");
 
-                await WebRuner.Execute(
+                await WebRequest.Execute(
                        () =>
                        appService.UpdateOrganizationUnit(new UpdateOrganizationUnitInput()
                        {
@@ -123,7 +123,7 @@ namespace AppFramework.ViewModels
             if (dialogResult.Result == ButtonResult.OK)
             {
                 var input = dialogResult.Parameters.GetValue<OrganizationUnitModel>("Value");
-                await WebRuner.Execute(
+                await WebRequest.Execute(
                        () =>
                        appService.CreateOrganizationUnit(new CreateOrganizationUnitInput()
                        {
@@ -198,7 +198,7 @@ namespace AppFramework.ViewModels
 
             long Id = organizationUnit.Id;
 
-            await WebRuner.Execute(
+            await WebRequest.Execute(
                        () => appService.FindRoles(new FindOrganizationUnitRolesInput()
                        {
                            OrganizationUnitId = Id
@@ -216,7 +216,7 @@ namespace AppFramework.ViewModels
             if (dialogResult.Result == ButtonResult.OK)
             {
                 var input = dialogResult.Parameters.GetValue<RolesToOrganizationUnitInput>("Value");
-                await WebRuner.Execute(
+                await WebRequest.Execute(
                     () => appService.AddRolesToOrganizationUnit(input),
                     () => RefreshRoles(Id));
 
@@ -259,7 +259,7 @@ namespace AppFramework.ViewModels
 
             long Id = organizationUnit.Id;
 
-            await WebRuner.Execute(
+            await WebRequest.Execute(
                        () => appService.FindUsers(new FindOrganizationUnitUsersInput()
                        {
                            OrganizationUnitId = Id
@@ -276,7 +276,7 @@ namespace AppFramework.ViewModels
             if (dialogResult.Result == ButtonResult.OK)
             {
                 var input = dialogResult.Parameters.GetValue<UsersToOrganizationUnitInput>("Value");
-                await WebRuner.Execute(
+                await WebRequest.Execute(
                     () => appService.AddUsersToOrganizationUnit(input),
                     () => RefreshUsers(Id));
 

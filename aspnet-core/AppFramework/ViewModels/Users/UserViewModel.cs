@@ -1,5 +1,5 @@
-﻿using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.Authorization.Users.Profile;
+﻿using AppFramework.Authorization.Users.Dto;
+using AppFramework.Authorization.Users.Profile;
 
 namespace AppFramework.ViewModels
 {

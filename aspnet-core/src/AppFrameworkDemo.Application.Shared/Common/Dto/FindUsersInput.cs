@@ -1,6 +1,6 @@
-﻿using AppFrameworkDemo.Dto;
+﻿using AppFramework.Dto;
 
-namespace AppFrameworkDemo.Common.Dto
+namespace AppFramework.Common.Dto
 {
     public class FindUsersInput : PagedAndFilteredInputDto
     {

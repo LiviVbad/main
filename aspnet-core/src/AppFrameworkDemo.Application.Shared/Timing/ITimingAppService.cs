@@ -1,10 +1,10 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Timing.Dto;
+using AppFramework.Timing.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Timing
+namespace AppFramework.Timing
 {
     public interface ITimingAppService : IApplicationService
     {

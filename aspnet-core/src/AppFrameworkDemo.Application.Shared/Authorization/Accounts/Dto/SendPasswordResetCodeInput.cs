@@ -1,7 +1,7 @@
 ﻿using Abp.Authorization.Users;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Authorization.Accounts.Dto
+namespace AppFramework.Authorization.Accounts.Dto
 {
     public class SendPasswordResetCodeInput
     {

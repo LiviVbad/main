@@ -1,6 +1,6 @@
 ﻿using Abp.Auditing;
 
-namespace AppFrameworkDemo.Configuration.Dto
+namespace AppFramework.Configuration.Dto
 {
     public class EmailSettingsEditDto
     {

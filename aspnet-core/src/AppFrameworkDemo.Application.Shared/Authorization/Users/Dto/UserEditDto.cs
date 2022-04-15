@@ -3,7 +3,7 @@ using Abp.Authorization.Users;
 using Abp.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Authorization.Users.Dto
+namespace AppFramework.Authorization.Users.Dto
 {
     //Mapped to/from User in CustomDtoMapper
     public class UserEditDto : IPassivable

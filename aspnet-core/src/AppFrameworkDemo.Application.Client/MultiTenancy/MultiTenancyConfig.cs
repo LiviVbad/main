@@ -2,7 +2,7 @@
 using Abp.Configuration.Startup;
 using Abp.MultiTenancy;
 
-namespace AppFrameworkDemo.Application.MultiTenancy
+namespace AppFramework.Application.MultiTenancy
 {
     /// <summary>
     /// Used to configure multi-tenancy.

@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
-namespace AppFrameworkDemo.Shared
+namespace AppFramework.Shared
 {
     /// <summary>
     /// 应用程序配置文件

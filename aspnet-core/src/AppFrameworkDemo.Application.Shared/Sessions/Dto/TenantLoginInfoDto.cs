@@ -1,10 +1,10 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.Timing;
-using AppFrameworkDemo.MultiTenancy.Payments;
+using AppFramework.MultiTenancy.Payments;
 using System;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Sessions.Dto
+namespace AppFramework.Sessions.Dto
 {
     public class TenantLoginInfoDto : EntityDto
     {

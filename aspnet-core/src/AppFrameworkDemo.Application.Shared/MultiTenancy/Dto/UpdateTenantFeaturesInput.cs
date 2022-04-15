@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.MultiTenancy.Dto
+namespace AppFramework.MultiTenancy.Dto
 {
     public class UpdateTenantFeaturesInput
     {

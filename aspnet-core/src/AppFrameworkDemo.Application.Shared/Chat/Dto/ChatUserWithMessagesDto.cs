@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Chat.Dto
+namespace AppFramework.Chat.Dto
 {
     public class ChatUserWithMessagesDto : ChatUserDto
     {

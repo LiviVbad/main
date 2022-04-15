@@ -10,9 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		common.props = common.props
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFrameworkDemo.Application.Shared", "src\AppFrameworkDemo.Application.Shared\AppFrameworkDemo.Application.Shared.csproj", "{6143A90B-6C2A-4683-8A3A-4D48702770EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Application.Shared", "src\AppFrameworkDemo.Application.Shared\AppFramework.Application.Shared.csproj", "{6143A90B-6C2A-4683-8A3A-4D48702770EA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFrameworkDemo.Core.Shared", "src\AppFrameworkDemo.Core.Shared\AppFrameworkDemo.Core.Shared.csproj", "{4D6603C1-F7D6-4681-97F8-69B4BBBC0536}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Core.Shared", "src\AppFrameworkDemo.Core.Shared\AppFramework.Core.Shared.csproj", "{4D6603C1-F7D6-4681-97F8-69B4BBBC0536}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppFramework.Android", "src\AppFrameworkDemo.Android\AppFramework.Android.csproj", "{4F068C06-E551-4DD7-BFE6-00028846F2D0}"
 EndProject
@@ -20,11 +20,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Shared", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppFramework.iOS", "src\AppFrameworkDemo.iOS\AppFramework.iOS.csproj", "{AC99E6A5-A7AD-46D6-A75F-9B25D5272DBC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFrameworkDemo.Application.Client", "src\AppFrameworkDemo.Application.Client\AppFrameworkDemo.Application.Client.csproj", "{572932C8-FC7F-472C-B466-0CC07F29FE7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Application.Client", "src\AppFrameworkDemo.Application.Client\AppFramework.Application.Client.csproj", "{572932C8-FC7F-472C-B466-0CC07F29FE7A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework", "AppFramework\AppFramework.csproj", "{82563845-B95B-4D22-8494-5CA515A5508C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppFramework.Shared.Common", "AppFramework.Application.Common\AppFramework.Shared.Common.csproj", "{CF60E0AD-6403-466A-97B1-6D64883E08F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Common", "AppFramework.Application.Common\AppFramework.Common.csproj", "{CF60E0AD-6403-466A-97B1-6D64883E08F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

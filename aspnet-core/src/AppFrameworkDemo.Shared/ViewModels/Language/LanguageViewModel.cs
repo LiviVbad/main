@@ -1,20 +1,21 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Localization;
-using AppFrameworkDemo.Localization.Dto;
-using AppFramework.Application.Common.Models;
+using AppFramework.Localization;
+using AppFramework.Localization.Dto;
 using Prism.Regions.Navigation;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AppFramework.Common.Models;
+using AppFramework.Common.Core;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class LanguageViewModel : NavigationCurdViewModel<LanguageListModel>, IRegionAware
     {
         private readonly ILanguageAppService appService;
 
-        public LanguageViewModel(ILanguageAppService languageAppService,IMessenger messenger)
+        public LanguageViewModel(ILanguageAppService languageAppService, IMessenger messenger)
         {
-            this.appService=languageAppService;
+            this.appService = languageAppService;
             messenger.Sub(AppMessengerKeys.Language, async () => await RefreshAsync());
         }
 
@@ -25,18 +26,18 @@ namespace AppFrameworkDemo.Shared.ViewModels
                 await WebRequestRuner.Execute(
                        () => appService.GetLanguages(),
                        result => RefreshSuccessed(result));
-            }); 
+            });
         }
 
         public override async void Delete(LanguageListModel selectedItem)
         {
-            if (selectedItem==null) return;
+            if (selectedItem == null) return;
 
             if (!await dialogService.DeleteConfirm()) return;
 
             await appService.DeleteLanguage(new EntityDto()
             {
-                Id=selectedItem.Id
+                Id = selectedItem.Id
             });
             await RefreshAsync();
         }

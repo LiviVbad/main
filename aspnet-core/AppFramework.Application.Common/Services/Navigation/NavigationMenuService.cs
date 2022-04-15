@@ -1,9 +1,9 @@
-﻿using AppFramework.Shared.Common.Models;
-using AppFramework.Shared.Common.Core;
+﻿using AppFramework.Common.Models;
+using AppFramework.Common.Core;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace AppFramework.Shared.Common.Services.Navigation
+namespace AppFramework.Common.Services.Navigation
 {
     public class NavigationMenuService : INavigationMenuService
     {

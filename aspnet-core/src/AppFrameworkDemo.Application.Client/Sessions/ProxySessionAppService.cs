@@ -1,8 +1,8 @@
-﻿using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Sessions.Dto;
+﻿using AppFramework.ApiClient;
+using AppFramework.Sessions.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Sessions
+namespace AppFramework.Sessions
 {
     public class ProxySessionAppService : ProxyAppServiceBase, ISessionAppService
     {

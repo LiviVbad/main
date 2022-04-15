@@ -1,11 +1,11 @@
-﻿using AppFrameworkDemo.Auditing;
-using AppFrameworkDemo.Auditing.Dto;
-using AppFramework.Application.Common.Models;
+﻿using AppFramework.Auditing;
+using AppFramework.Auditing.Dto; 
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AppFramework.Common.Models;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class AuditLogViewModel : NavigationCurdViewModel<AuditLogListModel>
     {

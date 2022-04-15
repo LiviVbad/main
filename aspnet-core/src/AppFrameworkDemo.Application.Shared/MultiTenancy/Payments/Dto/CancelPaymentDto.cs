@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.MultiTenancy.Payments.Dto
+﻿namespace AppFramework.MultiTenancy.Payments.Dto
 {
     public class CancelPaymentDto
     {

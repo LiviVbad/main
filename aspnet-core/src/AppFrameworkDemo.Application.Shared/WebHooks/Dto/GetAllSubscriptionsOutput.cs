@@ -3,7 +3,7 @@ using Abp.Webhooks;
 using System;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.WebHooks.Dto
+namespace AppFramework.WebHooks.Dto
 {
     public class GetAllSubscriptionsOutput : EntityDto<Guid>
     {

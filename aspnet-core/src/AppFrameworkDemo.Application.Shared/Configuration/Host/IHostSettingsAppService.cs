@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services;
-using AppFrameworkDemo.Configuration.Host.Dto;
+using AppFramework.Configuration.Host.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Configuration.Host
+namespace AppFramework.Configuration.Host
 {
     public interface IHostSettingsAppService : IApplicationService
     {

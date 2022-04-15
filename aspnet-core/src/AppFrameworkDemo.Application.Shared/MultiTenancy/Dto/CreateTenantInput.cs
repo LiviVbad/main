@@ -4,7 +4,7 @@ using Abp.MultiTenancy;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.MultiTenancy.Dto
+namespace AppFramework.MultiTenancy.Dto
 {
     public class CreateTenantInput
     {

@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 
-namespace AppFrameworkDemo.Authorization.Users.Dto
+namespace AppFramework.Authorization.Users.Dto
 {
     public interface IGetLoginAttemptsInput : ISortedResultRequest
     {

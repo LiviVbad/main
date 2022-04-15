@@ -1,9 +1,9 @@
 using Abp.Runtime.Validation;
-using AppFrameworkDemo.Common;
-using AppFrameworkDemo.Dto;
+using AppFramework.Common;
+using AppFramework.Dto;
 using System;
 
-namespace AppFrameworkDemo.MultiTenancy.Dto
+namespace AppFramework.MultiTenancy.Dto
 {
     public class GetTenantsInput : PagedAndSortedInputDto, IShouldNormalize
     {

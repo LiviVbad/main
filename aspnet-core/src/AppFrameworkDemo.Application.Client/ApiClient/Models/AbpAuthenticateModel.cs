@@ -1,6 +1,6 @@
 ﻿using Abp.Dependency;
 
-namespace AppFrameworkDemo.ApiClient.Models
+namespace AppFramework.ApiClient.Models
 {
     public class AbpAuthenticateModel : ISingletonDependency
     {

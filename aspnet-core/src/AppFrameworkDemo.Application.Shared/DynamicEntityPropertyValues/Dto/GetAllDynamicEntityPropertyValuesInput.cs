@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.DynamicEntityPropertyValues.Dto
+namespace AppFramework.DynamicEntityPropertyValues.Dto
 {
     public class GetAllDynamicEntityPropertyValuesInput
     {

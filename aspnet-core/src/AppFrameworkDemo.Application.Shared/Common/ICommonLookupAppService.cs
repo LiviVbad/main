@@ -1,10 +1,10 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Common.Dto;
-using AppFrameworkDemo.Editions.Dto;
+using AppFramework.Common.Dto;
+using AppFramework.Editions.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Common
+namespace AppFramework.Common
 {
     public interface ICommonLookupAppService : IApplicationService
     {

@@ -23,9 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AppFramework.Application.Common\AppFramework.Shared.Common.csproj" />
-    <ProjectReference Include="..\src\AppFrameworkDemo.Application.Client\AppFrameworkDemo.Application.Client.csproj" />
-    <ProjectReference Include="..\src\AppFrameworkDemo.Application.Shared\AppFrameworkDemo.Application.Shared.csproj" />
+    <ProjectReference Include="..\AppFramework.Application.Common\AppFramework.Common.csproj" />
+    <ProjectReference Include="..\src\AppFrameworkDemo.Application.Client\AppFramework.Application.Client.csproj" />
+    <ProjectReference Include="..\src\AppFrameworkDemo.Application.Shared\AppFramework.Application.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

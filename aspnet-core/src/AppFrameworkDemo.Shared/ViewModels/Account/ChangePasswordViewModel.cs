@@ -1,12 +1,12 @@
 ﻿using Acr.UserDialogs;
-using AppFrameworkDemo.Authorization.Users.Profile;
-using AppFrameworkDemo.Authorization.Users.Profile.Dto;
-using AppFrameworkDemo.Shared.Localization;
+using AppFramework.Authorization.Users.Profile;
+using AppFramework.Authorization.Users.Profile.Dto;
+using AppFramework.Shared.Localization;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class ChangePasswordViewModel : DialogViewModel
     {

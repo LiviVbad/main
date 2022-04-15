@@ -1,6 +1,6 @@
-﻿using AppFrameworkDemo.Dto;
+﻿using AppFramework.Dto;
 
-namespace AppFrameworkDemo.WebHooks.Dto
+namespace AppFramework.WebHooks.Dto
 {
     public class GetAllSendAttemptsInput : PagedInputDto
     {

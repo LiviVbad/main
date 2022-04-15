@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AppFrameworkDemo.Common
+namespace AppFramework.Common
 {
     public static class DtoSortingHelper
     {

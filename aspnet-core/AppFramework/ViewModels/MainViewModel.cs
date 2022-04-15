@@ -4,12 +4,12 @@ using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Regions;
 using System.Collections.ObjectModel;
-using System.Windows.Media.Imaging;
-using AppFramework.Models;
-using AppFrameworkDemo.Authorization.Users.Profile;
-using AppFrameworkDemo.ApiClient;
-using AppFramework.Application.Common.Models;
-using AppFramework.Application.Common.Services.Navigation;
+using System.Windows.Media.Imaging; 
+using AppFramework.Authorization.Users.Profile;
+using AppFramework.ApiClient;
+using AppFramework.Common.Services.Navigation;
+using AppFramework.Common.Models;
+using AppFramework.Common.Core;
 
 namespace AppFramework.ViewModels
 {
@@ -105,7 +105,7 @@ namespace AppFramework.ViewModels
         void Navigate(string pageName, NavigationParameters param = null)
         {
             regionManager
-                .Regions[PrismRegionManager.MainRegion]
+                .Regions[AppRegionManager.Main]
                 .RequestNavigate(pageName, back =>
                 {
                     if ((bool)back.Result)

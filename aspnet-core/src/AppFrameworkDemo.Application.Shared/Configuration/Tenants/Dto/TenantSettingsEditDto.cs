@@ -1,11 +1,11 @@
 using Abp.Runtime.Validation;
 using Abp.Timing;
-using AppFrameworkDemo.Configuration.Dto;
-using AppFrameworkDemo.Configuration.Host.Dto;
+using AppFramework.Configuration.Dto;
+using AppFramework.Configuration.Host.Dto;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Configuration.Tenants.Dto
+namespace AppFramework.Configuration.Tenants.Dto
 {
     public class TenantSettingsEditDto
     {

@@ -1,9 +1,9 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.MultiTenancy.Dto;
+using AppFramework.ApiClient;
+using AppFramework.MultiTenancy.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.MultiTenancy
+namespace AppFramework.MultiTenancy
 {
     public class ProxyTenantAppService : ProxyAppServiceBase, ITenantAppService
     {

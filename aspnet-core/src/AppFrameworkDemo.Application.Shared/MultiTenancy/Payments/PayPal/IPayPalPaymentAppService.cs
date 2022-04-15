@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services;
-using AppFrameworkDemo.MultiTenancy.Payments.PayPal.Dto;
+using AppFramework.MultiTenancy.Payments.PayPal.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments.PayPal
+namespace AppFramework.MultiTenancy.Payments.PayPal
 {
     public interface IPayPalPaymentAppService : IApplicationService
     {

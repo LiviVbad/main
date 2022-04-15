@@ -1,9 +1,9 @@
 ﻿using Abp.Application.Services;
-using AppFrameworkDemo.MultiTenancy.Payments.Dto;
-using AppFrameworkDemo.MultiTenancy.Payments.Stripe.Dto;
+using AppFramework.MultiTenancy.Payments.Dto;
+using AppFramework.MultiTenancy.Payments.Stripe.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments.Stripe
+namespace AppFramework.MultiTenancy.Payments.Stripe
 {
     public interface IStripePaymentAppService : IApplicationService
     {

@@ -1,7 +1,7 @@
 ﻿using Abp.UI.Inputs;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.DynamicEntityPropertyValues.Dto
+namespace AppFramework.DynamicEntityPropertyValues.Dto
 {
     public class GetAllDynamicEntityPropertyValuesOutput
     {

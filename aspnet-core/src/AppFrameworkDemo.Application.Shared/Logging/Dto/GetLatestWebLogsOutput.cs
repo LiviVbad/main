@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Logging.Dto
+namespace AppFramework.Logging.Dto
 {
     public class GetLatestWebLogsOutput
     {

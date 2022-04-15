@@ -1,10 +1,10 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.Dto;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     public interface IUserAppService : IApplicationService
     {

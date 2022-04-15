@@ -1,8 +1,8 @@
-﻿using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.DynamicEntityProperties;
+﻿using AppFramework.ApiClient;
+using AppFramework.DynamicEntityProperties;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Application
+namespace AppFramework.Application
 {
     public class DynamicEntityPropertyDefinitionAppService : ProxyAppServiceBase, IDynamicEntityPropertyDefinitionAppService
     {

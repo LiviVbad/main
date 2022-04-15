@@ -2,7 +2,7 @@
 using Abp.UI;
 using System;
 
-namespace AppFrameworkDemo.Authentication
+namespace AppFramework.Authentication
 {
     public class OpenIdConnectExternalLoginProviderSettings
     {

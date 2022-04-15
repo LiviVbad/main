@@ -1,11 +1,12 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.DynamicEntityProperties;
-using AppFrameworkDemo.DynamicEntityProperties.Dto;
-using AppFramework.Application.Common.Models;
+using AppFramework.DynamicEntityProperties;
+using AppFramework.DynamicEntityProperties.Dto; 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AppFramework.Common.Models;
+using AppFramework.Common.Core;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class DynamicPropertyViewModel : NavigationCurdViewModel<DynamicPropertyModel>
     {

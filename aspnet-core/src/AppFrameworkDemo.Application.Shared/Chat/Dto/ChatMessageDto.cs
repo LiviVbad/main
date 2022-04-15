@@ -1,7 +1,7 @@
 using Abp.Application.Services.Dto;
 using System;
 
-namespace AppFrameworkDemo.Chat.Dto
+namespace AppFramework.Chat.Dto
 {
     public class ChatMessageDto : EntityDto
     {

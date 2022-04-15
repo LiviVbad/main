@@ -1,10 +1,10 @@
 using Abp.Extensions;
 using Abp.Runtime.Validation;
-using AppFrameworkDemo.Common;
-using AppFrameworkDemo.Dto;
+using AppFramework.Common;
+using AppFramework.Dto;
 using System;
 
-namespace AppFrameworkDemo.Auditing.Dto
+namespace AppFramework.Auditing.Dto
 {
     public class GetEntityChangeInput : PagedAndSortedInputDto, IShouldNormalize
     {

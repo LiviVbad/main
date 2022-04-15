@@ -1,6 +1,6 @@
-﻿namespace AppFrameworkDemo
+﻿namespace AppFramework
 {
-    public class AppFrameworkDemoDashboardCustomizationConsts
+    public class AppFrameworkDashboardCustomizationConsts
     {
         /// <summary>
         /// Main page name your user will see if they dont change default page's name.

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AppFrameworkDemo.MultiTenancy.HostDashboard.Dto
+namespace AppFramework.MultiTenancy.HostDashboard.Dto
 {
     public class GetIncomeStatisticsDataOutput
     {

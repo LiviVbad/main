@@ -1,10 +1,10 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Roles.Dto;
+using AppFramework.ApiClient;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Roles.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Application
+namespace AppFramework.Application
 {
     public class RoleAppService : ProxyAppServiceBase, IRoleAppService
     {

@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 
-namespace AppFrameworkDemo.Dto
+namespace AppFramework.Dto
 {
     public class PagedAndSortedInputDto : PagedInputDto, ISortedResultRequest
     {

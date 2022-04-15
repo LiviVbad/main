@@ -1,13 +1,14 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.Authorization.Users.Profile;
-using AppFramework.Application.Common.Models;
-using Prism.Navigation; 
+using AppFramework.Authorization.Users;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.Authorization.Users.Profile;
+using Prism.Navigation;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AppFramework.Common.Models;
+using AppFramework.Common.Core;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class UserViewModel : NavigationCurdViewModel<UserListModel>
     {

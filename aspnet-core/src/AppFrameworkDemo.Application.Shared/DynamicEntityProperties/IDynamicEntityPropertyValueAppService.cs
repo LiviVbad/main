@@ -1,9 +1,9 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.DynamicEntityProperties.Dto;
-using AppFrameworkDemo.DynamicEntityPropertyValues.Dto;
+using AppFramework.DynamicEntityProperties.Dto;
+using AppFramework.DynamicEntityPropertyValues.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.DynamicEntityProperties
+namespace AppFramework.DynamicEntityProperties
 {
     public interface IDynamicEntityPropertyValueAppService
     {

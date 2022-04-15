@@ -1,6 +1,6 @@
 using Abp.Auditing;
 
-namespace AppFrameworkDemo.Configuration.Tenants.Dto
+namespace AppFramework.Configuration.Tenants.Dto
 {
     public class LdapSettingsEditDto
     {

@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Sessions.Dto
+﻿namespace AppFramework.Sessions.Dto
 {
     public class SubscriptionPaymentInfoDto
     {

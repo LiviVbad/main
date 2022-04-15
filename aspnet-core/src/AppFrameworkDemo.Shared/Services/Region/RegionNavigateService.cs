@@ -1,8 +1,9 @@
-﻿using Prism.Regions;
+﻿using AppFramework.Common.Services;
+using Prism.Regions;
 using Prism.Regions.Navigation;
 using System;
 
-namespace AppFrameworkDemo.Shared.Services
+namespace AppFramework.Shared.Services
 {
     /// <summary>
     /// 区域导航服务
@@ -37,11 +38,6 @@ namespace AppFrameworkDemo.Shared.Services
         public void Navigate(string regionName, string pageName)
         {
             regionManager.RequestNavigate(regionName, pageName);
-        }
-
-        public void Navigate(string regionName, string pageName, Action<Prism.Regions.Navigation.IRegionNavigationResult> navigationCallback)
-        {
-            regionManager.RequestNavigate(regionName, pageName, navigationCallback);
-        }
+        } 
     }
 }

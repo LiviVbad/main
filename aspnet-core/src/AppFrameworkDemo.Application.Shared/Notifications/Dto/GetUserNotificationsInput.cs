@@ -1,8 +1,8 @@
 ﻿using Abp.Notifications;
-using AppFrameworkDemo.Dto;
+using AppFramework.Dto;
 using System;
 
-namespace AppFrameworkDemo.Notifications.Dto
+namespace AppFramework.Notifications.Dto
 {
     public class GetUserNotificationsInput : PagedInputDto
     {

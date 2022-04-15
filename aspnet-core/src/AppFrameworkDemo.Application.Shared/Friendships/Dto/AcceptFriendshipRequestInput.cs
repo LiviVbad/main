@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Friendships.Dto
+namespace AppFramework.Friendships.Dto
 {
     public class AcceptFriendshipRequestInput
     {

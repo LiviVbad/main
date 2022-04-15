@@ -8,9 +8,9 @@ using Prism.Services.Dialogs;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
-using AppFrameworkDemo.ApiClient;
-using AppFramework.Application.Common.Services.Navigation;
-using AppFramework.Application.Common.Services.Account;
+using AppFramework.ApiClient;
+using AppFramework.Common.Services.Account;
+using AppFramework.Common.Services.Navigation;
 
 namespace AppFramework
 {

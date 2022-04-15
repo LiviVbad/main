@@ -1,9 +1,9 @@
-﻿using AppFrameworkDemo.Friendships.Dto;
+﻿using AppFramework.Friendships.Dto;
 using Castle.Components.DictionaryAdapter;
 using System;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Chat.Dto
+namespace AppFramework.Chat.Dto
 {
     public class GetUserChatFriendsWithSettingsOutput
     {

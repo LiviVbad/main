@@ -1,6 +1,6 @@
-﻿using AppFrameworkDemo.Configuration.Dto;
+﻿using AppFramework.Configuration.Dto;
 
-namespace AppFrameworkDemo.Configuration.Tenants.Dto
+namespace AppFramework.Configuration.Tenants.Dto
 {
     public class TenantEmailSettingsEditDto : EmailSettingsEditDto
     {

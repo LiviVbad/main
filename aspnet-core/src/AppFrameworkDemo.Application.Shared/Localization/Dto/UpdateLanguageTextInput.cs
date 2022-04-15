@@ -1,7 +1,7 @@
 ﻿using Abp.Localization;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Localization.Dto
+namespace AppFramework.Localization.Dto
 {
     public class UpdateLanguageTextInput
     {

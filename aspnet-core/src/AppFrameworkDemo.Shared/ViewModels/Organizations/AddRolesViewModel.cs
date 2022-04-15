@@ -1,15 +1,15 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Organizations;
-using AppFrameworkDemo.Organizations.Dto;
-using AppFramework.Application.Common.Models;
+using AppFramework.Organizations;
+using AppFramework.Organizations.Dto; 
 using Prism.Commands;
 using Prism.Navigation;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using AppFramework.Common.Models;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class AddRolesViewModel : NavigationViewModel
     {

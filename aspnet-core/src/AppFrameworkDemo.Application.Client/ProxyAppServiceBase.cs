@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services;
 using Abp.Extensions;
-using AppFrameworkDemo.ApiClient;
+using AppFramework.ApiClient;
 
-namespace AppFrameworkDemo
+namespace AppFramework
 {
     public abstract class ProxyAppServiceBase : IApplicationService
     {

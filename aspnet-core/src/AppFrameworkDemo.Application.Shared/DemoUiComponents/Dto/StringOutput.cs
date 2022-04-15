@@ -1,4 +1,4 @@
-namespace AppFrameworkDemo.DemoUiComponents.Dto
+namespace AppFramework.DemoUiComponents.Dto
 {
     public class StringOutput
     {

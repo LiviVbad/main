@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Dto
+﻿namespace AppFramework.Dto
 {
     public class PagedSortedAndFilteredInputDto : PagedAndSortedInputDto
     {

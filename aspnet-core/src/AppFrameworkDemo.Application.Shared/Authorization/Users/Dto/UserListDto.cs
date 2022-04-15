@@ -4,7 +4,7 @@ using Abp.Domain.Entities.Auditing;
 using System;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Authorization.Users.Dto
+namespace AppFramework.Authorization.Users.Dto
 {
     public class UserListDto : EntityDto<long>, IPassivable, IHasCreationTime
     {

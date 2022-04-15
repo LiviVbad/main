@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Chat.Dto
+namespace AppFramework.Chat.Dto
 {
     public class GetUserChatMessagesInput
     {

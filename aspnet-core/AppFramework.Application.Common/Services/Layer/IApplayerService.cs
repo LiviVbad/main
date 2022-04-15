@@ -1,4 +1,4 @@
-﻿namespace AppFramework.Shared.Common.Services.Layer
+﻿namespace AppFramework.Common.Services.Layer
 {
     public interface IApplayerService
     {

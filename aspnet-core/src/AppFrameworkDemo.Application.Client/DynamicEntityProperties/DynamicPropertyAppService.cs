@@ -1,12 +1,12 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.UI.Inputs;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.DynamicEntityProperties;
-using AppFrameworkDemo.DynamicEntityProperties.Dto;
+using AppFramework.ApiClient;
+using AppFramework.Dto;
+using AppFramework.DynamicEntityProperties;
+using AppFramework.DynamicEntityProperties.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Application
+namespace AppFramework.Application
 {
     public class DynamicPropertyAppService : ProxyAppServiceBase, IDynamicPropertyAppService
     {

@@ -3,8 +3,8 @@ using System;
 using System.Threading.Tasks;
 using Prism.Ioc;
 using AutoMapper;
-using AppFramework.Services.Dialog;
-using AppFrameworkDemo.Shared;
+using AppFramework.Services.Dialog; 
+using AppFramework.Common.Core;
 
 namespace AppFramework.ViewModels
 {

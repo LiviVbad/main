@@ -1,8 +1,8 @@
 ﻿using Abp.Dependency;
 using Abp.Extensions;
-using AppFrameworkDemo.ApiClient;
+using AppFramework.ApiClient;
 
-namespace AppFrameworkDemo
+namespace AppFramework
 {
     public abstract class ProxyControllerBase : ITransientDependency
     {

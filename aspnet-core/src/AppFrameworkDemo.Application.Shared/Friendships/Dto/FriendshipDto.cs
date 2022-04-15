@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AppFrameworkDemo.Friendships.Dto
+namespace AppFramework.Friendships.Dto
 {
     public class FriendDto
     {

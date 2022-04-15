@@ -2,7 +2,7 @@
 using Abp.Events.Bus.Entities;
 using System;
 
-namespace AppFrameworkDemo.Auditing.Dto
+namespace AppFramework.Auditing.Dto
 {
     public class EntityChangeListDto : EntityDto<long>
     {

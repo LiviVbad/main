@@ -1,9 +1,8 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Common;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.Editions.Dto;
-using AppFrameworkDemo.Shared.Localization;
-using AppFramework.Application.Common.Models;
+using AppFramework.Common;
+using AppFramework.Editions;
+using AppFramework.Editions.Dto;
+using AppFramework.Shared.Localization; 
 using Prism.Commands;
 using Prism.Navigation;
 using System;
@@ -11,8 +10,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using AppFramework.Common.Models;
+using AppFramework.Common.Core;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class EditionDetailsViewModel : NavigationViewModel
     {

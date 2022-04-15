@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services;
-using AppFrameworkDemo.Tenants.Dashboard.Dto;
+using AppFramework.Tenants.Dashboard.Dto;
 
-namespace AppFrameworkDemo.Tenants.Dashboard
+namespace AppFramework.Tenants.Dashboard
 {
     public interface ITenantDashboardAppService : IApplicationService
     {

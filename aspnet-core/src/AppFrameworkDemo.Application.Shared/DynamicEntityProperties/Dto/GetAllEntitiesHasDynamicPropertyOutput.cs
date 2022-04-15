@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.DynamicEntityProperties.Dto
+﻿namespace AppFramework.DynamicEntityProperties.Dto
 {
     public class GetAllEntitiesHasDynamicPropertyOutput
     {

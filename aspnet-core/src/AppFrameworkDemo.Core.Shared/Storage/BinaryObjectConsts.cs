@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Storage
+﻿namespace AppFramework.Storage
 {
     public class BinaryObjectConsts
     {

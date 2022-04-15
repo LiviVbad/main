@@ -1,17 +1,16 @@
 ﻿using Abp.Localization;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.Authorization.Users.Profile;
-using AppFrameworkDemo.Shared.Services.Account;
-using Prism.Commands;
-using Prism.Navigation;
+using AppFramework.Common.Services.Account;
+using AppFramework.ApiClient;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.Authorization.Users.Profile; 
+using Prism.Commands; 
 using Prism.Regions.Navigation;
 using Prism.Services.Dialogs;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class SettingsViewModel : RegionViewModel
     {

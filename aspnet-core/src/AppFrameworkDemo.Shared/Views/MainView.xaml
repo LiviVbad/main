@@ -1,14 +1,14 @@
 ﻿<ContentView
-    x:Class="AppFrameworkDemo.Shared.Views.MainView"
+    x:Class="AppFramework.Shared.Views.MainView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:extensions="clr-namespace:AppFrameworkDemo.Shared.Extensions.MarkupExtensions;assembly=AppFrameworkDemo.Shared"
-    xmlns:manager="clr-namespace:AppFrameworkDemo.Shared;assembly=AppFrameworkDemo.Shared"
+    xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared"
+    xmlns:manager="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms"
     xmlns:prism="http://prismlibrary.com"
     xmlns:tree="clr-namespace:Syncfusion.XForms.TreeView;assembly=Syncfusion.SfTreeView.XForms"
-    xmlns:views="clr-namespace:AppFrameworkDemo.Shared.Views"
+    xmlns:views="clr-namespace:AppFramework.Shared.Views"
     BackgroundColor="{DynamicResource PrimaryColor}">
     <navigationdrawer:SfNavigationDrawer
         x:Name="navigationDrawer"

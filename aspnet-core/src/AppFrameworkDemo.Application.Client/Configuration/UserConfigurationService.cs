@@ -1,10 +1,10 @@
 ﻿using Abp.Dependency;
 using Abp.Web.Models.AbpUserConfiguration;
-using AppFrameworkDemo.ApiClient;
+using AppFramework.ApiClient;
 using System;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Configuration
+namespace AppFramework.Configuration
 {
     public class UserConfigurationService : ITransientDependency
     {

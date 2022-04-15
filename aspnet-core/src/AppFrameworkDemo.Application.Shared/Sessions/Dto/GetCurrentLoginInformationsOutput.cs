@@ -1,6 +1,6 @@
-﻿using AppFrameworkDemo.UiCustomization.Dto;
+﻿using AppFramework.UiCustomization.Dto;
 
-namespace AppFrameworkDemo.Sessions.Dto
+namespace AppFramework.Sessions.Dto
 {
     public class GetCurrentLoginInformationsOutput
     {

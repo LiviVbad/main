@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.ApiClient
+﻿namespace AppFramework.ApiClient
 {
     public class TenantInformation
     {

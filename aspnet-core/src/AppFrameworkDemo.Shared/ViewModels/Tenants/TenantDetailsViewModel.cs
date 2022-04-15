@@ -1,20 +1,21 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.Runtime.Security;
 using Acr.UserDialogs;
-using AppFrameworkDemo.Common;
-using AppFrameworkDemo.Editions.Dto;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.MultiTenancy.Dto;
-using AppFrameworkDemo.Shared.Localization;
-using AppFramework.Application.Common.Models;
-using AppFrameworkDemo.Shared.Services.Permission;
+using AppFramework.Common.Core;
+using AppFramework.Common.Models;
+using AppFramework.Common.Services.Permission;
+using AppFramework.Common;
+using AppFramework.Editions.Dto;
+using AppFramework.MultiTenancy;
+using AppFramework.MultiTenancy.Dto;
+using AppFramework.Shared.Localization;
 using MvvmHelpers;
 using Prism.Commands;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class TenantDetailsViewModel : NavigationViewModel
     {
@@ -319,7 +320,7 @@ namespace AppFrameworkDemo.Shared.ViewModels
 
                 await PopulateEditionsCombobox(() =>
                 {
-                    if (Model!=null)
+                    if (Model != null)
                         SetSelectedEdition(Model.EditionId);
                 });
             });

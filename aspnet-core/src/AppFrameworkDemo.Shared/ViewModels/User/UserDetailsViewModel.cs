@@ -1,10 +1,11 @@
 ﻿using Abp.Application.Services.Dto;
 using Acr.UserDialogs;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.Shared.Localization;
-using AppFramework.Application.Common.Models;
-using AppFrameworkDemo.Shared.Services.Permission;
+using AppFramework.Common.Core;
+using AppFramework.Common.Models;
+using AppFramework.Common.Services.Permission;
+using AppFramework.Authorization.Users;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.Shared.Localization;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class UserDetailsViewModel : NavigationViewModel
     {

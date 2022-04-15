@@ -1,10 +1,10 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Editions.Dto;
+using AppFramework.Editions.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Editions
+namespace AppFramework.Editions
 {
     public interface IEditionAppService : IApplicationService
     {

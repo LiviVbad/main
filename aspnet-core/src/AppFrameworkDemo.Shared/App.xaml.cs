@@ -1,6 +1,6 @@
-﻿using AppFrameworkDemo.Shared.Core.Localization.Resources;
-using AppFrameworkDemo.Shared.Services.Account;
-using AppFrameworkDemo.Shared.Services.Storage;
+﻿using AppFramework.Common.Core;
+using AppFramework.Common.Services.Account;
+using AppFramework.Common.Services.Storage;
 using DryIoc;
 using DryIoc.Microsoft.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +17,7 @@ using Xamarin.Forms;
 [assembly: ExportFont("UIFontIcons.ttf", Alias = "FontIcons")]
 [assembly: ExportFont("iconfont.ttf", Alias = "iconfont")]
 
-namespace AppFrameworkDemo.Shared
+namespace AppFramework.Shared
 {
     public partial class App
     {

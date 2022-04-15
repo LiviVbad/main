@@ -1,9 +1,9 @@
 ﻿using Acr.UserDialogs;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.Shared.Core.Localization.Resources;
-using AppFrameworkDemo.Shared.Localization;
+using AppFramework.ApiClient;
+using AppFramework.Configuration;
+using AppFramework.MultiTenancy;
+using AppFramework.Shared.Core.Localization.Resources;
+using AppFramework.Shared.Localization;
 using Prism.Ioc;
 using System;
 using System.Globalization;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace AppFrameworkDemo.Shared.Services.Account
+namespace AppFramework.Shared.Services.Account
 {
     public static class AppConfigurationManager
     {

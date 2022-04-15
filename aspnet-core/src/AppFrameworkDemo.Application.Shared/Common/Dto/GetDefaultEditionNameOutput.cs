@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Common.Dto
+﻿namespace AppFramework.Common.Dto
 {
     public class GetDefaultEditionNameOutput
     {

@@ -1,7 +1,7 @@
 ﻿using AppFramework.ViewModels;
 using Prism.Regions;
 using System;
-using AppFrameworkDemo.Auditing.Dto;
+using AppFramework.Auditing.Dto;
 
 namespace AppFramework.ViewModels
 {

@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services;
-using AppFrameworkDemo.MultiTenancy.HostDashboard.Dto;
+using AppFramework.MultiTenancy.HostDashboard.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.MultiTenancy.HostDashboard
+namespace AppFramework.MultiTenancy.HostDashboard
 {
     public interface IHostDashboardAppService : IApplicationService
     {

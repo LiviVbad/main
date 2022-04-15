@@ -1,9 +1,9 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Organizations.Dto;
+using AppFramework.Organizations.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Organizations
+namespace AppFramework.Organizations
 {
     public interface IOrganizationUnitAppService : IApplicationService
     {

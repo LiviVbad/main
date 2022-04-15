@@ -1,9 +1,9 @@
 ﻿<ContentPage
-    x:Class="AppFrameworkDemo.Shared.Views.DynamicPropertyDetailsView"
+    x:Class="AppFramework.Shared.Views.DynamicPropertyDetailsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:AppFrameworkDemo.Shared.Controls;assembly=AppFrameworkDemo.Shared"
-    xmlns:extensions="clr-namespace:AppFrameworkDemo.Shared.Extensions.MarkupExtensions;assembly=AppFrameworkDemo.Shared"
+    xmlns:controls="clr-namespace:AppFramework.Shared.Controls;assembly=AppFramework.Shared"
+    xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:combox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
     xmlns:list="clr-namespace:System.Collections.Generic;assembly=netstandard">

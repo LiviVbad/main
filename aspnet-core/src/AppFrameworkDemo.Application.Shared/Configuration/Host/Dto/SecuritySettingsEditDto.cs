@@ -1,6 +1,6 @@
-﻿using AppFrameworkDemo.Security;
+﻿using AppFramework.Security;
 
-namespace AppFrameworkDemo.Configuration.Host.Dto
+namespace AppFramework.Configuration.Host.Dto
 {
     public class SecuritySettingsEditDto
     {

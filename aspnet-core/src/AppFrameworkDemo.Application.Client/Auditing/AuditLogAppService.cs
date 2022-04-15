@@ -1,12 +1,12 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Auditing;
-using AppFrameworkDemo.Auditing.Dto;
-using AppFrameworkDemo.Dto;
+using AppFramework.ApiClient;
+using AppFramework.Auditing;
+using AppFramework.Auditing.Dto;
+using AppFramework.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Application.Client
+namespace AppFramework.Application.Client
 {
     public class AuditLogAppService : ProxyAppServiceBase, IAuditLogAppService
     {

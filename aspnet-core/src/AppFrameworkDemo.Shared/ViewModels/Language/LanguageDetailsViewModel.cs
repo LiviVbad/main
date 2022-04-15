@@ -1,6 +1,6 @@
 ﻿using Prism.Navigation;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class LanguageDetailsViewModel : NavigationViewModel
     {

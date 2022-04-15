@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.WebHooks.Dto
+﻿namespace AppFramework.WebHooks.Dto
 {
     public class GetAllAvailableWebhooksOutput
     {

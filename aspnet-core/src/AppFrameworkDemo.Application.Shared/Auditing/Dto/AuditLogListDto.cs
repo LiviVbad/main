@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using System;
 
-namespace AppFrameworkDemo.Auditing.Dto
+namespace AppFramework.Auditing.Dto
 {
     //### This class is mapped in CustomDtoMapper ###
     public class AuditLogListDto : EntityDto<long>

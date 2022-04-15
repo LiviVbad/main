@@ -1,10 +1,10 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Notifications.Dto;
+using AppFramework.Notifications.Dto;
 using System;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Notifications
+namespace AppFramework.Notifications
 {
     public interface INotificationAppService : IApplicationService
     {

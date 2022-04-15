@@ -1,10 +1,11 @@
-﻿using AppFrameworkDemo.Shared.Services;
+﻿using AppFramework.Common.Services;
+using AppFramework.Shared.Services;
 using Prism.Commands;
 using Prism.Navigation;
 using System.IO;
 using Xamarin.Forms;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class ProfilePictureViewModel : NavigationViewModel
     {

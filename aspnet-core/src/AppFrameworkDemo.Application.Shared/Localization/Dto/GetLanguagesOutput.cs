@@ -1,7 +1,7 @@
 using Abp.Application.Services.Dto;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Localization.Dto
+namespace AppFramework.Localization.Dto
 {
     public class GetLanguagesOutput : ListResultDto<ApplicationLanguageListDto>
     {

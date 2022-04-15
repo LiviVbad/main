@@ -1,7 +1,7 @@
 using Abp.Runtime.Validation;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Editions.Dto
+namespace AppFramework.Editions.Dto
 {
     //Mapped in CustomDtoMapper
     public class FeatureInputTypeDto

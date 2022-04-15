@@ -1,6 +1,6 @@
 ﻿using Abp.Runtime.Validation;
 
-namespace AppFrameworkDemo.MultiTenancy.HostDashboard.Dto
+namespace AppFramework.MultiTenancy.HostDashboard.Dto
 {
     public class GetDashboardDataInput : DashboardInputBase, IShouldNormalize
     {

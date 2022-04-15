@@ -1,18 +1,17 @@
-﻿using Abp.Localization; 
+﻿using Abp.Localization;
 using Prism.Commands;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using AppFramework.Services.Account;
 using Prism.Ioc; 
-using AppFramework.WindowHost;
-using AppFramework.Services; 
-using AppFrameworkDemo.Authorization.Accounts;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Authorization.Users.Profile;
-using AppFrameworkDemo.Authorization.Accounts.Dto;
-using AppFramework.Application.Common.Services.Account;
-using AppFramework.Application.Common.Services.Storage;
+using AppFramework.Services;
+using AppFramework.Authorization.Accounts;
+using AppFramework.ApiClient;
+using AppFramework.Authorization.Users.Profile;
+using AppFramework.Authorization.Accounts.Dto;
+using AppFramework.Common.Services.Account;
+using AppFramework.Common.Services.Storage;
 
 namespace AppFramework.ViewModels
 {
@@ -20,13 +19,13 @@ namespace AppFramework.ViewModels
     {
         public LoginViewModel(IContainerProvider provider)
         {
-            this.dialog=provider.Resolve<IDialogHostService>();
+            this.dialog = provider.Resolve<IDialogHostService>();
             this.accountService = provider.Resolve<IAccountService>();
             this.accountAppService = provider.Resolve<IAccountAppService>();
             this.applicationContext = provider.Resolve<IApplicationContext>();
-            this.profileAppService =provider.Resolve<IProfileAppService>();
+            this.profileAppService = provider.Resolve<IProfileAppService>();
             this.userConfigurationManager = provider.Resolve<IUserConfigurationManager>();
-            this.dataStorageService= provider.Resolve<IDataStorageService>();
+            this.dataStorageService = provider.Resolve<IDataStorageService>();
             ExecuteCommand = new DelegateCommand<string>(Execute);
             ChangeLanguageCommand = new DelegateCommand<LanguageInfo>(ChangeLanguage);
 
@@ -135,22 +134,7 @@ namespace AppFramework.ViewModels
         public async void ChangeLanguage(LanguageInfo languageInfo) { }
 
         private async Task LoginUserAsync()
-        {
-            await SetBusyAsync(async () =>
-            {
-                await WebRuner.Execute(accountService.LoginUserAsync,
-                     () =>
-                     {
-                         OnDialogClosed();
-                         return Task.CompletedTask;
-                     },
-                     ex =>
-                     {
-                         dialog.Error(ex.Message, "Login");
-                         return Task.CompletedTask;
-                     });
-            });
-        }
+        { }
 
 
         public async Task ChangeTenantAsync() { }

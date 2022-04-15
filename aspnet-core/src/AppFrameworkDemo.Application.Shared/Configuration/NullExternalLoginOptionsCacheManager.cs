@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Configuration
+﻿namespace AppFramework.Configuration
 {
     public class NullExternalLoginOptionsCacheManager : IExternalLoginOptionsCacheManager
     {

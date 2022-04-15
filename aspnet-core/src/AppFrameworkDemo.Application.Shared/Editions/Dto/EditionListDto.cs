@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 
-namespace AppFrameworkDemo.Editions.Dto
+namespace AppFramework.Editions.Dto
 {
     public class EditionListDto : EntityDto
     {

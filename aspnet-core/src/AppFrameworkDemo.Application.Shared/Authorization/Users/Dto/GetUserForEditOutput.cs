@@ -1,8 +1,8 @@
-﻿using AppFrameworkDemo.Organizations.Dto;
+﻿using AppFramework.Organizations.Dto;
 using System;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Authorization.Users.Dto
+namespace AppFramework.Authorization.Users.Dto
 {
     public class GetUserForEditOutput
     {

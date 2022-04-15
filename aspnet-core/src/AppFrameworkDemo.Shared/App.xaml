@@ -1,8 +1,8 @@
 ﻿<prism:PrismApplication
-    x:Class="AppFrameworkDemo.Shared.App"
+    x:Class="AppFramework.Shared.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:converters="clr-namespace:AppFrameworkDemo.Shared.Converters;assembly=AppFrameworkDemo.Shared"
+    xmlns:converters="clr-namespace:AppFramework.Shared.Converters;assembly=AppFramework.Shared"
     xmlns:prism="http://prismlibrary.com"
     xmlns:sync="clr-namespace:Syncfusion.XForms.Themes;assembly=Syncfusion.Core.XForms">
     <Application.Resources>

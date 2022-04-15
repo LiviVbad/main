@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments.PayPal.Dto
+namespace AppFramework.MultiTenancy.Payments.PayPal.Dto
 {
     public class PayPalConfigurationDto
     {

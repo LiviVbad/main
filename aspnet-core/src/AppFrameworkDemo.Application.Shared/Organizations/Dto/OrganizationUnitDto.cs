@@ -1,6 +1,6 @@
 using Abp.Application.Services.Dto;
 
-namespace AppFrameworkDemo.Organizations.Dto
+namespace AppFramework.Organizations.Dto
 {
     public class OrganizationUnitDto : AuditedEntityDto<long>
     {

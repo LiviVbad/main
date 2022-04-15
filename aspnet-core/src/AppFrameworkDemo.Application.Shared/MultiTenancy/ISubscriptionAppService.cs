@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.MultiTenancy
+namespace AppFramework.MultiTenancy
 {
     public interface ISubscriptionAppService : IApplicationService
     {

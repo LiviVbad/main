@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.MultiTenancy.Dto
+﻿namespace AppFramework.MultiTenancy.Dto
 {
     public class PaymentInfoInput
     {

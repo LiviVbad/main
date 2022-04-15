@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Editions.Dto
+namespace AppFramework.Editions.Dto
 {
     public class EditionWithFeaturesDto
     {

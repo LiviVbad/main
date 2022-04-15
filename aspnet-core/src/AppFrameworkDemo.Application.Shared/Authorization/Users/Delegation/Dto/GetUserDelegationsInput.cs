@@ -1,8 +1,8 @@
 using Abp.Application.Services.Dto;
 using Abp.Runtime.Validation;
-using AppFrameworkDemo.Common;
+using AppFramework.Common;
 
-namespace AppFrameworkDemo.Authorization.Users.Delegation.Dto
+namespace AppFramework.Authorization.Users.Delegation.Dto
 {
     public class GetUserDelegationsInput : IPagedResultRequest, ISortedResultRequest, IShouldNormalize
     {

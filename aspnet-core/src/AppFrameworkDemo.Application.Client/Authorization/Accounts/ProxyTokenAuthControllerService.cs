@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Authorization.Accounts
+namespace AppFramework.Authorization.Accounts
 {
     public class ProxyTokenAuthControllerService : ProxyControllerBase
     {

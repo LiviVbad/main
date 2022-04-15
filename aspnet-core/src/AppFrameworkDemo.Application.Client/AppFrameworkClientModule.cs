@@ -1,7 +1,7 @@
 ﻿using Abp.Modules;
 using Abp.Reflection.Extensions;
 
-namespace AppFrameworkDemo
+namespace AppFramework
 {
     public class AppFrameworkClientModule : AbpModule
     {

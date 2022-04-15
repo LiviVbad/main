@@ -1,11 +1,12 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.MultiTenancy.Dto;
-using AppFramework.Application.Common.Models;
+using AppFramework.MultiTenancy;
+using AppFramework.MultiTenancy.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AppFramework.Common.Core;
+using AppFramework.Common.Models;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class TenantViewModel : NavigationCurdViewModel<TenantListModel>
     {
@@ -14,14 +15,14 @@ namespace AppFrameworkDemo.Shared.ViewModels
 
         public TenantViewModel(ITenantAppService appService, IMessenger messenger)
         {
-            filter=new GetTenantsInput()
+            filter = new GetTenantsInput()
             {
-                EditionIdSpecified=false,
+                EditionIdSpecified = false,
                 MaxResultCount = 10,
-                SkipCount=0,
+                SkipCount = 0,
             };
             messenger.Sub(AppMessengerKeys.Tenant, async () => await RefreshAsync());
-            this.appService=appService;
+            this.appService = appService;
         }
 
         public override async Task RefreshAsync()
@@ -31,18 +32,18 @@ namespace AppFrameworkDemo.Shared.ViewModels
                 await WebRequestRuner.Execute(
                       () => appService.GetTenants(filter),
                       result => RefreshSuccessed(result));
-            }); 
+            });
         }
 
         public override async void Delete(TenantListModel selectedItem)
         {
-            if (selectedItem==null) return;
+            if (selectedItem == null) return;
 
             if (!await dialogService.DeleteConfirm()) return;
 
             await appService.DeleteTenant(new EntityDto()
             {
-                Id=selectedItem.Id
+                Id = selectedItem.Id
             });
             await RefreshAsync();
         }

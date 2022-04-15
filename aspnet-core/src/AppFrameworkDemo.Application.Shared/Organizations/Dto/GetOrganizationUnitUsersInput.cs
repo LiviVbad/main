@@ -1,9 +1,9 @@
 using Abp.Runtime.Validation;
-using AppFrameworkDemo.Common;
-using AppFrameworkDemo.Dto;
+using AppFramework.Common;
+using AppFramework.Dto;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Organizations.Dto
+namespace AppFramework.Organizations.Dto
 {
     public class GetOrganizationUnitUsersInput : PagedAndSortedInputDto, IShouldNormalize
     {

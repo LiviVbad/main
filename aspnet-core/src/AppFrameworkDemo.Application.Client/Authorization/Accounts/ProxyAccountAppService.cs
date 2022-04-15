@@ -1,8 +1,8 @@
-﻿using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Authorization.Accounts.Dto;
+﻿using AppFramework.ApiClient;
+using AppFramework.Authorization.Accounts.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Authorization.Accounts
+namespace AppFramework.Authorization.Accounts
 {
     public class ProxyAccountAppService : ProxyAppServiceBase, IAccountAppService
     {

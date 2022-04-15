@@ -1,4 +1,4 @@
-﻿namespace AppFramework.Shared.Common.Services.Storage
+﻿namespace AppFramework.Common.Services.Storage
 {
     public class DataStorageKey
     {

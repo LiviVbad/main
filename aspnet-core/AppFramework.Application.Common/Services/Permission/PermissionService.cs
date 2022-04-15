@@ -1,7 +1,7 @@
-﻿using AppFrameworkDemo.ApiClient;
+﻿using AppFramework.ApiClient;
 using System;
 
-namespace AppFramework.Shared.Common.Services.Permission
+namespace AppFramework.Common.Services.Permission
 {
     public class PermissionService : IPermissionService
     {

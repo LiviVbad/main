@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Logging.Dto;
+using AppFramework.Dto;
+using AppFramework.Logging.Dto;
 
-namespace AppFrameworkDemo.Logging
+namespace AppFramework.Logging
 {
     public interface IWebLogAppService : IApplicationService
     {

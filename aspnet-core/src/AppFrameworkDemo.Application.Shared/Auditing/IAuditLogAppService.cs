@@ -1,11 +1,11 @@
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Auditing.Dto;
-using AppFrameworkDemo.Dto;
+using AppFramework.Auditing.Dto;
+using AppFramework.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Auditing
+namespace AppFramework.Auditing
 {
     public interface IAuditLogAppService : IApplicationService
     {

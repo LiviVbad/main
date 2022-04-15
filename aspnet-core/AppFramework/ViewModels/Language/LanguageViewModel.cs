@@ -1,8 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using AppFrameworkDemo.Localization.Dto;
-using AppFrameworkDemo.Localization;
+using AppFramework.Localization.Dto;
+using AppFramework.Localization;
 using Prism.Mvvm;
+using AppFramework.Common;
 
 namespace AppFramework.ViewModels
 {
@@ -27,7 +28,7 @@ namespace AppFramework.ViewModels
 
         public async Task RefreshAsync()
         {
-            await WebRuner.Execute(
+            await WebRequest.Execute(
                        () => appService.GetLanguages(),
                        result => RefreshSuccessed(result));
         }

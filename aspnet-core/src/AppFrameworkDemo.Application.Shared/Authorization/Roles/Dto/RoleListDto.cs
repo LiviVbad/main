@@ -2,7 +2,7 @@
 using Abp.Domain.Entities.Auditing;
 using System;
 
-namespace AppFrameworkDemo.Authorization.Roles.Dto
+namespace AppFramework.Authorization.Roles.Dto
 {
     public class RoleListDto : EntityDto, IHasCreationTime
     {

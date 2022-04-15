@@ -2,7 +2,7 @@
 using System;
 using System.Net;
 
-namespace AppFrameworkDemo.WebHooks.Dto
+namespace AppFramework.WebHooks.Dto
 {
     public class GetAllSendAttemptsOutput
     {

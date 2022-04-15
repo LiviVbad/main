@@ -1,6 +1,7 @@
-﻿using Acr.UserDialogs; 
+﻿using Acr.UserDialogs;
+using AppFramework.Common.Services.Layer;
 
-namespace AppFrameworkDemo.Shared.Services.Layer
+namespace AppFramework.Shared.Services.Layer
 {
     public class ApplayerService : IApplayerService
     { 

@@ -1,6 +1,6 @@
-﻿using AppFrameworkDemo.Organizations.Dto;
+﻿using AppFramework.Organizations.Dto;
 
-namespace AppFramework.Shared.Common.Models
+namespace AppFramework.Common.Models
 {
     public class OrganizationUnitModel : OrganizationUnitDto
     {

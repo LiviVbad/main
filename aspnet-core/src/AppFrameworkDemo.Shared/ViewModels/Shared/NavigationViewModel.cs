@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Shared.ViewModels
+﻿namespace AppFramework.Shared.ViewModels
 {
     using Prism.Commands;
     using Prism.Ioc;

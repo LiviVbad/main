@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Authorization.Roles.Dto
+namespace AppFramework.Authorization.Roles.Dto
 {
     public class GetRolesInput
     {

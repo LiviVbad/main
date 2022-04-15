@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AppFramework.Shared.Common.Services
+namespace AppFramework.Common.Services
 {
     /// <summary>
     /// 区域导航服务接口

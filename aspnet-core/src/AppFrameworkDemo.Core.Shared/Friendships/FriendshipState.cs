@@ -1,4 +1,4 @@
-namespace AppFrameworkDemo.Friendships
+namespace AppFramework.Friendships
 {
     public enum FriendshipState
     {

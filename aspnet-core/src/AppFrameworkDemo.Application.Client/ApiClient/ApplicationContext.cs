@@ -2,10 +2,10 @@
 using Abp.Dependency;
 using Abp.Localization;
 using Abp.Web.Models.AbpUserConfiguration;
-using AppFrameworkDemo.Sessions.Dto;
+using AppFramework.Sessions.Dto;
 using JetBrains.Annotations;
 
-namespace AppFrameworkDemo.ApiClient
+namespace AppFramework.ApiClient
 {
     public class ApplicationContext : IApplicationContext, ISingletonDependency
     {

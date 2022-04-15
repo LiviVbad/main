@@ -1,8 +1,8 @@
 <ContentView
-    x:Class="AppFrameworkDemo.Shared.Views.SkinView"
+    x:Class="AppFramework.Shared.Views.SkinView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:extensions="clr-namespace:AppFrameworkDemo.Shared.Extensions.MarkupExtensions;assembly=AppFrameworkDemo.Shared"
+    xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared"
     xmlns:segmentControl="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     IsVisible="false">
     <Grid>

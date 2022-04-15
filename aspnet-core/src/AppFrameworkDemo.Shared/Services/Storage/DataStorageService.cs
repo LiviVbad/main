@@ -1,10 +1,11 @@
 ﻿using Abp.Runtime.Security;
+using AppFramework.Common.Services.Storage;
 using Newtonsoft.Json;
 using Plugin.Settings;
 using System;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Shared.Services.Storage
+namespace AppFramework.Shared.Services.Storage
 { 
     public class DataStorageService : IDataStorageService
     {

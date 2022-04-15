@@ -1,7 +1,7 @@
-﻿using AppFrameworkDemo.MultiTenancy.Payments;
+﻿using AppFramework.MultiTenancy.Payments;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Editions.Dto
+namespace AppFramework.Editions.Dto
 {
     public class EditionSelectDto
     {

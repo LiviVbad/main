@@ -1,14 +1,14 @@
 ﻿<ContentView
-    x:Class="AppFrameworkDemo.Shared.Views.DashboardView"
+    x:Class="AppFramework.Shared.Views.DashboardView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
-    xmlns:controls="clr-namespace:AppFrameworkDemo.Shared.Controls"
+    xmlns:controls="clr-namespace:AppFramework.Shared.Controls"
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:mark="clr-namespace:AppFrameworkDemo.Shared.Extensions.MarkupExtensions;assembly=AppFrameworkDemo.Shared">
+    xmlns:mark="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared">
     <ScrollView>
         <Grid RowDefinitions="auto,auto,auto">
             <listView:SfListView

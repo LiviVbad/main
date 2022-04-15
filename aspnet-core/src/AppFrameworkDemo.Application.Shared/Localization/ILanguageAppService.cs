@@ -1,9 +1,9 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Localization.Dto;
+using AppFramework.Localization.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Localization
+namespace AppFramework.Localization
 {
     public interface ILanguageAppService : IApplicationService
     {

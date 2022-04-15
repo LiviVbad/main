@@ -1,4 +1,4 @@
-﻿namespace AppFramework.Shared.Common.Core
+﻿namespace AppFramework.Common.Core
 {
     /// <summary>
     /// 应用程序消息键

@@ -1,4 +1,4 @@
-﻿using AppFrameworkDemo.Shared;
+﻿using AppFramework.Shared;
 using Foundation;
 using Syncfusion.ListView.XForms.iOS;
 using Syncfusion.XForms.iOS.EffectsView;
@@ -8,7 +8,7 @@ using Syncfusion.SfRotator.XForms.iOS;
 using Syncfusion.SfBusyIndicator.XForms.iOS;
 using Syncfusion.SfNavigationDrawer.XForms.iOS;
 
-namespace AppFrameworkDemo.iOS
+namespace AppFramework.iOS
 {
     [Register("AppDelegate")]
     public partial class AppDelegate : FormsApplicationDelegate

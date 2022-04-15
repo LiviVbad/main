@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Friendships;
+using AppFramework.Friendships;
 using System;
 
-namespace AppFrameworkDemo.Chat.Dto
+namespace AppFramework.Chat.Dto
 {
     public class ChatUserDto : EntityDto<long>
     {

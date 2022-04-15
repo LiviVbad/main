@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services;
-using AppFrameworkDemo.Sessions.Dto;
+using AppFramework.Sessions.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Sessions
+namespace AppFramework.Sessions
 {
     public interface ISessionAppService : IApplicationService
     {

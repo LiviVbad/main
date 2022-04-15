@@ -1,4 +1,4 @@
-namespace AppFrameworkDemo.MultiTenancy.Payments
+namespace AppFramework.MultiTenancy.Payments
 {
     public abstract class ExecutePaymentResponse
     {

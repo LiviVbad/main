@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.DynamicEntityPropertyValues.Dto
+﻿namespace AppFramework.DynamicEntityPropertyValues.Dto
 {
     public class GetAllInput
     {

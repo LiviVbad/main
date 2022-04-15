@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace AppFramework.Shared.Common.Core
+namespace AppFramework.Common.Core
 {
     public static class IMessengerExtensions
     {

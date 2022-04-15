@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace AppFrameworkDemo.Editions.Dto
+namespace AppFramework.Editions.Dto
 {
     //Mapped in CustomDtoMapper
     public class LocalizableComboboxItemSourceDto

@@ -1,20 +1,21 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Roles.Dto;
-using AppFramework.Application.Common.Models;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Roles.Dto; 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AppFramework.Common.Models;
+using AppFramework.Common.Core;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class RoleViewModel : NavigationCurdViewModel<RoleListModel>
     {
         private readonly IRoleAppService appService;
 
-        public RoleViewModel(IRoleAppService appService,IMessenger messenger)
+        public RoleViewModel(IRoleAppService appService, IMessenger messenger)
         {
             messenger.Sub(AppMessengerKeys.Role, async () => await RefreshAsync());
-            this.appService=appService;
+            this.appService = appService;
         }
 
         public override async Task RefreshAsync()
@@ -24,18 +25,18 @@ namespace AppFrameworkDemo.Shared.ViewModels
                 await WebRequestRuner.Execute(
                         () => appService.GetRoles(new GetRolesInput()),
                         result => RefreshSuccessed(result));
-            }); 
+            });
         }
 
         public override async void Delete(RoleListModel selectedItem)
         {
-            if (selectedItem==null) return;
+            if (selectedItem == null) return;
 
             if (!await dialogService.DeleteConfirm()) return;
 
             await appService.DeleteRole(new EntityDto()
             {
-                Id=selectedItem.Id
+                Id = selectedItem.Id
             });
             await RefreshAsync();
         }

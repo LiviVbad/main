@@ -1,8 +1,8 @@
 using Abp.Application.Services.Dto;
 using Abp.Runtime.Validation;
-using AppFrameworkDemo.Common;
+using AppFramework.Common;
 
-namespace AppFrameworkDemo.Authorization.Users.Dto
+namespace AppFramework.Authorization.Users.Dto
 {
     public class GetLinkedUsersInput : IPagedResultRequest, ISortedResultRequest, IShouldNormalize
     {

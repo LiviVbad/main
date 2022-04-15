@@ -1,11 +1,12 @@
-﻿using AppFrameworkDemo.DynamicEntityProperties;
-using AppFrameworkDemo.DynamicEntityProperties.Dto;
-using AppFramework.Application.Common.Models;
+﻿using AppFramework.DynamicEntityProperties;
+using AppFramework.DynamicEntityProperties.Dto; 
 using Prism.Commands;
 using Prism.Navigation;
 using System.Threading.Tasks;
+using AppFramework.Common.Core;
+using AppFramework.Common.Models;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class DynamicPropertyDetailsViewModel : NavigationViewModel
     {

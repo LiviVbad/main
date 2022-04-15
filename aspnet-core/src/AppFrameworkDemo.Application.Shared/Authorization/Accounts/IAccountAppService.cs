@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services;
-using AppFrameworkDemo.Authorization.Accounts.Dto;
+using AppFramework.Authorization.Accounts.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Authorization.Accounts
+namespace AppFramework.Authorization.Accounts
 {
     public interface IAccountAppService : IApplicationService
     {

@@ -3,7 +3,7 @@ using Abp.Runtime.Validation;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Authorization.Users.Profile.Dto
+namespace AppFramework.Authorization.Users.Profile.Dto
 {
     public class UpdateProfilePictureInput : ICustomValidate
     {

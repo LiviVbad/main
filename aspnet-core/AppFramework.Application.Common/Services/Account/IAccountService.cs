@@ -1,7 +1,7 @@
-﻿using AppFrameworkDemo.ApiClient.Models;
+﻿using AppFramework.ApiClient.Models;
 using System.Threading.Tasks;
 
-namespace AppFramework.Shared.Common.Services.Account
+namespace AppFramework.Common.Services.Account
 {
     public interface IAccountService
     {

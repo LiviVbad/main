@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services;
-using AppFrameworkDemo.Configuration.Tenants.Dto;
+using AppFramework.Configuration.Tenants.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Configuration.Tenants
+namespace AppFramework.Configuration.Tenants
 {
     public interface ITenantSettingsAppService : IApplicationService
     {

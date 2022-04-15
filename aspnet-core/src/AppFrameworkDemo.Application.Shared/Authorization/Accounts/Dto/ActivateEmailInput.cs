@@ -3,7 +3,7 @@ using Abp.Runtime.Validation;
 using System;
 using System.Web;
 
-namespace AppFrameworkDemo.Authorization.Accounts.Dto
+namespace AppFramework.Authorization.Accounts.Dto
 {
     public class ActivateEmailInput : IShouldNormalize
     {

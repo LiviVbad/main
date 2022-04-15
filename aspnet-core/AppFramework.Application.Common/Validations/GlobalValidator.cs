@@ -3,7 +3,7 @@ using FluentValidation.Results;
 using Prism.Ioc;
 using System;
 
-namespace AppFramework.Shared.Common.Core
+namespace AppFramework.Common.Core
 {
     public class GlobalValidator : ValidatorFactoryBase, IGlobalValidator
     {

@@ -4,7 +4,7 @@ using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using System;
 
-namespace AppFrameworkDemo.MultiTenancy.Dto
+namespace AppFramework.MultiTenancy.Dto
 {
     public class TenantListDto : EntityDto, IPassivable, IHasCreationTime
     {

@@ -2,15 +2,15 @@ using Abp.Configuration.Startup;
 using Abp.Dependency;
 using Abp.UI;
 using Abp.Web.Models;
-using AppFrameworkDemo.ApiClient.Models;
-using AppFrameworkDemo.Authorization.Accounts.Dto;
+using AppFramework.ApiClient.Models;
+using AppFramework.Authorization.Accounts.Dto;
 using Flurl.Http;
 using JetBrains.Annotations;
 using System;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.ApiClient
+namespace AppFramework.ApiClient
 {
     public class AccessTokenManager : IAccessTokenManager, ISingletonDependency
     {
@@ -134,7 +134,7 @@ namespace AppFrameworkDemo.ApiClient
         {
             IFlurlClient client = new FlurlClient(ApiUrlConfig.BaseUrl);
             client.WithHeader("Accept", new MediaTypeWithQualityHeaderValue("application/json"));
-            client.WithHeader("User-Agent", AppFrameworkDemoConsts.AbpApiClientUserAgent);
+            client.WithHeader("User-Agent", AppFrameworkConsts.AbpApiClientUserAgent);
             return client;
         }
     }

@@ -1,10 +1,10 @@
 ﻿using Abp.Authorization.Users;
 using Abp.MultiTenancy;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.MultiTenancy.Dto;
+using AppFramework.MultiTenancy;
+using AppFramework.MultiTenancy.Dto;
 using FluentValidation;
 
-namespace AppFramework.Shared.Common.Core.Validations
+namespace AppFramework.Common.Core.Validations
 {
     public class CreateTenantValidator : AbstractValidator<CreateTenantInput>
     {

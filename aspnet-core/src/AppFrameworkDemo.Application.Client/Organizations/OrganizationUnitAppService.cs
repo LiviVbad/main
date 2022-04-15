@@ -1,10 +1,10 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Organizations;
-using AppFrameworkDemo.Organizations.Dto;
+using AppFramework.ApiClient;
+using AppFramework.Organizations;
+using AppFramework.Organizations.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Application.Organizations
+namespace AppFramework.Application.Organizations
 {
     public class OrganizationUnitAppService : ProxyAppServiceBase, IOrganizationUnitAppService
     {

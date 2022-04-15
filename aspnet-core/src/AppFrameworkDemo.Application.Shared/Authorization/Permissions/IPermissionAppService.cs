@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Authorization.Permissions.Dto;
+using AppFramework.Authorization.Permissions.Dto;
 
-namespace AppFrameworkDemo.Authorization.Permissions
+namespace AppFramework.Authorization.Permissions
 {
     public interface IPermissionAppService : IApplicationService
     {

@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Tenants.Dashboard.Dto
+﻿namespace AppFramework.Tenants.Dashboard.Dto
 {
     public class GetDailySalesOutput
     {

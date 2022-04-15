@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 
-namespace AppFrameworkDemo.DynamicEntityProperties.Dto
+namespace AppFramework.DynamicEntityProperties.Dto
 {
     public class DynamicPropertyDto : EntityDto
     {

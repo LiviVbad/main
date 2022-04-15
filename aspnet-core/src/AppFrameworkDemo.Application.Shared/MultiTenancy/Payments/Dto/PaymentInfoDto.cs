@@ -1,6 +1,6 @@
-﻿using AppFrameworkDemo.Editions.Dto;
+﻿using AppFramework.Editions.Dto;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments.Dto
+namespace AppFramework.MultiTenancy.Payments.Dto
 {
     public class PaymentInfoDto
     {
@@ -10,7 +10,7 @@ namespace AppFrameworkDemo.MultiTenancy.Payments.Dto
 
         public bool IsLessThanMinimumUpgradePaymentAmount()
         {
-            return AdditionalPrice < AppFrameworkDemoConsts.MinimumUpgradePaymentAmount;
+            return AdditionalPrice < AppFrameworkConsts.MinimumUpgradePaymentAmount;
         }
     }
 }

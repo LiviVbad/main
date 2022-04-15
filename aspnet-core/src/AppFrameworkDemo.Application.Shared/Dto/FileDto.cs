@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Dto
+namespace AppFramework.Dto
 {
     public class FileDto
     {

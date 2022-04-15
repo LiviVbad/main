@@ -1,19 +1,19 @@
-﻿using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.ApiClient.Models;
-using AppFrameworkDemo.Auditing.Dto;
-using AppFrameworkDemo.Authorization.Permissions.Dto;
-using AppFrameworkDemo.Authorization.Roles.Dto;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.DynamicEntityProperties.Dto;
-using AppFrameworkDemo.Editions.Dto;
-using AppFrameworkDemo.Localization.Dto;
-using AppFrameworkDemo.MultiTenancy.Dto;
-using AppFrameworkDemo.Organizations.Dto;
-using AppFrameworkDemo.Sessions.Dto;
-using AppFramework.Shared.Common.Models; 
+﻿using AppFramework.ApiClient;
+using AppFramework.ApiClient.Models;
+using AppFramework.Auditing.Dto;
+using AppFramework.Authorization.Permissions.Dto;
+using AppFramework.Authorization.Roles.Dto;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.DynamicEntityProperties.Dto;
+using AppFramework.Editions.Dto;
+using AppFramework.Localization.Dto;
+using AppFramework.MultiTenancy.Dto;
+using AppFramework.Organizations.Dto;
+using AppFramework.Sessions.Dto;
+using AppFramework.Common.Models; 
 using AutoMapper;
 
-namespace AppFramework.Shared.Common.Core
+namespace AppFramework.Common.Core
 {
     public class AppMapper : Profile
     {

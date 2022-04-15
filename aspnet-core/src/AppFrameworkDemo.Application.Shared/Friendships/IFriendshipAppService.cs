@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services;
-using AppFrameworkDemo.Friendships.Dto;
+using AppFramework.Friendships.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Friendships
+namespace AppFramework.Friendships
 {
     public interface IFriendshipAppService : IApplicationService
     {

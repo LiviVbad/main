@@ -1,9 +1,9 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Authorization.Roles.Dto;
+using AppFramework.Authorization.Roles.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Authorization.Roles
+namespace AppFramework.Authorization.Roles
 {
     /// <summary>
     /// Application service that is used by 'role management' page.

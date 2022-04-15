@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Shared
+﻿namespace AppFramework.Shared
 {
     using System;
     using System.Collections.ObjectModel;

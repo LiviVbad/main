@@ -4,7 +4,7 @@ using Abp.Localization;
 using Abp.Runtime.Validation;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Localization
+namespace AppFramework.Localization
 {
     public class GetLanguageTextsInput : IPagedResultRequest, ISortedResultRequest, IShouldNormalize
     {

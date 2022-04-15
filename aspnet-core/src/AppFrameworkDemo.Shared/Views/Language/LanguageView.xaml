@@ -1,13 +1,13 @@
 ﻿<ContentView
-    x:Class="AppFrameworkDemo.Shared.Views.LanguageView"
+    x:Class="AppFramework.Shared.Views.LanguageView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:extensions="clr-namespace:AppFrameworkDemo.Shared.Extensions.MarkupExtensions;assembly=AppFrameworkDemo.Shared"
+    xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared"
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:perm="clr-namespace:AppFrameworkDemo.Shared"
+    xmlns:perm="clr-namespace:AppFramework.Shared"
     xmlns:refresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms">
     <Grid>
         <refresh:SfPullToRefresh IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}">

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
-namespace AppFrameworkDemo.Shared.Views
+namespace AppFramework.Shared.Views
 {
     public partial class SkinView
     {

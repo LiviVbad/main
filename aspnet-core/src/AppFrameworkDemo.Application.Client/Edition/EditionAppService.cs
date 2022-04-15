@@ -1,11 +1,11 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.Editions.Dto;
+using AppFramework.ApiClient;
+using AppFramework.Editions;
+using AppFramework.Editions.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Application
+namespace AppFramework.Application
 {
     public class EditionAppService : ProxyAppServiceBase, IEditionAppService
     {

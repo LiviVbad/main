@@ -1,7 +1,7 @@
 ﻿using Abp;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Authorization.Accounts.Dto
+namespace AppFramework.Authorization.Accounts.Dto
 {
     public class SwitchToLinkedAccountInput
     {

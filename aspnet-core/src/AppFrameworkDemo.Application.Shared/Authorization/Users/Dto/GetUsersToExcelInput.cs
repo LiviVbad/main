@@ -1,7 +1,7 @@
 ﻿using Abp.Runtime.Validation;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Authorization.Users.Dto
+namespace AppFramework.Authorization.Users.Dto
 {
     public class GetUsersToExcelInput : IShouldNormalize, IGetUsersInput
     {

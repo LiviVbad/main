@@ -1,8 +1,8 @@
-﻿using AppFrameworkDemo.Authorization.Users.Dto;
+﻿using AppFramework.Authorization.Users.Dto;
 using System;
 using System.Collections.Generic;
 
-namespace AppFramework.Shared.Common.Models
+namespace AppFramework.Common.Models
 {
     public class UserListModel : EntityObject
     {

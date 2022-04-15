@@ -1,4 +1,4 @@
-namespace AppFrameworkDemo.Localization.Dto
+namespace AppFramework.Localization.Dto
 {
     public class LanguageTextListDto
     {

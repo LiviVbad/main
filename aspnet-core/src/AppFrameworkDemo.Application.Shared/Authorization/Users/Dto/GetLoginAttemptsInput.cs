@@ -1,9 +1,9 @@
 ﻿using Abp.Authorization;
 using Abp.Runtime.Validation;
-using AppFrameworkDemo.Dto;
+using AppFramework.Dto;
 using System;
 
-namespace AppFrameworkDemo.Authorization.Users.Dto
+namespace AppFramework.Authorization.Users.Dto
 {
     public class GetLoginAttemptsInput : PagedAndSortedInputDto, IGetLoginAttemptsInput, IShouldNormalize
     {

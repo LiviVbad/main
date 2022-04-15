@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Security
+﻿namespace AppFramework.Security
 {
     public class PasswordComplexitySetting
     {

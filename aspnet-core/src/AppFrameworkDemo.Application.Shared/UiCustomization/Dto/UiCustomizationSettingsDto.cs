@@ -1,6 +1,6 @@
-﻿using AppFrameworkDemo.Configuration.Dto;
+﻿using AppFramework.Configuration.Dto;
 
-namespace AppFrameworkDemo.UiCustomization.Dto
+namespace AppFramework.UiCustomization.Dto
 {
     public class UiCustomizationSettingsDto
     {

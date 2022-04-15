@@ -1,10 +1,10 @@
 ﻿using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.MultiTenancy;
-using AppFrameworkDemo.MultiTenancy.Payments;
+using AppFramework.MultiTenancy.Payments;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.MultiTenancy.Dto
+namespace AppFramework.MultiTenancy.Dto
 {
     public class RegisterTenantInput
     {

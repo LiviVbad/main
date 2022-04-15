@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using System;
 
-namespace AppFrameworkDemo.Authorization.Users.Delegation.Dto
+namespace AppFramework.Authorization.Users.Delegation.Dto
 {
     public class UserDelegationDto : EntityDto<long>
     {

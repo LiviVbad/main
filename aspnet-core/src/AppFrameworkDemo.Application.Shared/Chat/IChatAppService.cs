@@ -1,9 +1,9 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Chat.Dto;
+using AppFramework.Chat.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Chat
+namespace AppFramework.Chat
 {
     public interface IChatAppService : IApplicationService
     {

@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Authentication
+﻿namespace AppFramework.Authentication
 {
     public class JsonClaimMapDto
     {

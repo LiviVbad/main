@@ -1,6 +1,6 @@
 ﻿using Prism.Services.Dialogs;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class MessageBoxViewModel : DialogViewModel
     {

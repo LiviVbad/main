@@ -1,9 +1,9 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.UI.Inputs;
-using AppFrameworkDemo.DynamicEntityProperties.Dto;
+using AppFramework.DynamicEntityProperties.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.DynamicEntityProperties
+namespace AppFramework.DynamicEntityProperties
 {
     public interface IDynamicPropertyAppService
     {

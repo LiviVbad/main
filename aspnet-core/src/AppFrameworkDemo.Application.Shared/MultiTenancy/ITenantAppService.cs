@@ -1,9 +1,9 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.MultiTenancy.Dto;
+using AppFramework.MultiTenancy.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.MultiTenancy
+namespace AppFramework.MultiTenancy
 {
     public interface ITenantAppService : IApplicationService
     {

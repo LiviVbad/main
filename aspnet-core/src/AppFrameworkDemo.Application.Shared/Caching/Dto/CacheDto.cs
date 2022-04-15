@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Caching.Dto
+﻿namespace AppFramework.Caching.Dto
 {
     public class CacheDto
     {

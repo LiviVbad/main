@@ -1,9 +1,9 @@
-﻿using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.ApiClient.Models;
-using AppFrameworkDemo.Sessions.Dto;
+﻿using AppFramework.ApiClient;
+using AppFramework.ApiClient.Models;
+using AppFramework.Sessions.Dto;
 using System.Threading.Tasks;
 
-namespace AppFramework.Shared.Common.Services.Storage
+namespace AppFramework.Common.Services.Storage
 {
     public interface IAccountStorageService
     {

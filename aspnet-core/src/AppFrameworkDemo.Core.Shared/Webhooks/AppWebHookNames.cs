@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.WebHooks
+﻿namespace AppFramework.WebHooks
 {
     public class AppWebHookNames
     {

@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.MultiTenancy.Payments.Stripe.Dto
+﻿namespace AppFramework.MultiTenancy.Payments.Stripe.Dto
 {
     public class StripeConfirmPaymentInput
     {

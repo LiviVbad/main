@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Authorization.Users.Delegation.Dto
+namespace AppFramework.Authorization.Users.Delegation.Dto
 {
     public class CreateUserDelegationDto : IValidatableObject
     {

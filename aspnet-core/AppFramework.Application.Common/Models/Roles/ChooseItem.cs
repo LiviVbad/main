@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using Prism.Mvvm;
 
-namespace AppFramework.Shared.Common.Models
+namespace AppFramework.Common.Models
 {
     public class ChooseItem : BindableBase
     {

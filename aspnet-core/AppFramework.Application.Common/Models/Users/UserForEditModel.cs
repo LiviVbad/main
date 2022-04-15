@@ -1,11 +1,11 @@
-﻿using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.Organizations.Dto;
+﻿using AppFramework.Authorization.Users.Dto;
+using AppFramework.Organizations.Dto;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AppFramework.Shared.Common.Models
+namespace AppFramework.Common.Models
 {
     public class UserForEditModel : BindableBase
     {

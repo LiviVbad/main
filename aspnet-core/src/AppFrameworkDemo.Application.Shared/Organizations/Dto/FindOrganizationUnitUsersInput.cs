@@ -1,6 +1,6 @@
-﻿using AppFrameworkDemo.Dto;
+﻿using AppFramework.Dto;
 
-namespace AppFrameworkDemo.Organizations.Dto
+namespace AppFramework.Organizations.Dto
 {
     public class FindOrganizationUnitUsersInput : PagedAndFilteredInputDto
     {

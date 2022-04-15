@@ -1,6 +1,6 @@
 using Abp.Application.Services.Dto;
 
-namespace AppFrameworkDemo.Sessions.Dto
+namespace AppFramework.Sessions.Dto
 {
     public class EditionInfoDto : EntityDto
     {

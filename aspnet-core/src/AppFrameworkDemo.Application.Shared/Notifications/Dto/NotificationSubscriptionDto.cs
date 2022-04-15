@@ -1,7 +1,7 @@
 ﻿using Abp.Notifications;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Notifications.Dto
+namespace AppFramework.Notifications.Dto
 {
     public class NotificationSubscriptionDto
     {

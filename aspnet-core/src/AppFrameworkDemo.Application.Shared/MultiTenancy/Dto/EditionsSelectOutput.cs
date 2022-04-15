@@ -1,7 +1,7 @@
-﻿using AppFrameworkDemo.Editions.Dto;
+﻿using AppFramework.Editions.Dto;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.MultiTenancy.Dto
+namespace AppFramework.MultiTenancy.Dto
 {
     public class EditionsSelectOutput
     {

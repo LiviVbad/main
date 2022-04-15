@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Sessions.Dto
+namespace AppFramework.Sessions.Dto
 {
     public class ApplicationInfoDto
     {

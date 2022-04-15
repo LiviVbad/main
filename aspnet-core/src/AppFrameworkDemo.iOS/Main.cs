@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace AppFrameworkDemo.iOS
+namespace AppFramework.iOS
 {
     public class Application
     {

@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Editions
+﻿namespace AppFramework.Editions
 {
     public enum EditionPaymentType
     {

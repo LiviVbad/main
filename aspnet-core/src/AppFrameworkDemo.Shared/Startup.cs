@@ -3,42 +3,47 @@ using Abp.Configuration.Startup;
 
 #region ApplicationServices
 
-using AppFrameworkDemo.Shared.ViewModels;
-using AppFrameworkDemo.Shared.Views;
-using AppFrameworkDemo.Shared.Services.Account;
-using AppFrameworkDemo.Shared.Services.Navigation;
-using AppFrameworkDemo.Shared.Services.Permission;
-using AppFrameworkDemo.Shared.Services.Storage;
-using AppFrameworkDemo.Shared.Services.Layer;
-using AppFrameworkDemo.Shared.Services;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.Auditing;
-using AppFrameworkDemo.DynamicEntityProperties;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.ApiClient.Models;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Authorization.Users.Profile;
-using AppFrameworkDemo.Authorization.Accounts;
-using AppFrameworkDemo.Localization;
-using AppFrameworkDemo.Sessions;
-using AppFrameworkDemo.MultiTenancy.HostDashboard;
-using AppFrameworkDemo.Caching;
-using AppFrameworkDemo.Tenants.Dashboard;
-using AppFrameworkDemo.Common;
-using AppFrameworkDemo.Organizations;
-using AppFrameworkDemo.Shared.Validations;
-using AppFrameworkDemo.Application;
-using AppFrameworkDemo.Application.Client;
-using AppFrameworkDemo.Application.MultiTenancy.HostDashboard;
-using AppFrameworkDemo.Application.Organizations;
-using AppFrameworkDemo.Application.MultiTenancy;
+using AppFramework.Shared.ViewModels;
+using AppFramework.Shared.Views;
+using AppFramework.Shared.Services.Account; 
+using AppFramework.Shared.Services.Storage;
+using AppFramework.Shared.Services.Layer;
+using AppFramework.Shared.Services;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users;
+using AppFramework.MultiTenancy;
+using AppFramework.Editions;
+using AppFramework.Auditing;
+using AppFramework.DynamicEntityProperties;
+using AppFramework.ApiClient;
+using AppFramework.ApiClient.Models;
+using AppFramework.Configuration;
+using AppFramework.Authorization.Users.Profile;
+using AppFramework.Authorization.Accounts;
+using AppFramework.Localization;
+using AppFramework.Sessions;
+using AppFramework.MultiTenancy.HostDashboard;
+using AppFramework.Caching;
+using AppFramework.Tenants.Dashboard;
+using AppFramework.Common;
+using AppFramework.Organizations; 
+using AppFramework.Application;
+using AppFramework.Application.Client;
+using AppFramework.Application.MultiTenancy.HostDashboard;
+using AppFramework.Application.Organizations;
+using AppFramework.Application.MultiTenancy;
+using AppFramework.Common.Core.Validations;
+using AppFramework.Common.Core;
+using AppFramework.Common.Services;
+using AppFramework.Common.Services.Navigation;
+using AppFramework.Common.Services.Account;
+using AppFramework.Common.Services.Layer;
+using AppFramework.Common.Services.Storage;
+using AppFramework.Common.Services.Permission;
 
 #endregion ApplicationServices
 
-namespace AppFrameworkDemo.Shared
+namespace AppFramework.Shared
 {
     internal static class Startup
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AppFrameworkDemo
+namespace AppFramework
 {
     /// <summary>
     /// Some consts used in the application.

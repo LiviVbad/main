@@ -1,11 +1,11 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Caching;
-using AppFrameworkDemo.Caching.Dto;
+using AppFramework.ApiClient;
+using AppFramework.Caching;
+using AppFramework.Caching.Dto;
 using System;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Application.Client
+namespace AppFramework.Application.Client
 {
     public class CachingAppService : ProxyAppServiceBase, ICachingAppService
     {

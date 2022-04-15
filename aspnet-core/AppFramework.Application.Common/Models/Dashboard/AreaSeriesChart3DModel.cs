@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AppFramework.Shared.Common.Models
+namespace AppFramework.Common.Models
 {
     public class AreaSeriesChart3DModel
     {

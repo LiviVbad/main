@@ -1,13 +1,13 @@
-﻿using AppFrameworkDemo.MultiTenancy.HostDashboard;
-using AppFrameworkDemo.MultiTenancy.HostDashboard.Dto;
-using AppFrameworkDemo.Shared.Localization;
-using AppFramework.Application.Common.Models;
+﻿using AppFramework.MultiTenancy.HostDashboard;
+using AppFramework.MultiTenancy.HostDashboard.Dto;
+using AppFramework.Shared.Localization; 
 using Prism.Regions.Navigation;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using AppFramework.Common.Models;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class DashboardViewModel : RegionViewModel
     {

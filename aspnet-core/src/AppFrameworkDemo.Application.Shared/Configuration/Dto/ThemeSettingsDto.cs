@@ -1,4 +1,4 @@
-namespace AppFrameworkDemo.Configuration.Dto
+namespace AppFramework.Configuration.Dto
 {
     public class ThemeSettingsDto
     {

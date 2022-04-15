@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.MultiTenancy.HostDashboard.Dto
+﻿namespace AppFramework.MultiTenancy.HostDashboard.Dto
 {
     public class GetIncomeStatisticsDataInput : DashboardInputBase
     {

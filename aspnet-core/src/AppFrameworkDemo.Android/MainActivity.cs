@@ -2,14 +2,14 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Android.Runtime;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Shared;
-using AppFrameworkDemo.Shared.Core.Behaviors;
+using Android.Runtime; 
+using AppFramework.Shared;
+using AppFramework.Shared.Core.Behaviors;
+using AppFramework.ApiClient;
 using Flurl.Http;
 using Xamarin.Forms.Platform.Android;
 
-namespace AppFrameworkDemo.Droid
+namespace AppFramework.Droid
 {
     [Activity(Label = "AppFramework",
         Icon = "@mipmap/icon",

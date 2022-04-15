@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Authorization.Users
+﻿namespace AppFramework.Authorization.Users
 {
     public class UserConsts
     {

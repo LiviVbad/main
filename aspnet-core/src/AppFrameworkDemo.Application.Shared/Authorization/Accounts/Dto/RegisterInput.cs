@@ -1,12 +1,12 @@
 ﻿using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.Extensions;
-using AppFrameworkDemo.Validation;
+using AppFramework.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Authorization.Accounts.Dto
+namespace AppFramework.Authorization.Accounts.Dto
 {
     public class RegisterInput : IValidatableObject
     {

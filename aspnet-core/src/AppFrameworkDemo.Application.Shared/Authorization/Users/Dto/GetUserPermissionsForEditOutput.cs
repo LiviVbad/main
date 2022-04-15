@@ -1,7 +1,7 @@
-﻿using AppFrameworkDemo.Authorization.Permissions.Dto;
+﻿using AppFramework.Authorization.Permissions.Dto;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Authorization.Users.Dto
+namespace AppFramework.Authorization.Users.Dto
 {
     public class GetUserPermissionsForEditOutput
     {

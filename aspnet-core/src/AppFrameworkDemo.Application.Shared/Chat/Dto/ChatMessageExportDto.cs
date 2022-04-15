@@ -1,6 +1,6 @@
 using System;
 
-namespace AppFrameworkDemo.Chat.Dto
+namespace AppFramework.Chat.Dto
 {
     public class ChatMessageExportDto
     {

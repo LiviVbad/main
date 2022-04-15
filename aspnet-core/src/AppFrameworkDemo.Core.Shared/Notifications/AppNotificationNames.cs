@@ -1,4 +1,4 @@
-namespace AppFrameworkDemo.Notifications
+namespace AppFramework.Notifications
 {
     /// <summary>
     /// Constants for notification names used in this application.

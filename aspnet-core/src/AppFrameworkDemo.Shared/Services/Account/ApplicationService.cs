@@ -1,14 +1,15 @@
 ﻿using Abp.IO.Extensions;
 using Acr.UserDialogs;
-using AppFramework.Application.Common.Models;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Authorization.Users.Profile;
-using AppFrameworkDemo.Authorization.Users.Profile.Dto;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Shared.Controls;
-using AppFrameworkDemo.Shared.Localization; 
-using AppFrameworkDemo.Shared.Services.Navigation;
-using AppFrameworkDemo.Shared.ViewModels;
+using AppFramework.Common.Models;
+using AppFramework.Common.Services;
+using AppFramework.Common.Services.Navigation;
+using AppFramework.ApiClient;
+using AppFramework.Authorization.Users.Profile;
+using AppFramework.Authorization.Users.Profile.Dto;
+using AppFramework.Dto;
+using AppFramework.Shared.Controls;
+using AppFramework.Shared.Localization;  
+using AppFramework.Shared.ViewModels;
 using FFImageLoading;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -21,7 +22,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace AppFrameworkDemo.Shared.Services
+namespace AppFramework.Shared.Services
 {
     public class ApplicationService : ViewModelBase, IApplicationService
     {
@@ -50,13 +51,13 @@ namespace AppFrameworkDemo.Shared.Services
             navigationItems = new ObservableCollection<NavigationItem>();
         }
 
-        private ImageSource photo;
+        private byte[] photo;
         private byte[] profilePictureBytes;
         private string userNameAndSurname;
         private string applicationInfo;
         public string ApplicationName { get; set; } = "AppFramework";
 
-        public ImageSource Photo
+        public byte[] Photo
         {
             get => photo;
             set
@@ -103,7 +104,7 @@ namespace AppFrameworkDemo.Shared.Services
         private async Task GetProfilePictureByUserSuccessed(GetProfilePictureOutput output)
         {
             profilePictureBytes = Convert.FromBase64String(output.ProfilePicture);
-            Photo = ImageSource.FromStream(() => new MemoryStream(profilePictureBytes));
+            //Photo = ImageSource.FromStream(() => new MemoryStream(profilePictureBytes));
 
             await Task.CompletedTask;
         }
@@ -197,9 +198,8 @@ namespace AppFrameworkDemo.Shared.Services
             {
                 await WebRequestRuner.Execute(async () => await UpdateProfilePhoto(photoAsBytes, fileName), () =>
                 {
-                    Photo = ImageSource.FromStream(() => new MemoryStream(photoAsBytes));
+                    //Photo = ImageSource.FromStream(() => new MemoryStream(photoAsBytes));
                     CloneProfilePicture(photoAsBytes);
-
                     return Task.CompletedTask;
                 });
             });

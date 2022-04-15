@@ -1,7 +1,7 @@
 ﻿using Abp.Authorization.Users;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Configuration.Host.Dto
+namespace AppFramework.Configuration.Host.Dto
 {
     public class SendTestEmailInput
     {

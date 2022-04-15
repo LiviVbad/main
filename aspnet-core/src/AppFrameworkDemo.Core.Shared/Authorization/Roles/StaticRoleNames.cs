@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Authorization.Roles
+﻿namespace AppFramework.Authorization.Roles
 {
     public static class StaticRoleNames
     {

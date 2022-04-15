@@ -8,16 +8,14 @@
  * Appearing函数为Page类的实现, ContentPage间接继承于Xamarin.Forms.Page类。
  */
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
-    using AppFrameworkDemo.ApiClient;
-    using AppFrameworkDemo.Shared.Localization;
-    using AppFrameworkDemo.Shared.Services;
-    using AppFrameworkDemo.Shared.Services.Account;
-    using AppFrameworkDemo.Shared.Services.Storage;
+    using AppFramework.Common.Core;
+    using AppFramework.Common.Services;
+    using AppFramework.Common.Services.Storage;
+    using AppFramework.ApiClient;
+    using AppFramework.Shared.Services.Account;
     using Prism.Commands;
-    using Prism.Navigation;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// 应用启动初始化操作
@@ -75,13 +73,13 @@ namespace AppFrameworkDemo.Shared.ViewModels
             //获取应用程序资源数据(本地化资源、设置、用户信息权限等...)
             await AppConfigurationManager.GetIfNeedsAsync();
             IsDisplayLayer = false;
-             
+
             if (accessTokenManager.IsUserLoggedIn)
                 regionNavigateService.Navigate(AppRegionManager.Index, AppViewManager.Main);
             else
                 regionNavigateService.Navigate(AppRegionManager.Index, AppViewManager.Login);
 
             initialize = true;
-        } 
+        }
     }
 }

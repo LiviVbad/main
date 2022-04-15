@@ -1,10 +1,10 @@
-﻿using AppFrameworkDemo.ApiClient;
-using AppFramework.Application.Common.Models;
-using AppFrameworkDemo.Shared.ViewModels;
+﻿using AppFramework.Shared.ViewModels;
 using Prism.Regions.Xaml;
 using Xamarin.Forms;
+using AppFramework.Common.Core;
+using AppFramework.Common.Models;
 
-namespace AppFrameworkDemo.Shared.Views
+namespace AppFramework.Shared.Views
 {
     public partial class MainView : ContentView
     {

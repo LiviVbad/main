@@ -1,6 +1,6 @@
 ﻿using Abp.UI.Inputs;
 
-namespace AppFrameworkDemo.Editions.Dto
+namespace AppFramework.Editions.Dto
 {
     public class FlatFeatureSelectDto
     {

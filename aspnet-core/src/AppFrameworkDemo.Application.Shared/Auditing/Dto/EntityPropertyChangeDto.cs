@@ -1,6 +1,6 @@
 using Abp.Application.Services.Dto;
 
-namespace AppFrameworkDemo.Auditing.Dto
+namespace AppFramework.Auditing.Dto
 {
     public class EntityPropertyChangeDto : EntityDto<long>
     {

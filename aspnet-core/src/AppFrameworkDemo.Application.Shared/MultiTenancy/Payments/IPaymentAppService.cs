@@ -1,11 +1,11 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.MultiTenancy.Dto;
-using AppFrameworkDemo.MultiTenancy.Payments.Dto;
+using AppFramework.MultiTenancy.Dto;
+using AppFramework.MultiTenancy.Payments.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments
+namespace AppFramework.MultiTenancy.Payments
 {
     public interface IPaymentAppService : IApplicationService
     {

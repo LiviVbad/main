@@ -2,14 +2,14 @@
 using Abp.Dependency;
 using Abp.UI;
 using Abp.Web.Models;
-using AppFrameworkDemo.Extensions;
+using AppFramework.Extensions;
 using Flurl.Http;
 using Flurl.Http.Content;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.ApiClient
+namespace AppFramework.ApiClient
 {
     public class AbpApiClient : ISingletonDependency, IDisposable
     {
@@ -335,7 +335,7 @@ namespace AppFrameworkDemo.ApiClient
         {
             _client.HttpClient.DefaultRequestHeaders.Clear(); 
             _client.WithHeader("Accept", "application/json");
-            _client.WithHeader("User-Agent", AppFrameworkDemoConsts.AbpApiClientUserAgent);
+            _client.WithHeader("User-Agent", AppFrameworkConsts.AbpApiClientUserAgent);
             /* Disabled due to https://github.com/paulcbetts/ModernHttpClient/issues/198#issuecomment-181263988
                _client.WithHeader("Accept-Encoding", "gzip,deflate");
             */

@@ -1,6 +1,6 @@
 using Abp;
 
-namespace AppFrameworkDemo.Chat.Dto
+namespace AppFramework.Chat.Dto
 {
     public class MarkAllUnreadMessagesOfUserAsReadInput
     {

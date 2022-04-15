@@ -1,10 +1,10 @@
 ﻿using Abp;
 using Abp.Application.Services;
-using AppFrameworkDemo.DemoUiComponents.Dto;
+using AppFramework.DemoUiComponents.Dto;
 using System;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.DemoUiComponents
+namespace AppFramework.DemoUiComponents
 {
     public interface IDemoUiComponentsAppService : IApplicationService
     {

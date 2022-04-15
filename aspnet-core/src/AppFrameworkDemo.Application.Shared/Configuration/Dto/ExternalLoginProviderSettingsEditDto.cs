@@ -1,7 +1,7 @@
-﻿using AppFrameworkDemo.Authentication;
+﻿using AppFramework.Authentication;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Configuration.Dto
+namespace AppFramework.Configuration.Dto
 {
     public class ExternalLoginProviderSettingsEditDto
     {

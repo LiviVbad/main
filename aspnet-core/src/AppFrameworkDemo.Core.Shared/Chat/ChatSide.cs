@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Chat
+﻿namespace AppFramework.Chat
 {
     public enum ChatSide
     {

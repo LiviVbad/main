@@ -1,10 +1,10 @@
 ﻿<ContentPage
-    x:Class="AppFrameworkDemo.Shared.Views.InitialScreenView"
+    x:Class="AppFramework.Shared.Views.InitialScreenView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behaviors="clr-namespace:AppFrameworkDemo.Shared.Behaviors;assembly=AppFrameworkDemo.Shared"
+    xmlns:behaviors="clr-namespace:AppFramework.Shared.Behaviors;assembly=AppFramework.Shared"
     xmlns:busy="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
-    xmlns:manager="clr-namespace:AppFrameworkDemo.Shared;assembly=AppFrameworkDemo.Shared"
+    xmlns:manager="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:prism="http://prismlibrary.com"
     BackgroundColor="{DynamicResource GrayShadowBackgroundColor}">
     <ContentPage.Content>

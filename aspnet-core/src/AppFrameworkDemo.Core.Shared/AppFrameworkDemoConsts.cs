@@ -1,8 +1,8 @@
-﻿namespace AppFrameworkDemo
+﻿namespace AppFramework
 {
-    public class AppFrameworkDemoConsts
+    public class AppFrameworkConsts
     {
-        public const string LocalizationSourceName = "AppFrameworkDemo";
+        public const string LocalizationSourceName = "AppFramework";
 
         public const string ConnectionStringName = "Default";
 

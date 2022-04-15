@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.Editions;
+using AppFramework.Editions;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments.Dto
+namespace AppFramework.MultiTenancy.Payments.Dto
 {
     public class SubscriptionPaymentDto : EntityDto<long>
     {

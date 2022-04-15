@@ -1,9 +1,9 @@
 ﻿<ContentPage
-    x:Class="AppFrameworkDemo.Shared.Views.AddUsersView"
+    x:Class="AppFramework.Shared.Views.AddUsersView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:AppFrameworkDemo.Shared.Controls"
-    xmlns:extensions="clr-namespace:AppFrameworkDemo.Shared.Extensions.MarkupExtensions;assembly=AppFrameworkDemo.Shared"
+    xmlns:controls="clr-namespace:AppFramework.Shared.Controls"
+    xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
     <controls:CustomShadowFrame

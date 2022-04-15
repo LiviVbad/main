@@ -1,11 +1,8 @@
-﻿using AppFrameworkDemo.ApiClient;
-using AppFramework.Application.Common.Models;
-using Prism.Services.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AppFramework.ApiClient; 
+using Prism.Services.Dialogs; 
+using AppFramework.Common.Models;
 
-namespace AppFrameworkDemo.Shared.ViewModels
+namespace AppFramework.Shared.ViewModels
 {
     public class MyProfileViewModel : DialogViewModel
     {

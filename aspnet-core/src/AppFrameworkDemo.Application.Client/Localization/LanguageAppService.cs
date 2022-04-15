@@ -1,10 +1,10 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFrameworkDemo.ApiClient;
-using AppFrameworkDemo.Localization;
-using AppFrameworkDemo.Localization.Dto;
+using AppFramework.ApiClient;
+using AppFramework.Localization;
+using AppFramework.Localization.Dto;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Application
+namespace AppFramework.Application
 {
     public class LanguageAppService : ProxyAppServiceBase, ILanguageAppService
     {

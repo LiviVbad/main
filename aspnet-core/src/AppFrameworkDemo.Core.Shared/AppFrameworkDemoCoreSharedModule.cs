@@ -1,13 +1,13 @@
 ﻿using Abp.Modules;
 using Abp.Reflection.Extensions;
 
-namespace AppFrameworkDemo
+namespace AppFramework
 {
-    public class AppFrameworkDemoCoreSharedModule : AbpModule
+    public class AppFrameworkCoreSharedModule : AbpModule
     {
         public override void Initialize()
         {
-            IocManager.RegisterAssemblyByConvention(typeof(AppFrameworkDemoCoreSharedModule).GetAssembly());
+            IocManager.RegisterAssemblyByConvention(typeof(AppFrameworkCoreSharedModule).GetAssembly());
         }
     }
 }

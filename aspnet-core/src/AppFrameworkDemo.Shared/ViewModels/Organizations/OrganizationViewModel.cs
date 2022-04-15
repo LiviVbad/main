@@ -1,15 +1,16 @@
-﻿namespace AppFrameworkDemo.Shared.ViewModels
+﻿namespace AppFramework.Shared.ViewModels
 {
     using Abp.Application.Services.Dto;
-    using AppFrameworkDemo.Organizations;
-    using AppFrameworkDemo.Organizations.Dto;
-    using AppFramework.Application.Common.Models;
+    using AppFramework.Organizations;
+    using AppFramework.Organizations.Dto;
     using Prism.Commands;
     using Prism.Navigation;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
+    using AppFramework.Common.Models;
+    using AppFramework.Common.Core;
 
     public class OrganizationViewModel : NavigationCurdViewModel<OrganizationListModel>
     {
@@ -19,11 +20,11 @@
         public DelegateCommand<OrganizationListModel> AddUserCommand { get; private set; }
         public DelegateCommand<OrganizationListModel> AddSubUnitCommand { get; private set; }
 
-        public OrganizationViewModel(IOrganizationUnitAppService appService,IMessenger messenger)
-        { 
-            this.appService=appService;
-            messenger.Sub(AppMessengerKeys.Organization,async()=>await RefreshAsync());
-            AddSubUnitCommand =new DelegateCommand<OrganizationListModel>(AddSubUnit);
+        public OrganizationViewModel(IOrganizationUnitAppService appService, IMessenger messenger)
+        {
+            this.appService = appService;
+            messenger.Sub(AppMessengerKeys.Organization, async () => await RefreshAsync());
+            AddSubUnitCommand = new DelegateCommand<OrganizationListModel>(AddSubUnit);
         }
 
         private async void AddSubUnit(OrganizationListModel obj)
@@ -36,12 +37,12 @@
 
         public override async void Delete(OrganizationListModel selectedItem)
         {
-            if (selectedItem==null) return;
+            if (selectedItem == null) return;
             if (!await dialogService.DeleteConfirm()) return;
 
             await appService.DeleteOrganizationUnit(new EntityDto<long>()
             {
-                Id=selectedItem.Id
+                Id = selectedItem.Id
             });
             await RefreshAsync();
         }
@@ -53,7 +54,7 @@
                 await WebRequestRuner.Execute(
                    () => appService.GetOrganizationUnits(),
                    result => RefreshSuccessed(result));
-            }); 
+            });
         }
 
         protected virtual async Task RefreshSuccessed(ListResultDto<OrganizationUnitDto> pagedResult)

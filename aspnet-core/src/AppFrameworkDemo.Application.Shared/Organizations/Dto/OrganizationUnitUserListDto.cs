@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using System;
 
-namespace AppFrameworkDemo.Organizations.Dto
+namespace AppFramework.Organizations.Dto
 {
     public class OrganizationUnitUserListDto : EntityDto<long>
     {

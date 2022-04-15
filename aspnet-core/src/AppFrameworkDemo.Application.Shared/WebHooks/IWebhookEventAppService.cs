@@ -1,7 +1,7 @@
 ﻿using Abp.Webhooks;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.WebHooks
+namespace AppFramework.WebHooks
 {
     public interface IWebhookEventAppService
     {

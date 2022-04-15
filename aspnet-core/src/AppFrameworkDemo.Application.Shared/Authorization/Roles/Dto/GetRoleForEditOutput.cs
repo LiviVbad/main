@@ -1,7 +1,7 @@
-using AppFrameworkDemo.Authorization.Permissions.Dto;
+using AppFramework.Authorization.Permissions.Dto;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Authorization.Roles.Dto
+namespace AppFramework.Authorization.Roles.Dto
 {
     public class GetRoleForEditOutput
     {

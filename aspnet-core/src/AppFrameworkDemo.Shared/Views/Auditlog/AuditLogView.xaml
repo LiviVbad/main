@@ -1,5 +1,5 @@
 ﻿<ContentView
-    x:Class="AppFrameworkDemo.Shared.Views.AuditLogView"
+    x:Class="AppFramework.Shared.Views.AuditLogView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"

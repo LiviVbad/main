@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Authorization.Permissions.Dto
+﻿namespace AppFramework.Authorization.Permissions.Dto
 {
     public class FlatPermissionWithLevelDto : FlatPermissionDto
     {

@@ -1,13 +1,14 @@
-﻿using Abp.Application.Services.Dto;  
-using Prism.Commands; 
-using System; 
-using System.Collections.ObjectModel; 
-using System.Threading.Tasks; 
+﻿using Abp.Application.Services.Dto;
+using Prism.Commands;
+using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Prism.Services.Dialogs;
 using System.Linq;
-using AppFrameworkDemo.Organizations;
-using AppFrameworkDemo.Organizations.Dto;
-using AppFramework.Application.Common.Models;
+using AppFramework.Organizations;
+using AppFramework.Organizations.Dto;
+using AppFramework.Common.Models;
+using AppFramework.Common;
 
 namespace AppFramework.ViewModels
 {
@@ -42,7 +43,7 @@ namespace AppFramework.ViewModels
 
         private async void Query()
         {
-            await WebRuner.Execute(() =>
+            await WebRequest.Execute(() =>
              appService.FindRoles(new FindOrganizationUnitRolesInput()
              {
                  OrganizationUnitId = Id,
