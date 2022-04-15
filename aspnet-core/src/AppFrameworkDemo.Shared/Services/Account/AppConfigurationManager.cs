@@ -1,5 +1,5 @@
-﻿using Acr.UserDialogs;
-using AppFramework.ApiClient;
+﻿using AppFramework.ApiClient;
+using AppFramework.Common;
 using AppFramework.Configuration;
 using AppFramework.MultiTenancy;
 using AppFramework.Shared.Core.Localization.Resources;

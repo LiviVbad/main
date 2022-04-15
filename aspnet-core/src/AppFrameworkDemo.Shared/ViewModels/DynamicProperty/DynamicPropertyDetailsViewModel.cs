@@ -5,6 +5,7 @@ using Prism.Navigation;
 using System.Threading.Tasks;
 using AppFramework.Common.Core;
 using AppFramework.Common.Models;
+using AppFramework.Common;
 
 namespace AppFramework.Shared.ViewModels
 {

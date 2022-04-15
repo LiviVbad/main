@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AppFramework.Common.Models;
 using AppFramework.Common.Core;
+using AppFramework.Common;
 
 namespace AppFramework.Shared.ViewModels
 {

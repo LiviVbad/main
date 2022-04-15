@@ -8,8 +8,8 @@ using System.Windows.Media.Imaging;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.ApiClient;
 using AppFramework.Common.Services.Navigation;
-using AppFramework.Common.Models;
-using AppFramework.Common.Core;
+using AppFramework.Common.Models; 
+using AppFramework.Common;
 
 namespace AppFramework.ViewModels
 {

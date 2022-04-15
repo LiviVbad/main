@@ -3,6 +3,7 @@ using Prism.Regions.Xaml;
 using Xamarin.Forms;
 using AppFramework.Common.Core;
 using AppFramework.Common.Models;
+using AppFramework.Common;
 
 namespace AppFramework.Shared.Views
 {

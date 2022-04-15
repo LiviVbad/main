@@ -17,6 +17,7 @@ namespace AppFramework.Shared.ViewModels
     using AppFramework.Shared.Services.Account;
     using Prism.Commands;
     using AppFramework.Common.ViewModels;
+    using AppFramework.Common;
 
     /// <summary>
     /// 应用启动初始化操作

@@ -12,6 +12,7 @@ using AppFramework.Shared.Localization;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System.Threading.Tasks;
+using AppFramework.Common;
 
 namespace AppFramework.Shared.Services.Account
 {

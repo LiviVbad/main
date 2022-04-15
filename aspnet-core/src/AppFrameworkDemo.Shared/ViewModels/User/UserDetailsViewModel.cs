@@ -10,8 +10,8 @@ using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+using System.Threading.Tasks; 
+using AppFramework.Common;
 
 namespace AppFramework.Shared.ViewModels
 {

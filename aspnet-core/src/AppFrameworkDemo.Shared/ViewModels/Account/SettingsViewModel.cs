@@ -9,6 +9,7 @@ using Prism.Services.Dialogs;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using AppFramework.Common;
 
 namespace AppFramework.Shared.ViewModels
 {

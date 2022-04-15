@@ -1,4 +1,4 @@
-﻿namespace AppFramework.Common.Core
+﻿namespace AppFramework.Common
 {
     public class AppRegionManager
     {

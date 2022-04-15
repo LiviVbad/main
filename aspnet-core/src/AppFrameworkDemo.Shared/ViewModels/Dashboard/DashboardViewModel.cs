@@ -6,6 +6,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using AppFramework.Common.Models;
+using AppFramework.Common;
 
 namespace AppFramework.Shared.ViewModels
 {

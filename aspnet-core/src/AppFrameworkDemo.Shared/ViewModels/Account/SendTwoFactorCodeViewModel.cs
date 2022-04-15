@@ -8,6 +8,7 @@ using Prism.Commands;
 using Prism.Services.Dialogs;
 using System.Collections.Generic;
 using System.Linq;
+using AppFramework.Common;
 
 namespace AppFramework.Shared.ViewModels
 {

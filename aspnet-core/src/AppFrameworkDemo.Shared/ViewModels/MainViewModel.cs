@@ -4,6 +4,7 @@ using Prism.Regions.Navigation;
 using AppFramework.Common.Services;
 using AppFramework.Common.Services.Account;
 using AppFramework.Common.Models;
+using AppFramework.Common;
 
 namespace AppFramework.Shared.ViewModels
 {

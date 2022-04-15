@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AppFramework.Common.Core
+namespace AppFramework.Common
 {
     public static class AppConsts
     {

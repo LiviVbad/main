@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behaviors="clr-namespace:AppFramework.Shared.Behaviors;assembly=AppFramework.Shared"
     xmlns:busy="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
-    xmlns:manager="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
+    xmlns:manager="clr-namespace:AppFramework.Common;assembly=AppFramework.Common"
     xmlns:prism="http://prismlibrary.com"
     BackgroundColor="{DynamicResource GrayShadowBackgroundColor}">
     <ContentPage.Content>

@@ -8,8 +8,7 @@ using AppFramework.Authorization.Users.Profile;
 using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Dto;
 using AppFramework.Shared.Controls;
-using AppFramework.Shared.Localization;  
-using AppFramework.Shared.ViewModels;
+using AppFramework.Shared.Localization;   
 using FFImageLoading;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -22,6 +21,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using AppFramework.Common.ViewModels;
+using AppFramework.Common;
 
 namespace AppFramework.Shared.Services
 {
