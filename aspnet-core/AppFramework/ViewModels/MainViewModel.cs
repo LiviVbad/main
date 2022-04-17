@@ -3,9 +3,7 @@ using AppFramework.Authorization.Users.Profile;
 using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Navigation;
-using Prism.Commands;
-using Prism.Events;
-using Prism.Ioc;
+using Prism.Commands; 
 using Prism.Mvvm;
 using Prism.Regions;
 using System.Collections.ObjectModel;
@@ -15,12 +13,11 @@ namespace AppFramework.ViewModels
 {
     public class MainViewModel : BindableBase
     {
-        private IRegionNavigationJournal journal;
-
-        public readonly IProfileAppService profileAppService;
-        public readonly ProxyProfileControllerService profileControllerService;
-        public readonly IApplicationContext applicationContext;
-        public readonly INavigationMenuService navigationItemService;
+        public IRegionNavigationJournal journal;
+        private readonly IProfileAppService profileAppService;
+        private readonly ProxyProfileControllerService profileControllerService;
+        private readonly IApplicationContext applicationContext;
+        private readonly INavigationMenuService navigationItemService;
 
         public string ApplicationName { get; set; } = "AppFramework";
         private BitmapImage _photo;
@@ -50,21 +47,22 @@ namespace AppFramework.ViewModels
 
         public DelegateCommand<string> ExecuteCommand { get; private set; }
 
-        public MainViewModel(
-            IContainerProvider provider,
-            IEventAggregator aggregator,
+        public MainViewModel(IProfileAppService profileAppService,
             IRegionManager regionManager,
-            IRegionNavigationJournal journal)
+            IRegionNavigationJournal journal,
+            IApplicationContext applicationContext,
+            INavigationMenuService navigationItemService,
+            ProxyProfileControllerService profileControllerService)
         {
-            profileAppService = provider.Resolve<IProfileAppService>();
-            profileControllerService = provider.Resolve<ProxyProfileControllerService>();
-            applicationContext = provider.Resolve<IApplicationContext>();
-            navigationItemService = provider.Resolve<INavigationMenuService>();
-            NavigationItems = new ObservableCollection<NavigationItem>();
-            ExecuteCommand = new DelegateCommand<string>(Execute);
-
             this.journal = journal;
             this.regionManager = regionManager;
+            this.profileAppService = profileAppService;
+            this.profileControllerService = profileControllerService;
+            this.applicationContext = applicationContext;
+            this.navigationItemService = navigationItemService;
+
+            NavigationItems = new ObservableCollection<NavigationItem>();
+            ExecuteCommand = new DelegateCommand<string>(Execute);
         }
 
         public void Execute(string arg)

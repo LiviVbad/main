@@ -8,7 +8,6 @@ using AppFramework.Common.Services.Storage;
 using AppFramework.Services;
 using AppFramework.Services.Account;
 using Prism.Commands;
-using Prism.Ioc;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -17,34 +16,41 @@ namespace AppFramework.ViewModels
 {
     public class LoginViewModel : DialogViewModel
     {
-        public LoginViewModel(IContainerProvider provider)
+        public LoginViewModel(IDialogHostService dialog,
+            IAccountService accountService,
+            IAccountAppService accountAppService,
+            IApplicationContext applicationContext,
+            IProfileAppService profileAppService,
+            IUserConfigurationManager userConfigurationManager,
+            IDataStorageService dataStorageService)
         {
-            this.dialog = provider.Resolve<IDialogHostService>();
-            this.accountService = provider.Resolve<IAccountService>();
-            this.accountAppService = provider.Resolve<IAccountAppService>();
-            this.applicationContext = provider.Resolve<IApplicationContext>();
-            this.profileAppService = provider.Resolve<IProfileAppService>();
-            this.userConfigurationManager = provider.Resolve<IUserConfigurationManager>();
-            this.dataStorageService = provider.Resolve<IDataStorageService>();
+            this.dialog = dialog;
+            this.accountService = accountService;
+            this.accountAppService = accountAppService;
+            this.applicationContext = applicationContext;
+            this.profileAppService = profileAppService;
+            this.userConfigurationManager = userConfigurationManager;
+            this.dataStorageService = dataStorageService;
+
             ExecuteCommand = new DelegateCommand<string>(Execute);
             ChangeLanguageCommand = new DelegateCommand<LanguageInfo>(ChangeLanguage);
-
             UserName = "admin";
             Password = "123qwe";
         }
 
         public DelegateCommand<string> ExecuteCommand { get; }
-
         public DelegateCommand<LanguageInfo> ChangeLanguageCommand { get; }
 
         private readonly IDialogHostService dialog;
-        private LanguageInfo selectedLanguage;
-        public readonly IAccountAppService accountAppService;
-        public readonly IApplicationContext applicationContext;
-        public readonly IProfileAppService profileAppService;
-        public readonly IUserConfigurationManager userConfigurationManager;
+        private readonly IAccountService accountService;
+        private readonly IAccountAppService accountAppService;
+        private readonly IApplicationContext applicationContext;
+        private readonly IProfileAppService profileAppService;
+        private readonly IUserConfigurationManager userConfigurationManager;
         private readonly IDataStorageService dataStorageService;
-        public IAccountService accountService { get; private set; }
+
+
+        private LanguageInfo selectedLanguage;
         public string CurrentTenancyNameOrDefault { get; set; }
         private ObservableCollection<LanguageInfo> languages;
         private string tenancyName;
