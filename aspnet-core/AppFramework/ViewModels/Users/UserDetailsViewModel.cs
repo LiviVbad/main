@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Prism.Services.Dialogs;
-using AppFramework.Authorization.Users.Dto;
+﻿using AppFramework.Authorization.Users.Dto;
 using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Common.Models;
+using Prism.Services.Dialogs;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace AppFramework.ViewModels
 {
@@ -35,7 +35,7 @@ namespace AppFramework.ViewModels
 
         protected override void Save()
         {
-            if (!Verify(Input.User)||!Verify(Input)) return;
+            if (!Verify(Input.User) || !Verify(Input)) return;
 
             Input.AssignedRoleNames = UserRoles
                 .Where(q => q.IsChecked.Equals(true))
@@ -69,7 +69,7 @@ namespace AppFramework.ViewModels
             }
         }
 
-        ObservableCollection<OrganizationListModel> BuildOrganizationTree(
+        private ObservableCollection<OrganizationListModel> BuildOrganizationTree(
           List<OrganizationListModel> organizationUnits, long? parentId = null)
         {
             var masters = organizationUnits

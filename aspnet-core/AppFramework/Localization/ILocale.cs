@@ -13,7 +13,7 @@ namespace AppFramework.Localization
     ///   http://www.csharp-examples.net/culture-names/
     /// You should always test all the locales implemented in your application.
     /// </remarks>
-    public interface ILocale 
+    public interface ILocale
     {
         ///	<summary>
         /// This method must evaluate platform-specific locale settings
@@ -22,7 +22,7 @@ namespace AppFramework.Localization
         CultureInfo GetCurrentCultureInfo();
 
         /// <summary>
-        /// CurrentCulture and CurrentUICulture must be set in the platform project, 
+        /// CurrentCulture and CurrentUICulture must be set in the platform project,
         /// because the Thread object can't be accessed in a PCL.
         /// </summary>
         void SetLocale(CultureInfo ci);

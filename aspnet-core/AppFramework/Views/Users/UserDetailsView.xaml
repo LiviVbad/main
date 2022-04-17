@@ -26,7 +26,6 @@
         </Style>
 
         <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>

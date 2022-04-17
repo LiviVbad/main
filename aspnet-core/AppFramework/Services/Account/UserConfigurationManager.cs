@@ -1,14 +1,14 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AppFramework.ApiClient;
 using AppFramework.Common;
-using AppFramework.ApiClient;
 using AppFramework.Configuration;
+using AppFramework.Localization;
 using AppFramework.MultiTenancy;
 using CodeShare.Shared.Localization.Resources;
 using Prism.Ioc;
+using System;
 using System.Globalization;
-using AppFramework.Localization;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AppFramework.Services.Account
 {

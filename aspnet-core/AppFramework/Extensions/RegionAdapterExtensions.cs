@@ -1,6 +1,6 @@
 ﻿using Prism.Ioc;
 using Prism.Regions;
-using Syncfusion.UI.Xaml.NavigationDrawer; 
+using Syncfusion.UI.Xaml.NavigationDrawer;
 
 namespace AppFramework.Extensions
 {

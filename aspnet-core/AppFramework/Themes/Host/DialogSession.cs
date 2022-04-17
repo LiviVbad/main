@@ -20,7 +20,7 @@ namespace AppFramework.WindowHost
         /// Client code cannot set this directly, this is internally managed.  To end the dialog session use <see cref="Close()"/>.
         /// </remarks>
         public bool IsEnded { get; internal set; }
-        
+
         /// <summary>
         /// The parameter passed to the <see cref="DialogHost.CloseDialogCommand" /> and return by <see cref="DialogHost.Show(object)"/>
         /// </summary>

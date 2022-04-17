@@ -1,15 +1,15 @@
-﻿using Prism.Commands;
+﻿using AppFramework.ApiClient;
+using AppFramework.Authorization.Users.Profile;
+using AppFramework.Common;
+using AppFramework.Common.Models;
+using AppFramework.Common.Services.Navigation;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Regions;
 using System.Collections.ObjectModel;
-using System.Windows.Media.Imaging; 
-using AppFramework.Authorization.Users.Profile;
-using AppFramework.ApiClient;
-using AppFramework.Common.Services.Navigation;
-using AppFramework.Common.Models; 
-using AppFramework.Common;
+using System.Windows.Media.Imaging;
 
 namespace AppFramework.ViewModels
 {
@@ -37,6 +37,7 @@ namespace AppFramework.ViewModels
                 RaisePropertyChanged();
             }
         }
+
         public string ApplicationInfo
         {
             get => applicationInfo;
@@ -77,11 +78,14 @@ namespace AppFramework.ViewModels
             }
         }
 
-        void PageAppearing() { }
+        private void PageAppearing()
+        { }
 
-        void ChangeProfilePhoto() { }
+        private void ChangeProfilePhoto()
+        { }
 
-        void ShowProfilePhoto() { }
+        private void ShowProfilePhoto()
+        { }
 
         #region Navigation
 
@@ -102,7 +106,7 @@ namespace AppFramework.ViewModels
             Navigate(navigationItem.PageViewName, parameter);
         }
 
-        void Navigate(string pageName, NavigationParameters param = null)
+        private void Navigate(string pageName, NavigationParameters param = null)
         {
             regionManager
                 .Regions[AppRegionManager.Main]
@@ -113,6 +117,6 @@ namespace AppFramework.ViewModels
                 }, param);
         }
 
-        #endregion
+        #endregion Navigation
     }
 }

@@ -1,4 +1,4 @@
-﻿using AppFramework.Models; 
+﻿using AppFramework.Models;
 using System.Collections.ObjectModel;
 using System.Windows;
 

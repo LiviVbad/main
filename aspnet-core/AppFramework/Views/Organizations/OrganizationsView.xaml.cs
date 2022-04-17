@@ -32,9 +32,11 @@ namespace AppFramework.Views
                     case "AddRootUnit":
                         await context.AddOrganizationUnit(organizationUnit.Id);
                         break;
+
                     case "Change":
                         await context.UpdateRootUnit(organizationUnit);
                         break;
+
                     case "Remove":
                         await context.DeleteOrganizationUnit(organizationUnit);
                         break;

@@ -3,7 +3,7 @@ using AppFramework.Authorization.Users.Profile;
 
 namespace AppFramework.ViewModels
 {
-    public class UserViewModel 
+    public class UserViewModel
     {
         public readonly IProfileAppService profileAppService;
 
@@ -13,10 +13,10 @@ namespace AppFramework.ViewModels
         {
             input = new GetUsersInput
             {
-                Filter = "", 
+                Filter = "",
                 SkipCount = 0
             };
-            this.profileAppService=profileAppService;
-        } 
+            this.profileAppService = profileAppService;
+        }
     }
 }

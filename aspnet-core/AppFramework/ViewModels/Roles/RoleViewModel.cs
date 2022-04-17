@@ -1,7 +1,4 @@
-﻿using AppFramework.ViewModels;
-using Prism.Regions;
-
-namespace AppFramework.ViewModels
+﻿namespace AppFramework.ViewModels
 {
     public class RoleViewModel
     {

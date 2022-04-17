@@ -1,5 +1,5 @@
 ﻿using AppFramework.Localization;
-using Syncfusion.UI.Xaml.Grid; 
+using Syncfusion.UI.Xaml.Grid;
 using System.Windows;
 
 namespace AppFramework.Extensions
@@ -20,7 +20,7 @@ namespace AppFramework.Extensions
             DependencyProperty.RegisterAttached("Translate", typeof(bool),
                 typeof(DataGridTranslateExtensions), new PropertyMetadata(false, PropertyChangedCallBack));
 
-        static void PropertyChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        private static void PropertyChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var sfDataGrid = sender as SfDataGrid;
             sfDataGrid.ItemsSourceChanged += (s, e) =>

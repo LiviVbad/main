@@ -1,10 +1,10 @@
-﻿using Prism.Mvvm;
+﻿using AppFramework.Common.Core;
+using AppFramework.Services.Dialog;
+using AutoMapper;
+using Prism.Ioc;
+using Prism.Mvvm;
 using System;
 using System.Threading.Tasks;
-using Prism.Ioc;
-using AutoMapper;
-using AppFramework.Services.Dialog;
-using AppFramework.Common.Core;
 
 namespace AppFramework.ViewModels
 {

@@ -1,8 +1,8 @@
-﻿using Prism.Commands;
-using System.Collections.ObjectModel; 
-using Prism.Regions;
+﻿using AppFramework.Models;
 using AppFramework.Services;
-using AppFramework.Models;
+using Prism.Commands;
+using Prism.Regions;
+using System.Collections.ObjectModel;
 
 namespace AppFramework.ViewModels
 {

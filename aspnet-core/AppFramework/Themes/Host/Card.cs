@@ -13,17 +13,21 @@ namespace AppFramework.WindowHost
         public const string ClipBorderPartName = "PART_ClipBorder";
 
         #region DependencyProperty : UniformCornerRadiusProperty
+
         public double UniformCornerRadius
         {
             get => (double)GetValue(UniformCornerRadiusProperty);
             set => SetValue(UniformCornerRadiusProperty, value);
         }
+
         public static readonly DependencyProperty UniformCornerRadiusProperty
             = DependencyProperty.Register(nameof(UniformCornerRadius), typeof(double), typeof(Card),
                 new FrameworkPropertyMetadata(DefaultUniformCornerRadius, FrameworkPropertyMetadataOptions.AffectsMeasure));
-        #endregion
+
+        #endregion DependencyProperty : UniformCornerRadiusProperty
 
         #region DependencyProperty : ContentClipProperty
+
         private static readonly DependencyPropertyKey ContentClipPropertyKey
             = DependencyProperty.RegisterReadOnly(nameof(ContentClip), typeof(Geometry), typeof(Card), new PropertyMetadata(default(Geometry)));
 
@@ -35,7 +39,8 @@ namespace AppFramework.WindowHost
 
         public static readonly DependencyProperty ContentClipProperty
             = ContentClipPropertyKey.DependencyProperty;
-        #endregion
+
+        #endregion DependencyProperty : ContentClipProperty
 
         static Card()
         {

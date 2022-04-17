@@ -1,6 +1,6 @@
-﻿using AppFramework.ApiClient; 
+﻿using AppFramework.ApiClient;
 using AppFramework.Common;
-using AppFramework.Common.Core.Validations; 
+using AppFramework.Common.Core.Validations;
 using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Navigation;
 using AppFramework.Common.Services.Permission;
@@ -10,7 +10,7 @@ using AppFramework.Services.Account;
 using AppFramework.ViewModels;
 using AppFramework.Views;
 using AppFramework.WindowHost;
-using Prism.Ioc; 
+using Prism.Ioc;
 
 namespace AppFramework
 {
@@ -30,7 +30,7 @@ namespace AppFramework
             services.RegisterSingleton<IAccountService, AccountService>();
             services.RegisterSingleton<IAccountStorageService, AccountStorageService>();
             services.RegisterSingleton<IDataStorageService, DataStorageService>();
-            services.RegisterSingleton<IPermissionService, PermissionService>(); 
+            services.RegisterSingleton<IPermissionService, PermissionService>();
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
             services.RegisterSingleton<IUserConfigurationManager, UserConfigurationManager>();
 

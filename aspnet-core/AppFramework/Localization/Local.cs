@@ -1,8 +1,7 @@
-﻿using System;
-using System.Globalization;
-using AppFramework.ApiClient;
+﻿using AppFramework.ApiClient;
 using AppFramework.Extensions;
 using Prism.Ioc;
+using System.Globalization;
 
 namespace AppFramework.Localization
 {

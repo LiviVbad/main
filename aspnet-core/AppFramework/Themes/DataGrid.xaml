@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:ext="clr-namespace:AppFramework.Extensions"
-    xmlns:sync="http://schemas.syncfusion.com/wpf">
+    xmlns:sync="http://schemas.syncfusion.com/wpf"
+    xmlns:ext="clr-namespace:AppFramework.Extensions">
     <Style TargetType="sync:SfDataGrid">
         <Setter Property="HeaderLinesVisibility" Value="Horizontal" />
         <Setter Property="BorderThickness" Value="0" />

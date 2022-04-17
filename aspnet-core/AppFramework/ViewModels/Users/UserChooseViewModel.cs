@@ -1,14 +1,14 @@
-﻿using Prism.Commands;
+﻿using Abp.Application.Services.Dto;
+using AppFramework.Common;
+using AppFramework.Common.Models;
+using AppFramework.Organizations;
+using AppFramework.Organizations.Dto;
+using Prism.Commands;
+using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Prism.Services.Dialogs;
-using AppFramework.Organizations;
-using AppFramework.Organizations.Dto;
-using Abp.Application.Services.Dto;
-using AppFramework.Common.Models;
-using AppFramework.Common;
 
 namespace AppFramework.ViewModels
 {
@@ -52,7 +52,7 @@ namespace AppFramework.ViewModels
              result => FindUsersSuccessed(result));
         }
 
-        async Task FindUsersSuccessed(PagedResultDto<NameValueDto> pagedResult)
+        private async Task FindUsersSuccessed(PagedResultDto<NameValueDto> pagedResult)
         {
             if (pagedResult == null) return;
 

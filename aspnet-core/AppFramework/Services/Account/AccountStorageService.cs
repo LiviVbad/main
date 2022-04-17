@@ -1,10 +1,10 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.ApiClient.Models;
-using AppFramework.Sessions.Dto; 
+using AppFramework.Common.Models;
+using AppFramework.Common.Services.Storage;
+using AppFramework.Sessions.Dto;
 using AutoMapper;
 using System.Threading.Tasks;
-using AppFramework.Common.Services.Storage;
-using AppFramework.Common.Models;
 
 namespace AppFramework.Services.Account
 {

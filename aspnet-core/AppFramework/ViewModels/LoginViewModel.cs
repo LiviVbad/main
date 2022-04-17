@@ -1,17 +1,17 @@
 ﻿using Abp.Localization;
+using AppFramework.ApiClient;
+using AppFramework.Authorization.Accounts;
+using AppFramework.Authorization.Accounts.Dto;
+using AppFramework.Authorization.Users.Profile;
+using AppFramework.Common.Services.Account;
+using AppFramework.Common.Services.Storage;
+using AppFramework.Services;
+using AppFramework.Services.Account;
 using Prism.Commands;
+using Prism.Ioc;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using AppFramework.Services.Account;
-using Prism.Ioc; 
-using AppFramework.Services;
-using AppFramework.Authorization.Accounts;
-using AppFramework.ApiClient;
-using AppFramework.Authorization.Users.Profile;
-using AppFramework.Authorization.Accounts.Dto;
-using AppFramework.Common.Services.Account;
-using AppFramework.Common.Services.Storage;
 
 namespace AppFramework.ViewModels
 {
@@ -127,21 +127,26 @@ namespace AppFramework.ViewModels
             IsLoginEnabled = !string.IsNullOrWhiteSpace(UserName) && !string.IsNullOrWhiteSpace(Password);
         }
 
-        public async Task ForgotPasswordAsync() { }
+        public async Task ForgotPasswordAsync()
+        { }
 
-        public async Task EmailActivationAsync() { }
+        public async Task EmailActivationAsync()
+        { }
 
-        public async void ChangeLanguage(LanguageInfo languageInfo) { }
+        public async void ChangeLanguage(LanguageInfo languageInfo)
+        { }
 
         private async Task LoginUserAsync()
         { }
 
+        public async Task ChangeTenantAsync()
+        { }
 
-        public async Task ChangeTenantAsync() { }
+        public async Task SetTenantAsync(string tenancyName)
+        { }
 
-        public async Task SetTenantAsync(string tenancyName) { }
-
-        public async Task PageAppearingAsync() { }
+        public async Task PageAppearingAsync()
+        { }
 
         private void PopulateLoginInfoFromStorage()
         {
@@ -184,14 +189,17 @@ namespace AppFramework.ViewModels
                     ApiUrlConfig.ChangeBaseUrl(tenantAvailableResult.ServerRootAddress);
                     RaisePropertyChanged(CurrentTenancyNameOrDefault);
                     break;
+
                 case TenantAvailabilityState.InActive:
                     //UserDialogs.Instance.HideLoading();
                     //await UserDialogs.Instance.AlertAsync(L.Localize("TenantIsNotActive", tenancyName));
                     break;
+
                 case TenantAvailabilityState.NotFound:
                     //UserDialogs.Instance.HideLoading();
                     //await UserDialogs.Instance.AlertAsync(L.Localize("ThereIsNoTenantDefinedWithName{0}", tenancyName));
                     break;
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }

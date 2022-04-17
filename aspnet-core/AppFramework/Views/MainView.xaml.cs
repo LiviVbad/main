@@ -1,6 +1,6 @@
 ﻿using AppFramework.Common.Models;
 using AppFramework.ViewModels;
-using Syncfusion.Windows.Shared; 
+using Syncfusion.Windows.Shared;
 
 namespace AppFramework.Views
 {
@@ -10,9 +10,9 @@ namespace AppFramework.Views
     public partial class MainView : ChromelessWindow
     {
         public MainView()
-        { 
+        {
             Syncfusion.SfSkinManager.SfSkinManager.ApplyStylesOnApplication = true;
-            InitializeComponent(); 
+            InitializeComponent();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("");
             SfNavigationDrawer.ItemClicked += SfNavigationDrawer_ItemClicked;
         }

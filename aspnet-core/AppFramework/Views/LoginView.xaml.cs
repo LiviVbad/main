@@ -1,6 +1,6 @@
 ﻿using AppFramework.Services;
 using Prism.Services.Dialogs;
-using Syncfusion.Windows.Shared; 
+using Syncfusion.Windows.Shared;
 
 namespace AppFramework.Views
 {

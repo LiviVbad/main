@@ -1,5 +1,14 @@
-﻿using AppFramework.Services.Account;
+﻿using AppFramework.ApiClient;
+using AppFramework.Common;
+using AppFramework.Common.Core;
+using AppFramework.Common.Services.Account;
+using AppFramework.Common.Services.Navigation;
+using AppFramework.Extensions;
 using AppFramework.Services;
+using AppFramework.Services.Account;
+using DryIoc;
+using DryIoc.Microsoft.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Mvvm;
@@ -8,15 +17,6 @@ using Prism.Services.Dialogs;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
-using AppFramework.ApiClient;
-using AppFramework.Common.Services.Account;
-using AppFramework.Common.Services.Navigation;
-using AppFramework.Extensions;
-using DryIoc;
-using Microsoft.Extensions.DependencyInjection;
-using AppFramework.Common.Core;
-using DryIoc.Microsoft.DependencyInjection;
-using AppFramework.Common;
 
 namespace AppFramework
 {
@@ -71,7 +71,7 @@ namespace AppFramework
             base.OnInitialized();
         }
 
-        bool Authorize()
+        private bool Authorize()
         {
             var validationResult = Validation(Container);
             if (validationResult == ButtonResult.Retry)
@@ -91,7 +91,7 @@ namespace AppFramework
             }
         }
 
-        void InitializeShell()
+        private void InitializeShell()
         {
             //获取用户的访问资源权限
             var appContext = Container.Resolve<IApplicationContext>();
@@ -116,7 +116,7 @@ namespace AppFramework
                 throw new NullReferenceException("A MainView content must be a Window!");
         }
 
-        void ThemeChenged(string themeName)
+        private void ThemeChenged(string themeName)
         {
             //更新系统主题以及刷新资源的主题引用
             themeService.SetTheme(Current.MainWindow, themeName);

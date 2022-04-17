@@ -27,7 +27,7 @@ namespace AppFramework.WindowHost
             element.SetValue(OnlyShowOnFocusProperty, value);
         }
 
-        #endregion
+        #endregion ShowOnFocusProperty
 
         #region UsePopupProperty
 
@@ -50,7 +50,7 @@ namespace AppFramework.WindowHost
             element.SetValue(UsePopupProperty, value);
         }
 
-        #endregion
+        #endregion UsePopupProperty
 
         /// <summary>
         /// The hint property
@@ -108,8 +108,6 @@ namespace AppFramework.WindowHost
             return (Brush)element.GetValue(BackgroundProperty);
         }
 
-
-
         public static readonly DependencyProperty FontSizeProperty = DependencyProperty.RegisterAttached("FontSize", typeof(double), typeof(ValidationAssist), new PropertyMetadata(10.0));
 
         public static void SetFontSize(DependencyObject element, double value)
@@ -142,6 +140,7 @@ namespace AppFramework.WindowHost
             "HorizontalAlignment", typeof(HorizontalAlignment), typeof(ValidationAssist), new PropertyMetadata(HorizontalAlignment.Left));
 
         public static void SetHorizontalAlignment(DependencyObject element, HorizontalAlignment value) => element.SetValue(HorizontalAlignmentProperty, value);
-        public static HorizontalAlignment GetHorizontalAlignment(DependencyObject element) => (HorizontalAlignment) element.GetValue(HorizontalAlignmentProperty);
+
+        public static HorizontalAlignment GetHorizontalAlignment(DependencyObject element) => (HorizontalAlignment)element.GetValue(HorizontalAlignmentProperty);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Prism.Commands;
-using Prism.Events; 
 
 namespace AppFramework.ViewModels
 {
@@ -8,7 +7,7 @@ namespace AppFramework.ViewModels
         public DelegateCommand<string> NavigateCommand { get; private set; }
 
         public IndexViewModel()
-        { 
-        } 
+        {
+        }
     }
 }

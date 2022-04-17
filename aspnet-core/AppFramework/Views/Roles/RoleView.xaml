@@ -17,7 +17,6 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-
         <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal">
             <TextBlock
                 FontSize="26"

@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using AppFramework.Localization.Dto;
+﻿using AppFramework.Common;
 using AppFramework.Localization;
+using AppFramework.Localization.Dto;
 using Prism.Mvvm;
-using AppFramework.Common;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {

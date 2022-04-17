@@ -49,7 +49,6 @@
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
-
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>

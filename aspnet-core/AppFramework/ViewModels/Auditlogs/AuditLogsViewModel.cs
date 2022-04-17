@@ -1,11 +1,9 @@
-﻿using AppFramework.ViewModels;
-using Prism.Regions;
+﻿using AppFramework.Auditing.Dto;
 using System;
-using AppFramework.Auditing.Dto;
 
 namespace AppFramework.ViewModels
 {
-    public class AuditLogsViewModel 
+    public class AuditLogsViewModel
     {
         public GetAuditLogsInput input;
 

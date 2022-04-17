@@ -1,7 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows;
-using AppFramework.Extensions;
+﻿using AppFramework.Extensions;
 using AppFramework.Models;
+using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace AppFramework.Services
 {
@@ -9,7 +9,7 @@ namespace AppFramework.Services
     {
         public event ThemeEventHandler ThemeChanged;
 
-        ObservableCollection<ThemeItem> themes = new ObservableCollection<ThemeItem>()
+        private ObservableCollection<ThemeItem> themes = new ObservableCollection<ThemeItem>()
         {
             new ThemeItem(){  DisplayName="Fluent", LightName="FluentLight",DarkName="FluentDark"},
             new ThemeItem(){  DisplayName="Material",LightName="MaterialLight",DarkName="MaterialDark"},

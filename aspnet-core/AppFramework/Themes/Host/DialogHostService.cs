@@ -3,7 +3,7 @@ using Prism.Common;
 using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
-using System; 
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 

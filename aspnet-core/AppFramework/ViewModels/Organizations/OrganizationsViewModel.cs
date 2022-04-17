@@ -1,17 +1,16 @@
-﻿using Abp.Application.Services.Dto; 
-using Prism.Commands; 
+﻿using Abp.Application.Services.Dto;
+using AppFramework.Common;
+using AppFramework.Common.Models;
+using AppFramework.Organizations;
+using AppFramework.Organizations.Dto;
+using AppFramework.Services;
+using Prism.Commands;
+using Prism.Regions;
+using Prism.Services.Dialogs;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq; 
-using System.Threading.Tasks; 
-using AppFramework.WindowHost;
-using Prism.Services.Dialogs; 
-using Prism.Regions;
-using AppFramework.Services;
-using AppFramework.Organizations.Dto;
-using AppFramework.Organizations;
-using AppFramework.Common.Models;
-using AppFramework.Common;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
@@ -28,14 +27,14 @@ namespace AppFramework.ViewModels
         }
 
         private readonly IOrganizationUnitAppService appService;
-        private readonly IDialogHostService dialogHostService; 
+        private readonly IDialogHostService dialogHostService;
 
         public DelegateCommand<OrganizationUnitModel> SelectedCommand { get; }
 
         public OrganizationsViewModel(
             IDialogHostService dialogHostService,
             IOrganizationUnitAppService userAppService)
-        { 
+        {
             this.appService = userAppService;
             this.dialogHostService = dialogHostService;
             SelectedCommand = new DelegateCommand<OrganizationUnitModel>(Selected);
@@ -65,12 +64,13 @@ namespace AppFramework.ViewModels
                 case "Add":
                     await dialogHostService.ShowDialog("UserAddView"); break;
                     break;
+
                 case "Exprot": break;
                 case "Filter": break;
             }
         }
 
-        #region  OrganizationUnit
+        #region OrganizationUnit
 
         public async Task RefreshTreeView()
         {
@@ -128,14 +128,14 @@ namespace AppFramework.ViewModels
                        appService.CreateOrganizationUnit(new CreateOrganizationUnitInput()
                        {
                            DisplayName = input.DisplayName,
-                           ParentId=parentId
+                           ParentId = parentId
                        }),
                        result => RefreshTreeView(),
                        ex => Task.CompletedTask);
             }
         }
 
-        async Task Successed(ListResultDto<OrganizationUnitDto> pagedResult)
+        private async Task Successed(ListResultDto<OrganizationUnitDto> pagedResult)
         {
             GridModelList.Clear();
             var organizationUnits = pagedResult.Items?.Select(t => new OrganizationUnitModel
@@ -154,14 +154,14 @@ namespace AppFramework.ViewModels
             await Task.CompletedTask;
         }
 
-        void RefreshOrganizationUnit(long id)
+        private void RefreshOrganizationUnit(long id)
         {
             var organizationUnit = GridModelList.FirstOrDefault(t => t.Id.Equals(id));
 
-            if (organizationUnit!=null)
+            if (organizationUnit != null)
             {
-                organizationUnit.MemberCount=UserModelList.Count;
-                organizationUnit.RoleCount=RolesModelList.Count;
+                organizationUnit.MemberCount = UserModelList.Count;
+                organizationUnit.RoleCount = RolesModelList.Count;
             }
         }
 
@@ -180,7 +180,7 @@ namespace AppFramework.ViewModels
             return new ObservableCollection<OrganizationUnitModel>(masters);
         }
 
-        #endregion
+        #endregion OrganizationUnit
 
         #region Roles
 
@@ -192,7 +192,7 @@ namespace AppFramework.ViewModels
             set { rolesModelList = value; }
         }
 
-        async Task AddRole(OrganizationUnitModel organizationUnit)
+        private async Task AddRole(OrganizationUnitModel organizationUnit)
         {
             if (organizationUnit == null) return;
 
@@ -207,7 +207,7 @@ namespace AppFramework.ViewModels
                        ex => Task.CompletedTask);
         }
 
-        async Task FinRolesSuccessed(long Id, PagedResultDto<NameValueDto> pagedResult)
+        private async Task FinRolesSuccessed(long Id, PagedResultDto<NameValueDto> pagedResult)
         {
             DialogParameters param = new DialogParameters();
             param.Add("Id", Id);
@@ -224,8 +224,7 @@ namespace AppFramework.ViewModels
             }
         }
 
-
-        async Task RefreshRoles(long Id)
+        private async Task RefreshRoles(long Id)
         {
             await SetBusyAsync(
               async () =>
@@ -241,7 +240,7 @@ namespace AppFramework.ViewModels
               });
         }
 
-        #endregion
+        #endregion Roles
 
         #region Users
 
@@ -253,7 +252,7 @@ namespace AppFramework.ViewModels
             set { userModelList = value; }
         }
 
-        async Task AddMember(OrganizationUnitModel organizationUnit)
+        private async Task AddMember(OrganizationUnitModel organizationUnit)
         {
             if (organizationUnit == null) return;
 
@@ -267,7 +266,7 @@ namespace AppFramework.ViewModels
                        result => FinUsersSuccessed(Id, result));
         }
 
-        async Task FinUsersSuccessed(long Id, PagedResultDto<NameValueDto> pagedResult)
+        private async Task FinUsersSuccessed(long Id, PagedResultDto<NameValueDto> pagedResult)
         {
             DialogParameters param = new DialogParameters();
             param.Add("Id", Id);
@@ -284,7 +283,7 @@ namespace AppFramework.ViewModels
             }
         }
 
-        async Task RefreshUsers(long Id)
+        private async Task RefreshUsers(long Id)
         {
             await SetBusyAsync(async () =>
             {
@@ -299,11 +298,11 @@ namespace AppFramework.ViewModels
             });
         }
 
-        #endregion
+        #endregion Users
 
         public async void OnNavigatedTo(NavigationContext navigationContext)
         {
-            await RefreshTreeView(); 
+            await RefreshTreeView();
         }
     }
 }

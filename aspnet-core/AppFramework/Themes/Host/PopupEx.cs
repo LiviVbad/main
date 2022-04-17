@@ -12,7 +12,7 @@ namespace AppFramework.WindowHost
     /// <summary>
     /// This class was initially based on work done in ControlzEx
     /// https://github.com/ControlzEx/ControlzEx
-    /// 
+    ///
     /// This custom popup can be used by validation error templates or something else.
     /// It provides some additional nice features:
     ///     - repositioning if host-window size or location changed
@@ -202,10 +202,10 @@ namespace AppFramework.WindowHost
 
         private Window? _hostWindow;
         private bool? appliedTopMost;
-        static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
-        static readonly IntPtr HWND_NOTOPMOST = new IntPtr(-2);
-        static readonly IntPtr HWND_TOP = new IntPtr(0);
-        static readonly IntPtr HWND_BOTTOM = new IntPtr(1);
+        private static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
+        private static readonly IntPtr HWND_NOTOPMOST = new IntPtr(-2);
+        private static readonly IntPtr HWND_TOP = new IntPtr(0);
+        private static readonly IntPtr HWND_BOTTOM = new IntPtr(1);
 
         /// <summary>
         /// SetWindowPos options

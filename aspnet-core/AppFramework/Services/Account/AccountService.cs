@@ -1,15 +1,15 @@
-﻿using System.Threading.Tasks;
-using Prism.Mvvm;
-using Prism.Ioc;
-using AppFramework.Common.Services.Account;
+﻿using AppFramework.ApiClient;
 using AppFramework.ApiClient.Models;
-using AppFramework.ApiClient;
-using AppFramework.Sessions;
-using AppFramework.Authorization.Users.Profile;
-using AppFramework.Common.Services.Storage;
-using AppFramework.Common;
-using AppFramework.Sessions.Dto;
 using AppFramework.Authorization.Users.Dto;
+using AppFramework.Authorization.Users.Profile;
+using AppFramework.Common;
+using AppFramework.Common.Services.Account;
+using AppFramework.Common.Services.Storage;
+using AppFramework.Sessions;
+using AppFramework.Sessions.Dto;
+using Prism.Ioc;
+using Prism.Mvvm;
+using System.Threading.Tasks;
 
 namespace AppFramework.Services.Account
 {

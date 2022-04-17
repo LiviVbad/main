@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AppFramework.Services.Dialog
+﻿namespace AppFramework.Services.Dialog
 {
     public interface IAppDialogService
     {

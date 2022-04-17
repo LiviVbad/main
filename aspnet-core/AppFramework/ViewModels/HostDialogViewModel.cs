@@ -1,8 +1,7 @@
-﻿using AppFramework.ViewModels;
-using AppFramework.Services;
+﻿using AppFramework.Services;
 using AppFramework.WindowHost;
-using Prism.Commands; 
-using Prism.Services.Dialogs; 
+using Prism.Commands;
+using Prism.Services.Dialogs;
 
 namespace AppFramework.ViewModels
 {
@@ -18,6 +17,7 @@ namespace AppFramework.ViewModels
         {
             DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.No));
         }
+
         protected virtual void Save()
         {
             DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.OK));

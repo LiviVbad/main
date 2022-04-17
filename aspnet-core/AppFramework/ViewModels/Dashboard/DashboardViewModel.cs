@@ -1,12 +1,8 @@
-﻿ using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using AppFramework.Common.Models;
-using AppFramework.Common.ViewModels;
-using AppFramework.Localization;
+﻿using AppFramework.Common.Models;
 using AppFramework.MultiTenancy.HostDashboard;
 using AppFramework.MultiTenancy.HostDashboard.Dto;
 using Prism.Regions;
+using System.Collections.ObjectModel;
 
 namespace AppFramework.ViewModels
 {
@@ -44,8 +40,8 @@ namespace AppFramework.ViewModels
 
         public DashboardViewModel(IHostDashboardAppService appService)
         {
-            this.appService=appService; 
-        } 
+            this.appService = appService;
+        }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {

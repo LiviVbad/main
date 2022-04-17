@@ -19,14 +19,16 @@ namespace AppFramework.WindowHost
     public enum DialogHostOpenDialogCommandDataContextSource
     {
         /// <summary>
-        /// The data context from the sender element (typically a <see cref="Button"/>) 
+        /// The data context from the sender element (typically a <see cref="Button"/>)
         /// is applied to the content.
         /// </summary>
         SenderElement,
+
         /// <summary>
         /// The data context from the <see cref="DialogHost"/> is applied to the content.
         /// </summary>
         DialogHostInstance,
+
         /// <summary>
         /// The data context is explicitly set to <c>null</c>.
         /// </summary>
@@ -50,6 +52,7 @@ namespace AppFramework.WindowHost
         /// Routed command to be used somewhere inside an instance to trigger showing of the dialog. Content can be passed to the dialog via a <see cref="Button.CommandParameter"/>.
         /// </summary>
         public static readonly RoutedCommand OpenDialogCommand = new();
+
         /// <summary>
         /// Routed command to be used inside dialog content to close a dialog. Use a <see cref="Button.CommandParameter"/> to indicate the result of the parameter.
         /// </summary>
@@ -87,8 +90,8 @@ namespace AppFramework.WindowHost
         /// <summary>
         /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
         /// </summary>
-        /// <param name="content">Content to show (can be a control or view model).</param>        
-        /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>        
+        /// <param name="content">Content to show (can be a control or view model).</param>
+        /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
         public static async Task<object?> Show(object content, DialogOpenedEventHandler openedEventHandler)
             => await Show(content, null, openedEventHandler, null);
@@ -105,7 +108,7 @@ namespace AppFramework.WindowHost
         /// <summary>
         /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
         /// </summary>
-        /// <param name="content">Content to show (can be a control or view model).</param>        
+        /// <param name="content">Content to show (can be a control or view model).</param>
         /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
         /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
@@ -135,7 +138,7 @@ namespace AppFramework.WindowHost
         /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
         /// </summary>
         /// <param name="content">Content to show (can be a control or view model).</param>
-        /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>        
+        /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
         /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
         public static Task<object?> Show(object content, object dialogIdentifier, DialogClosingEventHandler closingEventHandler)
@@ -250,7 +253,7 @@ namespace AppFramework.WindowHost
             return result;
         }
 
-        #endregion
+        #endregion Show overloads
 
         public DialogHost()
         {
@@ -328,7 +331,7 @@ namespace AppFramework.WindowHost
             //multiple ways of calling back that the dialog has opened:
             // * routed event
             // * the attached property (which should be applied to the button which opened the dialog
-            // * straight forward dependency property 
+            // * straight forward dependency property
             // * handler provided to the async show method
             var dialogOpenedEventArgs = new DialogOpenedEventArgs(dialogHost.CurrentSession, DialogOpenedEvent);
             dialogHost.OnDialogOpened(dialogOpenedEventArgs);
@@ -538,7 +541,7 @@ namespace AppFramework.WindowHost
         protected void OnDialogOpened(DialogOpenedEventArgs eventArgs)
             => RaiseEvent(eventArgs);
 
-        #endregion
+        #endregion open dialog events/callbacks
 
         #region close dialog events/callbacks
 
@@ -585,7 +588,7 @@ namespace AppFramework.WindowHost
         protected void OnDialogClosing(DialogClosingEventArgs eventArgs)
             => RaiseEvent(eventArgs);
 
-        #endregion
+        #endregion close dialog events/callbacks
 
         internal void AssertTargetableContent()
         {
@@ -605,7 +608,7 @@ namespace AppFramework.WindowHost
             //multiple ways of calling back that the dialog is closing:
             // * routed event
             // * the attached property (which should be applied to the button which opened the dialog
-            // * straight forward IsOpen dependency property 
+            // * straight forward IsOpen dependency property
             // * handler provided to the async show method
             var dialogClosingEventArgs = new DialogClosingEventArgs(currentSession, DialogClosingEvent);
             OnDialogClosing(dialogClosingEventArgs);

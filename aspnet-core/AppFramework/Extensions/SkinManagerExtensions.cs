@@ -23,8 +23,8 @@ namespace AppFramework.Extensions
             SfSkinManager.RegisterThemeSettings(themeTypeName, theme);
             SfSkinManager.SetTheme(dependencyObject, new Theme(themeTypeName));
         }
-         
-        static IThemeSetting GetThemeSetting(string themeName)
+
+        private static IThemeSetting GetThemeSetting(string themeName)
         {
             FontFamily fontFamily = new FontFamily("Microsoft YaHei");
             int bodyfontSize = 14;
@@ -35,24 +35,31 @@ namespace AppFramework.Extensions
                 case "FluentLight":
                     theme = new FluentLightThemeSettings() { FontFamily = fontFamily, BodyFontSize = bodyfontSize, };
                     break;
+
                 case "MaterialLight":
                     theme = new MaterialLightThemeSettings() { FontFamily = fontFamily, BodyFontSize = bodyfontSize, };
                     break;
+
                 case "MaterialLightBlue":
                     theme = new MaterialLightBlueThemeSettings() { FontFamily = fontFamily, BodyFontSize = bodyfontSize, };
                     break;
+
                 case "Office2019White":
                     theme = new Office2019WhiteThemeSettings() { FontFamily = fontFamily, BodyFontSize = bodyfontSize, };
                     break;
+
                 case "FluentDark":
                     theme = new FluentDarkThemeSettings() { FontFamily = fontFamily, BodyFontSize = bodyfontSize, };
                     break;
+
                 case "MaterialDark":
                     theme = new MaterialDarkThemeSettings() { FontFamily = fontFamily, BodyFontSize = bodyfontSize, };
                     break;
+
                 case "MaterialDarkBlue":
                     theme = new MaterialDarkBlueThemeSettings() { FontFamily = fontFamily, BodyFontSize = bodyfontSize, };
                     break;
+
                 case "Office2019Black":
                     theme = new Office2019BlackThemeSettings() { FontFamily = fontFamily, BodyFontSize = bodyfontSize, };
                     break;

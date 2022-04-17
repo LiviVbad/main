@@ -1,6 +1,6 @@
-﻿using System.Reflection;
+﻿using Prism.Ioc;
+using System.Reflection;
 using System.Resources;
-using Prism.Ioc;
 
 namespace AppFramework.Localization
 {
@@ -11,8 +11,8 @@ namespace AppFramework.Localization
         public static string Localize(string key)
         {
             return GetValue(key) ?? key;
-        } 
-        
+        }
+
         private static string GetValue(string key)
         {
             var locale = ContainerLocator.Container.Resolve<ILocale>();

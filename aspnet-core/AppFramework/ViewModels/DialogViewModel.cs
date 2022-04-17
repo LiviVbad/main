@@ -1,5 +1,4 @@
-﻿using AppFramework.ViewModels;
-using Prism.Services.Dialogs;
+﻿using Prism.Services.Dialogs;
 using System;
 
 namespace AppFramework.ViewModels

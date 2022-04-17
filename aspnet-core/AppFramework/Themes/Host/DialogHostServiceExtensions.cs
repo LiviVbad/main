@@ -1,5 +1,5 @@
 ﻿using AppFramework.Services;
-using Prism.Services.Dialogs; 
+using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 
 namespace AppFramework.WindowHost
