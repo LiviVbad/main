@@ -3,11 +3,13 @@ using AppFramework.ApiClient;
 using AppFramework.Authorization.Accounts;
 using AppFramework.Authorization.Accounts.Dto;
 using AppFramework.Authorization.Users.Profile;
+using AppFramework.Common;
 using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Storage;
 using AppFramework.Services;
 using AppFramework.Services.Account;
 using Prism.Commands;
+using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -16,32 +18,12 @@ namespace AppFramework.ViewModels
 {
     public class LoginViewModel : DialogViewModel
     {
-        public LoginViewModel(IDialogHostService dialog,
-            IAccountService accountService,
-            IAccountAppService accountAppService,
-            IApplicationContext applicationContext,
-            IProfileAppService profileAppService,
-            IUserConfigurationManager userConfigurationManager,
-            IDataStorageService dataStorageService)
-        {
-            this.dialog = dialog;
-            this.accountService = accountService;
-            this.accountAppService = accountAppService;
-            this.applicationContext = applicationContext;
-            this.profileAppService = profileAppService;
-            this.userConfigurationManager = userConfigurationManager;
-            this.dataStorageService = dataStorageService;
-
-            ExecuteCommand = new DelegateCommand<string>(Execute);
-            ChangeLanguageCommand = new DelegateCommand<LanguageInfo>(ChangeLanguage);
-            UserName = "admin";
-            Password = "123qwe";
-        }
+        #region 字段/属性
 
         public DelegateCommand<string> ExecuteCommand { get; }
         public DelegateCommand<LanguageInfo> ChangeLanguageCommand { get; }
 
-        private readonly IDialogHostService dialog;
+        private readonly IDialogHostService dialogService;
         private readonly IAccountService accountService;
         private readonly IAccountAppService accountAppService;
         private readonly IApplicationContext applicationContext;
@@ -116,77 +98,89 @@ namespace AppFramework.ViewModels
             set { isLoginEnabled = value; RaisePropertyChanged(); }
         }
 
+        #endregion
+
+        public LoginViewModel(
+            IDialogHostService dialogService,
+            IAccountService accountService,
+            IAccountAppService accountAppService,
+            IApplicationContext applicationContext,
+            IProfileAppService profileAppService,
+            IUserConfigurationManager userConfigurationManager,
+            IDataStorageService dataStorageService)
+        {
+            this.dialogService = dialogService;
+            this.accountService = accountService;
+            this.accountAppService = accountAppService;
+            this.applicationContext = applicationContext;
+            this.profileAppService = profileAppService;
+            this.userConfigurationManager = userConfigurationManager;
+            this.dataStorageService = dataStorageService;
+
+            ExecuteCommand = new DelegateCommand<string>(Execute);
+            ChangeLanguageCommand = new DelegateCommand<LanguageInfo>(ChangeLanguage);
+            UserName = "admin";
+            Password = "123qwe";
+        }
+
         private async void Execute(string arg)
         {
             switch (arg)
             {
                 case "LoginUser": await LoginUserAsync(); break;
-                case "ChangeTenant": await ChangeTenantAsync(); break;
-                case "ForgotPassword": await ForgotPasswordAsync(); break;
-                case "EmailActivation": await EmailActivationAsync(); break;
-                case "PageAppearing": await PageAppearingAsync(); break;
+                case "ChangeTenant": ChangeTenantAsync(); break;
+                case "ForgotPassword": ForgotPasswordAsync(); break;
+                case "EmailActivation": EmailActivationAsync(); break;
             }
         }
+
+        #region 忘记密码/激活邮件/修改语言/登录/租户
 
         public void SetLoginButtonEnabled()
         {
             IsLoginEnabled = !string.IsNullOrWhiteSpace(UserName) && !string.IsNullOrWhiteSpace(Password);
         }
 
-        public async Task ForgotPasswordAsync()
+        public void ForgotPasswordAsync()
+        {
+            dialogService.ShowViewDialog(AppViewManager.ForgotPassword);
+        }
+
+        public void EmailActivationAsync()
+        {
+            dialogService.ShowViewDialog(AppViewManager.EmailActivation);
+        }
+
+        public void ChangeLanguage(LanguageInfo languageInfo)
         { }
 
-        public async Task EmailActivationAsync()
-        { }
-
-        public async void ChangeLanguage(LanguageInfo languageInfo)
+        public void ChangeTenantAsync()
         { }
 
         private async Task LoginUserAsync()
-        { }
-
-        public async Task ChangeTenantAsync()
-        { }
+        {
+            await SetBusyAsync(async () =>
+            {
+                await accountService.LoginUserAsync();
+            });
+        }
 
         public async Task SetTenantAsync(string tenancyName)
-        { }
-
-        public async Task PageAppearingAsync()
-        { }
-
-        private void PopulateLoginInfoFromStorage()
         {
-            //var loginInfo = _dataStorageService.RetrieveLoginInfo();
-            //if (loginInfo == null)
-            //{
-            //    return;
-            //}
-
-            //if (loginInfo.User != null)
-            //{
-            //    UserName = loginInfo.User.UserName;
-            //}
-
-            //if (loginInfo.Tenant != null)
-            //{
-            //    TenancyName = loginInfo.Tenant.TenancyName;
-            //}
-
-            //if (loginInfo.Tenant == null)
-            //{
-            //    _applicationContext.SetAsHost();
-            //}
-            //else
-            //{
-            //    _applicationContext.SetAsTenant(TenancyName, loginInfo.Tenant.Id);
-            //}
-
-            RaisePropertyChanged(CurrentTenancyNameOrDefault);
+            await SetBusyAsync(async () =>
+            {
+                await WebRequest.Execute(
+                    async () => await accountAppService.IsTenantAvailable(
+                        new IsTenantAvailableInput { TenancyName = tenancyName }),
+                    result => IsTenantAvailableExecuted(result, tenancyName)
+                );
+            });
         }
 
         public async Task IsTenantAvailableExecuted(IsTenantAvailableOutput result, string tenancyName)
         {
             var tenantAvailableResult = result;
+            IsBusy = false;
 
             switch (tenantAvailableResult.State)
             {
@@ -197,20 +191,24 @@ namespace AppFramework.ViewModels
                     break;
 
                 case TenantAvailabilityState.InActive:
-                    //UserDialogs.Instance.HideLoading();
                     //await UserDialogs.Instance.AlertAsync(L.Localize("TenantIsNotActive", tenancyName));
                     break;
 
                 case TenantAvailabilityState.NotFound:
-                    //UserDialogs.Instance.HideLoading();
                     //await UserDialogs.Instance.AlertAsync(L.Localize("ThereIsNoTenantDefinedWithName{0}", tenancyName));
                     break;
 
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
             await Task.CompletedTask;
+        }
+
+        #endregion 
+
+        public override async void OnDialogOpened(IDialogParameters parameters)
+        {
+            await userConfigurationManager.GetConfigurationAsync(App.OnAccessTokenRefresh, App.OnSessionTimeout);
         }
     }
 }

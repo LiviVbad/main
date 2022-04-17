@@ -4,15 +4,16 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Navigation;
 using Prism.Commands; 
-using Prism.Mvvm;
 using Prism.Regions;
 using System.Collections.ObjectModel;
 using System.Windows.Media.Imaging;
 
 namespace AppFramework.ViewModels
 {
-    public class MainViewModel : BindableBase
+    public class MainViewModel : ViewModelBase
     {
+        #region 字段/属性
+
         public IRegionNavigationJournal journal;
         private readonly IProfileAppService profileAppService;
         private readonly ProxyProfileControllerService profileControllerService;
@@ -47,6 +48,8 @@ namespace AppFramework.ViewModels
 
         public DelegateCommand<string> ExecuteCommand { get; private set; }
 
+        #endregion
+
         public MainViewModel(IProfileAppService profileAppService,
             IRegionManager regionManager,
             IRegionNavigationJournal journal,
@@ -61,8 +64,8 @@ namespace AppFramework.ViewModels
             this.applicationContext = applicationContext;
             this.navigationItemService = navigationItemService;
 
-            NavigationItems = new ObservableCollection<NavigationItem>();
             ExecuteCommand = new DelegateCommand<string>(Execute);
+            NavigationItems = new ObservableCollection<NavigationItem>(); 
         }
 
         public void Execute(string arg)
@@ -106,12 +109,12 @@ namespace AppFramework.ViewModels
 
         private void Navigate(string pageName, NavigationParameters param = null)
         {
-            regionManager
-                .Regions[AppRegionManager.Main]
-                .RequestNavigate(pageName, back =>
+            regionManager.Regions[AppRegionManager.Main].RequestNavigate(pageName, back =>
                 {
                     if ((bool)back.Result)
+                    {
                         journal = back.Context.NavigationService.Journal;
+                    }
                 }, param);
         }
 

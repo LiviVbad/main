@@ -1,11 +1,11 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.Common;
 using AppFramework.Common.Core;
+using AppFramework.Views;
 using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Navigation;
 using AppFramework.Extensions;
-using AppFramework.Services;
-using AppFramework.Services.Account;
+using AppFramework.Services; 
 using DryIoc;
 using DryIoc.Microsoft.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,10 +26,13 @@ namespace AppFramework
     public partial class App : PrismApplication
     {
         public static IAccountService accountService;
-        public static IThemeService themeService;
-        public static IResourceService resourceService;
+        //public static IThemeService themeService;
+        //public static IResourceService resourceService;
 
-        protected override Window CreateShell() => null;
+        protected override Window CreateShell()
+        {
+            return Container.Resolve<MainView>();
+        }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
@@ -55,19 +58,20 @@ namespace AppFramework
 
         protected override async void OnInitialized()
         {
-            themeService = Container.Resolve<IThemeService>();
             accountService = Container.Resolve<IAccountService>();
-            resourceService = Container.Resolve<IResourceService>();
-
-            themeService.ThemeChanged += ThemeChenged;
+            var resourceService = Container.Resolve<IResourceService>();
             resourceService.AddCustomResources(Current.Resources);
 
-            var configurationManager = Container.Resolve<IUserConfigurationManager>();
+            //themeService = Container.Resolve<IThemeService>();
+            //themeService.ThemeChanged += ThemeChenged;
+
+            //var configurationManager = Container.Resolve<IUserConfigurationManager>();
             //await configurationManager.GetConfigurationAsync(OnAccessTokenRefresh, OnSessionTimeout);
 
             if (!Authorize()) Environment.Exit(-1);
 
             InitializeShell();
+
             base.OnInitialized();
         }
 
@@ -108,27 +112,27 @@ namespace AppFramework
                 RegionManager.UpdateRegions();
 
                 //添加自定义的资源及配置默认主题
-                themeService.SetDefaultTheme(view);
-                resourceService.UpdateCustomResources(Current.Resources, "MaterialDark");
+                //themeService.SetDefaultTheme(view);
+                //resourceService.UpdateCustomResources(Current.Resources, "MaterialDark");
                 MainWindow = (Window)shell;
             }
             else
                 throw new NullReferenceException("A MainView content must be a Window!");
         }
 
-        private void ThemeChenged(string themeName)
-        {
-            //更新系统主题以及刷新资源的主题引用
-            themeService.SetTheme(Current.MainWindow, themeName);
-            resourceService.UpdateCustomResources(Current.Resources, themeName);
-        }
+        //private void ThemeChenged(string themeName)
+        //{
+        //    //更新系统主题以及刷新资源的主题引用
+        //    themeService.SetTheme(Current.MainWindow, themeName);
+        //    resourceService.UpdateCustomResources(Current.Resources, themeName);
+        //}
 
-        protected virtual async Task OnSessionTimeout()
+        public static async Task OnSessionTimeout()
         {
             await accountService.LogoutAsync();
         }
 
-        protected virtual async Task OnAccessTokenRefresh(string newAccessToken)
+        public static async Task OnAccessTokenRefresh(string newAccessToken)
         {
             await Task.CompletedTask;
         }

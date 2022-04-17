@@ -6,8 +6,7 @@ using AppFramework.Common;
 using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Storage;
 using AppFramework.Sessions;
-using AppFramework.Sessions.Dto;
-using Prism.Ioc;
+using AppFramework.Sessions.Dto; 
 using Prism.Mvvm;
 using System.Threading.Tasks;
 
@@ -22,15 +21,21 @@ namespace AppFramework.Services.Account
         public readonly IProfileAppService profileAppService;
         public readonly IUserConfigurationManager userConfigurationManager;
 
-        public AccountService(IContainerProvider provider)
+        public AccountService(IProfileAppService profileAppService,
+            IApplicationContext applicationContext,
+            ISessionAppService sessionAppService,
+            IAccessTokenManager accessTokenManager,
+            IAccountStorageService dataStorageService,
+            IUserConfigurationManager userConfigurationManager,
+            AbpAuthenticateModel authenticateModel)
         {
-            profileAppService = provider.Resolve<IProfileAppService>();
-            applicationContext = provider.Resolve<IApplicationContext>();
-            sessionAppService = provider.Resolve<ISessionAppService>();
-            accessTokenManager = provider.Resolve<IAccessTokenManager>();
-            dataStorageService = provider.Resolve<IAccountStorageService>();
-            userConfigurationManager = provider.Resolve<IUserConfigurationManager>();
-            AuthenticateModel = provider.Resolve<AbpAuthenticateModel>();
+            this.profileAppService = profileAppService;
+            this.applicationContext = applicationContext;
+            this.sessionAppService = sessionAppService;
+            this.accessTokenManager = accessTokenManager;
+            this.dataStorageService = dataStorageService;
+            this.userConfigurationManager = userConfigurationManager;
+            this.AuthenticateModel = authenticateModel;
         }
 
         public AbpAuthenticateModel AuthenticateModel { get; set; }
