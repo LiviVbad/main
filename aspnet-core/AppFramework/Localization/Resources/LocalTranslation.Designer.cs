@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CodeShare.Shared.Localization.Resources {
+namespace AppFramework.Localization.Resources {
     using System;
     
     

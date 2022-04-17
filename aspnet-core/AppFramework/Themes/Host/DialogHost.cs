@@ -222,7 +222,8 @@ namespace AppFramework.WindowHost
             }
 
             if (targets.Count == 0)
-                throw new InvalidOperationException($"No loaded DialogHost have an {nameof(Identifier)} property matching {nameof(dialogIdentifier)} ('{dialogIdentifier}') argument.");
+                return null;
+
             if (targets.Count > 1)
                 throw new InvalidOperationException("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
 

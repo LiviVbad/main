@@ -6,6 +6,7 @@ using AppFramework.Authorization.Users.Profile;
 using AppFramework.Common;
 using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Storage;
+using AppFramework.Localization;
 using AppFramework.Services;
 using AppFramework.Services.Account;
 using Prism.Commands;
@@ -191,11 +192,11 @@ namespace AppFramework.ViewModels
                     break;
 
                 case TenantAvailabilityState.InActive:
-                    //await UserDialogs.Instance.AlertAsync(L.Localize("TenantIsNotActive", tenancyName));
+                    await applayer.Show("InActive", Local.Localize("TenantIsNotActive", tenancyName));
                     break;
 
                 case TenantAvailabilityState.NotFound:
-                    //await UserDialogs.Instance.AlertAsync(L.Localize("ThereIsNoTenantDefinedWithName{0}", tenancyName));
+                    await applayer.Show("NotFound", Local.Localize("ThereIsNoTenantDefinedWithName{0}", tenancyName));
                     break;
 
                 default:

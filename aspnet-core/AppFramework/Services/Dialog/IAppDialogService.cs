@@ -1,9 +1,11 @@
-﻿namespace AppFramework.Services.Dialog
+﻿using System.Threading.Tasks;
+
+namespace AppFramework.Services.Dialog
 {
     public interface IAppDialogService
     {
-        void ShowLoading(string message);
+        Task Show(string title, string message);
 
-        void HideLoading();
+        bool Question(string title, string message);
     }
 }

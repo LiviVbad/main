@@ -5,8 +5,10 @@ using AppFramework.Authorization.Users.Profile;
 using AppFramework.Common;
 using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Storage;
+using AppFramework.Localization;
+using AppFramework.Services.Dialog;
 using AppFramework.Sessions;
-using AppFramework.Sessions.Dto; 
+using AppFramework.Sessions.Dto;
 using Prism.Mvvm;
 using System.Threading.Tasks;
 
@@ -18,10 +20,13 @@ namespace AppFramework.Services.Account
         public readonly IApplicationContext applicationContext;
         public readonly ISessionAppService sessionAppService;
         public readonly IAccessTokenManager accessTokenManager;
+        private readonly IAppDialogService appDialogService;
         public readonly IProfileAppService profileAppService;
         public readonly IUserConfigurationManager userConfigurationManager;
 
-        public AccountService(IProfileAppService profileAppService,
+        public AccountService(
+            IAppDialogService appDialogService,
+            IProfileAppService profileAppService,
             IApplicationContext applicationContext,
             ISessionAppService sessionAppService,
             IAccessTokenManager accessTokenManager,
@@ -29,6 +34,7 @@ namespace AppFramework.Services.Account
             IUserConfigurationManager userConfigurationManager,
             AbpAuthenticateModel authenticateModel)
         {
+            this.appDialogService = appDialogService;
             this.profileAppService = profileAppService;
             this.applicationContext = applicationContext;
             this.sessionAppService = sessionAppService;
@@ -55,7 +61,7 @@ namespace AppFramework.Services.Account
                 async AuthenticateResultModel =>
                 {
                     await AuthenticateSucceed(AuthenticateResultModel);
-                }, ex => throw ex);
+                }, ex => Task.CompletedTask);
         }
 
         public async Task LogoutAsync()
@@ -77,7 +83,7 @@ namespace AppFramework.Services.Account
 
             if (AuthenticateResultModel.ShouldResetPassword)
             {
-                //await UserDialogs.Instance.AlertAsync(L.Localize("ChangePasswordToLogin"), L.Localize("LoginFailed"), L.Localize("Ok"));
+                await appDialogService.Show("", Local.Localize("ChangePasswordToLogin"));
                 return;
             }
 

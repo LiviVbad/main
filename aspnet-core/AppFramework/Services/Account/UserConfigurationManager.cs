@@ -3,7 +3,7 @@ using AppFramework.Common;
 using AppFramework.Configuration;
 using AppFramework.Localization;
 using AppFramework.MultiTenancy;
-using CodeShare.Shared.Localization.Resources;
+using AppFramework.Localization.Resources;
 using Prism.Ioc;
 using System;
 using System.Globalization;
@@ -42,6 +42,8 @@ namespace AppFramework.Services.Account
                 async () => await userConfigurationService.GetAsync(accessTokenManager.IsUserLoggedIn),
                 async result =>
                 {
+                    if (result == null) return;
+
                     applicationContext.Configuration = result;
                     SetCurrentCulture();
 

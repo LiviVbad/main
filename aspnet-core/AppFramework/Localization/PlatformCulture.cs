@@ -1,13 +1,7 @@
 ﻿using System;
 
 namespace AppFramework.Localization
-{
-    /// <summary>
-    /// Helper class for splitting locales like
-    ///   iOS: ms_MY, gsw_CH
-    ///   Android: in-ID
-    /// into parts so we can create a .NET culture (or fallback culture)
-    /// </summary>
+{ 
     public class PlatformCulture
     {
         public string PlatformString { get; }

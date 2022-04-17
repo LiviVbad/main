@@ -1,13 +1,23 @@
 ﻿using Abp.Runtime.Validation;
-using Abp.UI; 
-using Flurl.Http; 
-using System; 
+using Abp.UI;
+using AppFramework.Services.Dialog;
+using Flurl.Http;
+using System;
 using System.Threading.Tasks;
+using Prism.Ioc;
+using AppFramework.Localization;
+using AppFramework.Localization.Resources;
+using AppFramework.Extensions;
 
 namespace AppFramework.Common
 {
     public static class WebRequest
     {
+        private static readonly Lazy<IAppDialogService> dialogService =
+            new Lazy<IAppDialogService>(
+            ContainerLocator.Container.Resolve<IAppDialogService>
+        );
+
         public static async Task Execute<TResult>(
             Func<Task<TResult>> func,
             Func<TResult, Task> successCallback,
@@ -74,8 +84,6 @@ namespace AppFramework.Common
             Func<Task> successCallback,
             Func<Exception, Task> failCallback)
         {
-            //UserDialogs.Instance.HideLoading();
-
             switch (exception)
             {
                 case UserFriendlyException userFriendlyException:
@@ -105,8 +113,6 @@ namespace AppFramework.Common
            Func<TResult, Task> successCallback,
            Func<Exception, Task> failCallback)
         {
-            //UserDialogs.Instance.HideLoading();
-
             switch (exception)
             {
                 case UserFriendlyException userFriendlyException:
@@ -134,14 +140,14 @@ namespace AppFramework.Common
         private static async Task HandleUserFriendlyException(UserFriendlyException userFriendlyException,
            Func<Exception, Task> failCallback)
         {
-            //if (string.IsNullOrEmpty(userFriendlyException.Details))
-            //{
-            //    UserDialogs.Instance.Alert(userFriendlyException.Message, Local.Localize("Error"));
-            //}
-            //else
-            //{
-            //    UserDialogs.Instance.Alert(userFriendlyException.Details, userFriendlyException.Message);
-            //}
+            if (string.IsNullOrEmpty(userFriendlyException.Details))
+            {
+                await dialogService.Value.Show(userFriendlyException.Message, Local.Localize("Error"));
+            }
+            else
+            {
+                await dialogService.Value.Show(userFriendlyException.Details, userFriendlyException.Message);
+            }
 
             await failCallback(userFriendlyException);
         }
@@ -152,14 +158,14 @@ namespace AppFramework.Common
            Func<TResult, Task> successCallback,
            Func<System.Exception, Task> failCallback)
         {
-            //var accepted = await UserDialogs.Instance.ConfirmAsync(LocalTranslation.RequestTimedOut,
-            //    LocalTranslation.MessageTitle, LocalTranslation.Ok, LocalTranslation.Cancel);
+            var accepted = dialogService.Value.Question(LocalTranslationHelper.Localize("RequestTimedOut"),
+                LocalTranslationHelper.Localize("MessageTitle"));
 
-            //if (accepted)
-            //{
-            //    await Execute(func, successCallback, failCallback);
-            //}
-            //else
+            if (accepted)
+            {
+                await Execute(func, successCallback, failCallback);
+            }
+            else
             {
                 await failCallback(httpTimeoutException);
             }
@@ -170,14 +176,14 @@ namespace AppFramework.Common
             Func<Task> successCallback,
             Func<System.Exception, Task> failCallback)
         {
-            //var accepted = await UserDialogs.Instance.ConfirmAsync(LocalTranslation.RequestTimedOut,
-            //    LocalTranslation.MessageTitle, LocalTranslation.Ok, LocalTranslation.Cancel);
+            var accepted = dialogService.Value.Question(LocalTranslationHelper.Localize("RequestTimedOut"),
+                LocalTranslationHelper.Localize("MessageTitle"));
 
-            //if (accepted)
-            //{
-            //    await Execute(func, successCallback, failCallback);
-            //}
-            //else
+            if (accepted)
+            {
+                await Execute(func, successCallback, failCallback);
+            }
+            else
             {
                 await failCallback(httpTimeoutException);
             }
@@ -194,20 +200,20 @@ namespace AppFramework.Common
                 return;
             }
 
-            //var httpExceptionMessage = LocalTranslation.HttpException;
+            var httpExceptionMessage = LocalTranslationHelper.Localize("HttpException");
             //if (Debugger.IsAttached)
-            //{
-            //    httpExceptionMessage += Environment.NewLine + httpException.Message;
-            //}
+            {
+                httpExceptionMessage += Environment.NewLine + httpException.Message;
+            }
 
-            //var accepted = await UserDialogs.Instance.ConfirmAsync(httpExceptionMessage,
-            //    LocalTranslation.MessageTitle, LocalTranslation.Ok, LocalTranslation.Cancel);
+            var accepted = dialogService.Value.Question(httpExceptionMessage,
+               LocalTranslationHelper.Localize("MessageTitle"));
 
-            //if (accepted)
-            //{
-            //    await Execute(func, successCallback, failCallback);
-            //}
-            //else
+            if (accepted)
+            {
+                await Execute(func, successCallback, failCallback);
+            }
+            else
             {
                 await failCallback(httpException);
             }
@@ -224,20 +230,20 @@ namespace AppFramework.Common
                 return;
             }
 
-            //var httpExceptionMessage = LocalTranslation.HttpException;
+            var httpExceptionMessage = LocalTranslationHelper.Localize("HttpException");
             //if (Debugger.IsAttached)
-            //{
-            //    httpExceptionMessage += Environment.NewLine + httpException.Message;
-            //}
+            {
+                httpExceptionMessage += Environment.NewLine + httpException.Message;
+            }
 
-            //var accepted = await UserDialogs.Instance.ConfirmAsync(httpExceptionMessage,
-            //    LocalTranslation.MessageTitle, LocalTranslation.Ok, LocalTranslation.Cancel);
+            var accepted = dialogService.Value.Question(httpExceptionMessage,
+              LocalTranslationHelper.Localize("MessageTitle"));
 
-            //if (accepted)
+            if (accepted)
             {
                 await Execute(func, successCallback, failCallback);
             }
-            //else
+            else
             {
                 await failCallback(httpException);
             }
@@ -246,8 +252,8 @@ namespace AppFramework.Common
         private static async Task HandleAbpValidationException(AbpValidationException abpValidationException,
             Func<System.Exception, Task> failCallback)
         {
-            //await UserDialogs.Instance.AlertAsync(abpValidationException.GetConsolidatedMessage(),
-            //    LocalTranslation.MessageTitle, LocalTranslation.Ok);
+            await dialogService.Value.Show(abpValidationException.GetConsolidatedMessage(),
+                LocalTranslationHelper.Localize("MessageTitle"));
 
             await failCallback(abpValidationException);
         }
@@ -257,13 +263,14 @@ namespace AppFramework.Common
             Func<Task> successCallback,
             Func<System.Exception, Task> failCallback)
         {
-            //var accepted = await UserDialogs.Instance.ConfirmAsync(LocalTranslation.UnhandledWebRequestException,
-            //    LocalTranslation.MessageTitle, LocalTranslation.Ok, LocalTranslation.Cancel);
-            //if (accepted)
-            //{
-            //    await Execute(func, successCallback, failCallback);
-            //}
-            //else
+            var accepted = dialogService.Value.Question(LocalTranslationHelper.Localize("UnhandledWebRequestException"),
+                LocalTranslationHelper.Localize("MessageTitle"));
+
+            if (accepted)
+            {
+                await Execute(func, successCallback, failCallback);
+            }
+            else
             {
                 await failCallback(exception);
             }
@@ -274,14 +281,15 @@ namespace AppFramework.Common
             Func<TResult, Task> successCallback,
             Func<System.Exception, Task> failCallback)
         {
-            //var accepted = await UserDialogs.Instance.ConfirmAsync(LocalTranslation.UnhandledWebRequestException,
-            //    LocalTranslation.MessageTitle, LocalTranslation.Ok, LocalTranslation.Cancel);
+            var accepted = dialogService.Value.Question(
+                LocalTranslationHelper.Localize("UnhandledWebRequestException"),
+                LocalTranslationHelper.Localize("MessageTitle"));
 
-            //if (accepted)
-            //{
-            //    await Execute(func, successCallback, failCallback);
-            //}
-            //else
+            if (accepted)
+            {
+                await Execute(func, successCallback, failCallback);
+            }
+            else
             {
                 await failCallback(exception);
             }

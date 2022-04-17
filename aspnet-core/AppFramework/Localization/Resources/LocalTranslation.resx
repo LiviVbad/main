@@ -118,30 +118,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Authenticating" xml:space="preserve">
-    <value>Authenticating...</value>
+    <value>正在认证...</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="HttpException" xml:space="preserve">
-    <value>A problem occurred while trying to communicate with the server. Do you want to try again?</value>
+    <value>尝试与服务器通信时出现问题。 你想再试一次吗？</value>
   </data>
   <data name="Initializing" xml:space="preserve">
-    <value>Initializing...</value>
+    <value>正在初始化...</value>
   </data>
   <data name="MessageTitle" xml:space="preserve">
-    <value>CodeShare</value>
+    <value>AppFramework</value>
   </data>
   <data name="NoInternet" xml:space="preserve">
-    <value>No internet connection! Do you want to enable internet and try again?</value>
+    <value>没有网络连接！ 您要启用互联网并重试吗？</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>Ok</value>
+    <value>确定</value>
   </data>
   <data name="RequestTimedOut" xml:space="preserve">
-    <value>Request is timed out. Do you want to try again?</value>
+    <value>请求超时。 你想再试一次吗？</value>
   </data>
   <data name="UnhandledWebRequestException" xml:space="preserve">
-    <value>An error occurred. Do you want to try again?</value>
+    <value>发生错误。 你想再试一次吗？</value>
   </data>
 </root>

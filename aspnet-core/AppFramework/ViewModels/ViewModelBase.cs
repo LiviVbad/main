@@ -14,12 +14,12 @@ namespace AppFramework.ViewModels
         {
             mapper = ContainerLocator.Container.Resolve<IMapper>();
             validator = ContainerLocator.Container.Resolve<IGlobalValidator>();
-            //applayer =ContainerLocator.Container.Resolve<IAppDialogService>();
+            applayer =ContainerLocator.Container.Resolve<IAppDialogService>();
         }
 
         public readonly IMapper mapper;
         private readonly IGlobalValidator validator;
-        private readonly IAppDialogService applayer;
+        public readonly IAppDialogService applayer;
 
         private bool isBusy;
 
@@ -41,13 +41,11 @@ namespace AppFramework.ViewModels
             IsBusy = true;
             try
             {
-                //applayer.ShowLoading(loadingMessage);
                 await func();
-            }
+            } 
             finally
             {
                 IsBusy = false;
-                //applayer.HideLoading();
             }
         }
 

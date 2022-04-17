@@ -130,7 +130,7 @@
     <value>Başlatılıyor...</value>
   </data>
   <data name="MessageTitle" xml:space="preserve">
-    <value>CodeShare</value>
+    <value>AppFramework</value>
   </data>
   <data name="NoInternet" xml:space="preserve">
     <value>Internet bağlantısı yok! Internet bağlantısını aktif edip tekrar denemek ister misiniz?</value>

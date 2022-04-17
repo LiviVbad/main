@@ -7,9 +7,11 @@ using AppFramework.Common.Services.Permission;
 using AppFramework.Common.Services.Storage;
 using AppFramework.Services;
 using AppFramework.Services.Account;
+using AppFramework.Services.Dialog;
 using AppFramework.ViewModels;
 using AppFramework.Views;
 using AppFramework.WindowHost;
+using AppFramework.Localization;
 using Prism.Ioc;
 
 namespace AppFramework
@@ -24,6 +26,7 @@ namespace AppFramework
             //注册应用程序验证器
             services.RegisterValidator();
 
+            services.RegisterSingleton<ILocale, Locale>();
             services.RegisterSingleton<IThemeService, ThemeService>();
             services.RegisterSingleton<IResourceService, ResourceService>();
 
@@ -35,9 +38,11 @@ namespace AppFramework
             services.RegisterSingleton<IUserConfigurationManager, UserConfigurationManager>();
 
             services.Register<IDialogHostService, DialogHostService>();
+            services.RegisterSingleton<IAppDialogService, AppDialogService>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
 
             services.RegisterDialog<LoginView, LoginViewModel>();
+            services.RegisterDialog<MessageView, MessageViewModel>();
             services.RegisterForNavigation<IndexView, IndexViewModel>();
             services.RegisterForNavigation<UserView, UserViewModel>();
             services.RegisterForNavigation<MainView, MainViewModel>();
