@@ -8,18 +8,38 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Images\back.png" />
+    <None Remove="Assets\Images\logo.ico" />
+    <None Remove="Assets\Images\OrganizationUnit.png" />
+    <None Remove="Assets\Images\theme12.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Abp" Version="7.1.0" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="FluentValidation" Version="10.4.0" />
     <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="DryIoc.Microsoft.DependencyInjection" Version="5.1.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Syncfusion.Licensing" Version="20.1.0.48" />
     <PackageReference Include="Syncfusion.SfBusyIndicator.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.SfProgressBar.WPF" Version="20.1.0.48" />
     <PackageReference Include="Syncfusion.SfChart.WPF" Version="20.1.0.48" />
     <PackageReference Include="Syncfusion.SfGrid.WPF" Version="20.1.0.48" />
     <PackageReference Include="Syncfusion.SfNavigationDrawer.WPF" Version="20.1.0.48" />
     <PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="20.1.0.48" />
     <PackageReference Include="Syncfusion.SfTreeView.WPF" Version="20.1.0.48" />
     <PackageReference Include="Syncfusion.Shared.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.SfAccordion.WPF" Version="20.1.0.48" />   
+    <PackageReference Include="Syncfusion.Themes.FluentDark.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.Themes.FluentLight.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.Themes.MaterialDark.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.Themes.MaterialDarkBlue.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.Themes.MaterialLight.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.Themes.MaterialLightBlue.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.Themes.Office2019Black.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.Themes.Office2019White.WPF" Version="20.1.0.48" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,13 +49,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\Dashboard\" />
-    <Folder Include="Views\Auditlogs\" />
-    <Folder Include="Views\Index\" />
-    <Folder Include="Views\Organizations\" />
-    <Folder Include="Views\Roles\" />
-    <Folder Include="Views\Users\" />
-    <Folder Include="Views\Visual\" />
+    <Resource Include="Assets\Images\back.png" />
+    <Resource Include="Assets\Images\logo.ico" />
+    <Resource Include="Assets\Images\OrganizationUnit.png" />
+    <Resource Include="Assets\Images\theme12.png" />
   </ItemGroup>
 
 </Project>

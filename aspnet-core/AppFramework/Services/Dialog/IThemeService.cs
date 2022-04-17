@@ -1,5 +1,6 @@
 ﻿using AppFramework.Models; 
-using System.Collections.ObjectModel; 
+using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace AppFramework.Services
 {
@@ -13,8 +14,8 @@ namespace AppFramework.Services
 
         void SetTheme(string themeName);
 
-        void SetTheme(object dependency, string themeName);
+        void SetTheme(DependencyObject dependency, string themeName);
 
-        void SetDefaultTheme(object dependency);
+        void SetDefaultTheme(DependencyObject dependency);
     }
 }

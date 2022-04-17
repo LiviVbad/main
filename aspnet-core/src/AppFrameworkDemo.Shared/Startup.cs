@@ -1,5 +1,4 @@
-﻿using Prism.Ioc;
-using Abp.Configuration.Startup;
+﻿using Prism.Ioc; 
 
 #region ApplicationServices
 
@@ -8,38 +7,13 @@ using AppFramework.Shared.Views;
 using AppFramework.Shared.Services.Account; 
 using AppFramework.Shared.Services.Storage;
 using AppFramework.Shared.Services.Layer;
-using AppFramework.Shared.Services;
-using AppFramework.Authorization.Roles;
-using AppFramework.Authorization.Users;
-using AppFramework.MultiTenancy;
-using AppFramework.Editions;
-using AppFramework.Auditing;
-using AppFramework.DynamicEntityProperties;
-using AppFramework.ApiClient;
-using AppFramework.ApiClient.Models;
-using AppFramework.Configuration;
-using AppFramework.Authorization.Users.Profile;
-using AppFramework.Authorization.Accounts;
-using AppFramework.Localization;
-using AppFramework.Sessions;
-using AppFramework.MultiTenancy.HostDashboard;
-using AppFramework.Caching;
-using AppFramework.Tenants.Dashboard;
-using AppFramework.Common;
-using AppFramework.Organizations; 
-using AppFramework.Application;
-using AppFramework.Application.Client;
-using AppFramework.Application.MultiTenancy.HostDashboard;
-using AppFramework.Application.Organizations;
-using AppFramework.Application.MultiTenancy;
-using AppFramework.Common.Core.Validations;
-using AppFramework.Common.Core;
-using AppFramework.Common.Services;
-using AppFramework.Common.Services.Navigation;
+using AppFramework.Shared.Services; 
+using AppFramework.Common; 
+using AppFramework.Common.Core.Validations; 
+using AppFramework.Common.Services; 
 using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Layer;
-using AppFramework.Common.Services.Storage;
-using AppFramework.Common.Services.Permission;
+using AppFramework.Common.Services.Storage; 
 
 #endregion ApplicationServices
 
@@ -54,7 +28,14 @@ namespace AppFramework.Shared
         public static void ConfigureSerivces(this IContainerRegistry services)
         {
             //注册应用程序依赖服务
-            services.ConfigureAppServices();
+            services.RegisterCommonServices();
+
+            services.RegisterSingleton<IRegionNavigateService, RegionNavigateService>();
+            services.RegisterSingleton<IApplayerService, ApplayerService>();
+            services.RegisterSingleton<IApplicationService, ApplicationService>();
+            services.RegisterSingleton<IAccountService, AccountService>();
+            services.RegisterSingleton<IAccountStorageService, AccountStorageService>();
+            services.RegisterSingleton<IDataStorageService, DataStorageService>();
 
             //注册应用程序验证器
             services.RegisterValidator();
@@ -110,63 +91,6 @@ namespace AppFramework.Shared
             services.RegisterForNavigation<OrganizationDetailsView, OrganizationDetailsViewModel>();
             services.RegisterForNavigation<DynamicPropertyDetailsView, DynamicPropertyDetailsViewModel>(); 
             services.RegisterForNavigation<ProfilePictureView, ProfilePictureViewModel>();
-        }
-
-        public static void ConfigureAppServices(this IContainerRegistry services)
-        {
-            /*  注册模块Web服务
-             * 
-             *  包含如下: 角色服务、用户服务、租户服务、版本服务、
-             *           审计日志服务、语言服务、组织机构服务
-             *           动态属性服务、缓存服务、租户面板统计服务
-             *           动态实体服务、账号服务、个人资料服务、
-             *           统计面板服务 ...
-             */
-            services.RegisterScoped<IRoleAppService, RoleAppService>();
-            services.RegisterScoped<IUserAppService, ProxyUserAppService>();
-            services.RegisterScoped<ITenantAppService, ProxyTenantAppService>();
-            services.RegisterScoped<IEditionAppService, EditionAppService>();
-            services.RegisterScoped<IAuditLogAppService, AuditLogAppService>();
-            services.RegisterScoped<ILanguageAppService, LanguageAppService>();
-            services.RegisterScoped<IOrganizationUnitAppService, OrganizationUnitAppService>();
-            services.RegisterScoped<IDynamicPropertyAppService, DynamicPropertyAppService>();
-            services.RegisterScoped<ICachingAppService, CachingAppService>();
-            services.RegisterScoped<ITenantDashboardAppService, TenantDashboardAppService>();
-            services.RegisterScoped<IDynamicEntityPropertyAppService, DynamicEntityPropertyAppService>();
-            services.RegisterScoped<IDynamicEntityPropertyDefinitionAppService, DynamicEntityPropertyDefinitionAppService>();
-            services.RegisterScoped<IDynamicPropertyValueAppService, DynamicPropertyValueAppService>();
-            services.RegisterScoped<ICommonLookupAppService, ProxyCommonLookupAppService>();
-            services.RegisterScoped<IAccountAppService, ProxyAccountAppService>();
-            services.RegisterScoped<IProfileAppService, ProxyProfileAppService>();
-            services.RegisterScoped<ISessionAppService, ProxySessionAppService>();
-            services.RegisterScoped<IHostDashboardAppService, HostDashboardAppService>();
-
-            /*  注册应用程序配置及授权服务
-             * 
-             *  包含如下: 应用程序弹窗服务、发布订阅消息服务、区域导航服务、
-             *           应用程序信息服务、用户授权服务、权限服务、
-             *           本地存储服务、账号密钥服务
-             *           Web请求服务、授权信息实体、多租户配置
-             *           应用程序上下文、用户配置服务、头像上传服务
-             *           双重验证服务
-             */
-            services.RegisterSingleton<IMessenger, Messenger>();
-            services.RegisterSingleton<IRegionNavigateService, RegionNavigateService>();
-            services.RegisterSingleton<IApplayerService, ApplayerService>();
-            services.RegisterSingleton<IApplicationService, ApplicationService>();
-            services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
-            services.RegisterSingleton<IAccountService, AccountService>();
-            services.RegisterSingleton<IPermissionService, PermissionService>();
-            services.RegisterSingleton<IAccountStorageService, AccountStorageService>();
-            services.RegisterSingleton<IDataStorageService, DataStorageService>();
-            services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
-            services.RegisterSingleton<IMultiTenancyConfig, MultiTenancyConfig>();
-            services.RegisterSingleton<IApplicationContext, ApplicationContext>();
-            services.RegisterSingleton<AbpApiClient>();
-            services.RegisterSingleton<AbpAuthenticateModel>();
-            services.RegisterScoped<UserConfigurationService>();
-            services.RegisterScoped<ProxyProfileControllerService>();
-            services.RegisterScoped<ProxyTokenAuthControllerService>();
-        }
+        } 
     }
 }

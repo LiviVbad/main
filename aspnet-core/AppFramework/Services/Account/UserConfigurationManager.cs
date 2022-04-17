@@ -1,10 +1,14 @@
-﻿using System; 
-using System.Linq; 
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AppFramework.Common;
 using AppFramework.ApiClient;
 using AppFramework.Configuration;
 using AppFramework.MultiTenancy;
+using CodeShare.Shared.Localization.Resources;
+using Prism.Ioc;
+using System.Globalization;
+using AppFramework.Localization;
 
 namespace AppFramework.Services.Account
 {
@@ -38,6 +42,9 @@ namespace AppFramework.Services.Account
                 async () => await userConfigurationService.GetAsync(accessTokenManager.IsUserLoggedIn),
                 async result =>
                 {
+                    applicationContext.Configuration = result;
+                    SetCurrentCulture();
+
                     if (!result.MultiTenancy.IsEnabled)
                         applicationContext.SetAsTenant(TenantConsts.DefaultTenantName, TenantConsts.DefaultTenantId);
 
@@ -48,7 +55,7 @@ namespace AppFramework.Services.Account
                     if (successCallback != null)
                         await successCallback();
                 }, ex =>
-                { 
+                {
                     return Task.CompletedTask;
                 });
         }
@@ -66,6 +73,38 @@ namespace AppFramework.Services.Account
             if (!hasAnyPermission)
             {
                 //UserDialogHelper.Warn("NoPermission");
+            }
+        }
+
+        /// <summary>
+        /// 设置应用的区域化配置
+        /// </summary>
+        private void SetCurrentCulture()
+        {
+            var locale = ContainerLocator.Container.Resolve<ILocale>();
+            var userCulture = GetUserCulture(locale);
+
+            locale.SetLocale(userCulture);
+            LocalTranslation.Culture = userCulture;
+        }
+
+        /// <summary>
+        /// 获取用户的区域化信息
+        /// </summary>
+        /// <param name="locale"></param>
+        /// <returns></returns>
+        private CultureInfo GetUserCulture(ILocale locale)
+        {
+            if (applicationContext.Configuration.Localization.CurrentCulture.Name == null)
+                return locale.GetCurrentCultureInfo();
+
+            try
+            {
+                return new CultureInfo(applicationContext.Configuration.Localization.CurrentCulture.Name);
+            }
+            catch (CultureNotFoundException)
+            {
+                return locale.GetCurrentCultureInfo();
             }
         }
     }

@@ -3,7 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Prism.Ioc;
 using AutoMapper;
-using AppFramework.Services.Dialog; 
+using AppFramework.Services.Dialog;
 using AppFramework.Common.Core;
 
 namespace AppFramework.ViewModels
@@ -12,9 +12,9 @@ namespace AppFramework.ViewModels
     {
         public ViewModelBase()
         {
-            mapper=ContainerLocator.Container.Resolve<IMapper>();
-            validator=ContainerLocator.Container.Resolve<IGlobalValidator>();
-            applayer =ContainerLocator.Container.Resolve<IAppDialogService>();
+            mapper = ContainerLocator.Container.Resolve<IMapper>();
+            validator = ContainerLocator.Container.Resolve<IGlobalValidator>();
+            //applayer =ContainerLocator.Container.Resolve<IAppDialogService>();
         }
 
         public readonly IMapper mapper;
@@ -41,13 +41,13 @@ namespace AppFramework.ViewModels
             IsBusy = true;
             try
             {
-                applayer.ShowLoading(loadingMessage);
+                //applayer.ShowLoading(loadingMessage);
                 await func();
             }
             finally
             {
                 IsBusy = false;
-                applayer.HideLoading();
+                //applayer.HideLoading();
             }
         }
 

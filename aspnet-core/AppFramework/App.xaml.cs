@@ -11,6 +11,12 @@ using System.Windows;
 using AppFramework.ApiClient;
 using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Navigation;
+using AppFramework.Extensions;
+using DryIoc;
+using Microsoft.Extensions.DependencyInjection;
+using AppFramework.Common.Core;
+using DryIoc.Microsoft.DependencyInjection;
+using AppFramework.Common;
 
 namespace AppFramework
 {
@@ -26,7 +32,26 @@ namespace AppFramework
         protected override Window CreateShell() => null;
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        { }
+        {
+            containerRegistry.ConfigurationServices();
+        }
+
+        protected override IContainerExtension CreateContainerExtension()
+        {
+            var serviceCollection = new ServiceCollection();
+            serviceCollection.AddAutoMapper(config =>
+            {
+                config.AddProfile<AppMapper>();
+            });
+            return new DryIocContainerExtension(new Container(CreateContainerRules())
+                .WithDependencyInjectionAdapter(serviceCollection));
+        }
+
+        protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
+        {
+            base.ConfigureRegionAdapterMappings(regionAdapterMappings);
+            regionAdapterMappings.ConfigurationAdapters(Container);
+        }
 
         protected override async void OnInitialized()
         {
@@ -38,7 +63,7 @@ namespace AppFramework
             resourceService.AddCustomResources(Current.Resources);
 
             var configurationManager = Container.Resolve<IUserConfigurationManager>();
-            await configurationManager?.GetConfigurationAsync(OnAccessTokenRefresh, OnSessionTimeout);
+            //await configurationManager.GetConfigurationAsync(OnAccessTokenRefresh, OnSessionTimeout);
 
             if (!Authorize()) Environment.Exit(-1);
 
@@ -58,7 +83,7 @@ namespace AppFramework
             {
                 ButtonResult result = ButtonResult.Cancel;
                 var dialogService = container.Resolve<IDialogHostService>();
-                dialogService.ShowDialog("", callBack =>
+                dialogService.ShowDialog(AppViewManager.Login, callBack =>
                 {
                     result = callBack.Result;
                 });

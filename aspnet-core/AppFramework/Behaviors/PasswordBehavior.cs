@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace AppFramework
+namespace AppFramework.Behaviors
 {
     public class PasswordBehavior : Behavior<PasswordBox>
     {

@@ -26,26 +26,7 @@ namespace AppFramework.Common
 
             try
             {
-                //if (!CrossConnectivity.Current.IsConnected)
-                //{
-                //    UserDialogs.Instance.HideLoading();
-
-                //    var accepted = await UserDialogs.Instance.ConfirmAsync(LocalTranslation.NoInternet,
-                //        LocalTranslation.MessageTitle, LocalTranslation.Ok, LocalTranslation.Cancel);
-
-                //    if (accepted)
-                //    {
-                //        await Execute(func, successCallback, failCallback);
-                //    }
-                //    else
-                //    {
-                //        await failCallback(new System.Exception(LocalTranslation.NoInternet));
-                //    }
-                //}
-                //else
-                {
-                    await successCallback(await func());
-                }
+                await successCallback(await func());
             }
             catch (Exception exception)
             {
@@ -75,27 +56,8 @@ namespace AppFramework.Common
 
             try
             {
-                //if (!CrossConnectivity.Current.IsConnected)
-                //{
-                //    UserDialogs.Instance.HideLoading();
-
-                //    var accepted = await UserDialogs.Instance.ConfirmAsync(LocalTranslation.NoInternet,
-                //        LocalTranslation.MessageTitle, LocalTranslation.Ok, LocalTranslation.Cancel);
-
-                //    if (accepted)
-                //    {
-                //        await Execute(func, successCallback, failCallback);
-                //    }
-                //    else
-                //    {
-                //        await failCallback(new System.Exception(LocalTranslation.NoInternet));
-                //    }
-                //}
-                //else
-                {
-                    await func();
-                    await successCallback();
-                }
+                await func();
+                await successCallback();
             }
             catch (System.Exception ex)
             {
