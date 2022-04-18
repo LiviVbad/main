@@ -8,7 +8,7 @@ using AppFramework.Authorization.Users.Profile;
 using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Dto;
 using AppFramework.Shared.Controls;
-using AppFramework.Shared.Localization;   
+using AppFramework.Shared.Localization;
 using FFImageLoading;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -264,7 +264,7 @@ namespace AppFramework.Shared.Services
             UserNameAndSurname = applicationContext.LoginInfo.User.Name + " " + applicationContext.LoginInfo.User.Surname;
 
             var permissions = applicationContext.Configuration.Auth.GrantedPermissions;
-            //NavigationItems = navigationItemService.GetAuthMenus(permissions);
+            NavigationItems = navigationItemService.GetAuthMenus(permissions);
 
             ApplicationInfo = $"{ApplicationName}\n" +
                               $"v{applicationContext.LoginInfo.Application.Version} " +
