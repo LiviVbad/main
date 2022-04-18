@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.Dto;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.Dto;
 
-namespace AppFrameworkDemo.Authorization.Users.Exporting
+namespace AppFramework.Authorization.Users.Exporting
 {
     public interface IUserListExcelExporter
     {

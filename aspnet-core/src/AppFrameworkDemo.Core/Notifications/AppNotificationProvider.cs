@@ -1,9 +1,9 @@
 ﻿using Abp.Authorization;
 using Abp.Localization;
 using Abp.Notifications;
-using AppFrameworkDemo.Authorization;
+using AppFramework.Authorization;
 
-namespace AppFrameworkDemo.Notifications
+namespace AppFramework.Notifications
 {
     public class AppNotificationProvider : NotificationProvider
     {
@@ -28,7 +28,7 @@ namespace AppFrameworkDemo.Notifications
 
         private static ILocalizableString L(string name)
         {
-            return new LocalizableString(name, AppFrameworkDemoConsts.LocalizationSourceName);
+            return new LocalizableString(name, AppFrameworkConsts.LocalizationSourceName);
         }
     }
 }

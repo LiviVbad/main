@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Authorization.Delegation
+﻿namespace AppFramework.Authorization.Delegation
 {
     public class UserDelegationConfiguration : IUserDelegationConfiguration
     {

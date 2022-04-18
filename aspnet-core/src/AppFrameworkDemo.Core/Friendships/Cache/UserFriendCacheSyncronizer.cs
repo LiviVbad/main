@@ -4,9 +4,9 @@ using Abp.Dependency;
 using Abp.Events.Bus.Entities;
 using Abp.Events.Bus.Handlers;
 using Abp.ObjectMapping;
-using AppFrameworkDemo.Chat;
+using AppFramework.Chat;
 
-namespace AppFrameworkDemo.Friendships.Cache
+namespace AppFramework.Friendships.Cache
 {
     public class UserFriendCacheSyncronizer :
         IEventHandler<EntityCreatedEventData<Friendship>>,

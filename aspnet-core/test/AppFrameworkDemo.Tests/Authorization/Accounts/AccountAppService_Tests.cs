@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Abp.MultiTenancy;
-using AppFrameworkDemo.Authorization.Accounts;
-using AppFrameworkDemo.Authorization.Accounts.Dto;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Authorization.Accounts;
+using AppFramework.Authorization.Accounts.Dto;
+using AppFramework.Test.Base;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Authorization.Accounts
+namespace AppFramework.Tests.Authorization.Accounts
 {
     // ReSharper disable once InconsistentNaming
     public class AccountAppService_Tests : AppTestBase

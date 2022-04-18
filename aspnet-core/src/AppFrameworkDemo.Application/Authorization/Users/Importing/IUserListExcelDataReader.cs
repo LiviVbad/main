@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using AppFrameworkDemo.Authorization.Users.Importing.Dto;
+using AppFramework.Authorization.Users.Importing.Dto;
 using Abp.Dependency;
 
-namespace AppFrameworkDemo.Authorization.Users.Importing
+namespace AppFramework.Authorization.Users.Importing
 {
     public interface IUserListExcelDataReader: ITransientDependency
     {

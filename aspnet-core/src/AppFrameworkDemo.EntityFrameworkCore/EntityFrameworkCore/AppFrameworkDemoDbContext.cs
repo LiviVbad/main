@@ -1,18 +1,18 @@
 ﻿using Abp.IdentityServer4vNext;
 using Abp.Zero.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization.Delegation;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Chat;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.Friendships;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.MultiTenancy.Accounting;
-using AppFrameworkDemo.MultiTenancy.Payments;
-using AppFrameworkDemo.Storage;
+using AppFramework.Authorization.Delegation;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users;
+using AppFramework.Chat;
+using AppFramework.Editions;
+using AppFramework.Friendships;
+using AppFramework.MultiTenancy;
+using AppFramework.MultiTenancy.Accounting;
+using AppFramework.MultiTenancy.Payments;
+using AppFramework.Storage;
 
-namespace AppFrameworkDemo.EntityFrameworkCore
+namespace AppFramework.EntityFrameworkCore
 {
     public class AppFrameworkDemoDbContext : AbpZeroDbContext<Tenant, Role, User, AppFrameworkDemoDbContext>, IAbpPersistedGrantDbContext
     {

@@ -1,9 +1,9 @@
 ﻿@using System.Threading.Tasks
 @using Abp.AspNetZeroCore.Timing
 @using Abp.Web.Security.AntiForgery
-@using AppFrameworkDemo.Timing
-@using AppFrameworkDemo.Web.Public.Views.Shared.Components.Header
-@using CultureHelper = AppFrameworkDemo.Localization.CultureHelper
+@using AppFramework.Timing
+@using AppFramework.Web.Public.Views.Shared.Components.Header
+@using CultureHelper = AppFramework.Localization.CultureHelper
 @inject AppTimes AppTimes
 @inject IAbpAntiForgeryManager AbpAntiForgeryManager
 @{
@@ -14,15 +14,15 @@
 <html lang="en" @(CultureHelper.IsRtl ? "dir=\"rtl\"" : "" )>
 <head>
     <meta charset="utf-8">
-    <title>AppFrameworkDemo</title>
+    <title>AppFramework</title>
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     @* Fill these meta tags upon your project specification *@
-    <meta content="AppFrameworkDemo" name="description">
-    <meta content="AppFrameworkDemo" name="keywords">
-    <meta content="AppFrameworkDemo" name="author">
+    <meta content="AppFramework" name="description">
+    <meta content="AppFramework" name="keywords">
+    <meta content="AppFramework" name="author">
 
     @* You can enable and fill these lines according to documentation on http://ogp.me/
         <meta property="og:site_name" content="-CUSTOMER VALUE-">

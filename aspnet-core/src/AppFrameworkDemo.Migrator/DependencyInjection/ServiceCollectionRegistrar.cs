@@ -1,9 +1,9 @@
 ﻿using Abp.Dependency;
 using Castle.Windsor.MsDependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
-using AppFrameworkDemo.Identity;
+using AppFramework.Identity;
 
-namespace AppFrameworkDemo.Migrator.DependencyInjection
+namespace AppFramework.Migrator.DependencyInjection
 {
     public static class ServiceCollectionRegistrar
     {

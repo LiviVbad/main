@@ -5,15 +5,15 @@ using Abp.IdentityServer4vNext;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.EntityFrameworkCore;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.EntityHistory;
-using AppFrameworkDemo.Migrations.Seed;
+using AppFramework.Configuration;
+using AppFramework.EntityHistory;
+using AppFramework.Migrations.Seed;
 
-namespace AppFrameworkDemo.EntityFrameworkCore
+namespace AppFramework.EntityFrameworkCore
 {
     [DependsOn(
         typeof(AbpZeroCoreEntityFrameworkCoreModule),
-        typeof(AppFrameworkDemoCoreModule),
+        typeof(AppFrameworkCoreModule),
         typeof(AbpZeroCoreIdentityServervNextEntityFrameworkCoreModule)
         )]
     public class AppFrameworkDemoEntityFrameworkCoreModule : AbpModule

@@ -1,9 +1,9 @@
 ﻿using Abp.Zero.Ldap.Authentication;
 using Abp.Zero.Ldap.Configuration;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.Authorization.Users;
+using AppFramework.MultiTenancy;
 
-namespace AppFrameworkDemo.Authorization.Ldap
+namespace AppFramework.Authorization.Ldap
 {
     public class AppLdapAuthenticationSource : LdapAuthenticationSource<Tenant, User>
     {

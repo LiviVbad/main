@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Migrations
+namespace AppFramework.Migrations
 {
     public partial class Added_Entity_History : Migration
     {

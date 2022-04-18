@@ -1,9 +1,9 @@
 ﻿using Abp.Dependency;
 using Abp.Reflection.Extensions;
 using Microsoft.Extensions.Configuration;
-using AppFrameworkDemo.Configuration;
+using AppFramework.Configuration;
 
-namespace AppFrameworkDemo.Test.Base.Configuration
+namespace AppFramework.Test.Base.Configuration
 {
     public class TestAppConfigurationAccessor : IAppConfigurationAccessor, ISingletonDependency
     {

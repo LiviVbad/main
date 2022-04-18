@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Abp.Extensions;
 using Microsoft.Extensions.Configuration;
-using AppFrameworkDemo.Configuration;
+using AppFramework.Configuration;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments.Stripe
+namespace AppFramework.MultiTenancy.Payments.Stripe
 {
     public class StripePaymentGatewayConfiguration : IPaymentGatewayConfiguration
     {

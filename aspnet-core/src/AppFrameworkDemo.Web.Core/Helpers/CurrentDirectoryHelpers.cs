@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AppFrameworkDemo.Web.Helpers
+namespace AppFramework.Web.Helpers
 {
     /// <summary>
     /// https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/aspnet-core-module/samples_snapshot/2.x/CurrentDirectoryHelpers.cs

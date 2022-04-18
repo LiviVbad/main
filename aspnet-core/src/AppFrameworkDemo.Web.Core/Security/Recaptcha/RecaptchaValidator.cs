@@ -5,11 +5,11 @@ using Abp.Extensions;
 using Abp.Json;
 using Abp.UI;
 using Microsoft.AspNetCore.Http;
-using AppFrameworkDemo.Security.Recaptcha;
+using AppFramework.Security.Recaptcha;
 using Owl.reCAPTCHA;
 using Owl.reCAPTCHA.v3;
 
-namespace AppFrameworkDemo.Web.Security.Recaptcha
+namespace AppFramework.Web.Security.Recaptcha
 {
     public class RecaptchaValidator : AppFrameworkDemoServiceBase, IRecaptchaValidator, ITransientDependency
     {

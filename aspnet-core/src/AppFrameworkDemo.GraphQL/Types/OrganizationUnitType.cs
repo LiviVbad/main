@@ -1,7 +1,7 @@
 ﻿using GraphQL.Types;
-using AppFrameworkDemo.Dto;
+using AppFramework.Dto;
 
-namespace AppFrameworkDemo.Types
+namespace AppFramework.Types
 {
     public class OrganizationUnitType : ObjectGraphType<OrganizationUnitDto>
     {

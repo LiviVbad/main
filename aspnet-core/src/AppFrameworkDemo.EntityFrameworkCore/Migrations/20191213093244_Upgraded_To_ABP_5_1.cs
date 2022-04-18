@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AppFrameworkDemo.Migrations
+namespace AppFramework.Migrations
 {
     public partial class Upgraded_To_ABP_5_1 : Migration
     {

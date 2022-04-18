@@ -6,14 +6,14 @@ using Abp.Authorization.Users;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using Abp.Organizations;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Organizations.Dto;
+using AppFramework.Authorization;
+using AppFramework.Organizations.Dto;
 using System.Linq.Dynamic.Core;
 using Abp.Extensions;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization.Roles;
+using AppFramework.Authorization.Roles;
 
-namespace AppFrameworkDemo.Organizations
+namespace AppFramework.Organizations
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_OrganizationUnits)]
     public class OrganizationUnitAppService : AppFrameworkDemoAppServiceBase, IOrganizationUnitAppService

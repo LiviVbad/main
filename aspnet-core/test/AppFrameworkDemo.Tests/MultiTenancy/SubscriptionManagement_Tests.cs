@@ -2,15 +2,15 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Abp.Timing;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.MultiTenancy.Dto;
-using AppFrameworkDemo.MultiTenancy.Payments;
-using AppFrameworkDemo.MultiTenancy.Payments.Dto;
+using AppFramework.Editions;
+using AppFramework.MultiTenancy;
+using AppFramework.MultiTenancy.Dto;
+using AppFramework.MultiTenancy.Payments;
+using AppFramework.MultiTenancy.Payments.Dto;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.MultiTenancy
+namespace AppFramework.Tests.MultiTenancy
 {
     // ReSharper disable once InconsistentNaming
     public class SubscriptionManagement_Tests : AppTestBase

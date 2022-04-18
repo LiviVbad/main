@@ -1,14 +1,14 @@
 using Abp;
 using Abp.Domain.Repositories;
 using Abp.Runtime.Caching;
-using AppFrameworkDemo.Chat;
+using AppFramework.Chat;
 using System.Linq;
 using Abp.Dependency;
 using Abp.Domain.Uow;
 using Abp.MultiTenancy;
-using AppFrameworkDemo.Authorization.Users;
+using AppFramework.Authorization.Users;
 
-namespace AppFrameworkDemo.Friendships.Cache
+namespace AppFramework.Friendships.Cache
 {
     public class UserFriendsCache : IUserFriendsCache, ISingletonDependency
     {

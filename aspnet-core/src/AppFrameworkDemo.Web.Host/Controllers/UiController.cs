@@ -5,16 +5,16 @@ using Abp.Authorization.Users;
 using Abp.Configuration.Startup;
 using Abp.UI;
 using Microsoft.AspNetCore.Mvc;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Authorization.Accounts;
-using AppFrameworkDemo.Authorization.Accounts.Dto;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Identity;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.Web.Models.Ui;
-using AppFrameworkDemo.Web.Session;
+using AppFramework.Authorization;
+using AppFramework.Authorization.Accounts;
+using AppFramework.Authorization.Accounts.Dto;
+using AppFramework.Authorization.Users;
+using AppFramework.Identity;
+using AppFramework.MultiTenancy;
+using AppFramework.Web.Models.Ui;
+using AppFramework.Web.Session;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     public class UiController : AppFrameworkDemoControllerBase
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AppFrameworkDemo.Migrations
+namespace AppFramework.Migrations
 {
     public partial class Upgrade_To_ABP_6_1 : Migration
     {

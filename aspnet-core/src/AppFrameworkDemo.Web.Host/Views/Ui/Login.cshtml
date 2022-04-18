@@ -1,14 +1,14 @@
 ﻿@using Abp.Web.Security.AntiForgery
-@using AppFrameworkDemo
+@using AppFramework
 @using Abp.Configuration.Startup
-@model AppFrameworkDemo.Web.Models.Ui.LoginModel
+@model AppFramework.Web.Models.Ui.LoginModel
 @inject IAbpAntiForgeryManager AbpAntiForgeryManager
 @inject IMultiTenancyConfig MultiTenancyConfig
 @{
     AbpAntiForgeryManager.SetCookie(Context);
 }
 <head>
-    <title>AppFrameworkDemo</title>
+    <title>AppFramework</title>
 
     <link href="~/view-resources/Views/Ui/Login.css" rel="stylesheet" asp-append-version="true"/>
 </head>

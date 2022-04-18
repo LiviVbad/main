@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp;
-using AppFrameworkDemo.Dto;
+using AppFramework.Dto;
 
-namespace AppFrameworkDemo.Gdpr
+namespace AppFramework.Gdpr
 {
     public interface IUserCollectedDataProvider
     {

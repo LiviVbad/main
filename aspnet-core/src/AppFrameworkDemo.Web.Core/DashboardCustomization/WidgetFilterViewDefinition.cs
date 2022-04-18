@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Web.DashboardCustomization
+﻿namespace AppFramework.Web.DashboardCustomization
 {
     public class WidgetFilterViewDefinition : ViewDefinition
     {

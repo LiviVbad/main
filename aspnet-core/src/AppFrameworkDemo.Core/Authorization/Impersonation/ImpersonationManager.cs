@@ -7,9 +7,9 @@ using Abp.Runtime.Caching;
 using Abp.Runtime.Security;
 using Abp.Runtime.Session;
 using Abp.UI;
-using AppFrameworkDemo.Authorization.Users;
+using AppFramework.Authorization.Users;
 
-namespace AppFrameworkDemo.Authorization.Impersonation
+namespace AppFramework.Authorization.Impersonation
 {
     public class ImpersonationManager : AppFrameworkDemoDomainServiceBase, IImpersonationManager
     {

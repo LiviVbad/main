@@ -1,6 +1,6 @@
 ﻿using Abp.Dependency;
 
-namespace AppFrameworkDemo.Web.Authentication.External
+namespace AppFramework.Web.Authentication.External
 {
     public class ExternalLoginInfoManagerFactory : ITransientDependency
     {

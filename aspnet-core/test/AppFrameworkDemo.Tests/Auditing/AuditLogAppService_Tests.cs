@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.Timing;
-using AppFrameworkDemo.Auditing;
-using AppFrameworkDemo.Auditing.Dto;
+using AppFramework.Auditing;
+using AppFramework.Auditing.Dto;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Auditing
+namespace AppFramework.Tests.Auditing
 {
     // ReSharper disable once InconsistentNaming
     public class AuditLogAppService_Tests : AppTestBase

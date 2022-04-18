@@ -103,12 +103,12 @@
     <text name="Send">Invio</text>
     <text name="PasswordReset">Reimposta password</text>
     <text name="InvalidUserNameOrEmailAddress">Nome utente o indirizzo email non validi</text>
-    <text name="PasswordResetEmail_Subject">AppFrameworkDemo reimpostazione password</text>
-    <text name="PasswordResetEmail_Title">AppFrameworkDemo reset password.</text>
+    <text name="PasswordResetEmail_Subject">AppFramework reimpostazione password</text>
+    <text name="PasswordResetEmail_Title">AppFramework reset password.</text>
     <text name="PasswordResetEmail_SubTitle">Questa mail ti è stata inviata per resettare e ri-creare la tua password.</text>
     <text name="PasswordResetEmail_ClickTheLinkBelowToResetYourPassword">Clicca sul link sotto per resettare la password:</text>
-    <text name="EmailActivation_Subject">AppFrameworkDemo attivazione utente</text>
-    <text name="EmailActivation_Title">Benvenuto in AppFrameworkDemo.</text>
+    <text name="EmailActivation_Subject">AppFramework attivazione utente</text>
+    <text name="EmailActivation_Title">Benvenuto in AppFramework.</text>
     <text name="EmailActivation_SubTitle">Questa mail ti è stata inviata per verificare la tua email.</text>
     <text name="EmailActivation_ClickTheLinkBelowToVerifyYourEmail">Per favore clicca il link sottostante per verificare la tua email:</text>
     <text name="InvalidEmailAddress">Indirizzo email non valido</text>
@@ -300,7 +300,7 @@
     <text name="SuccessfullyUnlinked">Correttamente collegato</text>
     <text name="LinkedUserDeleteWarningMessage">Il collegamento all'utente {0} verrà cancellato.</text>
     <text name="SwitchToLinkedAccountTokenErrorMessage">Token per impersonare non valido o scaduto!</text>
-    <text name="WelcomeToTheApplicationNotificationMessage">Benvenuto in AppFrameworkDemo! Il sistema delle notifiche viene utilizzato per la gestione degli eventi. Puoi selezionare le notifiche da ricevere dalla gestione delle notifiche.</text>
+    <text name="WelcomeToTheApplicationNotificationMessage">Benvenuto in AppFramework! Il sistema delle notifiche viene utilizzato per la gestione degli eventi. Puoi selezionare le notifiche da ricevere dalla gestione delle notifiche.</text>
     <text name="NewUserRegisteredNotificationDefinition">Un nuovo utente si è registrato nella piattaforma.</text>
     <text name="NewUserRegisteredNotificationMessage">Un nuovo utente si è registrato alla piattaforma. Nome utente: {userName}, indirizzo email:{emailAddress}.</text>
     <text name="SeeAllNotifications">Visualizza tutte le notifiche</text>

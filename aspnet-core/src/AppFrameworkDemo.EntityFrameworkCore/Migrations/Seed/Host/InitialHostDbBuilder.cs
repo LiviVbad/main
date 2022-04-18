@@ -1,6 +1,6 @@
-﻿using AppFrameworkDemo.EntityFrameworkCore;
+﻿using AppFramework.EntityFrameworkCore;
 
-namespace AppFrameworkDemo.Migrations.Seed.Host
+namespace AppFramework.Migrations.Seed.Host
 {
     public class InitialHostDbBuilder
     {

@@ -1,6 +1,6 @@
 ﻿using Abp.Dependency;
 
-namespace AppFrameworkDemo
+namespace AppFramework
 {
     public class AppFolders : IAppFolders, ISingletonDependency
     {

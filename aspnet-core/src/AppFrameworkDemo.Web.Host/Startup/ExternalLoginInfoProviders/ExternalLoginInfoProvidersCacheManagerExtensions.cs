@@ -1,7 +1,7 @@
 ﻿using Abp.AspNetZeroCore.Web.Authentication.External;
 using Abp.Runtime.Caching;
 
-namespace AppFrameworkDemo.Web.Startup.ExternalLoginInfoProviders
+namespace AppFramework.Web.Startup.ExternalLoginInfoProviders
 {
     public static class ExternalLoginInfoProvidersCacheManagerExtensions
     {

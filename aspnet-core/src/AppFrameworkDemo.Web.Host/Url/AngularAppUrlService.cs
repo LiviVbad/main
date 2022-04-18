@@ -1,7 +1,7 @@
 ﻿using Abp.MultiTenancy;
-using AppFrameworkDemo.Url;
+using AppFramework.Url;
 
-namespace AppFrameworkDemo.Web.Url
+namespace AppFramework.Web.Url
 {
     public class AngularAppUrlService : AppUrlServiceBase
     {

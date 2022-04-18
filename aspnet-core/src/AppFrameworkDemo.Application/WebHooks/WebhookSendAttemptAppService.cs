@@ -8,10 +8,10 @@ using Abp.BackgroundJobs;
 using Abp.Domain.Repositories;
 using Abp.Webhooks;
 using Abp.Webhooks.BackgroundWorker;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.WebHooks.Dto;
+using AppFramework.Authorization;
+using AppFramework.WebHooks.Dto;
 
-namespace AppFrameworkDemo.WebHooks
+namespace AppFramework.WebHooks
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_Webhook_ListSendAttempts)]
     public class WebhookSendAttemptAppService : AppFrameworkDemoAppServiceBase, IWebhookAttemptAppService

@@ -7,11 +7,11 @@ using Abp.Authorization;
 using Abp.Domain.Repositories;
 using Abp.Timing;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.MultiTenancy.HostDashboard.Dto;
-using AppFrameworkDemo.MultiTenancy.Payments;
+using AppFramework.Authorization;
+using AppFramework.MultiTenancy.HostDashboard.Dto;
+using AppFramework.MultiTenancy.Payments;
 
-namespace AppFrameworkDemo.MultiTenancy.HostDashboard
+namespace AppFramework.MultiTenancy.HostDashboard
 {
     [DisableAuditing]
     [AbpAuthorize(AppPermissions.Pages_Administration_Host_Dashboard)]

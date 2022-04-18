@@ -2,11 +2,11 @@
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using AppFrameworkDemo.MultiTenancy.Payments.Stripe;
-using AppFrameworkDemo.MultiTenancy.Payments.Stripe.Dto;
+using AppFramework.MultiTenancy.Payments.Stripe;
+using AppFramework.MultiTenancy.Payments.Stripe.Dto;
 using Stripe;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     public class StripeControllerBase : AppFrameworkDemoControllerBase
     {

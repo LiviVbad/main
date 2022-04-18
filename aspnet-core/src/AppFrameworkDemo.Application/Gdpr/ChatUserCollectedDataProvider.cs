@@ -8,14 +8,14 @@ using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.ObjectMapping;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Chat;
-using AppFrameworkDemo.Chat.Dto;
-using AppFrameworkDemo.Chat.Exporting;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.Chat;
+using AppFramework.Chat.Dto;
+using AppFramework.Chat.Exporting;
+using AppFramework.Dto;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.MultiTenancy;
 
-namespace AppFrameworkDemo.Gdpr
+namespace AppFramework.Gdpr
 {
     public class ChatUserCollectedDataProvider : IUserCollectedDataProvider, ITransientDependency
     {

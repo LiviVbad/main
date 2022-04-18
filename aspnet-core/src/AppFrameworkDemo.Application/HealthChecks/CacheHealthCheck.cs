@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Abp.Runtime.Caching;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace AppFrameworkDemo.HealthChecks
+namespace AppFramework.HealthChecks
 {
     public class CacheHealthCheck : IHealthCheck
     {

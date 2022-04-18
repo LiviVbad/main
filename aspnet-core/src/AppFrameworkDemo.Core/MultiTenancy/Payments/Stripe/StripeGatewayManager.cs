@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Abp.Dependency;
 using Abp.Extensions;
 using Abp.Threading;
-using AppFrameworkDemo.Editions;
+using AppFramework.Editions;
 using Stripe;
 using Stripe.Checkout;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments.Stripe
+namespace AppFramework.MultiTenancy.Payments.Stripe
 {
     public class StripeGatewayManager : AppFrameworkDemoServiceBase,
         ISupportsRecurringPayments,
@@ -19,7 +19,7 @@ namespace AppFrameworkDemo.MultiTenancy.Payments.Stripe
         private readonly EditionManager _editionManager;
         private readonly ISubscriptionPaymentRepository _subscriptionPaymentRepository;
 
-        public static string ProductName = "AppFrameworkDemo";
+        public static string ProductName = "AppFramework";
         public static string StripeSessionIdSubscriptionPaymentExtensionDataKey = "StripeSessionId";
 
         public StripeGatewayManager(
@@ -341,7 +341,7 @@ namespace AppFrameworkDemo.MultiTenancy.Payments.Stripe
 
         public string GetPlanId(string editionName, PaymentPeriodType paymentPeriodType)
         {
-            return editionName + "_" + paymentPeriodType + "_" + AppFrameworkDemoConsts.Currency;
+            return editionName + "_" + paymentPeriodType + "_" + AppFrameworkConsts.Currency;
         }
 
         public long ConvertToStripePrice(decimal amount)
@@ -375,7 +375,7 @@ namespace AppFrameworkDemo.MultiTenancy.Payments.Stripe
                 Amount = ConvertToStripePrice(amount),
                 Interval = interval,
                 Product = productId,
-                Currency = AppFrameworkDemoConsts.Currency
+                Currency = AppFrameworkConsts.Currency
             });
 
             return new StripeIdResponse

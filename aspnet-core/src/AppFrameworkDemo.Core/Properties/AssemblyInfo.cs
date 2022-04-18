@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AppFrameworkDemo.Core")]
+[assembly: AssemblyTitle("AppFramework.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("AppFrameworkDemo")]
-[assembly: AssemblyProduct("AppFrameworkDemo.Core")]
+[assembly: AssemblyCompany("AppFramework")]
+[assembly: AssemblyProduct("AppFramework.Core")]
 [assembly: AssemblyTrademark("")]
 [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 

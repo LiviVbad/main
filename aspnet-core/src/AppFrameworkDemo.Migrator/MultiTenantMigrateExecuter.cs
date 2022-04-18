@@ -9,11 +9,11 @@ using Abp.Extensions;
 using Abp.MultiTenancy;
 using Abp.Runtime.Security;
 using Microsoft.Extensions.Configuration;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.Migrations.Seed;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.Migrations.Seed;
+using AppFramework.MultiTenancy;
 
-namespace AppFrameworkDemo.Migrator
+namespace AppFramework.Migrator
 {
     public class MultiTenantMigrateExecuter : ITransientDependency
     {

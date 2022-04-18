@@ -101,12 +101,12 @@
     <text name="Send">إرسال</text>
     <text name="PasswordReset">إعادة تعيين كلمة المرور</text>
     <text name="InvalidUserNameOrEmailAddress">اسم المستخدم أو البريد الإلكتروني غير صحيح</text>
-    <text name="PasswordResetEmail_Subject">إعادة تعيين كلمة المرور AppFrameworkDemo</text>
-    <text name="PasswordResetEmail_Title">إعادة تعيين كلمة المرور AppFrameworkDemo</text>
+    <text name="PasswordResetEmail_Subject">إعادة تعيين كلمة المرور AppFramework</text>
+    <text name="PasswordResetEmail_Title">إعادة تعيين كلمة المرور AppFramework</text>
     <text name="PasswordResetEmail_SubTitle">.تم إرسال هذا البريد الإلكتروني لك لإعادة تعيين كلمة المرور</text>
     <text name="PasswordResetEmail_ClickTheLinkBelowToResetYourPassword">يرجى الضغط على الرابط بالأسفل لإعادة تعيين كلمة المرور.</text>
-    <text name="EmailActivation_Subject">AppFrameworkDemo تفعيل حساب</text>
-    <text name="EmailActivation_Title">AppFrameworkDemo مرحبا بك في</text>
+    <text name="EmailActivation_Subject">AppFramework تفعيل حساب</text>
+    <text name="EmailActivation_Title">AppFramework مرحبا بك في</text>
     <text name="EmailActivation_SubTitle">تم إرسال هذه الرساله لتأكيد بريدك الإلكتروني.</text>
     <text name="EmailActivation_ClickTheLinkBelowToVerifyYourEmail">يرجى الضغط على الرابط أدناه لتأكيد البريد الإلكتروني:</text>
     <text name="InvalidEmailAddress">البريدالالكتروني غير صحيح</text>
@@ -325,7 +325,7 @@
     <text name="SuccessfullyUnlinked">تم إزالة الربط بنجاح.</text>
     <text name="LinkedUserDeleteWarningMessage">سيتم إزالة الربط بالمستخدم {0}</text>
     <text name="SwitchToLinkedAccountTokenErrorMessage">رمز التمثيل غير صالح أو منتهية صلاحيتة!</text>
-    <text name="WelcomeToTheApplicationNotificationMessage">أهلا و سهلا بك لنظام AppFrameworkDemo! للإخطارات. نظام الإخطارات يستخدم لإعلامك عن إخطارات من النظام أو المستخدمين . يمكنك إختيار نوع الإخطارات التي تريد أن تتلقاها من خلال إعادات الإخطارات.</text>
+    <text name="WelcomeToTheApplicationNotificationMessage">أهلا و سهلا بك لنظام AppFramework! للإخطارات. نظام الإخطارات يستخدم لإعلامك عن إخطارات من النظام أو المستخدمين . يمكنك إختيار نوع الإخطارات التي تريد أن تتلقاها من خلال إعادات الإخطارات.</text>
     <text name="NewUserRegisteredNotificationDefinition">عند إنشاء حساب مستخدم جديد بالنظام.</text>
     <text name="NewUserRegisteredNotificationMessage">تم إنشاء حساب جديد بالنظام. المستخدم: {userName}, البريد الالكتروني: {emailAddress}.</text>
     <text name="SeeAllNotifications">جميع الإخطارات</text>
@@ -589,8 +589,8 @@
     <text name="IsInTrialPeriod">حاليا في الفترة التجريبية؟</text>
     <text name="FailedSubscriptionTerminations_Email_Subject">أخفاق في إنهاء الاشتراك</text>
     <text name="FailedSubscriptionTerminations_Email_Body">فشل إنهاء الاشتراك للعملاء التاليين {0} في {1}. يمكنك العثور على رسائل الخطأ المفصلة في سجلات النظام.</text>
-    <text name="SubscriptionExpire_Email_Subject"> انتهت صلاحية اشتراك AppFrameworkDemo</text>
-    <text name="SubscriptionExpire_Email_Body">انتهت صلاحية اشتراك AppFrameworkDemo في {0}.</text>
+    <text name="SubscriptionExpire_Email_Subject"> انتهت صلاحية اشتراك AppFramework</text>
+    <text name="SubscriptionExpire_Email_Body">انتهت صلاحية اشتراك AppFramework في {0}.</text>
     <text name="UnlimitedTimeSubscription">اشتراك غير محدود</text>
     <text name="SubscriptionEndDateUtc">تاريخ انتهاء الاشتراك (التوقيت العالمي)</text>
     <text name="ExpiringEditionMustBeAFreeEdition">يجب أن تكون النسخة التي تنتهي صلاحيتها نسخة مجانية</text>
@@ -771,7 +771,7 @@
     <text name="NewValue">القيمة الجديدة</text>
     <text name="Detail">تفاصيل</text>
     <text name="CreatedAtByUser"><![CDATA[تم الإنشاء في <b> {0} </ b> بواسطة <b> {1} </ b>]]></text>
-    <text name="AppFrameworkDemo.MultiTenancy.Tenant">العميل</text>
+    <text name="AppFramework.MultiTenancy.Tenant">العميل</text>
     <text name="Abp.Organizations.OrganizationUnit">الوحدة التنظيمية</text>
     <text name="Search">بحث</text>
     <text name="Pin">تثبيت</text>
@@ -815,7 +815,7 @@
     <text name="CookieConsent_Message">يستخدم هذا الموقع ملفات تعريف الارتباط لضمان حصولك على أفضل تجربة.</text>
     <text name="CookieConsent_Dismiss">موافق!</text>
      <text name="UiCustomization_Wide">واسع</text>
-    <text name="AppFrameworkDemo.Authorization.Roles.Role">دور</text>
+    <text name="AppFramework.Authorization.Roles.Role">دور</text>
     <text name="History">تاريخ</text>
     <text name="IsCookieConsentEnabled">تمكين: الموافقة على ملفات تعريف الارتباط</text>
     <text name="CookieConsent">موافقة ملفات تعريف الارتباط</text>

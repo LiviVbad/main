@@ -3,7 +3,7 @@ using System.Linq;
 using System.Security.Claims;
 using Abp.Extensions;
 
-namespace AppFrameworkDemo.Web.Authentication.External
+namespace AppFramework.Web.Authentication.External
 {
     public class WsFederationExternalLoginInfoManager : DefaultExternalLoginInfoManager
     {

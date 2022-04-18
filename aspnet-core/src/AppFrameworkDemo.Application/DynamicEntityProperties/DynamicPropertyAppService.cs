@@ -4,10 +4,10 @@ using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.DynamicEntityProperties;
 using Abp.UI.Inputs;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.DynamicEntityProperties.Dto;
+using AppFramework.Authorization;
+using AppFramework.DynamicEntityProperties.Dto;
 
-namespace AppFrameworkDemo.DynamicEntityProperties
+namespace AppFramework.DynamicEntityProperties
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_DynamicProperties)]
     public class DynamicPropertyAppService : AppFrameworkDemoAppServiceBase, IDynamicPropertyAppService

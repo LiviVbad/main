@@ -3,6 +3,6 @@
 This folder contains localization files for the application.
 
 You can add more languages here with appropriate postfixes.
-For instance, to add a German localization, you can add "AppFrameworkDemo-de.xml" or "AppFrameworkDemo-de-DE.xml".
+For instance, to add a German localization, you can add "AppFramework-de.xml" or "AppFramework-de-DE.xml".
 
 See http://www.aspnetboilerplate.com/Pages/Documents/Localization for more information.

@@ -4,27 +4,19 @@
     <TargetFramework>net6.0</TargetFramework>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <PreserveCompilationContext>true</PreserveCompilationContext>
-    <AssemblyName>AppFrameworkDemo.Web.Host</AssemblyName>
+    <AssemblyName>AppFramework.Web.Public</AssemblyName>
     <OutputType>Exe</OutputType>
-    <PackageId>AppFrameworkDemo.Web.Host</PackageId>
+    <PackageId>AppFrameworkDemo.Web.FrontEnd</PackageId>
     <UserSecretsId>MyCompanyName-AppFrameworkDemo-894FDFC1-6482-4A56-926A-3C46C9FE0329</UserSecretsId>
-    <RootNamespace>AppFrameworkDemo.Web</RootNamespace>
+    <RootNamespace>AppFramework.Web.Public</RootNamespace>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <TypeScriptToolsVersion>4.3</TypeScriptToolsVersion>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="App_Data\**" />
-    <Content Remove="App_Data\**" />
-    <EmbeddedResource Remove="App_Data\**" />
-    <None Remove="App_Data\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Remove="wwwroot\swagger\ui\index.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="wwwroot\Plugins\.gitkeep" />
+    <None Include="App.config" />
     <None Update="Dockerfile">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -32,15 +24,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
-    <None Update="wwwroot\**\*">
+    <None Update="wwwroot\**\*;Areas\**\*;Views\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppFrameworkDemo.Web.Core\AppFrameworkDemo.Web.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Abp.Castle.Log4Net" Version="7.1.0" />
     <PackageReference Include="AspNetCore.HealthChecks.UI" Version="5.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="5.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="5.0.1" />
@@ -49,11 +37,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="wwwroot\swagger\ui\index.html" />
+    <PackageReference Include="Abp.Castle.Log4Net" Version="7.1.0" />
+    <PackageReference Include="Abp.AspNetCore.SignalR" Version="7.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\Plugins\" />
+    <ProjectReference Include="..\AppFrameworkDemo.Web.Core\AppFramework.Web.Core.csproj" />
   </ItemGroup>
 </Project>

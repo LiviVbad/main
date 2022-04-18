@@ -8,9 +8,9 @@ using IdentityServer4.Services;
 using IdentityServer4.Stores;
 using IdentityServer4.Validation;
 using Microsoft.AspNetCore.Mvc;
-using AppFrameworkDemo.Web.Models.Consent;
+using AppFramework.Web.Models.Consent;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     public class ConsentController : AppFrameworkDemoControllerBase
     {

@@ -12,10 +12,10 @@ using Abp.Extensions;
 using Abp.Localization;
 using Abp.MultiTenancy;
 using Abp.UI;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Localization.Dto;
+using AppFramework.Authorization;
+using AppFramework.Localization.Dto;
 
-namespace AppFrameworkDemo.Localization
+namespace AppFramework.Localization
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_Languages)]
     public class LanguageAppService : AppFrameworkDemoAppServiceBase, ILanguageAppService

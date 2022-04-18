@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 
-namespace AppFrameworkDemo.Web.Authentication.JwtBearer
+namespace AppFramework.Web.Authentication.JwtBearer
 {
     public interface IAsyncSecurityTokenValidator
     {

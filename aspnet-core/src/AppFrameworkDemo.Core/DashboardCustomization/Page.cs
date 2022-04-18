@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.DashboardCustomization
+namespace AppFramework.DashboardCustomization
 {
     public class Page
     {

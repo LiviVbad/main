@@ -4,10 +4,10 @@ using Castle.Windsor.MsDependencyInjection;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.Identity;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.Identity;
 
-namespace AppFrameworkDemo.Test.Base.DependencyInjection
+namespace AppFramework.Test.Base.DependencyInjection
 {
     public static class ServiceCollectionRegistrar
     {

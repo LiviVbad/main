@@ -3,7 +3,7 @@ using Abp.Configuration.Startup;
 using Abp.Localization;
 using Abp.MultiTenancy;
 
-namespace AppFrameworkDemo.Authorization
+namespace AppFramework.Authorization
 {
     /// <summary>
     /// Application's authorization provider.
@@ -120,7 +120,7 @@ namespace AppFrameworkDemo.Authorization
 
         private static ILocalizableString L(string name)
         {
-            return new LocalizableString(name, AppFrameworkDemoConsts.LocalizationSourceName);
+            return new LocalizableString(name, AppFrameworkConsts.LocalizationSourceName);
         }
     }
 }

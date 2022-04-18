@@ -1,6 +1,6 @@
 ﻿using Abp;
 
-namespace AppFrameworkDemo.Friendships.Cache
+namespace AppFramework.Friendships.Cache
 {
     public interface IUserFriendsCache
     {

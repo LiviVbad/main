@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AppFrameworkDemo.Migrations
+namespace AppFramework.Migrations
 {
     public partial class Add_Description_To_Binary_Object : Migration
     {

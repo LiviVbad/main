@@ -3,7 +3,7 @@ using Abp.BackgroundJobs;
 using Abp.Dependency;
 using Abp.Domain.Uow;
 
-namespace AppFrameworkDemo.MultiTenancy.Demo
+namespace AppFramework.MultiTenancy.Demo
 {
     public class TenantDemoDataBuilderJob : AsyncBackgroundJob<int>, ITransientDependency
     {

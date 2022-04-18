@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Abp.Domain.Repositories;
-using AppFrameworkDemo.Chat.Dto;
+using AppFramework.Chat.Dto;
 using System.Linq;
 using System.Threading.Tasks;
 using Abp;
@@ -12,10 +12,10 @@ using Abp.RealTime;
 using Abp.Runtime.Session;
 using Abp.Timing;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Friendships.Cache;
-using AppFrameworkDemo.Friendships.Dto;
+using AppFramework.Friendships.Cache;
+using AppFramework.Friendships.Dto;
 
-namespace AppFrameworkDemo.Chat
+namespace AppFramework.Chat
 {
     [AbpAuthorize]
     public class ChatAppService : AppFrameworkDemoAppServiceBase, IChatAppService

@@ -12,11 +12,11 @@ using Abp.Runtime.Caching;
 using Abp.Runtime.Security;
 using Abp.Timing;
 using Microsoft.IdentityModel.Tokens;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Authorization.Delegation;
-using AppFrameworkDemo.Authorization;
+using AppFramework.Authorization.Users;
+using AppFramework.Authorization.Delegation;
+using AppFramework.Authorization;
 
-namespace AppFrameworkDemo.Web.Authentication.JwtBearer
+namespace AppFramework.Web.Authentication.JwtBearer
 {
     public class AppFrameworkDemoAsyncJwtSecurityTokenHandler : IAsyncSecurityTokenValidator
     {

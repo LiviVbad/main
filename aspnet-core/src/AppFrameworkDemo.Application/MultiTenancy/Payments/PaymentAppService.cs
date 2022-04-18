@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Abp.Authorization;
 using Abp.Runtime.Session;
 using Abp.UI;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.Editions.Dto;
-using AppFrameworkDemo.MultiTenancy.Dto;
-using AppFrameworkDemo.MultiTenancy.Payments.Dto;
+using AppFramework.Authorization;
+using AppFramework.Editions;
+using AppFramework.Editions.Dto;
+using AppFramework.MultiTenancy.Dto;
+using AppFramework.MultiTenancy.Payments.Dto;
 using Abp.Application.Services.Dto;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
@@ -18,7 +18,7 @@ using Abp.Collections.Extensions;
 using Abp.Linq.Extensions;
 using Microsoft.AspNetCore.Authorization;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments
+namespace AppFramework.MultiTenancy.Payments
 {
     public class PaymentAppService : AppFrameworkDemoAppServiceBase, IPaymentAppService
     {

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using AppFrameworkDemo.Chat;
+using AppFramework.Chat;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     public interface IUserEmailer
     {

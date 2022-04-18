@@ -10,18 +10,18 @@ using Abp.Domain.Uow;
 using Abp.Extensions;
 using Abp.Localization;
 using Abp.Net.Mail;
-using AppFrameworkDemo.Chat;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.Localization;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.Chat;
+using AppFramework.Editions;
+using AppFramework.Localization;
+using AppFramework.MultiTenancy;
 using System.Net.Mail;
 using System.Web;
 using Abp.Runtime.Security;
 using Abp.Runtime.Session;
 using Abp.UI;
-using AppFrameworkDemo.Net.Emailing;
+using AppFramework.Net.Emailing;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     /// <summary>
     /// Used to send email to users.

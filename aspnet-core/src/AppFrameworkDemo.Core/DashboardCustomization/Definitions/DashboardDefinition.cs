@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AppFrameworkDemo.DashboardCustomization.Definitions
+namespace AppFramework.DashboardCustomization.Definitions
 {
     public class DashboardDefinition
     {

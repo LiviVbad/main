@@ -4,9 +4,9 @@ using Abp.Application.Editions;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using Abp.MultiTenancy;
-using AppFrameworkDemo.Editions;
+using AppFramework.Editions;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments
+namespace AppFramework.MultiTenancy.Payments
 {
     [Table("AppSubscriptionPayments")]
     [MultiTenancySide(MultiTenancySides.Host)]

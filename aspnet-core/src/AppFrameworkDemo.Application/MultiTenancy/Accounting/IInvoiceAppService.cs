@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
-using AppFrameworkDemo.MultiTenancy.Accounting.Dto;
+using AppFramework.MultiTenancy.Accounting.Dto;
 
-namespace AppFrameworkDemo.MultiTenancy.Accounting
+namespace AppFramework.MultiTenancy.Accounting
 {
     public interface IInvoiceAppService
     {

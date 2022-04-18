@@ -8,13 +8,13 @@ using Abp.Notifications;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.Notifications;
+using AppFramework.Authorization;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.Notifications;
 
-namespace AppFrameworkDemo.Migrations.Seed.Tenants
+namespace AppFramework.Migrations.Seed.Tenants
 {
     public class TenantRoleAndUserBuilder
     {

@@ -3,7 +3,7 @@ using System.Linq;
 using GraphQL;
 using GraphQL.Language.AST;
 
-namespace AppFrameworkDemo.Core.Extensions
+namespace AppFramework.Core.Extensions
 {
     public static class ContextExtensions
     {

@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Abp.Dependency;
 
-namespace AppFrameworkDemo.Authentication.TwoFactor.Google
+namespace AppFramework.Authentication.TwoFactor.Google
 {
     /// <summary>
     /// This code taken from https://github.com/BrandonPotter/GoogleAuthenticator

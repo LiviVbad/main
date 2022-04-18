@@ -5,7 +5,7 @@ using Abp.UI;
 using PayPalCheckoutSdk.Core;
 using PayPalCheckoutSdk.Orders;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments.Paypal
+namespace AppFramework.MultiTenancy.Payments.Paypal
 {
     public class PayPalGatewayManager : AppFrameworkDemoServiceBase, ITransientDependency
     {

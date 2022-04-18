@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Abp.Extensions;
 using Microsoft.Extensions.Configuration;
-using AppFrameworkDemo.Configuration;
+using AppFramework.Configuration;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments.Paypal
+namespace AppFramework.MultiTenancy.Payments.Paypal
 {
     public class PayPalPaymentGatewayConfiguration : IPaymentGatewayConfiguration
     {

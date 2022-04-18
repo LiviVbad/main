@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using Abp.Extensions;
 using Abp.Runtime.Session;
 using Abp.Timing.Timezone;
-using AppFrameworkDemo.Auditing.Dto;
-using AppFrameworkDemo.DataExporting.Excel.NPOI;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Storage;
+using AppFramework.Auditing.Dto;
+using AppFramework.DataExporting.Excel.NPOI;
+using AppFramework.Dto;
+using AppFramework.Storage;
 using NPOI.SS.UserModel;
 
-namespace AppFrameworkDemo.Auditing.Exporting
+namespace AppFramework.Auditing.Exporting
 {
     public class AuditLogListExcelExporter : NpoiExcelExporterBase, IAuditLogListExcelExporter
     {

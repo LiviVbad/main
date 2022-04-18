@@ -11,7 +11,7 @@ using GraphQL.Resolvers;
 using GraphQL.Types;
 using Microsoft.EntityFrameworkCore;
 
-namespace AppFrameworkDemo.Core.Base
+namespace AppFramework.Core.Base
 {
     public abstract class AppFrameworkDemoQueryBase<TField,TResult> : ITransientDependency
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AppFrameworkDemo.Migrations
+namespace AppFramework.Migrations
 {
     public partial class Updated_SubscribableEdition : Migration
     {

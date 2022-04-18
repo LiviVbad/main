@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Abp.MultiTenancy;
-using AppFrameworkDemo.Authorization;
+using AppFramework.Authorization;
 
-namespace AppFrameworkDemo.DashboardCustomization.Definitions
+namespace AppFramework.DashboardCustomization.Definitions
 {
     public class DashboardConfiguration
     {
@@ -19,7 +19,7 @@ namespace AppFrameworkDemo.DashboardCustomization.Definitions
 
             // These are global filter which all widgets can use
             var dateRangeFilter = new WidgetFilterDefinition(
-                AppFrameworkDemoDashboardCustomizationConsts.Filters.FilterDateRangePicker,
+                AppFrameworkDashboardCustomizationConsts.Filters.FilterDateRangePicker,
                 "FilterDateRangePicker"
             );
 
@@ -41,7 +41,7 @@ namespace AppFrameworkDemo.DashboardCustomization.Definitions
             };
 
             var dailySales = new WidgetDefinition(
-                AppFrameworkDemoDashboardCustomizationConsts.Widgets.Tenant.DailySales,
+                AppFrameworkDashboardCustomizationConsts.Widgets.Tenant.DailySales,
                 "WidgetDailySales",
                 side: MultiTenancySides.Tenant,
                 usedWidgetFilters: new List<string> { dateRangeFilter.Id },
@@ -49,38 +49,38 @@ namespace AppFrameworkDemo.DashboardCustomization.Definitions
             );
 
             var generalStats = new WidgetDefinition(
-                AppFrameworkDemoDashboardCustomizationConsts.Widgets.Tenant.GeneralStats,
+                AppFrameworkDashboardCustomizationConsts.Widgets.Tenant.GeneralStats,
                 "WidgetGeneralStats",
                 side: MultiTenancySides.Tenant,
                 permissions: tenantWidgetsDefaultPermission.Concat(new List<string>{ AppPermissions.Pages_Administration_AuditLogs }).ToList());
 
             var profitShare = new WidgetDefinition(
-                AppFrameworkDemoDashboardCustomizationConsts.Widgets.Tenant.ProfitShare,
+                AppFrameworkDashboardCustomizationConsts.Widgets.Tenant.ProfitShare,
                 "WidgetProfitShare",
                 side: MultiTenancySides.Tenant,
                 permissions: tenantWidgetsDefaultPermission);
 
             var memberActivity = new WidgetDefinition(
-                AppFrameworkDemoDashboardCustomizationConsts.Widgets.Tenant.MemberActivity,
+                AppFrameworkDashboardCustomizationConsts.Widgets.Tenant.MemberActivity,
                 "WidgetMemberActivity",
                 side: MultiTenancySides.Tenant,
                 permissions: tenantWidgetsDefaultPermission);
 
             var regionalStats = new WidgetDefinition(
-                AppFrameworkDemoDashboardCustomizationConsts.Widgets.Tenant.RegionalStats,
+                AppFrameworkDashboardCustomizationConsts.Widgets.Tenant.RegionalStats,
                 "WidgetRegionalStats",
                 side: MultiTenancySides.Tenant,
                 permissions: tenantWidgetsDefaultPermission);
 
             var salesSummary = new WidgetDefinition(
-                AppFrameworkDemoDashboardCustomizationConsts.Widgets.Tenant.SalesSummary,
+                AppFrameworkDashboardCustomizationConsts.Widgets.Tenant.SalesSummary,
                 "WidgetSalesSummary",
                 usedWidgetFilters: new List<string>() { dateRangeFilter.Id },
                 side: MultiTenancySides.Tenant,
                 permissions: tenantWidgetsDefaultPermission);
 
             var topStats = new WidgetDefinition(
-                AppFrameworkDemoDashboardCustomizationConsts.Widgets.Tenant.TopStats,
+                AppFrameworkDashboardCustomizationConsts.Widgets.Tenant.TopStats,
                 "WidgetTopStats",
                 side: MultiTenancySides.Tenant,
                 permissions: tenantWidgetsDefaultPermission);
@@ -104,31 +104,31 @@ namespace AppFrameworkDemo.DashboardCustomization.Definitions
             };
 
             var incomeStatistics = new WidgetDefinition(
-                AppFrameworkDemoDashboardCustomizationConsts.Widgets.Host.IncomeStatistics,
+                AppFrameworkDashboardCustomizationConsts.Widgets.Host.IncomeStatistics,
                 "WidgetIncomeStatistics",
                 side: MultiTenancySides.Host,
                 permissions: hostWidgetsDefaultPermission);
 
             var hostTopStats = new WidgetDefinition(
-                AppFrameworkDemoDashboardCustomizationConsts.Widgets.Host.TopStats,
+                AppFrameworkDashboardCustomizationConsts.Widgets.Host.TopStats,
                 "WidgetTopStats",
                 side: MultiTenancySides.Host,
                 permissions: hostWidgetsDefaultPermission);
 
             var editionStatistics = new WidgetDefinition(
-                AppFrameworkDemoDashboardCustomizationConsts.Widgets.Host.EditionStatistics,
+                AppFrameworkDashboardCustomizationConsts.Widgets.Host.EditionStatistics,
                 "WidgetEditionStatistics",
                 side: MultiTenancySides.Host,
                 permissions: hostWidgetsDefaultPermission);
 
             var subscriptionExpiringTenants = new WidgetDefinition(
-                AppFrameworkDemoDashboardCustomizationConsts.Widgets.Host.SubscriptionExpiringTenants,
+                AppFrameworkDashboardCustomizationConsts.Widgets.Host.SubscriptionExpiringTenants,
                 "WidgetSubscriptionExpiringTenants",
                 side: MultiTenancySides.Host,
                 permissions: hostWidgetsDefaultPermission);
 
             var recentTenants = new WidgetDefinition(
-                AppFrameworkDemoDashboardCustomizationConsts.Widgets.Host.RecentTenants,
+                AppFrameworkDashboardCustomizationConsts.Widgets.Host.RecentTenants,
                 "WidgetRecentTenants",
                 side: MultiTenancySides.Host,
                 usedWidgetFilters: new List<string>() { dateRangeFilter.Id },
@@ -150,7 +150,7 @@ namespace AppFrameworkDemo.DashboardCustomization.Definitions
 
             // Create dashboard
             var defaultTenantDashboard = new DashboardDefinition(
-                AppFrameworkDemoDashboardCustomizationConsts.DashboardNames.DefaultTenantDashboard,
+                AppFrameworkDashboardCustomizationConsts.DashboardNames.DefaultTenantDashboard,
                 new List<string>
                 {
                     generalStats.Id, dailySales.Id, profitShare.Id, memberActivity.Id, regionalStats.Id, topStats.Id, salesSummary.Id
@@ -159,7 +159,7 @@ namespace AppFrameworkDemo.DashboardCustomization.Definitions
             DashboardDefinitions.Add(defaultTenantDashboard);
 
             var defaultHostDashboard = new DashboardDefinition(
-                AppFrameworkDemoDashboardCustomizationConsts.DashboardNames.DefaultHostDashboard,
+                AppFrameworkDashboardCustomizationConsts.DashboardNames.DefaultHostDashboard,
                 new List<string>
                 {
                     incomeStatistics.Id,

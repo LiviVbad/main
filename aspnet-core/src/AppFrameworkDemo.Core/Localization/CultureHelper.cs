@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace AppFrameworkDemo.Localization
+namespace AppFramework.Localization
 {
     public static class CultureHelper
     {

@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using Abp.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.UiCustomization;
-using AppFrameworkDemo.Web.UiCustomization.Metronic;
+using AppFramework.Configuration;
+using AppFramework.UiCustomization;
+using AppFramework.Web.UiCustomization.Metronic;
 
-namespace AppFrameworkDemo.Web.UiCustomization
+namespace AppFramework.Web.UiCustomization
 {
     public class UiThemeCustomizerFactory : IUiThemeCustomizerFactory
     {

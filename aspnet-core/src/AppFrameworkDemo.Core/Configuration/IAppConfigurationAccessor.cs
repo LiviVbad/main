@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace AppFrameworkDemo.Configuration
+namespace AppFramework.Configuration
 {
     public interface IAppConfigurationAccessor
     {

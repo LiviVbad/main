@@ -2,9 +2,9 @@
 using Abp.Domain.Uow;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
-using AppFrameworkDemo.Authorization.Roles;
+using AppFramework.Authorization.Roles;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     public class UserClaimsPrincipalFactory : AbpUserClaimsPrincipalFactory<User, Role>
     {

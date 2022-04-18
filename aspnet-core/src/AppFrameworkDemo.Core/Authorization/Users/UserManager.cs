@@ -18,11 +18,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Security;
+using AppFramework.Authorization.Roles;
+using AppFramework.Configuration;
+using AppFramework.Security;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     /// <summary>
     /// User manager.
@@ -227,7 +227,7 @@ namespace AppFrameworkDemo.Authorization.Users
 
         private new string L(string name)
         {
-            return _localizationManager.GetString(AppFrameworkDemoConsts.LocalizationSourceName, name);
+            return _localizationManager.GetString(AppFrameworkConsts.LocalizationSourceName, name);
         }
 
         protected string L(string name, params object[] args) => string.Format(L(name), args);

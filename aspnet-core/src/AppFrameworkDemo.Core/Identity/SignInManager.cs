@@ -11,12 +11,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users;
+using AppFramework.Configuration;
+using AppFramework.MultiTenancy;
 
-namespace AppFrameworkDemo.Identity
+namespace AppFramework.Identity
 {
     public class SignInManager : AbpSignInManager<Tenant, Role, User>
     {

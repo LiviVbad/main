@@ -5,16 +5,16 @@ using Abp.Localization;
 using Abp.MultiTenancy;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.Editions.Dto;
-using AppFrameworkDemo.Features;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Authorization.Users;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.Editions;
+using AppFramework.Editions.Dto;
+using AppFramework.Features;
+using AppFramework.Test.Base;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Features
+namespace AppFramework.Tests.Features
 {
     // ReSharper disable once InconsistentNaming
     public class Features_Tests : AppTestBase
@@ -101,7 +101,7 @@ namespace AppFrameworkDemo.Tests.Features
                         })
             );
 
-            exception.Message.ShouldContain(_localizationManager.GetString(AppFrameworkDemoConsts.LocalizationSourceName, "MaximumUserCount_Error_Message"));
+            exception.Message.ShouldContain(_localizationManager.GetString(AppFrameworkConsts.LocalizationSourceName, "MaximumUserCount_Error_Message"));
         }
     }
 }

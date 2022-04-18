@@ -2,9 +2,9 @@
 using Abp.Application.Navigation;
 using Abp.Extensions;
 using Abp.Localization;
-using AppFrameworkDemo.Sessions.Dto;
+using AppFramework.Sessions.Dto;
 
-namespace AppFrameworkDemo.Web.Public.Views.Shared.Components.Header
+namespace AppFramework.Web.Public.Views.Shared.Components.Header
 {
     public class HeaderViewModel
     {

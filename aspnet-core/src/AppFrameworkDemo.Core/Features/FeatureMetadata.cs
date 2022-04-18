@@ -1,7 +1,7 @@
 using System;
 using Abp.Localization;
 
-namespace AppFrameworkDemo.Features
+namespace AppFramework.Features
 {
     public class FeatureMetadata
     {

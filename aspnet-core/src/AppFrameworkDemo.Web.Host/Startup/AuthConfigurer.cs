@@ -13,10 +13,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Web.Authentication.JwtBearer;
+using AppFramework.Configuration;
+using AppFramework.Web.Authentication.JwtBearer;
 
-namespace AppFrameworkDemo.Web.Startup
+namespace AppFramework.Web.Startup
 {
     public static class AuthConfigurer
     {

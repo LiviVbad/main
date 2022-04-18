@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using AppFrameworkDemo.Authorization.Users;
+using AppFramework.Authorization.Users;
 
-namespace AppFrameworkDemo.WebHooks
+namespace AppFramework.WebHooks
 {
     public interface IAppWebhookPublisher
     {

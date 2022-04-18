@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace AppFrameworkDemo.Web.Swagger
+namespace AppFramework.Web.Swagger
 {
     public static class SwaggerExtensions
     {

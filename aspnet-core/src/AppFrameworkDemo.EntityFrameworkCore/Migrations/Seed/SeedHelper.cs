@@ -5,11 +5,11 @@ using Abp.Domain.Uow;
 using Abp.EntityFrameworkCore.Uow;
 using Abp.MultiTenancy;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.Migrations.Seed.Host;
-using AppFrameworkDemo.Migrations.Seed.Tenants;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.Migrations.Seed.Host;
+using AppFramework.Migrations.Seed.Tenants;
 
-namespace AppFrameworkDemo.Migrations.Seed
+namespace AppFramework.Migrations.Seed
 {
     public static class SeedHelper
     {

@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 using Abp.Events.Bus;
 using Abp.Runtime.Session;
-using AppFrameworkDemo.MultiTenancy.Payments;
+using AppFramework.MultiTenancy.Payments;
 
-namespace AppFrameworkDemo.MultiTenancy
+namespace AppFramework.MultiTenancy
 {
     public class SubscriptionAppService : AppFrameworkDemoAppServiceBase, ISubscriptionAppService
     {

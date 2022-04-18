@@ -5,7 +5,7 @@ using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using NPOI.HSSF.UserModel;
 
-namespace AppFrameworkDemo.DataExporting.Excel.NPOI
+namespace AppFramework.DataExporting.Excel.NPOI
 {
     public abstract class NpoiExcelImporterBase<TEntity>
     {

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using AppFrameworkDemo.Common;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Common;
+using AppFramework.Test.Base;
 using Shouldly;
 
-namespace AppFrameworkDemo.Tests.CommonLookup
+namespace AppFramework.Tests.CommonLookup
 {
     // ReSharper disable once InconsistentNaming
     public class CommonLookupAppService_Tests : AppTestBase

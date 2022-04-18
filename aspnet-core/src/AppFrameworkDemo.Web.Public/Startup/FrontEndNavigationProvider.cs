@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Navigation;
 using Abp.Localization;
 
-namespace AppFrameworkDemo.Web.Public.Startup
+namespace AppFramework.Web.Public.Startup
 {
     /// <summary>
     /// This class defines font-end web site's menu.
@@ -73,7 +73,7 @@ namespace AppFrameworkDemo.Web.Public.Startup
 
         private static ILocalizableString L(string name)
         {
-            return new LocalizableString(name, AppFrameworkDemoConsts.LocalizationSourceName);
+            return new LocalizableString(name, AppFrameworkConsts.LocalizationSourceName);
         }
     }
 }

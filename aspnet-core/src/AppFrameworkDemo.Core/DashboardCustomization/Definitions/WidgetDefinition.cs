@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Abp.MultiTenancy;
 
-namespace AppFrameworkDemo.DashboardCustomization.Definitions
+namespace AppFramework.DashboardCustomization.Definitions
 {
     public class WidgetDefinition
     {

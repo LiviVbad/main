@@ -7,13 +7,13 @@ using Abp.Extensions;
 using Abp.Runtime.Session;
 using Abp.Timing;
 using Microsoft.AspNetCore.Mvc;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Identity;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.Url;
-using AppFrameworkDemo.Web.Controllers;
+using AppFramework.Authorization.Users;
+using AppFramework.Identity;
+using AppFramework.MultiTenancy;
+using AppFramework.Url;
+using AppFramework.Web.Controllers;
 
-namespace AppFrameworkDemo.Web.Public.Controllers
+namespace AppFramework.Web.Public.Controllers
 {
     public class AccountController : AppFrameworkDemoControllerBase
     {

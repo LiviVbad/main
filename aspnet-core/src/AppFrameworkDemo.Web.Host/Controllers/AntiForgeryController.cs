@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Antiforgery;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     public class AntiForgeryController : AppFrameworkDemoControllerBase
     {

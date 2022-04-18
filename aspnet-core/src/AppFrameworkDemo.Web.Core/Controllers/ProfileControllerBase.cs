@@ -11,13 +11,13 @@ using Abp.UI;
 using Abp.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using AppFrameworkDemo.Authorization.Users.Profile;
-using AppFrameworkDemo.Authorization.Users.Profile.Dto;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Storage;
-using AppFrameworkDemo.Web.Helpers;
+using AppFramework.Authorization.Users.Profile;
+using AppFramework.Authorization.Users.Profile.Dto;
+using AppFramework.Dto;
+using AppFramework.Storage;
+using AppFramework.Web.Helpers;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     public abstract class ProfileControllerBase : AppFrameworkDemoControllerBase
     {

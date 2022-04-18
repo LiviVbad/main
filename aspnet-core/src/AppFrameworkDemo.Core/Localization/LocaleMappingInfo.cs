@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Localization
+﻿namespace AppFramework.Localization
 {
     public class LocaleMappingInfo
     {

@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "AppFrameworkDemo.Web.Core": {
+    "AppFramework.Web.Core": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

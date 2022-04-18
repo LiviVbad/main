@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Authorization
+﻿namespace AppFramework.Authorization
 {
     /// <summary>
     /// Defines string constants for application's permission names.

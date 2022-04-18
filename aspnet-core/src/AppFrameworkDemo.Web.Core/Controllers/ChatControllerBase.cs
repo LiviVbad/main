@@ -6,10 +6,10 @@ using Abp.IO.Extensions;
 using Abp.UI;
 using Abp.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using AppFrameworkDemo.Chat;
-using AppFrameworkDemo.Storage;
+using AppFramework.Chat;
+using AppFramework.Storage;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     public class ChatControllerBase : AppFrameworkDemoControllerBase
     {

@@ -11,15 +11,16 @@ using Abp.EntityHistory;
 using Abp.Extensions;
 using Abp.Linq.Extensions;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Auditing.Dto;
-using AppFrameworkDemo.Auditing.Exporting;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.EntityHistory;
-using EntityHistoryHelper = AppFrameworkDemo.EntityHistory.EntityHistoryHelper;
+using AppFramework.Auditing.Dto;
+using AppFramework.Auditing.Exporting;
+using AppFramework.Authorization;
+using AppFramework.Authorization.Users;
+using AppFramework.Dto;
+using AppFramework.EntityHistory;
+using EntityHistoryHelper = AppFramework.EntityHistory.EntityHistoryHelper;
+using AppFramework.Auditing;
 
-namespace AppFrameworkDemo.Auditing
+namespace AppFramework.Auditing
 {
     [DisableAuditing]
     [AbpAuthorize(AppPermissions.Pages_Administration_AuditLogs)]

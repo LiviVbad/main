@@ -6,11 +6,11 @@ using Abp.MultiTenancy;
 using Abp.RealTime;
 using Abp.Runtime.Session;
 using Abp.UI;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Chat;
-using AppFrameworkDemo.Friendships.Dto;
+using AppFramework.Authorization.Users;
+using AppFramework.Chat;
+using AppFramework.Friendships.Dto;
 
-namespace AppFrameworkDemo.Friendships
+namespace AppFramework.Friendships
 {
     [AbpAuthorize]
     public class FriendshipAppService : AppFrameworkDemoAppServiceBase, IFriendshipAppService

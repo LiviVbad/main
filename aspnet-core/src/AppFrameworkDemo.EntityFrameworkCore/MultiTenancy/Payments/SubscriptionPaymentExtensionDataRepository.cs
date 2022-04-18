@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Abp.EntityFrameworkCore;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.EntityFrameworkCore.Repositories;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.EntityFrameworkCore.Repositories;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments
+namespace AppFramework.MultiTenancy.Payments
 {
     public class SubscriptionPaymentExtensionDataRepository : AppFrameworkDemoRepositoryBase<SubscriptionPaymentExtensionData, long>,
         ISubscriptionPaymentExtensionDataRepository

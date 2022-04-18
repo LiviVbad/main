@@ -11,9 +11,9 @@ using Abp.Extensions;
 using Abp.Linq.Extensions;
 using Abp.Runtime.Session;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization.Users.Dto;
+using AppFramework.Authorization.Users.Dto;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     [AbpAuthorize]
     public class UserLoginAppService : AppFrameworkDemoAppServiceBase, IUserLoginAppService

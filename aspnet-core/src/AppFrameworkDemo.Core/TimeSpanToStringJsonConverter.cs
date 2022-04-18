@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System;
 using Abp.Extensions;
 
-namespace AppFrameworkDemo
+namespace AppFramework
 {
     public class TimeSpanToJsonStringConverter : JsonConverter
     {

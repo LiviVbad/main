@@ -1,6 +1,6 @@
 using Abp.Runtime.Caching;
 
-namespace AppFrameworkDemo.Authorization.Users.Profile.Cache
+namespace AppFramework.Authorization.Users.Profile.Cache
 {
     public static class SmsVerificationCodeCacheExtensions
     {

@@ -5,11 +5,11 @@ using Abp.Dependency;
 using Abp.UI;
 using Castle.Core.Logging;
 using Microsoft.AspNetCore.Hosting;
-using AppFrameworkDemo.Configuration;
+using AppFramework.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace AppFrameworkDemo.Web.Configuration
+namespace AppFramework.Web.Configuration
 {
     public class AppConfigurationWriter : IAppConfigurationWriter, ISingletonDependency
     {

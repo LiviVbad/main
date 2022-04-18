@@ -3,7 +3,7 @@ using Abp;
 using Abp.Configuration;
 using Abp.Extensions;
 
-namespace AppFrameworkDemo.Web.UiCustomization.Metronic
+namespace AppFramework.Web.UiCustomization.Metronic
 {
     public class UiThemeCustomizerBase
     {

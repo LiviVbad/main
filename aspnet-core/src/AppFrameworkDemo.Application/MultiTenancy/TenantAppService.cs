@@ -13,12 +13,12 @@ using Abp.Extensions;
 using Abp.Linq.Extensions;
 using Abp.Runtime.Security;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Editions.Dto;
-using AppFrameworkDemo.MultiTenancy.Dto;
-using AppFrameworkDemo.Url;
+using AppFramework.Authorization;
+using AppFramework.Editions.Dto;
+using AppFramework.MultiTenancy.Dto;
+using AppFramework.Url;
 
-namespace AppFrameworkDemo.MultiTenancy
+namespace AppFramework.MultiTenancy
 {
     [AbpAuthorize(AppPermissions.Pages_Tenants)]
     public class TenantAppService : AppFrameworkDemoAppServiceBase, ITenantAppService

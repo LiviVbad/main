@@ -1,6 +1,6 @@
 ﻿using Abp.Extensions;
 
-namespace AppFrameworkDemo.Configuration
+namespace AppFramework.Configuration
 {
     public class AzureKeyVaultConfiguration
     {

@@ -11,10 +11,10 @@ using Abp.Domain.Repositories;
 using Abp.Runtime.Session;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.MultiTenancy;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     [AbpAuthorize]
     public class UserLinkAppService : AppFrameworkDemoAppServiceBase, IUserLinkAppService

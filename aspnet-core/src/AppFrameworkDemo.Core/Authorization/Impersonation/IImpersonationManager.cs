@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Abp.Domain.Services;
 
-namespace AppFrameworkDemo.Authorization.Impersonation
+namespace AppFramework.Authorization.Impersonation
 {
     public interface IImpersonationManager : IDomainService
     {

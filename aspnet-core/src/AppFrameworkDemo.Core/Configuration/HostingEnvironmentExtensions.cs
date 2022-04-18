@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
-namespace AppFrameworkDemo.Configuration
+namespace AppFramework.Configuration
 {
     public static class HostingEnvironmentExtensions
     {

@@ -16,11 +16,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Identity;
-using AppFrameworkDemo.Web.HealthCheck;
+using AppFramework.Configuration;
+using AppFramework.Identity;
+using AppFramework.Web.HealthCheck;
 
-namespace AppFrameworkDemo.Web.Public.Startup
+namespace AppFramework.Web.Public.Startup
 {
     public class Startup
     {

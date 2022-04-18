@@ -5,22 +5,22 @@ using Abp;
 using Abp.Application.Services.Dto;
 using Abp.Localization;
 using Castle.MicroKernel.Registration;
-using AppFrameworkDemo.Localization;
-using AppFrameworkDemo.Localization.Dto;
-using AppFrameworkDemo.Migrations.Seed.Host;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Localization;
+using AppFramework.Localization.Dto;
+using AppFramework.Migrations.Seed.Host;
+using AppFramework.Test.Base;
 using NSubstitute;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Localization
+namespace AppFramework.Tests.Localization
 {
     // ReSharper disable once InconsistentNaming
     public class LanguageAppService_Tests : AppTestBase
     {
         private readonly ILanguageAppService _languageAppService;
         private readonly IApplicationLanguageManager _languageManager;
-        private readonly bool _multiTenancyEnabled  = AppFrameworkDemoConsts.MultiTenancyEnabled;
+        private readonly bool _multiTenancyEnabled  = AppFrameworkConsts.MultiTenancyEnabled;
 
         public LanguageAppService_Tests()
         {
@@ -133,7 +133,7 @@ namespace AppFrameworkDemo.Tests.Localization
             await _languageAppService.UpdateLanguageText(
                 new UpdateLanguageTextInput
                 {
-                    SourceName = AppFrameworkDemoConsts.LocalizationSourceName,
+                    SourceName = AppFrameworkConsts.LocalizationSourceName,
                     LanguageName = "en",
                     Key = "Save",
                     Value = "save-new-value"
@@ -141,7 +141,7 @@ namespace AppFrameworkDemo.Tests.Localization
 
             var newValue = Resolve<ILocalizationManager>()
                 .GetString(
-                    AppFrameworkDemoConsts.LocalizationSourceName,
+                    AppFrameworkConsts.LocalizationSourceName,
                     "Save",
                     CultureInfo.GetCultureInfo("en")
                 );

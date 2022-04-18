@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Abp.Dependency;
-using AppFrameworkDemo.Identity;
+using AppFramework.Identity;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 
-namespace AppFrameworkDemo.Net.Sms
+namespace AppFramework.Net.Sms
 {
     public class TwilioSmsSender : ISmsSender, ITransientDependency
     {

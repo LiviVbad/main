@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using OfficeOpenXml;
 using System.IO;
 
-namespace AppFrameworkDemo.DataExporting.Excel.EpPlus
+namespace AppFramework.DataExporting.Excel.EpPlus
 {
     public abstract class EpPlusExcelImporterBase<TEntity>
     {

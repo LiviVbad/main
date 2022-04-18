@@ -3,7 +3,7 @@ using Abp.Extensions;
 using Abp.Reflection.Extensions;
 using Microsoft.Extensions.Configuration;
 
-namespace AppFrameworkDemo.Configuration
+namespace AppFramework.Configuration
 {
     public static class AppConfigurations
     {

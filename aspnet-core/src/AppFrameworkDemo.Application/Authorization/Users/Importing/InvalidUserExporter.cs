@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using Abp.Collections.Extensions;
 using Abp.Dependency;
-using AppFrameworkDemo.Authorization.Users.Importing.Dto;
-using AppFrameworkDemo.DataExporting.Excel.NPOI;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Storage;
+using AppFramework.Authorization.Users.Importing.Dto;
+using AppFramework.DataExporting.Excel.NPOI;
+using AppFramework.Dto;
+using AppFramework.Storage;
 
-namespace AppFrameworkDemo.Authorization.Users.Importing
+namespace AppFramework.Authorization.Users.Importing
 {
     public class InvalidUserExporter : NpoiExcelExporterBase, IInvalidUserExporter, ITransientDependency
     {

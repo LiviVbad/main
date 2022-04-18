@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Features
+﻿namespace AppFramework.Features
 {
     public static class AppFeatures
     {

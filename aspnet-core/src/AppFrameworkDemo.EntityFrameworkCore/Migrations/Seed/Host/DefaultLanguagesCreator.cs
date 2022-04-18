@@ -2,9 +2,9 @@
 using System.Linq;
 using Abp.Localization;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.EntityFrameworkCore;
+using AppFramework.EntityFrameworkCore;
 
-namespace AppFrameworkDemo.Migrations.Seed.Host
+namespace AppFramework.Migrations.Seed.Host
 {
     public class DefaultLanguagesCreator
     {
@@ -14,7 +14,7 @@ namespace AppFrameworkDemo.Migrations.Seed.Host
 
         private static List<ApplicationLanguage> GetInitialLanguages()
         {
-            var tenantId = AppFrameworkDemoConsts.MultiTenancyEnabled ? null : (int?)1;
+            var tenantId = AppFrameworkConsts.MultiTenancyEnabled ? null : (int?)1;
             return new List<ApplicationLanguage>
             {
                 new ApplicationLanguage(tenantId, "en", "English", "famfamfam-flags us"),

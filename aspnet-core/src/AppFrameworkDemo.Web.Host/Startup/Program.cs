@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
-using AppFrameworkDemo.Web.Helpers;
+using AppFramework.Web.Helpers;
 
-namespace AppFrameworkDemo.Web.Startup
+namespace AppFramework.Web.Startup
 {
     public class Program
     {

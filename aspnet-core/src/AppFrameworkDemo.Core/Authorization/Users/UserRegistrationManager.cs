@@ -10,13 +10,13 @@ using Abp.Notifications;
 using Abp.Runtime.Session;
 using Abp.UI;
 using Microsoft.AspNetCore.Identity;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Debugging;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.Notifications;
+using AppFramework.Authorization.Roles;
+using AppFramework.Configuration;
+using AppFramework.Debugging;
+using AppFramework.MultiTenancy;
+using AppFramework.Notifications;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     public class UserRegistrationManager : AppFrameworkDemoDomainServiceBase
     {

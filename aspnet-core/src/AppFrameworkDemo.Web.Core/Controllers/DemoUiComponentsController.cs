@@ -6,10 +6,10 @@ using Abp.IO.Extensions;
 using Abp.UI;
 using Abp.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using AppFrameworkDemo.DemoUiComponents.Dto;
-using AppFrameworkDemo.Storage;
+using AppFramework.DemoUiComponents.Dto;
+using AppFramework.Storage;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     [AbpMvcAuthorize]
     public class DemoUiComponentsController : AppFrameworkDemoControllerBase

@@ -2,7 +2,7 @@
 using Abp.Net.Mail.Smtp;
 using MailKit.Net.Smtp;
 
-namespace AppFrameworkDemo.Net.Emailing
+namespace AppFramework.Net.Emailing
 {
     public class AppFrameworkDemoMailKitSmtpBuilder : DefaultMailKitSmtpBuilder
     {

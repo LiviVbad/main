@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments
+namespace AppFramework.MultiTenancy.Payments
 {
     public interface ISubscriptionPaymentExtensionDataRepository
     {

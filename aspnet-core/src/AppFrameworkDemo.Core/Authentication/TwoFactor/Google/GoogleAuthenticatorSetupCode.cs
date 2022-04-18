@@ -1,4 +1,4 @@
-namespace AppFrameworkDemo.Authentication.TwoFactor.Google
+namespace AppFramework.Authentication.TwoFactor.Google
 {
     public class GoogleAuthenticatorSetupCode
     {

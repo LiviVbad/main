@@ -6,10 +6,10 @@ using Abp.MultiTenancy;
 using Abp.Runtime.Session;
 using Abp.Threading;
 using Microsoft.AspNetCore.Identity;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.Authorization.Users;
+using AppFramework.MultiTenancy;
 
-namespace AppFrameworkDemo
+namespace AppFramework
 {
     /// <summary>
     /// Derive your application services from this class.
@@ -22,7 +22,7 @@ namespace AppFrameworkDemo
 
         protected AppFrameworkDemoAppServiceBase()
         {
-            LocalizationSourceName = AppFrameworkDemoConsts.LocalizationSourceName;
+            LocalizationSourceName = AppFrameworkConsts.LocalizationSourceName;
         }
 
         protected virtual async Task<User> GetCurrentUserAsync()

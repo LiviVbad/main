@@ -1,6 +1,6 @@
 ﻿using Abp;
 
-namespace AppFrameworkDemo.Friendships
+namespace AppFramework.Friendships
 {
     public static class FriendshipExtensions
     {

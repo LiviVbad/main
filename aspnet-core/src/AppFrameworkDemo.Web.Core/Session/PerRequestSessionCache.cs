@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Abp.Dependency;
 using Microsoft.AspNetCore.Http;
-using AppFrameworkDemo.Sessions;
-using AppFrameworkDemo.Sessions.Dto;
+using AppFramework.Sessions;
+using AppFramework.Sessions.Dto;
 
-namespace AppFrameworkDemo.Web.Session
+namespace AppFramework.Web.Session
 {
     public class PerRequestSessionCache : IPerRequestSessionCache, ITransientDependency
     {

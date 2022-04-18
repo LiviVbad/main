@@ -12,16 +12,16 @@ using Abp.Linq.Extensions;
 using Abp.Organizations;
 using GraphQL.Types;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Core.Base;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Types;
-using AppFrameworkDemo.Core.Extensions;
+using AppFramework.Authorization;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users;
+using AppFramework.Core.Base;
+using AppFramework.Dto;
+using AppFramework.Types;
+using AppFramework.Core.Extensions;
 using GraphQL;
 
-namespace AppFrameworkDemo.Queries
+namespace AppFramework.Queries
 {
     public class UserQuery : AppFrameworkDemoQueryBase<UserPagedResultGraphType, PagedResultDto<UserDto>>
     {

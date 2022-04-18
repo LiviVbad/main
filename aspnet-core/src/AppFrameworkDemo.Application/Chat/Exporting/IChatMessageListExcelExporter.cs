@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Abp;
-using AppFrameworkDemo.Chat.Dto;
-using AppFrameworkDemo.Dto;
+using AppFramework.Chat.Dto;
+using AppFramework.Dto;
 
-namespace AppFrameworkDemo.Chat.Exporting
+namespace AppFramework.Chat.Exporting
 {
     public interface IChatMessageListExcelExporter
     {

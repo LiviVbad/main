@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Abp.Dependency;
 
-namespace AppFrameworkDemo.UiCustomization
+namespace AppFramework.UiCustomization
 {
     public interface IUiThemeCustomizerFactory : ISingletonDependency
     {

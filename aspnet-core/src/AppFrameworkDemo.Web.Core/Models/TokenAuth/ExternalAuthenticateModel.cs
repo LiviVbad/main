@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Abp.Authorization.Users;
 
-namespace AppFrameworkDemo.Web.Models.TokenAuth
+namespace AppFramework.Web.Models.TokenAuth
 {
     public class ExternalAuthenticateModel
     {

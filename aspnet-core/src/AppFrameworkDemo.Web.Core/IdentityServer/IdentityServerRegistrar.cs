@@ -3,10 +3,10 @@ using Abp.IdentityServer4vNext;
 using IdentityServer4.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.EntityFrameworkCore;
+using AppFramework.Authorization.Users;
+using AppFramework.EntityFrameworkCore;
 
-namespace AppFrameworkDemo.Web.IdentityServer
+namespace AppFramework.Web.IdentityServer
 {
     public static class IdentityServerRegistrar
     {

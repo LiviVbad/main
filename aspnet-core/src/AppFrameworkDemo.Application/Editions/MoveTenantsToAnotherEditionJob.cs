@@ -7,10 +7,10 @@ using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.Events.Bus;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.Notifications;
+using AppFramework.MultiTenancy;
+using AppFramework.Notifications;
 
-namespace AppFrameworkDemo.Editions
+namespace AppFramework.Editions
 {
     public class MoveTenantsToAnotherEditionJob : AsyncBackgroundJob<MoveTenantsToAnotherEditionJobArgs>, ITransientDependency
     {

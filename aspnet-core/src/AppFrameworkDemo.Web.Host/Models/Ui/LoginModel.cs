@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Abp.Auditing;
 
-namespace AppFrameworkDemo.Web.Models.Ui
+namespace AppFramework.Web.Models.Ui
 {
     public class LoginModel
     {

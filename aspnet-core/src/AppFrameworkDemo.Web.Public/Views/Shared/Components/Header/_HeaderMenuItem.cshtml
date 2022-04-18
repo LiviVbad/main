@@ -2,10 +2,10 @@
 @using Abp.Extensions
 @using System.Threading.Tasks
 @using Abp.AspNetZeroCore.Web.Url
-@using AppFrameworkDemo.Web.Navigation
-@using AppFrameworkDemo.Web.Public.Views.Shared.Components.Header
-@using AppFrameworkDemo.Web.Url
-@model AppFrameworkDemo.Web.Public.Views.Shared.Components.Header.HeaderMenuItemViewModel
+@using AppFramework.Web.Navigation
+@using AppFramework.Web.Public.Views.Shared.Components.Header
+@using AppFramework.Web.Url
+@model AppFramework.Web.Public.Views.Shared.Components.Header.HeaderMenuItemViewModel
 @{
     var orderedChildMenuItems = Model.MenuItem.Items.OrderByCustom().ToList();
 }

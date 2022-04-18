@@ -1,7 +1,7 @@
 ﻿using Abp.Runtime.Caching;
-using AppFrameworkDemo.Authentication.TwoFactor;
+using AppFramework.Authentication.TwoFactor;
 
-namespace AppFrameworkDemo.Web.Authentication.TwoFactor
+namespace AppFramework.Web.Authentication.TwoFactor
 {
     public static class TwoFactorCodeCacheExtensions
     {

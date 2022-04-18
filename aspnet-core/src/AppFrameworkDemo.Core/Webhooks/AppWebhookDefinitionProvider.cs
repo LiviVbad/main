@@ -1,7 +1,7 @@
 ﻿using Abp.Localization;
 using Abp.Webhooks;
 
-namespace AppFrameworkDemo.WebHooks
+namespace AppFramework.WebHooks
 {
     public class AppWebhookDefinitionProvider : WebhookDefinitionProvider
     {
@@ -16,7 +16,7 @@ namespace AppFrameworkDemo.WebHooks
 
         private static ILocalizableString L(string name)
         {
-            return new LocalizableString(name, AppFrameworkDemoConsts.LocalizationSourceName);
+            return new LocalizableString(name, AppFrameworkConsts.LocalizationSourceName);
         }
     }
 }

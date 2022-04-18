@@ -11,9 +11,9 @@ using Abp.Threading;
 using Abp.Threading.BackgroundWorkers;
 using Abp.Threading.Timers;
 using Abp.Timing;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.MultiTenancy;
 
-namespace AppFrameworkDemo.Auditing
+namespace AppFramework.Auditing
 {
     public class ExpiredAuditLogDeleterWorker : PeriodicBackgroundWorkerBase, ISingletonDependency
     {
@@ -40,7 +40,7 @@ namespace AppFrameworkDemo.Auditing
             _auditLogRepository = auditLogRepository;
             _tenantRepository = tenantRepository;
 
-            LocalizationSourceName = AppFrameworkDemoConsts.LocalizationSourceName;
+            LocalizationSourceName = AppFrameworkConsts.LocalizationSourceName;
 
             Timer.Period = CheckPeriodAsMilliseconds;
             Timer.RunOnStart = true;

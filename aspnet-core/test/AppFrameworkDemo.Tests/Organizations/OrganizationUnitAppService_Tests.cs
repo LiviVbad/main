@@ -4,13 +4,13 @@ using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.Authorization.Users;
 using Abp.Organizations;
-using AppFrameworkDemo.Organizations;
-using AppFrameworkDemo.Organizations.Dto;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Organizations;
+using AppFramework.Organizations.Dto;
+using AppFramework.Test.Base;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Organizations
+namespace AppFramework.Tests.Organizations
 {
     // ReSharper disable once InconsistentNaming
     public class OrganizationUnitAppService_Tests : AppTestBase

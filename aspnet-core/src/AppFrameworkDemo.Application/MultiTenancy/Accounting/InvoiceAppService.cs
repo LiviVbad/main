@@ -8,12 +8,12 @@ using Abp.Domain.Uow;
 using Abp.Runtime.Session;
 using Abp.Timing;
 using Abp.UI;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.MultiTenancy.Accounting.Dto;
-using AppFrameworkDemo.MultiTenancy.Payments;
+using AppFramework.Configuration;
+using AppFramework.Editions;
+using AppFramework.MultiTenancy.Accounting.Dto;
+using AppFramework.MultiTenancy.Payments;
 
-namespace AppFrameworkDemo.MultiTenancy.Accounting
+namespace AppFramework.MultiTenancy.Accounting
 {
     public class InvoiceAppService : AppFrameworkDemoAppServiceBase, IInvoiceAppService
     {

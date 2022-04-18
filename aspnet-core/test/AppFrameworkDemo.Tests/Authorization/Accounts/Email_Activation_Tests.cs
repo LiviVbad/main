@@ -1,15 +1,15 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Castle.MicroKernel.Registration;
-using AppFrameworkDemo.Authorization.Accounts;
-using AppFrameworkDemo.Authorization.Accounts.Dto;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Authorization.Accounts;
+using AppFramework.Authorization.Accounts.Dto;
+using AppFramework.Authorization.Users;
+using AppFramework.Test.Base;
 using NSubstitute;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Authorization.Accounts
+namespace AppFramework.Tests.Authorization.Accounts
 {
     // ReSharper disable once InconsistentNaming
     public class Email_Activation_Tests : AppTestBase

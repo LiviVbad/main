@@ -8,7 +8,7 @@ using Microsoft.OpenApi.Interfaces;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace AppFrameworkDemo.Web.Swagger
+namespace AppFramework.Web.Swagger
 {
     public class SwaggerEnumParameterFilter : IParameterFilter
     {

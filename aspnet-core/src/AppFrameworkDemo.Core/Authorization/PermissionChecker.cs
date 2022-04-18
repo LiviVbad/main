@@ -1,8 +1,8 @@
 ﻿using Abp.Authorization;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users;
 
-namespace AppFrameworkDemo.Authorization
+namespace AppFramework.Authorization
 {
     public class PermissionChecker : PermissionChecker<Role, User>
     {

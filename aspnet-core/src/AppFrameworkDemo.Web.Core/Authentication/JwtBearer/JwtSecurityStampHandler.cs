@@ -5,10 +5,10 @@ using Abp;
 using Abp.Dependency;
 using Abp.Domain.Uow;
 using Abp.Runtime.Caching;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Identity;
+using AppFramework.Authorization.Users;
+using AppFramework.Identity;
 
-namespace AppFrameworkDemo.Web.Authentication.JwtBearer
+namespace AppFramework.Web.Authentication.JwtBearer
 {
     public class JwtSecurityStampHandler : IJwtSecurityStampHandler, ITransientDependency
     {

@@ -2,11 +2,11 @@
 using Abp.Reflection.Extensions;
 using Castle.Windsor.MsDependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
-using AppFrameworkDemo.Configure;
-using AppFrameworkDemo.Startup;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Configure;
+using AppFramework.Startup;
+using AppFramework.Test.Base;
 
-namespace AppFrameworkDemo.GraphQL.Tests
+namespace AppFramework.GraphQL.Tests
 {
     [DependsOn(
         typeof(AppFrameworkDemoGraphQLModule),

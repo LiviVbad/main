@@ -1,6 +1,6 @@
 ﻿using Abp.Dependency;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments
+namespace AppFramework.MultiTenancy.Payments
 {
     public interface IPaymentGatewayConfiguration: ITransientDependency
     {

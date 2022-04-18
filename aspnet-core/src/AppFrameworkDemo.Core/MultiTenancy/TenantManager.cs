@@ -7,24 +7,24 @@ using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.IdentityFramework;
 using Abp.MultiTenancy;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.MultiTenancy.Demo;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users;
+using AppFramework.Editions;
+using AppFramework.MultiTenancy.Demo;
 using Abp.Extensions;
 using Abp.Notifications;
 using Abp.Runtime.Security;
 using Microsoft.AspNetCore.Identity;
-using AppFrameworkDemo.Notifications;
+using AppFramework.Notifications;
 using System;
 using System.Diagnostics;
 using Abp.BackgroundJobs;
 using Abp.Localization;
 using Abp.Runtime.Session;
 using Abp.UI;
-using AppFrameworkDemo.MultiTenancy.Payments;
+using AppFramework.MultiTenancy.Payments;
 
-namespace AppFrameworkDemo.MultiTenancy
+namespace AppFramework.MultiTenancy
 {
     /// <summary>
     /// Tenant manager.
@@ -101,7 +101,7 @@ namespace AppFrameworkDemo.MultiTenancy
             if (isInTrialPeriod && !subscriptionEndDate.HasValue)
             {
                 throw new UserFriendlyException(LocalizationManager.GetString(
-                    AppFrameworkDemoConsts.LocalizationSourceName, "TrialWithoutEndDateErrorMessage"));
+                    AppFrameworkConsts.LocalizationSourceName, "TrialWithoutEndDateErrorMessage"));
             }
 
             using (var uow = _unitOfWorkManager.Begin(TransactionScopeOption.RequiresNew))
@@ -217,7 +217,7 @@ namespace AppFrameworkDemo.MultiTenancy
                     return;
                 }
 
-                var error = LocalizationManager.GetSource(AppFrameworkDemoConsts.LocalizationSourceName)
+                var error = LocalizationManager.GetSource(AppFrameworkConsts.LocalizationSourceName)
                     .GetString("FreeEditionsCannotHaveTrialVersions");
                 throw new UserFriendlyException(error);
             });
@@ -329,7 +329,7 @@ namespace AppFrameworkDemo.MultiTenancy
             if (tenant.IsInTrialPeriod && !tenant.SubscriptionEndDateUtc.HasValue)
             {
                 throw new UserFriendlyException(LocalizationManager.GetString(
-                    AppFrameworkDemoConsts.LocalizationSourceName, "TrialWithoutEndDateErrorMessage"));
+                    AppFrameworkConsts.LocalizationSourceName, "TrialWithoutEndDateErrorMessage"));
             }
 
             return base.UpdateAsync(tenant);

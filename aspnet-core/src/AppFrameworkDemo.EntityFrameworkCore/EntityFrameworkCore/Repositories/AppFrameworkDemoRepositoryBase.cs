@@ -2,7 +2,7 @@
 using Abp.EntityFrameworkCore;
 using Abp.EntityFrameworkCore.Repositories;
 
-namespace AppFrameworkDemo.EntityFrameworkCore.Repositories
+namespace AppFramework.EntityFrameworkCore.Repositories
 {
     /// <summary>
     /// Base class for custom repositories of the application.

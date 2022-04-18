@@ -1,7 +1,7 @@
 ﻿using System;
 using Abp.Runtime.Caching;
 
-namespace AppFrameworkDemo.Storage
+namespace AppFramework.Storage
 {
     public class TempFileCacheManager : ITempFileCacheManager
     {

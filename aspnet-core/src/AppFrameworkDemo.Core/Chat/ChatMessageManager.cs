@@ -8,11 +8,11 @@ using Abp.Domain.Uow;
 using Abp.MultiTenancy;
 using Abp.RealTime;
 using Abp.UI;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Friendships;
-using AppFrameworkDemo.Friendships.Cache;
+using AppFramework.Authorization.Users;
+using AppFramework.Friendships;
+using AppFramework.Friendships.Cache;
 
-namespace AppFrameworkDemo.Chat
+namespace AppFramework.Chat
 {
     [AbpAuthorize]
     public class ChatMessageManager : AppFrameworkDemoDomainServiceBase, IChatMessageManager

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Web.Common
+namespace AppFramework.Web.Common
 {
     public static class WebConsts
     {
@@ -12,7 +12,7 @@ namespace AppFrameworkDemo.Web.Common
 
         public static List<string> ReCaptchaIgnoreWhiteList = new List<string>
         {
-            AppFrameworkDemoConsts.AbpApiClientUserAgent
+            AppFrameworkConsts.AbpApiClientUserAgent
         };
 
         public static class GraphQL

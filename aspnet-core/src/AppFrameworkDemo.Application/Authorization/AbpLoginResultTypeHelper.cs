@@ -2,7 +2,7 @@
 using Abp.Authorization;
 using Abp.Dependency;
 
-namespace AppFrameworkDemo.Authorization
+namespace AppFramework.Authorization
 {
     public class AbpLoginResultTypeHelper : AppFrameworkDemoServiceBase, ITransientDependency
     {

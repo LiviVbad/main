@@ -9,9 +9,9 @@ using Abp.Configuration;
 using Abp.Notifications;
 using Abp.Runtime.Session;
 using Abp.UI;
-using AppFrameworkDemo.Notifications.Dto;
+using AppFramework.Notifications.Dto;
 
-namespace AppFrameworkDemo.Notifications
+namespace AppFramework.Notifications
 {
     [AbpAuthorize]
     public class NotificationAppService : AppFrameworkDemoAppServiceBase, INotificationAppService

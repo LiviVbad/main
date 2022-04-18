@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Migrations
+namespace AppFramework.Migrations
 {
     public partial class TypeChange_SharedMessageId_String_Guid : Migration
     {

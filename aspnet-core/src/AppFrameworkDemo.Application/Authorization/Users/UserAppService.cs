@@ -21,17 +21,17 @@ using Abp.Zero.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization.Permissions;
-using AppFrameworkDemo.Authorization.Permissions.Dto;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.Authorization.Users.Exporting;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Notifications;
-using AppFrameworkDemo.Url;
-using AppFrameworkDemo.Organizations.Dto;
+using AppFramework.Authorization.Permissions;
+using AppFramework.Authorization.Permissions.Dto;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.Authorization.Users.Exporting;
+using AppFramework.Dto;
+using AppFramework.Notifications;
+using AppFramework.Url;
+using AppFramework.Organizations.Dto;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_Users)]
     public class UserAppService : AppFrameworkDemoAppServiceBase, IUserAppService

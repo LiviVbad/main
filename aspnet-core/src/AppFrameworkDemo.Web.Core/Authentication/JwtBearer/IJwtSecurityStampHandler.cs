@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Web.Authentication.JwtBearer
+namespace AppFramework.Web.Authentication.JwtBearer
 {
     public interface IJwtSecurityStampHandler
     {

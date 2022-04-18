@@ -3,7 +3,7 @@ using Abp.Application.Services.Dto;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Authorization.Users
+namespace AppFramework.Tests.Authorization.Users
 {
     // ReSharper disable once InconsistentNaming
     public class UserAppService_Delete_Tests : UserAppServiceTestBase

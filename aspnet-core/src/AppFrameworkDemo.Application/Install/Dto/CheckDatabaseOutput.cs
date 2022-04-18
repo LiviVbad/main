@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Install.Dto
+﻿namespace AppFramework.Install.Dto
 {
     public class CheckDatabaseOutput
     {

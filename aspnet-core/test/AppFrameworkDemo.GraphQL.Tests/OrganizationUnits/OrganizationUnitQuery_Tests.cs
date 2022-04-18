@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using AppFrameworkDemo.Schemas;
+using AppFramework.Schemas;
 using Xunit;
 
-namespace AppFrameworkDemo.GraphQL.Tests.OrganizationUnits
+namespace AppFramework.GraphQL.Tests.OrganizationUnits
 {
     // ReSharper disable once InconsistentNaming
     public class OrganizationUnitQuery_Tests : GraphQLTestBase<MainSchema>

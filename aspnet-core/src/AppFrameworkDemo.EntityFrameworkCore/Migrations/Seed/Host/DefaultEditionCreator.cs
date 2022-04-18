@@ -1,11 +1,11 @@
 using System.Linq;
 using Abp.Application.Features;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.Features;
+using AppFramework.Editions;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.Features;
 
-namespace AppFrameworkDemo.Migrations.Seed.Host
+namespace AppFramework.Migrations.Seed.Host
 {
     public class DefaultEditionCreator
     {

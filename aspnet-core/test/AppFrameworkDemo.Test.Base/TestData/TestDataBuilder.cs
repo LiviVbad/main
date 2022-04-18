@@ -1,6 +1,6 @@
-﻿using AppFrameworkDemo.EntityFrameworkCore;
+﻿using AppFramework.EntityFrameworkCore;
 
-namespace AppFrameworkDemo.Test.Base.TestData
+namespace AppFramework.Test.Base.TestData
 {
     public class TestDataBuilder
     {

@@ -1,9 +1,9 @@
 ﻿using Abp.Dependency;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using AppFrameworkDemo.Configuration;
+using AppFramework.Configuration;
 
-namespace AppFrameworkDemo.Web.Configuration
+namespace AppFramework.Web.Configuration
 {
     public class AppConfigurationAccessor: IAppConfigurationAccessor, ISingletonDependency
     {

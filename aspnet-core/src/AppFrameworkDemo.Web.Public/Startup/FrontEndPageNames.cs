@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Web.Public.Startup
+﻿namespace AppFramework.Web.Public.Startup
 {
     public class FrontEndPageNames
     {

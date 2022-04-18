@@ -5,7 +5,7 @@ using Abp.AspNetZeroCore.Web.Authentication.External;
 using Abp.Extensions;
 using Microsoft.AspNetCore.Identity;
 
-namespace AppFrameworkDemo.Web.Authentication.External
+namespace AppFramework.Web.Authentication.External
 {
     public class DefaultExternalLoginInfoManager : IExternalLoginInfoManager
     {

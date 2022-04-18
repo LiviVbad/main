@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using Abp.Specifications;
 using Abp.Timing;
 
-namespace AppFrameworkDemo.Authorization.Delegation
+namespace AppFramework.Authorization.Delegation
 {
     public class ActiveUserDelegationSpecification : Specification<UserDelegation>
     {

@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using Abp.MultiTenancy;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.EntityFrameworkCore;
+using AppFramework.Editions;
+using AppFramework.EntityFrameworkCore;
 
-namespace AppFrameworkDemo.Migrations.Seed.Tenants
+namespace AppFramework.Migrations.Seed.Tenants
 {
     public class DefaultTenantBuilder
     {

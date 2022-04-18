@@ -4,12 +4,12 @@ using Abp;
 using Abp.Application.Services.Dto;
 using Abp.Notifications;
 using Abp.Runtime.Session;
-using AppFrameworkDemo.Notifications;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Notifications;
+using AppFramework.Test.Base;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Notifications
+namespace AppFramework.Tests.Notifications
 {
     // ReSharper disable once InconsistentNaming
     public class NotificationAppService_Tests : AppTestBase

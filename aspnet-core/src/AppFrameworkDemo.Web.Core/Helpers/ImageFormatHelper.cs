@@ -2,7 +2,7 @@
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace AppFrameworkDemo.Web.Helpers
+namespace AppFramework.Web.Helpers
 {
     public class ImageFormatHelper
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Friendships.Cache
+namespace AppFramework.Friendships.Cache
 {
     public class UserWithFriendsCacheItem
     {

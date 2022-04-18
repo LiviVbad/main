@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Abp;
 using Abp.Dependency;
-using AppFrameworkDemo.Configuration.Dto;
-using AppFrameworkDemo.UiCustomization.Dto;
+using AppFramework.Configuration.Dto;
+using AppFramework.UiCustomization.Dto;
 
-namespace AppFrameworkDemo.UiCustomization
+namespace AppFramework.UiCustomization
 {
     public interface IUiCustomizer : ISingletonDependency
     {

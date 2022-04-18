@@ -3,7 +3,7 @@ using System.Linq;
 using IdentityServer4.Models;
 using Microsoft.Extensions.Configuration;
 
-namespace AppFrameworkDemo.Web.IdentityServer
+namespace AppFramework.Web.IdentityServer
 {
     public static class IdentityServerConfig
     {

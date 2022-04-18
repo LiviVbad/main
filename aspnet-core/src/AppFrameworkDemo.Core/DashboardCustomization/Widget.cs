@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.DashboardCustomization
+﻿namespace AppFramework.DashboardCustomization
 {
     public class Widget
     {

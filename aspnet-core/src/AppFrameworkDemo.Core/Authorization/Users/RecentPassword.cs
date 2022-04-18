@@ -5,7 +5,7 @@ using Abp;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 
-namespace AppFrameworkDemo.Authorization.Users;
+namespace AppFramework.Authorization.Users;
 
 [Table("AppRecentPasswords")]
 public class RecentPassword : CreationAuditedEntity<Guid>, IMayHaveTenant

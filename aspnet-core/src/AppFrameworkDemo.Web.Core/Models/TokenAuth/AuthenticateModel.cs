@@ -2,7 +2,7 @@
 using Abp.Auditing;
 using Abp.Authorization.Users;
 
-namespace AppFrameworkDemo.Web.Models.TokenAuth
+namespace AppFramework.Web.Models.TokenAuth
 {
     public class AuthenticateModel
     {

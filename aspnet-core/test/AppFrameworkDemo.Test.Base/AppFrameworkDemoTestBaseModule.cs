@@ -11,20 +11,20 @@ using Abp.TestBase;
 using Abp.Zero.Configuration;
 using Castle.MicroKernel.Registration;
 using Microsoft.Extensions.Configuration;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.Security.Recaptcha;
-using AppFrameworkDemo.Test.Base.DependencyInjection;
-using AppFrameworkDemo.Test.Base.UiCustomization;
-using AppFrameworkDemo.Test.Base.Url;
-using AppFrameworkDemo.Test.Base.Web;
-using AppFrameworkDemo.UiCustomization;
-using AppFrameworkDemo.Url;
+using AppFramework.Authorization.Users;
+using AppFramework.Configuration;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.MultiTenancy;
+using AppFramework.Security.Recaptcha;
+using AppFramework.Test.Base.DependencyInjection;
+using AppFramework.Test.Base.UiCustomization;
+using AppFramework.Test.Base.Url;
+using AppFramework.Test.Base.Web;
+using AppFramework.UiCustomization;
+using AppFramework.Url;
 using NSubstitute;
 
-namespace AppFrameworkDemo.Test.Base
+namespace AppFramework.Test.Base
 {
     [DependsOn(
         typeof(AppFrameworkDemoApplicationModule),

@@ -27,27 +27,27 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using AppFrameworkDemo.Authentication.TwoFactor;
-using AppFrameworkDemo.Authentication.TwoFactor.Google;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Authorization.Accounts.Dto;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.Web.Authentication.JwtBearer;
-using AppFrameworkDemo.Web.Authentication.TwoFactor;
-using AppFrameworkDemo.Web.Models.TokenAuth;
-using AppFrameworkDemo.Authorization.Impersonation;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Identity;
-using AppFrameworkDemo.Net.Sms;
-using AppFrameworkDemo.Notifications;
-using AppFrameworkDemo.Security.Recaptcha;
-using AppFrameworkDemo.Web.Authentication.External;
-using AppFrameworkDemo.Web.Common;
-using AppFrameworkDemo.Authorization.Delegation;
+using AppFramework.Authentication.TwoFactor;
+using AppFramework.Authentication.TwoFactor.Google;
+using AppFramework.Authorization;
+using AppFramework.Authorization.Accounts.Dto;
+using AppFramework.Authorization.Users;
+using AppFramework.MultiTenancy;
+using AppFramework.Web.Authentication.JwtBearer;
+using AppFramework.Web.Authentication.TwoFactor;
+using AppFramework.Web.Models.TokenAuth;
+using AppFramework.Authorization.Impersonation;
+using AppFramework.Authorization.Roles;
+using AppFramework.Configuration;
+using AppFramework.Identity;
+using AppFramework.Net.Sms;
+using AppFramework.Notifications;
+using AppFramework.Security.Recaptcha;
+using AppFramework.Web.Authentication.External;
+using AppFramework.Web.Common;
+using AppFramework.Authorization.Delegation;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     [Route("api/[controller]/[action]")]
     public class TokenAuthController : AppFrameworkDemoControllerBase

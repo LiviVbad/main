@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
 
-namespace AppFrameworkDemo.Web.Extensions
+namespace AppFramework.Web.Extensions
 {
     public static class ApplicationBuilderExtensions
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using Abp.AutoMapper;
-using AppFrameworkDemo.Authorization.Roles;
+using AppFramework.Authorization.Roles;
 
-namespace AppFrameworkDemo.Dto
+namespace AppFramework.Dto
 {
     [AutoMapFrom(typeof(Role))]
     public class RoleDto

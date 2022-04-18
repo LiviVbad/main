@@ -1,9 +1,9 @@
-﻿using AppFrameworkDemo.Auditing;
-using AppFrameworkDemo.Test.Base;
+﻿using AppFramework.Auditing;
+using AppFramework.Test.Base;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Auditing
+namespace AppFramework.Tests.Auditing
 {
     // ReSharper disable once InconsistentNaming
     public class NamespaceStripper_Tests: AppTestBase
@@ -18,14 +18,14 @@ namespace AppFrameworkDemo.Tests.Auditing
         [Fact]
         public void Should_Stripe_Namespace()
         {
-            var controllerName = _namespaceStripper.StripNameSpace("AppFrameworkDemo.Web.Controllers.HomeController");
+            var controllerName = _namespaceStripper.StripNameSpace("AppFramework.Web.Controllers.HomeController");
             controllerName.ShouldBe("HomeController");
         }
 
         [Theory]
-        [InlineData("AppFrameworkDemo.Auditing.GenericEntityService`1[[AppFrameworkDemo.Storage.BinaryObject, AppFrameworkDemo.Core, Version=1.10.1.0, Culture=neutral, PublicKeyToken=null]]", "GenericEntityService<BinaryObject>")]
+        [InlineData("AppFramework.Auditing.GenericEntityService`1[[AppFramework.Storage.BinaryObject, AppFramework.Core, Version=1.10.1.0, Culture=neutral, PublicKeyToken=null]]", "GenericEntityService<BinaryObject>")]
         [InlineData("CompanyName.ProductName.Services.Base.EntityService`6[[CompanyName.ProductName.Entity.Book, CompanyName.ProductName.Core, Version=1.10.1.0, Culture=neutral, PublicKeyToken=null],[CompanyName.ProductName.Services.Dto.Book.CreateInput, N...", "EntityService<Book, CreateInput>")]
-        [InlineData("AppFrameworkDemo.Auditing.XEntityService`1[AppFrameworkDemo.Auditing.AService`5[[AppFrameworkDemo.Storage.BinaryObject, AppFrameworkDemo.Core, Version=1.10.1.0, Culture=neutral, PublicKeyToken=null],[AppFrameworkDemo.Storage.TestObject, AppFrameworkDemo.Core, Version=1.10.1.0, Culture=neutral, PublicKeyToken=null],]]", "XEntityService<AService<BinaryObject, TestObject>>")]
+        [InlineData("AppFramework.Auditing.XEntityService`1[AppFramework.Auditing.AService`5[[AppFramework.Storage.BinaryObject, AppFramework.Core, Version=1.10.1.0, Culture=neutral, PublicKeyToken=null],[AppFramework.Storage.TestObject, AppFramework.Core, Version=1.10.1.0, Culture=neutral, PublicKeyToken=null],]]", "XEntityService<AService<BinaryObject, TestObject>>")]
         public void Should_Stripe_Generic_Namespace(string serviceName, string result)
         {
             var genericServiceName = _namespaceStripper.StripNameSpace(serviceName);

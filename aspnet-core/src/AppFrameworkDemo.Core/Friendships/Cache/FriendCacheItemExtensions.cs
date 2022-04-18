@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace AppFrameworkDemo.Friendships.Cache
+namespace AppFramework.Friendships.Cache
 {
     public static class FriendCacheItemExtensions
     {

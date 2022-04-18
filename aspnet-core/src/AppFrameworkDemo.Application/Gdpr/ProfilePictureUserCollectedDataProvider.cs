@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Abp;
 using Abp.AspNetZeroCore.Net;
 using Abp.Dependency;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Storage;
+using AppFramework.Authorization.Users;
+using AppFramework.Dto;
+using AppFramework.Storage;
 
-namespace AppFrameworkDemo.Gdpr
+namespace AppFramework.Gdpr
 {
     public class ProfilePictureUserCollectedDataProvider : IUserCollectedDataProvider, ITransientDependency
     {

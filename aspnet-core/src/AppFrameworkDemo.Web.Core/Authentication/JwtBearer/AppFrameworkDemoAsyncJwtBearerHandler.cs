@@ -19,7 +19,7 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
 
-namespace AppFrameworkDemo.Web.Authentication.JwtBearer
+namespace AppFramework.Web.Authentication.JwtBearer
 {
     public class AppFrameworkDemoAsyncJwtBearerHandler : AuthenticationHandler<AsyncJwtBearerOptions>
     {

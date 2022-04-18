@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Dto;
+using AppFramework.Authorization.Users;
+using AppFramework.Dto;
 
-namespace AppFrameworkDemo.Startup
+namespace AppFramework.Startup
 {
     public static class CustomDtoMapper
     {

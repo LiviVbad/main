@@ -6,12 +6,12 @@ using Abp.AspNetZeroCore.Net;
 using Abp.Dependency;
 using Abp.Domain.Uow;
 using Abp.Localization;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.Storage;
+using AppFramework.Authorization.Users;
+using AppFramework.Dto;
+using AppFramework.MultiTenancy;
+using AppFramework.Storage;
 
-namespace AppFrameworkDemo.Gdpr
+namespace AppFramework.Gdpr
 {
     public class ProfileUserCollectedDataProvider : IUserCollectedDataProvider, ITransientDependency
     {
@@ -68,7 +68,7 @@ namespace AppFrameworkDemo.Gdpr
 
         private string L(string name)
         {
-            return _localizationManager.GetString(AppFrameworkDemoConsts.LocalizationSourceName, name);
+            return _localizationManager.GetString(AppFrameworkConsts.LocalizationSourceName, name);
         }
     }
 }

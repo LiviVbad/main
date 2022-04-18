@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using Abp.Localization;
 using Abp.Localization.Sources;
-using AppFrameworkDemo.Authorization.Users.Importing.Dto;
-using AppFrameworkDemo.DataExporting.Excel.NPOI;
+using AppFramework.Authorization.Users.Importing.Dto;
+using AppFramework.DataExporting.Excel.NPOI;
 using NPOI.SS.UserModel;
 
-namespace AppFrameworkDemo.Authorization.Users.Importing
+namespace AppFramework.Authorization.Users.Importing
 {
     public class UserListExcelDataReader : NpoiExcelImporterBase<ImportUserDto>, IUserListExcelDataReader
     {
@@ -16,7 +16,7 @@ namespace AppFrameworkDemo.Authorization.Users.Importing
 
         public UserListExcelDataReader(ILocalizationManager localizationManager)
         {
-            _localizationSource = localizationManager.GetSource(AppFrameworkDemoConsts.LocalizationSourceName);
+            _localizationSource = localizationManager.GetSource(AppFrameworkConsts.LocalizationSourceName);
         }
 
         public List<ImportUserDto> GetUsersFromExcel(byte[] fileBytes)

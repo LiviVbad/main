@@ -12,11 +12,11 @@ using System.Collections.Generic;
 using Abp.AspNetZeroCore.Net;
 using Abp.Collections.Extensions;
 using Abp.Dependency;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Storage;
+using AppFramework.Dto;
+using AppFramework.Storage;
 using OfficeOpenXml;
 
-namespace AppFrameworkDemo.DataExporting.Excel.EpPlus
+namespace AppFramework.DataExporting.Excel.EpPlus
 {
     public abstract class EpPlusExcelExporterBase : AppFrameworkDemoServiceBase, ITransientDependency
     {

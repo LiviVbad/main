@@ -4,12 +4,12 @@ using System.Linq;
 using Abp;
 using Abp.Runtime.Session;
 using Abp.Timing.Timezone;
-using AppFrameworkDemo.Chat.Dto;
-using AppFrameworkDemo.DataExporting.Excel.NPOI;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Storage;
+using AppFramework.Chat.Dto;
+using AppFramework.DataExporting.Excel.NPOI;
+using AppFramework.Dto;
+using AppFramework.Storage;
 
-namespace AppFrameworkDemo.Chat.Exporting
+namespace AppFramework.Chat.Exporting
 {
     public class ChatMessageListExcelExporter : NpoiExcelExporterBase, IChatMessageListExcelExporter
     {

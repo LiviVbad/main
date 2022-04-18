@@ -2,9 +2,9 @@
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 
-namespace AppFrameworkDemo.Startup
+namespace AppFramework.Startup
 {
-    [DependsOn(typeof(AppFrameworkDemoCoreModule))]
+    [DependsOn(typeof(AppFrameworkCoreModule))]
     public class AppFrameworkDemoGraphQLModule : AbpModule
     {
         public override void Initialize()

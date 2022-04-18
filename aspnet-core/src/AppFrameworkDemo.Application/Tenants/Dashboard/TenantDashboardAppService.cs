@@ -1,9 +1,9 @@
 ﻿using Abp.Auditing;
 using Abp.Authorization;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Tenants.Dashboard.Dto;
+using AppFramework.Authorization;
+using AppFramework.Tenants.Dashboard.Dto;
 
-namespace AppFrameworkDemo.Tenants.Dashboard
+namespace AppFramework.Tenants.Dashboard
 {
     [DisableAuditing]
     [AbpAuthorize(AppPermissions.Pages_Tenant_Dashboard)]

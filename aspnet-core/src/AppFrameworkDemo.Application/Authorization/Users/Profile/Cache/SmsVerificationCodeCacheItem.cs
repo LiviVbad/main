@@ -1,6 +1,6 @@
 using System;
 
-namespace AppFrameworkDemo.Authorization.Users.Profile.Cache
+namespace AppFramework.Authorization.Users.Profile.Cache
 {
     [Serializable]
     public class SmsVerificationCodeCacheItem

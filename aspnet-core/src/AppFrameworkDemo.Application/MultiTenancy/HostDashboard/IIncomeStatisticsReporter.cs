@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AppFrameworkDemo.MultiTenancy.HostDashboard.Dto;
+using AppFramework.MultiTenancy.HostDashboard.Dto;
 
-namespace AppFrameworkDemo.MultiTenancy.HostDashboard
+namespace AppFramework.MultiTenancy.HostDashboard
 {
     public interface IIncomeStatisticsService
     {

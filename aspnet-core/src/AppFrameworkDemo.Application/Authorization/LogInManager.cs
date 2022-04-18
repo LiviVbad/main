@@ -7,11 +7,11 @@ using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.Zero.Configuration;
 using Microsoft.AspNetCore.Identity;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users;
+using AppFramework.MultiTenancy;
 
-namespace AppFrameworkDemo.Authorization
+namespace AppFramework.Authorization
 {
     public class LogInManager : AbpLogInManager<Tenant, Role, User>
     {

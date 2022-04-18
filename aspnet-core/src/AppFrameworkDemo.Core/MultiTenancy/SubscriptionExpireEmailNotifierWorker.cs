@@ -9,10 +9,10 @@ using Abp.Threading.BackgroundWorkers;
 using Abp.Threading.Timers;
 using Abp.Timing;
 using JetBrains.Annotations;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Configuration;
+using AppFramework.Authorization.Users;
+using AppFramework.Configuration;
 
-namespace AppFrameworkDemo.MultiTenancy
+namespace AppFramework.MultiTenancy
 {
     public class SubscriptionExpireEmailNotifierWorker : PeriodicBackgroundWorkerBase, ISingletonDependency
     {
@@ -35,7 +35,7 @@ namespace AppFrameworkDemo.MultiTenancy
             Timer.Period = CheckPeriodAsMilliseconds;
             Timer.RunOnStart = true;
 
-            LocalizationSourceName = AppFrameworkDemoConsts.LocalizationSourceName;
+            LocalizationSourceName = AppFrameworkConsts.LocalizationSourceName;
         }
 
         protected override void DoWork()

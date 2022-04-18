@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AppFrameworkDemo.Authorization.Impersonation
+namespace AppFramework.Authorization.Impersonation
 {
     [Serializable]
     public class ImpersonationCacheItem

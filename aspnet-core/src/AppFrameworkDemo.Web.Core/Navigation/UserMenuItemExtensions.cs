@@ -3,7 +3,7 @@ using Abp.AspNetZeroCore.Web.Url;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AppFrameworkDemo.Web.Navigation
+namespace AppFramework.Web.Navigation
 {
     public static class UserMenuItemExtensions
     {

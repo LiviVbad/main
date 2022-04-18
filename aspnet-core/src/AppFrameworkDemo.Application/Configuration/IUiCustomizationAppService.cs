@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Application.Services;
-using AppFrameworkDemo.Configuration.Dto;
+using AppFramework.Configuration.Dto;
 
-namespace AppFrameworkDemo.Configuration
+namespace AppFramework.Configuration
 {
     public interface IUiCustomizationSettingsAppService : IApplicationService
     {

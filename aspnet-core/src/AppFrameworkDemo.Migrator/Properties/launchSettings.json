@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "AppFrameworkDemo.Migrator": {
+    "AppFramework.Migrator": {
       "commandName": "Project"
     },
     "Docker": {

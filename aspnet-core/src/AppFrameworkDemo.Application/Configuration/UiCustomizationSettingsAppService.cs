@@ -5,11 +5,11 @@ using Abp.Authorization;
 using Abp.Configuration;
 using Abp.Dependency;
 using Abp.Runtime.Session;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Configuration.Dto;
-using AppFrameworkDemo.UiCustomization;
+using AppFramework.Authorization;
+using AppFramework.Configuration.Dto;
+using AppFramework.UiCustomization;
 
-namespace AppFrameworkDemo.Configuration
+namespace AppFramework.Configuration
 {
     [AbpAuthorize]
     public class UiCustomizationSettingsAppService : AppFrameworkDemoAppServiceBase, IUiCustomizationSettingsAppService

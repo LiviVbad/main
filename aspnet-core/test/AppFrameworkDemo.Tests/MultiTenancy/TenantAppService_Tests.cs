@@ -5,13 +5,13 @@ using Abp.Authorization.Users;
 using Abp.MultiTenancy;
 using Abp.Zero.Configuration;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.MultiTenancy.Dto;
-using AppFrameworkDemo.Notifications;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.MultiTenancy;
+using AppFramework.MultiTenancy.Dto;
+using AppFramework.Notifications;
+using AppFramework.Test.Base;
 using Shouldly;
 
-namespace AppFrameworkDemo.Tests.MultiTenancy
+namespace AppFramework.Tests.MultiTenancy
 {
     // ReSharper disable once InconsistentNaming
     public class TenantAppService_Tests : AppTestBase

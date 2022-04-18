@@ -3,10 +3,10 @@ using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.MultiTenancy;
 using Abp.Runtime.Caching;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.Authorization.Users;
+using AppFramework.MultiTenancy;
 
-namespace AppFrameworkDemo.Editions
+namespace AppFramework.Editions
 {
     public class FeatureValueStore : AbpFeatureValueStore<Tenant, User>
     {

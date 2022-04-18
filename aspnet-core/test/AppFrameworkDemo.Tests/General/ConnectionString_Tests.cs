@@ -2,7 +2,7 @@
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.General
+namespace AppFramework.Tests.General
 {
     // ReSharper disable once InconsistentNaming
     public class ConnectionString_Tests
@@ -10,8 +10,8 @@ namespace AppFrameworkDemo.Tests.General
         [Fact]
         public void SqlConnectionStringBuilder_Test()
         {
-            var csb = new SqlConnectionStringBuilder("Server=localhost; Database=AppFrameworkDemo; Trusted_Connection=True;");
-            csb["Database"].ShouldBe("AppFrameworkDemo");
+            var csb = new SqlConnectionStringBuilder("Server=localhost; Database=AppFramework; Trusted_Connection=True;");
+            csb["Database"].ShouldBe("AppFramework");
         }
     }
 }

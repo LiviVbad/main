@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
@@ -10,6 +10,6 @@
     <PackageReference Include="Abp.Web.Common" Version="7.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\AppFrameworkDemo.Application.Shared\AppFrameworkDemo.Application.Shared.csproj" />
+    <ProjectReference Include="..\..\src\AppFrameworkDemo.Application.Shared\AppFramework.Application.Shared.csproj" />
   </ItemGroup>
 </Project>

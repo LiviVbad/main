@@ -4,7 +4,7 @@ using Abp.Localization.Dictionaries;
 using Abp.Localization.Dictionaries.Xml;
 using Abp.Reflection.Extensions;
 
-namespace AppFrameworkDemo.Localization
+namespace AppFramework.Localization
 {
     public static class AppFrameworkDemoLocalizationConfigurer
     {
@@ -12,10 +12,10 @@ namespace AppFrameworkDemo.Localization
         {
             localizationConfiguration.Sources.Add(
                 new DictionaryBasedLocalizationSource(
-                    AppFrameworkDemoConsts.LocalizationSourceName,
+                    AppFrameworkConsts.LocalizationSourceName,
                     new XmlEmbeddedFileLocalizationDictionaryProvider(
                         typeof(AppFrameworkDemoLocalizationConfigurer).GetAssembly(),
-                        "AppFrameworkDemo.Localization.AppFrameworkDemo"
+                        "AppFramework.Localization.AppFramework"
                     )
                 )
             );

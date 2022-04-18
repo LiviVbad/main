@@ -8,13 +8,13 @@ using Abp.Organizations;
 using GraphQL;
 using GraphQL.Types;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Core.Base;
-using AppFrameworkDemo.Core.Extensions;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Types;
+using AppFramework.Authorization;
+using AppFramework.Core.Base;
+using AppFramework.Core.Extensions;
+using AppFramework.Dto;
+using AppFramework.Types;
 
-namespace AppFrameworkDemo.Queries
+namespace AppFramework.Queries
 {
     public class OrganizationUnitQuery : AppFrameworkDemoQueryBase<ListGraphType<OrganizationUnitType>, List<OrganizationUnitDto>>
     {

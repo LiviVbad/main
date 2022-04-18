@@ -2,7 +2,7 @@
 using System.IO;
 using Abp.Reflection.Extensions;
 
-namespace AppFrameworkDemo
+namespace AppFramework
 {
     /// <summary>
     /// Central point for application version.

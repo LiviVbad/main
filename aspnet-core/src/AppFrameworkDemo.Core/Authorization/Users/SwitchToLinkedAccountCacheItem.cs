@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     [Serializable]
     public class SwitchToLinkedAccountCacheItem

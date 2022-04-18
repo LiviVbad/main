@@ -6,11 +6,11 @@ using Abp.Authorization;
 using Abp.Collections.Extensions;
 using Abp.Domain.Entities;
 using Abp.DynamicEntityProperties;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.DynamicEntityProperties.Dto;
-using AppFrameworkDemo.DynamicEntityPropertyValues.Dto;
+using AppFramework.Authorization;
+using AppFramework.DynamicEntityProperties.Dto;
+using AppFramework.DynamicEntityPropertyValues.Dto;
 
-namespace AppFrameworkDemo.DynamicEntityProperties
+namespace AppFramework.DynamicEntityProperties
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_DynamicEntityPropertyValue)]
     public class DynamicEntityPropertyValueAppService : AppFrameworkDemoAppServiceBase, IDynamicEntityPropertyValueAppService

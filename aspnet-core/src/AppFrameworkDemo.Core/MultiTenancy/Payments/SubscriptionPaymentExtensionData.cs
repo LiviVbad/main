@@ -2,7 +2,7 @@
 using Abp.Domain.Entities;
 using Abp.MultiTenancy;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments
+namespace AppFramework.MultiTenancy.Payments
 {
     [Table("AppSubscriptionPaymentsExtensionData")]
     [MultiTenancySide(MultiTenancySides.Host)]

@@ -1,6 +1,6 @@
-﻿using AppFrameworkDemo.MultiTenancy.Payments.Stripe;
+﻿using AppFramework.MultiTenancy.Payments.Stripe;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     public class StripeController : StripeControllerBase
     {

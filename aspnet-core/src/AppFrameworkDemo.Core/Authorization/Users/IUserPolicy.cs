@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Abp.Domain.Policies;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     public interface IUserPolicy : IPolicy
     {

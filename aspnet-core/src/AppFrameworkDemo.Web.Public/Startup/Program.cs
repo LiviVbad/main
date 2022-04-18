@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
-using AppFrameworkDemo.Web.Helpers;
+using AppFramework.Web.Helpers;
 
-namespace AppFrameworkDemo.Web.Public.Startup
+namespace AppFramework.Web.Public.Startup
 {
     public class Program
     {

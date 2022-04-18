@@ -3,4 +3,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 COPY . .
 
-ENTRYPOINT ["dotnet", "AppFrameworkDemo.Web.Public.dll"]
+ENTRYPOINT ["dotnet", "AppFramework.Web.Public.dll"]

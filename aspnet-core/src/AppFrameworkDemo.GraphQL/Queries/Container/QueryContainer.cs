@@ -1,7 +1,7 @@
 ﻿using Abp.Dependency;
 using GraphQL.Types;
 
-namespace AppFrameworkDemo.Queries.Container
+namespace AppFramework.Queries.Container
 {
     public sealed class QueryContainer : ObjectGraphType, ITransientDependency
     {

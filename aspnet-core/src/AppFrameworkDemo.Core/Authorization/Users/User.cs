@@ -5,7 +5,7 @@ using Abp.Authorization.Users;
 using Abp.Extensions;
 using Abp.Timing;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     /// <summary>
     /// Represents a user in the system.

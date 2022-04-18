@@ -4,13 +4,13 @@ using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Authorization.Users;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Authorization.Users.Dto;
+using AppFramework.Authorization;
+using AppFramework.Authorization.Users;
+using AppFramework.Authorization.Users.Dto;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Authorization.Users
+namespace AppFramework.Tests.Authorization.Users
 {
     // ReSharper disable once InconsistentNaming
     public class UserAppService_PermissionEdit_Tests : UserAppServiceTestBase

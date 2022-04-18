@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using Abp;
 using Abp.Localization;
 using Abp.Notifications;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.Authorization.Users;
+using AppFramework.MultiTenancy;
 
-namespace AppFrameworkDemo.Notifications
+namespace AppFramework.Notifications
 {
     public interface IAppNotifier
     {

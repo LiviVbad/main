@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Web;
+using AppFramework.Configuration;
+using AppFramework.Web;
 
-namespace AppFrameworkDemo.EntityFrameworkCore
+namespace AppFramework.EntityFrameworkCore
 {
     /* This class is needed to run "dotnet ef ..." commands from command line on development. Not used anywhere else */
     public class AppFrameworkDemoDbContextFactory : IDesignTimeDbContextFactory<AppFrameworkDemoDbContext>
@@ -24,7 +24,7 @@ namespace AppFrameworkDemo.EntityFrameworkCore
                 addUserSecrets: true
             );
 
-            AppFrameworkDemoDbContextConfigurer.Configure(builder, configuration.GetConnectionString(AppFrameworkDemoConsts.ConnectionStringName));
+            AppFrameworkDemoDbContextConfigurer.Configure(builder, configuration.GetConnectionString(AppFrameworkConsts.ConnectionStringName));
 
             return new AppFrameworkDemoDbContext(builder.Options);
         }

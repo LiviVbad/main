@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using Abp.Reflection.Extensions;
 
-namespace AppFrameworkDemo.Web
+namespace AppFramework.Web
 {
     /// <summary>
     /// This class is used to find root path of the web project in;
@@ -13,14 +13,14 @@ namespace AppFrameworkDemo.Web
     {
         public static string CalculateContentRootFolder()
         {
-            var coreAssemblyDirectoryPath = Path.GetDirectoryName(typeof(AppFrameworkDemoCoreModule).GetAssembly().Location);
+            var coreAssemblyDirectoryPath = Path.GetDirectoryName(typeof(AppFrameworkCoreModule).GetAssembly().Location);
             if (coreAssemblyDirectoryPath == null)
             {
-                throw new Exception("Could not find location of AppFrameworkDemo.Core assembly!");
+                throw new Exception("Could not find location of AppFramework.Core assembly!");
             }
 
             var directoryInfo = new DirectoryInfo(coreAssemblyDirectoryPath);
-            while (!DirectoryContains(directoryInfo.FullName, "AppFrameworkDemo.Web.sln"))
+            while (!DirectoryContains(directoryInfo.FullName, "AppFramework.Web.sln"))
             {
                 if (directoryInfo.Parent == null)
                 {
@@ -30,13 +30,13 @@ namespace AppFrameworkDemo.Web
                 directoryInfo = directoryInfo.Parent;
             }
 
-            var webMvcFolder = Path.Combine(directoryInfo.FullName, $"src{Path.DirectorySeparatorChar}AppFrameworkDemo.Web.Mvc");
+            var webMvcFolder = Path.Combine(directoryInfo.FullName, $"src{Path.DirectorySeparatorChar}AppFramework.Web.Mvc");
             if (Directory.Exists(webMvcFolder))
             {
                 return webMvcFolder;
             }
 
-            var webHostFolder = Path.Combine(directoryInfo.FullName, $"src{Path.DirectorySeparatorChar}AppFrameworkDemo.Web.Host");
+            var webHostFolder = Path.Combine(directoryInfo.FullName, $"src{Path.DirectorySeparatorChar}AppFramework.Web.Host");
             if (Directory.Exists(webHostFolder))
             {
                 return webHostFolder;

@@ -2,12 +2,12 @@
 using System.Threading.Tasks;
 using Abp.Authorization.Roles;
 using Abp.Authorization.Users;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users.Dto;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users.Dto;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Authorization.Users
+namespace AppFramework.Tests.Authorization.Users
 {
     // ReSharper disable once InconsistentNaming
     public class UserAppService_GetUsers_Tests : UserAppServiceTestBase

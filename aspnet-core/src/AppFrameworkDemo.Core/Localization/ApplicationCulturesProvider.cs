@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using Abp.Dependency;
 
-namespace AppFrameworkDemo.Localization
+namespace AppFramework.Localization
 {
     public class ApplicationCulturesProvider : IApplicationCulturesProvider, ITransientDependency
     {

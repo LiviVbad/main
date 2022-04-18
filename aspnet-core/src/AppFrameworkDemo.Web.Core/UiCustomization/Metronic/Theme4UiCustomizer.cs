@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
 using Abp;
 using Abp.Configuration;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Configuration.Dto;
-using AppFrameworkDemo.UiCustomization;
-using AppFrameworkDemo.UiCustomization.Dto;
+using AppFramework.Configuration;
+using AppFramework.Configuration.Dto;
+using AppFramework.UiCustomization;
+using AppFramework.UiCustomization.Dto;
 
-namespace AppFrameworkDemo.Web.UiCustomization.Metronic
+namespace AppFramework.Web.UiCustomization.Metronic
 {
     public class Theme4UiCustomizer : UiThemeCustomizerBase, IUiCustomizer
     {

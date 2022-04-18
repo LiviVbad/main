@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Abp;
 using Abp.Domain.Services;
 
-namespace AppFrameworkDemo.Chat
+namespace AppFramework.Chat
 {
     public interface IChatMessageManager : IDomainService
     {

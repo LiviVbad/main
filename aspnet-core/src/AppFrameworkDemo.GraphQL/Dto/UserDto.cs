@@ -5,9 +5,9 @@ using Abp.AutoMapper;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using Abp.Organizations;
-using AppFrameworkDemo.Authorization.Roles;
+using AppFramework.Authorization.Roles;
 
-namespace AppFrameworkDemo.Dto
+namespace AppFramework.Dto
 {
     /*Mapped in CustomDtoMapper.cs*/
     public class UserDto : EntityDto<long>, IPassivable, IHasCreationTime

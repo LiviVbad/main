@@ -4,7 +4,7 @@ using Abp.AspNetZeroCore.Web.Authentication.External;
 using Abp.Dependency;
 using Microsoft.AspNetCore.Identity;
 
-namespace AppFrameworkDemo.Web.Authentication.External
+namespace AppFramework.Web.Authentication.External
 {
     public interface IExternalLoginInfoManager : ITransientDependency
     {

@@ -1,6 +1,6 @@
 ﻿using Abp.Web.Models;
 
-namespace AppFrameworkDemo.Storage
+namespace AppFramework.Storage
 {
     public class FileUploadCacheOutput : ErrorInfo
     {

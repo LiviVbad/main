@@ -11,10 +11,10 @@ using Abp.Runtime.Session;
 using Abp.Timing;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization.Delegation;
-using AppFrameworkDemo.Authorization.Users.Delegation.Dto;
+using AppFramework.Authorization.Delegation;
+using AppFramework.Authorization.Users.Delegation.Dto;
 
-namespace AppFrameworkDemo.Authorization.Users.Delegation
+namespace AppFramework.Authorization.Users.Delegation
 {
     [AbpAuthorize]
     public class UserDelegationAppService : AppFrameworkDemoAppServiceBase, IUserDelegationAppService

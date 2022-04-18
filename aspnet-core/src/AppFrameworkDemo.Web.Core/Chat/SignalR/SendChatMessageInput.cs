@@ -1,6 +1,6 @@
 using System;
 
-namespace AppFrameworkDemo.Web.Chat.SignalR
+namespace AppFramework.Web.Chat.SignalR
 {
     public class SendChatMessageInput
     {

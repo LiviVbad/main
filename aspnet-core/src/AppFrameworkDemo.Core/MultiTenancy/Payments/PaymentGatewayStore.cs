@@ -2,7 +2,7 @@
 using System.Linq;
 using Abp.Dependency;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments
+namespace AppFramework.MultiTenancy.Payments
 {
     public class PaymentGatewayStore : IPaymentGatewayStore, ITransientDependency
     {

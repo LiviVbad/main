@@ -7,11 +7,11 @@ using Abp.Extensions;
 using Abp.Linq.Extensions;
 using Abp.Runtime.Session;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Common.Dto;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.Editions.Dto;
+using AppFramework.Common.Dto;
+using AppFramework.Editions;
+using AppFramework.Editions.Dto;
 
-namespace AppFrameworkDemo.Common
+namespace AppFramework.Common
 {
     [AbpAuthorize]
     public class CommonLookupAppService : AppFrameworkDemoAppServiceBase, ICommonLookupAppService

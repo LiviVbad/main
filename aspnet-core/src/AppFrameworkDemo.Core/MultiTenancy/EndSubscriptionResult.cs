@@ -1,4 +1,4 @@
-namespace AppFrameworkDemo.MultiTenancy
+namespace AppFramework.MultiTenancy
 {
     public enum EndSubscriptionResult
     {

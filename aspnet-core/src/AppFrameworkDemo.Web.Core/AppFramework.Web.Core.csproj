@@ -3,20 +3,20 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
-    <AssemblyName>AppFrameworkDemo.Web.Core</AssemblyName>
+    <AssemblyName>AppFramework.Web.Core</AssemblyName>
     <PackageId>AppFrameworkDemo.Web.Core</PackageId>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
-    <RootNamespace>AppFrameworkDemo.Web</RootNamespace>
+    <RootNamespace>AppFramework.Web</RootNamespace>
     <OutputType>Library</OutputType>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppFrameworkDemo.GraphQL\AppFrameworkDemo.GraphQL.csproj" />
-    <ProjectReference Include="..\AppFrameworkDemo.Application\AppFrameworkDemo.Application.csproj" />
-    <ProjectReference Include="..\AppFrameworkDemo.EntityFrameworkCore\AppFrameworkDemo.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\AppFrameworkDemo.GraphQL\AppFramework.GraphQL.csproj" />
+    <ProjectReference Include="..\AppFrameworkDemo.Application\AppFramework.Application.csproj" />
+    <ProjectReference Include="..\AppFrameworkDemo.EntityFrameworkCore\AppFramework.EntityFrameworkCore.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Abp.AspNetCore.SignalR" Version="7.1.0" />

@@ -3,7 +3,7 @@ using Abp.Net.Mail;
 using Abp.Net.Mail.Smtp;
 using Abp.Runtime.Security;
 
-namespace AppFrameworkDemo.Net.Emailing
+namespace AppFramework.Net.Emailing
 {
     public class AppFrameworkDemoSmtpEmailSenderConfiguration : SmtpEmailSenderConfiguration
     {

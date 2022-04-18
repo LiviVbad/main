@@ -6,10 +6,10 @@ using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Localization;
 using Abp.Webhooks;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.WebHooks.Dto;
+using AppFramework.Authorization;
+using AppFramework.WebHooks.Dto;
 
-namespace AppFrameworkDemo.WebHooks
+namespace AppFramework.WebHooks
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_WebhookSubscription)]
     public class WebhookSubscriptionAppService : AppFrameworkDemoAppServiceBase, IWebhookSubscriptionAppService

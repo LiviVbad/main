@@ -5,12 +5,12 @@ using Abp.Domain.Uow;
 using Abp.MultiTenancy;
 using Abp.Runtime.Security;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.Authorization.Users;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.MultiTenancy;
 using Shouldly;
 
-namespace AppFrameworkDemo.Tests.Authorization.Users
+namespace AppFramework.Tests.Authorization.Users
 {
     // ReSharper disable once InconsistentNaming
     public class UserAppService_Link_Tests : UserAppServiceTestBase

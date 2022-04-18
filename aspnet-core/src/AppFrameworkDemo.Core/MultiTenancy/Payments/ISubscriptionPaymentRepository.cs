@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Abp.Domain.Repositories;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments
+namespace AppFramework.MultiTenancy.Payments
 {
     public interface ISubscriptionPaymentRepository : IRepository<SubscriptionPayment, long>
     {

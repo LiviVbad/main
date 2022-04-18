@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Abp;
 using Abp.Domain.Entities;
 
-namespace AppFrameworkDemo.Storage
+namespace AppFramework.Storage
 {
     [Table("AppBinaryObjects")]
     public class BinaryObject : Entity<Guid>, IMayHaveTenant

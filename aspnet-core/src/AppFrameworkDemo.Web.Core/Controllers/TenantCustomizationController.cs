@@ -15,12 +15,12 @@ using Abp.Web.Models;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.Storage;
-using AppFrameworkDemo.Web.Helpers;
+using AppFramework.Authorization;
+using AppFramework.MultiTenancy;
+using AppFramework.Storage;
+using AppFramework.Web.Helpers;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     [AbpMvcAuthorize]
     public class TenantCustomizationController : AppFrameworkDemoControllerBase

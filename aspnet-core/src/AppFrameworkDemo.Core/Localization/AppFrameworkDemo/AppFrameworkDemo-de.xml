@@ -101,12 +101,12 @@
     <text name="Send">Senden</text>
     <text name="PasswordReset">Passwort zurücksetzen</text>
     <text name="InvalidUserNameOrEmailAddress">Ungültiger Benutzername oder E-Mail-Adresse</text>
-    <text name="PasswordResetEmail_Subject">AppFrameworkDemo - Passwort zurücksetzen</text>
-    <text name="PasswordResetEmail_Title">AppFrameworkDemo - Passwort zurücksetzen.</text>
+    <text name="PasswordResetEmail_Subject">AppFramework - Passwort zurücksetzen</text>
+    <text name="PasswordResetEmail_Title">AppFramework - Passwort zurücksetzen.</text>
     <text name="PasswordResetEmail_SubTitle">Diese E-Mail wurde Ihnen gesendet um Ihr Passwort zurückzusetzen.</text>
     <text name="PasswordResetEmail_ClickTheLinkBelowToResetYourPassword">Bitte klicken Sie auf den unten stehenden Link, um Ihr Passwort zurückzusetzen:</text>
-    <text name="EmailActivation_Subject">AppFrameworkDemo - Konto-Aktivierung</text>
-    <text name="EmailActivation_Title">Willkommen zu AppFrameworkDemo.</text>
+    <text name="EmailActivation_Subject">AppFramework - Konto-Aktivierung</text>
+    <text name="EmailActivation_Title">Willkommen zu AppFramework.</text>
     <text name="EmailActivation_SubTitle">Diese E-Mail dient der Bestätigung Ihrer E-Mail-Adresse.</text>
     <text name="EmailActivation_ClickTheLinkBelowToVerifyYourEmail">Bitte klicken Sie auf den unten stehenden Link, um Ihre E-Mail-Adresse zu bestätigen:</text>
     <text name="InvalidEmailAddress">Ungültige E-Mail-Adresse</text>
@@ -168,7 +168,7 @@
     <text name="Error">Fehler!</text>
     <text name="OopsYouAreLost">Ups! Sie sind verloren.</text>
     <text name="WeCanNotFindThePage">Wir konnten die Seite, die Sie öffnen wollten, nicht finden.</text>
-    <text name="DashboardDemo_Note_Title">Willkommen zu AppFrameworkDemo!</text>
+    <text name="DashboardDemo_Note_Title">Willkommen zu AppFramework!</text>
     <text name="DashboardDemo_Note_Info">
       In dieser Demo können Sie anhand des linken Navigationsmenüs voll funktionsfähige Seiten testen.
       Dieses Dashboard dient lediglich zu Demonstrationszwecken. Text und Daten haben keinerlei Bedeutung.
@@ -176,7 +176,7 @@
       Wenn Sie auf die Schaltfläche &quot;Aktualisieren&quot; klicken, werden neue Daten für die Graphen beim Server angefordert, wobei der Server zufällige Daten generiert.
     </text>
     <text name="WelcomePage_Title">Willkommen!</text>
-    <text name="WelcomePage_Info">Willkommen in AppFrameworkDemo. Sie können dieses Menü zum Navigieren in der Anwendung verwenden. Falls Sie keine Menüpunkte sehen, fehlen Ihnen vermutlich die notwendigen Berechtigungen. Bitten Sie Ihren Systemadministrator Ihnen zusätzliche Berechtigungen zu geben.</text>
+    <text name="WelcomePage_Info">Willkommen in AppFramework. Sie können dieses Menü zum Navigieren in der Anwendung verwenden. Falls Sie keine Menüpunkte sehen, fehlen Ihnen vermutlich die notwendigen Berechtigungen. Bitten Sie Ihren Systemadministrator Ihnen zusätzliche Berechtigungen zu geben.</text>
     <text name="RequestedFileDoesNotExists">Die angeforderte Datei konnte nicht gefunden werden!</text>
     <text name="MailSent">E-Mail gesendet</text>
     <text name="PasswordResetMailSentMessage">Ein Link zum Zurücksetzen Ihres Passwort wurde an Ihre E-Mail-Adresse geschickt.</text>
@@ -325,7 +325,7 @@
     <text name="SuccessfullyUnlinked">Verknüpfung erfolgreich aufgehoben</text>
     <text name="LinkedUserDeleteWarningMessage">Verknüpfung zu Benutzer {0} wird gelöscht.</text>
     <text name="SwitchToLinkedAccountTokenErrorMessage">Stellvertreter-Token ist abgelaufen oder ungültig!</text>
-    <text name="WelcomeToTheApplicationNotificationMessage">Willkommen bei AppFrameworkDemo! Welche Nachrichten wollen Sie erhalten?</text>
+    <text name="WelcomeToTheApplicationNotificationMessage">Willkommen bei AppFramework! Welche Nachrichten wollen Sie erhalten?</text>
     <text name="NewUserRegisteredNotificationDefinition">Ein neuer Benutzer hat sich registriert.</text>
     <text name="NewUserRegisteredNotificationMessage">Ein neuer Benutzer hat sich registriert. Name: {userName}, E-Mail: {emailAddress}.</text>
     <text name="SeeAllNotifications">Alle Benachrichtigungen anschauen</text>
@@ -351,7 +351,7 @@
     <text name="CachesHeaderInfo">Hier kann der Zwischenspeicher einer Anwendung gelöscht werden.</text>
     <text name="TestEmailSettingsHeader">E-Mail Test-Einstellungen</text>
     <text name="SendTestEmail">Test-E-Mail verschicken</text>
-    <text name="TestEmail_Subject">AppFrameworkDemo - Test-E-Mail</text>
+    <text name="TestEmail_Subject">AppFramework - Test-E-Mail</text>
     <text name="TestEmail_Body">Dies ist eine Test-E-Mail.</text>
     <text name="TestEmailSentSuccessfully">Test-E-Mail erfolgreich versandt.</text>
     <text name="WebSiteLogs">Logs der Webseite</text>
@@ -589,8 +589,8 @@
     <text name="IsInTrialPeriod">Befindet sich im Testzeitraum?</text>
     <text name="FailedSubscriptionTerminations_Email_Subject">Fehlgeschlagene Abonnement-Kündigungen</text>
     <text name="FailedSubscriptionTerminations_Email_Body">Die Abonnement-Kündigungen ist für folgende Mandanten {0} um {1} fehlgeschlagen. Detaillierte Fehlermeldungen finden Sie in den System-Protokollen.</text>
-    <text name="SubscriptionExpire_Email_Subject">Ihr AppFrameworkDemo-Abonnement ist abgelaufen</text>
-    <text name="SubscriptionExpire_Email_Body">Ihr AppFrameworkDemo-Abonnement ist am {0} abgelaufen.</text>
+    <text name="SubscriptionExpire_Email_Subject">Ihr AppFramework-Abonnement ist abgelaufen</text>
+    <text name="SubscriptionExpire_Email_Body">Ihr AppFramework-Abonnement ist am {0} abgelaufen.</text>
     <text name="UnlimitedTimeSubscription">Unbegrenztes Abonnement</text>
     <text name="SubscriptionEndDateUtc">Abonnement-Ablaufdatum (Utc)</text>
     <text name="ExpiringEditionMustBeAFreeEdition">Die auslaufende Edition muss eine kostenlose Edition sein</text>
@@ -617,11 +617,11 @@
     <text name="Profile">Profil</text>
     <text name="Enable">Aktivieren</text>
     <text name="GoogleAuthenticatorIsNotEnabled">Google Authenticator ist für Ihr Konto nicht aktiviert. Sie müssen es zuerst in Ihren Einstellungen aktivieren.</text>
-    <text name="SubscriptionExpiringSoon_Email_Subject">Ablaufdatum Ihres AppFrameworkDemo-Abonnements</text>
-    <text name="SubscriptionExpiringSoon_Email_Body">Ihr AppFrameworkDemo-Abonnement läuft am {0} ab.</text>
-    <text name="SubscriptionExpire_Title">AppFrameworkDemo-Abonnement läuft ab</text>
+    <text name="SubscriptionExpiringSoon_Email_Subject">Ablaufdatum Ihres AppFramework-Abonnements</text>
+    <text name="SubscriptionExpiringSoon_Email_Body">Ihr AppFramework-Abonnement läuft am {0} ab.</text>
+    <text name="SubscriptionExpire_Title">AppFramework-Abonnement läuft ab</text>
     <text name="SubscriptionExpire_SubTitle">Diese E-Mail wird Ihnen gesendet, um über den Ablauf Ihres Abonnements zu informieren</text>
-    <text name="SubscriptionAssignedToAnother_Email_Body">Ihr AppFrameworkDemo-Abonnement ist am {1} abgelaufen. Ihre aktuelle Edition wurde {0} zugewiesen.</text>
+    <text name="SubscriptionAssignedToAnother_Email_Body">Ihr AppFramework-Abonnement ist am {1} abgelaufen. Ihre aktuelle Edition wurde {0} zugewiesen.</text>
     <text name="FailedSubscriptionTerminations_Title">Fehlgeschlagene Abonnement-Kündigungen</text>
     <text name="FailedSubscriptionTerminations_SubTitle">Die Kündigung des Abonnements ist für einige Mandanten nicht möglich</text>
     <text name="SubscriptionExpiringSoon_Title">Ablauf der Kündigungsfrist für ein Abonnement</text>
@@ -771,7 +771,7 @@
     <text name="NewValue">Neuer Wert</text>
     <text name="Detail">Detail</text>
     <text name="CreatedAtByUser"><![CDATA[Erstellt um <b>{0}</b> von <b>{1}</b>]]></text>
-    <text name="AppFrameworkDemo.MultiTenancy.Tenant">Mandant</text>
+    <text name="AppFramework.MultiTenancy.Tenant">Mandant</text>
     <text name="Abp.Organizations.OrganizationUnit">Organisationseinheit</text>
     <text name="Search">Suche</text>
     <text name="Pin">Pin</text>
@@ -815,7 +815,7 @@
     <text name="CookieConsent_Message">Diese Website verwendet Cookies, um sicherzustellen, dass Sie das beste Erlebnis auf unserer Website erfahren.</text>
     <text name="CookieConsent_Dismiss">Verstanden!</text>
     <text name="UiCustomization_Wide">Weit</text>
-    <text name="AppFrameworkDemo.Authorization.Roles.Role">Rolle</text>
+    <text name="AppFramework.Authorization.Roles.Role">Rolle</text>
     <text name="History">Verlauf</text>
     <text name="IsCookieConsentEnabled">Cookie-Zustimmung aktiviert</text>
     <text name="CookieConsent">Cookie-Zustimmung</text>

@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Configure
+﻿namespace AppFramework.Configure
 {
     public class Settings
     {

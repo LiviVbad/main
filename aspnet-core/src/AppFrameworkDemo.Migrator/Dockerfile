@@ -5,19 +5,19 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["src/AppFrameworkDemo.Migrator/AppFrameworkDemo.Migrator.csproj", "src/AppFrameworkDemo.Migrator/"]
-COPY ["src/AppFrameworkDemo.EntityFrameworkCore/AppFrameworkDemo.EntityFrameworkCore.csproj", "src/AppFrameworkDemo.EntityFrameworkCore/"]
-COPY ["src/AppFrameworkDemo.Core/AppFrameworkDemo.Core.csproj", "src/AppFrameworkDemo.Core/"]
-COPY ["src/AppFrameworkDemo.Core.Shared/AppFrameworkDemo.Core.Shared.csproj", "src/AppFrameworkDemo.Core.Shared/"]
-RUN dotnet restore "src/AppFrameworkDemo.Migrator/AppFrameworkDemo.Migrator.csproj"
+COPY ["src/AppFramework.Migrator/AppFramework.Migrator.csproj", "src/AppFramework.Migrator/"]
+COPY ["src/AppFramework.EntityFrameworkCore/AppFramework.EntityFrameworkCore.csproj", "src/AppFramework.EntityFrameworkCore/"]
+COPY ["src/AppFramework.Core/AppFramework.Core.csproj", "src/AppFramework.Core/"]
+COPY ["src/AppFramework.Core.Shared/AppFramework.Core.Shared.csproj", "src/AppFramework.Core.Shared/"]
+RUN dotnet restore "src/AppFramework.Migrator/AppFramework.Migrator.csproj"
 COPY . .
-WORKDIR "/src/src/AppFrameworkDemo.Migrator"
-RUN dotnet build "AppFrameworkDemo.Migrator.csproj" -c Release -o /app/build
+WORKDIR "/src/src/AppFramework.Migrator"
+RUN dotnet build "AppFramework.Migrator.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "AppFrameworkDemo.Migrator.csproj" -c Release -o /app/publish
+RUN dotnet publish "AppFramework.Migrator.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "AppFrameworkDemo.Migrator.dll", "-s"]
+ENTRYPOINT ["dotnet", "AppFramework.Migrator.dll", "-s"]

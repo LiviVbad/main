@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     public abstract class AppFrameworkDemoControllerBase : AbpController
     {
         protected AppFrameworkDemoControllerBase()
         {
-            LocalizationSourceName = AppFrameworkDemoConsts.LocalizationSourceName;
+            LocalizationSourceName = AppFrameworkConsts.LocalizationSourceName;
         }
 
         protected void CheckErrors(IdentityResult identityResult)

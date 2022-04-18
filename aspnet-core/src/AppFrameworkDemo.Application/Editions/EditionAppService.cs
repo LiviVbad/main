@@ -12,11 +12,11 @@ using Abp.Domain.Repositories;
 using Abp.Runtime.Session;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Editions.Dto;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.Authorization;
+using AppFramework.Editions.Dto;
+using AppFramework.MultiTenancy;
 
-namespace AppFrameworkDemo.Editions
+namespace AppFramework.Editions
 {
     public class EditionAppService : AppFrameworkDemoAppServiceBase, IEditionAppService
     {

@@ -5,15 +5,15 @@ using Microsoft.AspNetCore.Mvc;
 using Abp.IO.Extensions;
 using Abp.UI;
 using Abp.Web.Models;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.Storage;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.Storage;
 using Abp.BackgroundJobs;
-using AppFrameworkDemo.Authorization;
+using AppFramework.Authorization;
 using Abp.AspNetCore.Mvc.Authorization;
 using Abp.Runtime.Session;
-using AppFrameworkDemo.Authorization.Users.Importing;
+using AppFramework.Authorization.Users.Importing;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     public abstract class UsersControllerBase : AppFrameworkDemoControllerBase
     {

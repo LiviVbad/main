@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Abp.IO;
 
-namespace AppFrameworkDemo.IO
+namespace AppFramework.IO
 {
     public static class AppFileHelper
     {

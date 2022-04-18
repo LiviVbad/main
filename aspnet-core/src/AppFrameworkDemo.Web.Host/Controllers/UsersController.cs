@@ -1,9 +1,9 @@
 ﻿using Abp.AspNetCore.Mvc.Authorization;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Storage;
+using AppFramework.Authorization;
+using AppFramework.Storage;
 using Abp.BackgroundJobs;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     [AbpMvcAuthorize(AppPermissions.Pages_Administration_Users)]
     public class UsersController : UsersControllerBase

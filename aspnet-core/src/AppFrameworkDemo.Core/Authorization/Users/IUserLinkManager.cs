@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 using Abp;
 using Abp.Authorization.Users;
-using AppFrameworkDemo.Authorization.Impersonation;
+using AppFramework.Authorization.Impersonation;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     public interface IUserLinkManager
     {

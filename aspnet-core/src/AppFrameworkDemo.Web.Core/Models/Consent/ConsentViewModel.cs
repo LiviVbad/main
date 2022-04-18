@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Web.Models.Consent
+namespace AppFramework.Web.Models.Consent
 {
     public class ConsentViewModel : ConsentInputModel
     {

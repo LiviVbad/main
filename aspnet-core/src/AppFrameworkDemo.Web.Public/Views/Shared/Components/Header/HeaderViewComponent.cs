@@ -7,13 +7,13 @@ using Abp.Extensions;
 using Abp.Localization;
 using Abp.Runtime.Session;
 using Microsoft.AspNetCore.Mvc;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.Url;
-using AppFrameworkDemo.Web.Public.Startup;
-using AppFrameworkDemo.Web.Session;
+using AppFramework.Configuration;
+using AppFramework.MultiTenancy;
+using AppFramework.Url;
+using AppFramework.Web.Public.Startup;
+using AppFramework.Web.Session;
 
-namespace AppFrameworkDemo.Web.Public.Views.Shared.Components.Header
+namespace AppFramework.Web.Public.Views.Shared.Components.Header
 {
     public class HeaderViewComponent : AppFrameworkDemoViewComponent
     {

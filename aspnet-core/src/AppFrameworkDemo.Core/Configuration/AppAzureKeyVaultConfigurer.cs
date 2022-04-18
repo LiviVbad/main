@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
 
-namespace AppFrameworkDemo.Configuration
+namespace AppFramework.Configuration
 {
     public class AppAzureKeyVaultConfigurer
     {

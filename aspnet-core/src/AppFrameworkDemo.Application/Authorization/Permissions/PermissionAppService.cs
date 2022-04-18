@@ -2,9 +2,9 @@
 using System.Linq;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
-using AppFrameworkDemo.Authorization.Permissions.Dto;
+using AppFramework.Authorization.Permissions.Dto;
 
-namespace AppFrameworkDemo.Authorization.Permissions
+namespace AppFramework.Authorization.Permissions
 {
     public class PermissionAppService : AppFrameworkDemoAppServiceBase, IPermissionAppService
     {

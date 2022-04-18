@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Abp;
 using Abp.RealTime;
-using AppFrameworkDemo.Friendships;
+using AppFramework.Friendships;
 
-namespace AppFrameworkDemo.Chat
+namespace AppFramework.Chat
 {
     public class NullChatCommunicator : IChatCommunicator
     {

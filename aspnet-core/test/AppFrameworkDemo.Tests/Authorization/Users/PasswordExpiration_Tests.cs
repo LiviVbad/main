@@ -7,14 +7,14 @@ using Abp.Configuration;
 using Abp.Domain.Repositories;
 using Abp.Timing;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Authorization.Users.Password;
-using AppFrameworkDemo.Configuration;
+using AppFramework.Authorization.Users;
+using AppFramework.Authorization.Users.Password;
+using AppFramework.Configuration;
 using Shouldly;
 using Xunit;
 using Z.EntityFramework.Plus;
 
-namespace AppFrameworkDemo.Tests.Authorization.Users
+namespace AppFramework.Tests.Authorization.Users
 {
     public class PasswordExpiration_Tests : AppTestBase
     {

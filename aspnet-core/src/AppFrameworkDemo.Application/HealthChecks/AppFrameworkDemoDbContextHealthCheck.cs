@@ -1,9 +1,9 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using AppFrameworkDemo.EntityFrameworkCore;
+using AppFramework.EntityFrameworkCore;
 
-namespace AppFrameworkDemo.HealthChecks
+namespace AppFramework.HealthChecks
 {
     public class AppFrameworkDemoDbContextHealthCheck : IHealthCheck
     {

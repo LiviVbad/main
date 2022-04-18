@@ -5,7 +5,7 @@ using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.UI;
 
-namespace AppFrameworkDemo.Friendships
+namespace AppFramework.Friendships
 {
     public class FriendshipManager : AppFrameworkDemoDomainServiceBase, IFriendshipManager
     {

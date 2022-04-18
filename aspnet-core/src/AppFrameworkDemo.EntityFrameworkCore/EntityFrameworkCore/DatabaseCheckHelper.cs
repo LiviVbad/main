@@ -4,7 +4,7 @@ using Abp.EntityFrameworkCore;
 using Abp.Extensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace AppFrameworkDemo.EntityFrameworkCore
+namespace AppFramework.EntityFrameworkCore
 {
     public class DatabaseCheckHelper : ITransientDependency
     {

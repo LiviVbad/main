@@ -1,7 +1,7 @@
-﻿using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.EntityFrameworkCore;
+﻿using AppFramework.Editions;
+using AppFramework.EntityFrameworkCore;
 
-namespace AppFrameworkDemo.Test.Base.TestData
+namespace AppFramework.Test.Base.TestData
 {
     public class TestEditionsBuilder
     {

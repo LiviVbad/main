@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using AppFrameworkDemo.HealthChecks;
+using AppFramework.HealthChecks;
 
-namespace AppFrameworkDemo.Web.HealthCheck
+namespace AppFramework.Web.HealthCheck
 {
     public static class AbpZeroHealthCheck
     {

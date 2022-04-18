@@ -1,11 +1,11 @@
 ﻿using System.Globalization;
 using Abp.Localization;
 using Abp.Zero;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Test.Base;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Localization
+namespace AppFramework.Tests.Localization
 {
     // ReSharper disable once InconsistentNaming
     public class Localization_Tests : AppTestBase

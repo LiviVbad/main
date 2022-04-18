@@ -3,7 +3,7 @@ using Abp.Dependency;
 using Abp.Timing;
 using Castle.Core.Logging;
 
-namespace AppFrameworkDemo.Migrator
+namespace AppFramework.Migrator
 {
     public class Log : ITransientDependency
     {

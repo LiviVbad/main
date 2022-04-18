@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using AppFrameworkDemo.Authorization.Users.Importing.Dto;
-using AppFrameworkDemo.Dto;
+using AppFramework.Authorization.Users.Importing.Dto;
+using AppFramework.Dto;
 
-namespace AppFrameworkDemo.Authorization.Users.Importing
+namespace AppFramework.Authorization.Users.Importing
 {
     public interface IInvalidUserExporter
     {

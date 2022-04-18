@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Abp.Webhooks;
 
-namespace AppFrameworkDemo.WebHooks
+namespace AppFramework.WebHooks
 {
     public class AppWebhookPublisher : AppFrameworkDemoDomainServiceBase, IAppWebhookPublisher
     {

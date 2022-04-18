@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Localization
+namespace AppFramework.Localization
 {
     public static class FamFamFamFlagsHelper
     {

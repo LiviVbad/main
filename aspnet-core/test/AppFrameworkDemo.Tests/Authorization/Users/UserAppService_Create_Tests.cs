@@ -4,12 +4,12 @@ using Abp.Collections.Extensions;
 using Abp.MultiTenancy;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users.Dto;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users.Dto;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Authorization.Users
+namespace AppFramework.Tests.Authorization.Users
 {
     // ReSharper disable once InconsistentNaming
     public class UserAppService_Create_Tests : UserAppServiceTestBase

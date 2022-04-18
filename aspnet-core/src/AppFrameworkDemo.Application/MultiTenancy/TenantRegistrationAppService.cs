@@ -8,23 +8,23 @@ using Abp.Runtime.Session;
 using Abp.Timing;
 using Abp.UI;
 using Abp.Zero.Configuration;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Debugging;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.Editions.Dto;
-using AppFrameworkDemo.Features;
-using AppFrameworkDemo.MultiTenancy.Dto;
-using AppFrameworkDemo.MultiTenancy.Payments.Dto;
-using AppFrameworkDemo.Notifications;
-using AppFrameworkDemo.Security.Recaptcha;
-using AppFrameworkDemo.Url;
+using AppFramework.Configuration;
+using AppFramework.Debugging;
+using AppFramework.Editions;
+using AppFramework.Editions.Dto;
+using AppFramework.Features;
+using AppFramework.MultiTenancy.Dto;
+using AppFramework.MultiTenancy.Payments.Dto;
+using AppFramework.Notifications;
+using AppFramework.Security.Recaptcha;
+using AppFramework.Url;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AppFrameworkDemo.MultiTenancy.Payments;
+using AppFramework.MultiTenancy.Payments;
 
-namespace AppFrameworkDemo.MultiTenancy
+namespace AppFramework.MultiTenancy
 {
     public class TenantRegistrationAppService : AppFrameworkDemoAppServiceBase, ITenantRegistrationAppService
     {

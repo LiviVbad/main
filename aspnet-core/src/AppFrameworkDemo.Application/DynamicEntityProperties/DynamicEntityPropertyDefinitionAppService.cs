@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Abp.Authorization;
 using Abp.DynamicEntityProperties;
-using AppFrameworkDemo.Authorization;
+using AppFramework.Authorization;
 
-namespace AppFrameworkDemo.DynamicEntityProperties
+namespace AppFramework.DynamicEntityProperties
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_DynamicProperties)]
     public class DynamicEntityPropertyDefinitionAppService : AppFrameworkDemoAppServiceBase, IDynamicEntityPropertyDefinitionAppService

@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Features;
 using Abp.Localization;
 
-namespace AppFrameworkDemo.Features
+namespace AppFramework.Features
 {
     public static class FeatureExtensions
     {

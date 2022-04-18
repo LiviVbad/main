@@ -3,10 +3,10 @@ using Abp;
 using Abp.Dependency;
 using Abp.RealTime;
 using Abp.Threading;
-using AppFrameworkDemo.Chat;
-using AppFrameworkDemo.Friendships.Cache;
+using AppFramework.Chat;
+using AppFramework.Friendships.Cache;
 
-namespace AppFrameworkDemo.Friendships
+namespace AppFramework.Friendships
 {
     public class ChatUserStateWatcher : ISingletonDependency
     {

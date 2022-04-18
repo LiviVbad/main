@@ -11,11 +11,11 @@ using GraphQL.Types;
 using GraphQL.Validation;
 using GraphQL.Validation.Complexity;
 using GraphQLParser.Exceptions;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Test.Base;
 using Newtonsoft.Json.Linq;
 using Shouldly;
 
-namespace AppFrameworkDemo.GraphQL.Tests
+namespace AppFramework.GraphQL.Tests
 {
     public class GraphQLTestBase<TSchema> : GraphQLTestBase<TSchema, GraphQLDocumentBuilder>
         where TSchema : ISchema

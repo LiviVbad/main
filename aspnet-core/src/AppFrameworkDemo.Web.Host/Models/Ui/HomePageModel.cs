@@ -1,6 +1,6 @@
-﻿using AppFrameworkDemo.Sessions.Dto;
+﻿using AppFramework.Sessions.Dto;
 
-namespace AppFrameworkDemo.Web.Models.Ui
+namespace AppFramework.Web.Models.Ui
 {
     public class HomePageModel
     {

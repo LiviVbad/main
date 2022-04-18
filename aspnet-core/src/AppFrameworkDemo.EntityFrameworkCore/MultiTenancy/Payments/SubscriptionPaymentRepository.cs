@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using Abp.EntityFrameworkCore;
 using Abp.Linq.Extensions;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.EntityFrameworkCore.Repositories;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.EntityFrameworkCore.Repositories;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments
+namespace AppFramework.MultiTenancy.Payments
 {
     public class SubscriptionPaymentRepository : AppFrameworkDemoRepositoryBase<SubscriptionPayment, long>, ISubscriptionPaymentRepository
     {

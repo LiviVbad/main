@@ -13,20 +13,20 @@ using Abp.UI;
 using Abp.Zero.EntityFrameworkCore;
 using Castle.Core.Internal;
 using Microsoft.Extensions.Configuration;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Configuration.Dto;
-using AppFrameworkDemo.Configuration.Host.Dto;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.Identity;
-using AppFrameworkDemo.Install.Dto;
-using AppFrameworkDemo.Migrations.Seed;
-using AppFrameworkDemo.Migrations.Seed.Host;
+using AppFramework.Authorization;
+using AppFramework.Authorization.Users;
+using AppFramework.Configuration;
+using AppFramework.Configuration.Dto;
+using AppFramework.Configuration.Host.Dto;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.Identity;
+using AppFramework.Install.Dto;
+using AppFramework.Migrations.Seed;
+using AppFramework.Migrations.Seed.Host;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace AppFrameworkDemo.Install
+namespace AppFramework.Install
 {
     [AbpAllowAnonymous]
     [DisableAuditing]
@@ -111,7 +111,7 @@ namespace AppFrameworkDemo.Install
 
         private bool CheckDatabaseInternal()
         {
-            var connectionString = _appConfiguration[$"ConnectionStrings:{AppFrameworkDemoConsts.ConnectionStringName}"];
+            var connectionString = _appConfiguration[$"ConnectionStrings:{AppFrameworkConsts.ConnectionStringName}"];
 
             if (string.IsNullOrEmpty(connectionString))
             {
@@ -123,7 +123,7 @@ namespace AppFrameworkDemo.Install
 
         private void SetConnectionString(string constring)
         {
-            EditAppSettingsjson($"ConnectionStrings:{AppFrameworkDemoConsts.ConnectionStringName}", constring);
+            EditAppSettingsjson($"ConnectionStrings:{AppFrameworkConsts.ConnectionStringName}", constring);
         }
 
         private async Task SetAdminPassword(string adminPassword)

@@ -15,19 +15,19 @@ using Abp.Timing;
 using Abp.UI;
 using Abp.Zero.Configuration;
 using Microsoft.AspNetCore.Identity;
-using AppFrameworkDemo.Authentication.TwoFactor.Google;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.Authorization.Users.Profile.Cache;
-using AppFrameworkDemo.Authorization.Users.Profile.Dto;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Friendships;
-using AppFrameworkDemo.Gdpr;
-using AppFrameworkDemo.Net.Sms;
-using AppFrameworkDemo.Security;
-using AppFrameworkDemo.Storage;
-using AppFrameworkDemo.Timing;
+using AppFramework.Authentication.TwoFactor.Google;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.Authorization.Users.Profile.Cache;
+using AppFramework.Authorization.Users.Profile.Dto;
+using AppFramework.Configuration;
+using AppFramework.Friendships;
+using AppFramework.Gdpr;
+using AppFramework.Net.Sms;
+using AppFramework.Security;
+using AppFramework.Storage;
+using AppFramework.Timing;
 
-namespace AppFrameworkDemo.Authorization.Users.Profile
+namespace AppFramework.Authorization.Users.Profile
 {
     [AbpAuthorize]
     public class ProfileAppService : AppFrameworkDemoAppServiceBase, IProfileAppService
@@ -73,7 +73,7 @@ namespace AppFrameworkDemo.Authorization.Users.Profile
             var userProfileEditDto = ObjectMapper.Map<CurrentUserProfileEditDto>(user);
 
             userProfileEditDto.QrCodeSetupImageUrl = user.GoogleAuthenticatorKey != null
-                ? _googleTwoFactorAuthenticateService.GenerateSetupCode("AppFrameworkDemo",
+                ? _googleTwoFactorAuthenticateService.GenerateSetupCode("AppFramework",
                     user.EmailAddress, user.GoogleAuthenticatorKey, 300, 300).QrCodeSetupImageUrl
                 : "";
             userProfileEditDto.IsGoogleAuthenticatorEnabled = user.GoogleAuthenticatorKey != null;
@@ -108,7 +108,7 @@ namespace AppFrameworkDemo.Authorization.Users.Profile
             return new UpdateGoogleAuthenticatorKeyOutput
             {
                 QrCodeSetupImageUrl = _googleTwoFactorAuthenticateService.GenerateSetupCode(
-                    "AppFrameworkDemo",
+                    "AppFramework",
                     user.EmailAddress, user.GoogleAuthenticatorKey, 300, 300).QrCodeSetupImageUrl
             };
         }

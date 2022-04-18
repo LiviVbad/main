@@ -2,11 +2,11 @@
 using Abp.Configuration;
 using Abp.Net.Mail;
 using Abp.Runtime.Security;
-using AppFrameworkDemo.Configuration.Host;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Configuration.Host;
+using AppFramework.Test.Base;
 using Shouldly;
 
-namespace AppFrameworkDemo.Tests.Configuration.Host
+namespace AppFramework.Tests.Configuration.Host
 {
     // ReSharper disable once InconsistentNaming
     public class HostSettingsAppService_EmailSettings_Test : AppTestBase

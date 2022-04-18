@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Domain.Entities;
 
-namespace AppFrameworkDemo.MultiTenancy.Accounting
+namespace AppFramework.MultiTenancy.Accounting
 {
     [Table("AppInvoices")]
     public class Invoice : Entity<int>

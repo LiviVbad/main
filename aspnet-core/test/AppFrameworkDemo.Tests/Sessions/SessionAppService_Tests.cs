@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using AppFrameworkDemo.Sessions;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Sessions;
+using AppFramework.Test.Base;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Sessions
+namespace AppFramework.Tests.Sessions
 {
     // ReSharper disable once InconsistentNaming
     public class SessionAppService_Tests : AppTestBase

@@ -1,8 +1,8 @@
 ﻿@using Abp.Web.Security.AntiForgery
 @using Microsoft.AspNetCore.Http
-@using AppFrameworkDemo.Authorization
-@using AppFrameworkDemo.Web.Common
-@model AppFrameworkDemo.Web.Models.Ui.HomePageModel
+@using AppFramework.Authorization
+@using AppFramework.Web.Common
+@model AppFramework.Web.Models.Ui.HomePageModel
 @inject IAbpAntiForgeryManager AbpAntiForgeryManager
 @{
     AbpAntiForgeryManager.SetCookie(Context, cookieOptions: new CookieOptions()
@@ -12,7 +12,7 @@
     });
 }
 <head>
-    <title>AppFrameworkDemo</title>
+    <title>AppFramework</title>
 
     <link href="~/view-resources/Views/Ui/Index.css" rel="stylesheet" asp-append-version="true"/>
 </head>

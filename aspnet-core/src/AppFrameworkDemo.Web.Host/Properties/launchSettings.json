@@ -23,7 +23,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "AppFrameworkDemo.Web.Host": {
+    "AppFramework.Web.Host": {
       "commandName": "Project",
       "launchBrowser": true,
       "applicationUrl": "https://localhost:44301",

@@ -18,15 +18,15 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.Identity;
-using AppFrameworkDemo.Web.Chat.SignalR;
-using AppFrameworkDemo.Web.Common;
+using AppFramework.Authorization;
+using AppFramework.Configuration;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.Identity;
+using AppFramework.Web.Chat.SignalR;
+using AppFramework.Web.Common;
 using Swashbuckle.AspNetCore.Swagger;
-using AppFrameworkDemo.Web.IdentityServer;
-using AppFrameworkDemo.Web.Swagger;
+using AppFramework.Web.IdentityServer;
+using AppFramework.Web.Swagger;
 using Stripe;
 using ILoggerFactory = Microsoft.Extensions.Logging.ILoggerFactory;
 using GraphQL.Server;
@@ -37,15 +37,15 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using AppFrameworkDemo.Configure;
-using AppFrameworkDemo.Schemas;
-using AppFrameworkDemo.Web.HealthCheck;
+using AppFramework.Configure;
+using AppFramework.Schemas;
+using AppFramework.Web.HealthCheck;
 using Newtonsoft.Json.Serialization;
 using Owl.reCAPTCHA;
 using HealthChecksUISettings = HealthChecks.UI.Configuration.Settings;
 using Microsoft.AspNetCore.Server.Kestrel.Https;
 
-namespace AppFrameworkDemo.Web.Startup
+namespace AppFramework.Web.Startup
 {
     public class Startup
     {
@@ -287,9 +287,9 @@ namespace AppFrameworkDemo.Web.Startup
 
                 app.UseSwaggerUI(options =>
                 {
-                    options.SwaggerEndpoint(_appConfiguration["App:SwaggerEndPoint"], "AppFrameworkDemo API V1");
+                    options.SwaggerEndpoint(_appConfiguration["App:SwaggerEndPoint"], "AppFramework API V1");
                     options.IndexStream = () => Assembly.GetExecutingAssembly()
-                        .GetManifestResourceStream("AppFrameworkDemo.Web.wwwroot.swagger.ui.index.html");
+                        .GetManifestResourceStream("AppFramework.Web.wwwroot.swagger.ui.index.html");
                     options.InjectBaseUrl(_appConfiguration["App:ServerRootAddress"]);
                 }); //URL: /swagger
             }
@@ -318,7 +318,7 @@ namespace AppFrameworkDemo.Web.Startup
         {
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new OpenApiInfo() {Title = "AppFrameworkDemo API", Version = "v1"});
+                options.SwaggerDoc("v1", new OpenApiInfo() {Title = "AppFramework API", Version = "v1"});
                 options.DocInclusionPredicate((docName, description) => true);
                 options.ParameterFilter<SwaggerEnumParameterFilter>();
                 options.SchemaFilter<SwaggerEnumSchemaFilter>();
@@ -334,11 +334,11 @@ namespace AppFrameworkDemo.Web.Startup
                     var hostXmlPath = Path.Combine(AppContext.BaseDirectory, hostXmlFile);
                     options.IncludeXmlComments(hostXmlPath);
 
-                    var applicationXml = $"AppFrameworkDemo.Application.xml";
+                    var applicationXml = $"AppFramework.Application.xml";
                     var applicationXmlPath = Path.Combine(AppContext.BaseDirectory, applicationXml);
                     options.IncludeXmlComments(applicationXmlPath);
 
-                    var webCoreXmlFile = $"AppFrameworkDemo.Web.Core.xml";
+                    var webCoreXmlFile = $"AppFramework.Web.Core.xml";
                     var webCoreXmlPath = Path.Combine(AppContext.BaseDirectory, webCoreXmlFile);
                     options.IncludeXmlComments(webCoreXmlPath);
                 }

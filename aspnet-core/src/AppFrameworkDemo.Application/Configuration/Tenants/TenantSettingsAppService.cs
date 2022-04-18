@@ -13,16 +13,16 @@ using Abp.Runtime.Session;
 using Abp.Timing;
 using Abp.Zero.Configuration;
 using Abp.Zero.Ldap.Configuration;
-using AppFrameworkDemo.Authentication;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Configuration.Dto;
-using AppFrameworkDemo.Configuration.Host.Dto;
-using AppFrameworkDemo.Configuration.Tenants.Dto;
-using AppFrameworkDemo.Security;
-using AppFrameworkDemo.Storage;
-using AppFrameworkDemo.Timing;
+using AppFramework.Authentication;
+using AppFramework.Authorization;
+using AppFramework.Configuration.Dto;
+using AppFramework.Configuration.Host.Dto;
+using AppFramework.Configuration.Tenants.Dto;
+using AppFramework.Security;
+using AppFramework.Storage;
+using AppFramework.Timing;
 
-namespace AppFrameworkDemo.Configuration.Tenants
+namespace AppFramework.Configuration.Tenants
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_Tenant_Settings)]
     public class TenantSettingsAppService : SettingsAppServiceBase, ITenantSettingsAppService
@@ -379,7 +379,7 @@ namespace AppFrameworkDemo.Configuration.Tenants
 
         private async Task UpdateEmailSettingsAsync(TenantEmailSettingsEditDto input)
         {
-            if (_multiTenancyConfig.IsEnabled && !AppFrameworkDemoConsts.AllowTenantsToChangeEmailSettings)
+            if (_multiTenancyConfig.IsEnabled && !AppFrameworkConsts.AllowTenantsToChangeEmailSettings)
             {
                 return;
             }

@@ -5,14 +5,14 @@ using Abp.Application.Services.Dto;
 using Abp.Runtime.Session;
 using Abp.Timing;
 using Abp.UI;
-using AppFrameworkDemo.Authorization.Delegation;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Authorization.Users.Delegation;
-using AppFrameworkDemo.Authorization.Users.Delegation.Dto;
+using AppFramework.Authorization.Delegation;
+using AppFramework.Authorization.Users;
+using AppFramework.Authorization.Users.Delegation;
+using AppFramework.Authorization.Users.Delegation.Dto;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Authorization.Users
+namespace AppFramework.Tests.Authorization.Users
 {
     public class UserDelegationAppService_Tests : UserDelegationTestBase
     {

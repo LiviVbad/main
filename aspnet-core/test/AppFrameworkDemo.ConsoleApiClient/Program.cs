@@ -7,10 +7,10 @@ using Abp.Json;
 using IdentityModel.Client;
 using Abp.MultiTenancy;
 using Abp.Web.Models;
-using AppFrameworkDemo.Authorization.Users.Dto;
+using AppFramework.Authorization.Users.Dto;
 using Newtonsoft.Json;
 
-namespace AppFrameworkDemo.ConsoleApiClient
+namespace AppFramework.ConsoleApiClient
 {
     /* 
      * This is a sample code to create an IdentityServer4 client and use ResourceOwnerPassword flow to call an API. 

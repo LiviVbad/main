@@ -9,19 +9,19 @@ using Abp.Runtime.Session;
 using Abp.UI;
 using Abp.Zero.Configuration;
 using Microsoft.AspNetCore.Identity;
-using AppFrameworkDemo.Authorization.Accounts.Dto;
-using AppFrameworkDemo.Authorization.Impersonation;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Debugging;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.Security.Recaptcha;
-using AppFrameworkDemo.Url;
-using AppFrameworkDemo.Authorization.Delegation;
+using AppFramework.Authorization.Accounts.Dto;
+using AppFramework.Authorization.Impersonation;
+using AppFramework.Authorization.Users;
+using AppFramework.Configuration;
+using AppFramework.Debugging;
+using AppFramework.MultiTenancy;
+using AppFramework.Security.Recaptcha;
+using AppFramework.Url;
+using AppFramework.Authorization.Delegation;
 using Abp.Domain.Repositories;
 
 
-namespace AppFrameworkDemo.Authorization.Accounts
+namespace AppFramework.Authorization.Accounts
 {
     public class AccountAppService : AppFrameworkDemoAppServiceBase, IAccountAppService
     {

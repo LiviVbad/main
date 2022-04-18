@@ -4,13 +4,13 @@ using System.IO.Compression;
 using System.Linq;
 using Abp.AspNetZeroCore.Net;
 using Abp.Authorization;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.IO;
-using AppFrameworkDemo.Logging.Dto;
-using AppFrameworkDemo.Storage;
+using AppFramework.Authorization;
+using AppFramework.Dto;
+using AppFramework.IO;
+using AppFramework.Logging.Dto;
+using AppFramework.Storage;
 
-namespace AppFrameworkDemo.Logging
+namespace AppFramework.Logging
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_Host_Maintenance)]
     public class WebLogAppService : AppFrameworkDemoAppServiceBase, IWebLogAppService

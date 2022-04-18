@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Storage
+namespace AppFramework.Storage
 {
     public interface IBinaryObjectManager
     {

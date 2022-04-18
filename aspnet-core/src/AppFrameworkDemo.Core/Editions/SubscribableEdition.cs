@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Application.Editions;
-using AppFrameworkDemo.MultiTenancy.Payments;
+using AppFramework.MultiTenancy.Payments;
 
-namespace AppFrameworkDemo.Editions
+namespace AppFramework.Editions
 {
     /// <summary>
     /// Extends <see cref="Edition"/> to add subscription features.

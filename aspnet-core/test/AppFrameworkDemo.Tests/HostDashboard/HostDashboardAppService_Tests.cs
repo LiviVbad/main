@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.MultiTenancy.HostDashboard;
-using AppFrameworkDemo.MultiTenancy.HostDashboard.Dto;
-using AppFrameworkDemo.MultiTenancy.Payments;
+using AppFramework.Editions;
+using AppFramework.MultiTenancy;
+using AppFramework.MultiTenancy.HostDashboard;
+using AppFramework.MultiTenancy.HostDashboard.Dto;
+using AppFramework.MultiTenancy.Payments;
 using Shouldly;
 using System.Globalization;
-using AppFrameworkDemo.EntityFrameworkCore;
+using AppFramework.EntityFrameworkCore;
 
-namespace AppFrameworkDemo.Tests.HostDashboard
+namespace AppFramework.Tests.HostDashboard
 {
     // ReSharper disable once InconsistentNaming
     public class HostDashboardAppService_Tests : AppTestBase

@@ -3,9 +3,9 @@ using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.Linq;
 using Abp.Organizations;
-using AppFrameworkDemo.Authorization.Roles;
+using AppFramework.Authorization.Roles;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     /// <summary>
     /// Used to perform database operations for <see cref="UserManager"/>.

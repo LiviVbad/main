@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using Abp.Net.Mail;
 using Abp.UI;
 using Microsoft.Extensions.Configuration;
-using AppFrameworkDemo.Configuration.Dto;
-using AppFrameworkDemo.Configuration.Host.Dto;
+using AppFramework.Configuration.Dto;
+using AppFramework.Configuration.Host.Dto;
 
-namespace AppFrameworkDemo.Configuration
+namespace AppFramework.Configuration
 {
     public abstract class SettingsAppServiceBase : AppFrameworkDemoAppServiceBase
     {

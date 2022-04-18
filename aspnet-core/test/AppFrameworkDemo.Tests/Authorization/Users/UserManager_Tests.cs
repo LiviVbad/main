@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using Abp.Configuration;
 using Abp.Zero.Configuration;
-using AppFrameworkDemo.Authorization.Users;
+using AppFramework.Authorization.Users;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Authorization.Users
+namespace AppFramework.Tests.Authorization.Users
 {
     public class UserManager_Tests : UserAppServiceTestBase
     {

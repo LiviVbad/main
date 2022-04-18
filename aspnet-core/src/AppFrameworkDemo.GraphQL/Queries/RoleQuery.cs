@@ -6,14 +6,14 @@ using Abp.Authorization;
 using GraphQL;
 using GraphQL.Types;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Core.Base;
-using AppFrameworkDemo.Core.Extensions;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Types;
+using AppFramework.Authorization;
+using AppFramework.Authorization.Roles;
+using AppFramework.Core.Base;
+using AppFramework.Core.Extensions;
+using AppFramework.Dto;
+using AppFramework.Types;
 
-namespace AppFrameworkDemo.Queries
+namespace AppFramework.Queries
 {
     public class RoleQuery : AppFrameworkDemoQueryBase<ListGraphType<RoleType>, List<RoleDto>>
     {

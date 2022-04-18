@@ -1,7 +1,7 @@
 ﻿using System;
 using Abp.AutoMapper;
 
-namespace AppFrameworkDemo.Friendships.Cache
+namespace AppFramework.Friendships.Cache
 {
     [AutoMapFrom(typeof(Friendship))]
     public class FriendCacheItem

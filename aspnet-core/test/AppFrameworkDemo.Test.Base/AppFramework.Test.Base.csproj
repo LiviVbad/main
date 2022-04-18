@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\..\common.props"></Import>
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
-    <AssemblyName>AppFrameworkDemo.GraphQL.Test.Base</AssemblyName>
-    <PackageId>AppFrameworkDemo.GraphQL.Test.Base</PackageId>
+    <AssemblyName>AppFramework.GraphQL.Test.Base</AssemblyName>
+    <PackageId>AppFramework.GraphQL.Test.Base</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
@@ -13,8 +13,8 @@
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\AppFrameworkDemo.Application\AppFrameworkDemo.Application.csproj" />
-    <ProjectReference Include="..\..\src\AppFrameworkDemo.EntityFrameworkCore\AppFrameworkDemo.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\src\AppFrameworkDemo.Application\AppFramework.Application.csproj" />
+    <ProjectReference Include="..\..\src\AppFrameworkDemo.EntityFrameworkCore\AppFramework.EntityFrameworkCore.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />

@@ -1,8 +1,8 @@
-﻿using AppFrameworkDemo.Common;
+﻿using AppFramework.Common;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Common
+namespace AppFramework.Tests.Common
 {
     public class DtoSortingHelper_Tests
     {

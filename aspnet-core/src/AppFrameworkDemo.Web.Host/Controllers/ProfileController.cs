@@ -1,9 +1,9 @@
 ﻿using Abp.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Authorization;
-using AppFrameworkDemo.Authorization.Users.Profile;
-using AppFrameworkDemo.Storage;
+using AppFramework.Authorization.Users.Profile;
+using AppFramework.Storage;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     [AbpMvcAuthorize]
     public class ProfileController : ProfileControllerBase

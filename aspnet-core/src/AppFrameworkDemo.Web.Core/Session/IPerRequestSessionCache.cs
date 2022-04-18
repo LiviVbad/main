@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using AppFrameworkDemo.Sessions.Dto;
+using AppFramework.Sessions.Dto;
 
-namespace AppFrameworkDemo.Web.Session
+namespace AppFramework.Web.Session
 {
     public interface IPerRequestSessionCache
     {

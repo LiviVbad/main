@@ -5,7 +5,7 @@ using Abp.Application.Features;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 
-namespace AppFrameworkDemo.Editions
+namespace AppFramework.Editions
 {
     public class EditionManager : AbpEditionManager
     {

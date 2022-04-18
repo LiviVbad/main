@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Security.Recaptcha
+namespace AppFramework.Security.Recaptcha
 {
     public interface IRecaptchaValidator
     {

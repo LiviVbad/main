@@ -11,13 +11,13 @@ using Abp.MultiTenancy;
 using Abp.Runtime.Session;
 using Abp.TestBase;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.Test.Base.TestData;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.MultiTenancy;
+using AppFramework.Test.Base.TestData;
 
-namespace AppFrameworkDemo.Test.Base
+namespace AppFramework.Test.Base
 {
     /// <summary>
     /// This is base class for all our test classes.

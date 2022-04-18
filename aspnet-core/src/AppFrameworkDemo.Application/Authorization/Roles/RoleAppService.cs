@@ -7,11 +7,11 @@ using Abp.Authorization;
 using Abp.Zero.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization.Permissions;
-using AppFrameworkDemo.Authorization.Permissions.Dto;
-using AppFrameworkDemo.Authorization.Roles.Dto;
+using AppFramework.Authorization.Permissions;
+using AppFramework.Authorization.Permissions.Dto;
+using AppFramework.Authorization.Roles.Dto;
 
-namespace AppFrameworkDemo.Authorization.Roles
+namespace AppFramework.Authorization.Roles
 {
     /// <summary>
     /// Application service that is used by 'role management' page.

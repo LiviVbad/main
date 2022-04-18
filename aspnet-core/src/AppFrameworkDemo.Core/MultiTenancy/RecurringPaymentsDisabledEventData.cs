@@ -1,6 +1,6 @@
 ﻿using Abp.Events.Bus;
 
-namespace AppFrameworkDemo.MultiTenancy
+namespace AppFramework.MultiTenancy
 {
     public class RecurringPaymentsDisabledEventData : EventData
     {

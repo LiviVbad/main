@@ -1,9 +1,9 @@
 ﻿using Abp.DynamicEntityProperties;
 using Abp.UI.Inputs;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.CustomInputTypes;
+using AppFramework.Authorization.Users;
+using AppFramework.CustomInputTypes;
 
-namespace AppFrameworkDemo.DynamicEntityProperties
+namespace AppFramework.DynamicEntityProperties
 {
     public class AppDynamicEntityPropertyDefinitionProvider : DynamicEntityPropertyDefinitionProvider
     {

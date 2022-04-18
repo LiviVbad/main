@@ -1,6 +1,6 @@
 using Abp;
 
-namespace AppFrameworkDemo
+namespace AppFramework
 {
     /// <summary>
     /// This class can be used as a base class for services in this application.
@@ -13,7 +13,7 @@ namespace AppFrameworkDemo
     {
         protected AppFrameworkDemoServiceBase()
         {
-            LocalizationSourceName = AppFrameworkDemoConsts.LocalizationSourceName;
+            LocalizationSourceName = AppFrameworkConsts.LocalizationSourceName;
         }
     }
 }

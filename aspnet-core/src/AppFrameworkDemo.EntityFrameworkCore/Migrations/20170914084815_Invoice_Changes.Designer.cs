@@ -3,15 +3,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using AppFrameworkDemo.EntityFrameworkCore;
+using AppFramework.EntityFrameworkCore;
 using Abp.Authorization;
 using Abp.BackgroundJobs;
 using Abp.Notifications;
-using AppFrameworkDemo.Chat;
-using AppFrameworkDemo.Friendships;
-using AppFrameworkDemo.MultiTenancy.Payments;
+using AppFramework.Chat;
+using AppFramework.Friendships;
+using AppFramework.MultiTenancy.Payments;
 
-namespace AppFrameworkDemo.Migrations
+namespace AppFramework.Migrations
 {
     [DbContext(typeof(AppFrameworkDemoDbContext))]
     [Migration("20170914084815_Invoice_Changes")]
@@ -964,7 +964,7 @@ namespace AppFrameworkDemo.Migrations
                     b.ToTable("AbpOrganizationUnits");
                 });
 
-            modelBuilder.Entity("AppFrameworkDemo.Authorization.Roles.Role", b =>
+            modelBuilder.Entity("AppFramework.Authorization.Roles.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1032,7 +1032,7 @@ namespace AppFrameworkDemo.Migrations
                     b.ToTable("AbpRoles");
                 });
 
-            modelBuilder.Entity("AppFrameworkDemo.Authorization.Users.User", b =>
+            modelBuilder.Entity("AppFramework.Authorization.Users.User", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1173,7 +1173,7 @@ namespace AppFrameworkDemo.Migrations
                     b.ToTable("AbpUsers");
                 });
 
-            modelBuilder.Entity("AppFrameworkDemo.Chat.ChatMessage", b =>
+            modelBuilder.Entity("AppFramework.Chat.ChatMessage", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1218,7 +1218,7 @@ namespace AppFrameworkDemo.Migrations
                     b.ToTable("AppChatMessages");
                 });
 
-            modelBuilder.Entity("AppFrameworkDemo.Friendships.Friendship", b =>
+            modelBuilder.Entity("AppFramework.Friendships.Friendship", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1266,7 +1266,7 @@ namespace AppFrameworkDemo.Migrations
                     b.ToTable("AppFriendships");
                 });
 
-            modelBuilder.Entity("AppFrameworkDemo.MultiTenancy.Accounting.Invoice", b =>
+            modelBuilder.Entity("AppFramework.MultiTenancy.Accounting.Invoice", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1292,7 +1292,7 @@ namespace AppFrameworkDemo.Migrations
                     b.ToTable("AppInvoices");
                 });
 
-            modelBuilder.Entity("AppFrameworkDemo.MultiTenancy.Payments.SubscriptionPayment", b =>
+            modelBuilder.Entity("AppFramework.MultiTenancy.Payments.SubscriptionPayment", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1357,7 +1357,7 @@ namespace AppFrameworkDemo.Migrations
                     b.ToTable("AppSubscriptionPayments");
                 });
 
-            modelBuilder.Entity("AppFrameworkDemo.MultiTenancy.Tenant", b =>
+            modelBuilder.Entity("AppFramework.MultiTenancy.Tenant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1439,7 +1439,7 @@ namespace AppFrameworkDemo.Migrations
                     b.ToTable("AbpTenants");
                 });
 
-            modelBuilder.Entity("AppFrameworkDemo.Storage.BinaryObject", b =>
+            modelBuilder.Entity("AppFramework.Storage.BinaryObject", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -1459,7 +1459,7 @@ namespace AppFrameworkDemo.Migrations
                     b.ToTable("AppBinaryObjects");
                 });
 
-            modelBuilder.Entity("AppFrameworkDemo.Editions.SubscribableEdition", b =>
+            modelBuilder.Entity("AppFramework.Editions.SubscribableEdition", b =>
                 {
                     b.HasBaseType("Abp.Application.Editions.Edition");
 
@@ -1541,7 +1541,7 @@ namespace AppFrameworkDemo.Migrations
 
             modelBuilder.Entity("Abp.Authorization.Roles.RoleClaim", b =>
                 {
-                    b.HasOne("AppFrameworkDemo.Authorization.Roles.Role")
+                    b.HasOne("AppFramework.Authorization.Roles.Role")
                         .WithMany("Claims")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -1549,7 +1549,7 @@ namespace AppFrameworkDemo.Migrations
 
             modelBuilder.Entity("Abp.Authorization.Users.UserClaim", b =>
                 {
-                    b.HasOne("AppFrameworkDemo.Authorization.Users.User")
+                    b.HasOne("AppFramework.Authorization.Users.User")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -1557,7 +1557,7 @@ namespace AppFrameworkDemo.Migrations
 
             modelBuilder.Entity("Abp.Authorization.Users.UserLogin", b =>
                 {
-                    b.HasOne("AppFrameworkDemo.Authorization.Users.User")
+                    b.HasOne("AppFramework.Authorization.Users.User")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -1565,7 +1565,7 @@ namespace AppFrameworkDemo.Migrations
 
             modelBuilder.Entity("Abp.Authorization.Users.UserRole", b =>
                 {
-                    b.HasOne("AppFrameworkDemo.Authorization.Users.User")
+                    b.HasOne("AppFramework.Authorization.Users.User")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -1573,7 +1573,7 @@ namespace AppFrameworkDemo.Migrations
 
             modelBuilder.Entity("Abp.Authorization.Users.UserToken", b =>
                 {
-                    b.HasOne("AppFrameworkDemo.Authorization.Users.User")
+                    b.HasOne("AppFramework.Authorization.Users.User")
                         .WithMany("Tokens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -1581,7 +1581,7 @@ namespace AppFrameworkDemo.Migrations
 
             modelBuilder.Entity("Abp.Configuration.Setting", b =>
                 {
-                    b.HasOne("AppFrameworkDemo.Authorization.Users.User")
+                    b.HasOne("AppFramework.Authorization.Users.User")
                         .WithMany("Settings")
                         .HasForeignKey("UserId");
                 });
@@ -1593,37 +1593,37 @@ namespace AppFrameworkDemo.Migrations
                         .HasForeignKey("ParentId");
                 });
 
-            modelBuilder.Entity("AppFrameworkDemo.Authorization.Roles.Role", b =>
+            modelBuilder.Entity("AppFramework.Authorization.Roles.Role", b =>
                 {
-                    b.HasOne("AppFrameworkDemo.Authorization.Users.User", "CreatorUser")
+                    b.HasOne("AppFramework.Authorization.Users.User", "CreatorUser")
                         .WithMany()
                         .HasForeignKey("CreatorUserId");
 
-                    b.HasOne("AppFrameworkDemo.Authorization.Users.User", "DeleterUser")
+                    b.HasOne("AppFramework.Authorization.Users.User", "DeleterUser")
                         .WithMany()
                         .HasForeignKey("DeleterUserId");
 
-                    b.HasOne("AppFrameworkDemo.Authorization.Users.User", "LastModifierUser")
+                    b.HasOne("AppFramework.Authorization.Users.User", "LastModifierUser")
                         .WithMany()
                         .HasForeignKey("LastModifierUserId");
                 });
 
-            modelBuilder.Entity("AppFrameworkDemo.Authorization.Users.User", b =>
+            modelBuilder.Entity("AppFramework.Authorization.Users.User", b =>
                 {
-                    b.HasOne("AppFrameworkDemo.Authorization.Users.User", "CreatorUser")
+                    b.HasOne("AppFramework.Authorization.Users.User", "CreatorUser")
                         .WithMany()
                         .HasForeignKey("CreatorUserId");
 
-                    b.HasOne("AppFrameworkDemo.Authorization.Users.User", "DeleterUser")
+                    b.HasOne("AppFramework.Authorization.Users.User", "DeleterUser")
                         .WithMany()
                         .HasForeignKey("DeleterUserId");
 
-                    b.HasOne("AppFrameworkDemo.Authorization.Users.User", "LastModifierUser")
+                    b.HasOne("AppFramework.Authorization.Users.User", "LastModifierUser")
                         .WithMany()
                         .HasForeignKey("LastModifierUserId");
                 });
 
-            modelBuilder.Entity("AppFrameworkDemo.MultiTenancy.Payments.SubscriptionPayment", b =>
+            modelBuilder.Entity("AppFramework.MultiTenancy.Payments.SubscriptionPayment", b =>
                 {
                     b.HasOne("Abp.Application.Editions.Edition", "Edition")
                         .WithMany()
@@ -1631,13 +1631,13 @@ namespace AppFrameworkDemo.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("AppFrameworkDemo.MultiTenancy.Tenant", b =>
+            modelBuilder.Entity("AppFramework.MultiTenancy.Tenant", b =>
                 {
-                    b.HasOne("AppFrameworkDemo.Authorization.Users.User", "CreatorUser")
+                    b.HasOne("AppFramework.Authorization.Users.User", "CreatorUser")
                         .WithMany()
                         .HasForeignKey("CreatorUserId");
 
-                    b.HasOne("AppFrameworkDemo.Authorization.Users.User", "DeleterUser")
+                    b.HasOne("AppFramework.Authorization.Users.User", "DeleterUser")
                         .WithMany()
                         .HasForeignKey("DeleterUserId");
 
@@ -1645,7 +1645,7 @@ namespace AppFrameworkDemo.Migrations
                         .WithMany()
                         .HasForeignKey("EditionId");
 
-                    b.HasOne("AppFrameworkDemo.Authorization.Users.User", "LastModifierUser")
+                    b.HasOne("AppFramework.Authorization.Users.User", "LastModifierUser")
                         .WithMany()
                         .HasForeignKey("LastModifierUserId");
                 });
@@ -1660,7 +1660,7 @@ namespace AppFrameworkDemo.Migrations
 
             modelBuilder.Entity("Abp.Authorization.Roles.RolePermissionSetting", b =>
                 {
-                    b.HasOne("AppFrameworkDemo.Authorization.Roles.Role")
+                    b.HasOne("AppFramework.Authorization.Roles.Role")
                         .WithMany("Permissions")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -1668,7 +1668,7 @@ namespace AppFrameworkDemo.Migrations
 
             modelBuilder.Entity("Abp.Authorization.Users.UserPermissionSetting", b =>
                 {
-                    b.HasOne("AppFrameworkDemo.Authorization.Users.User")
+                    b.HasOne("AppFramework.Authorization.Users.User")
                         .WithMany("Permissions")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

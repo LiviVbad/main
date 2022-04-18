@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Abp.EntityFrameworkCore;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.EntityFrameworkCore.Repositories;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.EntityFrameworkCore.Repositories;
 using System.Linq;
 using Z.EntityFramework.Plus;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     public class UserRepository : AppFrameworkDemoRepositoryBase<User, long>, IUserRepository
     {

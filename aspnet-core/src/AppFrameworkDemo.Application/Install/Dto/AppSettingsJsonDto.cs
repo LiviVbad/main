@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Abp;
 
-namespace AppFrameworkDemo.Install.Dto
+namespace AppFramework.Install.Dto
 {
     public class AppSettingsJsonDto
     {

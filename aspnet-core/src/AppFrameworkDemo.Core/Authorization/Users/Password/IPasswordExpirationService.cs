@@ -1,6 +1,6 @@
 ﻿using Abp.Domain.Services;
 
-namespace AppFrameworkDemo.Authorization.Users.Password
+namespace AppFramework.Authorization.Users.Password
 {
     public interface IPasswordExpirationService : IDomainService
     {

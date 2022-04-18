@@ -1,4 +1,4 @@
-namespace AppFrameworkDemo.MultiTenancy.Payments.Stripe
+namespace AppFramework.MultiTenancy.Payments.Stripe
 {
     public class StripeIdResponse
     {

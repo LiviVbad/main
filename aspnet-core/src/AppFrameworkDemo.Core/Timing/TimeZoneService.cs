@@ -9,7 +9,7 @@ using Abp.Timing;
 using Abp.Timing.Timezone;
 using TimeZoneConverter;
 
-namespace AppFrameworkDemo.Timing
+namespace AppFramework.Timing
 {
     public class TimeZoneService : ITimeZoneService, ITransientDependency
     {

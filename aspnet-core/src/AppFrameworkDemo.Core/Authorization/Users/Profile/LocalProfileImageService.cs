@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Abp;
 using Abp.Dependency;
-using AppFrameworkDemo.Storage;
+using AppFramework.Storage;
 
-namespace AppFrameworkDemo.Authorization.Users.Profile
+namespace AppFramework.Authorization.Users.Profile
 {
     public class LocalProfileImageService : IProfileImageService, ITransientDependency
     {

@@ -7,18 +7,18 @@ using Abp.Application.Services.Dto;
 using Abp.Auditing;
 using Abp.Runtime.Session;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authentication.TwoFactor;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.MultiTenancy.Payments;
-using AppFrameworkDemo.Sessions.Dto;
-using AppFrameworkDemo.UiCustomization;
-using AppFrameworkDemo.Authorization.Delegation;
-using AppFrameworkDemo.Authorization.Users;
+using AppFramework.Authentication.TwoFactor;
+using AppFramework.Editions;
+using AppFramework.MultiTenancy.Payments;
+using AppFramework.Sessions.Dto;
+using AppFramework.UiCustomization;
+using AppFramework.Authorization.Delegation;
+using AppFramework.Authorization.Users;
 using Abp.Domain.Uow;
 using Abp.Localization;
-using AppFrameworkDemo.Features;
+using AppFramework.Features;
 
-namespace AppFrameworkDemo.Sessions
+namespace AppFramework.Sessions
 {
     public class SessionAppService : AppFrameworkDemoAppServiceBase, ISessionAppService
     {
@@ -56,9 +56,9 @@ namespace AppFrameworkDemo.Sessions
                         Version = AppVersionHelper.Version,
                         ReleaseDate = AppVersionHelper.ReleaseDate,
                         Features = new Dictionary<string, bool>(),
-                        Currency = AppFrameworkDemoConsts.Currency,
-                        CurrencySign = AppFrameworkDemoConsts.CurrencySign,
-                        AllowTenantsToChangeEmailSettings = AppFrameworkDemoConsts.AllowTenantsToChangeEmailSettings,
+                        Currency = AppFrameworkConsts.Currency,
+                        CurrencySign = AppFrameworkConsts.CurrencySign,
+                        AllowTenantsToChangeEmailSettings = AppFrameworkConsts.AllowTenantsToChangeEmailSettings,
                         UserDelegationIsEnabled = _userDelegationConfiguration.IsEnabled,
                         TwoFactorCodeExpireSeconds = TwoFactorCodeCacheItem.DefaultSlidingExpireTime.TotalSeconds
                     }

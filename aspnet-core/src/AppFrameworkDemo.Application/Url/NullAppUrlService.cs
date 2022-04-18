@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AppFrameworkDemo.Url
+namespace AppFramework.Url
 {
     public class NullAppUrlService : IAppUrlService
     {

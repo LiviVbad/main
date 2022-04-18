@@ -1,6 +1,6 @@
 ﻿using Abp.Domain.Services;
 
-namespace AppFrameworkDemo
+namespace AppFramework
 {
     public abstract class AppFrameworkDemoDomainServiceBase : DomainService
     {
@@ -8,7 +8,7 @@ namespace AppFrameworkDemo
 
         protected AppFrameworkDemoDomainServiceBase()
         {
-            LocalizationSourceName = AppFrameworkDemoConsts.LocalizationSourceName;
+            LocalizationSourceName = AppFrameworkConsts.LocalizationSourceName;
         }
     }
 }

@@ -4,9 +4,9 @@ using Abp.Localization;
 using Abp.MultiTenancy;
 using Abp.Net.Mail;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.EntityFrameworkCore;
+using AppFramework.EntityFrameworkCore;
 
-namespace AppFrameworkDemo.Migrations.Seed.Host
+namespace AppFramework.Migrations.Seed.Host
 {
     public class DefaultSettingsCreator
     {
@@ -22,7 +22,7 @@ namespace AppFrameworkDemo.Migrations.Seed.Host
             int? tenantId = null;
 
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-            if (!AppFrameworkDemoConsts.MultiTenancyEnabled)
+            if (!AppFrameworkConsts.MultiTenancyEnabled)
 #pragma warning disable 162
             {
                 tenantId = MultiTenancyConsts.DefaultTenantId;

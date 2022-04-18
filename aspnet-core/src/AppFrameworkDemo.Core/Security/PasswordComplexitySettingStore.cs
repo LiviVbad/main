@@ -3,7 +3,7 @@ using Abp.Configuration;
 using Abp.Dependency;
 using Abp.Zero.Configuration;
 
-namespace AppFrameworkDemo.Security
+namespace AppFramework.Security
 {
     public class PasswordComplexitySettingStore : IPasswordComplexitySettingStore, ITransientDependency
     {

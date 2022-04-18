@@ -4,7 +4,7 @@ using Abp;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 
-namespace AppFrameworkDemo.Authorization.Delegation
+namespace AppFramework.Authorization.Delegation
 {
     public class UserDelegationManager : AppFrameworkDemoServiceBase, IUserDelegationManager
     {

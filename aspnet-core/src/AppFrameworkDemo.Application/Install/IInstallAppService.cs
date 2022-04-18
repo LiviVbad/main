@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Abp.Application.Services;
-using AppFrameworkDemo.Install.Dto;
+using AppFramework.Install.Dto;
 
-namespace AppFrameworkDemo.Install
+namespace AppFramework.Install
 {
     public interface IInstallAppService : IApplicationService
     {

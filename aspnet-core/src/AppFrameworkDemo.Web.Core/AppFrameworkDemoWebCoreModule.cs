@@ -21,19 +21,19 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using AppFrameworkDemo.Authentication.TwoFactor;
-using AppFrameworkDemo.Chat;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.Startup;
-using AppFrameworkDemo.Web.Authentication.JwtBearer;
-using AppFrameworkDemo.Web.Authentication.TwoFactor;
-using AppFrameworkDemo.Web.Chat.SignalR;
-using AppFrameworkDemo.Web.Common;
-using AppFrameworkDemo.Web.Configuration;
-using AppFrameworkDemo.Web.DashboardCustomization;
+using AppFramework.Authentication.TwoFactor;
+using AppFramework.Chat;
+using AppFramework.Configuration;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.Startup;
+using AppFramework.Web.Authentication.JwtBearer;
+using AppFramework.Web.Authentication.TwoFactor;
+using AppFramework.Web.Chat.SignalR;
+using AppFramework.Web.Common;
+using AppFramework.Web.Configuration;
+using AppFramework.Web.DashboardCustomization;
 
-namespace AppFrameworkDemo.Web
+namespace AppFramework.Web
 {
     [DependsOn(
         typeof(AppFrameworkDemoApplicationModule),
@@ -59,7 +59,7 @@ namespace AppFrameworkDemo.Web
         {
             //Set default connection string
             Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(
-                AppFrameworkDemoConsts.ConnectionStringName
+                AppFrameworkConsts.ConnectionStringName
             );
 
             //Use database for language management

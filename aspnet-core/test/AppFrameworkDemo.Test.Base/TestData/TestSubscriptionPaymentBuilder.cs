@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.MultiTenancy.Payments;
+using AppFramework.Editions;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.MultiTenancy.Payments;
 
-namespace AppFrameworkDemo.Test.Base.TestData
+namespace AppFramework.Test.Base.TestData
 {
     public class TestSubscriptionPaymentBuilder
     {

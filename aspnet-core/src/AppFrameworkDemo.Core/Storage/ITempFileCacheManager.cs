@@ -1,6 +1,6 @@
 ﻿using Abp.Dependency;
 
-namespace AppFrameworkDemo.Storage
+namespace AppFramework.Storage
 {
     public interface ITempFileCacheManager : ITransientDependency
     {

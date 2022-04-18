@@ -2,7 +2,7 @@
 using Abp.Domain.Services;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Authorization.Users.Profile
+namespace AppFramework.Authorization.Users.Profile
 {
     public interface IProfileImageService : IDomainService
     {

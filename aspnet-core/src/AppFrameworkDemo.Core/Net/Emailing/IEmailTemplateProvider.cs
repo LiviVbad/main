@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Net.Emailing
+﻿namespace AppFramework.Net.Emailing
 {
     public interface IEmailTemplateProvider
     {

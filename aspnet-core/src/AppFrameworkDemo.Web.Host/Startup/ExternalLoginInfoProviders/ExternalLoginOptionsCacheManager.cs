@@ -7,9 +7,9 @@ using Abp.AspNetZeroCore.Web.Authentication.External.WsFederation;
 using Abp.Dependency;
 using Abp.Runtime.Caching;
 using Abp.Runtime.Session;
-using AppFrameworkDemo.Configuration;
+using AppFramework.Configuration;
 
-namespace AppFrameworkDemo.Web.Startup.ExternalLoginInfoProviders
+namespace AppFramework.Web.Startup.ExternalLoginInfoProviders
 {
     public class ExternalLoginOptionsCacheManager : IExternalLoginOptionsCacheManager, ITransientDependency
     {

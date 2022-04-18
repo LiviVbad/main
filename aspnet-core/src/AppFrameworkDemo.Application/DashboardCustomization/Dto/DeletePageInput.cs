@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.DashboardCustomization.Dto
+namespace AppFramework.DashboardCustomization.Dto
 {
     public class DeletePageInput
     {

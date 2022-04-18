@@ -1,7 +1,7 @@
 ﻿using System;
 using Abp.UI.Inputs;
 
-namespace AppFrameworkDemo.CustomInputTypes
+namespace AppFramework.CustomInputTypes
 {
     /// <summary>
     ///Multi Select Combobox value UI type.

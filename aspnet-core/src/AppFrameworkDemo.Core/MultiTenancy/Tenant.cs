@@ -2,11 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using Abp.MultiTenancy;
 using Abp.Timing;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.MultiTenancy.Payments;
+using AppFramework.Authorization.Users;
+using AppFramework.Editions;
+using AppFramework.MultiTenancy.Payments;
 
-namespace AppFrameworkDemo.MultiTenancy
+namespace AppFramework.MultiTenancy
 {
     /// <summary>
     /// Represents a Tenant in the system.

@@ -30,35 +30,35 @@ using Abp.Zero.Ldap;
 using Abp.Zero.Ldap.Configuration;
 using Castle.MicroKernel.Registration;
 using MailKit.Security;
-using AppFrameworkDemo.Authorization.Delegation;
-using AppFrameworkDemo.Authorization.Ldap;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Chat;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.DashboardCustomization.Definitions;
-using AppFrameworkDemo.Debugging;
-using AppFrameworkDemo.DynamicEntityProperties;
-using AppFrameworkDemo.Features;
-using AppFrameworkDemo.Friendships;
-using AppFrameworkDemo.Friendships.Cache;
-using AppFrameworkDemo.Localization;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.Net.Emailing;
-using AppFrameworkDemo.Notifications;
-using AppFrameworkDemo.WebHooks;
+using AppFramework.Authorization.Delegation;
+using AppFramework.Authorization.Ldap;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users;
+using AppFramework.Chat;
+using AppFramework.Configuration;
+using AppFramework.DashboardCustomization.Definitions;
+using AppFramework.Debugging;
+using AppFramework.DynamicEntityProperties;
+using AppFramework.Features;
+using AppFramework.Friendships;
+using AppFramework.Friendships.Cache;
+using AppFramework.Localization;
+using AppFramework.MultiTenancy;
+using AppFramework.Net.Emailing;
+using AppFramework.Notifications;
+using AppFramework.WebHooks;
 using Newtonsoft.Json;
 
-namespace AppFrameworkDemo
+namespace AppFramework
 {
     [DependsOn(
-        typeof(AppFrameworkDemoCoreSharedModule),
+        typeof(AppFrameworkCoreSharedModule),
         typeof(AbpZeroCoreModule),
         typeof(AbpZeroLdapModule),
         typeof(AbpAutoMapperModule),
         typeof(AbpAspNetZeroCoreModule),
         typeof(AbpMailKitModule))]
-    public class AppFrameworkDemoCoreModule : AbpModule
+    public class AppFrameworkCoreModule : AbpModule
     {
         public override void PreInitialize()
         {
@@ -90,7 +90,7 @@ namespace AppFrameworkDemo
             Configuration.Webhooks.IsAutomaticSubscriptionDeactivationEnabled = false;
 
             //Enable this line to create a multi-tenant application.
-            Configuration.MultiTenancy.IsEnabled = AppFrameworkDemoConsts.MultiTenancyEnabled;
+            Configuration.MultiTenancy.IsEnabled = AppFrameworkConsts.MultiTenancyEnabled;
 
             //Enable LDAP authentication 
             //Configuration.Modules.ZeroLdap().Enable(typeof(AppLdapAuthenticationSource));
@@ -133,7 +133,7 @@ namespace AppFrameworkDemo
 
         public override void Initialize()
         {
-            IocManager.RegisterAssemblyByConvention(typeof(AppFrameworkDemoCoreModule).GetAssembly());
+            IocManager.RegisterAssemblyByConvention(typeof(AppFrameworkCoreModule).GetAssembly());
         }
 
         public override void PostInitialize()

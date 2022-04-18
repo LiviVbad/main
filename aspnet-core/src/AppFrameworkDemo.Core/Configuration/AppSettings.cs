@@ -1,4 +1,4 @@
-namespace AppFrameworkDemo.Configuration
+namespace AppFramework.Configuration
 {
     /// <summary>
     /// Defines string constants for setting names in the application.

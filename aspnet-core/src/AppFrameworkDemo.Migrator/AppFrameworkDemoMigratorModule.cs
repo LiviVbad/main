@@ -4,11 +4,11 @@ using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Castle.MicroKernel.Registration;
 using Microsoft.Extensions.Configuration;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.Migrator.DependencyInjection;
+using AppFramework.Configuration;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.Migrator.DependencyInjection;
 
-namespace AppFrameworkDemo.Migrator
+namespace AppFramework.Migrator
 {
     [DependsOn(typeof(AppFrameworkDemoEntityFrameworkCoreModule))]
     public class AppFrameworkDemoMigratorModule : AbpModule
@@ -28,7 +28,7 @@ namespace AppFrameworkDemo.Migrator
         public override void PreInitialize()
         {
             Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(
-                AppFrameworkDemoConsts.ConnectionStringName
+                AppFrameworkConsts.ConnectionStringName
                 );
             Configuration.Modules.AspNetZero().LicenseCode = _appConfiguration["AbpZeroLicenseCode"];
 

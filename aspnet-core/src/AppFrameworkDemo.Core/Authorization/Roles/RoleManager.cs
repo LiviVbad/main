@@ -13,9 +13,9 @@ using Abp.UI;
 using Abp.Zero.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using AppFrameworkDemo.Authorization.Users;
+using AppFramework.Authorization.Users;
 
-namespace AppFrameworkDemo.Authorization.Roles
+namespace AppFramework.Authorization.Roles
 {
     /// <summary>
     /// Role manager.
@@ -84,7 +84,7 @@ namespace AppFrameworkDemo.Authorization.Roles
 
         private new string L(string name)
         {
-            return _localizationManager.GetString(AppFrameworkDemoConsts.LocalizationSourceName, name);
+            return _localizationManager.GetString(AppFrameworkConsts.LocalizationSourceName, name);
         }
     }
 }

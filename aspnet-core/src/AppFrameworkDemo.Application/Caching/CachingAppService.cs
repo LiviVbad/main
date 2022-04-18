@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Runtime.Caching;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Caching.Dto;
+using AppFramework.Authorization;
+using AppFramework.Caching.Dto;
 
-namespace AppFrameworkDemo.Caching
+namespace AppFramework.Caching
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_Host_Maintenance)]
     public class CachingAppService : AppFrameworkDemoAppServiceBase, ICachingAppService

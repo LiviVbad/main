@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Auditing
+﻿namespace AppFramework.Auditing
 {
     public interface INamespaceStripper
     {

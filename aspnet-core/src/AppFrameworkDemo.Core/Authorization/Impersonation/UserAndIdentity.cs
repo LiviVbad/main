@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
-using AppFrameworkDemo.Authorization.Users;
+using AppFramework.Authorization.Users;
 
-namespace AppFrameworkDemo.Authorization.Impersonation
+namespace AppFramework.Authorization.Impersonation
 {
     public class UserAndIdentity
     {

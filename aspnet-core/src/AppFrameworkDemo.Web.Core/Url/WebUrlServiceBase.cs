@@ -2,9 +2,9 @@
 using System.Linq;
 using Abp.Extensions;
 using Microsoft.Extensions.Configuration;
-using AppFrameworkDemo.Configuration;
+using AppFramework.Configuration;
 
-namespace AppFrameworkDemo.Web.Url
+namespace AppFramework.Web.Url
 {
     public abstract class WebUrlServiceBase
     {

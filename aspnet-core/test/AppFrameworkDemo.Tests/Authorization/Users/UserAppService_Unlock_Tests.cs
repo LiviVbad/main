@@ -2,12 +2,12 @@
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.MultiTenancy;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Authorization.Users;
+using AppFramework.Authorization;
+using AppFramework.Authorization.Users;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Authorization.Users
+namespace AppFramework.Tests.Authorization.Users
 {
     // ReSharper disable once InconsistentNaming
     public class UserAppService_Unlock_Tests : UserAppServiceTestBase

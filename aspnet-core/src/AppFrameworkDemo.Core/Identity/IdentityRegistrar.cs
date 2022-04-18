@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using AppFrameworkDemo.Authentication.TwoFactor.Google;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.Authentication.TwoFactor.Google;
+using AppFramework.Authorization;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users;
+using AppFramework.Editions;
+using AppFramework.MultiTenancy;
 
-namespace AppFrameworkDemo.Identity
+namespace AppFramework.Identity
 {
     public static class IdentityRegistrar
     {

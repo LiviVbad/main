@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo
+﻿namespace AppFramework
 {
     public interface IAppFolders
     {

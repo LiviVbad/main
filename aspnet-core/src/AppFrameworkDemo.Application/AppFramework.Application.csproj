@@ -10,7 +10,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <RootNamespace>AppFrameworkDemo</RootNamespace>
+    <RootNamespace>AppFramework</RootNamespace>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
@@ -19,8 +19,8 @@
     <PackageReference Include="NPOI" Version="2.5.5" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppFrameworkDemo.Application.Shared\AppFrameworkDemo.Application.Shared.csproj" />
-    <ProjectReference Include="..\AppFrameworkDemo.Core\AppFrameworkDemo.Core.csproj" />
-    <ProjectReference Include="..\AppFrameworkDemo.EntityFrameworkCore\AppFrameworkDemo.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\AppFrameworkDemo.Application.Shared\AppFramework.Application.Shared.csproj" />
+    <ProjectReference Include="..\AppFrameworkDemo.Core\AppFramework.Core.csproj" />
+    <ProjectReference Include="..\AppFrameworkDemo.EntityFrameworkCore\AppFramework.EntityFrameworkCore.csproj" />
   </ItemGroup>
 </Project>

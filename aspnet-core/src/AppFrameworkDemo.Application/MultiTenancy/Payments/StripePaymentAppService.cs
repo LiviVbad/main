@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.UI;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.MultiTenancy.Payments.Dto;
-using AppFrameworkDemo.MultiTenancy.Payments.Stripe;
-using AppFrameworkDemo.MultiTenancy.Payments.Stripe.Dto;
+using AppFramework.Authorization.Users;
+using AppFramework.Editions;
+using AppFramework.MultiTenancy.Payments.Dto;
+using AppFramework.MultiTenancy.Payments.Stripe;
+using AppFramework.MultiTenancy.Payments.Stripe.Dto;
 using Stripe;
 using Stripe.Checkout;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments
+namespace AppFramework.MultiTenancy.Payments
 {
     public class StripePaymentAppService : AppFrameworkDemoAppServiceBase, IStripePaymentAppService
     {
@@ -187,7 +187,7 @@ namespace AppFrameworkDemo.MultiTenancy.Payments
                     {
                         Amount = (long) _stripeGatewayManager.ConvertToStripePrice(payment.Amount),
                         Name = StripeGatewayManager.ProductName,
-                        Currency = AppFrameworkDemoConsts.Currency,
+                        Currency = AppFrameworkConsts.Currency,
                         Description = payment.Description,
                         Quantity = 1
                     }

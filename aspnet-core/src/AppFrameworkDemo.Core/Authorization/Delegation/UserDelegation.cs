@@ -4,7 +4,7 @@ using Abp.Domain.Entities.Auditing;
 using Abp.Timing;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AppFrameworkDemo.Authorization.Delegation
+namespace AppFramework.Authorization.Delegation
 {
     [Table("AppUserDelegations")]
     public class UserDelegation : FullAuditedEntity<long>, IMayHaveTenant

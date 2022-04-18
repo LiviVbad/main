@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services.Dto;
 using GraphQL.Types;
-using AppFrameworkDemo.Dto;
+using AppFramework.Dto;
 
-namespace AppFrameworkDemo.Types
+namespace AppFramework.Types
 {
     public class UserPagedResultGraphType : ObjectGraphType<PagedResultDto<UserDto>>
     {

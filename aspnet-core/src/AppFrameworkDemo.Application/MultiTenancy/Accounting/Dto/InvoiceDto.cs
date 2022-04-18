@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.MultiTenancy.Accounting.Dto
+namespace AppFramework.MultiTenancy.Accounting.Dto
 {
     public class InvoiceDto
     {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Abp.Application.Services;
 using System.Threading.Tasks;
-using AppFrameworkDemo.DashboardCustomization.Dto;
+using AppFramework.DashboardCustomization.Dto;
 
-namespace AppFrameworkDemo.DashboardCustomization
+namespace AppFramework.DashboardCustomization
 {
     public interface IDashboardCustomizationAppService : IApplicationService
     {

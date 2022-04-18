@@ -1,4 +1,4 @@
-namespace AppFrameworkDemo.MultiTenancy.Accounting.Dto
+namespace AppFramework.MultiTenancy.Accounting.Dto
 {
     public class CreateInvoiceDto
     {

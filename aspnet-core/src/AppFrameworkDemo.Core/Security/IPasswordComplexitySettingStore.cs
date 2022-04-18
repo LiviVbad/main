@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Security
+namespace AppFramework.Security
 {
     public interface IPasswordComplexitySettingStore
     {

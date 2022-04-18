@@ -9,15 +9,15 @@ using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.Organizations;
 using Microsoft.Extensions.Configuration;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Chat;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Friendships;
-using AppFrameworkDemo.Storage;
+using AppFramework.Authorization;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users;
+using AppFramework.Chat;
+using AppFramework.Configuration;
+using AppFramework.Friendships;
+using AppFramework.Storage;
 
-namespace AppFrameworkDemo.MultiTenancy.Demo
+namespace AppFramework.MultiTenancy.Demo
 {
     /// <summary>
     /// Used to build demo data for new tenants.

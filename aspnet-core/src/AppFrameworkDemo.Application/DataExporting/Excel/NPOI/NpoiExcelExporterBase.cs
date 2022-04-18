@@ -4,12 +4,12 @@ using System.IO;
 using Abp.AspNetZeroCore.Net;
 using Abp.Collections.Extensions;
 using Abp.Dependency;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Storage;
+using AppFramework.Dto;
+using AppFramework.Storage;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
-namespace AppFrameworkDemo.DataExporting.Excel.NPOI
+namespace AppFramework.DataExporting.Excel.NPOI
 {
     public abstract class NpoiExcelExporterBase : AppFrameworkDemoServiceBase, ITransientDependency
     {

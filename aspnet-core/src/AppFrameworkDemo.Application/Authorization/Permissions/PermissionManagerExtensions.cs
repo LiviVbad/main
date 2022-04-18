@@ -4,7 +4,7 @@ using System.Linq;
 using Abp.Authorization;
 using Abp.Runtime.Validation;
 
-namespace AppFrameworkDemo.Authorization.Permissions
+namespace AppFramework.Authorization.Permissions
 {
     public static class PermissionManagerExtensions
     {

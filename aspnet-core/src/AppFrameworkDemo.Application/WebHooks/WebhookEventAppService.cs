@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Abp.Authorization;
 using Abp.Webhooks;
-using AppFrameworkDemo.Authorization;
+using AppFramework.Authorization;
 
-namespace AppFrameworkDemo.WebHooks
+namespace AppFramework.WebHooks
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_WebhookSubscription)]
     public class WebhookEventAppService : AppFrameworkDemoAppServiceBase, IWebhookEventAppService

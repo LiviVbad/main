@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using AppFrameworkDemo.MultiTenancy.Payments.Paypal;
-using AppFrameworkDemo.MultiTenancy.Payments.PayPal;
-using AppFrameworkDemo.MultiTenancy.Payments.PayPal.Dto;
+using AppFramework.MultiTenancy.Payments.Paypal;
+using AppFramework.MultiTenancy.Payments.PayPal;
+using AppFramework.MultiTenancy.Payments.PayPal.Dto;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments
+namespace AppFramework.MultiTenancy.Payments
 {
     public class PayPalPaymentAppService : AppFrameworkDemoAppServiceBase, IPayPalPaymentAppService
     {

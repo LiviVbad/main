@@ -3,7 +3,7 @@ using Abp.Localization;
 using Abp.Runtime.Validation;
 using Abp.UI.Inputs;
 
-namespace AppFrameworkDemo.Features
+namespace AppFramework.Features
 {
     public class AppFeatureProvider : FeatureProvider
     {
@@ -74,7 +74,7 @@ namespace AppFrameworkDemo.Features
 
         private static ILocalizableString L(string name)
         {
-            return new LocalizableString(name, AppFrameworkDemoConsts.LocalizationSourceName);
+            return new LocalizableString(name, AppFrameworkConsts.LocalizationSourceName);
         }
     }
 }

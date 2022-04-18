@@ -5,9 +5,9 @@ using Abp.Authorization.Roles;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using JetBrains.Annotations;
-using AppFrameworkDemo.Authorization.Users;
+using AppFramework.Authorization.Users;
 
-namespace AppFrameworkDemo.Authorization.Roles
+namespace AppFramework.Authorization.Roles
 {
     public class RoleStore : AbpRoleStore<Role, User>
     {

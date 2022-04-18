@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Authorization.Users.Importing.Dto
+﻿namespace AppFramework.Authorization.Users.Importing.Dto
 {
     public class ImportUserDto
     {

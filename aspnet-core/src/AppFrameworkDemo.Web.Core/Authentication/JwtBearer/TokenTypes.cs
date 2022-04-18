@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Web.Authentication.JwtBearer
+﻿namespace AppFramework.Web.Authentication.JwtBearer
 {
     public enum TokenType
     {

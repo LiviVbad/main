@@ -3,10 +3,10 @@ using System.Linq;
 using Abp.Configuration;
 using Abp.Domain.Repositories;
 using Abp.Timing;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.Configuration;
+using AppFramework.MultiTenancy;
 
-namespace AppFrameworkDemo.Authorization.Users.Password
+namespace AppFramework.Authorization.Users.Password
 {
     public class PasswordExpirationService : AppFrameworkDemoDomainServiceBase, IPasswordExpirationService
     {

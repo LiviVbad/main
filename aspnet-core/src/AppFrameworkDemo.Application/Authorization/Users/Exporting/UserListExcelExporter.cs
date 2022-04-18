@@ -4,13 +4,13 @@ using System.Linq;
 using Abp.Collections.Extensions;
 using Abp.Runtime.Session;
 using Abp.Timing.Timezone;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.DataExporting.Excel.NPOI;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Storage;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.DataExporting.Excel.NPOI;
+using AppFramework.Dto;
+using AppFramework.Storage;
 using NPOI.SS.UserModel;
 
-namespace AppFrameworkDemo.Authorization.Users.Exporting
+namespace AppFramework.Authorization.Users.Exporting
 {
     public class UserListExcelExporter : NpoiExcelExporterBase, IUserListExcelExporter
     {

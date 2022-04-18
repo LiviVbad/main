@@ -10,12 +10,12 @@ using Abp.Configuration;
 using Abp.Dependency;
 using Abp.Domain.Uow;
 using Abp.Localization;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Localization;
-using AppFrameworkDemo.Notifications;
-using AppFrameworkDemo.Storage;
+using AppFramework.Dto;
+using AppFramework.Localization;
+using AppFramework.Notifications;
+using AppFramework.Storage;
 
-namespace AppFrameworkDemo.Gdpr
+namespace AppFramework.Gdpr
 {
     public class UserCollectedDataPrepareJob : AsyncBackgroundJob<UserIdentifier>, ITransientDependency
     {

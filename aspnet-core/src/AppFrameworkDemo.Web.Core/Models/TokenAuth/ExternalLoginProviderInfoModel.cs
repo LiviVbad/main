@@ -2,7 +2,7 @@
 using Abp.AspNetZeroCore.Web.Authentication.External;
 using Abp.AutoMapper;
 
-namespace AppFrameworkDemo.Web.Models.TokenAuth
+namespace AppFramework.Web.Models.TokenAuth
 {
     [AutoMapFrom(typeof(ExternalLoginProviderInfo))]
     public class ExternalLoginProviderInfoModel

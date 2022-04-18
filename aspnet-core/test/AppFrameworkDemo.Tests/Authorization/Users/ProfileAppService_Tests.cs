@@ -1,13 +1,13 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Authorization.Users.Profile;
-using AppFrameworkDemo.Authorization.Users.Profile.Dto;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Authorization.Users;
+using AppFramework.Authorization.Users.Profile;
+using AppFramework.Authorization.Users.Profile.Dto;
+using AppFramework.Test.Base;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Authorization.Users
+namespace AppFramework.Tests.Authorization.Users
 {
     // ReSharper disable once InconsistentNaming
     public class ProfileAppService_Tests : AppTestBase

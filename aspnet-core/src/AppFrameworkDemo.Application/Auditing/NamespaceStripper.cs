@@ -2,7 +2,7 @@
 using Abp.Extensions;
 using System.Linq;
 
-namespace AppFrameworkDemo.Auditing
+namespace AppFramework.Auditing
 {
     public class NamespaceStripper : INamespaceStripper, ITransientDependency
     {

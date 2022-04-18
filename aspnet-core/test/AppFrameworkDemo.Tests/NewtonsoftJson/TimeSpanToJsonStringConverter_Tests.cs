@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.NewtonsoftJson
+namespace AppFramework.Tests.NewtonsoftJson
 {
     public class TimeSpanToJsonStringConverter_Tests
     {

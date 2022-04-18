@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using Abp;
 using Abp.Dependency;
 using Microsoft.AspNetCore.Identity;
-using AppFrameworkDemo.Authorization.Users;
+using AppFramework.Authorization.Users;
 
-namespace AppFrameworkDemo.MultiTenancy.Demo
+namespace AppFramework.MultiTenancy.Demo
 {
     public class RandomUserGenerator : ITransientDependency
     {

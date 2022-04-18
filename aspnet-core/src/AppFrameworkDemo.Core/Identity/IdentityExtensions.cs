@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Security.Claims;
 
-namespace AppFrameworkDemo.Identity
+namespace AppFramework.Identity
 {
     public static class IdentityExtensions
     {

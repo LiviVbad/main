@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Debugging
+﻿namespace AppFramework.Debugging
 {
     public static class DebugHelper
     {

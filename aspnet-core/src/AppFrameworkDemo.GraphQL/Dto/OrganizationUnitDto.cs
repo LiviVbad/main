@@ -1,7 +1,7 @@
 using Abp.AutoMapper;
 using Abp.Organizations;
 
-namespace AppFrameworkDemo.Dto
+namespace AppFramework.Dto
 {
     [AutoMapFrom(typeof(OrganizationUnit))]
     public class OrganizationUnitDto

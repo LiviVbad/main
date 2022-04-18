@@ -5,10 +5,10 @@ using GraphQL.Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.DependencyInjection;
-using AppFrameworkDemo.Debugging;
-using AppFrameworkDemo.Schemas;
+using AppFramework.Debugging;
+using AppFramework.Schemas;
 
-namespace AppFrameworkDemo.Configure
+namespace AppFramework.Configure
 {
     public static class ServiceCollectionExtensions
     {

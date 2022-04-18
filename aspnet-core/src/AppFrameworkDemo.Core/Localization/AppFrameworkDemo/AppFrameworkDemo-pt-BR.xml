@@ -100,12 +100,12 @@
     <text name="Send">Enviar</text>
     <text name="PasswordReset">Resetar senha</text>
     <text name="InvalidUserNameOrEmailAddress">Nome de usuário ou email inválidos</text>
-    <text name="PasswordResetEmail_Subject">AppFrameworkDemo resetar senha</text>
-    <text name="PasswordResetEmail_Title">AppFrameworkDemo resetar senha.</text>
+    <text name="PasswordResetEmail_Subject">AppFramework resetar senha</text>
+    <text name="PasswordResetEmail_Title">AppFramework resetar senha.</text>
     <text name="PasswordResetEmail_SubTitle">Esse email é enviado para você para resetar e recriar sua senha.</text>
     <text name="PasswordResetEmail_ClickTheLinkBelowToResetYourPassword">Por favor, clique no link abaixo para resetar a senha:</text>
-    <text name="EmailActivation_Subject">AppFrameworkDemo email de ativação de conta</text>
-    <text name="EmailActivation_Title">Bem vindo ao AppFrameworkDemo.</text>
+    <text name="EmailActivation_Subject">AppFramework email de ativação de conta</text>
+    <text name="EmailActivation_Title">Bem vindo ao AppFramework.</text>
     <text name="EmailActivation_SubTitle">Esse email é enviado para verificar seu endereço de email.</text>
     <text name="EmailActivation_ClickTheLinkBelowToVerifyYourEmail">Por favor clique no link abaixo para verificar seu endereço de email:</text>
     <text name="InvalidEmailAddress">Endereço de email inválido</text>

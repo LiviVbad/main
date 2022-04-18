@@ -3,9 +3,9 @@ using Abp.Application.Features;
 using Abp.Domain.Repositories;
 using Abp.Extensions;
 using Abp.UI;
-using AppFrameworkDemo.Features;
+using AppFramework.Features;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     public class UserPolicy : AppFrameworkDemoServiceBase, IUserPolicy
     {

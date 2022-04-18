@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Navigation;
 
-namespace AppFrameworkDemo.Web.Public.Views.Shared.Components.Header
+namespace AppFramework.Web.Public.Views.Shared.Components.Header
 {
     public class HeaderMenuItemViewModel
     {

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
-namespace AppFrameworkDemo.Identity
+namespace AppFramework.Identity
 {
     /// <summary>
     /// Implements callback for SecurityStampValidator's OnRefreshingPrincipal event.

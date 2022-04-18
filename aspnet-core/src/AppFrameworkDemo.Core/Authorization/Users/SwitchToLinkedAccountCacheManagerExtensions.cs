@@ -1,6 +1,6 @@
 ﻿using Abp.Runtime.Caching;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     public static class SwitchToLinkedAccountCacheManagerExtensions
     {

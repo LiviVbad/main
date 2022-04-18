@@ -1,10 +1,10 @@
 ﻿using Abp.Dependency;
 using GraphQL.Types;
 using GraphQL.Utilities;
-using AppFrameworkDemo.Queries.Container;
+using AppFramework.Queries.Container;
 using System;
 
-namespace AppFrameworkDemo.Schemas
+namespace AppFramework.Schemas
 {
     public class MainSchema : Schema, ITransientDependency
     {

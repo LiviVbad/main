@@ -5,12 +5,12 @@ using Abp.Authorization;
 using Abp.MultiTenancy;
 using Abp.Runtime.Session;
 using Abp.UI;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.DashboardCustomization.Definitions;
-using AppFrameworkDemo.DashboardCustomization.Dto;
+using AppFramework.Configuration;
+using AppFramework.DashboardCustomization.Definitions;
+using AppFramework.DashboardCustomization.Dto;
 using Newtonsoft.Json;
 
-namespace AppFrameworkDemo.DashboardCustomization
+namespace AppFramework.DashboardCustomization
 {
     [AbpAuthorize]
     public class DashboardCustomizationAppService : AppFrameworkDemoAppServiceBase, IDashboardCustomizationAppService

@@ -1,9 +1,9 @@
 ﻿using Abp.Dependency;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Url;
-using AppFrameworkDemo.Web.Url;
+using AppFramework.Configuration;
+using AppFramework.Url;
+using AppFramework.Web.Url;
 
-namespace AppFrameworkDemo.Web.Public.Url
+namespace AppFramework.Web.Public.Url
 {
     public class WebUrlService : WebUrlServiceBase, IWebUrlService, ITransientDependency
     {

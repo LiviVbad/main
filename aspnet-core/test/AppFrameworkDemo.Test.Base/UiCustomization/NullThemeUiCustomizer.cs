@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Abp;
-using AppFrameworkDemo.Configuration.Dto;
-using AppFrameworkDemo.UiCustomization;
-using AppFrameworkDemo.UiCustomization.Dto;
+using AppFramework.Configuration.Dto;
+using AppFramework.UiCustomization;
+using AppFramework.UiCustomization.Dto;
 
-namespace AppFrameworkDemo.Test.Base.UiCustomization
+namespace AppFramework.Test.Base.UiCustomization
 {
     public class NullThemeUiCustomizer : IUiCustomizer
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AppFrameworkDemo.Web.Models.TokenAuth
+namespace AppFramework.Web.Models.TokenAuth
 {
     public class SendTwoFactorAuthCodeModel
     {

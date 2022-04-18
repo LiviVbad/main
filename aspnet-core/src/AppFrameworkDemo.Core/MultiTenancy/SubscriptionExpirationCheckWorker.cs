@@ -9,10 +9,10 @@ using Abp.Threading;
 using Abp.Threading.BackgroundWorkers;
 using Abp.Threading.Timers;
 using Abp.Timing;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Editions;
+using AppFramework.Authorization.Users;
+using AppFramework.Editions;
 
-namespace AppFrameworkDemo.MultiTenancy
+namespace AppFramework.MultiTenancy
 {
     public class SubscriptionExpirationCheckWorker : PeriodicBackgroundWorkerBase, ISingletonDependency
     {
@@ -41,7 +41,7 @@ namespace AppFrameworkDemo.MultiTenancy
             Timer.Period = CheckPeriodAsMilliseconds;
             Timer.RunOnStart = true;
 
-            LocalizationSourceName = AppFrameworkDemoConsts.LocalizationSourceName;
+            LocalizationSourceName = AppFrameworkConsts.LocalizationSourceName;
             _unitOfWorkManager = unitOfWorkManager;
         }
 

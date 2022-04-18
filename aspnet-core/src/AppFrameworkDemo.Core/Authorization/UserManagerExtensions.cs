@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Abp.Authorization.Users;
-using AppFrameworkDemo.Authorization.Users;
+using AppFramework.Authorization.Users;
 
-namespace AppFrameworkDemo.Authorization
+namespace AppFramework.Authorization
 {
     public static class UserManagerExtensions
     {

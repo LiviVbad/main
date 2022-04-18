@@ -1,10 +1,10 @@
 ﻿using Xunit;
 
-namespace AppFrameworkDemo.Tests
+namespace AppFramework.Tests
 {
     public sealed class MultiTenantTheoryAttribute : TheoryAttribute
     {
-        private readonly bool _multiTenancyEnabled = AppFrameworkDemoConsts.MultiTenancyEnabled;
+        private readonly bool _multiTenancyEnabled = AppFrameworkConsts.MultiTenancyEnabled;
       
         public MultiTenantTheoryAttribute()
         {

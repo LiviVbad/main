@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Migrations
+namespace AppFramework.Migrations
 {
     public partial class Upgraded_To_Abp_V3_5 : Migration
     {

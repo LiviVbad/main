@@ -11,15 +11,15 @@ using Abp.Net.Mail;
 using Abp.Runtime.Security;
 using Abp.Timing;
 using Abp.Zero.Configuration;
-using AppFrameworkDemo.Authentication;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Configuration.Dto;
-using AppFrameworkDemo.Configuration.Host.Dto;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.Security;
-using AppFrameworkDemo.Timing;
+using AppFramework.Authentication;
+using AppFramework.Authorization;
+using AppFramework.Configuration.Dto;
+using AppFramework.Configuration.Host.Dto;
+using AppFramework.Editions;
+using AppFramework.Security;
+using AppFramework.Timing;
 
-namespace AppFrameworkDemo.Configuration.Host
+namespace AppFramework.Configuration.Host
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_Host_Settings)]
     public class HostSettingsAppService : SettingsAppServiceBase, IHostSettingsAppService

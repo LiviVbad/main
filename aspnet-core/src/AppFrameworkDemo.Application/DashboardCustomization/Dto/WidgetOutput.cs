@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AppFrameworkDemo.DashboardCustomization.Dto
+namespace AppFramework.DashboardCustomization.Dto
 {
     public class WidgetOutput
     {

@@ -3,16 +3,16 @@ using Abp.Domain.Repositories;
 using Abp.Localization;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.Editions.Dto;
-using AppFrameworkDemo.Features;
+using AppFramework.Editions;
+using AppFramework.Editions.Dto;
+using AppFramework.Features;
 using Shouldly;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Editions
+namespace AppFramework.Tests.Editions
 {
     // ReSharper disable once InconsistentNaming
     public class EditionAppService_Tests : AppTestBase
@@ -145,7 +145,7 @@ namespace AppFrameworkDemo.Tests.Editions
             var defaultEdition = UsingDbContext(context => context.Editions.FirstOrDefault(e => e.Name == EditionManager.DefaultEditionName));
 
             var exception = await Assert.ThrowsAsync<UserFriendlyException>(async () => await _editionAppService.DeleteEdition(new EntityDto(defaultEdition.Id)));
-            exception.Message.ShouldContain(_localizationManager.GetString(AppFrameworkDemoConsts.LocalizationSourceName, "ThereAreTenantsSubscribedToThisEdition"));
+            exception.Message.ShouldContain(_localizationManager.GetString(AppFrameworkConsts.LocalizationSourceName, "ThereAreTenantsSubscribedToThisEdition"));
         }
     }
 }

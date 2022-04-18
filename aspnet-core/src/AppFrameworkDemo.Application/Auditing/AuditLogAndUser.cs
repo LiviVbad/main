@@ -1,7 +1,7 @@
 using Abp.Auditing;
-using AppFrameworkDemo.Authorization.Users;
+using AppFramework.Authorization.Users;
 
-namespace AppFrameworkDemo.Auditing
+namespace AppFramework.Auditing
 {
     /// <summary>
     /// A helper class to store an <see cref="AuditLog"/> and a <see cref="User"/> object.

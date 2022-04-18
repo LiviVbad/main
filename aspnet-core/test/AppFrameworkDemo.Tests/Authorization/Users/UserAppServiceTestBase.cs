@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Abp.Authorization.Users;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Authorization.Users;
+using AppFramework.Test.Base;
 
-namespace AppFrameworkDemo.Tests.Authorization.Users
+namespace AppFramework.Tests.Authorization.Users
 {
     public abstract class UserAppServiceTestBase : AppTestBase
     {

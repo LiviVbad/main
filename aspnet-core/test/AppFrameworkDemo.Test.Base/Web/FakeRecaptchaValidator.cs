@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using AppFrameworkDemo.Security.Recaptcha;
+using AppFramework.Security.Recaptcha;
 
-namespace AppFrameworkDemo.Test.Base.Web
+namespace AppFramework.Test.Base.Web
 {
     public class FakeRecaptchaValidator : IRecaptchaValidator
     {

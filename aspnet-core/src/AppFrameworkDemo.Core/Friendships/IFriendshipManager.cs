@@ -2,7 +2,7 @@
 using Abp;
 using Abp.Domain.Services;
 
-namespace AppFrameworkDemo.Friendships
+namespace AppFramework.Friendships
 {
     public interface IFriendshipManager : IDomainService
     {

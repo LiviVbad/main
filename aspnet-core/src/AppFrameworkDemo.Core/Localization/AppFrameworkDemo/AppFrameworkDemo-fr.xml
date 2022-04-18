@@ -105,8 +105,8 @@
     <text name="PasswordResetEmail_Title">Réinitialisation de votre mot de passe.</text>
     <text name="PasswordResetEmail_SubTitle">Cet e-mail vous est envoyé pour réinitialiser et recréer votre mot de passe.</text>
     <text name="PasswordResetEmail_ClickTheLinkBelowToResetYourPassword">Veuillez cliquer sur le lien ci-dessous pour réinitialiser votre mot de passe :</text>
-    <text name="EmailActivation_Subject">Activation de votre compte AppFrameworkDemo</text>
-    <text name="EmailActivation_Title">Bienvenue dans AppFrameworkDemo.</text>
+    <text name="EmailActivation_Subject">Activation de votre compte AppFramework</text>
+    <text name="EmailActivation_Title">Bienvenue dans AppFramework.</text>
     <text name="EmailActivation_SubTitle">Cet e-mail vous est envoyé pour vérifier l'adresse e-mail associée à votre compte.</text>
     <text name="EmailActivation_ClickTheLinkBelowToVerifyYourEmail">Veuillez cliquer sur le lien ci-dessous pour confirmer votre adresse e-mail :</text>
     <text name="InvalidEmailAddress">Adresse e-mail non valide</text>
@@ -325,7 +325,7 @@
     <text name="SuccessfullyUnlinked">Désactivé avec succès</text>
     <text name="LinkedUserDeleteWarningMessage">Le lien vers l'utilisateur {0} sera supprimé.</text>
     <text name="SwitchToLinkedAccountTokenErrorMessage">Le jeton d'impersonation n'est pas valide ou a expiré !</text>
-    <text name="WelcomeToTheApplicationNotificationMessage">Bienvenue dans AppFrameworkDemo ! Le système de notification vous informera des évènements à venir. Vous pouvez choisir les types de notifications que vous recevrez dans les paramètres de notification.</text>
+    <text name="WelcomeToTheApplicationNotificationMessage">Bienvenue dans AppFramework ! Le système de notification vous informera des évènements à venir. Vous pouvez choisir les types de notifications que vous recevrez dans les paramètres de notification.</text>
     <text name="NewUserRegisteredNotificationDefinition">Sur un nouvel utilisateur de l'application.</text>
     <text name="NewUserRegisteredNotificationMessage">Un nouvel utilisateur s'est inscrit à l'application. Nom d'utilisateur : {userName}, Adresse e-mail : {emailAddress}.</text>
     <text name="SeeAllNotifications">Voir toutes les notifications</text>
@@ -351,7 +351,7 @@
     <text name="CachesHeaderInfo">Videz les caches de l'application depuis cette page.</text>
     <text name="TestEmailSettingsHeader">Test des paramètres de messagerie</text>
     <text name="SendTestEmail">Envoyer un e-mail de test</text>
-    <text name="TestEmail_Subject">AppFrameworkDemo : e-mail de test</text>
+    <text name="TestEmail_Subject">AppFramework : e-mail de test</text>
     <text name="TestEmail_Body">Ceci est un e-mail de test.</text>
     <text name="TestEmailSentSuccessfully">E-mail de test envoyé avec succès.</text>
     <text name="WebSiteLogs">Journaux du site</text>
@@ -589,8 +589,8 @@
     <text name="IsInTrialPeriod">Est en période d'essai ?</text>
     <text name="FailedSubscriptionTerminations_Email_Subject">Résiliation d'abonnement échouée</text>
     <text name="FailedSubscriptionTerminations_Email_Body">Les abonnements n'ont pas pu être résiliés pour les tenants suivants {0}, à {1}. Veuillez consulter les journaux systèmes pour trouver les messages d'erreur détaillés.</text>
-    <text name="SubscriptionExpire_Email_Subject">Votre abonnement à AppFrameworkDemo a expiré</text>
-    <text name="SubscriptionExpire_Email_Body">Votre abonnement à AppFrameworkDemo a expiré à {0}.</text>
+    <text name="SubscriptionExpire_Email_Subject">Votre abonnement à AppFramework a expiré</text>
+    <text name="SubscriptionExpire_Email_Body">Votre abonnement à AppFramework a expiré à {0}.</text>
     <text name="UnlimitedTimeSubscription">Abonnement à durée illimitée</text>
     <text name="SubscriptionEndDateUtc">Fin d'abonnement (UTC)</text>
     <text name="ExpiringEditionMustBeAFreeEdition">L'édition affectée à échéance doit être une édition gratuite</text>
@@ -617,14 +617,14 @@
     <text name="Profile">Profil</text>
     <text name="Enable">Activer</text>
     <text name="GoogleAuthenticatorIsNotEnabled">Google Authenticator n'est pas activé pour votre compte. Activez-le d'abord dans les paramètres.</text>
-    <text name="SubscriptionExpiringSoon_Email_Subject">Votre abonnement AppFrameworkDemo expire bientôt</text>
-    <text name="SubscriptionExpiringSoon_Email_Body">Votre abonnement AppFrameworkDemo expirera le {0}.</text>
-    <text name="SubscriptionExpire_Title">Expiration de votre abonnement AppFrameworkDemo</text>
+    <text name="SubscriptionExpiringSoon_Email_Subject">Votre abonnement AppFramework expire bientôt</text>
+    <text name="SubscriptionExpiringSoon_Email_Body">Votre abonnement AppFramework expirera le {0}.</text>
+    <text name="SubscriptionExpire_Title">Expiration de votre abonnement AppFramework</text>
     <text name="SubscriptionExpire_SubTitle">Vous recevez cet e-mail pour vous avertir de l'expiration de votre abonnement</text>
-    <text name="SubscriptionAssignedToAnother_Email_Body">Votre abonnement AppFrameworkDemo a expiré le {1}. L'édition actuellement en cours est : {0}.</text>
+    <text name="SubscriptionAssignedToAnother_Email_Body">Votre abonnement AppFramework a expiré le {1}. L'édition actuellement en cours est : {0}.</text>
     <text name="FailedSubscriptionTerminations_Title">Échec de résiliation d'abonnement</text>
     <text name="FailedSubscriptionTerminations_SubTitle">La résiliation d'abonnement a échoué pour certains tenants</text>
-    <text name="SubscriptionExpiringSoon_Title">Votre abonnement AppFrameworkDemo expire bientôt</text>
+    <text name="SubscriptionExpiringSoon_Title">Votre abonnement AppFramework expire bientôt</text>
     <text name="SubscriptionExpiringSoon_SubTitle">Vous recevez cet e-mail pour vous avertir de l'expiration de votre abonnement.</text>
     <text name="AdminRoleCannotRemoveFromAdminUser">Le rôle Admin ne peut être supprimé de l'utilisateur Admin</text>
     <text name="YouCannotRemoveUserRolePermissionsFromAdminRole">Vous ne pouvez pas retirer la permission de modification des Rôles/Utilisateurs au rôle Admin</text>
@@ -771,7 +771,7 @@
     <text name="NewValue">Nouvelle valeur</text>
     <text name="Detail">Détail</text>
     <text name="CreatedAtByUser"><![CDATA[Créé le <b>{0}</b> par <b>{1}</b>]]></text>
-    <text name="AppFrameworkDemo.MultiTenancy.Tenant">Tenant</text>
+    <text name="AppFramework.MultiTenancy.Tenant">Tenant</text>
     <text name="Abp.Organizations.OrganizationUnit">Organisation</text>
     <text name="Search">Rechercher</text>
     <text name="Pin">Épingler</text>
@@ -815,7 +815,7 @@
     <text name="CookieConsent_Message">Ce site web utilise des cookies afin de vous garantir la meilleure expérience possible.</text>
     <text name="CookieConsent_Dismiss">Compris !</text>
     <text name="UiCustomization_Wide">Large</text>
-    <text name="AppFrameworkDemo.Authorization.Roles.Role">Rôle</text>
+    <text name="AppFramework.Authorization.Roles.Role">Rôle</text>
     <text name="History">Historique</text>
     <text name="IsCookieConsentEnabled">Consentement aux cookies activé</text>
     <text name="CookieConsent">Consentement aux cookies</text>

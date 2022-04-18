@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AppFrameworkDemo.Authentication.TwoFactor
+namespace AppFramework.Authentication.TwoFactor
 {
     [Serializable]
     public class TwoFactorCodeCacheItem

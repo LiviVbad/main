@@ -1,7 +1,7 @@
 ﻿using Abp.MultiTenancy;
 using Abp.Zero.Configuration;
 
-namespace AppFrameworkDemo.Authorization.Roles
+namespace AppFramework.Authorization.Roles
 {
     public static class AppRoleConfig
     {

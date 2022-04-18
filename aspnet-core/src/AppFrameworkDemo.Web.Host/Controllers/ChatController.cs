@@ -3,10 +3,10 @@ using System.Net;
 using System.Threading.Tasks;
 using Abp.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using AppFrameworkDemo.Chat;
-using AppFrameworkDemo.Storage;
+using AppFramework.Chat;
+using AppFramework.Storage;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     [AbpMvcAuthorize]
     public class ChatController : ChatControllerBase

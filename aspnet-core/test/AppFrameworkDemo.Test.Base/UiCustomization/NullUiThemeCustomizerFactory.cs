@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using AppFrameworkDemo.UiCustomization;
+using AppFramework.UiCustomization;
 
-namespace AppFrameworkDemo.Test.Base.UiCustomization
+namespace AppFramework.Test.Base.UiCustomization
 {
     public class NullUiThemeCustomizerFactory : IUiThemeCustomizerFactory
     {

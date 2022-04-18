@@ -1,7 +1,7 @@
 using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
 
-namespace AppFrameworkDemo.EntityFrameworkCore
+namespace AppFramework.EntityFrameworkCore
 {
     public static class AppFrameworkDemoDbContextConfigurer
     {

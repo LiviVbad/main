@@ -6,12 +6,12 @@ using Abp.ObjectMapping;
 using Abp.RealTime;
 using Castle.Core.Logging;
 using Microsoft.AspNetCore.SignalR;
-using AppFrameworkDemo.Chat;
-using AppFrameworkDemo.Chat.Dto;
-using AppFrameworkDemo.Friendships;
-using AppFrameworkDemo.Friendships.Dto;
+using AppFramework.Chat;
+using AppFramework.Chat.Dto;
+using AppFramework.Friendships;
+using AppFramework.Friendships.Dto;
 
-namespace AppFrameworkDemo.Web.Chat.SignalR
+namespace AppFramework.Web.Chat.SignalR
 {
     public class SignalRChatCommunicator : IChatCommunicator, ITransientDependency
     {

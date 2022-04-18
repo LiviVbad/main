@@ -8,7 +8,7 @@ using Abp.Dependency;
 using Abp.Extensions;
 using Abp.Runtime.Session;
 
-namespace AppFrameworkDemo.Authorization.Users.Profile
+namespace AppFramework.Authorization.Users.Profile
 {
     public class GravatarProfileImageService : IProfileImageService, ITransientDependency
     {

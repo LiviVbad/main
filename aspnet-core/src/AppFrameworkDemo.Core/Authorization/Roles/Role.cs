@@ -1,7 +1,7 @@
 ﻿using Abp.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users;
+using AppFramework.Authorization.Users;
 
-namespace AppFrameworkDemo.Authorization.Roles
+namespace AppFramework.Authorization.Roles
 {
     /// <summary>
     /// Represents a role in the system.

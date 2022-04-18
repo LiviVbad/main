@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using AppFrameworkDemo.Schemas;
+using AppFramework.Schemas;
 using Xunit;
 
-namespace AppFrameworkDemo.GraphQL.Tests.Roles
+namespace AppFramework.GraphQL.Tests.Roles
 {
     // ReSharper disable once InconsistentNaming
     public class RoleQuery_Tests : GraphQLTestBase<MainSchema>

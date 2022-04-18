@@ -2,15 +2,15 @@
 using System.Threading.Tasks;
 using Abp.Timing;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Editions;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.MultiTenancy.Dto;
-using AppFrameworkDemo.MultiTenancy.Payments;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Editions;
+using AppFramework.MultiTenancy;
+using AppFramework.MultiTenancy.Dto;
+using AppFramework.MultiTenancy.Payments;
+using AppFramework.Test.Base;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.MultiTenancy
+namespace AppFramework.Tests.MultiTenancy
 {
     // ReSharper disable once InconsistentNaming
     public class TenantRegistrationAppService_Tests : AppTestBase

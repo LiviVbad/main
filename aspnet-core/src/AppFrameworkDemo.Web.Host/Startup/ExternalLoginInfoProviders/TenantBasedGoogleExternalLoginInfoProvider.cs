@@ -7,10 +7,10 @@ using Abp.Extensions;
 using Abp.Json;
 using Abp.Runtime.Caching;
 using Abp.Runtime.Session;
-using AppFrameworkDemo.Authentication;
-using AppFrameworkDemo.Configuration;
+using AppFramework.Authentication;
+using AppFramework.Configuration;
 
-namespace AppFrameworkDemo.Web.Startup.ExternalLoginInfoProviders
+namespace AppFramework.Web.Startup.ExternalLoginInfoProviders
 {
     public class TenantBasedGoogleExternalLoginInfoProvider : TenantBasedExternalLoginInfoProviderBase,
         ISingletonDependency

@@ -3,10 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.Configuration;
-using AppFrameworkDemo.Timing.Dto;
+using AppFramework.Timing.Dto;
 using TimeZoneConverter;
 
-namespace AppFrameworkDemo.Timing
+namespace AppFramework.Timing
 {
     public class TimingAppService : AppFrameworkDemoAppServiceBase, ITimingAppService
     {

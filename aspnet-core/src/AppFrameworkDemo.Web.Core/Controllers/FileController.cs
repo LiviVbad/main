@@ -6,10 +6,10 @@ using Abp.Auditing;
 using Abp.Extensions;
 using Abp.MimeTypes;
 using Microsoft.AspNetCore.Mvc;
-using AppFrameworkDemo.Dto;
-using AppFrameworkDemo.Storage;
+using AppFramework.Dto;
+using AppFramework.Storage;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     public class FileController : AppFrameworkDemoControllerBase
     {

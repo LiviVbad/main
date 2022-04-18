@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.DashboardCustomization.Definitions
+﻿namespace AppFramework.DashboardCustomization.Definitions
 {
     public class WidgetFilterDefinition
     {

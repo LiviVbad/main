@@ -1,6 +1,6 @@
 ﻿using Abp.Events.Bus.Handlers;
 
-namespace AppFrameworkDemo.MultiTenancy.Payments
+namespace AppFramework.MultiTenancy.Payments
 {
     public interface ISupportsRecurringPayments : 
         IEventHandler<RecurringPaymentsDisabledEventData>, 

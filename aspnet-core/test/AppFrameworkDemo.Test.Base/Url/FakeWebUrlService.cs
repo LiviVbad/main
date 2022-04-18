@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using AppFrameworkDemo.Url;
+using AppFramework.Url;
 
-namespace AppFrameworkDemo.Test.Base.Url
+namespace AppFramework.Test.Base.Url
 {
     public class FakeWebUrlService : IWebUrlService
     {

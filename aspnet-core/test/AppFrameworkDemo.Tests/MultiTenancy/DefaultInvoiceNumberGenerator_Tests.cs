@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using Abp.Domain.Repositories;
 using Abp.Timing;
-using AppFrameworkDemo.MultiTenancy.Accounting;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.MultiTenancy.Accounting;
+using AppFramework.Test.Base;
 using Shouldly;
 
-namespace AppFrameworkDemo.Tests.MultiTenancy
+namespace AppFramework.Tests.MultiTenancy
 {
     // ReSharper disable once InconsistentNaming
     public class DefaultInvoiceNumberGenerator_Tests : AppTestBase

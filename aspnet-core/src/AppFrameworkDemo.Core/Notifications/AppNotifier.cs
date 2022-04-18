@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using Abp;
 using Abp.Localization;
 using Abp.Notifications;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.Authorization.Users;
+using AppFramework.MultiTenancy;
 
-namespace AppFrameworkDemo.Notifications
+namespace AppFramework.Notifications
 {
     public class AppNotifier : AppFrameworkDemoDomainServiceBase, IAppNotifier
     {
@@ -33,7 +33,7 @@ namespace AppFrameworkDemo.Notifications
             var notificationData = new LocalizableMessageNotificationData(
                 new LocalizableString(
                     "NewUserRegisteredNotificationMessage",
-                    AppFrameworkDemoConsts.LocalizationSourceName
+                    AppFrameworkConsts.LocalizationSourceName
                 )
             );
 
@@ -49,7 +49,7 @@ namespace AppFrameworkDemo.Notifications
             var notificationData = new LocalizableMessageNotificationData(
                 new LocalizableString(
                     "NewTenantRegisteredNotificationMessage",
-                    AppFrameworkDemoConsts.LocalizationSourceName
+                    AppFrameworkConsts.LocalizationSourceName
                 )
             );
 
@@ -62,7 +62,7 @@ namespace AppFrameworkDemo.Notifications
             var notificationData = new LocalizableMessageNotificationData(
                 new LocalizableString(
                     "GdprDataPreparedNotificationMessage",
-                    AppFrameworkDemoConsts.LocalizationSourceName
+                    AppFrameworkConsts.LocalizationSourceName
                 )
             );
 
@@ -114,7 +114,7 @@ namespace AppFrameworkDemo.Notifications
             return SendNotificationAsync(AppNotificationNames.TenantsMovedToEdition, user,
                 new LocalizableString(
                     "TenantsMovedToEditionNotificationMessage",
-                    AppFrameworkDemoConsts.LocalizationSourceName
+                    AppFrameworkConsts.LocalizationSourceName
                 ),
                 new Dictionary<string, object>
                 {
@@ -134,7 +134,7 @@ namespace AppFrameworkDemo.Notifications
             return SendNotificationAsync(AppNotificationNames.DownloadInvalidImportUsers, user, 
                 new LocalizableString(
                     "ClickToSeeInvalidUsers",
-                    AppFrameworkDemoConsts.LocalizationSourceName
+                    AppFrameworkConsts.LocalizationSourceName
                 ), 
                 new Dictionary<string, object>
                 {

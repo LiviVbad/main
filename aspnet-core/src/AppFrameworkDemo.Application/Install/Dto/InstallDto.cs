@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Abp.Auditing;
-using AppFrameworkDemo.Configuration.Dto;
-using AppFrameworkDemo.Configuration.Host.Dto;
+using AppFramework.Configuration.Dto;
+using AppFramework.Configuration.Host.Dto;
 
-namespace AppFrameworkDemo.Install.Dto
+namespace AppFramework.Install.Dto
 {
     public class InstallDto
     {

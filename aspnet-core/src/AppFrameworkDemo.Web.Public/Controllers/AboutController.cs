@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AppFrameworkDemo.Web.Controllers;
+using AppFramework.Web.Controllers;
 
-namespace AppFrameworkDemo.Web.Public.Controllers
+namespace AppFramework.Web.Public.Controllers
 {
     public class AboutController : AppFrameworkDemoControllerBase
     {

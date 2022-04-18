@@ -2,7 +2,7 @@
 using Abp;
 using Abp.Domain.Services;
 
-namespace AppFrameworkDemo.Authorization.Delegation
+namespace AppFramework.Authorization.Delegation
 {
     public interface IUserDelegationManager : IDomainService
     {

@@ -1,7 +1,7 @@
 ﻿using Abp.Dependency;
 using Castle.Core.Logging;
 
-namespace AppFrameworkDemo.Configuration
+namespace AppFramework.Configuration
 {
     /* This service is replaced in Web layer */
     public class DefaultAppConfigurationWriter : IAppConfigurationWriter, ISingletonDependency

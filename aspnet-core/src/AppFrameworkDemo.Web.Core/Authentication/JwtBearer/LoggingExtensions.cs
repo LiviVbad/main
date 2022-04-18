@@ -6,7 +6,7 @@
 using System;
 using Microsoft.Extensions.Logging;
 
-namespace AppFrameworkDemo.Web.Authentication.JwtBearer
+namespace AppFramework.Web.Authentication.JwtBearer
 {
     internal static class LoggingExtensions
     {

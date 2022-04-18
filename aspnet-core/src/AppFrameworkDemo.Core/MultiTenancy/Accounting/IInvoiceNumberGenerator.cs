@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Abp.Dependency;
 
-namespace AppFrameworkDemo.MultiTenancy.Accounting
+namespace AppFramework.MultiTenancy.Accounting
 {
     public interface IInvoiceNumberGenerator : ITransientDependency
     {

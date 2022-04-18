@@ -3,7 +3,7 @@ using System.Linq;
 using Abp.Configuration;
 using Abp.Configuration.Startup;
 
-namespace AppFrameworkDemo.EntityHistory
+namespace AppFramework.EntityHistory
 {
     public class EntityHistoryConfigProvider : ICustomConfigProvider
     {

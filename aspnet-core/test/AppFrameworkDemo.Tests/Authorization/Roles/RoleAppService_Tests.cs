@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Roles.Dto;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Roles.Dto;
+using AppFramework.Test.Base;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Authorization.Roles
+namespace AppFramework.Tests.Authorization.Roles
 {
     // ReSharper disable once InconsistentNaming
     public class RoleAppService_Tests : AppTestBase

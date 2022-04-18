@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
 using Abp.Organizations;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.MultiTenancy;
+using AppFramework.Authorization.Roles;
+using AppFramework.MultiTenancy;
 
-namespace AppFrameworkDemo.EntityHistory
+namespace AppFramework.EntityHistory
 {
     public static class EntityHistoryHelper
     {

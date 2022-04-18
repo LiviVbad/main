@@ -8,9 +8,9 @@ using Abp.Runtime.Session;
 using Abp.UI;
 using Castle.Core.Logging;
 using Castle.Windsor;
-using AppFrameworkDemo.Chat;
+using AppFramework.Chat;
 
-namespace AppFrameworkDemo.Web.Chat.SignalR
+namespace AppFramework.Web.Chat.SignalR
 {
     public class ChatHub : OnlineClientHubBase
     {

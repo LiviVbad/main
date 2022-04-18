@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using AppFrameworkDemo.Tenants.Dashboard.Dto;
+using AppFramework.Tenants.Dashboard.Dto;
 
-namespace AppFrameworkDemo.Tenants.Dashboard
+namespace AppFramework.Tenants.Dashboard
 {
     public static class DashboardRandomDataGenerator
     {
@@ -112,16 +112,16 @@ namespace AppFrameworkDemo.Tenants.Dashboard
         {
             return new List<MemberActivity>
             {
-                new MemberActivity("Brain", AppFrameworkDemoConsts.CurrencySign + GetRandomInt(100, 500), GetRandomInt(10, 100), GetRandomInt(10, 150),
+                new MemberActivity("Brain", AppFrameworkConsts.CurrencySign + GetRandomInt(100, 500), GetRandomInt(10, 100), GetRandomInt(10, 150),
                     GetRandomInt(10, 99) + "%"),
 
-                new MemberActivity("Jane", AppFrameworkDemoConsts.CurrencySign + GetRandomInt(100, 500), GetRandomInt(10, 100), GetRandomInt(10, 150),
+                new MemberActivity("Jane", AppFrameworkConsts.CurrencySign + GetRandomInt(100, 500), GetRandomInt(10, 100), GetRandomInt(10, 150),
                     GetRandomInt(10, 99) + "%"),
 
-                new MemberActivity("Tim", AppFrameworkDemoConsts.CurrencySign + GetRandomInt(100, 500), GetRandomInt(10, 100), GetRandomInt(10, 150),
+                new MemberActivity("Tim", AppFrameworkConsts.CurrencySign + GetRandomInt(100, 500), GetRandomInt(10, 100), GetRandomInt(10, 150),
                     GetRandomInt(10, 99) + "%"),
 
-                new MemberActivity("Kate", AppFrameworkDemoConsts.CurrencySign + GetRandomInt(100, 500), GetRandomInt(10, 100), GetRandomInt(10, 150),
+                new MemberActivity("Kate", AppFrameworkConsts.CurrencySign + GetRandomInt(100, 500), GetRandomInt(10, 100), GetRandomInt(10, 150),
                     GetRandomInt(10, 99) + "%")
             };
         }

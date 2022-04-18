@@ -4,10 +4,10 @@ using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.EntityFrameworkCore;
+using AppFramework.Configuration;
+using AppFramework.EntityFrameworkCore;
 
-namespace AppFrameworkDemo.Web.Public.Startup
+namespace AppFramework.Web.Public.Startup
 {
     [DependsOn(
         typeof(AppFrameworkDemoWebCoreModule)

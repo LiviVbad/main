@@ -5,9 +5,9 @@ using Abp.Domain.Uow;
 using Abp.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using AppFrameworkDemo.EntityFrameworkCore;
+using AppFramework.EntityFrameworkCore;
 
-namespace AppFrameworkDemo.HealthChecks
+namespace AppFramework.HealthChecks
 {
     public class AppFrameworkDemoDbContextUsersHealthCheck : IHealthCheck
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AppFrameworkDemo.Web.Models.TokenAuth
+namespace AppFramework.Web.Models.TokenAuth
 {
     public class AuthenticateResultModel
     {

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Abp;
 using Abp.Authorization;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.DemoUiComponents.Dto;
+using AppFramework.Authorization;
+using AppFramework.DemoUiComponents.Dto;
 
-namespace AppFrameworkDemo.DemoUiComponents
+namespace AppFramework.DemoUiComponents
 {
     [AbpAuthorize(AppPermissions.Pages_DemoUiComponents)]
     public class DemoUiComponentsAppService : AppFrameworkDemoAppServiceBase, IDemoUiComponentsAppService

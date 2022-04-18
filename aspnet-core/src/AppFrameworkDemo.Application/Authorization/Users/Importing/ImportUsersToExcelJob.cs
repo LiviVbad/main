@@ -12,13 +12,13 @@ using Abp.Localization;
 using Abp.ObjectMapping;
 using Abp.UI;
 using Microsoft.AspNetCore.Identity;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users.Dto;
-using AppFrameworkDemo.Authorization.Users.Importing.Dto;
-using AppFrameworkDemo.Notifications;
-using AppFrameworkDemo.Storage;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users.Dto;
+using AppFramework.Authorization.Users.Importing.Dto;
+using AppFramework.Notifications;
+using AppFramework.Storage;
 
-namespace AppFrameworkDemo.Authorization.Users.Importing
+namespace AppFramework.Authorization.Users.Importing
 {
     public class ImportUsersToExcelJob : AsyncBackgroundJob<ImportUsersFromExcelJobArgs>, ITransientDependency
     {
@@ -191,7 +191,7 @@ namespace AppFrameworkDemo.Authorization.Users.Importing
                 await _appNotifier.SendMessageAsync(
                     args.User,
                     new LocalizableString("AllUsersSuccessfullyImportedFromExcel",
-                        AppFrameworkDemoConsts.LocalizationSourceName),
+                        AppFrameworkConsts.LocalizationSourceName),
                     null,
                     Abp.Notifications.NotificationSeverity.Success);
             }
@@ -207,7 +207,7 @@ namespace AppFrameworkDemo.Authorization.Users.Importing
                         args.User,
                         new LocalizableString(
                             "FileCantBeConvertedToUserList",
-                            AppFrameworkDemoConsts.LocalizationSourceName
+                            AppFrameworkConsts.LocalizationSourceName
                         ),
                         null,
                         Abp.Notifications.NotificationSeverity.Warn);

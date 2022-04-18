@@ -1,6 +1,6 @@
 ﻿using Abp.Runtime.Caching;
 
-namespace AppFrameworkDemo.Authorization.Impersonation
+namespace AppFramework.Authorization.Impersonation
 {
     public static class ImpersonationCacheManagerExtensions
     {

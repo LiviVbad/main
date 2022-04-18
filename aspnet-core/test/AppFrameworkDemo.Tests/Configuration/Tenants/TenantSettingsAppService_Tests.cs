@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Abp.Configuration;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.Configuration.Tenants;
+using AppFramework.Configuration;
+using AppFramework.Configuration.Tenants;
 using Shouldly;
 using Xunit;
 
-namespace AppFrameworkDemo.Tests.Configuration.Tenants
+namespace AppFramework.Tests.Configuration.Tenants
 {
     // ReSharper disable once InconsistentNaming
     public class TenantSettingsAppService_Tests : AppTestBase

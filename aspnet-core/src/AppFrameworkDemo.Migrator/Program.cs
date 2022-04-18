@@ -5,7 +5,7 @@ using Abp.Dependency;
 using Castle.Facilities.Logging;
 using Abp.Castle.Logging.Log4Net;
 
-namespace AppFrameworkDemo.Migrator
+namespace AppFramework.Migrator
 {
     public class Program
     {

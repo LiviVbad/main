@@ -6,7 +6,7 @@ using Abp.Web.Mvc.Models;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AppFrameworkDemo.Web.Controllers
+namespace AppFramework.Web.Controllers
 {
     [DisableAuditing]
     public class ErrorController : AbpController

@@ -1,7 +1,7 @@
 ﻿using Abp.Modules;
-using AppFrameworkDemo.Test.Base;
+using AppFramework.Test.Base;
 
-namespace AppFrameworkDemo.Tests
+namespace AppFramework.Tests
 {
     [DependsOn(typeof(AppFrameworkDemoTestBaseModule))]
     public class AppFrameworkDemoTestModule : AbpModule

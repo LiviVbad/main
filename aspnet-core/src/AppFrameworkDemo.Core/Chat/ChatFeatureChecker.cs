@@ -1,8 +1,8 @@
 using Abp.Application.Features;
 using Abp.UI;
-using AppFrameworkDemo.Features;
+using AppFramework.Features;
 
-namespace AppFrameworkDemo.Chat
+namespace AppFramework.Chat
 {
     public class ChatFeatureChecker : AppFrameworkDemoDomainServiceBase, IChatFeatureChecker
     {

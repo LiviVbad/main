@@ -1,6 +1,6 @@
-﻿using AppFrameworkDemo.Test.Base;
+﻿using AppFramework.Test.Base;
 
-namespace AppFrameworkDemo.Tests
+namespace AppFramework.Tests
 {
     public class AppTestBase : AppTestBase<AppFrameworkDemoTestModule>
     {

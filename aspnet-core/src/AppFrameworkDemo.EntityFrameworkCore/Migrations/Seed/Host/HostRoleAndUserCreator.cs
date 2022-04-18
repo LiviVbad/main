@@ -6,13 +6,13 @@ using Abp.Authorization.Users;
 using Abp.MultiTenancy;
 using Abp.Notifications;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.Authorization.Roles;
-using AppFrameworkDemo.Authorization.Users;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.Notifications;
+using AppFramework.Authorization;
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.Notifications;
 
-namespace AppFrameworkDemo.Migrations.Seed.Host
+namespace AppFramework.Migrations.Seed.Host
 {
     public class HostRoleAndUserCreator
     {

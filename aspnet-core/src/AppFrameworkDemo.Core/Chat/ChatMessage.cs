@@ -6,7 +6,7 @@ using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using Abp.Timing;
 
-namespace AppFrameworkDemo.Chat
+namespace AppFramework.Chat
 {
     [Table("AppChatMessages")]
     public class ChatMessage : Entity<long>, IHasCreationTime, IMayHaveTenant

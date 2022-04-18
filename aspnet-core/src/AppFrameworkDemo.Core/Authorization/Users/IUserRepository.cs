@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Abp.Domain.Repositories;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     public interface IUserRepository : IRepository<User, long>
     {

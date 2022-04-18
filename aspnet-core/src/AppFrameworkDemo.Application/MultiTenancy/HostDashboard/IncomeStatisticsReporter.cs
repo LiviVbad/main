@@ -4,10 +4,10 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using AppFrameworkDemo.MultiTenancy.HostDashboard.Dto;
-using AppFrameworkDemo.MultiTenancy.Payments;
+using AppFramework.MultiTenancy.HostDashboard.Dto;
+using AppFramework.MultiTenancy.Payments;
 
-namespace AppFrameworkDemo.MultiTenancy.HostDashboard
+namespace AppFramework.MultiTenancy.HostDashboard
 {
     public class IncomeStatisticsService : AppFrameworkDemoDomainServiceBase, IIncomeStatisticsService
     {

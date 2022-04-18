@@ -2,7 +2,7 @@
 using Abp.Runtime.Session;
 using Microsoft.AspNetCore.Mvc.Razor.Internal;
 
-namespace AppFrameworkDemo.Web.Public.Views
+namespace AppFramework.Web.Public.Views
 {
     public abstract class AppFrameworkDemoRazorPage<TModel> : AbpRazorPage<TModel>
     {
@@ -11,7 +11,7 @@ namespace AppFrameworkDemo.Web.Public.Views
 
         protected AppFrameworkDemoRazorPage()
         {
-            LocalizationSourceName = AppFrameworkDemoConsts.LocalizationSourceName;
+            LocalizationSourceName = AppFrameworkConsts.LocalizationSourceName;
         }
     }
 }

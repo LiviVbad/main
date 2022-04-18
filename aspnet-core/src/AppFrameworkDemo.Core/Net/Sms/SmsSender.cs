@@ -2,7 +2,7 @@
 using Abp.Dependency;
 using Castle.Core.Logging;
 
-namespace AppFrameworkDemo.Net.Sms
+namespace AppFramework.Net.Sms
 {
     public class SmsSender : ISmsSender, ITransientDependency
     {

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.Configuration;
 
-namespace AppFrameworkDemo.Timing
+namespace AppFramework.Timing
 {
     public interface ITimeZoneService
     {

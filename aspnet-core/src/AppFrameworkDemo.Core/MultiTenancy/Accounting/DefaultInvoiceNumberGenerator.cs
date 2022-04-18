@@ -6,7 +6,7 @@ using Abp.Domain.Uow;
 using Abp.Timing;
 using Microsoft.EntityFrameworkCore;
 
-namespace AppFrameworkDemo.MultiTenancy.Accounting
+namespace AppFramework.MultiTenancy.Accounting
 {
     public class DefaultInvoiceNumberGenerator : IInvoiceNumberGenerator
     {

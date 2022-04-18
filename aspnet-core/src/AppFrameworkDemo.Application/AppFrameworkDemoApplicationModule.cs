@@ -1,16 +1,17 @@
 ﻿using Abp.AutoMapper;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
-using AppFrameworkDemo.Authorization;
+using AppFramework;
+using AppFramework.Authorization;
 
-namespace AppFrameworkDemo
+namespace AppFramework
 {
     /// <summary>
     /// Application layer module of the application.
     /// </summary>
     [DependsOn(
-        typeof(AppFrameworkDemoSharedModule),
-        typeof(AppFrameworkDemoCoreModule)
+        typeof(AppFrameworkSharedModule),
+        typeof(AppFrameworkCoreModule)
         )]
     public class AppFrameworkDemoApplicationModule : AbpModule
     {

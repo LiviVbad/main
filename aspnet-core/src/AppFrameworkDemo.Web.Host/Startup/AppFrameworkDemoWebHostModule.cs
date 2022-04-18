@@ -16,14 +16,14 @@ using Abp.Threading.BackgroundWorkers;
 using Abp.Timing;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using AppFrameworkDemo.Auditing;
-using AppFrameworkDemo.Authorization.Users.Password;
-using AppFrameworkDemo.Configuration;
-using AppFrameworkDemo.EntityFrameworkCore;
-using AppFrameworkDemo.MultiTenancy;
-using AppFrameworkDemo.Web.Startup.ExternalLoginInfoProviders;
+using AppFramework.Auditing;
+using AppFramework.Authorization.Users.Password;
+using AppFramework.Configuration;
+using AppFramework.EntityFrameworkCore;
+using AppFramework.MultiTenancy;
+using AppFramework.Web.Startup.ExternalLoginInfoProviders;
 
-namespace AppFrameworkDemo.Web.Startup
+namespace AppFramework.Web.Startup
 {
     [DependsOn(
         typeof(AppFrameworkDemoWebCoreModule)

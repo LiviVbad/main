@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
-using AppFrameworkDemo.Web.Authentication.JwtBearer;
+using AppFramework.Web.Authentication.JwtBearer;
 
 /// <summary>
 /// Extension methods to configure JWT bearer authentication.

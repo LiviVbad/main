@@ -1,6 +1,6 @@
 ﻿using Abp;
 
-namespace AppFrameworkDemo.Editions
+namespace AppFramework.Editions
 {
     public class MoveTenantsToAnotherEditionJobArgs
     {

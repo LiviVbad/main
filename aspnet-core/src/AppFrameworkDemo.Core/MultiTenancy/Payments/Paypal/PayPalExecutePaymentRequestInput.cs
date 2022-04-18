@@ -1,4 +1,4 @@
-namespace AppFrameworkDemo.MultiTenancy.Payments.Paypal
+namespace AppFramework.MultiTenancy.Payments.Paypal
 {
     public class PayPalCaptureOrderRequestInput
     {

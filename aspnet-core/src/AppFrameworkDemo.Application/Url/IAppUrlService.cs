@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.Url
+﻿namespace AppFramework.Url
 {
     public interface IAppUrlService
     {

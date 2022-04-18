@@ -3,7 +3,7 @@ using Abp.Domain.Uow;
 using Abp.Threading.BackgroundWorkers;
 using Abp.Threading.Timers;
 
-namespace AppFrameworkDemo.Authorization.Users.Password
+namespace AppFramework.Authorization.Users.Password
 {
     public class PasswordExpirationBackgroundWorker : PeriodicBackgroundWorkerBase, ISingletonDependency
     {
@@ -24,7 +24,7 @@ namespace AppFrameworkDemo.Authorization.Users.Password
             Timer.Period = CheckPeriodAsMilliseconds;
             Timer.RunOnStart = true;
 
-            LocalizationSourceName = AppFrameworkDemoConsts.LocalizationSourceName;
+            LocalizationSourceName = AppFrameworkConsts.LocalizationSourceName;
         }
 
         protected override void DoWork()

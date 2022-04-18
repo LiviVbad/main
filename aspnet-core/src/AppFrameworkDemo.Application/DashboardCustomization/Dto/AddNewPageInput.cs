@@ -1,4 +1,4 @@
-﻿namespace AppFrameworkDemo.DashboardCustomization.Dto
+﻿namespace AppFramework.DashboardCustomization.Dto
 {
     public class AddNewPageInput
     {

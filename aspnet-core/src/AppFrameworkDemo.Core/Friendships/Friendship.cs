@@ -8,7 +8,7 @@ using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using Abp.Timing;
 
-namespace AppFrameworkDemo.Friendships
+namespace AppFramework.Friendships
 {
     [Table("AppFriendships")]
     public class Friendship : Entity<long>, IHasCreationTime, IMayHaveTenant

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AppFrameworkDemo.EntityHistory
+namespace AppFramework.EntityHistory
 {
     public class EntityHistoryUiSetting
     {

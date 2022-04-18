@@ -11,9 +11,9 @@ using Abp.Runtime.Caching;
 using Abp.Runtime.Security;
 using Abp.Runtime.Session;
 using Abp.UI;
-using AppFrameworkDemo.Authorization.Impersonation;
+using AppFramework.Authorization.Impersonation;
 
-namespace AppFrameworkDemo.Authorization.Users
+namespace AppFramework.Authorization.Users
 {
     public class UserLinkManager : AppFrameworkDemoDomainServiceBase, IUserLinkManager
     {

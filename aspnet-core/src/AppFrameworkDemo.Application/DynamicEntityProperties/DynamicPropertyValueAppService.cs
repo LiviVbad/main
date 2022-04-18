@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.DynamicEntityProperties;
-using AppFrameworkDemo.Authorization;
-using AppFrameworkDemo.DynamicEntityProperties.Dto;
+using AppFramework.Authorization;
+using AppFramework.DynamicEntityProperties.Dto;
 
-namespace AppFrameworkDemo.DynamicEntityProperties
+namespace AppFramework.DynamicEntityProperties
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_DynamicPropertyValue)]
     public class DynamicPropertyValueAppService : AppFrameworkDemoAppServiceBase, IDynamicPropertyValueAppService

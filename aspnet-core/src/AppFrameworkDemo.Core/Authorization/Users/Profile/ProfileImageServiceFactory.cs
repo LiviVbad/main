@@ -2,9 +2,9 @@
 using Abp;
 using Abp.Configuration;
 using Abp.Dependency;
-using AppFrameworkDemo.Configuration;
+using AppFramework.Configuration;
 
-namespace AppFrameworkDemo.Authorization.Users.Profile
+namespace AppFramework.Authorization.Users.Profile
 {
     public class ProfileImageServiceFactory : ITransientDependency
     {

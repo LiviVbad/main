@@ -2,9 +2,9 @@ using System.Threading.Tasks;
 using Abp.Dependency;
 using Abp.UI;
 using Microsoft.AspNetCore.Identity;
-using AppFrameworkDemo.Authorization.Users;
+using AppFramework.Authorization.Users;
 
-namespace AppFrameworkDemo.Authentication.TwoFactor.Google
+namespace AppFramework.Authentication.TwoFactor.Google
 {
     public class GoogleAuthenticatorProvider : AppFrameworkDemoServiceBase, IUserTwoFactorTokenProvider<User>, ITransientDependency
     {
@@ -21,7 +21,7 @@ namespace AppFrameworkDemo.Authentication.TwoFactor.Google
         {
             CheckIfGoogleAuthenticatorIsEnabled(user);
 
-            var setupInfo = _googleTwoFactorAuthenticateService.GenerateSetupCode("AppFrameworkDemo", user.EmailAddress, user.GoogleAuthenticatorKey, 300, 300);
+            var setupInfo = _googleTwoFactorAuthenticateService.GenerateSetupCode("AppFramework", user.EmailAddress, user.GoogleAuthenticatorKey, 300, 300);
 
             return Task.FromResult(setupInfo.QrCodeSetupImageUrl);
         }

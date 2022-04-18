@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using AppFrameworkDemo.Auditing.Dto;
-using AppFrameworkDemo.Dto;
+using AppFramework.Auditing.Dto;
+using AppFramework.Dto;
 
-namespace AppFrameworkDemo.Auditing.Exporting
+namespace AppFramework.Auditing.Exporting
 {
     public interface IAuditLogListExcelExporter
     {
