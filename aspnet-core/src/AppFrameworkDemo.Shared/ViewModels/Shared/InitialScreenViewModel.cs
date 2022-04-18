@@ -18,6 +18,7 @@ namespace AppFramework.Shared.ViewModels
     using Prism.Commands;
     using AppFramework.Common.ViewModels;
     using AppFramework.Common;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// 应用启动初始化操作
@@ -74,6 +75,7 @@ namespace AppFramework.Shared.ViewModels
 
             //获取应用程序资源数据(本地化资源、设置、用户信息权限等...)
             await AppConfigurationManager.GetIfNeedsAsync();
+            await Task.Delay(5000);
             IsDisplayLayer = false;
 
             if (accessTokenManager.IsUserLoggedIn)

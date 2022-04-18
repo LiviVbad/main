@@ -280,6 +280,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="11.0.1" />
+		<PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
 		<PackageReference Include="FluentValidation" Version="10.4.0" />
 		<PackageReference Include="Prism.Forms.Regions" Version="8.1.97" />
 		<PackageReference Include="Syncfusion.Licensing" Version="20.1.0.47" />
