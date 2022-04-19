@@ -102,20 +102,17 @@ namespace AppFramework.ViewModels
         public void Navigate(NavigationItem navigationItem)
         {
             if (navigationItem.Items?.Count > 0) return;
-            NavigationParameters parameter = new NavigationParameters();
-            parameter.Add("Value", navigationItem.NavigationParameter);
-            Navigate(navigationItem.PageViewName, parameter);
+
+            Navigate(navigationItem.PageViewName);
         }
 
-        private void Navigate(string pageName, NavigationParameters param = null)
+        private void Navigate(string pageName)
         {
             regionManager.Regions[AppRegionManager.Main].RequestNavigate(pageName, back =>
                 {
-                    if ((bool)back.Result)
-                    {
+                    if (back.Result != null && (bool)back.Result)
                         journal = back.Context.NavigationService.Journal;
-                    }
-                }, param);
+                });
         }
 
         #endregion Navigation
@@ -123,6 +120,8 @@ namespace AppFramework.ViewModels
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
             NavigationItems = navigationItemService.GetAuthMenus(applicationContext.Configuration.Auth.GrantedPermissions);
+
+            Navigate(AppViewManager.Dashboard);
         }
     }
 }

@@ -20,7 +20,7 @@
     <win:DialogHost Identifier="Root">
         <sync:SfNavigationDrawer
             x:Name="SfNavigationDrawer"
-            prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Index}"
+            prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Main}"
             AutoChangeDisplayMode="True"
             DisplayMode="Expanded"
             IsOpen="False"
