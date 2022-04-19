@@ -162,7 +162,9 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await accountService.LoginUserAsync();
+                var loginResult = await accountService.LoginUserAsync();
+
+                if (loginResult) OnDialogClosed();
             });
         }
 

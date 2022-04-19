@@ -13,6 +13,7 @@
     MinHeight="768"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    prism:ViewModelLocator.AutoWireViewModel="True"
     Icon="/Assets/Images/logo.ico"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
@@ -30,10 +31,10 @@
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
                         FontWeight="Bold"
-                        Text="CodeShare">
+                        Text="AppFramework">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseLeftButtonDown">
-                                <i:InvokeCommandAction Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainView}}" CommandParameter="Home" />
+                                <i:InvokeCommandAction Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfNavigationDrawer}}" CommandParameter="Home" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </TextBlock>

@@ -1,6 +1,5 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.ApiClient.Models;
-using AppFramework.Authorization.Users.Dto;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Common;
 using AppFramework.Common.Services.Account;
@@ -47,21 +46,17 @@ namespace AppFramework.Services.Account
         public AbpAuthenticateModel AuthenticateModel { get; set; }
         public AbpAuthenticateResultModel AuthenticateResultModel { get; set; }
 
-        private bool isLoginOpen;
-
-        public bool IsLoginOpen
+        public async Task<bool> LoginUserAsync()
         {
-            get { return isLoginOpen; }
-            set { isLoginOpen = value; RaisePropertyChanged(); }
-        }
-
-        public async Task LoginUserAsync()
-        {
-            await WebRequest.Execute(accessTokenManager.LoginAsync,
-                async AuthenticateResultModel =>
+            bool loginResult = false;
+            await WebRequest.Execute(
+                accessTokenManager.LoginAsync,
+                async result =>
                 {
-                    await AuthenticateSucceed(AuthenticateResultModel);
-                }, ex => Task.CompletedTask);
+                    await AuthenticateSucceed(result);
+                    loginResult = true;
+                });
+            return loginResult;
         }
 
         public async Task LogoutAsync()
@@ -74,7 +69,7 @@ namespace AppFramework.Services.Account
 
         private async Task GoToLoginPageAsync()
         {
-            //await _navigationService.SetDetailPageAsync(typeof(LoginView));
+            await Task.CompletedTask;
         }
 
         private async Task AuthenticateSucceed(AbpAuthenticateResultModel result)
@@ -99,12 +94,6 @@ namespace AppFramework.Services.Account
             //}
 
             AuthenticateModel.Password = null;
-
-            //Save current user language setting
-            await profileAppService.ChangeLanguage(new ChangeUserLanguageDto()
-            {
-                LanguageName = applicationContext.CurrentLanguage?.Name
-            });
             await SetCurrentUserInfoAsync();
             await userConfigurationManager.GetConfigurationAsync();
         }

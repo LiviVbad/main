@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Fonts\iconfont.ttf" />
     <None Remove="Assets\Images\back.png" />
     <None Remove="Assets\Images\logo.ico" />
     <None Remove="Assets\Images\OrganizationUnit.png" />
@@ -49,6 +50,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Fonts\iconfont.ttf" />
     <Resource Include="Assets\Images\back.png" />
     <Resource Include="Assets\Images\logo.ico" />
     <Resource Include="Assets\Images\OrganizationUnit.png" />

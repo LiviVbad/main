@@ -8,7 +8,10 @@ namespace AppFramework.Services
     {
         public void AddCustomResources(ResourceDictionary Resource)
         {
-            Resource.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("pack://application:,,,/AppFramework;component/Themes/Generic.xaml", UriKind.RelativeOrAbsolute) });
+            Resource.MergedDictionaries.Add(new ResourceDictionary()
+            {
+                Source = new Uri("pack://application:,,,/AppFramework;component/Themes/Generic.xaml", UriKind.RelativeOrAbsolute)
+            });
         }
 
         public void UpdateCustomResources(ResourceDictionary Resource, string themeName)
@@ -33,25 +36,7 @@ namespace AppFramework.Services
              */
 
             AddCustomResources(Resource);
-            AddResources(Resource, new string[] { "Border", "DataGrid" });
             RefreshResources(Resource, "Button", themeName);
-        }
-
-        /// <summary>
-        /// 添加资源集合
-        /// </summary>
-        /// <param name="collection">资源字典</param>
-        /// <param name="resources">资源数组</param>
-        private void AddResources(ResourceDictionary collection, string[] resources)
-        {
-            foreach (var resource in resources)
-            {
-                string basePath = "pack://application:,,,/CodeShare.Startup.Sync;component/Controls";
-                collection.MergedDictionaries.Add(new ResourceDictionary()
-                {
-                    Source = new Uri($"{basePath}/{resource}.xaml", UriKind.RelativeOrAbsolute)
-                });
-            }
         }
 
         /// <summary>
@@ -64,7 +49,7 @@ namespace AppFramework.Services
            string resources,
            string baseThemeName)
         {
-            string basePath = "pack://application:,,,/CodeShare.Startup.Sync;component/Controls";
+            string basePath = "pack://application:,,,/AppFramework;component/Themes";
             var resource = new ResourceDictionary()
             {
                 Source = new Uri($"{basePath}/{resources}.xaml", UriKind.RelativeOrAbsolute)
