@@ -21,7 +21,6 @@ namespace AppFramework.Services.Account
         public readonly IAccessTokenManager accessTokenManager;
         private readonly IAppDialogService appDialogService;
         public readonly IProfileAppService profileAppService;
-        public readonly IUserConfigurationManager userConfigurationManager;
 
         public AccountService(
             IAppDialogService appDialogService,
@@ -30,7 +29,6 @@ namespace AppFramework.Services.Account
             ISessionAppService sessionAppService,
             IAccessTokenManager accessTokenManager,
             IAccountStorageService dataStorageService,
-            IUserConfigurationManager userConfigurationManager,
             AbpAuthenticateModel authenticateModel)
         {
             this.appDialogService = appDialogService;
@@ -39,7 +37,6 @@ namespace AppFramework.Services.Account
             this.sessionAppService = sessionAppService;
             this.accessTokenManager = accessTokenManager;
             this.dataStorageService = dataStorageService;
-            this.userConfigurationManager = userConfigurationManager;
             this.AuthenticateModel = authenticateModel;
         }
 
@@ -95,7 +92,7 @@ namespace AppFramework.Services.Account
 
             AuthenticateModel.Password = null;
             await SetCurrentUserInfoAsync();
-            await userConfigurationManager.GetConfigurationAsync();
+            await UserConfigurationManager.GetAsync();
         }
 
         public async Task SetCurrentUserInfoAsync()

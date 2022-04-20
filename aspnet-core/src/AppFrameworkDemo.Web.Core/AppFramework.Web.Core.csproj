@@ -1,15 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <Import Project="..\..\common.props"></Import>
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
-    <AssemblyName>AppFramework.Web.Core</AssemblyName>
+    <AssemblyName>AppFrameworkDemo.Web.Core</AssemblyName>
     <PackageId>AppFrameworkDemo.Web.Core</PackageId>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
-    <RootNamespace>AppFramework.Web</RootNamespace>
+    <RootNamespace>AppFrameworkDemo.Web</RootNamespace>
     <OutputType>Library</OutputType>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
   </PropertyGroup>

@@ -26,7 +26,7 @@
         </Style>
     </prism:Dialog.WindowStyle>
     <sync:ChromelessWindow.Resources>
-        <converter:ImageConverter x:Key="imageConvert" />
+        <converter:ImageConverter x:Key="imageConverter" />
     </sync:ChromelessWindow.Resources>
 
     <win:DialogHost Identifier="Login">
@@ -69,13 +69,11 @@
                         Text="{extensions:Translate LogIn}" />
                     <TextBox
                         Margin="0,12"
-                        Padding="5"
                         DockPanel.Dock="Top"
                         FontSize="14"
                         Text="{Binding UserName}" />
                     <PasswordBox
                         Margin="0,12"
-                        Padding="5"
                         b:PasswordExtensions.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         DockPanel.Dock="Top"
                         FontSize="14">
@@ -130,7 +128,7 @@
                                     <Image
                                         Width="18"
                                         Height="18"
-                                        Source="{Binding Icon, Converter={StaticResource imageConvert}}" />
+                                        Source="{Binding Icon, Converter={StaticResource imageConverter}}" />
                                 </Button>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
-    <RootNamespace>AppFramework</RootNamespace>
+    <RootNamespace>AppFrameworkDemo</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="GraphQL" Version="3.1.3" />

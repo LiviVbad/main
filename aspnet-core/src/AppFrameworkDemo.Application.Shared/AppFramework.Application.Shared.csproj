@@ -2,7 +2,7 @@
   <Import Project="..\..\common.props"></Import>
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>AppFramework</RootNamespace>
+    <RootNamespace>AppFrameworkDemo</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Abp.Web.Common" Version="7.1.0" />

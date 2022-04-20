@@ -26,8 +26,7 @@ namespace AppFramework
             services.RegisterSingleton<IAccountStorageService, AccountStorageService>();
             services.RegisterSingleton<IDataStorageService, DataStorageService>();
             services.RegisterSingleton<IPermissionService, PermissionService>();
-            services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
-            services.RegisterSingleton<IUserConfigurationManager, UserConfigurationManager>();
+            services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>(); 
 
             //注册应用程序验证器
             services.RegisterValidator();

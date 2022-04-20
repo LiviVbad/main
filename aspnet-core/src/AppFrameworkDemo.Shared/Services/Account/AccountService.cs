@@ -8,7 +8,7 @@ using AppFramework.ApiClient.Models;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Sessions;
 using AppFramework.Sessions.Dto;
-using AppFramework.Shared.Localization; 
+using AppFramework.Shared.Localization;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System.Threading.Tasks;
@@ -55,9 +55,19 @@ namespace AppFramework.Shared.Services.Account
         /// 用户登录
         /// </summary>
         /// <returns></returns>
-        public async Task LoginUserAsync()
+        public async Task<bool> LoginUserAsync()
         {
-            await WebRequestRuner.Execute(accessTokenManager.LoginAsync, AuthenticateSucceed, ex => Task.CompletedTask);
+            bool loginResult = false;
+
+            await WebRequestRuner.Execute(accessTokenManager.LoginAsync,
+                async result =>
+                {
+                    await AuthenticateSucceed(result);
+                    loginResult = true;
+                },
+                ex => Task.CompletedTask);
+
+            return loginResult;
         }
 
         /// <summary>

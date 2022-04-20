@@ -2,7 +2,7 @@
 {
     public class AppFrameworkConsts
     {
-        public const string LocalizationSourceName = "AppFramework";
+        public const string LocalizationSourceName = "AppFrameworkDemo";
 
         public const string ConnectionStringName = "Default";
 

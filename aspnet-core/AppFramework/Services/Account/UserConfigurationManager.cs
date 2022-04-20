@@ -9,51 +9,51 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using AppFramework.Extensions;
 
 namespace AppFramework.Services.Account
 {
-    public class UserConfigurationManager : IUserConfigurationManager
+    public class UserConfigurationManager
     {
-        private readonly IApplicationContext applicationContext;
-        private readonly IAccessTokenManager accessTokenManager;
-        private readonly UserConfigurationService userConfigurationService;
+        private static readonly Lazy<IApplicationContext> AppContext =
+          new Lazy<IApplicationContext>(
+          ContainerLocator.Container.Resolve<IApplicationContext>);
 
-        public UserConfigurationManager(IApplicationContext applicationContext,
-            IAccessTokenManager accessTokenManager,
-            UserConfigurationService userConfigurationService)
+        private static IAccessTokenManager AccessTokenManager =>
+            ContainerLocator.Container.Resolve<IAccessTokenManager>();
+
+        public static async Task GetIfNeedsAsync()
         {
-            this.applicationContext = applicationContext;
-            this.accessTokenManager = accessTokenManager;
-            this.userConfigurationService = userConfigurationService;
+            if (AppContext.Value.Configuration != null)
+                return;
+
+            await GetAsync();
         }
 
-        public async Task GetConfigurationAsync(
-            Func<string, Task> OnAccessTokenRefresh = null,
-            Func<Task> OnSessionTimeOut = null,
-            Func<Task> successCallback = null)
+        public static async Task GetAsync(Func<Task> successCallback = null)
         {
-            if (OnAccessTokenRefresh != null)
-                userConfigurationService.OnAccessTokenRefresh = OnAccessTokenRefresh;
-
-            if (OnSessionTimeOut != null)
-                userConfigurationService.OnSessionTimeOut = OnSessionTimeOut;
+            var userConfigurationService = ContainerLocator.Container.Resolve<UserConfigurationService>();
 
             await WebRequest.Execute(
-                async () => await userConfigurationService.GetAsync(accessTokenManager.IsUserLoggedIn),
+                async () => await userConfigurationService.GetAsync(AccessTokenManager.IsUserLoggedIn),
                 async result =>
                 {
                     if (result == null) return;
 
-                    applicationContext.Configuration = result;
+                    AppContext.Value.Configuration = result;
                     SetCurrentCulture();
 
                     if (!result.MultiTenancy.IsEnabled)
-                        applicationContext.SetAsTenant(TenantConsts.DefaultTenantName, TenantConsts.DefaultTenantId);
+                        AppContext.Value.SetAsTenant(TenantConsts.DefaultTenantName, TenantConsts.DefaultTenantId);
 
-                    applicationContext.Configuration = result;
-                    applicationContext.CurrentLanguage = result.Localization.CurrentLanguage;
+                    AppContext.Value.Configuration = result;
+                    AppContext.Value.CurrentLanguage = result.Localization.CurrentLanguage;
 
                     WarnIfUserHasNoPermission();
+
+                    //更新UI界面中的所有绑定多语言字符串文本
+                    LocalizationResourceManager.Instance.OnPropertyChanged();
+
                     if (successCallback != null)
                         await successCallback();
                 }, ex =>
@@ -62,15 +62,15 @@ namespace AppFramework.Services.Account
                 });
         }
 
-        private void WarnIfUserHasNoPermission()
+        private static void WarnIfUserHasNoPermission()
         {
-            if (!accessTokenManager.IsUserLoggedIn)
+            if (!AccessTokenManager.IsUserLoggedIn)
             {
                 return;
             }
 
-            var hasAnyPermission = applicationContext.Configuration.Auth.GrantedPermissions != null &&
-                                   applicationContext.Configuration.Auth.GrantedPermissions.Any();
+            var hasAnyPermission = AppContext.Value.Configuration.Auth.GrantedPermissions != null &&
+                                   AppContext.Value.Configuration.Auth.GrantedPermissions.Any();
 
             if (!hasAnyPermission)
             {
@@ -81,7 +81,7 @@ namespace AppFramework.Services.Account
         /// <summary>
         /// 设置应用的区域化配置
         /// </summary>
-        private void SetCurrentCulture()
+        private static void SetCurrentCulture()
         {
             var locale = ContainerLocator.Container.Resolve<ILocale>();
             var userCulture = GetUserCulture(locale);
@@ -95,14 +95,14 @@ namespace AppFramework.Services.Account
         /// </summary>
         /// <param name="locale"></param>
         /// <returns></returns>
-        private CultureInfo GetUserCulture(ILocale locale)
+        private static CultureInfo GetUserCulture(ILocale locale)
         {
-            if (applicationContext.Configuration.Localization.CurrentCulture.Name == null)
+            if (AppContext.Value.Configuration.Localization.CurrentCulture.Name == null)
                 return locale.GetCurrentCultureInfo();
 
             try
             {
-                return new CultureInfo(applicationContext.Configuration.Localization.CurrentCulture.Name);
+                return new CultureInfo(AppContext.Value.Configuration.Localization.CurrentCulture.Name);
             }
             catch (CultureNotFoundException)
             {

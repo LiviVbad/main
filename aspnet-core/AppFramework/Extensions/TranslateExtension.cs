@@ -1,14 +1,11 @@
 ﻿using AppFramework.Localization;
-using System;
+using System; 
 using System.Windows.Markup;
 
 namespace AppFramework.Extensions
 {
     public class TranslateExtension : MarkupExtension
     {
-        public TranslateExtension()
-        { }
-
         public TranslateExtension(string text)
         {
             Text = text;
@@ -20,8 +17,7 @@ namespace AppFramework.Extensions
         {
             if (string.IsNullOrWhiteSpace(Text)) return Text;
 
-            string val = Local.Localize(Text);
-            return val;
+            return Local.Localize(Text);
         }
     }
 }

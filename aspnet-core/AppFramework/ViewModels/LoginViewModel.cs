@@ -13,6 +13,7 @@ using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -29,7 +30,6 @@ namespace AppFramework.ViewModels
         private readonly IAccountAppService accountAppService;
         private readonly IApplicationContext applicationContext;
         private readonly IProfileAppService profileAppService;
-        private readonly IUserConfigurationManager userConfigurationManager;
         private readonly IDataStorageService dataStorageService;
 
 
@@ -107,7 +107,6 @@ namespace AppFramework.ViewModels
             IAccountAppService accountAppService,
             IApplicationContext applicationContext,
             IProfileAppService profileAppService,
-            IUserConfigurationManager userConfigurationManager,
             IDataStorageService dataStorageService)
         {
             this.dialogService = dialogService;
@@ -115,7 +114,6 @@ namespace AppFramework.ViewModels
             this.accountAppService = accountAppService;
             this.applicationContext = applicationContext;
             this.profileAppService = profileAppService;
-            this.userConfigurationManager = userConfigurationManager;
             this.dataStorageService = dataStorageService;
 
             ExecuteCommand = new DelegateCommand<string>(Execute);
@@ -152,8 +150,17 @@ namespace AppFramework.ViewModels
             dialogService.ShowViewDialog(AppViewManager.EmailActivation);
         }
 
-        public void ChangeLanguage(LanguageInfo languageInfo)
-        { }
+        public async void ChangeLanguage(LanguageInfo languageInfo)
+        {
+            applicationContext.CurrentLanguage = languageInfo;
+
+            await SetBusyAsync(async () =>
+             {
+                 await UserConfigurationManager.GetAsync();
+             });
+
+            OnDialogClosed(new DialogResult(ButtonResult.Retry));
+        }
 
         public void ChangeTenantAsync()
         { }
@@ -211,7 +218,31 @@ namespace AppFramework.ViewModels
 
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
-            await userConfigurationManager.GetConfigurationAsync(App.OnAccessTokenRefresh, App.OnSessionTimeout);
+            await SetBusyAsync(async () =>
+             {
+                 await WebRequest.Execute(async () => await UserConfigurationManager.GetIfNeedsAsync(),
+                      async () =>
+                      {
+                          var configuration = applicationContext.Configuration;
+                          if (configuration != null)
+                          {
+                              Languages = new ObservableCollection<LanguageInfo>(configuration.Localization.Languages);
+                              SelectedLanguage = Languages.FirstOrDefault(l => l.Name == applicationContext.CurrentLanguage.Name);
+
+                              if (applicationContext.CurrentTenant != null)
+                              {
+                                  IsMultiTenancyEnabled = configuration.MultiTenancy.IsEnabled;
+                                  CurrentTenancyNameOrDefault = applicationContext.CurrentTenant.TenancyName;
+                              }
+                          }
+                          else
+                          {
+                              CurrentTenancyNameOrDefault = Local.Localize(AppLocalizationKeys.NotSelected);
+                          }
+
+                          await Task.CompletedTask;
+                      });
+             });
         }
     }
 }
