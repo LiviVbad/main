@@ -41,20 +41,21 @@ namespace AppFramework
             services.RegisterSingleton<IAppDialogService, AppDialogService>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
 
-            services.RegisterDialog<LoginView, LoginViewModel>();
+            services.RegisterDialog<LoginView, LoginViewModel>(AppViewManager.Login);
             services.RegisterDialog<MessageView, MessageViewModel>();
+
             services.RegisterForNavigation<IndexView, IndexViewModel>();
-            services.RegisterForNavigation<UserView, UserViewModel>();
-            services.RegisterForNavigation<MainView, MainViewModel>();
-            services.RegisterForNavigation<UserDetailsView, UserDetailsViewModel>();
+            services.RegisterForNavigation<UserView, UserViewModel>(AppViewManager.User);
+            services.RegisterForNavigation<UserDetailsView, UserDetailsViewModel>(AppViewManager.UserDetails);
+            services.RegisterForNavigation<MainView, MainViewModel>(AppViewManager.Main);
             services.RegisterForNavigation<UserChooseView, UserChooseViewModel>();
-            services.RegisterForNavigation<RoleView, RoleViewModel>();
+            services.RegisterForNavigation<RoleView, RoleViewModel>(AppViewManager.Role);
             services.RegisterForNavigation<RoleChooseView, RoleChooseViewModel>();
-            services.RegisterForNavigation<AuditLogsView, AuditLogsViewModel>();
-            services.RegisterForNavigation<LanguageView, LanguageViewModel>();
+            services.RegisterForNavigation<AuditLogsView, AuditLogsViewModel>(AppViewManager.AuditLog);
+            services.RegisterForNavigation<LanguageView, LanguageViewModel>(AppViewManager.Language);
             services.RegisterForNavigation<VisualView, VisualViewModel>();
-            services.RegisterForNavigation<DashboardView, DashboardViewModel>();
-            services.RegisterForNavigation<OrganizationsView, OrganizationsViewModel>();
+            services.RegisterForNavigation<DashboardView, DashboardViewModel>(AppViewManager.Dashboard);
+            services.RegisterForNavigation<OrganizationsView, OrganizationsViewModel>(AppViewManager.Organization);
             services.RegisterForNavigation<OrganizationsAddView, OrganizationsAddViewModel>();
         }
     }

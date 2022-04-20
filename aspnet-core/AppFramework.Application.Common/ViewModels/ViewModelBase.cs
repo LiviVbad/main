@@ -1,7 +1,7 @@
 ﻿namespace AppFramework.Common.ViewModels
 {
     using AppFramework.Common.Core;
-    using AppFramework.Common.Services.Layer; 
+    using AppFramework.Common.Services.Layer;
     using AutoMapper;
     using FluentValidation.Results;
     using Prism.Ioc;
@@ -16,13 +16,11 @@
         {
             mapper = ContainerLocator.Container.Resolve<IMapper>();
             validator = ContainerLocator.Container.Resolve<IGlobalValidator>();
-            applayer = ContainerLocator.Container.Resolve<IApplayerService>();
         }
 
         private bool isBusy;
         private readonly IMapper mapper;
         private readonly IGlobalValidator validator;
-        private readonly IApplayerService applayer;
 
         public bool IsNotBusy => !IsBusy;
 
@@ -37,18 +35,16 @@
             }
         }
 
-        public async Task SetBusyAsync(Func<Task> func, string loadingMessage = null)
+        public virtual async Task SetBusyAsync(Func<Task> func, string loadingMessage = null)
         {
             IsBusy = true;
             try
             {
-                applayer.Show(loadingMessage);
                 await func();
             }
             finally
             {
                 IsBusy = false;
-                applayer.Hide();
             }
         }
 
@@ -58,7 +54,7 @@
         /// <typeparam name="T">验证结果</typeparam>
         /// <param name="model">验证实体</param>
         /// <returns></returns>
-        public ValidationResult Verify<T>(T model, bool ShowError = true)
+        public virtual ValidationResult Verify<T>(T model, bool ShowError = true)
         {
             var validationResult = validator.Validate(model);
 

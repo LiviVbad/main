@@ -1,4 +1,5 @@
 ﻿using AppFramework.Services;
+using AppFramework.WindowHost;
 using Prism.Common;
 using Prism.Ioc;
 using Prism.Mvvm;
@@ -7,7 +8,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace AppFramework.WindowHost
+namespace AppFramework.Services.Dialog
 {
     /// <summary>
     /// 对话主机服务

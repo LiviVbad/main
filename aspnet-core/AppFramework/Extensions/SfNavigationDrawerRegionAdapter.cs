@@ -28,7 +28,7 @@ namespace AppFramework.Extensions
 
             region.ActiveViews.CollectionChanged += delegate
             {
-                regionTarget.ContentView = region.ActiveViews.FirstOrDefault();
+                regionTarget.ContentView = region.ActiveViews.FirstOrDefault(); 
             };
 
             region.Views.CollectionChanged +=
