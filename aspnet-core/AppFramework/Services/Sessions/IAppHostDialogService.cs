@@ -7,7 +7,7 @@ namespace AppFramework.Services
     /// <summary>
     /// 对话主机服务接口
     /// </summary>
-    public interface IDialogHostService : IDialogService
+    public interface IAppHostDialogService : IDialogService
     {
         void ShowDialog(string name, Action<IDialogResult> callback);
 

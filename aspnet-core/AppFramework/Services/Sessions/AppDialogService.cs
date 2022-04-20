@@ -1,9 +1,4 @@
-﻿using AppFramework.WindowHost;
-using Prism.Services.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Prism.Services.Dialogs; 
 using System.Threading.Tasks;
 
 namespace AppFramework.Services.Dialog

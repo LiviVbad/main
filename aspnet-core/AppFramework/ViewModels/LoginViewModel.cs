@@ -24,7 +24,7 @@ namespace AppFramework.ViewModels
         public DelegateCommand<string> ExecuteCommand { get; }
         public DelegateCommand<LanguageInfo> ChangeLanguageCommand { get; }
 
-        private readonly IDialogHostService dialogService;
+        private readonly IAppHostDialogService dialogService;
         private readonly IAccountService accountService;
         private readonly IAccountAppService accountAppService;
         private readonly IApplicationContext applicationContext;
@@ -102,7 +102,7 @@ namespace AppFramework.ViewModels
         #endregion
 
         public LoginViewModel(
-            IDialogHostService dialogService,
+            IAppHostDialogService dialogService,
             IAccountService accountService,
             IAccountAppService accountAppService,
             IApplicationContext applicationContext,

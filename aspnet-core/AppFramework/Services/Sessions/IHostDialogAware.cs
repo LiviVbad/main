@@ -6,7 +6,7 @@ namespace AppFramework.Services
     /// <summary>
     /// 对话主机ViewModel基类
     /// </summary>
-    public interface IDialogHostAware
+    public interface IHostDialogAware
     {
         /// <summary>
         /// DialogHost顶级节点

@@ -9,8 +9,7 @@ using AppFramework.Services;
 using AppFramework.Services.Account;
 using AppFramework.Services.Dialog;
 using AppFramework.ViewModels;
-using AppFramework.Views;
-using AppFramework.WindowHost;
+using AppFramework.Views; 
 using AppFramework.Localization;
 using Prism.Ioc;
 
@@ -22,14 +21,7 @@ namespace AppFramework
         {
             //注册应用程序依赖服务
             services.RegisterCommonServices();
-
-            //注册应用程序验证器
-            services.RegisterValidator();
-
-            services.RegisterSingleton<ILocale, Locale>();
-            services.RegisterSingleton<IThemeService, ThemeService>();
-            services.RegisterSingleton<IResourceService, ResourceService>();
-
+             
             services.RegisterSingleton<IAccountService, AccountService>();
             services.RegisterSingleton<IAccountStorageService, AccountStorageService>();
             services.RegisterSingleton<IDataStorageService, DataStorageService>();
@@ -37,13 +29,19 @@ namespace AppFramework
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
             services.RegisterSingleton<IUserConfigurationManager, UserConfigurationManager>();
 
-            services.Register<IDialogHostService, DialogHostService>();
+            //注册应用程序验证器
+            services.RegisterValidator();
+
+            services.RegisterSingleton<ILocale, Locale>();
+            services.RegisterSingleton<IThemeService, ThemeService>();
+            services.RegisterSingleton<IResourceService, ResourceService>();
+            services.RegisterSingleton<IAppHostDialogService, DialogHostService>();
             services.RegisterSingleton<IAppDialogService, AppDialogService>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
 
-            services.RegisterDialog<LoginView, LoginViewModel>(AppViewManager.Login);
             services.RegisterDialog<MessageView, MessageViewModel>();
-
+            services.RegisterDialog<LoginView, LoginViewModel>(AppViewManager.Login);
+            
             services.RegisterForNavigation<IndexView, IndexViewModel>();
             services.RegisterForNavigation<UserView, UserViewModel>(AppViewManager.User);
             services.RegisterForNavigation<UserDetailsView, UserDetailsViewModel>(AppViewManager.UserDetails);

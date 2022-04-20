@@ -1,17 +1,14 @@
-﻿using AppFramework.ApiClient;
-using AppFramework.Common;
+﻿using AppFramework.Common;
 using AppFramework.Common.Core;
 using AppFramework.Views;
-using AppFramework.Common.Services.Account;
-using AppFramework.Common.Services.Navigation;
+using AppFramework.Common.Services.Account; 
 using AppFramework.Extensions;
 using AppFramework.Services;
 using DryIoc;
 using DryIoc.Microsoft.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.DryIoc;
-using Prism.Ioc;
-using Prism.Mvvm;
+using Prism.Ioc; 
 using Prism.Regions;
 using Prism.Services.Dialogs;
 using System;
@@ -75,7 +72,7 @@ namespace AppFramework
             static ButtonResult Validation(IContainerProvider container)
             {
                 ButtonResult result = ButtonResult.Cancel;
-                var dialogService = container.Resolve<IDialogHostService>();
+                var dialogService = container.Resolve<IAppHostDialogService>();
                 dialogService.ShowDialog(AppViewManager.Login, callBack =>
                 {
                     result = callBack.Result;

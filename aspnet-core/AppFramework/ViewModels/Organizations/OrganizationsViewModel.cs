@@ -27,12 +27,12 @@ namespace AppFramework.ViewModels
         }
 
         private readonly IOrganizationUnitAppService appService;
-        private readonly IDialogHostService dialogHostService;
+        private readonly IAppHostDialogService dialogHostService;
 
         public DelegateCommand<OrganizationUnitModel> SelectedCommand { get; }
 
         public OrganizationsViewModel(
-            IDialogHostService dialogHostService,
+            IAppHostDialogService dialogHostService,
             IOrganizationUnitAppService userAppService)
         {
             this.appService = userAppService;

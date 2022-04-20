@@ -10,12 +10,12 @@
     public class NavigationCurdViewModel<T> : CurdViewModel<T>, INavigationAware where T : class
     {
         public readonly IRegionManager regionManager;
-        public readonly IDialogHostService dialogHostService;
+        public readonly IAppHostDialogService dialogHostService;
 
         public NavigationCurdViewModel()
         {
             regionManager = ContainerLocator.Container.Resolve<IRegionManager>();
-            dialogHostService = ContainerLocator.Container.Resolve<IDialogHostService>();
+            dialogHostService = ContainerLocator.Container.Resolve<IAppHostDialogService>();
         }
 
         public override async void Add()

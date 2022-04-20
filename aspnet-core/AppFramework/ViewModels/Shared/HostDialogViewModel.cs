@@ -5,7 +5,7 @@ using Prism.Services.Dialogs;
 
 namespace AppFramework.ViewModels
 {
-    public abstract class HostDialogViewModel : ViewModelBase, IDialogHostAware
+    public abstract class HostDialogViewModel : ViewModelBase, IHostDialogAware
     {
         public HostDialogViewModel()
         {

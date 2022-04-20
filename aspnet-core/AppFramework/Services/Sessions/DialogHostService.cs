@@ -13,7 +13,7 @@ namespace AppFramework.Services.Dialog
     /// <summary>
     /// 对话主机服务
     /// </summary>
-    public class DialogHostService : DialogService, IDialogHostService
+    public class DialogHostService : DialogService, IAppHostDialogService
     {
         private readonly IContainerExtension _containerExtension;
 
@@ -54,7 +54,7 @@ namespace AppFramework.Services.Dialog
             if (dialogContent is FrameworkElement view && view.DataContext is null && ViewModelLocator.GetAutoWireViewModel(view) is null)
                 ViewModelLocator.SetAutoWireViewModel(view, true);
 
-            if (!(dialogContent.DataContext is IDialogHostAware viewModel))
+            if (!(dialogContent.DataContext is IHostDialogAware viewModel))
                 throw new NullReferenceException("A dialog's ViewModel must implement the IDialogHostAware interface");
 
             viewModel.IdentifierName = IdentifierName;
@@ -63,7 +63,7 @@ namespace AppFramework.Services.Dialog
                 (sender, eventArgs) =>
            {
                var _content = eventArgs.Session.Content;
-               if (viewModel is IDialogHostAware aware)
+               if (viewModel is IHostDialogAware aware)
                    aware.OnDialogOpened(parameters);
                eventArgs.Session.UpdateContent(_content);
            };
