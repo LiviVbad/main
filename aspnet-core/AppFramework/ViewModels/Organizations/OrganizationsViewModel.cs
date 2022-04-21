@@ -1,9 +1,9 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Models;
+using AppFramework.Localization;
 using AppFramework.Organizations;
-using AppFramework.Organizations.Dto;
-using AppFramework.Services;
+using AppFramework.Organizations.Dto; 
 using Prism.Commands;
 using Prism.Regions;
 using Prism.Services.Dialogs;
@@ -14,31 +14,18 @@ using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
-    public class OrganizationsViewModel : ViewModelBase
+    public class OrganizationsViewModel : NavigationCurdViewModel<OrganizationListModel>
     {
         private OrganizationUnitModel SelectedOrganizationUnit;
 
-        private ObservableCollection<OrganizationUnitModel> gridModelList;
-
-        public ObservableCollection<OrganizationUnitModel> GridModelList
-        {
-            get { return gridModelList; }
-            set { gridModelList = value; RaisePropertyChanged(); }
-        }
-
         private readonly IOrganizationUnitAppService appService;
-        private readonly IAppHostDialogService dialogHostService;
 
         public DelegateCommand<OrganizationUnitModel> SelectedCommand { get; }
 
-        public OrganizationsViewModel(
-            IAppHostDialogService dialogHostService,
-            IOrganizationUnitAppService userAppService)
+        public OrganizationsViewModel(IOrganizationUnitAppService userAppService)
         {
             this.appService = userAppService;
-            this.dialogHostService = dialogHostService;
             SelectedCommand = new DelegateCommand<OrganizationUnitModel>(Selected);
-            GridModelList = new ObservableCollection<OrganizationUnitModel>();
             UserModelList = new ObservableCollection<OrganizationUnitUserListDto>();
             RolesModelList = new ObservableCollection<OrganizationUnitRoleListDto>();
         }
@@ -60,11 +47,8 @@ namespace AppFramework.ViewModels
                 case "AddOrganizationUnit": await AddOrganizationUnit(); break;
                 case "AddMember": await AddMember(SelectedOrganizationUnit); break;
                 case "AddRole": await AddRole(SelectedOrganizationUnit); break;
-                case "Refresh": await RefreshTreeView(); break;
-                case "Add":
-                    await dialogHostService.ShowDialog("UserAddView"); break;
-                    break;
-
+                case "Refresh": await RefreshAsync(); break;
+                case "Add": await dialogHostService.ShowDialog("UserAddView"); break;
                 case "Exprot": break;
                 case "Filter": break;
             }
@@ -72,7 +56,7 @@ namespace AppFramework.ViewModels
 
         #region OrganizationUnit
 
-        public async Task RefreshTreeView()
+        public override async Task RefreshAsync()
         {
             await WebRequest.Execute(
                       () => appService.GetOrganizationUnits(),
@@ -82,16 +66,16 @@ namespace AppFramework.ViewModels
 
         public async Task DeleteOrganizationUnit(OrganizationUnitModel organizationUnit)
         {
-            //var question = await dialogHostService
-            //    .Question(Local.Localize("OrganizationUnitDeleteWarningMessage", organizationUnit.DisplayName));
-            //if (question.Result == ButtonResult.OK)
+            var result = await dialogHostService
+                .Question(Local.Localize("OrganizationUnitDeleteWarningMessage", organizationUnit.DisplayName));
+            if (result)
             {
                 await WebRequest.Execute(
                     () => appService.DeleteOrganizationUnit(new EntityDto<long>()
                     {
                         Id = organizationUnit.Id
                     }),
-                    () => RefreshTreeView(),
+                    () => RefreshAsync(),
                     ex => Task.CompletedTask);
             }
         }
@@ -112,7 +96,7 @@ namespace AppFramework.ViewModels
                        {
                            DisplayName = input.DisplayName
                        }),
-                       result => RefreshTreeView(),
+                       result => RefreshAsync(),
                        ex => Task.CompletedTask);
             }
         }
@@ -130,7 +114,7 @@ namespace AppFramework.ViewModels
                            DisplayName = input.DisplayName,
                            ParentId = parentId
                        }),
-                       result => RefreshTreeView(),
+                       result => RefreshAsync(),
                        ex => Task.CompletedTask);
             }
         }
@@ -138,17 +122,9 @@ namespace AppFramework.ViewModels
         private async Task Successed(ListResultDto<OrganizationUnitDto> pagedResult)
         {
             GridModelList.Clear();
-            var organizationUnits = pagedResult.Items?.Select(t => new OrganizationUnitModel
-            {
-                Id = t.Id,
-                Code = t.Code,
-                ParentId = t.ParentId,
-                RoleCount = t.RoleCount,
-                DisplayName = t.DisplayName,
-                MemberCount = t.MemberCount,
-            }).ToList();
 
-            foreach (var item in BuildOrganizationTree(organizationUnits))
+            var items = Map<List<OrganizationListModel>>(pagedResult.Items);
+            foreach (var item in BuildOrganizationTree(items))
                 GridModelList.Add(item);
 
             await Task.CompletedTask;
@@ -165,8 +141,8 @@ namespace AppFramework.ViewModels
             }
         }
 
-        public ObservableCollection<OrganizationUnitModel> BuildOrganizationTree(
-            List<OrganizationUnitModel> organizationUnits, long? parentId = null)
+        public ObservableCollection<OrganizationListModel> BuildOrganizationTree(
+            List<OrganizationListModel> organizationUnits, long? parentId = null)
         {
             var masters = organizationUnits
                 .Where(x => x.ParentId == parentId).ToList();
@@ -174,10 +150,10 @@ namespace AppFramework.ViewModels
             var childs = organizationUnits
                 .Where(x => x.ParentId != parentId).ToList();
 
-            //foreach (OrganizationUnitModel dpt in masters)
-            //    dpt = BuildOrganizationTree(childs, dpt.Id);
+            foreach (OrganizationListModel dpt in masters)
+                dpt.Items = BuildOrganizationTree(childs, dpt.Id);
 
-            return new ObservableCollection<OrganizationUnitModel>(masters);
+            return new ObservableCollection<OrganizationListModel>(masters);
         }
 
         #endregion OrganizationUnit
@@ -300,9 +276,9 @@ namespace AppFramework.ViewModels
 
         #endregion Users
 
-        public async void OnNavigatedTo(NavigationContext navigationContext)
+        public override async void OnNavigatedTo(NavigationContext navigationContext)
         {
-            await RefreshTreeView();
+            await RefreshAsync();
         }
     }
 }

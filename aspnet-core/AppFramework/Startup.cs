@@ -41,7 +41,6 @@ namespace AppFramework
             services.RegisterDialog<MessageBoxView, MessageViewModel>();
             services.RegisterDialog<LoginView, LoginViewModel>(AppViewManager.Login);
 
-            services.RegisterForNavigation<IndexView, IndexViewModel>();
             services.RegisterForNavigation<UserView, UserViewModel>(AppViewManager.User);
             services.RegisterForNavigation<UserDetailsView, UserDetailsViewModel>(AppViewManager.UserDetails);
             services.RegisterForNavigation<MainView, MainViewModel>(AppViewManager.Main);

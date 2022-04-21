@@ -6,8 +6,21 @@ using System.Collections.ObjectModel;
 
 namespace AppFramework.ViewModels
 {
-    public class VisualViewModel : ViewModelBase
+    public class VisualViewModel : NavigationViewModel
     {
+        public VisualViewModel(IThemeService themeService)
+        {
+            this.themeService = themeService;
+
+            ReplayCommand = new DelegateCommand(Replay);
+            RestoreCommand = new DelegateCommand(() =>
+            {
+                themeService.SetTheme("MaterialDark");
+            });
+        }
+
+        #region 字段/属性
+
         private readonly IThemeService themeService;
         public DelegateCommand ReplayCommand { get; }
         public DelegateCommand RestoreCommand { get; }
@@ -36,16 +49,7 @@ namespace AppFramework.ViewModels
             set { themeItems = value; RaisePropertyChanged(); }
         }
 
-        public VisualViewModel(IThemeService themeService)
-        {
-            this.themeService = themeService;
-
-            ReplayCommand = new DelegateCommand(Replay);
-            RestoreCommand = new DelegateCommand(() =>
-              {
-                  themeService.SetTheme("MaterialDark");
-              });
-        }
+        #endregion
 
         private void Replay()
         {
@@ -56,7 +60,7 @@ namespace AppFramework.ViewModels
             themeService.SetTheme(themeName);
         }
 
-        public void OnNavigatedTo(NavigationContext navigationContext)
+        public override void OnNavigatedTo(NavigationContext navigationContext)
         {
             ThemeItems = themeService.GetThemes();
         }

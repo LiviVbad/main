@@ -1,32 +1,22 @@
 ﻿using AppFramework.Common;
+using AppFramework.Common.Models;
 using AppFramework.Localization;
-using AppFramework.Localization.Dto;
-using Prism.Mvvm;
-using System.Collections.ObjectModel;
+using AppFramework.Localization.Dto; 
+using System.Collections.Generic; 
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
-    public class LanguageViewModel : BindableBase
+    public class LanguageViewModel : NavigationCurdViewModel<LanguageListModel>
     {
         private readonly ILanguageAppService appService;
-
-        private ObservableCollection<ApplicationLanguageListDto> gridModelList;
-
-        public ObservableCollection<ApplicationLanguageListDto> GridModelList
-        {
-            get { return gridModelList; }
-            set { gridModelList = value; RaisePropertyChanged(); }
-        }
-
+          
         public LanguageViewModel(ILanguageAppService languageAppService)
         {
-            this.appService = languageAppService;
-
-            GridModelList = new ObservableCollection<ApplicationLanguageListDto>();
+            this.appService = languageAppService; 
         }
 
-        public async Task RefreshAsync()
+        public override async Task RefreshAsync()
         {
             await WebRequest.Execute(
                        () => appService.GetLanguages(),
@@ -37,7 +27,7 @@ namespace AppFramework.ViewModels
         {
             GridModelList.Clear();
 
-            foreach (var item in output.Items)
+            foreach (var item in Map<List<LanguageListModel>>(output.Items))
                 GridModelList.Add(item);
 
             await Task.CompletedTask;
