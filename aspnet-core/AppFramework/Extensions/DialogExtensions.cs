@@ -1,9 +1,32 @@
-﻿using Prism.Services.Dialogs;
+﻿using AppFramework.Services;
+using Prism.Services.Dialogs;
+using System.Threading.Tasks;
 
 namespace AppFramework
 {
     public static class DialogExtensions
     {
+        public static async Task<bool> Question(this IAppHostDialogService appHostDialogService,
+            string message,
+            string IdentifierName = "Root")
+        {
+            return await Question(appHostDialogService, "", message, IdentifierName);
+        }
+
+        public static async Task<bool> Question(this IAppHostDialogService appHostDialogService,
+            string title,
+            string message,
+            string IdentifierName = "Root")
+        {
+            DialogParameters param = new DialogParameters();
+            param.Add("Title", title);
+            param.Add("Message", message);
+
+            var dialogResult = await appHostDialogService.ShowDialog("MessageBoxView", param, IdentifierName);
+
+            return dialogResult.Result == ButtonResult.OK;
+        }
+
         /// <summary>
         /// 扩展-打开指定对话框(模式)
         /// </summary>

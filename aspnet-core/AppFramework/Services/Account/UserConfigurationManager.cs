@@ -50,10 +50,7 @@ namespace AppFramework.Services.Account
                     AppContext.Value.CurrentLanguage = result.Localization.CurrentLanguage;
 
                     WarnIfUserHasNoPermission();
-
-                    //更新UI界面中的所有绑定多语言字符串文本
-                    LocalizationResourceManager.Instance.OnPropertyChanged();
-
+                     
                     if (successCallback != null)
                         await successCallback();
                 }, ex =>

@@ -15,7 +15,7 @@ namespace AppFramework.Localization
                     AppFrameworkConsts.LocalizationSourceName,
                     new XmlEmbeddedFileLocalizationDictionaryProvider(
                         typeof(AppFrameworkDemoLocalizationConfigurer).GetAssembly(),
-                        "AppFramework.Localization.AppFramework"
+                        "AppFrameworkDemo.Localization.AppFrameworkDemo"
                     )
                 )
             );

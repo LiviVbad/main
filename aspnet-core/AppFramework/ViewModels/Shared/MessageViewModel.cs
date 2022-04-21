@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Services.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace AppFramework.ViewModels
     public class MessageViewModel : DialogViewModel
     {
         private string title;
+        private string message;
 
         public string Title
         {
@@ -16,12 +18,19 @@ namespace AppFramework.ViewModels
             set { title = value; RaisePropertyChanged(); }
         }
 
-        private string message;
-
         public string Message
         {
             get { return message; }
             set { message = value; RaisePropertyChanged(); }
+        }
+
+        public override void OnDialogOpened(IDialogParameters parameters)
+        {
+            if (parameters.ContainsKey("Title"))
+                Title = parameters.GetValue<string>("Title");
+
+            if (parameters.ContainsKey("Message"))
+                Message = parameters.GetValue<string>("Message");
         }
     }
 }
