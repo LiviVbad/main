@@ -14,7 +14,7 @@ namespace AppFramework.Common.Services.Navigation
                new NavigationItem("\ue6c4","Dashboard", AppViewManager.Dashboard, PermissionKey.Administration),
                new NavigationItem("\uec07","Administration","",PermissionKey.Administration,new ObservableCollection<NavigationItem>()
                {
-                      new NavigationItem  ("\ue64e","OrganizationUnits",AppViewManager.Organization,PermissionKey.OrganizationUnits),
+                      new NavigationItem("\ue64e","OrganizationUnits",AppViewManager.Organization,PermissionKey.OrganizationUnits),
                       new NavigationItem("\ue787","Roles",AppViewManager.Role,PermissionKey.Roles),
                       new NavigationItem("\ue658","Users",AppViewManager.User,PermissionKey.Users),
                       new NavigationItem("\ue617","AuditLogs",AppViewManager.AuditLog,PermissionKey.AuditLogs),
@@ -33,23 +33,24 @@ namespace AppFramework.Common.Services.Navigation
         /// </summary>
         /// <param name="grantedPermissions"></param>
         /// <returns></returns>
-        public ObservableCollection<NavigationItem> GetAuthMenus(Dictionary<string, string> grantedPermissions)
+        public ObservableCollection<NavigationItem> GetAuthMenus(Dictionary<string, string> permissions)
         {
             var authorizedMenuItems = new ObservableCollection<NavigationItem>();
             foreach (var menuItem in GetMenuItems())
             {
                 //转换特定地区语言的标题
-                menuItem.Title = menuItem.Title;
+                menuItem.Title = Local.Localize(menuItem.Title);
 
-                if (menuItem.RequiredPermissionName == null)
+                if (menuItem.RequiredPermissionName == null ||
+                    (permissions != null && permissions.ContainsKey(menuItem.RequiredPermissionName)))
                 {
+                    if (menuItem.Items != null)
+                    {
+                        foreach (var submenuItem in menuItem.Items)
+                            submenuItem.Title = Local.Localize(submenuItem.Title);
+                    }
                     authorizedMenuItems.Add(menuItem);
-                    continue;
                 }
-
-                if (grantedPermissions != null &&
-                    grantedPermissions.ContainsKey(menuItem.RequiredPermissionName))
-                    authorizedMenuItems.Add(menuItem);
             }
             return authorizedMenuItems;
         }

@@ -13,13 +13,11 @@ namespace AppFramework.ViewModels
         public ViewModelBase()
         {
             mapper = ContainerLocator.Container.Resolve<IMapper>();
-            validator = ContainerLocator.Container.Resolve<IGlobalValidator>();
-            applayer =ContainerLocator.Container.Resolve<IAppDialogService>();
+            validator = ContainerLocator.Container.Resolve<IGlobalValidator>(); 
         }
 
         public readonly IMapper mapper;
-        private readonly IGlobalValidator validator;
-        public readonly IAppDialogService applayer;
+        private readonly IGlobalValidator validator; 
 
         private bool isBusy;
 

@@ -6,6 +6,13 @@ namespace AppFramework
 {
     public static class DialogExtensions
     {
+        public static async Task Show(this IAppHostDialogService appHostDialogService,
+            string message,
+            string IdentifierName = "Root")
+        {
+            await Question(appHostDialogService, "", message, IdentifierName);
+        }
+
         public static async Task<bool> Question(this IAppHostDialogService appHostDialogService,
             string message,
             string IdentifierName = "Root")
@@ -44,27 +51,6 @@ namespace AppFramework
               {
                   result = callback;
               });
-
-            return result;
-        }
-
-        /// <summary>
-        /// 扩展-打开指定对话框(非模式)
-        /// </summary>
-        /// <param name="dialogService"></param>
-        /// <param name="name">对话框名称</param>
-        /// <param name="parameters">传递参数</param>
-        /// <returns>返回对话框操作结果</returns>
-        public static IDialogResult ShowView(this IDialogService dialogService,
-            string name,
-            IDialogParameters parameters = null)
-        {
-            IDialogResult result = null;
-
-            dialogService.Show(name, parameters, callback =>
-            {
-                result = callback;
-            });
 
             return result;
         }

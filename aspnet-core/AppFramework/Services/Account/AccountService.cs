@@ -4,8 +4,7 @@ using AppFramework.Authorization.Users.Profile;
 using AppFramework.Common;
 using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Storage;
-using AppFramework.Localization;
-using AppFramework.Services.Dialog;
+using AppFramework.Authorization.Users.Dto; 
 using AppFramework.Sessions;
 using AppFramework.Sessions.Dto;
 using Prism.Mvvm;
@@ -18,20 +17,17 @@ namespace AppFramework.Services.Account
         public readonly IAccountStorageService dataStorageService;
         public readonly IApplicationContext applicationContext;
         public readonly ISessionAppService sessionAppService;
-        public readonly IAccessTokenManager accessTokenManager;
-        private readonly IAppDialogService appDialogService;
+        public readonly IAccessTokenManager accessTokenManager; 
         public readonly IProfileAppService profileAppService;
 
-        public AccountService(
-            IAppDialogService appDialogService,
+        public AccountService( 
             IProfileAppService profileAppService,
             IApplicationContext applicationContext,
             ISessionAppService sessionAppService,
             IAccessTokenManager accessTokenManager,
             IAccountStorageService dataStorageService,
             AbpAuthenticateModel authenticateModel)
-        {
-            this.appDialogService = appDialogService;
+        { 
             this.profileAppService = profileAppService;
             this.applicationContext = applicationContext;
             this.sessionAppService = sessionAppService;
@@ -75,7 +71,7 @@ namespace AppFramework.Services.Account
 
             if (AuthenticateResultModel.ShouldResetPassword)
             {
-                await appDialogService.Show("", Local.Localize("ChangePasswordToLogin"));
+                //await appDialogService.Show("", Local.Localize("ChangePasswordToLogin"));
                 return;
             }
 
@@ -91,6 +87,12 @@ namespace AppFramework.Services.Account
             //}
 
             AuthenticateModel.Password = null;
+
+            await profileAppService.ChangeLanguage(new ChangeUserLanguageDto()
+            {
+                LanguageName = applicationContext.CurrentLanguage.Name
+            });
+
             await SetCurrentUserInfoAsync();
             await UserConfigurationManager.GetAsync();
         }

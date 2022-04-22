@@ -2,11 +2,8 @@
 using AppFramework.ApiClient;
 using AppFramework.Authorization.Accounts;
 using AppFramework.Authorization.Accounts.Dto;
-using AppFramework.Authorization.Users.Profile;
 using AppFramework.Common;
 using AppFramework.Common.Services.Account;
-using AppFramework.Common.Services.Storage;
-using AppFramework.Localization;
 using AppFramework.Services;
 using AppFramework.Services.Account;
 using Prism.Commands;
@@ -29,8 +26,6 @@ namespace AppFramework.ViewModels
         private readonly IAccountService accountService;
         private readonly IAccountAppService accountAppService;
         private readonly IApplicationContext applicationContext;
-        private readonly IProfileAppService profileAppService;
-        private readonly IDataStorageService dataStorageService;
 
 
         private LanguageInfo selectedLanguage;
@@ -105,16 +100,12 @@ namespace AppFramework.ViewModels
             IAppHostDialogService dialogService,
             IAccountService accountService,
             IAccountAppService accountAppService,
-            IApplicationContext applicationContext,
-            IProfileAppService profileAppService,
-            IDataStorageService dataStorageService)
+            IApplicationContext applicationContext)
         {
             this.dialogService = dialogService;
             this.accountService = accountService;
             this.accountAppService = accountAppService;
             this.applicationContext = applicationContext;
-            this.profileAppService = profileAppService;
-            this.dataStorageService = dataStorageService;
 
             ExecuteCommand = new DelegateCommand<string>(Execute);
             ChangeLanguageCommand = new DelegateCommand<LanguageInfo>(ChangeLanguage);
@@ -201,11 +192,13 @@ namespace AppFramework.ViewModels
                     break;
 
                 case TenantAvailabilityState.InActive:
-                    await applayer.Show("InActive", Local.Localize("TenantIsNotActive", tenancyName));
+                    await dialogService.Question("InActive",
+                        Local.Localize("TenantIsNotActive", tenancyName), "Login");
                     break;
 
                 case TenantAvailabilityState.NotFound:
-                    await applayer.Show("NotFound", Local.Localize("ThereIsNoTenantDefinedWithName{0}", tenancyName));
+                    await dialogService.Question("NotFound", 
+                        Local.Localize("ThereIsNoTenantDefinedWithName{0}", tenancyName), "Login");
                     break;
 
                 default:

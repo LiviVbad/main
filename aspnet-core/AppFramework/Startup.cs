@@ -35,7 +35,6 @@ namespace AppFramework
             services.RegisterSingleton<IThemeService, ThemeService>();
             services.RegisterSingleton<IResourceService, ResourceService>();
             services.RegisterSingleton<IAppHostDialogService, DialogHostService>();
-            services.RegisterSingleton<IAppDialogService, AppDialogService>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
 
             services.RegisterDialog<MessageBoxView, MessageViewModel>();

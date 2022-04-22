@@ -6,6 +6,6 @@ namespace AppFramework.Common.Services.Navigation
 {
     public interface INavigationMenuService
     {
-        ObservableCollection<NavigationItem> GetAuthMenus(Dictionary<string, string> grantedPermissions);
+        ObservableCollection<NavigationItem> GetAuthMenus(Dictionary<string, string> permissions);
     }
 }
