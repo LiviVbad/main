@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using AppFramework.Common;
+using System.Reflection;
 using System.Resources;
 using Xamarin.Forms;
 
@@ -15,7 +16,7 @@ namespace AppFramework.Shared.Localization
 
         private static string GetValue(string key)
         {
-            var locale = DependencyService.Get<ILocale>();
+            var locale = DependencyService.Get<ILocaleCulture>();
             var cultureInfo = locale.GetCurrentCultureInfo();
             var resourceManager = new ResourceManager(ResourceId, typeof(LocalTranslationHelper).GetTypeInfo().Assembly);
             return resourceManager.GetString(key, cultureInfo);

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AppFramework.Localization
+namespace AppFramework.Common
 { 
     public class PlatformCulture
     {

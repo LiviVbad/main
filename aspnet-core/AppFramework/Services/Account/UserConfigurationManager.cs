@@ -80,7 +80,7 @@ namespace AppFramework.Services.Account
         /// </summary>
         private static void SetCurrentCulture()
         {
-            var locale = ContainerLocator.Container.Resolve<ILocale>();
+            var locale = ContainerLocator.Container.Resolve<ILocaleCulture>();
             var userCulture = GetUserCulture(locale);
 
             locale.SetLocale(userCulture);
@@ -92,7 +92,7 @@ namespace AppFramework.Services.Account
         /// </summary>
         /// <param name="locale"></param>
         /// <returns></returns>
-        private static CultureInfo GetUserCulture(ILocale locale)
+        private static CultureInfo GetUserCulture(ILocaleCulture locale)
         {
             if (AppContext.Value.Configuration.Localization.CurrentCulture.Name == null)
                 return locale.GetCurrentCultureInfo();

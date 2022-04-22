@@ -31,7 +31,7 @@ namespace AppFramework
             //注册应用程序验证器
             services.RegisterValidator();
 
-            services.RegisterSingleton<ILocale, Locale>();
+            services.RegisterSingleton<ILocaleCulture, LocaleCulture>();
             services.RegisterSingleton<IThemeService, ThemeService>();
             services.RegisterSingleton<IResourceService, ResourceService>();
             services.RegisterSingleton<IAppHostDialogService, DialogHostService>();

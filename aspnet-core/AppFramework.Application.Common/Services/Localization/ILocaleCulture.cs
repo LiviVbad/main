@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 
-namespace AppFramework.Localization
+namespace AppFramework.Common
 { 
-    public interface ILocale
+    public interface ILocaleCulture
     { 
         CultureInfo GetCurrentCultureInfo();
          

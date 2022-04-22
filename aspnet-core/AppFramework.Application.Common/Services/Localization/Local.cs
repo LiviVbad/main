@@ -1,9 +1,8 @@
-﻿using AppFramework.ApiClient;
+﻿using AppFramework.ApiClient; 
 using Prism.Ioc;
-using System;
 using System.Globalization;
 
-namespace AppFramework.Shared.Localization
+namespace AppFramework.Common
 {
     public static class Local
     {
@@ -38,7 +37,7 @@ namespace AppFramework.Shared.Localization
 
             var appContext = ContainerLocator.Container.Resolve<IApplicationContext>();
             if (appContext.Configuration == null)
-                return text; 
+                return text;
 
             return appContext.Configuration.Localization.Localize(text);
         }

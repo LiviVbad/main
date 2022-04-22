@@ -1,4 +1,4 @@
-﻿using AppFramework.Localization;
+﻿using AppFramework.Common; 
 using Syncfusion.UI.Xaml.Grid;
 using System.Windows;
 

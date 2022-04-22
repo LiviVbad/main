@@ -87,7 +87,7 @@ namespace AppFramework.Shared.Services.Account
         /// </summary>
         private static void SetCurrentCulture()
         {
-            var locale = DependencyService.Get<ILocale>();
+            var locale = DependencyService.Get<ILocaleCulture>();
             var userCulture = GetUserCulture(locale);
 
             locale.SetLocale(userCulture);
@@ -99,7 +99,7 @@ namespace AppFramework.Shared.Services.Account
         /// </summary>
         /// <param name="locale"></param>
         /// <returns></returns>
-        private static CultureInfo GetUserCulture(ILocale locale)
+        private static CultureInfo GetUserCulture(ILocaleCulture locale)
         {
             if (AppContext.Value.Configuration.Localization.CurrentCulture.Name == null)
                 return locale.GetCurrentCultureInfo();

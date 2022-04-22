@@ -1,4 +1,4 @@
-﻿using AppFramework.Localization;
+﻿using AppFramework.Common; 
 using System; 
 using System.Windows.Markup;
 

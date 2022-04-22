@@ -2,8 +2,7 @@
 using AppFramework.Common.Services.Account;
 using AppFramework.ApiClient.Models;
 using AppFramework.Authorization.Accounts;
-using AppFramework.Shared.Core.Localization.Resources;
-using AppFramework.Shared.Localization; 
+using AppFramework.Shared.Core.Localization.Resources; 
 using Prism.Commands; 
 using Prism.Services.Dialogs;
 using System.Collections.Generic;

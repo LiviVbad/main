@@ -1,4 +1,4 @@
-﻿namespace AppFramework.Localization
+﻿namespace AppFramework.Common
 {
     public enum LocalizationSource : byte
     {

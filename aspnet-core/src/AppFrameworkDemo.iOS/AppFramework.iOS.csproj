@@ -131,6 +131,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AppFramework.Application.Common\AppFramework.Common.csproj">
+      <Project>{CF60E0AD-6403-466A-97B1-6D64883E08F2}</Project>
+      <Name>AppFramework.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AppFrameworkDemo.Shared\AppFramework.Shared.csproj">
       <Project>{cdd6bbd1-4024-41f6-becb-b21c07297070}</Project>
       <Name>AppFramework.Shared</Name>

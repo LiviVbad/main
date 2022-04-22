@@ -1,8 +1,7 @@
 ﻿using Acr.UserDialogs;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Authorization.Users.Profile.Dto;
-using AppFramework.Common;
-using AppFramework.Shared.Localization;
+using AppFramework.Common; 
 using Prism.Commands;
 using Prism.Navigation;
 using System.Threading.Tasks;

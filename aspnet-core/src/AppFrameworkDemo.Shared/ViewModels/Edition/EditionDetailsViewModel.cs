@@ -1,8 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Common;
 using AppFramework.Editions;
-using AppFramework.Editions.Dto;
-using AppFramework.Shared.Localization; 
+using AppFramework.Editions.Dto; 
 using Prism.Commands;
 using Prism.Navigation;
 using System;

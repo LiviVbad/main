@@ -1,4 +1,5 @@
-﻿using AppFramework.Shared.Localization;
+﻿using AppFramework.Common;
+using AppFramework.Shared.Localization;
 using System;
 using System.Globalization;
 using System.Threading;
@@ -7,7 +8,7 @@ using System.Threading;
 
 namespace AppFramework.Localization
 {
-    public class Locale : ILocale
+    public class Locale : ILocaleCulture
     {
         public void SetLocale(CultureInfo ci)
         {

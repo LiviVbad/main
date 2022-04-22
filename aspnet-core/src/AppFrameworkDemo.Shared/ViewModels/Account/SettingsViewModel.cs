@@ -74,7 +74,7 @@ namespace AppFramework.Shared.ViewModels
                     }),
                     () =>
                     {
-                        AppDialogHelper.Success("ChangeLanguage", Localization.LocalizationSource.LocalTranslation);
+                        AppDialogHelper.Success("ChangeLanguage", LocalizationSource.LocalTranslation);
                         return Task.CompletedTask;
                     });
         }

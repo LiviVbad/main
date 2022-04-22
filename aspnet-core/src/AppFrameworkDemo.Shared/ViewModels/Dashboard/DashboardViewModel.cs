@@ -1,6 +1,5 @@
 ﻿using AppFramework.MultiTenancy.HostDashboard;
-using AppFramework.MultiTenancy.HostDashboard.Dto;
-using AppFramework.Shared.Localization; 
+using AppFramework.MultiTenancy.HostDashboard.Dto; 
 using Prism.Regions.Navigation;
 using System;
 using System.Collections.ObjectModel;

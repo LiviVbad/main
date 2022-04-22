@@ -2,7 +2,7 @@
 using Abp.Web.Models.AbpUserConfiguration;
 using System;
 
-namespace AppFramework.Extensions
+namespace AppFramework.Common
 {
     public static class UserLocalizationConfigDtoExtensions
     {

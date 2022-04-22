@@ -1,15 +1,15 @@
-﻿using AppFramework.Localization;
-using AppFramework.Shared.Localization;
+﻿using AppFramework.Common;
+using AppFramework.Localization;
 using Foundation;
-using System; 
-using System.Globalization; 
-using System.Threading; 
+using System;
+using System.Globalization;
+using System.Threading;
 
-[assembly:Xamarin.Forms.Dependency(typeof(Locale))]
+[assembly: Xamarin.Forms.Dependency(typeof(Locale))]
 
 namespace AppFramework.Localization
 {
-    public class Locale : ILocale
+    public class Locale : ILocaleCulture
     {
         public void SetLocale(CultureInfo ci)
         {
