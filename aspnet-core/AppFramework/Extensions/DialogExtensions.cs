@@ -41,18 +41,37 @@ namespace AppFramework
         /// <param name="name">对话框名称</param>
         /// <param name="parameters">传递参数</param>
         /// <returns>返回对话框操作结果</returns>
-        public static IDialogResult ShowViewDialog(this IDialogService dialogService,
-            string name,
-            IDialogParameters parameters = null)
+        public static IDialogResult ShowDialog(this IDialogService dialogService, string name, IDialogParameters parameters = null)
         {
             IDialogResult result = null;
-
             dialogService.ShowDialog(name, parameters, callback =>
               {
                   result = callback;
               });
-
             return result;
+        }
+
+        public static void ShowDialog(this IDialogService dialogService, string title, string message)
+        {
+            DialogParameters parameters = new DialogParameters();
+            parameters.Add("Title", title);
+            parameters.Add("Message", message);
+
+            dialogService.ShowDialog("MessageBoxView", parameters);
+        }
+
+        public static bool Question(this IDialogService dialogService, string title, string message)
+        {
+            DialogParameters parameters = new DialogParameters();
+            parameters.Add("Title", title);
+            parameters.Add("Message", message);
+
+            bool dialogResult = false;
+            dialogService.ShowDialog("MessageBoxView", parameters, callback =>
+            {
+                dialogResult = callback.Result == ButtonResult.OK;
+            });
+            return dialogResult;
         }
     }
 }
