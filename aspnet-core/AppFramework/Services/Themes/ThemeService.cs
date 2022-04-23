@@ -18,7 +18,7 @@ namespace AppFramework.Services
         };
 
         public ObservableCollection<ThemeItem> GetThemes()
-        {
+        { 
             return themes;
         }
 

@@ -45,6 +45,7 @@ namespace AppFramework
             services.RegisterForNavigation<MainView, MainViewModel>(AppViewManager.Main);
             services.RegisterForNavigation<UserChooseView, UserChooseViewModel>();
             services.RegisterForNavigation<RoleView, RoleViewModel>(AppViewManager.Role);
+            services.RegisterForNavigation<RoleDetailsView, RoleDetailsViewModel>(AppViewManager.RoleDetails);
             services.RegisterForNavigation<RoleChooseView, RoleChooseViewModel>();
             services.RegisterForNavigation<AuditLogsView, AuditLogsViewModel>(AppViewManager.AuditLog);
             services.RegisterForNavigation<LanguageView, LanguageViewModel>(AppViewManager.Language);
