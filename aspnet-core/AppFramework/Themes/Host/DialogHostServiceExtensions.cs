@@ -50,7 +50,7 @@ namespace AppFramework.WindowHost
             param.Add("Type", messageType);
             param.Add("Message", message);
 
-            return await dialogHostService.ShowDialog("MessageView", param, IdentifierName);
+            return await dialogHostService.ShowDialogAsync("MessageView", param, IdentifierName);
         }
     }
 }

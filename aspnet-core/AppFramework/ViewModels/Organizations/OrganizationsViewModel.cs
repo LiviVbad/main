@@ -48,7 +48,7 @@ namespace AppFramework.ViewModels
                 case "AddMember": await AddMember(SelectedOrganizationUnit); break;
                 case "AddRole": await AddRole(SelectedOrganizationUnit); break;
                 case "Refresh": await RefreshAsync(); break;
-                case "Add": await dialogHostService.ShowDialog("UserAddView"); break;
+                case "Add": await dialogHostService.ShowDialogAsync("UserAddView"); break;
                 case "Exprot": break;
                 case "Filter": break;
             }
@@ -85,7 +85,7 @@ namespace AppFramework.ViewModels
             DialogParameters param = new DialogParameters();
             param.Add("Value", organizationUnit);
 
-            var dialogResult = await dialogHostService.ShowDialog("", param);
+            var dialogResult = await dialogHostService.ShowDialogAsync("", param);
             if (dialogResult.Result == ButtonResult.OK)
             {
                 var input = dialogResult.Parameters.GetValue<OrganizationUnitModel>("Value");
@@ -103,7 +103,7 @@ namespace AppFramework.ViewModels
 
         public async Task AddOrganizationUnit(long? parentId = null)
         {
-            var dialogResult = await dialogHostService.ShowDialog("");
+            var dialogResult = await dialogHostService.ShowDialogAsync("");
             if (dialogResult.Result == ButtonResult.OK)
             {
                 var input = dialogResult.Parameters.GetValue<OrganizationUnitModel>("Value");
@@ -188,7 +188,7 @@ namespace AppFramework.ViewModels
             DialogParameters param = new DialogParameters();
             param.Add("Id", Id);
             param.Add("Value", pagedResult);
-            var dialogResult = await dialogHostService.ShowDialog("", param);
+            var dialogResult = await dialogHostService.ShowDialogAsync("", param);
             if (dialogResult.Result == ButtonResult.OK)
             {
                 var input = dialogResult.Parameters.GetValue<RolesToOrganizationUnitInput>("Value");
@@ -247,7 +247,7 @@ namespace AppFramework.ViewModels
             DialogParameters param = new DialogParameters();
             param.Add("Id", Id);
             param.Add("Value", pagedResult);
-            var dialogResult = await dialogHostService.ShowDialog("", param);
+            var dialogResult = await dialogHostService.ShowDialogAsync("", param);
             if (dialogResult.Result == ButtonResult.OK)
             {
                 var input = dialogResult.Parameters.GetValue<UsersToOrganizationUnitInput>("Value");

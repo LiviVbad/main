@@ -11,6 +11,6 @@ namespace AppFramework.Services
     {
         void ShowDialog(string name, Action<IDialogResult> callback);
 
-        Task<IDialogResult> ShowDialog(string name, IDialogParameters parameters = null, string IdentifierName = "Root");
+        Task<IDialogResult> ShowDialogAsync(string name, IDialogParameters parameters = null, string IdentifierName = "Root");
     }
 }

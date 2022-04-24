@@ -20,22 +20,23 @@
 
         public override async void Add()
         {
-            var dialogResult = await dialogHostService.ShowDialog(GetPageName("Details"));
-            if (dialogResult.Result == ButtonResult.Yes)
+            var dialogResult = await dialogHostService.ShowDialogAsync(GetPageName("Details"));
+            if (dialogResult.Result == ButtonResult.OK)
             {
-
+                await RefreshAsync();
             }
         }
 
-        public override void Delete(T selectedItem)
+        public override async void Edit(T selectedItem)
         {
-
+            var dialogResult = await dialogHostService.ShowDialogAsync(GetPageName("Details"));
+            if (dialogResult.Result == ButtonResult.OK)
+            {
+                await RefreshAsync();
+            }
         }
 
-        public override void Edit(T selectedItem)
-        {
-            dialogHostService.ShowDialog(GetPageName("Details"));
-        }
+        public override void Delete(T selectedItem) { }
 
         public override async Task RefreshAsync()
         {

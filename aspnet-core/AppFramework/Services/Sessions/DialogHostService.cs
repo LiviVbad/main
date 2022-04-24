@@ -42,7 +42,7 @@ namespace AppFramework.Services.Dialog
             dialogContent.ShowDialog();
         }
 
-        public async Task<IDialogResult> ShowDialog(string name, IDialogParameters parameters = null, string IdentifierName = "Root")
+        public async Task<IDialogResult> ShowDialogAsync(string name, IDialogParameters parameters = null, string IdentifierName = "Root")
         {
             if (parameters == null)
                 parameters = new DialogParameters();

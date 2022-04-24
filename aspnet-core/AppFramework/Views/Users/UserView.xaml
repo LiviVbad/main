@@ -43,14 +43,16 @@
             AutoGenerateColumns="False"
             ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
             <sync:SfDataGrid.Columns>
-                <sync:GridTextColumn HeaderText="Id" MappingName="Id" />
-                <sync:GridTextColumn HeaderText="Name" MappingName="Name" />
-                <sync:GridTextColumn HeaderText="Surname" MappingName="Surname" />
-                <sync:GridTextColumn HeaderText="UserName" MappingName="UserName" />
-                <sync:GridTextColumn HeaderText="EmailAddress" MappingName="EmailAddress" />
-                <sync:GridTextColumn HeaderText="PhoneNumber" MappingName="PhoneNumber" />
-                <sync:GridTextColumn HeaderText="IsActive" MappingName="IsActive" />
-                <sync:GridTextColumn HeaderText="CreationTime" MappingName="CreationTime" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate Name}" MappingName="Name" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate Surname}" MappingName="Surname" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate UserName}" MappingName="UserName" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate EmailAddress}" MappingName="EmailAddress" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate PhoneNumber}" MappingName="PhoneNumber" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate IsActive}" MappingName="IsActive" />
+                <sync:GridTextColumn
+                    DisplayBinding="{Binding Path=CreationTime, StringFormat='yyyy-MM-dd'}"
+                    HeaderText="{extensions:Translate CreationTime}"
+                    MappingName="CreationTime" />
             </sync:SfDataGrid.Columns>
         </sync:SfDataGrid>
 

@@ -42,9 +42,8 @@
             Margin="10,0"
             ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
             <sync:SfDataGrid.Columns>
-                <sync:GridTextColumn HeaderText="Id" MappingName="Id" />
-                <sync:GridTextColumn HeaderText="DisplayName" MappingName="DisplayName" />
-                <sync:GridDateTimeColumn HeaderText="CreationTime" MappingName="CreationTime" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate DisplayName}" MappingName="DisplayName" />
+                <sync:GridDateTimeColumn HeaderText="{extensions:Translate CreationTime}" MappingName="CreationTime" />
             </sync:SfDataGrid.Columns>
         </sync:SfDataGrid>
 

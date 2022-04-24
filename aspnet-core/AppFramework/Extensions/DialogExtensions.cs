@@ -29,7 +29,7 @@ namespace AppFramework
             param.Add("Title", title);
             param.Add("Message", message);
 
-            var dialogResult = await appHostDialogService.ShowDialog("MessageBoxView", param, IdentifierName);
+            var dialogResult = await appHostDialogService.ShowDialogAsync("MessageBoxView", param, IdentifierName);
 
             return dialogResult.Result == ButtonResult.OK;
         }
