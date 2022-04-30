@@ -149,11 +149,11 @@
             </TabItem>
 
             <TabItem Header="{extensions:Translate Role}">
-                <ListBox Margin="5" ItemsSource="{Binding UserRoles}">
+                <ListBox Margin="5" ItemsSource="{Binding Model.Roles}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <CheckBox IsChecked="{Binding IsChecked}" />
+                                <CheckBox IsChecked="{Binding IsAssigned}" />
                                 <TextBlock Margin="5,0" Text="{Binding RoleDisplayName}" />
                             </StackPanel>
                         </DataTemplate>
@@ -166,11 +166,11 @@
                     x:Name="TreeViewOriganizations"
                     Margin="5"
                     DockPanel.Dock="Top"
-                    ItemsSource="{Binding OrganizationUnitModels, Mode=TwoWay}">
+                    ItemsSource="{Binding Model.OrganizationUnits}">
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding Items}">
                             <DockPanel Margin="0,5">
-                                <CheckBox DockPanel.Dock="Left" IsChecked="{Binding IsChecked}" />
+                                <CheckBox DockPanel.Dock="Left" IsChecked="{Binding IsAssigned}" />
                                 <Image
                                     Width="20"
                                     Height="20"
