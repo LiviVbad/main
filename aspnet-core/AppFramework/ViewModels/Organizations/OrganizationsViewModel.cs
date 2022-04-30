@@ -1,7 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Common;
-using AppFramework.Common.Models;
-using AppFramework.Localization;
+using AppFramework.Common.Models; 
 using AppFramework.Organizations;
 using AppFramework.Organizations.Dto; 
 using Prism.Commands;

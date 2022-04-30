@@ -29,6 +29,7 @@ namespace AppFramework.Common.Core
             CreateMap<AuditLogListDto, AuditLogListModel>().ReverseMap();
             CreateMap<UserCreateOrUpdateModel, CreateOrUpdateUserInput>().ReverseMap();
             CreateMap<DynamicPropertyDto, DynamicPropertyModel>().ReverseMap();
+            CreateMap<OrganizationUnitDto, OrganizationListModel>().ReverseMap();
             CreateMap<OrganizationUnitDto, OrganizationUnitModel>().ReverseMap();
             CreateMap<ApplicationLanguageListDto, LanguageListModel>().ReverseMap();
             CreateMap<UserLoginInfoDto, UserLoginInfoModel>().ReverseMap();

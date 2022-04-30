@@ -41,7 +41,8 @@ namespace AppFramework
         /// <param name="name">对话框名称</param>
         /// <param name="parameters">传递参数</param>
         /// <returns>返回对话框操作结果</returns>
-        public static IDialogResult ShowDialog(this IDialogService dialogService, string name, IDialogParameters parameters = null)
+        public static IDialogResult ShowDialog(this IDialogService dialogService, 
+            string name, IDialogParameters parameters = null)
         {
             IDialogResult result = null;
             dialogService.ShowDialog(name, parameters, callback =>
