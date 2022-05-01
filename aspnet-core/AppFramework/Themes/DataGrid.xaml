@@ -14,13 +14,13 @@
 
     <Style TargetType="sync:SfDataGrid">
         <Setter Property="HeaderLinesVisibility" Value="Horizontal" />
-        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderThickness" Value="0" />
         <Setter Property="GridLinesVisibility" Value="Horizontal" />
-        <Setter Property="RowHeight" Value="35" />
+        <Setter Property="RowHeight" Value="40" />
         <Setter Property="IsReadOnly" Value="True" />
         <Setter Property="NavigationMode" Value="Row" />
         <Setter Property="ColumnSizer" Value="Star" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="AutoGenerateColumns" Value="False" />
         <!--  启用表格列筛选功能  -->
@@ -28,7 +28,8 @@
         <Setter Property="SelectionMode" Value="Extended" />
         <!--  列允许设置宽度  -->
         <Setter Property="AllowResizingColumns" Value="True" />
-
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="Margin" Value="10,0" />
         <Setter Property="HeaderStyle" Value="{StaticResource DefaultHeaderStyle}" />
     </Style>
 </ResourceDictionary>

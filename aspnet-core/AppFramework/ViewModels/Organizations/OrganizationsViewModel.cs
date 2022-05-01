@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Common;
-using AppFramework.Common.Models; 
+using AppFramework.Common.Models;
 using AppFramework.Organizations;
-using AppFramework.Organizations.Dto; 
+using AppFramework.Organizations.Dto;
 using Prism.Commands;
 using Prism.Regions;
 using Prism.Services.Dialogs;
@@ -15,21 +15,23 @@ namespace AppFramework.ViewModels
 {
     public class OrganizationsViewModel : NavigationCurdViewModel<OrganizationListModel>
     {
-        private OrganizationUnitModel SelectedOrganizationUnit;
+        private OrganizationListModel SelectedOrganizationUnit;
 
         private readonly IOrganizationUnitAppService appService;
 
-        public DelegateCommand<OrganizationUnitModel> SelectedCommand { get; }
+        public DelegateCommand<OrganizationListModel> SelectedCommand { get; }
+        public DelegateCommand<string> ExecuteCommand { get; private set; }
 
         public OrganizationsViewModel(IOrganizationUnitAppService userAppService)
         {
             this.appService = userAppService;
-            SelectedCommand = new DelegateCommand<OrganizationUnitModel>(Selected);
+            SelectedCommand = new DelegateCommand<OrganizationListModel>(Selected);
+            ExecuteCommand = new DelegateCommand<string>(Execute);
             UserModelList = new ObservableCollection<OrganizationUnitUserListDto>();
             RolesModelList = new ObservableCollection<OrganizationUnitRoleListDto>();
         }
 
-        private async void Selected(OrganizationUnitModel organizationUnit)
+        private async void Selected(OrganizationListModel organizationUnit)
         {
             if (organizationUnit == null) return;
 
@@ -47,9 +49,6 @@ namespace AppFramework.ViewModels
                 case "AddMember": await AddMember(SelectedOrganizationUnit); break;
                 case "AddRole": await AddRole(SelectedOrganizationUnit); break;
                 case "Refresh": await RefreshAsync(); break;
-                case "Add": await dialogHostService.ShowDialogAsync("UserAddView"); break;
-                case "Exprot": break;
-                case "Filter": break;
             }
         }
 
@@ -124,7 +123,9 @@ namespace AppFramework.ViewModels
 
             var items = Map<List<OrganizationListModel>>(pagedResult.Items);
             foreach (var item in BuildOrganizationTree(items))
+            {
                 GridModelList.Add(item);
+            }
 
             await Task.CompletedTask;
         }
@@ -167,7 +168,7 @@ namespace AppFramework.ViewModels
             set { rolesModelList = value; }
         }
 
-        private async Task AddRole(OrganizationUnitModel organizationUnit)
+        private async Task AddRole(OrganizationListModel organizationUnit)
         {
             if (organizationUnit == null) return;
 
@@ -227,7 +228,7 @@ namespace AppFramework.ViewModels
             set { userModelList = value; }
         }
 
-        private async Task AddMember(OrganizationUnitModel organizationUnit)
+        private async Task AddMember(OrganizationListModel organizationUnit)
         {
             if (organizationUnit == null) return;
 

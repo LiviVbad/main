@@ -16,19 +16,11 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <StackPanel
-            Margin="5,10"
-            VerticalAlignment="Bottom"
-            Orientation="Horizontal">
-            <TextBlock
-                FontSize="26"
-                FontWeight="Bold"
-                Text="{extensions:Translate OrganizationUnits}" />
-            <TextBlock
-                Margin="5,0,0,0"
-                VerticalAlignment="Bottom"
-                Text="{extensions:Translate OrganizationUnitsHeaderInfo}" />
-        </StackPanel>
+        <TextBlock
+            Margin="10"
+            FontSize="26"
+            FontWeight="Bold"
+            Text="{extensions:Translate OrganizationUnits}" />
 
         <Grid Grid.Row="1" Margin="5,0">
             <Grid.ColumnDefinitions>
@@ -41,7 +33,7 @@
                 Opacity="0.2"
                 Style="{StaticResource BorderStyle}" />
 
-            <DockPanel Margin="20,15" LastChildFill="False">
+            <DockPanel Margin="5" LastChildFill="False">
                 <DockPanel DockPanel.Dock="Top" LastChildFill="False">
                     <TextBlock
                         DockPanel.Dock="Left"
@@ -57,11 +49,12 @@
 
                 <sync:SfTreeView
                     x:Name="TreeViewOriganizations"
-                    Margin="0,10"
+                    Margin="0,10,0,0"
+                    BorderBrush="Transparent"
                     ChildPropertyName="Items"
                     DockPanel.Dock="Top"
                     FullRowSelect="True"
-                    ItemHeight="30"
+                    ItemHeight="40"
                     ItemsSource="{Binding GridModelList}">
                     <sync:SfTreeView.ItemContextMenu>
                         <ContextMenu>
@@ -85,18 +78,19 @@
                                 <Image
                                     Width="20"
                                     Height="20"
-                                    Source="/CodeShare.Application.Admin.Sync;component/Assets/Images/OrganizationUnit.png" />
+                                    Margin="0,0,10,0"
+                                    Source="/AppFramework;component/Assets/Images/OrganizationUnit.png" />
                                 <TextBlock
                                     Margin="5,0"
                                     VerticalAlignment="Center"
                                     Text="{Binding DisplayName}" />
                                 <TextBlock
-                                    Margin="10,0,3,0"
+                                    Margin="10,0"
                                     VerticalAlignment="Center"
                                     Text="{Binding MemberCount}" />
                                 <TextBlock VerticalAlignment="Center" Text="{extensions:Translate Members}" />
                                 <TextBlock
-                                    Margin="10,0,3,0"
+                                    Margin="10,0"
                                     VerticalAlignment="Center"
                                     Text="{Binding RoleCount}" />
                                 <TextBlock VerticalAlignment="Center" Text="{extensions:Translate Roles}" />
@@ -125,13 +119,13 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock
-                    Margin="20,15"
+                    Margin="5"
                     FontSize="18"
                     FontWeight="Bold"
                     Text="{Binding ElementName=TreeViewOriganizations, Path=SelectedItem.DisplayName}" />
 
-                <TabControl Grid.Row="1">
-                    <TabItem Header="{extensions:Translate Members}">
+                <TabControl Grid.Row="1" Margin="0,5,0,0">
+                    <TabItem Background="Transparent" Header="{extensions:Translate Members}">
                         <sync:SfBusyIndicator AnimationType="DualRing" IsBusy="{Binding IsBusy}">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -147,7 +141,18 @@
                                     CommandParameter="AddMember"
                                     Content="{extensions:Translate AddMember}" />
 
-                                <sync:SfDataGrid Grid.Row="1" ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}" />
+                                <sync:SfDataGrid Grid.Row="1" ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
+                                    <sync:SfDataGrid.Columns>
+                                        <sync:GridTextColumn HeaderText="{extensions:Translate Name}" MappingName="Name" />
+                                        <sync:GridTextColumn HeaderText="{extensions:Translate Surname}" MappingName="Surname" />
+                                        <sync:GridTextColumn HeaderText="{extensions:Translate UserName}" MappingName="UserName" />
+                                        <sync:GridTextColumn HeaderText="{extensions:Translate EmailAddress}" MappingName="EmailAddress" />
+                                        <sync:GridTextColumn
+                                            DisplayBinding="{Binding Path=AddedTime, StringFormat='yyyy-MM-dd'}"
+                                            HeaderText="{extensions:Translate AddedTime}"
+                                            MappingName="AddedTime" />
+                                    </sync:SfDataGrid.Columns>
+                                </sync:SfDataGrid>
 
                                 <sync:SfDataPager
                                     x:Name="sfDataPapger"
@@ -160,7 +165,7 @@
                         </sync:SfBusyIndicator>
                     </TabItem>
 
-                    <TabItem Header="{extensions:Translate Role}">
+                    <TabItem Background="Transparent" Header="{extensions:Translate Role}">
                         <sync:SfBusyIndicator AnimationType="DualRing" IsBusy="{Binding IsBusy}">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -176,7 +181,15 @@
                                     CommandParameter="AddRole"
                                     Content="{extensions:Translate CreateNewRole}" />
 
-                                <sync:SfDataGrid Grid.Row="1" ItemsSource="{Binding ElementName=sfRolesDataPager, Path=PagedSource}" />
+                                <sync:SfDataGrid Grid.Row="1" ItemsSource="{Binding ElementName=sfRolesDataPager, Path=PagedSource}">
+                                    <sync:SfDataGrid.Columns>
+                                        <sync:GridTextColumn HeaderText="{extensions:Translate DisplayName}" MappingName="DisplayName" />
+                                        <sync:GridTextColumn
+                                            DisplayBinding="{Binding Path=AddedTime, StringFormat='yyyy-MM-dd'}"
+                                            HeaderText="{extensions:Translate AddedTime}"
+                                            MappingName="AddedTime" />
+                                    </sync:SfDataGrid.Columns>
+                                </sync:SfDataGrid>
 
                                 <sync:SfDataPager
                                     x:Name="sfRolesDataPager"

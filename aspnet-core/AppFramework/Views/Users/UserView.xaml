@@ -39,8 +39,6 @@
         <sync:SfDataGrid
             x:Name="SfDataGrid"
             Grid.Row="2"
-            Margin="10,0"
-            AutoGenerateColumns="False"
             ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
             <sync:SfDataGrid.Columns>
                 <sync:GridTextColumn HeaderText="{extensions:Translate Name}" MappingName="Name" />

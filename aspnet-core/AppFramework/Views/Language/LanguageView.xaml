@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock
-            Margin="0,10"
+            Margin="10"
             FontSize="26"
             FontWeight="Bold"
             Text="{extensions:Translate Languages}" />
@@ -29,7 +29,6 @@
         <sync:SfDataGrid
             x:Name="SfDataGrid"
             Grid.Row="1"
-            AutoGenerateColumns="False"
             ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
             <sync:SfDataGrid.Columns>
                 <sync:GridTextColumn HeaderText="序号" MappingName="Id" />
@@ -62,7 +61,7 @@
                         <DataTemplate>
                             <Border
                                 Padding="15,3"
-                                HorizontalAlignment="Center"
+                                HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
                                 CornerRadius="3">
                                 <TextBlock>
