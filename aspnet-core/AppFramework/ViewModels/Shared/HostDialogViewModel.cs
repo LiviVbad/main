@@ -7,6 +7,14 @@ namespace AppFramework.ViewModels
 {
     public abstract class HostDialogViewModel : ViewModelBase, IHostDialogAware
     {
+        public string Title { get; set; }
+
+        public string IdentifierName { get; set; }
+
+        public DelegateCommand SaveCommand { get; }
+
+        public DelegateCommand CancelCommand { get; }
+
         public HostDialogViewModel()
         {
             SaveCommand = new DelegateCommand(Save);
@@ -35,13 +43,7 @@ namespace AppFramework.ViewModels
         {
             DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.OK, param));
         }
-
-        public string IdentifierName { get; set; }
-
-        public DelegateCommand SaveCommand { get; }
-
-        public DelegateCommand CancelCommand { get; }
-
+         
         public abstract void OnDialogOpened(IDialogParameters parameters);
     }
 }

@@ -1,5 +1,4 @@
-﻿using AppFramework.Services;
-using AppFramework.WindowHost;
+﻿using AppFramework.WindowHost;
 using Prism.Common;
 using Prism.Ioc;
 using Prism.Mvvm;
@@ -13,7 +12,7 @@ namespace AppFramework.Services.Dialog
     /// <summary>
     /// 对话主机服务
     /// </summary>
-    public class DialogHostService : DialogService, IAppHostDialogService
+    public class DialogHostService : DialogService, IHostDialogService
     {
         private readonly IContainerExtension _containerExtension;
 

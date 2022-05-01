@@ -1,23 +1,11 @@
-﻿using Prism.Services.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Prism.Services.Dialogs; 
 
 namespace AppFramework.ViewModels
 {
-    public class MessageViewModel : DialogViewModel
-    {
-        private string title;
+    public class MessageViewModel : HostDialogViewModel
+    { 
         private string message;
-
-        public string Title
-        {
-            get { return title; }
-            set { title = value; RaisePropertyChanged(); }
-        }
-
+         
         public string Message
         {
             get { return message; }

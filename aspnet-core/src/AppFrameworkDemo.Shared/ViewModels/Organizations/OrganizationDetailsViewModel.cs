@@ -4,7 +4,7 @@ using AppFramework.Common.Core;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Permission;
 using AppFramework.Organizations;
-using AppFramework.Organizations.Dto; 
+using AppFramework.Organizations.Dto;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.ObjectModel;
@@ -91,21 +91,23 @@ namespace AppFramework.Shared.ViewModels
                          return;
                      }
 
-                     await WebRequestRuner.Execute(() => appService.CreateOrganizationUnit(new CreateOrganizationUnitInput()
-                     {
-                         ParentId = ParentId,
-                         DisplayName = OrganizationUnit.DisplayName
-                     }), result => CreateOrganizationUnitSuccessed(result));
+                     await WebRequestRuner.Execute(() => appService.CreateOrganizationUnit(
+                         new CreateOrganizationUnitInput()
+                         {
+                             ParentId = ParentId,
+                             DisplayName = OrganizationUnit.DisplayName
+                         }), result => CreateOrganizationUnitSuccessed(result));
                  }
                  else
                  {
                      await WebRequestRuner.Execute(async () =>
                      {
-                         await appService.UpdateOrganizationUnit(new UpdateOrganizationUnitInput()
-                         {
-                             Id = OrganizationUnit.Id,
-                             DisplayName = OrganizationUnit.DisplayName
-                         });
+                         await appService.UpdateOrganizationUnit(
+                             new UpdateOrganizationUnitInput()
+                             {
+                                 Id = OrganizationUnit.Id,
+                                 DisplayName = OrganizationUnit.DisplayName
+                             });
                      }, async () => await GoBackAsync());
                  }
              });

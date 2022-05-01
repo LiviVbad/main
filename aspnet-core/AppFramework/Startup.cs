@@ -34,12 +34,12 @@ namespace AppFramework
             services.RegisterSingleton<ILocaleCulture, LocaleCulture>();
             services.RegisterSingleton<IThemeService, ThemeService>();
             services.RegisterSingleton<IResourceService, ResourceService>();
-            services.RegisterSingleton<IAppHostDialogService, DialogHostService>();
+            services.RegisterSingleton<IHostDialogService, DialogHostService>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
-
-            services.RegisterDialog<MessageBoxView, MessageViewModel>();
+             
             services.RegisterDialog<LoginView, LoginViewModel>(AppViewManager.Login);
 
+            services.RegisterForNavigation<MessageBoxView, MessageViewModel>();
             services.RegisterForNavigation<UserView, UserViewModel>(AppViewManager.User);
             services.RegisterForNavigation<UserDetailsView, UserDetailsViewModel>(AppViewManager.UserDetails);
             services.RegisterForNavigation<MainView, MainViewModel>(AppViewManager.Main);

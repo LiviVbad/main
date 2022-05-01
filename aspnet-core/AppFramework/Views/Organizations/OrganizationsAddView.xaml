@@ -28,7 +28,7 @@
             FontWeight="Bold"
             Text="{extensions:Translate NewOrganizationUnit}" />
 
-        <StackPanel Grid.Row="1" Margin="15">
+        <StackPanel Grid.Row="1" Margin="15,10">
             <TextBlock Margin="0,5" Text="{extensions:Translate Name}" />
             <TextBox Text="{Binding Input.DisplayName}" />
         </StackPanel>
@@ -40,13 +40,13 @@
             Orientation="Horizontal">
             <Button
                 Margin="0,0,10,0"
-                Padding="5"
                 Command="{Binding CancelCommand}"
-                Content="{extensions:Translate Cancel}" />
+                Content="{extensions:Translate Cancel}"
+                Style="{StaticResource SimpleButton}" />
             <Button
-                Padding="5"
                 Command="{Binding SaveCommand}"
-                Content="{extensions:Translate Save}" />
+                Content="{extensions:Translate Save}"
+                Style="{StaticResource SimpleButton}" />
         </StackPanel>
     </Grid>
 </UserControl>

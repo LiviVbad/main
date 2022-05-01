@@ -10,17 +10,17 @@
     public class NavigationCurdViewModel<T> : CurdViewModel<T>, INavigationAware where T : class
     {
         public readonly IRegionManager regionManager;
-        public readonly IAppHostDialogService dialogHostService;
+        public readonly IHostDialogService dialog;
 
         public NavigationCurdViewModel()
         {
             regionManager = ContainerLocator.Container.Resolve<IRegionManager>();
-            dialogHostService = ContainerLocator.Container.Resolve<IAppHostDialogService>();
+            dialog = ContainerLocator.Container.Resolve<IHostDialogService>();
         }
 
         public override async void Add()
         {
-            var dialogResult = await dialogHostService.ShowDialogAsync(GetPageName("Details"));
+            var dialogResult = await dialog.ShowDialogAsync(GetPageName("Details"));
             if (dialogResult.Result == ButtonResult.OK)
             {
                 await RefreshAsync();
@@ -29,7 +29,7 @@
 
         public override async void Edit(T selectedItem)
         {
-            var dialogResult = await dialogHostService.ShowDialogAsync(GetPageName("Details"));
+            var dialogResult = await dialog.ShowDialogAsync(GetPageName("Details"));
             if (dialogResult.Result == ButtonResult.OK)
             {
                 await RefreshAsync();

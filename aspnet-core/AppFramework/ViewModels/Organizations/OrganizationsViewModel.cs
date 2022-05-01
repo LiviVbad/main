@@ -64,10 +64,9 @@ namespace AppFramework.ViewModels
              });
         }
 
-        public async Task DeleteOrganizationUnit(OrganizationUnitModel organizationUnit)
+        public async Task DeleteOrganizationUnit(OrganizationListModel organizationUnit)
         {
-            var result = await dialogHostService
-                .Question(Local.Localize("OrganizationUnitDeleteWarningMessage", organizationUnit.DisplayName));
+            var result = await dialog.Question(Local.Localize("OrganizationUnitDeleteWarningMessage", organizationUnit.DisplayName));
             if (result)
             {
                 await WebRequest.Execute(
@@ -78,40 +77,25 @@ namespace AppFramework.ViewModels
             }
         }
 
-        public async Task UpdateRootUnit(OrganizationUnitModel organizationUnit)
+        public async Task UpdateRootUnit(OrganizationListModel organizationUnit)
         {
             DialogParameters param = new DialogParameters();
             param.Add("Value", organizationUnit);
-
-            var dialogResult = await dialogHostService.ShowDialogAsync("", param);
+            var dialogResult = await dialog.ShowDialogAsync("OrganizationsAddView", param);
             if (dialogResult.Result == ButtonResult.OK)
             {
-                var input = dialogResult.Parameters.GetValue<OrganizationUnitModel>("Value");
-
-                await WebRequest.Execute(
-                       () =>
-                       appService.UpdateOrganizationUnit(new UpdateOrganizationUnitInput()
-                       {
-                           DisplayName = input.DisplayName
-                       }),
-                       result => RefreshAsync());
+                await RefreshAsync();
             }
         }
 
         public async Task AddOrganizationUnit(long? parentId = null)
         {
-            var dialogResult = await dialogHostService.ShowDialogAsync("");
+            DialogParameters param = new DialogParameters();
+            param.Add("ParentId", parentId);
+            var dialogResult = await dialog.ShowDialogAsync("OrganizationsAddView", param);
             if (dialogResult.Result == ButtonResult.OK)
             {
-                var input = dialogResult.Parameters.GetValue<OrganizationUnitModel>("Value");
-                await WebRequest.Execute(
-                       () =>
-                       appService.CreateOrganizationUnit(new CreateOrganizationUnitInput()
-                       {
-                           DisplayName = input.DisplayName,
-                           ParentId = parentId
-                       }),
-                       result => RefreshAsync());
+                await RefreshAsync();
             }
         }
 
@@ -183,7 +167,7 @@ namespace AppFramework.ViewModels
             DialogParameters param = new DialogParameters();
             param.Add("Id", Id);
             param.Add("Value", pagedResult);
-            var dialogResult = await dialogHostService.ShowDialogAsync("", param);
+            var dialogResult = await dialog.ShowDialogAsync("", param);
             if (dialogResult.Result == ButtonResult.OK)
             {
                 var input = dialogResult.Parameters.GetValue<RolesToOrganizationUnitInput>("Value");
@@ -242,7 +226,7 @@ namespace AppFramework.ViewModels
             DialogParameters param = new DialogParameters();
             param.Add("Id", Id);
             param.Add("Value", pagedResult);
-            var dialogResult = await dialogHostService.ShowDialogAsync("", param);
+            var dialogResult = await dialog.ShowDialogAsync("", param);
             if (dialogResult.Result == ButtonResult.OK)
             {
                 var input = dialogResult.Parameters.GetValue<UsersToOrganizationUnitInput>("Value");

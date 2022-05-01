@@ -32,7 +32,7 @@ namespace AppFramework.ViewModels
         {
             if (selectedItem == null) return;
 
-            if (!await dialogHostService.Question(Local.Localize(""))) return;
+            if (!await dialog.Question(Local.Localize(""))) return;
 
             await appService.DeleteRole(new EntityDto()
             {

@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:b="clr-namespace:AppFramework.Behaviors"
+    xmlns:const="clr-namespace:AppFramework.Common;assembly=AppFramework.Common"
     xmlns:converter="clr-namespace:AppFramework.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Extensions"
@@ -29,7 +30,7 @@
         <converter:ImageConverter x:Key="imageConverter" />
     </sync:ChromelessWindow.Resources>
 
-    <win:DialogHost Identifier="Login">
+    <win:DialogHost Identifier="{x:Static const:AppCommonConsts.LoginIdentifier}">
         <sync:SfBusyIndicator
             AnimationType="DualRing"
             IsBusy="{Binding IsBusy}"

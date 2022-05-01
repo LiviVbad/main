@@ -23,23 +23,26 @@ namespace AppFramework.Views
         private async void SftreeViewMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var menuItem = sender as MenuItem;
-            if (menuItem.DataContext is TreeViewItemContextMenuInfo info)
+            if (menuItem != null && menuItem.DataContext is TreeViewItemContextMenuInfo info)
             {
-                var organizationUnit = info.Node.Content as OrganizationUnitModel;
+                var organizationUnit = info.Node.Content as OrganizationListModel;
                 var context = this.DataContext as OrganizationsViewModel;
-                switch (menuItem.Tag)
+
+                if (organizationUnit != null && context != null)
                 {
-                    case "AddRootUnit":
-                        await context.AddOrganizationUnit(organizationUnit.Id);
-                        break;
+                    switch (menuItem.Tag)
+                    {
+                        case "AddRootUnit":
+                            await context.AddOrganizationUnit(organizationUnit.Id);
+                            break;
 
-                    case "Change":
-                        await context.UpdateRootUnit(organizationUnit);
-                        break;
-
-                    case "Remove":
-                        await context.DeleteOrganizationUnit(organizationUnit);
-                        break;
+                        case "Change":
+                            await context.UpdateRootUnit(organizationUnit);
+                            break;
+                        case "Remove":
+                            await context.DeleteOrganizationUnit(organizationUnit);
+                            break;
+                    }
                 }
             }
         }

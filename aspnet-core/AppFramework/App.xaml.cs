@@ -72,7 +72,7 @@ namespace AppFramework
             static ButtonResult Validation(IContainerProvider container)
             {
                 ButtonResult result = ButtonResult.Cancel;
-                var dialogService = container.Resolve<IAppHostDialogService>();
+                var dialogService = container.Resolve<IHostDialogService>();
                 dialogService.ShowDialog(AppViewManager.Login, callBack =>
                 {
                     result = callBack.Result;
