@@ -31,10 +31,9 @@
             Grid.Row="1"
             ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
             <sync:SfDataGrid.Columns>
-                <sync:GridTextColumn HeaderText="序号" MappingName="Id" />
                 <sync:GridTemplateColumn
                     Width="200"
-                    HeaderText="名称"
+                    HeaderText="{extensions:Translate DisplayName}"
                     MappingName="DisplayName">
                     <sync:GridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -54,9 +53,9 @@
 
                 <sync:GridTextColumn
                     Width="100"
-                    HeaderText="代码"
+                    HeaderText="{extensions:Translate Code}"
                     MappingName="Name" />
-                <sync:GridTemplateColumn HeaderText="是否已启用" MappingName="IsDisabled">
+                <sync:GridTemplateColumn HeaderText="{extensions:Translate IsEnabled}" MappingName="IsDisabled">
                     <sync:GridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Border
@@ -94,7 +93,7 @@
                         </DataTemplate>
                     </sync:GridTemplateColumn.CellTemplate>
                 </sync:GridTemplateColumn>
-                <sync:GridDateTimeColumn HeaderText="创建日期" MappingName="CreationTime" />
+                <sync:GridDateTimeColumn HeaderText="{extensions:Translate CreationTime}" MappingName="CreationTime" />
             </sync:SfDataGrid.Columns>
         </sync:SfDataGrid>
 

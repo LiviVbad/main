@@ -56,10 +56,12 @@ namespace AppFramework.ViewModels
 
         public override async Task RefreshAsync()
         {
-            await WebRequest.Execute(
+            await SetBusyAsync(async () =>
+             {
+                 await WebRequest.Execute(
                       () => appService.GetOrganizationUnits(),
-                      result => Successed(result),
-                      ex => Task.CompletedTask);
+                      result => Successed(result));
+             });
         }
 
         public async Task DeleteOrganizationUnit(OrganizationUnitModel organizationUnit)
@@ -72,9 +74,7 @@ namespace AppFramework.ViewModels
                     () => appService.DeleteOrganizationUnit(new EntityDto<long>()
                     {
                         Id = organizationUnit.Id
-                    }),
-                    () => RefreshAsync(),
-                    ex => Task.CompletedTask);
+                    }), () => RefreshAsync());
             }
         }
 
@@ -94,8 +94,7 @@ namespace AppFramework.ViewModels
                        {
                            DisplayName = input.DisplayName
                        }),
-                       result => RefreshAsync(),
-                       ex => Task.CompletedTask);
+                       result => RefreshAsync());
             }
         }
 
@@ -112,8 +111,7 @@ namespace AppFramework.ViewModels
                            DisplayName = input.DisplayName,
                            ParentId = parentId
                        }),
-                       result => RefreshAsync(),
-                       ex => Task.CompletedTask);
+                       result => RefreshAsync());
             }
         }
 
@@ -123,9 +121,7 @@ namespace AppFramework.ViewModels
 
             var items = Map<List<OrganizationListModel>>(pagedResult.Items);
             foreach (var item in BuildOrganizationTree(items))
-            {
                 GridModelList.Add(item);
-            }
 
             await Task.CompletedTask;
         }
@@ -179,8 +175,7 @@ namespace AppFramework.ViewModels
                        {
                            OrganizationUnitId = Id
                        }),
-                       result => FinRolesSuccessed(Id, result),
-                       ex => Task.CompletedTask);
+                       result => FinRolesSuccessed(Id, result));
         }
 
         private async Task FinRolesSuccessed(long Id, PagedResultDto<NameValueDto> pagedResult)

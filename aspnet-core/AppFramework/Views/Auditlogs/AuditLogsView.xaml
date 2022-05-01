@@ -34,7 +34,12 @@
             Grid.Row="2"
             ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
             <sync:SfDataGrid.Columns>
-                <sync:GridTextColumn HeaderText="序号" MappingName="Id" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate UserName}" MappingName="UserName" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate Service}" MappingName="ServiceName" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate Action}" MappingName="MethodName" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate Browser}" MappingName="BrowserInfo" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate IpAddress}" MappingName="ClientIpAddress" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate Client}" MappingName="ClientName" />
             </sync:SfDataGrid.Columns>
         </sync:SfDataGrid>
 
