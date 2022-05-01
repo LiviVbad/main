@@ -14,17 +14,16 @@ namespace AppFramework.Views
         private readonly IThemeService themeService;
         private readonly IResourceService resourceService;
 
-        public MainView(IThemeService themeService,
-            IResourceService resourceService)
+        public MainView(IThemeService themeService, IResourceService resourceService)
         {
             Syncfusion.SfSkinManager.SfSkinManager.ApplyStylesOnApplication = true;
-            InitializeComponent();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("");
-           
+            InitializeComponent();
+
             this.themeService = themeService;
             this.resourceService = resourceService;
             themeService.SetDefaultTheme(this);
-            resourceService.UpdateCustomResources(App.Current.Resources, "MaterialDark");
+            resourceService.UpdateResources(App.Current.Resources, "MaterialDark");
             SfNavigationDrawer.ItemClicked += SfNavigationDrawer_ItemClicked;
         }
 

@@ -6,7 +6,7 @@ namespace AppFramework.Services
 {
     public class ResourceService : IResourceService
     {
-        public void AddCustomResources(ResourceDictionary Resource)
+        public void AddResources(ResourceDictionary Resource)
         {
             Resource.MergedDictionaries.Add(new ResourceDictionary()
             {
@@ -14,7 +14,7 @@ namespace AppFramework.Services
             });
         }
 
-        public void UpdateCustomResources(ResourceDictionary Resource, string themeName)
+        public void UpdateResources(ResourceDictionary Resource, string themeName)
         {
             /*
              * 《切换主题说明》
@@ -35,30 +35,7 @@ namespace AppFramework.Services
              * 刷新资源后将系统提供默认资源重新载入程序资源当中。
              */
 
-            AddCustomResources(Resource);
-            RefreshResources(Resource, "Button", themeName);
-        }
-
-        /// <summary>
-        /// 刷新特定资源的样式
-        /// </summary>
-        /// <param name="collection">资源字典</param>
-        /// <param name="resources">资源名称</param>
-        /// <param name="baseThemeName">资源的基础继承类型</param>
-        private void RefreshResources(ResourceDictionary collection,
-           string resources,
-           string baseThemeName)
-        {
-            string basePath = "pack://application:,,,/AppFramework;component/Themes";
-            var resource = new ResourceDictionary()
-            {
-                Source = new Uri($"{basePath}/{resources}.xaml", UriKind.RelativeOrAbsolute)
-            };
-            resource.MergedDictionaries.Add(new ResourceDictionary()
-            {
-                Source = new Uri($"/Syncfusion.Themes.{baseThemeName}.WPF;component/MSControl/{resources}.xaml", UriKind.RelativeOrAbsolute)
-            });
-            collection.MergedDictionaries.Add(resource);
-        }
+            AddResources(Resource); 
+        } 
     }
 }

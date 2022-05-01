@@ -36,6 +36,7 @@
             <DockPanel Margin="5" LastChildFill="False">
                 <DockPanel DockPanel.Dock="Top" LastChildFill="False">
                     <TextBlock
+                        VerticalAlignment="Center"
                         DockPanel.Dock="Left"
                         FontSize="18"
                         FontWeight="Bold"
@@ -44,7 +45,8 @@
                         Command="{Binding ExecuteCommand}"
                         CommandParameter="AddOrganizationUnit"
                         Content="{extensions:Translate AddRootUnit}"
-                        DockPanel.Dock="Right" />
+                        DockPanel.Dock="Right"
+                        Style="{StaticResource SimpleButton}" />
                 </DockPanel>
 
                 <sync:SfTreeView
@@ -139,7 +141,8 @@
                                     HorizontalAlignment="Right"
                                     Command="{Binding ExecuteCommand}"
                                     CommandParameter="AddMember"
-                                    Content="{extensions:Translate AddMember}" />
+                                    Content="{extensions:Translate AddMember}"
+                                    Style="{StaticResource SimpleButton}" />
 
                                 <sync:SfDataGrid Grid.Row="1" ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
                                     <sync:SfDataGrid.Columns>
@@ -179,7 +182,8 @@
                                     HorizontalAlignment="Right"
                                     Command="{Binding ExecuteCommand}"
                                     CommandParameter="AddRole"
-                                    Content="{extensions:Translate CreateNewRole}" />
+                                    Content="{extensions:Translate CreateNewRole}"
+                                    Style="{StaticResource SimpleButton}" />
 
                                 <sync:SfDataGrid Grid.Row="1" ItemsSource="{Binding ElementName=sfRolesDataPager, Path=PagedSource}">
                                     <sync:SfDataGrid.Columns>

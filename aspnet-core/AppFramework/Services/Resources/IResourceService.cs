@@ -4,8 +4,8 @@ namespace AppFramework.Services
 {
     public interface IResourceService
     {
-        void AddCustomResources(ResourceDictionary Resource);
+        void AddResources(ResourceDictionary Resource);
 
-        void UpdateCustomResources(ResourceDictionary Resource, string themeName);
+        void UpdateResources(ResourceDictionary Resource, string themeName);
     }
 }

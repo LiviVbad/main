@@ -25,10 +25,10 @@
 
         <Button
             Margin="10"
-            Padding="5"
             HorizontalAlignment="Right"
             Command="{Binding AddCommand}"
-            Content="{extensions:Translate CreatingNewUser}" />
+            Content="{extensions:Translate CreatingNewUser}"
+            Style="{StaticResource SimpleButton}" />
 
         <TextBox
             Grid.Row="1"
