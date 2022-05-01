@@ -8,7 +8,7 @@ namespace AppFramework
 {
     public static class DialogExtensions
     {
-        public static async Task Show(this IHostDialogService appHostDialogService,
+        public static async Task Show(this IHostDialogService hostDialogService,
             string message,
             string IdentifierName = AppCommonConsts.RootIdentifier)
         {
@@ -23,17 +23,17 @@ namespace AppFramework
                 IdentifierName = AppCommonConsts.LoginIdentifier;
             }
 
-            await Question(appHostDialogService, "", message, IdentifierName);
+            await Question(hostDialogService, "", message, IdentifierName);
         }
 
-        public static async Task<bool> Question(this IHostDialogService appHostDialogService,
+        public static async Task<bool> Question(this IHostDialogService hostDialogService,
             string message,
             string IdentifierName = AppCommonConsts.RootIdentifier)
         {
-            return await Question(appHostDialogService, "", message, IdentifierName);
+            return await Question(hostDialogService, "", message, IdentifierName);
         }
 
-        public static async Task<bool> Question(this IHostDialogService appHostDialogService,
+        public static async Task<bool> Question(this IHostDialogService hostDialogService,
             string title,
             string message,
             string IdentifierName = AppCommonConsts.RootIdentifier)
@@ -42,7 +42,7 @@ namespace AppFramework
             param.Add("Title", title);
             param.Add("Message", message);
 
-            var dialogResult = await appHostDialogService.ShowDialogAsync("MessageBoxView", param, IdentifierName);
+            var dialogResult = await hostDialogService.ShowDialogAsync(AppViewManager.HostMessageBox, param, IdentifierName);
 
             return dialogResult.Result == ButtonResult.OK;
         }
@@ -71,7 +71,7 @@ namespace AppFramework
             parameters.Add("Title", title);
             parameters.Add("Message", message);
 
-            dialogService.ShowDialog("MessageBoxView", parameters);
+            dialogService.ShowDialog(AppViewManager.MessageBox, parameters);
         }
 
         public static bool Question(this IDialogService dialogService, string title, string message)
@@ -81,7 +81,7 @@ namespace AppFramework
             parameters.Add("Message", message);
 
             bool dialogResult = false;
-            dialogService.ShowDialog("MessageBoxView", parameters, callback =>
+            dialogService.ShowDialog(AppViewManager.MessageBox, parameters, callback =>
             {
                 dialogResult = callback.Result == ButtonResult.OK;
             });

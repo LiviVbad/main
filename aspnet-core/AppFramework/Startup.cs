@@ -36,10 +36,11 @@ namespace AppFramework
             services.RegisterSingleton<IResourceService, ResourceService>();
             services.RegisterSingleton<IHostDialogService, DialogHostService>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
-             
+
             services.RegisterDialog<LoginView, LoginViewModel>(AppViewManager.Login);
 
-            services.RegisterForNavigation<MessageBoxView, MessageViewModel>();
+            services.RegisterForNavigation<MessageBoxView, HostMessageViewModel>(AppViewManager.HostMessageBox);
+            services.RegisterForNavigation<MessageBoxView, MessageViewModel>(AppViewManager.MessageBox);
             services.RegisterForNavigation<UserView, UserViewModel>(AppViewManager.User);
             services.RegisterForNavigation<UserDetailsView, UserDetailsViewModel>(AppViewManager.UserDetails);
             services.RegisterForNavigation<MainView, MainViewModel>(AppViewManager.Main);

@@ -150,7 +150,7 @@ namespace AppFramework.ViewModels
                  await UserConfigurationManager.GetAsync();
              });
 
-            OnDialogClosed(new DialogResult(ButtonResult.Retry));
+            OnDialogClosed(ButtonResult.Retry);
         }
 
         public void ChangeTenantAsync()

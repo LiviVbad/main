@@ -5,17 +5,19 @@ using System;
 using System.Threading.Tasks;
 using Prism.Ioc;
 using AppFramework.Localization;
-using AppFramework.Extensions;
-using AppFramework.Services;
+using AppFramework.Extensions; 
+using Prism.Services.Dialogs;
 
 namespace AppFramework.Common
 {
     public static class WebRequest
     {
-        private static readonly Lazy<IHostDialogService> dialogService =
-            new Lazy<IHostDialogService>(
-            ContainerLocator.Container.Resolve<IHostDialogService>
-        );
+        private static readonly IDialogService dialogService;
+
+        static WebRequest()
+        {
+            dialogService = ContainerLocator.Container.Resolve<IDialogService>();
+        }
 
         public static async Task Execute<TResult>(
             Func<Task<TResult>> func,
@@ -140,9 +142,9 @@ namespace AppFramework.Common
            Func<Exception, Task> failCallback)
         {
             if (string.IsNullOrEmpty(userFriendlyException.Details))
-                dialogService.Value.ShowDialog(Local.Localize("Error"), userFriendlyException.Message);
+                dialogService.ShowDialog(Local.Localize("Error"), userFriendlyException.Message);
             else
-                dialogService.Value.ShowDialog(userFriendlyException.Message, userFriendlyException.Details);
+                dialogService.ShowDialog(userFriendlyException.Message, userFriendlyException.Details);
 
             await failCallback(userFriendlyException);
         }
@@ -153,7 +155,7 @@ namespace AppFramework.Common
            Func<TResult, Task> successCallback,
            Func<System.Exception, Task> failCallback)
         {
-            var accepted = await dialogService.Value.Question(
+            var accepted = dialogService.Question(
                 LocalTranslationHelper.Localize("MessageTitle"),
                 LocalTranslationHelper.Localize("RequestTimedOut"));
 
@@ -168,7 +170,7 @@ namespace AppFramework.Common
             Func<Task> successCallback,
             Func<System.Exception, Task> failCallback)
         {
-            var accepted = await dialogService.Value.Question(
+            var accepted = dialogService.Question(
                 LocalTranslationHelper.Localize("MessageTitle"),
                 LocalTranslationHelper.Localize("RequestTimedOut"));
 
@@ -195,7 +197,7 @@ namespace AppFramework.Common
                 httpExceptionMessage += Environment.NewLine + httpException.Message;
             }
 
-            var accepted = await dialogService.Value.Question(
+            var accepted = dialogService.Question(
                LocalTranslationHelper.Localize("MessageTitle"),
                httpExceptionMessage);
 
@@ -222,7 +224,7 @@ namespace AppFramework.Common
                 httpExceptionMessage += Environment.NewLine + httpException.Message;
             }
 
-            var accepted = await dialogService.Value.Question(
+            var accepted = dialogService.Question(
               LocalTranslationHelper.Localize("MessageTitle"),
               httpExceptionMessage);
 
@@ -235,7 +237,7 @@ namespace AppFramework.Common
         private static async Task HandleAbpValidationException(AbpValidationException abpValidationException,
             Func<System.Exception, Task> failCallback)
         {
-            dialogService.Value.ShowDialog(
+            dialogService.ShowDialog(
                LocalTranslationHelper.Localize("MessageTitle"),
                abpValidationException.GetConsolidatedMessage());
 
@@ -247,7 +249,7 @@ namespace AppFramework.Common
             Func<Task> successCallback,
             Func<System.Exception, Task> failCallback)
         {
-            var accepted = await dialogService.Value.Question(
+            var accepted = dialogService.Question(
                 LocalTranslationHelper.Localize("MessageTitle"),
                 LocalTranslationHelper.Localize("UnhandledWebRequestException"));
 
@@ -262,7 +264,7 @@ namespace AppFramework.Common
             Func<TResult, Task> successCallback,
             Func<System.Exception, Task> failCallback)
         {
-            var accepted = await dialogService.Value.Question(
+            var accepted = dialogService.Question(
                 LocalTranslationHelper.Localize("MessageTitle"),
                 LocalTranslationHelper.Localize("UnhandledWebRequestException"));
 

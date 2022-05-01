@@ -60,5 +60,9 @@
         public const string LanguageDetails = "LanguageDetailsView";
 
         public const string DynamicPropertyDetails = "DynamicPropertyDetailsView";
+
+        public const string HostMessageBox = "HostMessageBoxView";
+
+        public const string MessageBox = "MessageBoxView";
     }
 }

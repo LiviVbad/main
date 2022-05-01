@@ -2,7 +2,7 @@
 
 namespace AppFramework.ViewModels
 {
-    public class MessageViewModel : DialogViewModel
+    public class HostMessageViewModel : HostDialogViewModel
     { 
         private string message;
          
