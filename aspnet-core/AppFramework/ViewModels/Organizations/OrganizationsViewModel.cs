@@ -83,20 +83,17 @@ namespace AppFramework.ViewModels
             param.Add("Value", organizationUnit);
             var dialogResult = await dialog.ShowDialogAsync("OrganizationsAddView", param);
             if (dialogResult.Result == ButtonResult.OK)
-            {
                 await RefreshAsync();
-            }
         }
 
         public async Task AddOrganizationUnit(long? parentId = null)
         {
             DialogParameters param = new DialogParameters();
-            param.Add("ParentId", parentId);
+            if (parentId != null) param.Add("ParentId", parentId);
+
             var dialogResult = await dialog.ShowDialogAsync("OrganizationsAddView", param);
             if (dialogResult.Result == ButtonResult.OK)
-            {
                 await RefreshAsync();
-            }
         }
 
         private async Task Successed(ListResultDto<OrganizationUnitDto> pagedResult)
@@ -154,8 +151,8 @@ namespace AppFramework.ViewModels
 
             long Id = organizationUnit.Id;
 
-            await WebRequest.Execute(
-                       () => appService.FindRoles(new FindOrganizationUnitRolesInput()
+            await WebRequest.Execute(() => appService.FindRoles(
+                       new FindOrganizationUnitRolesInput()
                        {
                            OrganizationUnitId = Id
                        }),
@@ -181,11 +178,10 @@ namespace AppFramework.ViewModels
 
         private async Task RefreshRoles(long Id)
         {
-            await SetBusyAsync(
-              async () =>
+            await SetBusyAsync(async () =>
               {
-                  var pagedResult = await appService
-                  .GetOrganizationUnitRoles(new GetOrganizationUnitRolesInput() { Id = Id });
+                  var pagedResult = await appService.GetOrganizationUnitRoles(
+                      new GetOrganizationUnitRolesInput() { Id = Id });
                   if (pagedResult != null)
                   {
                       RolesModelList?.Clear();
@@ -213,8 +209,8 @@ namespace AppFramework.ViewModels
 
             long Id = organizationUnit.Id;
 
-            await WebRequest.Execute(
-                       () => appService.FindUsers(new FindOrganizationUnitUsersInput()
+            await WebRequest.Execute(() => appService.FindUsers(
+                       new FindOrganizationUnitUsersInput()
                        {
                            OrganizationUnitId = Id
                        }),
@@ -242,8 +238,8 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                var pagedResult = await appService
-                    .GetOrganizationUnitUsers(new GetOrganizationUnitUsersInput() { Id = Id });
+                var pagedResult = await appService.GetOrganizationUnitUsers(
+                    new GetOrganizationUnitUsersInput() { Id = Id });
                 if (pagedResult != null)
                 {
                     UserModelList?.Clear();

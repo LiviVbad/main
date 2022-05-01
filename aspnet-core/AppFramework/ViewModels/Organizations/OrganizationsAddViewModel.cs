@@ -13,6 +13,7 @@ namespace AppFramework.ViewModels
             this.appService = appService;
         }
 
+        private bool IsNewOrganization;
         private long? ParentId;
         private OrganizationListModel input;
         private readonly IOrganizationUnitAppService appService;
@@ -27,12 +28,24 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
              {
-                 await WebRequest.Execute(() => appService.CreateOrganizationUnit(
-                     new CreateOrganizationUnitInput()
-                     {
-                         DisplayName = input.DisplayName,
-                         ParentId = ParentId
-                     }));
+                 if (IsNewOrganization)
+                 {
+                     await WebRequest.Execute(() => appService.CreateOrganizationUnit(
+                        new CreateOrganizationUnitInput()
+                        {
+                            DisplayName = input.DisplayName,
+                            ParentId = ParentId
+                        }));
+                 }
+                 else
+                 {
+                     await WebRequest.Execute(() => appService.UpdateOrganizationUnit(
+                         new UpdateOrganizationUnitInput()
+                         {
+                             Id = input.Id,
+                             DisplayName = input.DisplayName
+                         }));
+                 }
              });
             base.Save();
         }
@@ -42,7 +55,10 @@ namespace AppFramework.ViewModels
             if (parameters.ContainsKey("Value"))
                 Input = parameters.GetValue<OrganizationListModel>("Value");
             else
+            {
+                IsNewOrganization = true;
                 Input = new OrganizationListModel();
+            }
 
             if (parameters.ContainsKey("ParentId"))
                 ParentId = parameters.GetValue<long>("ParentId");
