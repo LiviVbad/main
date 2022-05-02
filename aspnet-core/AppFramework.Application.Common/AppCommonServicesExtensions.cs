@@ -28,8 +28,7 @@ using AppFramework.Application.MultiTenancy.HostDashboard;
 using AppFramework.Application.Organizations;
 using AppFramework.Application.MultiTenancy; 
 using AppFramework.Common.Core; 
-using AppFramework.Common.Services.Navigation; 
-using AppFramework.Common.Services.Permission;
+using AppFramework.Common.Services.Navigation;  
 using Abp.Configuration.Startup;
 
 #endregion ApplicationServices

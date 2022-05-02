@@ -1,4 +1,4 @@
-﻿using AppFramework.Common.Services.Permission;
+﻿using AppFramework.Common;
 using Prism.Ioc;
 using System;
 using Xamarin.Forms;

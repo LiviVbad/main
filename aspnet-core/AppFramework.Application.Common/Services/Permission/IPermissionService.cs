@@ -1,4 +1,4 @@
-﻿namespace AppFramework.Common.Services.Permission
+﻿namespace AppFramework.Common
 {
     public interface IPermissionService
     {

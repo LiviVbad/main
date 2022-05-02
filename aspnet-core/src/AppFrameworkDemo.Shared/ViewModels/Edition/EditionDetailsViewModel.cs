@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Common;
 using AppFramework.Editions;
-using AppFramework.Editions.Dto; 
+using AppFramework.Editions.Dto;
 using Prism.Commands;
 using Prism.Navigation;
 using System;
@@ -167,22 +167,22 @@ namespace AppFramework.Shared.ViewModels
                 if (parameters.ContainsKey("Value"))
                     id = parameters.GetValue<EditionListModel>("Value").Id;
 
-                var output = await appService.GetEditionForEdit(new NullableIdDto(id));
-
-                //设置编辑版本信息对应的内容
-                Model = Map<EditionCreateModel>(output.Edition);
-
-                //设置所包含对应的功能结点
-                var flats = Map<List<FlatFeatureModel>>(output.Features);
-                Features = CreateFeatureTrees(flats, null);
-
-                //更新选中的版本功能结点信息
-                UpdateSelectedNodes(Features, output.FeatureValues);
-
-                await PopulateEditionsCombobox(() =>
-                {
-                    SetSelectedEdition(Model.Id);
-                });
+                await WebRequestRuner.Execute(() =>
+                  appService.GetEditionForEdit(new NullableIdDto(id)),
+                  async result =>
+                  {
+                      //设置编辑版本信息对应的内容
+                      Model = Map<EditionCreateModel>(result.Edition);
+                      //设置所包含对应的功能结点
+                      var flats = Map<List<FlatFeatureModel>>(result.Features);
+                      Features = CreateFeatureTrees(flats, null);
+                      //更新选中的版本功能结点信息
+                      UpdateSelectedNodes(Features, result.FeatureValues);
+                      await PopulateEditionsCombobox(() =>
+                      {
+                          SetSelectedEdition(Model.Id);
+                      });
+                  });
             });
         }
 

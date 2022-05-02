@@ -1,8 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Core;
-using AppFramework.Common.Models;
-using AppFramework.Common.Services.Permission;
+using AppFramework.Common.Models; 
 using AppFramework.Organizations;
 using AppFramework.Organizations.Dto;
 using Prism.Commands;

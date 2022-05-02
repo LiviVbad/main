@@ -77,7 +77,7 @@ namespace AppFramework.ViewModels
             UserInput.AssignedRoleNames = Model.Roles.Where(x => !x.IsAssigned).Select(x => x.RoleName).ToArray();
             UserInput.OrganizationUnits = Model.OrganizationUnits.Where(x => x.IsAssigned).Select(x => x.Id).ToList();
 
-            if (!Verify(UserInput.User) || !Verify(UserInput)) return;
+            if (!Verify(UserInput)) return;
 
             await SetBusyAsync(async () =>
             {

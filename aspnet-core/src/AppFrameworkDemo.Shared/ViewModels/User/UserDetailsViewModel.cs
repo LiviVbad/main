@@ -1,8 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using Acr.UserDialogs;
 using AppFramework.Common.Core;
-using AppFramework.Common.Models;
-using AppFramework.Common.Services.Permission;
+using AppFramework.Common.Models; 
 using AppFramework.Authorization.Users;
 using AppFramework.Authorization.Users.Dto; 
 using Prism.Commands;
