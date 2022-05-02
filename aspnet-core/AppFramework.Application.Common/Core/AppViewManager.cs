@@ -48,6 +48,7 @@
          * 详细页 
          */
 
+        public const string EditionDetails = "EditionDetailsView";
 
         public const string TenantDetails = "TenantDetailsView";
 

@@ -39,13 +39,19 @@ namespace AppFramework
 
             services.RegisterDialog<LoginView, LoginViewModel>(AppViewManager.Login);
 
+            services.Add<MainView, MainViewModel>(AppViewManager.Main);
             services.Add<MessageBoxView, HostMessageViewModel>(AppViewManager.HostMessageBox);
             services.Add<MessageBoxView, MessageViewModel>(AppViewManager.MessageBox);
             services.Add<UserView, UserViewModel>(AppViewManager.User);
             services.Add<UserDetailsView, UserDetailsViewModel>(AppViewManager.UserDetails);
-            services.Add<MainView, MainViewModel>(AppViewManager.Main);
             services.Add<RoleView, RoleViewModel>(AppViewManager.Role);
             services.Add<RoleDetailsView, RoleDetailsViewModel>(AppViewManager.RoleDetails);
+
+            services.Add<EditionView,EditionViewModel>(AppViewManager.Edition);
+            services.Add<EditionDetailsView, EditionDetailsViewModel>(AppViewManager.EditionDetails);
+            services.Add<DynamicPropertyView,DynamicPropertyViewModel>(AppViewManager.DynamicProperty);
+            services.Add<DynamicPropertyDetailsView, DynamicPropertyDetailsViewModel>(AppViewManager.DynamicPropertyDetails);
+
             services.Add<AddRolesView, AddRolesViewModel>(AppViewManager.AddRoles);
             services.Add<AddUsersView, AddUsersViewModel>(AppViewManager.AddUsers);
             services.Add<AuditLogsView, AuditLogsViewModel>(AppViewManager.AuditLog);
