@@ -13,8 +13,10 @@ namespace AppFramework.ViewModels
             this.appService = appService;
         }
 
-        private bool IsNewOrganization;
+        #region 字段/属性
+         
         private long? ParentId;
+        private bool IsNewOrganization; 
         private OrganizationListModel input;
         private readonly IOrganizationUnitAppService appService;
 
@@ -23,6 +25,8 @@ namespace AppFramework.ViewModels
             get { return input; }
             set { input = value; RaisePropertyChanged(); }
         }
+
+        #endregion
 
         protected override async void Save()
         {

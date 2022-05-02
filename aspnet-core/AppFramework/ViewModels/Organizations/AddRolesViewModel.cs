@@ -14,10 +14,9 @@ namespace AppFramework.ViewModels
 {
     public class AddRolesViewModel : HostDialogViewModel
     {
-        public DelegateCommand QueryCommand { get; }
+        #region 字段/属性
 
         private long Id;
-
         private string filter;
 
         public string Filter
@@ -35,10 +34,35 @@ namespace AppFramework.ViewModels
             set { values = value; RaisePropertyChanged(); }
         }
 
+        public DelegateCommand QueryCommand { get; private set; }
+
+        #endregion
+
         public AddRolesViewModel(IOrganizationUnitAppService appService)
         {
             QueryCommand = new DelegateCommand(Query);
             this.appService = appService;
+        }
+
+        protected override async void Save()
+        {
+            var roleIds = Values.Where(q => q.IsSelected)?
+                .Select(t => Convert.ToInt32(t.Value.Value))
+                .ToArray();
+
+            await SetBusyAsync(async () =>
+            {
+                await WebRequest.Execute(() => appService.AddRolesToOrganizationUnit(
+                    new RolesToOrganizationUnitInput()
+                    {
+                        OrganizationUnitId = Id,
+                        RoleIds = roleIds
+                    }), () =>
+                    {
+                        base.Save();
+                        return Task.CompletedTask;
+                    });
+            });
         }
 
         private async void Query()
@@ -56,7 +80,7 @@ namespace AppFramework.ViewModels
         {
             if (pagedResult == null) return;
 
-            Values?.Clear();
+            Values.Clear();
 
             foreach (var item in pagedResult.Items)
                 Values.Add(new ChooseItem(item));
@@ -77,19 +101,6 @@ namespace AppFramework.ViewModels
             }
             else
                 Values = new ObservableCollection<ChooseItem>();
-        }
-
-        protected override void Save()
-        {
-            var roleIds = Values.Where(q => q.IsSelected)?
-                .Select(t => Convert.ToInt32(t.Value.Value))
-                .ToArray();
-
-            base.Save(new RolesToOrganizationUnitInput()
-            {
-                OrganizationUnitId = Id,
-                RoleIds = roleIds
-            });
-        }
+        } 
     }
 }
