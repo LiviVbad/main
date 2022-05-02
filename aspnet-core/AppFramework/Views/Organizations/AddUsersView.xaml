@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="AppFramework.Views.UserChooseView"
+    x:Class="AppFramework.Views.AddUsersView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -48,8 +48,11 @@
             IsReadOnly="False"
             ItemsSource="{Binding ElementName=sfDataPager, Path=PagedSource}">
             <sync:SfDataGrid.Columns>
-                <sync:GridCheckBoxColumn HeaderText="Choose" MappingName="IsSelected" />
-                <sync:GridTextColumn HeaderText="Name" MappingName="Value.Name" />
+                <sync:GridCheckBoxColumn
+                    Width="100"
+                    HeaderText="{extensions:Translate Select}"
+                    MappingName="IsSelected" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate Name}" MappingName="Value.Name" />
             </sync:SfDataGrid.Columns>
         </sync:SfDataGrid>
 

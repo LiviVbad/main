@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
-    public class UserChooseViewModel : HostDialogViewModel
+    public class AddRolesViewModel : HostDialogViewModel
     {
         public DelegateCommand QueryCommand { get; }
 
@@ -35,7 +35,7 @@ namespace AppFramework.ViewModels
             set { values = value; RaisePropertyChanged(); }
         }
 
-        public UserChooseViewModel(IOrganizationUnitAppService appService)
+        public AddRolesViewModel(IOrganizationUnitAppService appService)
         {
             QueryCommand = new DelegateCommand(Query);
             this.appService = appService;
@@ -44,7 +44,7 @@ namespace AppFramework.ViewModels
         private async void Query()
         {
             await WebRequest.Execute(() =>
-             appService.FindUsers(new FindOrganizationUnitUsersInput()
+             appService.FindRoles(new FindOrganizationUnitRolesInput()
              {
                  OrganizationUnitId = Id,
                  Filter = Filter
@@ -81,14 +81,14 @@ namespace AppFramework.ViewModels
 
         protected override void Save()
         {
-            var userIds = Values.Where(q => q.IsSelected)?
-                .Select(t => Convert.ToInt64(t.Value.Value))
+            var roleIds = Values.Where(q => q.IsSelected)?
+                .Select(t => Convert.ToInt32(t.Value.Value))
                 .ToArray();
 
-            base.Save(new UsersToOrganizationUnitInput()
+            base.Save(new RolesToOrganizationUnitInput()
             {
                 OrganizationUnitId = Id,
-                UserIds = userIds
+                RoleIds = roleIds
             });
         }
     }

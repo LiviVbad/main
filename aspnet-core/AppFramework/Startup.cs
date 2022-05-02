@@ -39,21 +39,26 @@ namespace AppFramework
 
             services.RegisterDialog<LoginView, LoginViewModel>(AppViewManager.Login);
 
-            services.RegisterForNavigation<MessageBoxView, HostMessageViewModel>(AppViewManager.HostMessageBox);
-            services.RegisterForNavigation<MessageBoxView, MessageViewModel>(AppViewManager.MessageBox);
-            services.RegisterForNavigation<UserView, UserViewModel>(AppViewManager.User);
-            services.RegisterForNavigation<UserDetailsView, UserDetailsViewModel>(AppViewManager.UserDetails);
-            services.RegisterForNavigation<MainView, MainViewModel>(AppViewManager.Main);
-            services.RegisterForNavigation<UserChooseView, UserChooseViewModel>();
-            services.RegisterForNavigation<RoleView, RoleViewModel>(AppViewManager.Role);
-            services.RegisterForNavigation<RoleDetailsView, RoleDetailsViewModel>(AppViewManager.RoleDetails);
-            services.RegisterForNavigation<RoleChooseView, RoleChooseViewModel>();
-            services.RegisterForNavigation<AuditLogsView, AuditLogsViewModel>(AppViewManager.AuditLog);
-            services.RegisterForNavigation<LanguageView, LanguageViewModel>(AppViewManager.Language);
-            services.RegisterForNavigation<VisualView, VisualViewModel>();
-            services.RegisterForNavigation<DashboardView, DashboardViewModel>(AppViewManager.Dashboard);
-            services.RegisterForNavigation<OrganizationsView, OrganizationsViewModel>(AppViewManager.Organization);
-            services.RegisterForNavigation<OrganizationsAddView, OrganizationsAddViewModel>();
+            services.Add<MessageBoxView, HostMessageViewModel>(AppViewManager.HostMessageBox);
+            services.Add<MessageBoxView, MessageViewModel>(AppViewManager.MessageBox);
+            services.Add<UserView, UserViewModel>(AppViewManager.User);
+            services.Add<UserDetailsView, UserDetailsViewModel>(AppViewManager.UserDetails);
+            services.Add<MainView, MainViewModel>(AppViewManager.Main);
+            services.Add<RoleView, RoleViewModel>(AppViewManager.Role);
+            services.Add<RoleDetailsView, RoleDetailsViewModel>(AppViewManager.RoleDetails);
+            services.Add<AddRolesView, AddRolesViewModel>(AppViewManager.AddRoles);
+            services.Add<AddUsersView, AddUsersViewModel>(AppViewManager.AddUsers);
+            services.Add<AuditLogsView, AuditLogsViewModel>(AppViewManager.AuditLog);
+            services.Add<LanguageView, LanguageViewModel>(AppViewManager.Language);
+            services.Add<VisualView, VisualViewModel>(AppViewManager.Visual);
+            services.Add<DashboardView, DashboardViewModel>(AppViewManager.Dashboard);
+            services.Add<OrganizationsView, OrganizationsViewModel>(AppViewManager.Organization);
+            services.Add<OrganizationsAddView, OrganizationsAddViewModel>(AppViewManager.OrganizationAdd);
+        }
+
+        private static void Add<TView, TViewModel>(this IContainerRegistry containerRegistry, string name = null)
+        {
+            containerRegistry.RegisterForNavigation<TView, TViewModel>(name);
         }
     }
 }

@@ -32,6 +32,8 @@
 
         public const string Organization = "OrganizationView";
 
+        public const string OrganizationAdd = "OrganizationAddView";
+
         public const string Language = "LanguageView";
 
         public const string Edition = "EditionView";
@@ -39,6 +41,8 @@
         public const string DynamicProperty = "DynamicPropertyView";
 
         public const string AuditLog = "AuditLogView";
+
+        public const string Visual = "VisualView";
 
         /*
          * 详细页 

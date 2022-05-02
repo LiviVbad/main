@@ -15,12 +15,32 @@ namespace AppFramework.ViewModels
 {
     public class OrganizationsViewModel : NavigationCurdViewModel<OrganizationListModel>
     {
+        #region 字段/属性
+
         private OrganizationListModel SelectedOrganizationUnit;
 
         private readonly IOrganizationUnitAppService appService;
 
+        private ObservableCollection<OrganizationUnitRoleListDto> rolesModelList;
+
+        public ObservableCollection<OrganizationUnitRoleListDto> RolesModelList
+        {
+            get { return rolesModelList; }
+            set { rolesModelList = value; }
+        }
+
+        private ObservableCollection<OrganizationUnitUserListDto> userModelList;
+
+        public ObservableCollection<OrganizationUnitUserListDto> UserModelList
+        {
+            get { return userModelList; }
+            set { userModelList = value; }
+        }
+
         public DelegateCommand<OrganizationListModel> SelectedCommand { get; }
         public DelegateCommand<string> ExecuteCommand { get; private set; }
+
+        #endregion
 
         public OrganizationsViewModel(IOrganizationUnitAppService userAppService)
         {
@@ -52,7 +72,12 @@ namespace AppFramework.ViewModels
             }
         }
 
-        #region OrganizationUnit
+        public override async void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            await RefreshAsync();
+        }
+
+        #region 组织机构
 
         public override async Task RefreshAsync()
         {
@@ -135,45 +160,32 @@ namespace AppFramework.ViewModels
 
         #endregion OrganizationUnit
 
-        #region Roles
-
-        private ObservableCollection<OrganizationUnitRoleListDto> rolesModelList;
-
-        public ObservableCollection<OrganizationUnitRoleListDto> RolesModelList
-        {
-            get { return rolesModelList; }
-            set { rolesModelList = value; }
-        }
-
+        #region 角色
+         
         private async Task AddRole(OrganizationListModel organizationUnit)
         {
             if (organizationUnit == null) return;
 
             long Id = organizationUnit.Id;
 
-            await WebRequest.Execute(() => appService.FindRoles(
+            await WebRequest.Execute(() =>
+                       appService.FindRoles(
                        new FindOrganizationUnitRolesInput()
                        {
                            OrganizationUnitId = Id
                        }),
-                       result => FinRolesSuccessed(Id, result));
-        }
-
-        private async Task FinRolesSuccessed(long Id, PagedResultDto<NameValueDto> pagedResult)
-        {
-            DialogParameters param = new DialogParameters();
-            param.Add("Id", Id);
-            param.Add("Value", pagedResult);
-            var dialogResult = await dialog.ShowDialogAsync("", param);
-            if (dialogResult.Result == ButtonResult.OK)
-            {
-                var input = dialogResult.Parameters.GetValue<RolesToOrganizationUnitInput>("Value");
-                await WebRequest.Execute(
-                    () => appService.AddRolesToOrganizationUnit(input),
-                    () => RefreshRoles(Id));
-
-                RefreshOrganizationUnit(Id);
-            }
+                       async result =>
+                       {
+                           DialogParameters param = new DialogParameters();
+                           param.Add("Id", Id);
+                           param.Add("Value", result);
+                           var dialogResult = await dialog.ShowDialogAsync(AppViewManager.AddRoles, param);
+                           if (dialogResult.Result == ButtonResult.OK)
+                           {
+                               await RefreshRoles(Id);
+                               RefreshOrganizationUnit(Id);
+                           }
+                       });
         }
 
         private async Task RefreshRoles(long Id)
@@ -193,45 +205,31 @@ namespace AppFramework.ViewModels
 
         #endregion Roles
 
-        #region Users
-
-        private ObservableCollection<OrganizationUnitUserListDto> userModelList;
-
-        public ObservableCollection<OrganizationUnitUserListDto> UserModelList
-        {
-            get { return userModelList; }
-            set { userModelList = value; }
-        }
-
+        #region 用户
+         
         private async Task AddMember(OrganizationListModel organizationUnit)
         {
             if (organizationUnit == null) return;
 
             long Id = organizationUnit.Id;
 
-            await WebRequest.Execute(() => appService.FindUsers(
-                       new FindOrganizationUnitUsersInput()
-                       {
-                           OrganizationUnitId = Id
-                       }),
-                       result => FinUsersSuccessed(Id, result));
-        }
-
-        private async Task FinUsersSuccessed(long Id, PagedResultDto<NameValueDto> pagedResult)
-        {
-            DialogParameters param = new DialogParameters();
-            param.Add("Id", Id);
-            param.Add("Value", pagedResult);
-            var dialogResult = await dialog.ShowDialogAsync("", param);
-            if (dialogResult.Result == ButtonResult.OK)
+            await WebRequest.Execute(() =>
+            appService.FindUsers(new FindOrganizationUnitUsersInput()
             {
-                var input = dialogResult.Parameters.GetValue<UsersToOrganizationUnitInput>("Value");
-                await WebRequest.Execute(
-                    () => appService.AddUsersToOrganizationUnit(input),
-                    () => RefreshUsers(Id));
-
-                RefreshOrganizationUnit(Id);
-            }
+                OrganizationUnitId = Id
+            }),
+            async result =>
+            {
+                DialogParameters param = new DialogParameters();
+                param.Add("Id", Id);
+                param.Add("Value", result);
+                var dialogResult = await dialog.ShowDialogAsync(AppViewManager.AddUsers, param);
+                if (dialogResult.Result == ButtonResult.OK)
+                {
+                    await RefreshUsers(Id);
+                    RefreshOrganizationUnit(Id);
+                }
+            });
         }
 
         private async Task RefreshUsers(long Id)
@@ -249,11 +247,6 @@ namespace AppFramework.ViewModels
             });
         }
 
-        #endregion Users
-
-        public override async void OnNavigatedTo(NavigationContext navigationContext)
-        {
-            await RefreshAsync();
-        }
+        #endregion Users 
     }
 }
