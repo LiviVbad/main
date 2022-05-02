@@ -125,8 +125,9 @@ namespace AppFramework.ViewModels
         {
             GridModelList.Clear();
 
-            var items = Map<List<OrganizationListModel>>(pagedResult.Items);
-            foreach (var item in BuildOrganizationTree(items))
+            var items = BuildOrganizationTree(Map<List<OrganizationListModel>>(pagedResult.Items));
+
+            foreach (var item in items)
                 GridModelList.Add(item);
 
             await Task.CompletedTask;
@@ -161,7 +162,7 @@ namespace AppFramework.ViewModels
         #endregion OrganizationUnit
 
         #region 角色
-         
+
         private async Task AddRole(OrganizationListModel organizationUnit)
         {
             if (organizationUnit == null) return;
@@ -206,7 +207,7 @@ namespace AppFramework.ViewModels
         #endregion Roles
 
         #region 用户
-         
+
         private async Task AddMember(OrganizationListModel organizationUnit)
         {
             if (organizationUnit == null) return;

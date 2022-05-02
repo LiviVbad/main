@@ -47,11 +47,12 @@ namespace AppFramework
             services.Add<RoleView, RoleViewModel>(AppViewManager.Role);
             services.Add<RoleDetailsView, RoleDetailsViewModel>(AppViewManager.RoleDetails);
 
-            services.Add<EditionView,EditionViewModel>(AppViewManager.Edition);
+            services.Add<EditionView, EditionViewModel>(AppViewManager.Edition);
             services.Add<EditionDetailsView, EditionDetailsViewModel>(AppViewManager.EditionDetails);
-            services.Add<DynamicPropertyView,DynamicPropertyViewModel>(AppViewManager.DynamicProperty);
+            services.Add<DynamicPropertyView, DynamicPropertyViewModel>(AppViewManager.DynamicProperty);
             services.Add<DynamicPropertyDetailsView, DynamicPropertyDetailsViewModel>(AppViewManager.DynamicPropertyDetails);
-
+            services.Add<TenantView, TenantViewModel>(AppViewManager.Tenant);
+            services.Add<TenantDetailsView, TenantDetailsViewModel>(AppViewManager.TenantDetails);
             services.Add<AddRolesView, AddRolesViewModel>(AppViewManager.AddRoles);
             services.Add<AddUsersView, AddUsersViewModel>(AppViewManager.AddUsers);
             services.Add<AuditLogsView, AuditLogsViewModel>(AppViewManager.AuditLog);

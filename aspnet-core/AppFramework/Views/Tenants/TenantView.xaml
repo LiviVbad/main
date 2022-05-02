@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="AppFramework.Views.EditionView"
+    x:Class="AppFramework.Views.TenantView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -21,13 +21,13 @@
             Margin="10"
             FontSize="26"
             FontWeight="Bold"
-            Text="{extensions:Translate Editions}" />
+            Text="{extensions:Translate TenantManagement}" />
 
         <Button
             Margin="10"
             HorizontalAlignment="Right"
             Command="{Binding AddCommand}"
-            Content="{extensions:Translate CreateNewEdition}"
+            Content="{extensions:Translate CreateNewTenant}"
             Style="{StaticResource SimpleButton}" />
 
         <TextBox
@@ -41,10 +41,12 @@
             Grid.Row="2"
             ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
             <sync:SfDataGrid.Columns>
+                <sync:GridTextColumn HeaderText="{extensions:Translate TenancyName}" MappingName="TenancyName" />
                 <sync:GridTextColumn HeaderText="{extensions:Translate Name}" MappingName="Name" />
-                <sync:GridTextColumn HeaderText="{extensions:Translate DisplayName}" MappingName="DisplayName" />
-                <sync:GridTextColumn HeaderText="{extensions:Translate WaitingDayAfterExpire}" MappingName="WaitingDayAfterExpire" />
-                <sync:GridTextColumn HeaderText="{extensions:Translate TrialDayCount}" MappingName="TrialDayCount" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate DisplayName}" MappingName="EditionDisplayName" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate AdminEmailAddress}" MappingName="AdminEmailAddress" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate SendActivationEmail}" MappingName="SendActivationEmail" />
+                <sync:GridTextColumn HeaderText="{extensions:Translate IsActive}" MappingName="IsActive" />
             </sync:SfDataGrid.Columns>
         </sync:SfDataGrid>
 
