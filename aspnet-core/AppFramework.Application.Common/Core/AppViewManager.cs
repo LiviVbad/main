@@ -32,7 +32,7 @@
 
         public const string Organization = "OrganizationView";
 
-        public const string OrganizationAdd = "OrganizationAddView";
+        public const string OrganizationAdd = "OrganizationsAddView";
 
         public const string Language = "LanguageView";
 

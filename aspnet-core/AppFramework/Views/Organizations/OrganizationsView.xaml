@@ -54,10 +54,9 @@
                     Margin="0,10,0,0"
                     BorderBrush="Transparent"
                     ChildPropertyName="Items"
-                    DockPanel.Dock="Top"
-                    FullRowSelect="True"
+                    DockPanel.Dock="Top" 
                     ItemHeight="40"
-                    ItemsSource="{Binding GridModelList, Mode=OneWay}">
+                    ItemsSource="{Binding GridModelList}">
                     <sync:SfTreeView.ItemContextMenu>
                         <ContextMenu>
                             <MenuItem

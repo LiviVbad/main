@@ -1,5 +1,4 @@
-﻿using AppFramework.Common.Models;
-using AppFramework.Services;
+﻿using AppFramework.Services;
 using AppFramework.ViewModels;
 using Syncfusion.Windows.Shared;
 using Syncfusion.UI.Xaml.NavigationDrawer;
@@ -10,18 +9,13 @@ namespace AppFramework.Views
     /// MainView.xaml 的交互逻辑
     /// </summary>
     public partial class MainView : ChromelessWindow
-    {
-        private readonly IThemeService themeService;
-        private readonly IResourceService resourceService;
-
+    { 
         public MainView(IThemeService themeService, IResourceService resourceService)
         {
             Syncfusion.SfSkinManager.SfSkinManager.ApplyStylesOnApplication = true;
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjI5NjkxQDMyMzAyZTMxMmUzMG4yeGhZNm01STJSdnVKQVJiUHpzM3ZMUEc5K1hZTXd3TVFTbGZ1UERrQlU9");
             InitializeComponent();
-
-            this.themeService = themeService;
-            this.resourceService = resourceService;
+             
             themeService.SetDefaultTheme(this);
             resourceService.UpdateResources(App.Current.Resources, "MaterialDark");
             SfNavigationDrawer.ItemClicked += SfNavigationDrawer_ItemClicked;
