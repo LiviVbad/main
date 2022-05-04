@@ -6,6 +6,7 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AppFramework.Common.Services.Permission;
 
 namespace AppFramework.ViewModels
 {
@@ -54,6 +55,15 @@ namespace AppFramework.ViewModels
             input.SkipCount = 0;
 
             await RefreshAsync();
+        }
+
+        public override void CreateDefaultButtons()
+        {
+            PermissionButtons.Add(new PermissionButton("", Local.Localize("LoginAsThisUser")));
+            PermissionButtons.Add(new PermissionButton("", Local.Localize("Change")));
+            PermissionButtons.Add(new PermissionButton("", Local.Localize("Permissions")));
+            PermissionButtons.Add(new PermissionButton("", Local.Localize("Unlock")));
+            PermissionButtons.Add(new PermissionButton("", Local.Localize("Delete")));
         }
 
         public override async Task RefreshAsync()
