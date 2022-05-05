@@ -2,7 +2,8 @@
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
 using AppFramework.Common;
-using AppFramework.Common.Models; 
+using AppFramework.Common.Models;
+using AppFramework.Common.Services.Permission;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -46,6 +47,15 @@ namespace AppFramework.ViewModels
                 Id = selectedItem.Id
             });
             await RefreshAsync();
-        } 
+        }
+
+        public override PermissionButton[] CreatePermissionButtons()
+        {
+            return new PermissionButton[]
+            {
+                new PermissionButton(PermissionKey.RoleEdit, Local.Localize("Change")),
+                new PermissionButton(PermissionKey.RoleDelete, Local.Localize("Delete"))
+            };
+        }
     }
 }

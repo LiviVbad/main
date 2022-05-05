@@ -1,6 +1,7 @@
 ﻿using AppFramework.Common;
 using AppFramework.Common.Models;
-using AppFramework.Localization; 
+using AppFramework.Common.Services.Permission;
+using AppFramework.Localization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -27,6 +28,17 @@ namespace AppFramework.ViewModels
 
                           await Task.CompletedTask;
                       });
+        }
+
+        public override PermissionButton[] CreatePermissionButtons()
+        {
+            return new PermissionButton[]
+            {
+                new PermissionButton(PermissionKey.LanguageEdit, Local.Localize("Change")),
+                new PermissionButton(PermissionKey.LanguageChangeTexts, Local.Localize("ChangeTexts")),
+                new PermissionButton(PermissionKey.Languages, Local.Localize("SetAsDefaultLanguage")),
+                new PermissionButton(PermissionKey.LanguageDelete, Local.Localize("Delete"))
+            };
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Models;
+using AppFramework.Common.Services.Permission;
 using AppFramework.MultiTenancy;
 using AppFramework.MultiTenancy.Dto;
 using System;
@@ -43,6 +44,18 @@ namespace AppFramework.ViewModels
                           await Task.CompletedTask;
                       });
             });
+        }
+
+        public override PermissionButton[] CreatePermissionButtons()
+        {
+            return new PermissionButton[]
+             {
+                new PermissionButton(PermissionKey.TenantImpersonation, Local.Localize("LoginAsThisTenant")),
+                new PermissionButton(PermissionKey.TenantEdit, Local.Localize("Change")),
+                new PermissionButton(PermissionKey.TenantChangeFeatures, Local.Localize("Features")),
+                new PermissionButton(PermissionKey.TenantDelete, Local.Localize("Delete")),
+                new PermissionButton(PermissionKey.TenantEdit, Local.Localize("Unlock"))
+             };
         }
     }
 }

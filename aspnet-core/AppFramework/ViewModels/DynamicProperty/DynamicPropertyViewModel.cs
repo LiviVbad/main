@@ -1,6 +1,7 @@
 ﻿using AppFramework.Common;
 using AppFramework.Common.Models;
-using AppFramework.DynamicEntityProperties; 
+using AppFramework.Common.Services.Permission;
+using AppFramework.DynamicEntityProperties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,16 @@ namespace AppFramework.ViewModels
                            await Task.CompletedTask;
                        });
             });
-        } 
+        }
+
+        public override PermissionButton[] CreatePermissionButtons()
+        {
+            return new PermissionButton[]
+             {
+                new PermissionButton(PermissionKey.LanguageEdit, Local.Localize("Change")),
+                new PermissionButton(PermissionKey.LanguageDelete, Local.Localize("Delete")),
+                new PermissionButton(PermissionKey.LanguageEdit, Local.Localize("EditValues")),
+             };
+        }
     }
 }
