@@ -45,7 +45,8 @@
         public const string UserDelete = "Pages.Administration.Users.Delete";
         public const string UserChangePermission = "Pages.Administration.Users.ChangePermissions";
         public const string UserImpersonation = "Pages.Administration.Users.Impersonation";
-
+        public const string UsersUnlock = "Pages.Administration.Users.Unlock";
+          
         /* ADMINISTRATION - LANGUAGES */
         public const string Languages = "Pages.Administration.Languages";
         public const string LanguageCreate = "Pages.Administration.Languages.Create";

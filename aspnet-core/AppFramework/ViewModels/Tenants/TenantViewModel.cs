@@ -33,18 +33,16 @@ namespace AppFramework.ViewModels
             {
                 await WebRequest.Execute(
                       () => appService.GetTenants(filter),
-                      result => RefreshSuccessed(result));
+                      async result =>
+                      {
+                          GridModelList.Clear();
+
+                          foreach (var item in Map<List<TenantListModel>>(result.Items))
+                              GridModelList.Add(item);
+
+                          await Task.CompletedTask;
+                      });
             });
-        }
-
-        private async Task RefreshSuccessed(PagedResultDto<TenantListDto> result)
-        {
-            GridModelList.Clear();
-
-            foreach (var item in Map<List<TenantListModel>>(result.Items))
-                GridModelList.Add(item);
-
-            await Task.CompletedTask;
         }
     }
 }

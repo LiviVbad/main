@@ -24,20 +24,17 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(
-                        () => appService.GetEditions(),
-                        result => RefreshSuccessed(result));
+                await WebRequest.Execute(() => appService.GetEditions(),
+                        async result =>
+                        {
+                            GridModelList.Clear();
+
+                            foreach (var item in Map<List<EditionListModel>>(result.Items))
+                                GridModelList.Add(item);
+
+                            await Task.CompletedTask;
+                        });
             });
-        }
-
-        private async Task RefreshSuccessed(ListResultDto<EditionListDto> result)
-        {
-            GridModelList.Clear();
-
-            foreach (var item in Map<List<EditionListModel>>(result.Items))
-                GridModelList.Add(item);
-
-            await Task.CompletedTask;
         }
     }
 }

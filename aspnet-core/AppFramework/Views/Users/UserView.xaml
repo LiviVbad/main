@@ -54,7 +54,7 @@
                                 VerticalAlignment="Center"
                                 Label="{extensions:Translate Actions}"
                                 SmallIcon="/AppFramework;component/Assets/Images/Operation.png">
-                                <ListView ItemsSource="{Binding DataContext.PermissionButtons, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}">
+                                <ListView ItemsSource="{Binding DataContext.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Padding="5" Text="{Binding Name}" />

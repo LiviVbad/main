@@ -8,6 +8,7 @@
     using Prism.Services.Dialogs;
     using System.Collections.ObjectModel;
     using AppFramework.Common.Services.Permission;
+    using AppFramework.Common;
 
     public class NavigationCurdViewModel<T> : CurdViewModel<T>, INavigationAware where T : class
     {
@@ -15,22 +16,28 @@
         {
             dialog = ContainerLocator.Container.Resolve<IHostDialogService>();
             regionManager = ContainerLocator.Container.Resolve<IRegionManager>();
-
-            PermissionButtons = new ObservableCollection<PermissionButton>();
+            permissionService = ContainerLocator.Container.Resolve<IPermissionService>();
         }
+
+        #region 字段/属性
 
         public readonly IRegionManager regionManager;
         public readonly IHostDialogService dialog;
+        private readonly IPermissionService permissionService;
 
-        private ObservableCollection<PermissionButton> permissionButtons;
+        private ObservableCollection<PermissionButton> permissions;
 
-        public ObservableCollection<PermissionButton> PermissionButtons
+        public ObservableCollection<PermissionButton> Permissions
         {
-            get { return permissionButtons; }
-            set { permissionButtons = value; RaisePropertyChanged(); }
+            get { return permissions; }
+            set { permissions = value; RaisePropertyChanged(); }
         }
 
-        public virtual void CreateDefaultButtons() { }
+        public virtual PermissionButton[] CreatePermissionButtons() => new PermissionButton[0];
+
+        #endregion
+
+        #region 添加/编辑/删除/刷新
 
         public override async void Add()
         {
@@ -50,7 +57,26 @@
 
         public override async Task RefreshAsync() => await Task.CompletedTask;
 
-        public string GetPageName(string methodName)
+        #endregion
+
+        #region 导航接口
+
+        public virtual void OnNavigatedFrom(NavigationContext navigationContext) { }
+
+        public virtual async void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            CreatePermissions();
+
+            await RefreshAsync();
+        }
+
+        public virtual bool IsNavigationTarget(NavigationContext navigationContext) => false;
+
+        #endregion
+
+        #region 公共方法
+
+        protected virtual string GetPageName(string methodName)
         {
             return typeof(T)
                 .Name
@@ -58,14 +84,23 @@
                 .Replace("Model", $"{methodName}View");
         }
 
-        public virtual void OnNavigatedFrom(NavigationContext navigationContext) { }
-
-        public virtual async void OnNavigatedTo(NavigationContext navigationContext)
+        protected virtual void CreatePermissions()
         {
-            CreateDefaultButtons();
+            if (Permissions == null)
+            {
+                Permissions = new ObservableCollection<PermissionButton>();
+            }
 
-            await RefreshAsync();
+            Permissions.Clear();
+
+            var permissionButtons = CreatePermissionButtons();
+            foreach (var item in permissionButtons)
+            {
+                if (permissionService.HasPermission(item.Key))
+                    Permissions.Add(item);
+            }
         }
-        public virtual bool IsNavigationTarget(NavigationContext navigationContext) => false;
+
+        #endregion
     }
 }

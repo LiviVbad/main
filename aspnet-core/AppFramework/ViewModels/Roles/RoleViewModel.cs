@@ -2,8 +2,7 @@
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
 using AppFramework.Common;
-using AppFramework.Common.Models;
-using AppFramework.Localization;
+using AppFramework.Common.Models; 
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -24,7 +23,15 @@ namespace AppFramework.ViewModels
             {
                 await WebRequest.Execute(
                         () => appService.GetRoles(new GetRolesInput()),
-                        result => RefreshSuccessed(result));
+                        async result =>
+                        {
+                            GridModelList.Clear();
+
+                            foreach (var item in Map<List<RoleListModel>>(result.Items))
+                                GridModelList.Add(item);
+
+                            await Task.CompletedTask;
+                        });
             });
         }
 
@@ -39,16 +46,6 @@ namespace AppFramework.ViewModels
                 Id = selectedItem.Id
             });
             await RefreshAsync();
-        }
-
-        private async Task RefreshSuccessed(ListResultDto<RoleListDto> result)
-        {
-            GridModelList.Clear();
-
-            foreach (var item in Map<List<RoleListModel>>(result.Items))
-                GridModelList.Add(item);
-
-            await Task.CompletedTask;
-        }
+        } 
     }
 }

@@ -1,5 +1,4 @@
-﻿using Abp.Application.Services.Dto;
-using AppFramework.Authorization.Users;
+﻿using AppFramework.Authorization.Users;
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Common;
@@ -7,6 +6,7 @@ using AppFramework.Common.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AppFramework.Common.Services.Permission;
+using Prism.Commands;
 
 namespace AppFramework.ViewModels
 {
@@ -14,6 +14,7 @@ namespace AppFramework.ViewModels
     {
         private readonly IUserAppService appService;
         public readonly IProfileAppService profileAppService;
+        public DelegateCommand<string> ExecuteCommand { get; private set; }
 
         public GetUsersInput input { get; set; }
 
@@ -40,6 +41,20 @@ namespace AppFramework.ViewModels
             };
             this.appService = appService;
             this.profileAppService = profileAppService;
+
+            ExecuteCommand = new DelegateCommand<string>(Execute);
+        }
+
+        private void Execute(string obj)
+        {
+            switch (obj)
+            {
+                case PermissionKey.Users: break;
+                case PermissionKey.UserEdit: break;
+                case PermissionKey.UserChangePermission: break;
+                case PermissionKey.UsersUnlock: break;
+                case PermissionKey.UserDelete: break;
+            }
         }
 
         private async Task SearchWithDelayAsync(string filterText)
@@ -57,33 +72,34 @@ namespace AppFramework.ViewModels
             await RefreshAsync();
         }
 
-        public override void CreateDefaultButtons()
-        {
-            PermissionButtons.Add(new PermissionButton("", Local.Localize("LoginAsThisUser")));
-            PermissionButtons.Add(new PermissionButton("", Local.Localize("Change")));
-            PermissionButtons.Add(new PermissionButton("", Local.Localize("Permissions")));
-            PermissionButtons.Add(new PermissionButton("", Local.Localize("Unlock")));
-            PermissionButtons.Add(new PermissionButton("", Local.Localize("Delete")));
-        }
-
         public override async Task RefreshAsync()
         {
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(
                        () => appService.GetUsers(input),
-                       result => RefreshSuccessed(result));
+                       async result =>
+                       {
+                           GridModelList.Clear();
+
+                           foreach (var item in Map<List<UserListModel>>(result.Items))
+                               GridModelList.Add(item);
+
+                           await Task.CompletedTask;
+                       });
             });
         }
 
-        private async Task RefreshSuccessed(PagedResultDto<UserListDto> result)
+        public override PermissionButton[] CreatePermissionButtons()
         {
-            GridModelList.Clear();
-
-            foreach (var item in Map<List<UserListModel>>(result.Items))
-                GridModelList.Add(item);
-
-            await Task.CompletedTask;
+            return new PermissionButton[]
+            {
+                new PermissionButton(PermissionKey.Users, Local.Localize("LoginAsThisUser")),
+                new PermissionButton(PermissionKey.UserEdit, Local.Localize("Change")),
+                new PermissionButton(PermissionKey.UserChangePermission, Local.Localize("Permissions")),
+                new PermissionButton(PermissionKey.UsersUnlock, Local.Localize("Unlock")),
+                new PermissionButton(PermissionKey.UserDelete, Local.Localize("Delete"))
+            };
         }
     }
 }

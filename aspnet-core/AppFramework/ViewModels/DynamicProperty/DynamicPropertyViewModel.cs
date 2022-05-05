@@ -1,8 +1,6 @@
-﻿using Abp.Application.Services.Dto;
-using AppFramework.Common;
+﻿using AppFramework.Common;
 using AppFramework.Common.Models;
-using AppFramework.DynamicEntityProperties;
-using AppFramework.DynamicEntityProperties.Dto;
+using AppFramework.DynamicEntityProperties; 
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,20 +22,17 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(
-                       () => appService.GetAll(),
-                       result => RefreshSuccessed(result));
+                await WebRequest.Execute(() => appService.GetAll(),
+                       async result =>
+                       {
+                           GridModelList.Clear();
+
+                           foreach (var item in Map<List<DynamicPropertyModel>>(result.Items))
+                               GridModelList.Add(item);
+
+                           await Task.CompletedTask;
+                       });
             });
-        }
-
-        private async Task RefreshSuccessed(ListResultDto<DynamicPropertyDto> result)
-        {
-            GridModelList.Clear();
-
-            foreach (var item in Map<List<DynamicPropertyModel>>(result.Items))
-                GridModelList.Add(item);
-
-            await Task.CompletedTask;
-        }
+        } 
     }
 }

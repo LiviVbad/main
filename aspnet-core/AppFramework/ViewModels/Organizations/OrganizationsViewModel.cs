@@ -85,7 +85,17 @@ namespace AppFramework.ViewModels
              {
                  await WebRequest.Execute(
                       () => appService.GetOrganizationUnits(),
-                      result => Successed(result));
+                      async result =>
+                      {
+                          GridModelList.Clear();
+
+                          var items = BuildOrganizationTree(Map<List<OrganizationListModel>>(result.Items));
+
+                          foreach (var item in items)
+                              GridModelList.Add(item);
+
+                          await Task.CompletedTask;
+                      });
              });
         }
 
@@ -119,18 +129,6 @@ namespace AppFramework.ViewModels
             var dialogResult = await dialog.ShowDialogAsync("OrganizationsAddView", param);
             if (dialogResult.Result == ButtonResult.OK)
                 await RefreshAsync();
-        }
-
-        private async Task Successed(ListResultDto<OrganizationUnitDto> pagedResult)
-        {
-            GridModelList.Clear();
-
-            var items = BuildOrganizationTree(Map<List<OrganizationListModel>>(pagedResult.Items));
-
-            foreach (var item in items)
-                GridModelList.Add(item);
-
-            await Task.CompletedTask;
         }
 
         private void RefreshOrganizationUnit(long id)
