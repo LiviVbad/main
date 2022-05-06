@@ -1,6 +1,7 @@
-﻿namespace AppFramework.Common.ViewModels
-{ 
-    using Prism.Commands; 
+﻿namespace AppFramework.ViewModels
+{
+    using AppFramework.Common.ViewModels;
+    using Prism.Commands;
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
 
@@ -9,14 +10,18 @@
         public CurdViewModel()
         {
             AddCommand = new DelegateCommand(Add);
-            EditCommand = new DelegateCommand<T>(Edit);
-            DeleteCommand = new DelegateCommand<T>(Delete);
-           
+
             RefreshCommand = new DelegateCommand(async () => await RefreshAsync());
             GridModelList = new ObservableCollection<T>();
         }
 
-        #region ICurdAware
+        private T selectedItem;
+
+        public T SelectedItem
+        {
+            get { return selectedItem; }
+            set { selectedItem = value; RaisePropertyChanged(); }
+        }
 
         private ObservableCollection<T> gridModelList;
 
@@ -27,18 +32,14 @@
         }
 
         public DelegateCommand AddCommand { get; private set; }
-        public DelegateCommand<T> EditCommand { get; private set; }
-        public DelegateCommand<T> DeleteCommand { get; private set; }
         public DelegateCommand RefreshCommand { get; private set; }
-         
+
         public abstract void Add();
 
-        public abstract void Edit(T selectedItem);
+        public abstract void Edit();
 
-        public abstract void Delete(T selectedItem);
+        public abstract void Delete();
 
         public abstract Task RefreshAsync();
-         
-        #endregion ICurdAware 
     }
 }

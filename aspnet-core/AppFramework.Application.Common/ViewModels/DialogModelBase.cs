@@ -2,9 +2,9 @@
 
 namespace AppFramework.Common.ViewModels
 {
-    public abstract class BaseDialogViewModel : ViewModelBase
+    public abstract class DialogModelBase : ViewModelBase
     {
-        public BaseDialogViewModel()
+        public DialogModelBase()
         {
             SaveCommand = new DelegateCommand(OnSave);
             CancelCommand = new DelegateCommand(Cancel);

@@ -4,7 +4,7 @@ using AppFramework.Authorization.Users.Dto;
 using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Core;
-using AppFramework.Common.Models; 
+using AppFramework.Common.Models;
 using Prism.Services.Dialogs;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -76,7 +76,7 @@ namespace AppFramework.ViewModels
             UserInput.AssignedRoleNames = Model.Roles.Where(x => !x.IsAssigned).Select(x => x.RoleName).ToArray();
             UserInput.OrganizationUnits = Model.OrganizationUnits.Where(x => x.IsAssigned).Select(x => x.Id).ToList();
 
-            if (!Verify(UserInput)) return;
+            if (!Verify(UserInput).IsValid) return;
 
             await SetBusyAsync(async () =>
             {

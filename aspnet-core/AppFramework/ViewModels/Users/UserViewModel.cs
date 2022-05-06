@@ -6,7 +6,7 @@ using AppFramework.Common.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AppFramework.Common.Services.Permission;
-using Prism.Commands;
+using Abp.Application.Services.Dto;
 
 namespace AppFramework.ViewModels
 {
@@ -14,7 +14,6 @@ namespace AppFramework.ViewModels
     {
         private readonly IUserAppService appService;
         public readonly IProfileAppService profileAppService;
-        public DelegateCommand<string> ExecuteCommand { get; private set; }
 
         public GetUsersInput input { get; set; }
 
@@ -41,21 +40,46 @@ namespace AppFramework.ViewModels
             };
             this.appService = appService;
             this.profileAppService = profileAppService;
-
-            ExecuteCommand = new DelegateCommand<string>(Execute);
         }
 
-        private void Execute(string obj)
+        public override void Execute(string obj)
         {
             switch (obj)
             {
-                case PermissionKey.Users: break;
-                case PermissionKey.UserEdit: break;
-                case PermissionKey.UserChangePermission: break;
-                case PermissionKey.UsersUnlock: break;
-                case PermissionKey.UserDelete: break;
+                case PermissionKey.Users: LoginAsThisUser(); break;
+                case PermissionKey.UserEdit: Edit(); break;
+                case PermissionKey.UserChangePermission: UserChangePermission(); break;
+                case PermissionKey.UsersUnlock: UsersUnlock(); break;
+                case PermissionKey.UserDelete: Delete(); break;
             }
         }
+
+        #region 修改权限/解锁/使用当前账户登录
+
+        private void UserChangePermission() { }
+
+        private async void UsersUnlock()
+        {
+            await SetBusyAsync(async () =>
+             {
+                 await WebRequest.Execute(() => appService.UnlockUser(
+                     new EntityDto<long>(SelectedItem.Id)));
+             });
+        }
+
+        private void LoginAsThisUser() { }
+
+        public override async void Delete()
+        {
+            var dialogResult = await dialog.Question(Local.Localize("UserDeleteWarningMessage", SelectedItem.UserName));
+
+            if (dialogResult)
+            {
+
+            }
+        }
+
+        #endregion
 
         private async Task SearchWithDelayAsync(string filterText)
         {

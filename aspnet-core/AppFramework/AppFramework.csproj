@@ -561,4 +561,17 @@
     <Resource Include="Assets\Images\theme12.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Views\Shared\HostMessageBoxView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\Shared\HostMessageBoxView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

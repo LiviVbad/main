@@ -39,7 +39,7 @@ namespace AppFramework
             services.RegisterDialog<LoginView, LoginViewModel>(AppViewManager.Login);
 
             services.Add<MainView, MainViewModel>(AppViewManager.Main);
-            services.Add<MessageBoxView, HostMessageViewModel>(AppViewManager.HostMessageBox);
+            services.Add<HostMessageBoxView, HostMessageViewModel>(AppViewManager.HostMessageBox);
             services.Add<MessageBoxView, MessageViewModel>(AppViewManager.MessageBox);
             services.Add<UserView, UserViewModel>(AppViewManager.User);
             services.Add<UserDetailsView, UserDetailsViewModel>(AppViewManager.UserDetails);

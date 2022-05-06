@@ -1,4 +1,5 @@
-﻿using AppFramework.Services;
+﻿using AppFramework.Common.ViewModels;
+using AppFramework.Services;
 using AppFramework.WindowHost;
 using Prism.Commands;
 using Prism.Services.Dialogs;
@@ -43,7 +44,7 @@ namespace AppFramework.ViewModels
         {
             DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.OK, param));
         }
-         
+
         public abstract void OnDialogOpened(IDialogParameters parameters);
     }
 }

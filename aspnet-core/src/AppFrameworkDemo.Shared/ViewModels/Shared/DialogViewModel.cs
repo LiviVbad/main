@@ -5,7 +5,7 @@ using System;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class DialogViewModel : BaseDialogViewModel, IDialogAware
+    public class DialogViewModel : DialogModelBase, IDialogAware
     {
         public event Action<IDialogParameters> RequestClose;
 

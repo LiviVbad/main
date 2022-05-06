@@ -36,15 +36,13 @@ namespace AppFramework.ViewModels
             });
         }
 
-        public override async void Delete(RoleListModel selectedItem)
-        {
-            if (selectedItem == null) return;
-
+        public override async void Delete( )
+        { 
             if (!await dialog.Question(Local.Localize(""))) return;
 
             await appService.DeleteRole(new EntityDto()
             {
-                Id = selectedItem.Id
+                Id = SelectedItem.Id
             });
             await RefreshAsync();
         }

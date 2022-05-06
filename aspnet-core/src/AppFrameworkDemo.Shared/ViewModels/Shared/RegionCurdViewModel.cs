@@ -1,7 +1,6 @@
 ﻿namespace AppFramework.Shared.ViewModels
 {
-    using AppFramework.Common.Services.Layer;
-    using AppFramework.Common.ViewModels;
+    using AppFramework.Common.Services.Layer; 
     using Prism.Commands;
     using Prism.Ioc;
     using Prism.Navigation;

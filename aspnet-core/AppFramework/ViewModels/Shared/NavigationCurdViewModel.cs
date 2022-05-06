@@ -1,6 +1,5 @@
 ﻿namespace AppFramework.ViewModels
-{
-    using AppFramework.Common.ViewModels;
+{ 
     using Prism.Regions;
     using System.Threading.Tasks;
     using Prism.Ioc;
@@ -9,6 +8,7 @@
     using System.Collections.ObjectModel;
     using AppFramework.Common.Services.Permission;
     using AppFramework.Common;
+    using Prism.Commands;
 
     public class NavigationCurdViewModel<T> : CurdViewModel<T>, INavigationAware where T : class
     {
@@ -17,6 +17,8 @@
             dialog = ContainerLocator.Container.Resolve<IHostDialogService>();
             regionManager = ContainerLocator.Container.Resolve<IRegionManager>();
             permissionService = ContainerLocator.Container.Resolve<IPermissionService>();
+
+            ExecuteCommand = new DelegateCommand<string>(Execute);
         }
 
         #region 字段/属性
@@ -35,9 +37,13 @@
 
         public virtual PermissionButton[] CreatePermissionButtons() => new PermissionButton[0];
 
+        public DelegateCommand<string> ExecuteCommand { get; private set; }
+
         #endregion
 
         #region 添加/编辑/删除/刷新
+
+        public virtual void Execute(string obj) { }
 
         public override async void Add()
         {
@@ -46,14 +52,14 @@
                 await RefreshAsync();
         }
 
-        public override async void Edit(T selectedItem)
+        public override async void Edit()
         {
             var dialogResult = await dialog.ShowDialogAsync(GetPageName("Details"));
             if (dialogResult.Result == ButtonResult.OK)
                 await RefreshAsync();
         }
 
-        public override void Delete(T selectedItem) { }
+        public override void Delete() { }
 
         public override async Task RefreshAsync() => await Task.CompletedTask;
 

@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Extensions"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     d:DesignHeight="450"
@@ -39,7 +40,8 @@
         <sync:SfDataGrid
             x:Name="SfDataGrid"
             Grid.Row="2"
-            ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
+            ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}"
+            SelectedItem="{Binding SelectedItem}">
             <sync:SfDataGrid.Columns>
                 <sync:GridTemplateColumn
                     AllowFiltering="False"
@@ -60,6 +62,12 @@
                                             <TextBlock Padding="5" Text="{Binding Name}" />
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
+
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}" CommandParameter="{Binding Path=SelectedItem.Key, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                 </ListView>
                             </sync:DropDownButtonAdv>
                         </DataTemplate>

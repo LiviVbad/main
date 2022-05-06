@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using AppFramework.Common.ViewModels;
+using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
 
