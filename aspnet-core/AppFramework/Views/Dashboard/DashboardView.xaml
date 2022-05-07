@@ -50,207 +50,230 @@
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
     </UserControl.Resources>
-    <Grid Margin="5">
+
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <ItemsControl ItemsSource="{Binding TopDashBoards}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Columns="4" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
+        <Border Margin="1" Style="{StaticResource HeaderBorderStyle}" />
 
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="5">
-                        <Border Opacity="1" Style="{StaticResource BorderStyle}">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                    <GradientStop Offset="0.0" Color="{Binding BackgroundGradientStart}" />
-                                    <GradientStop Offset="1.0" Color="{Binding BackgroundGradientEnd}" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                        </Border>
+        <DockPanel Margin="30,20" LastChildFill="False">
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                <TextBlock
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Text="{extensions:Translate Dashboard}" />
+                <TextBlock
+                    Margin="10,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="{extensions:Translate DashboardHeaderInfo}" />
+            </StackPanel>
+        </DockPanel>
 
-                        <StackPanel Margin="15" VerticalAlignment="Center">
-                            <TextBlock
-                                FontSize="14"
-                                Text="{Binding Title}"
-                                TextWrapping="NoWrap"
-                                ToolTip="{Binding Title}" />
-                            <TextBlock
-                                Margin="0,10"
-                                FontSize="24"
-                                FontWeight="Bold"
-                                Text="{Binding Amount}" />
-                        </StackPanel>
-
-                        <Image
-                            Width="60"
-                            Height="60"
-                            Margin="0,0,10,10"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Source="{Binding Logo}" />
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Margin="20">
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Grid Margin="5">
+            <ItemsControl ItemsSource="{Binding TopDashBoards}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="4" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="5">
+                            <Border Opacity="1" Style="{StaticResource BorderStyle}">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Offset="0.0" Color="{Binding BackgroundGradientStart}" />
+                                        <GradientStop Offset="1.0" Color="{Binding BackgroundGradientEnd}" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+
+                            <StackPanel Margin="15" VerticalAlignment="Center">
+                                <TextBlock
+                                    FontSize="14"
+                                    Text="{Binding Title}"
+                                    TextWrapping="NoWrap"
+                                    ToolTip="{Binding Title}" />
+                                <TextBlock
+                                    Margin="0,10"
+                                    FontSize="24"
+                                    FontWeight="Bold"
+                                    Text="{Binding Amount}" />
+                            </StackPanel>
+
+                            <Image
+                                Width="60"
+                                Height="60"
+                                Margin="0,0,10,10"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Source="{Binding Logo}" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
+                    <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Border Grid.RowSpan="2" Style="{StaticResource BorderStyle}" />
-                <StackPanel Margin="10" Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="&#xe656;" />
-                    <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate IncomeStatistics}" />
-                </StackPanel>
+                <Grid Margin="5" ClipToBounds="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                <StackPanel
-                    Margin="0,10,10,10"
-                    HorizontalAlignment="Right"
-                    Orientation="Horizontal">
-                    <RadioButton Content="{extensions:Translate Daily}" IsChecked="{Binding IsDaily}" />
-                    <RadioButton
-                        Margin="5,0"
-                        Content="{extensions:Translate Weekly}"
-                        IsChecked="{Binding IsWeekly}" />
-                    <RadioButton Content="{extensions:Translate Monthly}" IsChecked="{Binding IsMonthly}" />
-                </StackPanel>
+                    <Border Grid.RowSpan="2" Style="{StaticResource BorderStyle}" />
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="&#xe656;" />
+                        <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate IncomeStatistics}" />
+                    </StackPanel>
 
-                <sync:SfChart
-                    Grid.Row="1"
-                    Margin="5"
-                    ColorModel="{StaticResource CustomColor}"
-                    Palette="Custom"
-                    SideBySideSeriesPlacement="True">
-                    <sync:SfChart.PrimaryAxis>
-                        <sync:CategoryAxis />
-                    </sync:SfChart.PrimaryAxis>
+                    <StackPanel
+                        Margin="0,10,10,10"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                        <RadioButton Content="{extensions:Translate Daily}" IsChecked="{Binding IsDaily}" />
+                        <RadioButton
+                            Margin="5,0"
+                            Content="{extensions:Translate Weekly}"
+                            IsChecked="{Binding IsWeekly}" />
+                        <RadioButton Content="{extensions:Translate Monthly}" IsChecked="{Binding IsMonthly}" />
+                    </StackPanel>
 
-                    <sync:SfChart.SecondaryAxis>
-                        <sync:NumericalAxis />
-                    </sync:SfChart.SecondaryAxis>
-
-                    <sync:SfChart.Legend>
-                        <sync:ChartLegend DockPosition="Bottom" />
-                    </sync:SfChart.Legend>
-
-                    <sync:SplineSeries
-                        EnableAnimation="True"
-                        ItemsSource="{Binding IncomeStatistics}"
-                        XBindingPath="Date"
-                        YBindingPath="Amount" />
-                </sync:SfChart>
-
-            </Grid>
-
-            <Grid Grid.Column="1" Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Border Grid.RowSpan="2" Style="{StaticResource BorderStyle}" />
-
-                <StackPanel Margin="10" Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="&#xe664;" />
-                    <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate EditionStatistics}" />
-                    <TextBlock
-                        Margin="5,0"
-                        VerticalAlignment="Bottom"
-                        Text="{Binding TimeInterval}" />
-                </StackPanel>
-
-                <sync:SfChart Grid.Row="1">
-                    <sync:SfChart.Legend>
-                        <sync:ChartLegend DockPosition="Bottom" />
-                    </sync:SfChart.Legend>
-                    <sync:DoughnutSeries
-                        x:Name="doughnutSeries1"
-                        CapStyle="BothCurve"
-                        DoughnutCoefficient="10"
-                        EnableAnimation="True"
-                        EndAngle="270"
-                        IsStackedDoughnut="True"
-                        ItemsSource="{Binding EditionStatistics}"
-                        MaximumValue="100"
+                    <sync:SfChart
+                        Grid.Row="1"
+                        Margin="5"
+                        ColorModel="{StaticResource CustomColor}"
                         Palette="Custom"
-                        SegmentSpacing="0.2"
-                        StartAngle="-90"
-                        XBindingPath="Category"
-                        YBindingPath="Expenditure" />
-                </sync:SfChart>
-            </Grid>
+                        SideBySideSeriesPlacement="True">
+                        <sync:SfChart.PrimaryAxis>
+                            <sync:CategoryAxis />
+                        </sync:SfChart.PrimaryAxis>
 
-            <Grid Grid.Row="1" Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+                        <sync:SfChart.SecondaryAxis>
+                            <sync:NumericalAxis />
+                        </sync:SfChart.SecondaryAxis>
 
-                <Border
-                    Grid.RowSpan="2"
-                    Padding="10"
-                    Style="{StaticResource BorderStyle}" />
+                        <sync:SfChart.Legend>
+                            <sync:ChartLegend DockPosition="Bottom" />
+                        </sync:SfChart.Legend>
 
-                <StackPanel Margin="10" Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="&#xe602;" />
-                    <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate SubscriptionExpiringTenants}" />
-                </StackPanel>
+                        <sync:SplineSeries
+                            EnableAnimation="True"
+                            ItemsSource="{Binding IncomeStatistics}"
+                            XBindingPath="Date"
+                            YBindingPath="Amount" />
+                    </sync:SfChart>
 
-                <TextBlock
-                    Margin="0,0,10,0"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Foreground="#1E90FF"
-                    Text="{extensions:Translate SeeAllRecords}" />
+                </Grid>
 
-                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" />
-            </Grid>
+                <Grid Grid.Column="1" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Border Grid.RowSpan="2" Style="{StaticResource BorderStyle}" />
 
-            <Grid
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="&#xe664;" />
+                        <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate EditionStatistics}" />
+                        <TextBlock
+                            Margin="5,0"
+                            VerticalAlignment="Bottom"
+                            Text="{Binding TimeInterval}" />
+                    </StackPanel>
 
-                <Border
-                    Grid.RowSpan="2"
-                    Padding="10"
-                    Style="{StaticResource BorderStyle}" />
+                    <sync:SfChart Grid.Row="1">
+                        <sync:SfChart.Legend>
+                            <sync:ChartLegend DockPosition="Bottom" />
+                        </sync:SfChart.Legend>
+                        <sync:DoughnutSeries
+                            x:Name="doughnutSeries1"
+                            CapStyle="BothCurve"
+                            DoughnutCoefficient="10"
+                            EnableAnimation="True"
+                            EndAngle="270"
+                            IsStackedDoughnut="True"
+                            ItemsSource="{Binding EditionStatistics}"
+                            MaximumValue="100"
+                            Palette="Custom"
+                            SegmentSpacing="0.2"
+                            StartAngle="-90"
+                            XBindingPath="Category"
+                            YBindingPath="Expenditure" />
+                    </sync:SfChart>
+                </Grid>
 
-                <StackPanel Margin="10" Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="&#xe69b;" />
-                    <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate RecentTenants}" />
-                </StackPanel>
+                <Grid Grid.Row="1" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                <TextBlock
-                    Margin="0,0,10,0"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Foreground="#1E90FF"
-                    Text="{extensions:Translate SeeAllRecords}" />
+                    <Border
+                        Grid.RowSpan="2"
+                        Padding="10"
+                        Style="{StaticResource BorderStyle}" />
 
-                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" />
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="&#xe602;" />
+                        <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate SubscriptionExpiringTenants}" />
+                    </StackPanel>
+
+                    <TextBlock
+                        Margin="0,0,10,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Foreground="#1E90FF"
+                        Text="{extensions:Translate SeeAllRecords}" />
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" />
+                </Grid>
+
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Border
+                        Grid.RowSpan="2"
+                        Padding="10"
+                        Style="{StaticResource BorderStyle}" />
+
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="&#xe69b;" />
+                        <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate RecentTenants}" />
+                    </StackPanel>
+
+                    <TextBlock
+                        Margin="0,0,10,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Foreground="#1E90FF"
+                        Text="{extensions:Translate SeeAllRecords}" />
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" />
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

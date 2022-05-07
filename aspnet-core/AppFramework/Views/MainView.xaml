@@ -10,6 +10,7 @@
     xmlns:region="clr-namespace:AppFramework.Common;assembly=AppFramework.Common"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     xmlns:win="clr-namespace:AppFramework.WindowHost"
+    Title="AppFramework"
     MinWidth="1280"
     MinHeight="768"
     d:DesignHeight="450"
@@ -25,19 +26,19 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Border Opacity="0.4" Style="{DynamicResource HeaderBorderStyle}" />
+            <Border Opacity="0.5" Style="{DynamicResource HeaderBorderStyle}" />
 
             <DockPanel Margin="20,15" LastChildFill="False">
                 <StackPanel Orientation="Horizontal">
                     <Image
-                        Width="40"
-                        Height="40"
+                        Width="30"
+                        Height="30"
                         Source="/Assets/Images/logo.ico" />
 
                     <TextBlock
-                        Margin="15,0,0,0"
+                        Margin="10,0,0,0"
                         VerticalAlignment="Center"
-                        FontSize="18"
+                        FontSize="16"
                         FontWeight="Bold"
                         Text="AppFramework" />
                 </StackPanel>
@@ -70,7 +71,7 @@
                 AutoChangeDisplayMode="False"
                 BorderBrush="Transparent"
                 DisplayMode="Expanded"
-                FocusVisualStyle="{x:Null}"
+                ExpandedModeWidth="220"
                 IsOpen="True"
                 IsToggleButtonVisible="False"
                 ItemsSource="{Binding NavigationItems}">

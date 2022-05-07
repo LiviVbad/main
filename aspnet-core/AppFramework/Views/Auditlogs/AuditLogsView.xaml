@@ -12,43 +12,52 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
             <RowDefinition />
-            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock
-            Margin="10"
-            FontSize="26"
-            FontWeight="Bold"
-            Text="{extensions:Translate AuditLogs}" />
+        <Border Margin="1" Style="{StaticResource HeaderBorderStyle}" />
 
-        <TextBox
-            Grid.Row="1"
-            Margin="10"
-            FontSize="14"
-            Text="{Binding FilterText, Mode=TwoWay, Delay=1000}" />
+        <DockPanel Margin="30,20" LastChildFill="False">
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                <TextBlock
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Text="{extensions:Translate AuditLogs}" />
+            </StackPanel>
+        </DockPanel>
 
-        <sync:SfDataGrid
-            x:Name="SfDataGrid"
-            Grid.Row="2"
-            ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
-            <sync:SfDataGrid.Columns>
-                <sync:GridTextColumn HeaderText="{extensions:Translate UserName}" MappingName="UserName" />
-                <sync:GridTextColumn HeaderText="{extensions:Translate Service}" MappingName="ServiceName" />
-                <sync:GridTextColumn HeaderText="{extensions:Translate Action}" MappingName="MethodName" />
-                <sync:GridTextColumn HeaderText="{extensions:Translate Browser}" MappingName="BrowserInfo" />
-                <sync:GridTextColumn HeaderText="{extensions:Translate IpAddress}" MappingName="ClientIpAddress" />
-                <sync:GridTextColumn HeaderText="{extensions:Translate Client}" MappingName="ClientName" />
-            </sync:SfDataGrid.Columns>
-        </sync:SfDataGrid>
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
 
-        <sync:SfDataPager
-            x:Name="sfDataPapger"
-            Grid.Row="3"
-            HorizontalAlignment="Right"
-            NumericButtonCount="10"
-            PageSize="50"
-            Source="{Binding GridModelList}" />
+            <Border Grid.RowSpan="3" Style="{StaticResource BorderStyle}" />
+
+            <TextBox Margin="15" Text="{Binding FilterText, Mode=TwoWay, Delay=1000}" />
+
+            <sync:SfDataGrid
+                x:Name="SfDataGrid"
+                Grid.Row="1"
+                ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
+                <sync:SfDataGrid.Columns>
+                    <sync:GridTextColumn HeaderText="{extensions:Translate UserName}" MappingName="UserName" />
+                    <sync:GridTextColumn HeaderText="{extensions:Translate Service}" MappingName="ServiceName" />
+                    <sync:GridTextColumn HeaderText="{extensions:Translate Action}" MappingName="MethodName" />
+                    <sync:GridTextColumn HeaderText="{extensions:Translate Browser}" MappingName="BrowserInfo" />
+                    <sync:GridTextColumn HeaderText="{extensions:Translate IpAddress}" MappingName="ClientIpAddress" />
+                    <sync:GridTextColumn HeaderText="{extensions:Translate Client}" MappingName="ClientName" />
+                </sync:SfDataGrid.Columns>
+            </sync:SfDataGrid>
+
+            <sync:SfDataPager
+                x:Name="sfDataPapger"
+                Grid.Row="2"
+                HorizontalAlignment="Right"
+                NumericButtonCount="10"
+                PageSize="50"
+                Source="{Binding GridModelList}" />
+        </Grid>
     </Grid>
 </UserControl>

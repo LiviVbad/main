@@ -38,7 +38,7 @@
                 Style="{StaticResource SimpleButton}" />
         </DockPanel>
 
-        <Grid Grid.Row="1" Margin="30">
+        <Grid Grid.Row="1" Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition />
