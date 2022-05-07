@@ -4,7 +4,7 @@
     xmlns:skinManager="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF">
     <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
         <Setter Property="Opacity" Value="0.2" />
-        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="CornerRadius" Value="5" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=(skinManager:SfSkinManager.Theme).ThemeName, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=Self}}" Value="Default">
                 <Setter Property="Background" Value="#FFE0E0E0" />
@@ -49,5 +49,12 @@
                 <Setter Property="Background" Value="#262626" />
             </DataTrigger>
         </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="HeaderBorderStyle"
+        BasedOn="{StaticResource BorderStyle}"
+        TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="0" />
     </Style>
 </ResourceDictionary>

@@ -19,45 +19,79 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <win:DialogHost Identifier="{x:Static const:AppCommonConsts.RootIdentifier}">
-        <sync:SfNavigationDrawer
-            x:Name="SfNavigationDrawer"
-            prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Main}"
-            AutoChangeDisplayMode="True"
-            DisplayMode="Expanded"
-            IsOpen="False"
-            ItemsSource="{Binding NavigationItems}">
-            <sync:SfNavigationDrawer.ToggleButtonContentTemplate>
-                <DataTemplate>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Border Opacity="0.4" Style="{DynamicResource HeaderBorderStyle}" />
+
+            <DockPanel Margin="20,15" LastChildFill="False">
+                <StackPanel Orientation="Horizontal">
+                    <Image
+                        Width="40"
+                        Height="40"
+                        Source="/Assets/Images/logo.ico" />
+
                     <TextBlock
-                        Margin="5,0,0,0"
+                        Margin="15,0,0,0"
                         VerticalAlignment="Center"
+                        FontSize="18"
                         FontWeight="Bold"
-                        Text="AppFramework">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseLeftButtonDown">
-                                <i:InvokeCommandAction Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfNavigationDrawer}}" CommandParameter="Home" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </TextBlock>
-                </DataTemplate>
-            </sync:SfNavigationDrawer.ToggleButtonContentTemplate>
-            <sync:SfNavigationDrawer.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding Items}">
-                    <StackPanel Margin="-35,0,0,0" Orientation="Horizontal">
+                        Text="AppFramework" />
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        Text="admin" />
+
+                    <Border
+                        Margin="10,0,0,0"
+                        VerticalAlignment="Center"
+                        Background="#02DF82"
+                        CornerRadius="5">
                         <TextBlock
+                            Padding="10,5"
                             VerticalAlignment="Center"
-                            FontFamily="/Assets/Fonts/#iconfont"
-                            FontSize="18"
-                            Text="{Binding Icon}"
-                            ToolTip="{Binding Title}" />
-                        <TextBlock
-                            Margin="15,0,0,0"
-                            VerticalAlignment="Center"
-                            FontSize="14"
-                            Text="{Binding Title}" />
-                    </StackPanel>
-                </HierarchicalDataTemplate>
-            </sync:SfNavigationDrawer.ItemTemplate>
-        </sync:SfNavigationDrawer>
+                            FontSize="16"
+                            Text="A" />
+                    </Border>
+                </StackPanel>
+            </DockPanel>
+
+            <sync:SfNavigationDrawer
+                x:Name="SfNavigationDrawer"
+                Grid.Row="1"
+                Margin="-1"
+                prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Main}"
+                AutoChangeDisplayMode="False"
+                BorderBrush="Transparent"
+                DisplayMode="Expanded"
+                FocusVisualStyle="{x:Null}"
+                IsOpen="True"
+                IsToggleButtonVisible="False"
+                ItemsSource="{Binding NavigationItems}">
+                <sync:SfNavigationDrawer.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                        <StackPanel Margin="-35,0,0,0" Orientation="Horizontal">
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontFamily="/Assets/Fonts/#iconfont"
+                                FontSize="18"
+                                Text="{Binding Icon}"
+                                ToolTip="{Binding Title}" />
+                            <TextBlock
+                                Margin="15,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Text="{Binding Title}" />
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </sync:SfNavigationDrawer.ItemTemplate>
+            </sync:SfNavigationDrawer>
+        </Grid>
     </win:DialogHost>
 </sync:ChromelessWindow>
