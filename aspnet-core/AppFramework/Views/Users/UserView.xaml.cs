@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 
 namespace AppFramework.Views
 {
@@ -7,9 +8,11 @@ namespace AppFramework.Views
     /// </summary>
     public partial class UserView : UserControl
     {
+        private bool disposedValue;
+
         public UserView()
         {
             InitializeComponent();
-        }
+        } 
     }
 }

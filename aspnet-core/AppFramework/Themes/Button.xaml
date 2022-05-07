@@ -24,5 +24,19 @@
         <Setter Property="FontFamily" Value="/Assets/Fonts/#iconfont" />
     </Style>
 
+    <Style
+        x:Key="IconButtonStyle"
+        BasedOn="{StaticResource SimpleButton}"
+        TargetType="{x:Type Button}">
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="FontFamily" Value="/Assets/Fonts/#iconfont" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+
     <Style BasedOn="{StaticResource SimpleButton}" TargetType="{x:Type Button}" />
 </ResourceDictionary>

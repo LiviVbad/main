@@ -72,6 +72,7 @@
                 BorderBrush="Transparent"
                 DisplayMode="Expanded"
                 ExpandedModeWidth="220"
+                IndentationWidth="10"
                 IsOpen="True"
                 IsToggleButtonVisible="False"
                 ItemsSource="{Binding NavigationItems}">

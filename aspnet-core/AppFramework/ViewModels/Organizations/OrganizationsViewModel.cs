@@ -38,7 +38,9 @@ namespace AppFramework.ViewModels
         }
 
         public DelegateCommand<OrganizationListModel> SelectedCommand { get; }
-        public DelegateCommand<string> ExecuteCommand { get; private set; }
+        public DelegateCommand<OrganizationListModel> AddRootUnitCommand { get; private set; }
+        public DelegateCommand<OrganizationListModel> ChangeCommand { get; private set; }
+        public DelegateCommand<OrganizationListModel> RemoveCommand { get; private set; }
 
         #endregion
 
@@ -46,9 +48,12 @@ namespace AppFramework.ViewModels
         {
             this.appService = userAppService;
             SelectedCommand = new DelegateCommand<OrganizationListModel>(Selected);
-            ExecuteCommand = new DelegateCommand<string>(Execute);
             UserModelList = new ObservableCollection<OrganizationUnitUserListDto>();
             RolesModelList = new ObservableCollection<OrganizationUnitRoleListDto>();
+
+            AddRootUnitCommand = new DelegateCommand<OrganizationListModel>(AddOrganizationUnit);
+            ChangeCommand = new DelegateCommand<OrganizationListModel>(EditOrganizationUnit);
+            RemoveCommand = new DelegateCommand<OrganizationListModel>(DeleteOrganizationUnit);
         }
 
         private async void Selected(OrganizationListModel organizationUnit)
@@ -61,11 +66,11 @@ namespace AppFramework.ViewModels
             await RefreshRoles(organizationUnit.Id);
         }
 
-        protected async void Execute(string arg)
+        public override async void Execute(string arg)
         {
             switch (arg)
             {
-                case "AddOrganizationUnit": await AddOrganizationUnit(); break;
+                case "AddOrganizationUnit": AddOrganizationUnit(null); break;
                 case "AddMember": await AddMember(SelectedOrganizationUnit); break;
                 case "AddRole": await AddRole(SelectedOrganizationUnit); break;
                 case "Refresh": await RefreshAsync(); break;
@@ -92,39 +97,41 @@ namespace AppFramework.ViewModels
                           var items = BuildOrganizationTree(Map<List<OrganizationListModel>>(result.Items));
 
                           foreach (var item in items)
+                          {
                               GridModelList.Add(item);
+                          }
 
                           await Task.CompletedTask;
                       });
              });
         }
 
-        public async Task DeleteOrganizationUnit(OrganizationListModel organizationUnit)
+        public async void DeleteOrganizationUnit(OrganizationListModel organization)
         {
-            var result = await dialog.Question(Local.Localize("OrganizationUnitDeleteWarningMessage", organizationUnit.DisplayName));
+            var result = await dialog.Question(Local.Localize("OrganizationUnitDeleteWarningMessage", organization.DisplayName));
             if (result)
             {
                 await WebRequest.Execute(
                     () => appService.DeleteOrganizationUnit(new EntityDto<long>()
                     {
-                        Id = organizationUnit.Id
+                        Id = organization.Id
                     }), () => RefreshAsync());
             }
         }
 
-        public async Task UpdateRootUnit(OrganizationListModel organizationUnit)
+        public async void EditOrganizationUnit(OrganizationListModel organization)
         {
             DialogParameters param = new DialogParameters();
-            param.Add("Value", organizationUnit);
+            param.Add("Value", organization);
             var dialogResult = await dialog.ShowDialogAsync("OrganizationsAddView", param);
             if (dialogResult.Result == ButtonResult.OK)
                 await RefreshAsync();
         }
 
-        public async Task AddOrganizationUnit(long? parentId = null)
+        public async void AddOrganizationUnit(OrganizationListModel organization)
         {
             DialogParameters param = new DialogParameters();
-            if (parentId != null) param.Add("ParentId", parentId);
+            if (organization != null) param.Add("ParentId", organization.Id);
 
             var dialogResult = await dialog.ShowDialogAsync("OrganizationsAddView", param);
             if (dialogResult.Result == ButtonResult.OK)

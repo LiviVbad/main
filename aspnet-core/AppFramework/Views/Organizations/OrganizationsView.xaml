@@ -6,6 +6,7 @@
     xmlns:extensions="clr-namespace:AppFramework.Extensions"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:AppFramework.Common.Models;assembly=AppFramework.Common"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -18,7 +19,7 @@
 
         <Border Margin="1" Style="{StaticResource HeaderBorderStyle}" />
 
-        <DockPanel Margin="30,20" LastChildFill="False">
+        <DockPanel Margin="20" LastChildFill="False">
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                 <TextBlock
                     FontSize="18"
@@ -47,8 +48,6 @@
                     <TextBlock
                         VerticalAlignment="Center"
                         DockPanel.Dock="Left"
-                        FontSize="18"
-                        FontWeight="Bold"
                         Text="{extensions:Translate OrganizationTree}" />
                     <Button
                         Command="{Binding ExecuteCommand}"
@@ -58,61 +57,63 @@
                         Style="{StaticResource SimpleButton}" />
                 </DockPanel>
 
-                <sync:SfTreeView
+                <TreeView
                     x:Name="TreeViewOriganizations"
                     Margin="0,10,0,0"
                     BorderBrush="Transparent"
-                    ChildPropertyName="Items"
                     DockPanel.Dock="Top"
-                    ItemHeight="40"
                     ItemsSource="{Binding GridModelList}">
-                    <sync:SfTreeView.ItemContextMenu>
-                        <ContextMenu>
-                            <MenuItem
-                                x:Name="AddRootMenu"
-                                Header="{extensions:Translate AddRootUnit}"
-                                Tag="AddRootUnit" />
-                            <MenuItem
-                                x:Name="ChangeMenu"
-                                Header="{extensions:Translate Change}"
-                                Tag="Change" />
-                            <MenuItem
-                                x:Name="RemoveMenu"
-                                Header="{extensions:Translate Remove}"
-                                Tag="Remove" />
-                        </ContextMenu>
-                    </sync:SfTreeView.ItemContextMenu>
-                    <sync:SfTreeView.ItemTemplate>
-                        <DataTemplate>
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate DataType="{x:Type models:OrganizationListModel}" ItemsSource="{Binding Items}">
                             <DockPanel Margin="0,5">
                                 <Image
                                     Width="20"
                                     Height="20"
                                     Margin="0,0,10,0"
-                                    Source="/AppFramework;component/Assets/Images/OrganizationUnit.png" />
+                                    Source="/Assets/Images/OrganizationUnit.png" />
                                 <TextBlock
                                     Margin="5,0"
                                     VerticalAlignment="Center"
                                     Text="{Binding DisplayName}" />
                                 <TextBlock
-                                    Margin="10,0"
+                                    Margin="5,0"
                                     VerticalAlignment="Center"
                                     Text="{Binding MemberCount}" />
                                 <TextBlock VerticalAlignment="Center" Text="{extensions:Translate Members}" />
                                 <TextBlock
-                                    Margin="10,0"
+                                    Margin="5,0"
                                     VerticalAlignment="Center"
                                     Text="{Binding RoleCount}" />
                                 <TextBlock VerticalAlignment="Center" Text="{extensions:Translate Roles}" />
+
+                                <Button
+                                    Margin="10,0,2,0"
+                                    Command="{Binding DataContext.AddRootUnitCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}}"
+                                    CommandParameter="{Binding}"
+                                    Content="&#xe607;"
+                                    Style="{StaticResource IconButtonStyle}"
+                                    ToolTip="{extensions:Translate AddRootUnit}" />
+                                <Button
+                                    Command="{Binding DataContext.ChangeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}}"
+                                    CommandParameter="{Binding}"
+                                    Content="&#xe651;"
+                                    Style="{StaticResource IconButtonStyle}"
+                                    ToolTip="{extensions:Translate Change}" />
+                                <Button
+                                    Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}}"
+                                    CommandParameter="{Binding}"
+                                    Content="&#xe65c;"
+                                    Style="{StaticResource IconButtonStyle}"
+                                    ToolTip="{extensions:Translate Remove}" />
                             </DockPanel>
-                        </DataTemplate>
-                    </sync:SfTreeView.ItemTemplate>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
                     <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectionChanged">
+                        <i:EventTrigger EventName="SelectedItemChanged">
                             <i:InvokeCommandAction Command="{Binding SelectedCommand}" CommandParameter="{Binding ElementName=TreeViewOriganizations, Path=SelectedItem}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                </sync:SfTreeView>
+                </TreeView>
             </DockPanel>
 
             <Border
@@ -136,82 +137,78 @@
 
                 <TabControl Grid.Row="1" Margin="0,5,0,0">
                     <TabItem Background="Transparent" Header="{extensions:Translate Members}">
-                        <sync:SfBusyIndicator AnimationType="DualRing" IsBusy="{Binding IsBusy}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition />
-                                    <RowDefinition Height="auto" />
-                                </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
 
-                                <Button
-                                    Margin="5"
-                                    HorizontalAlignment="Right"
-                                    Command="{Binding ExecuteCommand}"
-                                    CommandParameter="AddMember"
-                                    Content="{extensions:Translate AddMember}"
-                                    Style="{StaticResource SimpleButton}" />
+                            <Button
+                                Margin="5"
+                                HorizontalAlignment="Right"
+                                Command="{Binding ExecuteCommand}"
+                                CommandParameter="AddMember"
+                                Content="{extensions:Translate AddMember}"
+                                Style="{StaticResource SimpleButton}" />
 
-                                <sync:SfDataGrid Grid.Row="1" ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
-                                    <sync:SfDataGrid.Columns>
-                                        <sync:GridTextColumn HeaderText="{extensions:Translate Name}" MappingName="Name" />
-                                        <sync:GridTextColumn HeaderText="{extensions:Translate Surname}" MappingName="Surname" />
-                                        <sync:GridTextColumn HeaderText="{extensions:Translate UserName}" MappingName="UserName" />
-                                        <sync:GridTextColumn HeaderText="{extensions:Translate EmailAddress}" MappingName="EmailAddress" />
-                                        <sync:GridTextColumn
-                                            DisplayBinding="{Binding Path=AddedTime, StringFormat='yyyy-MM-dd'}"
-                                            HeaderText="{extensions:Translate AddedTime}"
-                                            MappingName="AddedTime" />
-                                    </sync:SfDataGrid.Columns>
-                                </sync:SfDataGrid>
+                            <sync:SfDataGrid Grid.Row="1" ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
+                                <sync:SfDataGrid.Columns>
+                                    <sync:GridTextColumn HeaderText="{extensions:Translate Name}" MappingName="Name" />
+                                    <sync:GridTextColumn HeaderText="{extensions:Translate Surname}" MappingName="Surname" />
+                                    <sync:GridTextColumn HeaderText="{extensions:Translate UserName}" MappingName="UserName" />
+                                    <sync:GridTextColumn HeaderText="{extensions:Translate EmailAddress}" MappingName="EmailAddress" />
+                                    <sync:GridTextColumn
+                                        DisplayBinding="{Binding Path=AddedTime, StringFormat='yyyy-MM-dd'}"
+                                        HeaderText="{extensions:Translate AddedTime}"
+                                        MappingName="AddedTime" />
+                                </sync:SfDataGrid.Columns>
+                            </sync:SfDataGrid>
 
-                                <sync:SfDataPager
-                                    x:Name="sfDataPapger"
-                                    Grid.Row="2"
-                                    HorizontalAlignment="Right"
-                                    NumericButtonCount="10"
-                                    PageSize="50"
-                                    Source="{Binding UserModelList}" />
-                            </Grid>
-                        </sync:SfBusyIndicator>
+                            <sync:SfDataPager
+                                x:Name="sfDataPapger"
+                                Grid.Row="2"
+                                HorizontalAlignment="Right"
+                                NumericButtonCount="10"
+                                PageSize="50"
+                                Source="{Binding UserModelList}" />
+                        </Grid>
                     </TabItem>
 
                     <TabItem Background="Transparent" Header="{extensions:Translate Role}">
-                        <sync:SfBusyIndicator AnimationType="DualRing" IsBusy="{Binding IsBusy}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition />
-                                    <RowDefinition Height="auto" />
-                                </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
 
-                                <Button
-                                    Margin="5"
-                                    HorizontalAlignment="Right"
-                                    Command="{Binding ExecuteCommand}"
-                                    CommandParameter="AddRole"
-                                    Content="{extensions:Translate CreateNewRole}"
-                                    Style="{StaticResource SimpleButton}" />
+                            <Button
+                                Margin="5"
+                                HorizontalAlignment="Right"
+                                Command="{Binding ExecuteCommand}"
+                                CommandParameter="AddRole"
+                                Content="{extensions:Translate CreateNewRole}"
+                                Style="{StaticResource SimpleButton}" />
 
-                                <sync:SfDataGrid Grid.Row="1" ItemsSource="{Binding ElementName=sfRolesDataPager, Path=PagedSource}">
-                                    <sync:SfDataGrid.Columns>
-                                        <sync:GridTextColumn HeaderText="{extensions:Translate DisplayName}" MappingName="DisplayName" />
-                                        <sync:GridTextColumn
-                                            DisplayBinding="{Binding Path=AddedTime, StringFormat='yyyy-MM-dd'}"
-                                            HeaderText="{extensions:Translate AddedTime}"
-                                            MappingName="AddedTime" />
-                                    </sync:SfDataGrid.Columns>
-                                </sync:SfDataGrid>
+                            <sync:SfDataGrid Grid.Row="1" ItemsSource="{Binding ElementName=sfRolesDataPager, Path=PagedSource}">
+                                <sync:SfDataGrid.Columns>
+                                    <sync:GridTextColumn HeaderText="{extensions:Translate DisplayName}" MappingName="DisplayName" />
+                                    <sync:GridTextColumn
+                                        DisplayBinding="{Binding Path=AddedTime, StringFormat='yyyy-MM-dd'}"
+                                        HeaderText="{extensions:Translate AddedTime}"
+                                        MappingName="AddedTime" />
+                                </sync:SfDataGrid.Columns>
+                            </sync:SfDataGrid>
 
-                                <sync:SfDataPager
-                                    x:Name="sfRolesDataPager"
-                                    Grid.Row="2"
-                                    HorizontalAlignment="Right"
-                                    NumericButtonCount="10"
-                                    PageSize="50"
-                                    Source="{Binding RolesModelList}" />
-                            </Grid>
-                        </sync:SfBusyIndicator>
+                            <sync:SfDataPager
+                                x:Name="sfRolesDataPager"
+                                Grid.Row="2"
+                                HorizontalAlignment="Right"
+                                NumericButtonCount="10"
+                                PageSize="50"
+                                Source="{Binding RolesModelList}" />
+                        </Grid>
                     </TabItem>
                 </TabControl>
             </Grid>

@@ -14,9 +14,9 @@ namespace AppFramework.ViewModels
         }
 
         #region 字段/属性
-         
+
         private long? ParentId;
-        private bool IsNewOrganization; 
+        private bool IsNewOrganization;
         private OrganizationListModel input;
         private readonly IOrganizationUnitAppService appService;
 
@@ -57,7 +57,9 @@ namespace AppFramework.ViewModels
         public override void OnDialogOpened(IDialogParameters parameters)
         {
             if (parameters.ContainsKey("Value"))
+            {
                 Input = parameters.GetValue<OrganizationListModel>("Value");
+            }
             else
             {
                 IsNewOrganization = true;

@@ -17,7 +17,7 @@
 
         <Border Margin="1" Style="{StaticResource HeaderBorderStyle}" />
 
-        <DockPanel Margin="30,20" LastChildFill="False">
+        <DockPanel Margin="20" LastChildFill="False">
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                 <TextBlock
                     FontSize="18"

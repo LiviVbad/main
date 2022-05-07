@@ -93,7 +93,10 @@
 
         #region 导航接口
 
-        public virtual void OnNavigatedFrom(NavigationContext navigationContext) { }
+        public virtual void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+            GridModelList.Clear();
+        }
 
         public virtual async void OnNavigatedTo(NavigationContext navigationContext)
         {
@@ -102,7 +105,7 @@
             await RefreshAsync();
         }
 
-        public virtual bool IsNavigationTarget(NavigationContext navigationContext) => false;
+        public bool IsNavigationTarget(NavigationContext navigationContext) => false;
 
         #endregion
 
@@ -138,7 +141,7 @@
             IsBusy = true;
             try
             {
-                _ = DialogHost.Show(new BusyView(), AppCommonConsts.RootIdentifier); 
+                _ = DialogHost.Show(new BusyView(), AppCommonConsts.RootIdentifier);
                 await func();
             }
             finally
