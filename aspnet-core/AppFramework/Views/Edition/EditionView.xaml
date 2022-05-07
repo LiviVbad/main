@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Extensions"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     d:DesignHeight="450"
@@ -41,6 +42,38 @@
             Grid.Row="2"
             ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
             <sync:SfDataGrid.Columns>
+                <sync:GridTemplateColumn
+                    AllowFiltering="False"
+                    AllowSorting="False"
+                    HeaderText="{extensions:Translate Actions}">
+                    <sync:GridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <sync:DropDownButtonAdv
+                                Margin="5,0"
+                                Padding="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Label="{extensions:Translate Actions}"
+                                SmallIcon="/AppFramework;component/Assets/Images/Operation.png">
+
+                                <ItemsControl ItemsSource="{Binding DataContext.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}" CommandParameter="{Binding Key}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <TextBlock Margin="5" Text="{Binding Name}" />
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </sync:DropDownButtonAdv>
+                        </DataTemplate>
+                    </sync:GridTemplateColumn.CellTemplate>
+                </sync:GridTemplateColumn>
                 <sync:GridTextColumn HeaderText="{extensions:Translate Name}" MappingName="Name" />
                 <sync:GridTextColumn HeaderText="{extensions:Translate DisplayName}" MappingName="DisplayName" />
                 <sync:GridTextColumn HeaderText="{extensions:Translate WaitingDayAfterExpire}" MappingName="WaitingDayAfterExpire" />

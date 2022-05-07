@@ -56,19 +56,21 @@
                                 VerticalAlignment="Center"
                                 Label="{extensions:Translate Actions}"
                                 SmallIcon="/AppFramework;component/Assets/Images/Operation.png">
-                                <ListView ItemsSource="{Binding DataContext.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Padding="5" Text="{Binding Name}" />
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
 
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="SelectionChanged">
-                                            <i:InvokeCommandAction Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}" CommandParameter="{Binding Path=SelectedItem.Key, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </ListView>
+                                <ItemsControl ItemsSource="{Binding DataContext.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}" CommandParameter="{Binding Key}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <TextBlock Margin="5" Text="{Binding Name}" />
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                             </sync:DropDownButtonAdv>
                         </DataTemplate>
                     </sync:GridTemplateColumn.CellTemplate>
