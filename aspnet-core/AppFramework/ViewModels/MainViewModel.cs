@@ -12,6 +12,25 @@ namespace AppFramework.ViewModels
 {
     public class MainViewModel : NavigationViewModel
     {
+        public MainViewModel(
+            IRegionManager regionManager,
+            IRegionNavigationJournal journal,
+            IProfileAppService profileAppService,
+            IApplicationContext applicationContext,
+            INavigationMenuService navigationItemService,
+            ProxyProfileControllerService profileControllerService)
+        {
+            this.journal = journal;
+            this.regionManager = regionManager;
+            this.profileAppService = profileAppService;
+            this.profileControllerService = profileControllerService;
+            this.applicationContext = applicationContext;
+            this.navigationItemService = navigationItemService;
+
+            ExecuteCommand = new DelegateCommand<string>(Execute);
+            NavigationItems = new ObservableCollection<NavigationItem>();
+        }
+
         #region 字段/属性
 
         public IRegionNavigationJournal journal;
@@ -57,26 +76,7 @@ namespace AppFramework.ViewModels
         public DelegateCommand<string> ExecuteCommand { get; private set; }
 
         #endregion
-
-        public MainViewModel(
-            IRegionManager regionManager,
-            IRegionNavigationJournal journal,
-            IProfileAppService profileAppService,
-            IApplicationContext applicationContext,
-            INavigationMenuService navigationItemService,
-            ProxyProfileControllerService profileControllerService)
-        {
-            this.journal = journal;
-            this.regionManager = regionManager;
-            this.profileAppService = profileAppService;
-            this.profileControllerService = profileControllerService;
-            this.applicationContext = applicationContext;
-            this.navigationItemService = navigationItemService;
-
-            ExecuteCommand = new DelegateCommand<string>(Execute);
-            NavigationItems = new ObservableCollection<NavigationItem>();
-        }
-
+         
         #region 方法
 
         public void Execute(string arg)

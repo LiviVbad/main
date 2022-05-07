@@ -3,7 +3,6 @@ using AppFramework.Authorization.Users;
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Common;
-using AppFramework.Common.Core;
 using AppFramework.Common.Models;
 using Prism.Services.Dialogs;
 using System.Collections.Generic;

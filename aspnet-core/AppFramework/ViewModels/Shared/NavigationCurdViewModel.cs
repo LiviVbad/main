@@ -1,5 +1,5 @@
 ﻿namespace AppFramework.ViewModels
-{ 
+{
     using Prism.Regions;
     using System.Threading.Tasks;
     using Prism.Ioc;
@@ -9,8 +9,12 @@
     using AppFramework.Common.Services.Permission;
     using AppFramework.Common;
     using Prism.Commands;
+    using AppFramework.Common.ViewModels;
+    using System;
+    using AppFramework.WindowHost;
+    using AppFramework.Views;
 
-    public class NavigationCurdViewModel<T> : CurdViewModel<T>, INavigationAware where T : class
+    public class NavigationCurdViewModel<T> : ViewModelBase, INavigationAware where T : class
     {
         public NavigationCurdViewModel()
         {
@@ -18,10 +22,18 @@
             regionManager = ContainerLocator.Container.Resolve<IRegionManager>();
             permissionService = ContainerLocator.Container.Resolve<IPermissionService>();
 
+            AddCommand = new DelegateCommand(Add);
             ExecuteCommand = new DelegateCommand<string>(Execute);
+            RefreshCommand = new DelegateCommand(async () => await RefreshAsync());
+
+            GridModelList = new ObservableCollection<T>();
         }
 
         #region 字段/属性
+
+        public DelegateCommand AddCommand { get; private set; }
+        public DelegateCommand RefreshCommand { get; private set; }
+        public DelegateCommand<string> ExecuteCommand { get; private set; }
 
         public readonly IRegionManager regionManager;
         public readonly IHostDialogService dialog;
@@ -35,9 +47,23 @@
             set { permissions = value; RaisePropertyChanged(); }
         }
 
-        public virtual PermissionButton[] CreatePermissionButtons() => new PermissionButton[0];
+        private T selectedItem;
 
-        public DelegateCommand<string> ExecuteCommand { get; private set; }
+        public T SelectedItem
+        {
+            get { return selectedItem; }
+            set { selectedItem = value; RaisePropertyChanged(); }
+        }
+
+        private ObservableCollection<T> gridModelList;
+
+        public ObservableCollection<T> GridModelList
+        {
+            get { return gridModelList; }
+            set { gridModelList = value; RaisePropertyChanged(); }
+        }
+
+        public virtual PermissionButton[] CreatePermissionButtons() => new PermissionButton[0];
 
         #endregion
 
@@ -45,23 +71,23 @@
 
         public virtual void Execute(string obj) { }
 
-        public override async void Add()
+        public virtual async void Add()
         {
             var dialogResult = await dialog.ShowDialogAsync(GetPageName("Details"));
             if (dialogResult.Result == ButtonResult.OK)
                 await RefreshAsync();
         }
 
-        public override async void Edit()
+        public virtual async void Edit()
         {
             var dialogResult = await dialog.ShowDialogAsync(GetPageName("Details"));
             if (dialogResult.Result == ButtonResult.OK)
                 await RefreshAsync();
         }
 
-        public override void Delete() { }
+        public virtual void Delete() { }
 
-        public override async Task RefreshAsync() => await Task.CompletedTask;
+        public virtual async Task RefreshAsync() => await Task.CompletedTask;
 
         #endregion
 
@@ -107,6 +133,21 @@
             }
         }
 
-        #endregion
+        public override async Task SetBusyAsync(Func<Task> func, string loadingMessage = null)
+        {
+            IsBusy = true;
+            try
+            {
+                _ = DialogHost.Show(new BusyView(), AppCommonConsts.RootIdentifier); 
+                await func();
+            }
+            finally
+            {
+                DialogHost.Close(AppCommonConsts.RootIdentifier);
+                IsBusy = false;
+            }
+        }
+
+        #endregion 
     }
 }
