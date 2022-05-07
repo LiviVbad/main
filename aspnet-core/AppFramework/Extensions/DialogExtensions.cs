@@ -30,7 +30,7 @@ namespace AppFramework
             string message,
             string IdentifierName = AppCommonConsts.RootIdentifier)
         {
-            return await Question(hostDialogService, "", message, IdentifierName);
+            return await Question(hostDialogService, Local.Localize("AreYouSure"), message, IdentifierName);
         }
 
         public static async Task<bool> Question(this IHostDialogService hostDialogService,
@@ -76,6 +76,9 @@ namespace AppFramework
 
         public static bool Question(this IDialogService dialogService, string title, string message)
         {
+            if (string.IsNullOrWhiteSpace(title))
+                title = Local.Localize("AreYouSure");
+
             DialogParameters parameters = new DialogParameters();
             parameters.Add("Title", title);
             parameters.Add("Message", message);
