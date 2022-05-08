@@ -88,10 +88,10 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="5">
-                            <Border Opacity="1" Style="{StaticResource BorderStyle}">
+                            <Border Opacity="0.9" Style="{StaticResource BorderStyle}">
                                 <Border.Background>
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Offset="0.0" Color="{Binding BackgroundGradientStart}" />
+                                        <GradientStop Offset="0.1" Color="{Binding BackgroundGradientStart}" />
                                         <GradientStop Offset="1.0" Color="{Binding BackgroundGradientEnd}" />
                                     </LinearGradientBrush>
                                 </Border.Background>
@@ -100,12 +100,13 @@
                             <StackPanel Margin="15" VerticalAlignment="Center">
                                 <TextBlock
                                     FontSize="14"
+                                    FontWeight="Bold"
                                     Text="{Binding Title}"
                                     TextWrapping="NoWrap"
                                     ToolTip="{Binding Title}" />
                                 <TextBlock
                                     Margin="0,10"
-                                    FontSize="24"
+                                    FontSize="26"
                                     FontWeight="Bold"
                                     Text="{Binding Amount}" />
                             </StackPanel>
