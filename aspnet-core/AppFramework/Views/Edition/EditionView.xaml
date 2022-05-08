@@ -52,6 +52,7 @@
             <sync:SfDataGrid
                 x:Name="SfDataGrid"
                 Grid.Row="1"
+                Margin="15,0"
                 ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
                 <sync:SfDataGrid.Columns>
                     <sync:GridTemplateColumn

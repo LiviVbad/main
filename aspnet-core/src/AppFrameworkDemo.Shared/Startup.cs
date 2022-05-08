@@ -13,7 +13,8 @@ using AppFramework.Common.Core.Validations;
 using AppFramework.Common.Services; 
 using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Layer;
-using AppFramework.Common.Services.Storage; 
+using AppFramework.Common.Services.Storage;
+using AppFramework.Common.Services.Navigation;
 
 #endregion ApplicationServices
 
@@ -29,7 +30,8 @@ namespace AppFramework.Shared
         {
             //注册应用程序依赖服务
             services.RegisterCommonServices();
-
+             
+            services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
             services.RegisterSingleton<IRegionNavigateService, RegionNavigateService>();
             services.RegisterSingleton<IApplayerService, ApplayerService>();
             services.RegisterSingleton<IApplicationService, ApplicationService>();

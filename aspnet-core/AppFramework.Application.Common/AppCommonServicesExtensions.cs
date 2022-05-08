@@ -70,7 +70,6 @@ namespace AppFramework.Common
             services.RegisterScoped<IHostDashboardAppService, HostDashboardAppService>();
 
             services.RegisterSingleton<IMessenger, Messenger>(); 
-            services.RegisterSingleton<INavigationMenuService, NavigationMenuService>(); 
             services.RegisterSingleton<IPermissionService, PermissionService>(); 
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
             services.RegisterSingleton<IMultiTenancyConfig, MultiTenancyConfig>();

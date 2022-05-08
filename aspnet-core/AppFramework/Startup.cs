@@ -35,7 +35,7 @@ namespace AppFramework
             services.RegisterSingleton<IResourceService, ResourceService>();
             services.RegisterSingleton<IHostDialogService, DialogHostService>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
-
+             
             services.RegisterDialog<LoginView, LoginViewModel>(AppViewManager.Login);
 
             services.Add<MainView, MainViewModel>(AppViewManager.Main);

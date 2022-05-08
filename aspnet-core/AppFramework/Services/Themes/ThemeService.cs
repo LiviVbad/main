@@ -7,8 +7,6 @@ namespace AppFramework.Services
 {
     public class ThemeService : IThemeService
     {
-        public event ThemeEventHandler ThemeChanged;
-
         private ObservableCollection<ThemeItem> themes = new ObservableCollection<ThemeItem>()
         {
             new ThemeItem(){  DisplayName="Fluent", LightName="FluentLight",DarkName="FluentDark"},
@@ -18,18 +16,13 @@ namespace AppFramework.Services
         };
 
         public ObservableCollection<ThemeItem> GetThemes()
-        { 
-            return themes;
-        }
-
-        public void SetTheme(DependencyObject dependency, string themeName)
         {
-            dependency.SetTheme(themeName);
+            return themes;
         }
 
         public void SetTheme(string themeName)
         {
-            ThemeChanged?.Invoke(themeName);
+            App.Current.MainWindow.SetTheme(themeName);
         }
 
         public void SetDefaultTheme(DependencyObject dependency)
