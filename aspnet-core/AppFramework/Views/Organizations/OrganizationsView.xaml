@@ -152,7 +152,10 @@
                                 Content="{extensions:Translate AddMember}"
                                 Style="{StaticResource SimpleButton}" />
 
-                            <sync:SfDataGrid Grid.Row="1" ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
+                            <sync:SfDataGrid
+                                Grid.Row="1"
+                                ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}"
+                                Style="{StaticResource SimpleDataGridStyle}">
                                 <sync:SfDataGrid.Columns>
                                     <sync:GridTextColumn HeaderText="{extensions:Translate Name}" MappingName="Name" />
                                     <sync:GridTextColumn HeaderText="{extensions:Translate Surname}" MappingName="Surname" />
@@ -191,7 +194,10 @@
                                 Content="{extensions:Translate CreateNewRole}"
                                 Style="{StaticResource SimpleButton}" />
 
-                            <sync:SfDataGrid Grid.Row="1" ItemsSource="{Binding ElementName=sfRolesDataPager, Path=PagedSource}">
+                            <sync:SfDataGrid
+                                Grid.Row="1"
+                                ItemsSource="{Binding ElementName=sfRolesDataPager, Path=PagedSource}"
+                                Style="{StaticResource SimpleDataGridStyle}">
                                 <sync:SfDataGrid.Columns>
                                     <sync:GridTextColumn HeaderText="{extensions:Translate DisplayName}" MappingName="DisplayName" />
                                     <sync:GridTextColumn

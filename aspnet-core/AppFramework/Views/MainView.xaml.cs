@@ -9,15 +9,14 @@ namespace AppFramework.Views
     /// MainView.xaml 的交互逻辑
     /// </summary>
     public partial class MainView : ChromelessWindow
-    { 
+    {
         public MainView(IThemeService themeService, IResourceService resourceService)
         {
-            Syncfusion.SfSkinManager.SfSkinManager.ApplyStylesOnApplication = true;
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjI5NjkxQDMyMzAyZTMxMmUzMG4yeGhZNm01STJSdnVKQVJiUHpzM3ZMUEc5K1hZTXd3TVFTbGZ1UERrQlU9");
+            AppSettings.OnInitialized();
             InitializeComponent();
-             
+
             themeService.SetDefaultTheme(this);
-            resourceService.UpdateResources(App.Current.Resources, "MaterialDark");
+            resourceService.UpdateResources(App.Current.Resources, themeService.GetCurrent());
             SfNavigationDrawer.ItemClicked += SfNavigationDrawer_ItemClicked;
         }
 

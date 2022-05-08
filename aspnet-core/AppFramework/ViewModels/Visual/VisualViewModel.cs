@@ -3,6 +3,7 @@ using AppFramework.Services;
 using Prism.Commands;
 using Prism.Regions;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace AppFramework.ViewModels
 {
@@ -11,34 +12,32 @@ namespace AppFramework.ViewModels
         public VisualViewModel(IThemeService themeService)
         {
             this.themeService = themeService;
-
-            ReplayCommand = new DelegateCommand(Replay);
-            RestoreCommand = new DelegateCommand(() =>
-            {
-                themeService.SetTheme("MaterialDark");
-            });
+            ReplayCommand = new DelegateCommand<ThemeItem>(Replay);
         }
 
         #region 字段/属性
 
+        private bool initialize;
         private readonly IThemeService themeService;
-        public DelegateCommand ReplayCommand { get; }
+        public DelegateCommand<ThemeItem> ReplayCommand { get; }
         public DelegateCommand RestoreCommand { get; }
-
-        private ThemeItem selectedTheme;
-
-        public ThemeItem SelectedTheme
-        {
-            get { return selectedTheme; }
-            set { selectedTheme = value; RaisePropertyChanged(); }
-        }
 
         private int selectedIndex;
 
         public int SelectedIndex
         {
             get { return selectedIndex; }
-            set { selectedIndex = value; RaisePropertyChanged(); }
+            set
+            {
+                if (initialize)
+                {
+                    AppSettings.Instance.IsDarkTheme = value == 1;
+                    themeService.SetTheme(themeService.GetCurrent());
+                }
+
+                selectedIndex = value;
+                RaisePropertyChanged();
+            }
         }
 
         private ObservableCollection<ThemeItem> themeItems;
@@ -51,18 +50,18 @@ namespace AppFramework.ViewModels
 
         #endregion
 
-        private void Replay()
+        private void Replay(ThemeItem themeItem)
         {
-            var themeName = SelectedIndex == 0 ?
-                SelectedTheme.LightName :
-                SelectedTheme.DarkName;
-
-            themeService.SetTheme(themeName);
+            AppSettings.Instance.IsDarkTheme = SelectedIndex == 1;
+            AppSettings.Instance.ThemeName = themeItem.DisplayName;
+            themeService.SetTheme(themeService.GetCurrent());
         }
 
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
             ThemeItems = themeService.GetThemes();
+            SelectedIndex = AppSettings.Instance.IsDarkTheme ? 1 : 0;
+            initialize = true;
         }
     }
 }

@@ -46,7 +46,8 @@
             AllowFiltering="False"
             AutoGenerateColumns="False"
             IsReadOnly="False"
-            ItemsSource="{Binding ElementName=sfDataPager, Path=PagedSource}">
+            ItemsSource="{Binding ElementName=sfDataPager, Path=PagedSource}"
+            Style="{StaticResource SimpleDataGridStyle}">
             <sync:SfDataGrid.Columns>
                 <sync:GridCheckBoxColumn
                     Width="100"

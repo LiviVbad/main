@@ -54,7 +54,8 @@
                 x:Name="SfDataGrid"
                 Grid.Row="1"
                 Margin="15,0"
-                ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}">
+                ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}"
+                Style="{StaticResource SimpleDataGridStyle}">
                 <sync:SfDataGrid.Columns>
                     <sync:GridTemplateColumn
                         AllowFiltering="False"

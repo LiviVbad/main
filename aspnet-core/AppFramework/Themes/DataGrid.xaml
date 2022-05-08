@@ -12,7 +12,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
 
-    <Style TargetType="sync:SfDataGrid">
+    <Style x:Key="SimpleDataGridStyle" TargetType="grid:SfDataGrid">
         <Setter Property="HeaderLinesVisibility" Value="Horizontal" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="GridLinesVisibility" Value="Horizontal" />
@@ -28,8 +28,7 @@
         <Setter Property="SelectionMode" Value="Extended" />
         <!--  列允许设置宽度  -->
         <Setter Property="AllowResizingColumns" Value="True" />
-        <Setter Property="AutoGenerateColumns" Value="False" />
         <Setter Property="Margin" Value="10,0" />
         <Setter Property="HeaderStyle" Value="{StaticResource DefaultHeaderStyle}" />
-    </Style>
+    </Style> 
 </ResourceDictionary>

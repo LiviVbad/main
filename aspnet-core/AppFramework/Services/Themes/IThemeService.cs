@@ -8,6 +8,8 @@ namespace AppFramework.Services
     {
         ObservableCollection<ThemeItem> GetThemes();
 
+        string GetCurrent();
+
         void SetTheme(string themeName);
 
         void SetDefaultTheme(DependencyObject dependency);

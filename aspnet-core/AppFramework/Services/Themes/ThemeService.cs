@@ -1,6 +1,7 @@
 ﻿using AppFramework.Extensions;
 using AppFramework.Models;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 
 namespace AppFramework.Services
@@ -28,6 +29,12 @@ namespace AppFramework.Services
         public void SetDefaultTheme(DependencyObject dependency)
         {
             dependency.SetTheme("MaterialDark");
+        }
+
+        public string GetCurrent()
+        {
+            var item = themes.FirstOrDefault(t => t.DisplayName.Equals(AppSettings.Instance.ThemeName));
+            return AppSettings.Instance.IsDarkTheme ? item.DarkName : item.LightName;
         }
     }
 }
