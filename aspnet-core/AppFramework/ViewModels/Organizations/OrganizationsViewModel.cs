@@ -120,7 +120,7 @@ namespace AppFramework.ViewModels
         }
 
         public async void EditOrganizationUnit(OrganizationListModel organization)
-        {
+        { 
             DialogParameters param = new DialogParameters();
             param.Add("Value", organization);
             var dialogResult = await dialog.ShowDialogAsync("OrganizationsAddView", param);

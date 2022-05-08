@@ -36,6 +36,7 @@
 
         <Border
             Grid.RowSpan="3"
+            CornerRadius="0"
             Opacity="1"
             Style="{StaticResource BorderStyle}" />
 
