@@ -105,7 +105,7 @@
 		<text name="PasswordResetEmail_SubTitle">进行密码重置.</text>
 		<text name="PasswordResetEmail_ClickTheLinkBelowToResetYourPassword">请点击以下链接重置密码:</text>
 		<text name="EmailActivation_Subject">激活您的用户账号</text>
-		<text name="EmailActivation_Title">欢迎使用系统.</text>
+		<text name="EmailActivation_Title">欢迎使用</text>
 		<text name="EmailActivation_SubTitle">系统发送此邮件验证您的邮箱地址,并激活您的用户账号.</text>
 		<text name="EmailActivation_ClickTheLinkBelowToVerifyYourEmail">请点击以下链接确认您的邮箱地址,并激活您的用户账号:</text>
 		<text name="InvalidEmailAddress">邮箱地址无效</text>

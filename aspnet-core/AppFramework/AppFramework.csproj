@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="Assets\Fonts\iconfont.ttf" />
     <None Remove="Assets\Images\back.png" />
+    <None Remove="Assets\Images\color.png" />
     <None Remove="Assets\Images\DashboardSampleStatistics.png" />
     <None Remove="Assets\Images\DashboardSampleStatistics2.png" />
     <None Remove="Assets\Images\flags\ad.png" />
@@ -306,6 +307,7 @@
   <ItemGroup>
     <Resource Include="Assets\Fonts\iconfont.ttf" />
     <Resource Include="Assets\Images\back.png" />
+    <Resource Include="Assets\Images\color.png" />
     <Resource Include="Assets\Images\DashboardSampleStatistics.png" />
     <Resource Include="Assets\Images\DashboardSampleStatistics2.png" />
     <Resource Include="Assets\Images\flags\ad.png" />

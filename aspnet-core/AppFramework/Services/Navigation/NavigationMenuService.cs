@@ -24,7 +24,6 @@ namespace AppFramework.Services
                       new NavigationItem("\ue657","Editions",AppViewManager.Edition,PermissionKey.Editions),
                }),
                new NavigationItem("\ue62e","Languages",AppViewManager.Language,PermissionKey.Languages),
-               new NavigationItem("\ue7e8","VisualSettings",AppViewManager.Visual,""),
                new NavigationItem("\ue600", "Settings", AppViewManager.Setting, PermissionKey.HostSettings),
             };
         }
