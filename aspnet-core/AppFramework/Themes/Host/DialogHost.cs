@@ -232,8 +232,7 @@ namespace AppFramework.WindowHost
 
         internal async Task<object?> ShowInternal(object content, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler)
         {
-            if (IsOpen)
-                throw new InvalidOperationException("DialogHost is already open.");
+            if (IsOpen) return null;
 
             _dialogTaskCompletionSource = new TaskCompletionSource<object?>();
 

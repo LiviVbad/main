@@ -67,7 +67,12 @@ namespace AppFramework.Services.Dialog
                eventArgs.Session.UpdateContent(_content);
            };
 
-            return (IDialogResult)await DialogHost.Show(dialogContent, viewModel.IdentifierName, eventHandler);
+            var dialogResult = await DialogHost.Show(dialogContent, viewModel.IdentifierName, eventHandler);
+
+            if (dialogResult == null)
+                return new DialogResult(ButtonResult.Cancel);
+
+            return (IDialogResult)dialogResult;
         }
     }
 }
