@@ -74,9 +74,7 @@ namespace AppFramework.ViewModels
             var dialogResult = await dialog.Question(Local.Localize("UserDeleteWarningMessage", SelectedItem.UserName));
 
             if (dialogResult)
-            {
-
-            }
+            { }
         }
 
         #endregion

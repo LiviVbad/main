@@ -326,7 +326,7 @@ namespace AppFramework.WindowHost
             }
 
             dialogHost.CurrentSession = new DialogSession(dialogHost);
-            var window = Window.GetWindow(dialogHost);
+            var window = Window.GetWindow(dialogHost); 
             dialogHost._restoreFocusDialogClose = window != null ? FocusManager.GetFocusedElement(window) : null;
 
             //multiple ways of calling back that the dialog has opened:
@@ -349,7 +349,10 @@ namespace AppFramework.WindowHost
                 {
                     //https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/187
                     //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
-                    Task.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));
+                    Task.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        child.InvalidateVisual();
+                    })));
                 }
             }));
         }
