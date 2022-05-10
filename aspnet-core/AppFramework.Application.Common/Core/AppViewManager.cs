@@ -54,6 +54,8 @@
 
         public const string UserDetails = "UserDetailsView";
 
+        public const string UserPermissionView = "UserChangePermissionView";
+
         public const string RoleDetails = "RoleDetailsView";
 
         public const string OrganizationsDetails = "OrganizationsDetailsView";

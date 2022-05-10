@@ -133,12 +133,12 @@ namespace AppFramework.ViewModels
 
         public void ForgotPasswordAsync()
         {
-            DialogExtensions.ShowDialog(dialogService, AppViewManager.ForgotPassword);
+            dialogService.ShowDialog(AppViewManager.ForgotPassword);
         }
 
         public void EmailActivationAsync()
         {
-            DialogExtensions.ShowDialog(dialogService, AppViewManager.EmailActivation);
+            dialogService.ShowDialog(AppViewManager.EmailActivation);
         }
 
         public async void ChangeLanguage(LanguageInfo languageInfo)
@@ -197,7 +197,7 @@ namespace AppFramework.ViewModels
                     break;
 
                 case TenantAvailabilityState.NotFound:
-                    await dialogService.Question("NotFound", 
+                    await dialogService.Question("NotFound",
                         Local.Localize("ThereIsNoTenantDefinedWithName{0}", tenancyName), "Login");
                     break;
 

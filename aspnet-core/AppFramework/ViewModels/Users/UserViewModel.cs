@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AppFramework.Common.Services.Permission;
 using Abp.Application.Services.Dto;
+using Prism.Services.Dialogs;
 
 namespace AppFramework.ViewModels
 {
@@ -56,7 +57,22 @@ namespace AppFramework.ViewModels
 
         #region 修改权限/解锁/使用当前账户登录
 
-        private void UserChangePermission() { }
+        private async void UserChangePermission()
+        {
+            await SetBusyAsync(async () =>
+            {
+                await WebRequest.Execute(() => appService.GetUserPermissionsForEdit(
+                    new EntityDto<long>(SelectedItem.Id)),
+                    async result =>
+                    {
+                        DialogParameters param = new DialogParameters();
+                        param.Add("Value", result);
+                        _ = dialog.ShowDialogAsync(AppViewManager.UserPermissionView, param);
+
+                        await Task.CompletedTask;
+                    });
+            });
+        }
 
         private async void UsersUnlock()
         {
@@ -67,14 +83,22 @@ namespace AppFramework.ViewModels
              });
         }
 
-        private void LoginAsThisUser() { }
+        private async void LoginAsThisUser()
+        {
+        }
 
         public override async void Delete()
         {
-            var dialogResult = await dialog.Question(Local.Localize("UserDeleteWarningMessage", SelectedItem.UserName));
-
-            if (dialogResult)
-            { }
+            var result = await dialog.Question(Local.Localize("UserDeleteWarningMessage", SelectedItem.UserName));
+            if (result)
+            {
+                await SetBusyAsync(async () =>
+                {
+                    await WebRequest.Execute(() => appService.DeleteUser(
+                        new EntityDto<long>(SelectedItem.Id)),
+                        RefreshAsync);
+                });
+            }
         }
 
         #endregion

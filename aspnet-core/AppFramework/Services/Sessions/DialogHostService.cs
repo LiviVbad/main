@@ -21,31 +21,25 @@ namespace AppFramework.Services.Dialog
             this._containerExtension = containerExtension;
         }
 
-        public void ShowDialog(string name, Action<IDialogResult> callback)
-        {
-            var content = _containerExtension.Resolve<object>(name);
-            if (!(content is Window dialogContent))
-                throw new NullReferenceException("A dialog's content must be a Window");
-
-            if (dialogContent is Window view && view.DataContext is null && ViewModelLocator.GetAutoWireViewModel(view) is null)
-                ViewModelLocator.SetAutoWireViewModel(view, true);
-
-            if (!(dialogContent.DataContext is IDialogAware viewModel))
-                throw new NullReferenceException("A dialog's ViewModel must implement the IDialogAware interface");
-
-            if (dialogContent is IDialogWindow dialogWindow)
-                ConfigureDialogWindowEvents(dialogWindow, callback);
-
-            MvvmHelpers.ViewAndViewModelAction<IDialogAware>(viewModel, d => d.OnDialogOpened(null));
-
-            dialogContent.ShowDialog();
-        }
-
         public async Task<IDialogResult> ShowDialogAsync(string name, IDialogParameters parameters = null, string IdentifierName = "Root")
         {
-            if (parameters == null)
-                parameters = new DialogParameters();
+            var dialogContent = GetDialogContent(name, IdentifierName);
 
+            if (!(dialogContent.DataContext is IHostDialogAware viewModel))
+                throw new NullReferenceException("A dialog's ViewModel must implement the IDialogHostAware interface");
+
+            var eventHandler = GetDialogOpenedEventHandler(viewModel, parameters);
+
+            var dialogResult = await DialogHost.Show(dialogContent, IdentifierName, eventHandler);
+
+            if (dialogResult == null)
+                return new DialogResult(ButtonResult.Cancel);
+
+            return (IDialogResult)dialogResult;
+        }
+
+        private FrameworkElement GetDialogContent(string name, string IdentifierName = "Root")
+        {
             var content = _containerExtension.Resolve<object>(name);
             if (!(content is FrameworkElement dialogContent))
                 throw new NullReferenceException("A dialog's content must be a FrameworkElement");
@@ -58,21 +52,22 @@ namespace AppFramework.Services.Dialog
 
             viewModel.IdentifierName = IdentifierName;
 
+            return dialogContent;
+        }
+
+        private DialogOpenedEventHandler GetDialogOpenedEventHandler(IHostDialogAware viewModel,
+            IDialogParameters parameters)
+        {
             DialogOpenedEventHandler eventHandler =
-                (sender, eventArgs) =>
-           {
-               var _content = eventArgs.Session.Content;
-               if (viewModel is IHostDialogAware aware)
-                   aware.OnDialogOpened(parameters);
-               eventArgs.Session.UpdateContent(_content);
-           };
+               (sender, eventArgs) =>
+               {
+                   var _content = eventArgs.Session.Content;
+                   if (viewModel is IHostDialogAware aware)
+                       aware.OnDialogOpened(parameters);
+                   eventArgs.Session.UpdateContent(_content);
+               };
 
-            var dialogResult = await DialogHost.Show(dialogContent, viewModel.IdentifierName, eventHandler);
-
-            if (dialogResult == null)
-                return new DialogResult(ButtonResult.Cancel);
-
-            return (IDialogResult)dialogResult;
+            return eventHandler;
         }
     }
 }

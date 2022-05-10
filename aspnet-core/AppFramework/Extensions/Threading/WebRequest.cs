@@ -142,9 +142,9 @@ namespace AppFramework.Common
            Func<Exception, Task> failCallback)
         {
             if (string.IsNullOrEmpty(userFriendlyException.Details))
-                dialogService.ShowDialog(Local.Localize("Error"), userFriendlyException.Message);
+                dialogService.Show(Local.Localize("Error"), userFriendlyException.Message);
             else
-                dialogService.ShowDialog(userFriendlyException.Message, userFriendlyException.Details);
+                dialogService.Show(userFriendlyException.Message, userFriendlyException.Details);
 
             await failCallback(userFriendlyException);
         }
@@ -237,7 +237,7 @@ namespace AppFramework.Common
         private static async Task HandleAbpValidationException(AbpValidationException abpValidationException,
             Func<System.Exception, Task> failCallback)
         {
-            dialogService.ShowDialog(
+            dialogService.Show(
                LocalTranslationHelper.Localize("MessageTitle"),
                abpValidationException.GetConsolidatedMessage());
 

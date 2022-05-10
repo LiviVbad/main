@@ -2,7 +2,7 @@
 using AppFramework.Common;
 using AppFramework.Common.Core.Validations;
 using AppFramework.Common.Services.Account;
-using AppFramework.Common.Services.Navigation; 
+using AppFramework.Common.Services.Navigation;
 using AppFramework.Common.Services.Storage;
 using AppFramework.Services;
 using AppFramework.Services.Account;
@@ -35,7 +35,7 @@ namespace AppFramework
             services.RegisterSingleton<IResourceService, ResourceService>();
             services.RegisterSingleton<IHostDialogService, DialogHostService>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
-             
+
             services.RegisterDialog<LoginView, LoginViewModel>(AppViewManager.Login);
 
             services.Add<MainView, MainViewModel>(AppViewManager.Main);
@@ -43,6 +43,7 @@ namespace AppFramework
             services.Add<MessageBoxView, MessageViewModel>(AppViewManager.MessageBox);
             services.Add<UserView, UserViewModel>(AppViewManager.User);
             services.Add<UserDetailsView, UserDetailsViewModel>(AppViewManager.UserDetails);
+            services.Add<UserChangePermissionView, UserChangePermissionViewModel>(AppViewManager.UserPermissionView);
             services.Add<RoleView, RoleViewModel>(AppViewManager.Role);
             services.Add<RoleDetailsView, RoleDetailsViewModel>(AppViewManager.RoleDetails);
 

@@ -9,8 +9,9 @@ namespace AppFramework.Services
     /// </summary>
     public interface IHostDialogService : IDialogService
     {
-        void ShowDialog(string name, Action<IDialogResult> callback);
-
-        Task<IDialogResult> ShowDialogAsync(string name, IDialogParameters parameters = null, string IdentifierName = "Root");
+        Task<IDialogResult> ShowDialogAsync(
+            string name,
+            IDialogParameters parameters = null,
+            string IdentifierName = "Root");
     }
 }
