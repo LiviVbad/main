@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using AppFramework.Common.Services.Permission;
 using Abp.Application.Services.Dto;
 using Prism.Services.Dialogs;
+using AppFramework.WindowHost;
 
 namespace AppFramework.ViewModels
 {
@@ -59,19 +60,25 @@ namespace AppFramework.ViewModels
 
         private async void UserChangePermission()
         {
+            GetUserPermissionsForEditOutput output = null;
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetUserPermissionsForEdit(
-                    new EntityDto<long>(SelectedItem.Id)),
-                    async result =>
-                    {
-                        DialogParameters param = new DialogParameters();
-                        param.Add("Value", result);
-                        _ = dialog.ShowDialogAsync(AppViewManager.UserPermissionView, param);
-
-                        await Task.CompletedTask;
-                    });
+                await WebRequest.Execute(() =>
+                appService.GetUserPermissionsForEdit(new EntityDto<long>(SelectedItem.Id)),
+                async result =>
+                {
+                    output = result;
+                    await Task.CompletedTask;
+                });
             });
+
+            if (output != null)
+            {
+                DialogParameters param = new DialogParameters();
+                param.Add("Value", output);
+                _ = dialog.ShowDialogAsync(AppViewManager.UserPermissionView, param);
+                await Task.CompletedTask;
+            }
         }
 
         private async void UsersUnlock()

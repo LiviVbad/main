@@ -1,14 +1,14 @@
 ﻿using AppFramework.Common;
 using AppFramework.Common.Core;
 using AppFramework.Views;
-using AppFramework.Common.Services.Account; 
+using AppFramework.Common.Services.Account;
 using AppFramework.Extensions;
 using AppFramework.Services;
 using DryIoc;
 using DryIoc.Microsoft.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.DryIoc;
-using Prism.Ioc; 
+using Prism.Ioc;
 using Prism.Regions;
 using Prism.Services.Dialogs;
 using System;
@@ -50,7 +50,7 @@ namespace AppFramework
 
         protected override void OnInitialized()
         {
-            accountService = Container.Resolve<IAccountService>(); 
+            accountService = Container.Resolve<IAccountService>();
 
             if (!Authorization()) Environment.Exit(-1);
 
@@ -68,13 +68,8 @@ namespace AppFramework
 
             static ButtonResult Validation(IContainerProvider container)
             {
-                ButtonResult result = ButtonResult.Cancel;
                 var dialogService = container.Resolve<IHostDialogService>();
-                dialogService.ShowDialog(AppViewManager.Login, callBack =>
-                {
-                    result = callBack.Result;
-                });
-                return result;
+                return dialogService.ShowWindow(AppViewManager.Login).Result;
             }
         }
 

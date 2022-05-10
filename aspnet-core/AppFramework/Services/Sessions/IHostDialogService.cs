@@ -13,5 +13,7 @@ namespace AppFramework.Services
             string name,
             IDialogParameters parameters = null,
             string IdentifierName = "Root");
+
+        IDialogResult ShowWindow(string name);
     }
 }

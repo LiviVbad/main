@@ -18,18 +18,35 @@
 
         <Border
             Grid.RowSpan="3"
+            CornerRadius="0"
             Opacity="1"
             Style="{StaticResource BorderStyle}" />
 
         <TextBlock
-            Margin="15"
+            Margin="15,10"
             FontSize="18"
             FontWeight="Bold"
             Text="{extensions:Translate ChangingPermissions}" />
 
+        <sync:SfTreeView
+            Grid.Row="1"
+            BorderThickness="0"
+            ChildPropertyName="Items"
+            ItemsSource="{Binding Permissions}"
+            SelectionBackgroundColor="Transparent">
+            <sync:SfTreeView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}" />
+                        <TextBlock Margin="5,0" Text="{Binding DisplayName}" />
+                    </StackPanel>
+                </DataTemplate>
+            </sync:SfTreeView.ItemTemplate>
+        </sync:SfTreeView>
+
         <StackPanel
             Grid.Row="2"
-            Margin="0,0,15,15"
+            Margin="15"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
             <Button

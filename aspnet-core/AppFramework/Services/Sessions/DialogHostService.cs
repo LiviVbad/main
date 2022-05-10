@@ -21,6 +21,32 @@ namespace AppFramework.Services.Dialog
             this._containerExtension = containerExtension;
         }
 
+        public IDialogResult ShowWindow(string name)
+        {
+            IDialogResult dialogResult = new DialogResult(ButtonResult.None);
+
+            var content = _containerExtension.Resolve<object>(name);
+
+            if (!(content is Window dialogContent))
+                throw new NullReferenceException("A dialog's content must be a Window");
+
+            if (dialogContent is Window view && view.DataContext is null && ViewModelLocator.GetAutoWireViewModel(view) is null)
+                ViewModelLocator.SetAutoWireViewModel(view, true);
+
+            if (!(dialogContent.DataContext is IDialogAware viewModel))
+                throw new NullReferenceException("A dialog's ViewModel must implement the IDialogAware interface");
+
+            if (dialogContent is IDialogWindow dialogWindow)
+            {
+                ConfigureDialogWindowEvents(dialogWindow, result => { dialogResult = result; });
+            }
+
+            MvvmHelpers.ViewAndViewModelAction<IDialogAware>(viewModel, d => d.OnDialogOpened(null));
+            dialogContent.ShowDialog();
+
+            return dialogResult;
+        }
+
         public async Task<IDialogResult> ShowDialogAsync(string name, IDialogParameters parameters = null, string IdentifierName = "Root")
         {
             var dialogContent = GetDialogContent(name, IdentifierName);
@@ -58,6 +84,8 @@ namespace AppFramework.Services.Dialog
         private DialogOpenedEventHandler GetDialogOpenedEventHandler(IHostDialogAware viewModel,
             IDialogParameters parameters)
         {
+            if (parameters == null) parameters = new DialogParameters();
+
             DialogOpenedEventHandler eventHandler =
                (sender, eventArgs) =>
                {
