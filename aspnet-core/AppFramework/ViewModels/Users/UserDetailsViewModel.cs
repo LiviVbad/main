@@ -17,7 +17,7 @@ namespace AppFramework.ViewModels
         public UserDetailsViewModel(IUserAppService userAppService,
             IPermissionService permissionService)
         {
-            UserInput = new UserCreateOrUpdateModel();
+            Input = new UserCreateOrUpdateModel();
             this.userAppService = userAppService;
             this.permissionService = permissionService;
         }
@@ -26,12 +26,12 @@ namespace AppFramework.ViewModels
         private bool isUnlockButtonVisible;
         private UserForEditModel model;
 
-        private UserCreateOrUpdateModel userInput;
+        private UserCreateOrUpdateModel input;
 
-        public UserCreateOrUpdateModel UserInput
+        public UserCreateOrUpdateModel Input
         {
-            get { return userInput; }
-            set { userInput = value; RaisePropertyChanged(); }
+            get { return input; }
+            set { input = value; RaisePropertyChanged(); }
         }
 
         private GetPasswordComplexitySettingOutput PasswordComplexitySetting;
@@ -71,15 +71,15 @@ namespace AppFramework.ViewModels
 
         protected override async void Save()
         {
-            UserInput.User = Model.User;
-            UserInput.AssignedRoleNames = Model.Roles.Where(x => !x.IsAssigned).Select(x => x.RoleName).ToArray();
-            UserInput.OrganizationUnits = Model.OrganizationUnits.Where(x => x.IsAssigned).Select(x => x.Id).ToList();
+            Input.User = Model.User;
+            Input.AssignedRoleNames = Model.Roles.Where(x => !x.IsAssigned).Select(x => x.RoleName).ToArray();
+            Input.OrganizationUnits = Model.OrganizationUnits.Where(x => x.IsAssigned).Select(x => x.Id).ToList();
 
-            if (!Verify(UserInput).IsValid) return;
+            if (!Verify(Input).IsValid) return;
 
             await SetBusyAsync(async () =>
             {
-                var input = Map<CreateOrUpdateUserInput>(UserInput);
+                var input = Map<CreateOrUpdateUserInput>(Input);
                 await WebRequest.Execute(async () =>
                     await userAppService.CreateOrUpdateUser(input),
                     async () =>
@@ -99,8 +99,8 @@ namespace AppFramework.ViewModels
                       userInfo = parameters.GetValue<UserListModel>("Value");
 
                   IsNewUser = userInfo == null;
-                  UserInput.SetRandomPassword = IsNewUser;
-                  UserInput.SendActivationEmail = IsNewUser;
+                  Input.SetRandomPassword = IsNewUser;
+                  Input.SendActivationEmail = IsNewUser;
 
                   var user = await userAppService.GetUserForEdit(new NullableIdDto<long>(userInfo?.Id));
                   Model = Map<UserForEditModel>(user);

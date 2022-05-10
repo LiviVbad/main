@@ -51,7 +51,7 @@
                 <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <DockPanel Margin="5" LastChildFill="False">
                         <TextBlock Text="{extensions:Translate FirstName}" />
-                        <TextBox Text="{Binding Input.User.Name, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
+                        <TextBox Text="{Binding Model.User.Name, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
                             <Validation.ErrorTemplate>
                                 <ControlTemplate>
                                     <StackPanel>
@@ -63,7 +63,7 @@
                         </TextBox>
 
                         <TextBlock Text="{extensions:Translate Surname}" />
-                        <TextBox Text="{Binding Input.User.Surname, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
+                        <TextBox Text="{Binding Model.User.Surname, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
                             <Validation.ErrorTemplate>
                                 <ControlTemplate>
                                     <StackPanel>
@@ -75,7 +75,7 @@
                         </TextBox>
 
                         <TextBlock Text="{extensions:Translate EmailAddress}" />
-                        <TextBox Text="{Binding Input.User.EmailAddress, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
+                        <TextBox Text="{Binding Model.User.EmailAddress, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
                             <Validation.ErrorTemplate>
                                 <ControlTemplate>
                                     <StackPanel>
@@ -87,7 +87,7 @@
                         </TextBox>
 
                         <TextBlock Text="{extensions:Translate PhoneNumber}" />
-                        <TextBox Text="{Binding Input.User.PhoneNumber, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
+                        <TextBox Text="{Binding Model.User.PhoneNumber, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
                             <Validation.ErrorTemplate>
                                 <ControlTemplate>
                                     <StackPanel>
@@ -99,7 +99,7 @@
                         </TextBox>
 
                         <TextBlock Text="{extensions:Translate UserName}" />
-                        <TextBox Text="{Binding Input.User.UserName, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
+                        <TextBox Text="{Binding Model.User.UserName, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
                             <Validation.ErrorTemplate>
                                 <ControlTemplate>
                                     <StackPanel>
@@ -117,7 +117,7 @@
 
                         <StackPanel DockPanel.Dock="Top" Visibility="{Binding Input.SetRandomPassword, Converter={StaticResource BoolToVisibilityConverter}}">
                             <TextBlock Text="{extensions:Translate Password}" />
-                            <TextBox Text="{Binding Input.User.Password}">
+                            <TextBox Text="{Binding Model.User.Password}">
                                 <Validation.ErrorTemplate>
                                     <ControlTemplate>
                                         <StackPanel>
@@ -129,7 +129,7 @@
                             </TextBox>
 
                             <TextBlock Text="{extensions:Translate PasswordRepeat}" />
-                            <TextBox Text="{Binding Input.User.Password}">
+                            <TextBox Text="{Binding Model.User.Password}">
                                 <Validation.ErrorTemplate>
                                     <ControlTemplate>
                                         <StackPanel>
@@ -141,10 +141,10 @@
                             </TextBox>
                         </StackPanel>
 
-                        <CheckBox Content="{extensions:Translate ShouldChangePasswordOnNextLogin}" IsChecked="{Binding Input.User.ShouldChangePasswordOnNextLogin}" />
+                        <CheckBox Content="{extensions:Translate ShouldChangePasswordOnNextLogin}" IsChecked="{Binding Model.User.ShouldChangePasswordOnNextLogin}" />
                         <CheckBox Content="{extensions:Translate SendActivationEmail}" IsChecked="{Binding Input.SendActivationEmail}" />
-                        <CheckBox Content="{extensions:Translate Activate}" IsChecked="{Binding Input.User.IsActive}" />
-                        <CheckBox Content="{extensions:Translate IsLockoutEnabled}" IsChecked="{Binding Input.User.IsLockoutEnabled}" />
+                        <CheckBox Content="{extensions:Translate Activate}" IsChecked="{Binding Model.User.IsActive}" />
+                        <CheckBox Content="{extensions:Translate IsLockoutEnabled}" IsChecked="{Binding Model.User.IsLockoutEnabled}" />
                     </DockPanel>
                 </ScrollViewer>
             </TabItem>
@@ -169,7 +169,7 @@
                     DockPanel.Dock="Top"
                     ItemsSource="{Binding Model.OrganizationUnits}">
                     <TreeView.ItemTemplate>
-                        <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                        <DataTemplate>
                             <DockPanel Margin="0,5">
                                 <CheckBox DockPanel.Dock="Left" IsChecked="{Binding IsAssigned}" />
                                 <Image
@@ -182,7 +182,7 @@
                                     VerticalAlignment="Center"
                                     Text="{Binding DisplayName}" />
                             </DockPanel>
-                        </HierarchicalDataTemplate>
+                        </DataTemplate>
                     </TreeView.ItemTemplate>
                 </TreeView>
             </TabItem>

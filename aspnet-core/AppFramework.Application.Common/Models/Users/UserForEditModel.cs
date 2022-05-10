@@ -11,7 +11,13 @@ namespace AppFramework.Common.Models
     {
         public Guid? ProfilePictureId { get; set; }
 
-        public UserEditModel User { get; set; }
+        private UserEditModel user;
+
+        public UserEditModel User
+        {
+            get { return user; }
+            set { user = value; RaisePropertyChanged(); }
+        }
 
         public UserRoleDto[] Roles { get; set; }
 

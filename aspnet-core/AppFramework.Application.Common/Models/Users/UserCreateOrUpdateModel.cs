@@ -7,7 +7,7 @@ namespace AppFramework.Common.Models
     {
         private bool sendActivationEmail;
         private bool setRandomPassword;
-
+         
         public UserEditModel User { get; set; }
 
         public string[] AssignedRoleNames { get; set; }
