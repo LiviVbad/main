@@ -7,6 +7,8 @@
         x:Key="SimpleButton"
         BasedOn="{StaticResource WPFButtonStyle}"
         TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryForeground}" />
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackground}" />
         <Setter Property="MinHeight" Value="30" />
         <Setter Property="MinWidth" Value="50" />
         <Setter Property="Padding" Value="10,5" />
@@ -28,6 +30,8 @@
         x:Key="IconButtonStyle"
         BasedOn="{StaticResource SimpleButton}"
         TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryForeground}" />
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackground}" />
         <Setter Property="MinHeight" Value="0" />
         <Setter Property="MinWidth" Value="0" />
         <Setter Property="Padding" Value="5" />
