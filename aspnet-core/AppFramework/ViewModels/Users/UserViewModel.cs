@@ -75,9 +75,9 @@ namespace AppFramework.ViewModels
             if (output != null)
             {
                 DialogParameters param = new DialogParameters();
+                param.Add("Id", SelectedItem.Id);
                 param.Add("Value", output);
-                _ = dialog.ShowDialogAsync(AppViewManager.UserPermissionView, param);
-                await Task.CompletedTask;
+                await dialog.ShowDialogAsync(AppViewManager.UserPermissionView, param);
             }
         }
 

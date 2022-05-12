@@ -35,7 +35,7 @@
             CheckBoxMode="Recursive"
             ChildPropertyName="Items"
             ExpandActionTrigger="Node"
-            IsAnimationEnabled="True"
+            IsAnimationEnabled="True" 
             ItemTemplateDataContextType="Node"
             ItemsSource="{Binding Permissions}"
             NodePopulationMode="Instant"
@@ -43,7 +43,7 @@
             <sync:SfTreeView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}" />
+                        <CheckBox IsChecked="{Binding IsChecked}" />
                         <TextBlock Margin="5,0" Text="{Binding Content.DisplayName}" />
                     </StackPanel>
                 </DataTemplate>
