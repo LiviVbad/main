@@ -2,15 +2,11 @@
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
 using Prism.Commands;
-using Prism.Navigation;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using Prism.Navigation; 
 using System.Threading.Tasks;
 using AppFramework.Common.Core;
 using AppFramework.Common.Models;
-using AppFramework.Common;
-using AppFramework.Common.Services.Permission;
-using System.Linq;
+using AppFramework.Common; 
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -18,10 +14,10 @@ namespace AppFramework.Shared.ViewModels
     {
         #region 字段/属性
 
+        public IPermissionTreesService treesService { get; set; }
         private readonly IRoleAppService appService;
         private readonly IMessenger messenger;
         private RoleEditModel role;
-        private ObservableCollection<PermissionModel> permissions;
 
         public RoleEditModel Role
         {
@@ -29,29 +25,17 @@ namespace AppFramework.Shared.ViewModels
             set { role = value; RaisePropertyChanged(); }
         }
 
-        public ObservableCollection<PermissionModel> Permissions
-        {
-            get { return permissions; }
-            set { permissions = value; RaisePropertyChanged(); }
-        }
-
-        private ObservableCollection<object> selectedItems;
-
-        public ObservableCollection<object> SelectedItems
-        {
-            get { return selectedItems; }
-            set { selectedItems = value; }
-        }
-
         public DelegateCommand SaveCommand { get; private set; }
-
+        
         #endregion 字段/属性
 
         public RoleDetailsViewModel(IRoleAppService appService,
-            IMessenger messenger)
+            IMessenger messenger,
+            IPermissionTreesService treesService)
         {
             this.appService = appService;
             this.messenger = messenger;
+            this.treesService = treesService;
             SaveCommand = new DelegateCommand(Save);
         }
 
@@ -62,14 +46,12 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                var gps = SelectedItems.Select(t => (t as PermissionModel)?.Name).ToList();
-
                 await WebRequestRuner.Execute(async () =>
                 {
                     await appService.CreateOrUpdateRole(new CreateOrUpdateRoleInput()
                     {
                         Role = Map<RoleEditDto>(Role),
-                        GrantedPermissionNames = gps
+                        GrantedPermissionNames = treesService.GetSelectedItems()
                     });
                 },
                 async () => await GoBackAsync());
@@ -90,13 +72,9 @@ namespace AppFramework.Shared.ViewModels
 
                 if (parameters != null && parameters.ContainsKey("Value"))
                     id = parameters.GetValue<RoleListModel>("Value").Id;
-
                 var output = await appService.GetRoleForEdit(new NullableIdDto(id));
-
                 Role = Map<RoleEditModel>(output.Role);
-                var flats = Map<List<PermissionModel>>(output.Permissions);
-                Permissions = flats.CreateTrees(null);
-                SelectedItems = Permissions.GetSelectedItems(output.GrantedPermissionNames);
+                treesService.CreatePermissionTrees(output.Permissions, output.GrantedPermissionNames);
             });
         }
     }

@@ -49,13 +49,15 @@ namespace AppFramework.Common
             *           动态属性服务、缓存服务、租户面板统计服务
             *           动态实体服务、账号服务、个人资料服务、
             *           统计面板服务 ...
-            */
+            */ 
+
             services.RegisterScoped<IRoleAppService, RoleAppService>();
             services.RegisterScoped<IUserAppService, ProxyUserAppService>();
             services.RegisterScoped<ITenantAppService, ProxyTenantAppService>();
             services.RegisterScoped<IEditionAppService, EditionAppService>();
             services.RegisterScoped<IAuditLogAppService, AuditLogAppService>();
             services.RegisterScoped<ILanguageAppService, LanguageAppService>();
+            services.RegisterScoped<IPermissionTreesService, PermissionTreesService>();
             services.RegisterScoped<IOrganizationUnitAppService, OrganizationUnitAppService>();
             services.RegisterScoped<IDynamicPropertyAppService, DynamicPropertyAppService>();
             services.RegisterScoped<ICachingAppService, CachingAppService>();
@@ -68,7 +70,7 @@ namespace AppFramework.Common
             services.RegisterScoped<IProfileAppService, ProxyProfileAppService>();
             services.RegisterScoped<ISessionAppService, ProxySessionAppService>();
             services.RegisterScoped<IHostDashboardAppService, HostDashboardAppService>();
-
+             
             services.RegisterSingleton<IMessenger, Messenger>(); 
             services.RegisterSingleton<IPermissionService, PermissionService>(); 
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();

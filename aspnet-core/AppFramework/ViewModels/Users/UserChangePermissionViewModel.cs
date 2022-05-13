@@ -1,9 +1,5 @@
 ﻿using AppFramework.Authorization.Users.Dto;
-using AppFramework.Common.Models;
 using Prism.Services.Dialogs;
-using AppFramework.Common.Services.Permission;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using AppFramework.Authorization.Users;
 using AppFramework.Common;
@@ -13,28 +9,16 @@ namespace AppFramework.ViewModels
 {
     public class UserChangePermissionViewModel : HostDialogViewModel
     {
-        public UserChangePermissionViewModel(IUserAppService userAppService)
+        public UserChangePermissionViewModel(IUserAppService userAppService,
+            IPermissionTreesService treesService)
         {
             this.userAppService = userAppService;
+            this.treesService = treesService;
         }
 
         private long Id;
-        private ObservableCollection<PermissionModel> permissions;
         private readonly IUserAppService userAppService;
-
-        public ObservableCollection<PermissionModel> Permissions
-        {
-            get { return permissions; }
-            set { permissions = value; RaisePropertyChanged(); }
-        }
-
-        private ObservableCollection<object> selectedItems;
-
-        public ObservableCollection<object> SelectedItems
-        {
-            get { return selectedItems; }
-            set { selectedItems = value; }
-        }
+        public IPermissionTreesService treesService { get; set; }
 
         protected override async void Save()
         {
@@ -42,11 +26,10 @@ namespace AppFramework.ViewModels
             {
                 await WebRequest.Execute(async () =>
                 {
-                    var gps = SelectedItems.Select(t => (t as PermissionModel)?.Name).ToList();
                     await userAppService.UpdateUserPermissions(new UpdateUserPermissionsInput()
                     {
                         Id = Id,
-                        GrantedPermissionNames = gps
+                        GrantedPermissionNames = treesService.GetSelectedItems()
                     });
                 }, async () =>
                 {
@@ -63,10 +46,7 @@ namespace AppFramework.ViewModels
                 if (parameters.ContainsKey("Value"))
                 {
                     var output = parameters.GetValue<GetUserPermissionsForEditOutput>("Value");
-
-                    var flats = Map<List<PermissionModel>>(output.Permissions);
-                    Permissions = flats.CreateTrees(null);
-                    SelectedItems = Permissions.GetSelectedItems(output.GrantedPermissionNames);
+                    treesService.CreatePermissionTrees(output.Permissions, output.GrantedPermissionNames);
                 }
 
                 if (parameters.ContainsKey("Id"))

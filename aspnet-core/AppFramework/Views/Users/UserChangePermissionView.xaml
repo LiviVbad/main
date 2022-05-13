@@ -33,12 +33,12 @@
             AutoExpandMode="AllNodes"
             BorderThickness="0"
             CheckBoxMode="Recursive"
-            CheckedItems="{Binding SelectedItems}"
+            CheckedItems="{Binding treesService.SelectedItems}"
             ChildPropertyName="Items"
             ExpandActionTrigger="Node"
             IsAnimationEnabled="True"
             ItemTemplateDataContextType="Node"
-            ItemsSource="{Binding Permissions}"
+            ItemsSource="{Binding treesService.Permissions}"
             NodePopulationMode="Instant"
             SelectionBackgroundColor="Transparent">
             <sync:SfTreeView.ItemTemplate>

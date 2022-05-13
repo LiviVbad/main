@@ -47,7 +47,7 @@
                         Margin="0,5"
                         Background="Transparent"
                         ChildPropertyName="Items"
-                        ItemsSource="{Binding Permissions}"
+                        ItemsSource="{Binding treesService.Permissions}"
                         SelectionBackgroundColor="Transparent">
                         <sync:SfTreeView.ItemTemplate>
                             <DataTemplate>
