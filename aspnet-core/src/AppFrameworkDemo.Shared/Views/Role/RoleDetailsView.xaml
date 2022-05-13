@@ -7,7 +7,7 @@
     xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared"
     xmlns:treeview="clr-namespace:Syncfusion.XForms.TreeView;assembly=Syncfusion.SfTreeView.XForms">
     <Grid
-       Padding="15"
+        Padding="15"
         BackgroundColor="{DynamicResource GrayShadowColor}"
         RowDefinitions="auto,*,auto">
         <StackLayout>
@@ -27,8 +27,15 @@
             <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Permission}" />
 
             <treeview:SfTreeView
+                AutoExpandMode="AllNodesExpanded"
+                CheckBoxMode="Recursive"
+                CheckedItems="{Binding SelectedItems}"
                 ChildPropertyName="Items"
+                ExpandActionTarget="Node"
+                IsAnimationEnabled="True"
+                ItemTemplateContextType="Node"
                 ItemsSource="{Binding Permissions}"
+                NodePopulationMode="Instant"
                 SelectionBackgroundColor="Transparent">
                 <treeview:SfTreeView.ItemTemplate>
                     <DataTemplate>

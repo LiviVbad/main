@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace AppFramework.Common.Models
 {
-    public class FlatPermissionModel : BindableBase
+    public class PermissionModel : BindableBase
     {
         public string ParentName { get; set; }
 
@@ -23,9 +23,9 @@ namespace AppFramework.Common.Models
             set { isChecked = value; RaisePropertyChanged(); }
         }
 
-        private ObservableCollection<FlatPermissionModel> items;
+        private ObservableCollection<PermissionModel> items;
 
-        public ObservableCollection<FlatPermissionModel> Items
+        public ObservableCollection<PermissionModel> Items
         {
             get { return items; }
             set { items = value; }

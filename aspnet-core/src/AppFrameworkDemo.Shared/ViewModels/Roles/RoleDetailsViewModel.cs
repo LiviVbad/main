@@ -4,12 +4,13 @@ using AppFramework.Authorization.Roles.Dto;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
-using System.Collections.ObjectModel; 
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using AppFramework.Common.Core;
 using AppFramework.Common.Models;
 using AppFramework.Common;
 using AppFramework.Common.Services.Permission;
+using System.Linq;
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -20,7 +21,7 @@ namespace AppFramework.Shared.ViewModels
         private readonly IRoleAppService appService;
         private readonly IMessenger messenger;
         private RoleEditModel role;
-        private ObservableCollection<FlatPermissionModel> permissions;
+        private ObservableCollection<PermissionModel> permissions;
 
         public RoleEditModel Role
         {
@@ -28,10 +29,18 @@ namespace AppFramework.Shared.ViewModels
             set { role = value; RaisePropertyChanged(); }
         }
 
-        public ObservableCollection<FlatPermissionModel> Permissions
+        public ObservableCollection<PermissionModel> Permissions
         {
             get { return permissions; }
             set { permissions = value; RaisePropertyChanged(); }
+        }
+
+        private ObservableCollection<object> selectedItems;
+
+        public ObservableCollection<object> SelectedItems
+        {
+            get { return selectedItems; }
+            set { selectedItems = value; }
         }
 
         public DelegateCommand SaveCommand { get; private set; }
@@ -53,15 +62,14 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                List<string> GrantedPermissionNames = new List<string>();
-                Permissions.GetSelectedNodes(ref GrantedPermissionNames);
+                var gps = SelectedItems.Select(t => (t as PermissionModel)?.Name).ToList();
 
                 await WebRequestRuner.Execute(async () =>
                 {
                     await appService.CreateOrUpdateRole(new CreateOrUpdateRoleInput()
                     {
                         Role = Map<RoleEditDto>(Role),
-                        GrantedPermissionNames = GrantedPermissionNames
+                        GrantedPermissionNames = gps
                     });
                 },
                 async () => await GoBackAsync());
@@ -86,9 +94,9 @@ namespace AppFramework.Shared.ViewModels
                 var output = await appService.GetRoleForEdit(new NullableIdDto(id));
 
                 Role = Map<RoleEditModel>(output.Role);
-                var flats = Map<List<FlatPermissionModel>>(output.Permissions);
+                var flats = Map<List<PermissionModel>>(output.Permissions);
                 Permissions = flats.CreateTrees(null);
-                Permissions.UpdateSelectedNodes(output.GrantedPermissionNames);
+                SelectedItems = Permissions.GetSelectedItems(output.GrantedPermissionNames);
             });
         }
     }

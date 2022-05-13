@@ -42,7 +42,7 @@ namespace AppFramework.Common.Core
             CreateMap<EditionCreateDto, EditionCreateModel>().ReverseMap();
             CreateMap<EditionEditDto, EditionCreateModel>().ReverseMap();
             CreateMap<FlatFeatureDto,FlatFeatureModel>().ReverseMap();
-            CreateMap<FlatPermissionDto, FlatPermissionModel>().ReverseMap();
+            CreateMap<FlatPermissionDto, PermissionModel>().ReverseMap();
             CreateMap<GetUserForEditOutput, UserForEditModel>().ReverseMap();
             CreateMap<GetCurrentLoginInformationsOutput, CurrentLoginInformationPersistanceModel>().ReverseMap();
             CreateMap<TenantListModel, CreateTenantInput>().ReverseMap();

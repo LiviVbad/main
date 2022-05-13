@@ -1,9 +1,7 @@
-﻿using AppFramework.Common.Models;
-using System;
+﻿using AppFramework.Common.Models; 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+using System.Linq; 
 
 namespace AppFramework.Common.Services.Permission
 {
@@ -15,9 +13,9 @@ namespace AppFramework.Common.Services.Permission
         /// <param name="flats"></param>
         /// <param name="parentName"></param>
         /// <returns></returns>
-        public static ObservableCollection<FlatPermissionModel> CreateTrees(this List<FlatPermissionModel> flats, string parentName)
+        public static ObservableCollection<PermissionModel> CreateTrees(this List<PermissionModel> flats, string parentName)
         {
-            var trees = new ObservableCollection<FlatPermissionModel>();
+            var trees = new ObservableCollection<PermissionModel>();
 
             var nodes = flats.Where(q => q.ParentName == parentName).ToArray();
 
@@ -28,46 +26,40 @@ namespace AppFramework.Common.Services.Permission
             }
 
             return trees;
-        }
-
-        /// <summary>
-        /// 获取选中的权限节点
-        /// </summary>
-        /// <param name="nodes"></param>
-        /// <param name="GrantedPermissionNames"></param>
-        public static void GetSelectedNodes(this ObservableCollection<FlatPermissionModel> nodes,
-            ref List<string> GrantedPermissionNames)
-        {
-            foreach (var flat in nodes)
-            {
-                if (flat.IsChecked) GrantedPermissionNames.Add(flat.Name);
-
-                GetSelectedNodes(flat.Items, ref GrantedPermissionNames);
-            }
-        }
+        } 
 
         /// <summary>
         /// 更新选中权限节点
         /// </summary>
         /// <param name="GrantedPermissionNames"></param>
-        public static void UpdateSelectedNodes(this ObservableCollection<FlatPermissionModel> Flats, List<string> GrantedPermissionNames)
+        public static ObservableCollection<object> GetSelectedItems(this ObservableCollection<PermissionModel> Flats, List<string> GrantedPermissionNames)
         {
-            GrantedPermissionNames.ForEach(item =>
-            {
-                UpdateSelected(Flats, item);
-            });
+            var permItems = new ObservableCollection<object>();
 
-            void UpdateSelected(ObservableCollection<FlatPermissionModel> nodes, string nodeName)
+            foreach (var item in GrantedPermissionNames)
             {
+                var permItem = GetSelectedItems(Flats, item);
+                if (permItem != null) permItems.Add(permItem);
+            }
+
+            return permItems;
+
+            PermissionModel GetSelectedItems(ObservableCollection<PermissionModel> nodes, string key)
+            {
+                PermissionModel model = null;
+
                 foreach (var flat in nodes)
                 {
-                    if (flat.Name.Equals(nodeName))
+                    if (flat.Name.Equals(key) && flat.Items.Count == 0)
                     {
-                        flat.IsChecked = true;
-                        return;
+                        model = flat;
+                        break;
                     }
-                    UpdateSelected(flat.Items, nodeName);
+                    model = GetSelectedItems(flat.Items, key);
+
+                    if (model != null) break;
                 }
+                return model;
             }
         }
     }

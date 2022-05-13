@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using AppFramework.Authorization.Users;
 using AppFramework.Common;
+using System.Linq;
 
 namespace AppFramework.ViewModels
 {
@@ -18,13 +19,21 @@ namespace AppFramework.ViewModels
         }
 
         private long Id;
-        private ObservableCollection<FlatPermissionModel> permissions;
+        private ObservableCollection<PermissionModel> permissions;
         private readonly IUserAppService userAppService;
 
-        public ObservableCollection<FlatPermissionModel> Permissions
+        public ObservableCollection<PermissionModel> Permissions
         {
             get { return permissions; }
             set { permissions = value; RaisePropertyChanged(); }
+        }
+
+        private ObservableCollection<object> selectedItems;
+
+        public ObservableCollection<object> SelectedItems
+        {
+            get { return selectedItems; }
+            set { selectedItems = value; }
         }
 
         protected override async void Save()
@@ -33,12 +42,11 @@ namespace AppFramework.ViewModels
             {
                 await WebRequest.Execute(async () =>
                 {
-                    List<string> GrantedPermissionNames = new List<string>();
-                    Permissions.GetSelectedNodes(ref GrantedPermissionNames);
+                    var gps = SelectedItems.Select(t => (t as PermissionModel)?.Name).ToList();
                     await userAppService.UpdateUserPermissions(new UpdateUserPermissionsInput()
                     {
                         Id = Id,
-                        GrantedPermissionNames = GrantedPermissionNames
+                        GrantedPermissionNames = gps
                     });
                 }, async () =>
                 {
@@ -56,9 +64,9 @@ namespace AppFramework.ViewModels
                 {
                     var output = parameters.GetValue<GetUserPermissionsForEditOutput>("Value");
 
-                    var flats = Map<List<FlatPermissionModel>>(output.Permissions);
+                    var flats = Map<List<PermissionModel>>(output.Permissions);
                     Permissions = flats.CreateTrees(null);
-                    Permissions.UpdateSelectedNodes(output.GrantedPermissionNames);
+                    SelectedItems = Permissions.GetSelectedItems(output.GrantedPermissionNames);
                 }
 
                 if (parameters.ContainsKey("Id"))
