@@ -2,6 +2,7 @@
     x:Class="AppFramework.Views.AuditLogsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:convert="clr-namespace:AppFramework.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Extensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,6 +10,9 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <convert:InverseBoolToVisibilityConverter x:Key="inverseBoolToVisibility" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -29,19 +33,114 @@
         <Grid Grid.Row="1" Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
                 <RowDefinition />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <Border Grid.RowSpan="3" Style="{StaticResource BorderStyle}" />
+            <Border Grid.RowSpan="5" Style="{StaticResource BorderStyle}" />
 
-            <Grid>
-                <!--  Filter..  -->
+            <UniformGrid Columns="2">
+                <Grid Margin="10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <sync:SfDatePicker Padding="2" VerticalAlignment="Center" />
+                    <Border Grid.Column="1" Margin="5,0">
+                        <TextBlock VerticalAlignment="Center" Text="-" />
+                    </Border>
+                    <sync:SfDatePicker
+                        Grid.Column="2"
+                        Padding="2"
+                        VerticalAlignment="Center" />
+                </Grid>
+
+                <TextBox
+                    Grid.Column="1"
+                    Margin="10,5"
+                    Padding="2"
+                    VerticalAlignment="Center" />
+            </UniformGrid>
+
+            <!--  高级筛选  -->
+            <Grid Grid.Row="1" Visibility="{Binding IsAdvancedFilter, Converter={StaticResource inverseBoolToVisibility}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBox
+                    Margin="10,5"
+                    Padding="2"
+                    VerticalAlignment="Center" />
+                <TextBox
+                    Grid.Column="1"
+                    Margin="10,0"
+                    Padding="2"
+                    VerticalAlignment="Center" />
+
+                <TextBox
+                    Grid.Row="1"
+                    Margin="10,5"
+                    Padding="2"
+                    VerticalAlignment="Center" />
+                <UniformGrid
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Columns="2">
+                    <Grid Margin="10,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Padding="2" VerticalAlignment="Center" />
+                        <Border Grid.Column="1" Margin="5,0">
+                            <TextBlock VerticalAlignment="Center" Text="-" />
+                        </Border>
+                        <TextBox
+                            Grid.Column="2"
+                            Padding="2"
+                            VerticalAlignment="Center" />
+                    </Grid>
+
+                    <TextBox
+                        Margin="10,0"
+                        Padding="2"
+                        VerticalAlignment="Center" />
+                </UniformGrid>
             </Grid>
+
+            <StackPanel
+                Grid.Row="2"
+                Margin="10,5,10,10"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <Button
+                    Margin="10,0"
+                    Padding="5"
+                    Command="{Binding SearchCommand}"
+                    Content="{extensions:Translate Search}" />
+                <Button
+                    Padding="5"
+                    HorizontalAlignment="Right"
+                    Command="{Binding AdvancedCommand}"
+                    Content="{Binding FilerTitle, Mode=TwoWay}" />
+            </StackPanel>
 
             <sync:SfDataGrid
                 x:Name="SfDataGrid"
-                Grid.Row="1"
+                Grid.Row="3"
                 Margin="15,0"
                 ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}"
                 SelectedItem="{Binding SelectedItem}"
@@ -72,7 +171,7 @@
 
             <sync:SfDataPager
                 x:Name="sfDataPapger"
-                Grid.Row="2"
+                Grid.Row="4"
                 HorizontalAlignment="Right"
                 NumericButtonCount="10"
                 PageSize="50"

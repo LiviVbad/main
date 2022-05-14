@@ -12,10 +12,38 @@ namespace AppFramework.ViewModels
 {
     public class AuditLogsViewModel : NavigationCurdViewModel<AuditLogListModel>
     {
+        #region 字段/属性
+
         public GetAuditLogsInput input;
         private readonly IAuditLogAppService appService;
 
+        private string filterTitle;
+
+        public string FilerTitle
+        {
+            get { return filterTitle; }
+            set { filterTitle = value; RaisePropertyChanged(); }
+        }
+
+        private bool isAdvancedFilter;
+
+        public bool IsAdvancedFilter
+        {
+            get { return isAdvancedFilter; }
+            set
+            {
+                isAdvancedFilter = value;
+
+                FilerTitle = value ? Local.Localize("HideAdvancedFilters") : Local.Localize("ShowAdvancedFilters");
+                RaisePropertyChanged();
+            }
+        }
+
         public DelegateCommand ViewCommand { get; private set; }
+        public DelegateCommand AdvancedCommand { get; private set; }
+        public DelegateCommand SearchCommand { get; private set; }
+
+        #endregion
 
         public AuditLogsViewModel(IAuditLogAppService appService)
         {
@@ -27,7 +55,13 @@ namespace AppFramework.ViewModels
             };
             this.appService = appService;
 
+            IsAdvancedFilter = false;
             ViewCommand = new DelegateCommand(ViewLogs);
+            AdvancedCommand = new DelegateCommand(() =>
+              {
+                  IsAdvancedFilter = !IsAdvancedFilter;
+              });
+            SearchCommand = new DelegateCommand(Search);
         }
 
         private void ViewLogs()
@@ -37,11 +71,16 @@ namespace AppFramework.ViewModels
             dialog.ShowDialogAsync(AppViewManager.AuditLogDetails, param);
         }
 
-        public override async Task RefreshAsync()
+        private async void Search()
         {
             input.SkipCount = 0;
             GridModelList.Clear();
 
+            await RefreshAsync();
+        }
+
+        public override async Task RefreshAsync()
+        {
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(() => appService.GetAuditLogs(input),
