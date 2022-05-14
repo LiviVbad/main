@@ -8,13 +8,29 @@ using System.Threading.Tasks;
 using AppFramework.Common.Services.Permission;
 using Abp.Application.Services.Dto;
 using Prism.Services.Dialogs;
-using AppFramework.WindowHost;
+using AppFramework.Common.Services.Account;
 
 namespace AppFramework.ViewModels
 {
     public class UserViewModel : NavigationCurdViewModel<UserListModel>
     {
+        public UserViewModel(IUserAppService appService,
+            IAccountService accountService,
+            IProfileAppService profileAppService)
+        {
+            input = new GetUsersInput
+            {
+                Filter = "",
+                MaxResultCount = AppConsts.DefaultPageSize,
+                SkipCount = 0
+            };
+            this.appService = appService;
+            this.accountService = accountService;
+            this.profileAppService = profileAppService;
+        }
+
         private readonly IUserAppService appService;
+        private readonly IAccountService accountService;
         public readonly IProfileAppService profileAppService;
 
         public GetUsersInput input { get; set; }
@@ -29,42 +45,16 @@ namespace AppFramework.ViewModels
                 AsyncRunner.Run(SearchWithDelayAsync(value));
             }
         }
-
-        public UserViewModel(
-            IUserAppService appService,
-            IProfileAppService profileAppService)
-        {
-            input = new GetUsersInput
-            {
-                Filter = "",
-                MaxResultCount = AppConsts.DefaultPageSize,
-                SkipCount = 0
-            };
-            this.appService = appService;
-            this.profileAppService = profileAppService;
-        }
-
-        public override void Execute(string obj)
-        {
-            switch (obj)
-            {
-                case PermissionKey.Users: LoginAsThisUser(); break;
-                case PermissionKey.UserEdit: Edit(); break;
-                case PermissionKey.UserChangePermission: UserChangePermission(); break;
-                case PermissionKey.UsersUnlock: UsersUnlock(); break;
-                case PermissionKey.UserDelete: Delete(); break;
-            }
-        }
-
+         
         #region 修改权限/解锁/使用当前账户登录
 
-        private async void UserChangePermission()
+        private async void UserChangePermission(int Id)
         {
             GetUserPermissionsForEditOutput output = null;
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(() =>
-                appService.GetUserPermissionsForEdit(new EntityDto<long>(SelectedItem.Id)),
+                appService.GetUserPermissionsForEdit(new EntityDto<long>(Id)),
                 async result =>
                 {
                     output = result;
@@ -75,26 +65,27 @@ namespace AppFramework.ViewModels
             if (output != null)
             {
                 DialogParameters param = new DialogParameters();
-                param.Add("Id", SelectedItem.Id);
+                param.Add("Id", Id);
                 param.Add("Value", output);
-                await dialog.ShowDialogAsync(AppViewManager.UserPermissionView, param);
+                await dialog.ShowDialogAsync(AppViewManager.UserChangePermission, param);
             }
         }
 
-        private async void UsersUnlock()
+        private async void UsersUnlock(int Id)
         {
             await SetBusyAsync(async () =>
              {
                  await WebRequest.Execute(() => appService.UnlockUser(
-                     new EntityDto<long>(SelectedItem.Id)));
+                     new EntityDto<long>(Id)));
              });
         }
 
         private async void LoginAsThisUser()
         {
+            await accountService.LoginCurrentUserAsync(SelectedItem);
         }
 
-        public override async void Delete()
+        public async void Delete()
         {
             var result = await dialog.Question(Local.Localize("UserDeleteWarningMessage", SelectedItem.UserName));
             if (result)
@@ -147,11 +138,11 @@ namespace AppFramework.ViewModels
         {
             return new PermissionButton[]
             {
-                new PermissionButton(PermissionKey.Users, Local.Localize("LoginAsThisUser")),
-                new PermissionButton(PermissionKey.UserEdit, Local.Localize("Change")),
-                new PermissionButton(PermissionKey.UserChangePermission, Local.Localize("Permissions")),
-                new PermissionButton(PermissionKey.UsersUnlock, Local.Localize("Unlock")),
-                new PermissionButton(PermissionKey.UserDelete, Local.Localize("Delete"))
+                new PermissionButton(PermissionKey.Users, Local.Localize("LoginAsThisUser"),()=>LoginAsThisUser()),
+                new PermissionButton(PermissionKey.UserEdit, Local.Localize("Change"),()=>Edit()),
+                new PermissionButton(PermissionKey.UserChangePermission, Local.Localize("Permissions"),()=>UserChangePermission(SelectedItem.Id)),
+                new PermissionButton(PermissionKey.UsersUnlock, Local.Localize("Unlock"),()=>UsersUnlock(SelectedItem.Id)),
+                new PermissionButton(PermissionKey.UserDelete, Local.Localize("Delete"),()=>Delete())
             };
         }
     }

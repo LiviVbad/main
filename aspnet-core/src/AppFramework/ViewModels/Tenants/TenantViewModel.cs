@@ -3,11 +3,8 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Permission;
 using AppFramework.MultiTenancy;
-using AppFramework.MultiTenancy.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using AppFramework.MultiTenancy.Dto; 
+using System.Collections.Generic; 
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -46,15 +43,36 @@ namespace AppFramework.ViewModels
             });
         }
 
+        private async void TenantChangeFeatures(int Id)
+        {
+            await dialog.ShowDialogAsync(AppViewManager.TenantChangeFeatures);
+        }
+
+        private async void Delete()
+        {
+            var result = await dialog.Question(Local.Localize("TenantDeleteWarningMessage", SelectedItem.TenancyName));
+            if (result)
+            {
+                await SetBusyAsync(async () =>
+                {
+                    await WebRequest.Execute(() => appService.DeleteTenant(
+                        new EntityDto(SelectedItem.Id)),
+                        RefreshAsync);
+                });
+            }
+        }
+
+        private void TenantImpersonation() { }
+
         public override PermissionButton[] CreatePermissionButtons()
         {
             return new PermissionButton[]
              {
-                new PermissionButton(PermissionKey.TenantImpersonation, Local.Localize("LoginAsThisTenant")),
-                new PermissionButton(PermissionKey.TenantEdit, Local.Localize("Change")),
-                new PermissionButton(PermissionKey.TenantChangeFeatures, Local.Localize("Features")),
-                new PermissionButton(PermissionKey.TenantDelete, Local.Localize("Delete")),
-                new PermissionButton(PermissionKey.TenantEdit, Local.Localize("Unlock"))
+                new PermissionButton(PermissionKey.TenantImpersonation, Local.Localize("LoginAsThisTenant"),()=>TenantImpersonation()),
+                new PermissionButton(PermissionKey.TenantEdit, Local.Localize("Change"),()=>Edit()),
+                new PermissionButton(PermissionKey.TenantChangeFeatures, Local.Localize("Features"),()=>TenantChangeFeatures(SelectedItem.Id)),
+                new PermissionButton(PermissionKey.TenantDelete, Local.Localize("Delete"),()=>Delete()),
+                new PermissionButton(PermissionKey.TenantEdit, Local.Localize("Unlock"),null)
              };
         }
     }

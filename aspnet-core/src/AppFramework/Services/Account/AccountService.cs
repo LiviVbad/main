@@ -2,9 +2,9 @@
 using AppFramework.ApiClient.Models;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Common;
+using AppFramework.Common.Models;
 using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Storage;
-using AppFramework.Authorization.Users.Dto; 
 using AppFramework.Sessions;
 using AppFramework.Sessions.Dto;
 using Prism.Mvvm;
@@ -17,18 +17,15 @@ namespace AppFramework.Services.Account
         public readonly IAccountStorageService dataStorageService;
         public readonly IApplicationContext applicationContext;
         public readonly ISessionAppService sessionAppService;
-        public readonly IAccessTokenManager accessTokenManager; 
-        public readonly IProfileAppService profileAppService;
+        public readonly IAccessTokenManager accessTokenManager;
 
-        public AccountService( 
-            IProfileAppService profileAppService,
+        public AccountService(
             IApplicationContext applicationContext,
             ISessionAppService sessionAppService,
             IAccessTokenManager accessTokenManager,
             IAccountStorageService dataStorageService,
             AbpAuthenticateModel authenticateModel)
-        { 
-            this.profileAppService = profileAppService;
+        {
             this.applicationContext = applicationContext;
             this.sessionAppService = sessionAppService;
             this.accessTokenManager = accessTokenManager;
@@ -46,10 +43,18 @@ namespace AppFramework.Services.Account
                 accessTokenManager.LoginAsync,
                 async result =>
                 {
-                    await AuthenticateSucceed(result);
-                    loginResult = true;
+                    loginResult = await AuthenticateSucceed(result);
                 });
             return loginResult;
+        }
+
+        public async Task LoginCurrentUserAsync(UserListModel user)
+        {
+            accessTokenManager.Logout();
+            applicationContext.ClearLoginInfo();
+            dataStorageService.ClearSessionPersistance();
+
+            await GoToLoginPageAsync();
         }
 
         public async Task LogoutAsync()
@@ -57,6 +62,7 @@ namespace AppFramework.Services.Account
             accessTokenManager.Logout();
             applicationContext.ClearLoginInfo();
             dataStorageService.ClearSessionPersistance();
+
             await GoToLoginPageAsync();
         }
 
@@ -65,20 +71,20 @@ namespace AppFramework.Services.Account
             await Task.CompletedTask;
         }
 
-        private async Task AuthenticateSucceed(AbpAuthenticateResultModel result)
+        private async Task<bool> AuthenticateSucceed(AbpAuthenticateResultModel result)
         {
             AuthenticateResultModel = result;
 
             if (AuthenticateResultModel.ShouldResetPassword)
             {
                 //await appDialogService.Show("", Local.Localize("ChangePasswordToLogin"));
-                return;
+                return false;
             }
 
             if (AuthenticateResultModel.RequiresTwoFactorVerification)
             {
                 //await _navigationService.SetMainPage<SendTwoFactorCodeView>(AuthenticateResultModel);
-                return;
+                return false;
             }
 
             //if (!AbpAuthenticateModel.IsTwoFactorVerification)
@@ -88,13 +94,10 @@ namespace AppFramework.Services.Account
 
             AuthenticateModel.Password = null;
 
-            await profileAppService.ChangeLanguage(new ChangeUserLanguageDto()
-            {
-                LanguageName = applicationContext.CurrentLanguage.Name
-            });
-
             await SetCurrentUserInfoAsync();
             await UserConfigurationManager.GetAsync();
+
+            return true;
         }
 
         public async Task SetCurrentUserInfoAsync()
@@ -107,6 +110,6 @@ namespace AppFramework.Services.Account
         {
             applicationContext.SetLoginInfo(result);
             await dataStorageService.StoreLoginInformationAsync(applicationContext.LoginInfo);
-        }
+        } 
     }
 }

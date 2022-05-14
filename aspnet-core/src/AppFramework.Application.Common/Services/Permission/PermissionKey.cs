@@ -17,7 +17,7 @@
         public const string TenantChangeFeatures = "Pages.Tenants.ChangeFeatures";
         public const string TenantDelete = "Pages.Tenants.Delete";
         public const string TenantImpersonation = "Pages.Tenants.Impersonation";
-        public const string TenantSettings = "Pages.Administration.Tenant.Settings";
+        public const string TenantSettings = "Pages.Administration.Tenant.Settings"; 
 
         /* EDITIONS */
         public const string Editions = "Pages.Editions";

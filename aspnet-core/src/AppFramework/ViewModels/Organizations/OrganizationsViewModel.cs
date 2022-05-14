@@ -42,18 +42,22 @@ namespace AppFramework.ViewModels
         public DelegateCommand<OrganizationListModel> ChangeCommand { get; private set; }
         public DelegateCommand<OrganizationListModel> RemoveCommand { get; private set; }
 
+        public DelegateCommand<string> ExecuteItemCommand { get; private set; }
+
         #endregion
 
         public OrganizationsViewModel(IOrganizationUnitAppService userAppService)
         {
             this.appService = userAppService;
             SelectedCommand = new DelegateCommand<OrganizationListModel>(Selected);
-            UserModelList = new ObservableCollection<OrganizationUnitUserListDto>();
-            RolesModelList = new ObservableCollection<OrganizationUnitRoleListDto>();
+            userModelList = new ObservableCollection<OrganizationUnitUserListDto>();
+            rolesModelList = new ObservableCollection<OrganizationUnitRoleListDto>();
 
             AddRootUnitCommand = new DelegateCommand<OrganizationListModel>(AddOrganizationUnit);
             ChangeCommand = new DelegateCommand<OrganizationListModel>(EditOrganizationUnit);
             RemoveCommand = new DelegateCommand<OrganizationListModel>(DeleteOrganizationUnit);
+
+            ExecuteItemCommand = new DelegateCommand<string>(ExecuteItem);
         }
 
         private async void Selected(OrganizationListModel organizationUnit)
@@ -66,11 +70,11 @@ namespace AppFramework.ViewModels
             await RefreshRoles(organizationUnit.Id);
         }
 
-        public override async void Execute(string arg)
+        public async void ExecuteItem(string arg)
         {
             switch (arg)
             {
-                case "AddOrganizationUnit": AddOrganizationUnit(null); break;
+                case "AddOrganizationUnit": AddOrganizationUnit(); break;
                 case "AddMember": await AddMember(SelectedOrganizationUnit); break;
                 case "AddRole": await AddRole(SelectedOrganizationUnit); break;
                 case "Refresh": await RefreshAsync(); break;
@@ -108,8 +112,7 @@ namespace AppFramework.ViewModels
 
         public async void DeleteOrganizationUnit(OrganizationListModel organization)
         {
-            var result = await dialog.Question(Local.Localize("OrganizationUnitDeleteWarningMessage", organization.DisplayName));
-            if (result)
+            if (await dialog.Question(Local.Localize("OrganizationUnitDeleteWarningMessage", organization.DisplayName)))
             {
                 await WebRequest.Execute(
                     () => appService.DeleteOrganizationUnit(new EntityDto<long>()
@@ -120,7 +123,7 @@ namespace AppFramework.ViewModels
         }
 
         public async void EditOrganizationUnit(OrganizationListModel organization)
-        { 
+        {
             DialogParameters param = new DialogParameters();
             param.Add("Value", organization);
             var dialogResult = await dialog.ShowDialogAsync("OrganizationsAddView", param);
@@ -128,7 +131,7 @@ namespace AppFramework.ViewModels
                 await RefreshAsync();
         }
 
-        public async void AddOrganizationUnit(OrganizationListModel organization)
+        public async void AddOrganizationUnit(OrganizationListModel organization = null)
         {
             DialogParameters param = new DialogParameters();
             if (organization != null) param.Add("ParentId", organization.Id);
@@ -202,7 +205,7 @@ namespace AppFramework.ViewModels
                       new GetOrganizationUnitRolesInput() { Id = Id });
                   if (pagedResult != null)
                   {
-                      RolesModelList?.Clear();
+                      RolesModelList.Clear();
                       foreach (var item in pagedResult.Items)
                           RolesModelList.Add(item);
                   }
@@ -246,7 +249,7 @@ namespace AppFramework.ViewModels
                     new GetOrganizationUnitUsersInput() { Id = Id });
                 if (pagedResult != null)
                 {
-                    UserModelList?.Clear();
+                    UserModelList.Clear();
                     foreach (var item in pagedResult.Items)
                         UserModelList.Add(item);
                 }

@@ -2,15 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AppFramework.Common.Services.Permission
 {
     public class PermissionButton : BindableBase
     {
-        public PermissionButton(string key, string name)
+        public PermissionButton(string key, string name, Action ation)
         {
             Key = key;
             Name = name;
+            Ation = ation;
         }
 
         private string name;
@@ -21,6 +23,7 @@ namespace AppFramework.Common.Services.Permission
             set { name = value; RaisePropertyChanged(); }
         }
 
+        public Action Ation { get; }
         public string Key { get; set; }
     }
 }

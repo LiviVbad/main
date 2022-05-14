@@ -54,7 +54,9 @@
 
         public const string UserDetails = "UserDetailsView";
 
-        public const string UserPermissionView = "UserChangePermissionView";
+        public const string TenantChangeFeatures = "TenantChangeFeaturesView";
+
+        public const string UserChangePermission = "UserChangePermissionView";
 
         public const string RoleDetails = "RoleDetailsView";
 

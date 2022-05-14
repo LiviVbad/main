@@ -7,38 +7,38 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AFAA0841-BD9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F10AA149-2626-486E-85BB-9CD5365F3016}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Web.Host", "src\AppFrameworkDemo.Web.Host\AppFramework.Web.Host.csproj", "{9FC37C62-2105-4D32-9724-7323B959504B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Web.Host", "src\AppFramework.Web.Host\AppFramework.Web.Host.csproj", "{9FC37C62-2105-4D32-9724-7323B959504B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Core", "src\AppFrameworkDemo.Core\AppFramework.Core.csproj", "{0FA75A5B-AB83-4FD0-B545-279774C01E87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Core", "src\AppFramework.Core\AppFramework.Core.csproj", "{0FA75A5B-AB83-4FD0-B545-279774C01E87}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Application", "src\AppFrameworkDemo.Application\AppFramework.Application.csproj", "{3870C648-4AEA-4B85-BA3F-F2F63B96136A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Application", "src\AppFramework.Application\AppFramework.Application.csproj", "{3870C648-4AEA-4B85-BA3F-F2F63B96136A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Tests", "test\AppFrameworkDemo.Tests\AppFramework.Tests.csproj", "{0D4C5D00-C144-4213-A007-4B8944113AB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Tests", "test\AppFramework.Tests\AppFramework.Tests.csproj", "{0D4C5D00-C144-4213-A007-4B8944113AB1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Migrator", "src\AppFrameworkDemo.Migrator\AppFramework.Migrator.csproj", "{7CAD3713-812A-4DE1-BDE3-59225B1E430A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Migrator", "src\AppFramework.Migrator\AppFramework.Migrator.csproj", "{7CAD3713-812A-4DE1-BDE3-59225B1E430A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Web.Core", "src\AppFrameworkDemo.Web.Core\AppFramework.Web.Core.csproj", "{0F0E141D-2626-4114-9805-3AFD8275A6B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Web.Core", "src\AppFramework.Web.Core\AppFramework.Web.Core.csproj", "{0F0E141D-2626-4114-9805-3AFD8275A6B0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.EntityFrameworkCore", "src\AppFrameworkDemo.EntityFrameworkCore\AppFramework.EntityFrameworkCore.csproj", "{A229F7D5-EE83-462E-8642-E9A2D5EA90FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.EntityFrameworkCore", "src\AppFramework.EntityFrameworkCore\AppFramework.EntityFrameworkCore.csproj", "{A229F7D5-EE83-462E-8642-E9A2D5EA90FE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D04D9608-9CEB-4E0A-B548-410F7475E9F1}"
 	ProjectSection(SolutionItems) = preProject
 		common.props = common.props
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.ConsoleApiClient", "test\AppFrameworkDemo.ConsoleApiClient\AppFramework.ConsoleApiClient.csproj", "{25CD4D8C-D3DB-48A0-A4D0-639B6D0BDC7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.ConsoleApiClient", "test\AppFramework.ConsoleApiClient\AppFramework.ConsoleApiClient.csproj", "{25CD4D8C-D3DB-48A0-A4D0-639B6D0BDC7C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Web.Public", "src\AppFrameworkDemo.Web.Public\AppFramework.Web.Public.csproj", "{2A88C289-A06A-4D69-8C71-E632E0F6B96D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Web.Public", "src\AppFramework.Web.Public\AppFramework.Web.Public.csproj", "{2A88C289-A06A-4D69-8C71-E632E0F6B96D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.GraphQL", "src\AppFrameworkDemo.GraphQL\AppFramework.GraphQL.csproj", "{06BE6AD3-3D14-4D0B-935A-4228C7904A9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.GraphQL", "src\AppFramework.GraphQL\AppFramework.GraphQL.csproj", "{06BE6AD3-3D14-4D0B-935A-4228C7904A9D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.GraphQL.Tests", "test\AppFrameworkDemo.GraphQL.Tests\AppFramework.GraphQL.Tests.csproj", "{E09101B3-F77E-4C72-8465-7B430FA93AD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.GraphQL.Tests", "test\AppFramework.GraphQL.Tests\AppFramework.GraphQL.Tests.csproj", "{E09101B3-F77E-4C72-8465-7B430FA93AD1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Test.Base", "test\AppFrameworkDemo.Test.Base\AppFramework.Test.Base.csproj", "{62EC592B-CC95-43C2-9736-0EC6E46B01FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Test.Base", "test\AppFramework.Test.Base\AppFramework.Test.Base.csproj", "{62EC592B-CC95-43C2-9736-0EC6E46B01FA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Application.Shared", "src\AppFrameworkDemo.Application.Shared\AppFramework.Application.Shared.csproj", "{E03BA876-BE13-438C-8112-D13D5A0A95F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Application.Shared", "src\AppFramework.Application.Shared\AppFramework.Application.Shared.csproj", "{E03BA876-BE13-438C-8112-D13D5A0A95F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Core.Shared", "src\AppFrameworkDemo.Core.Shared\AppFramework.Core.Shared.csproj", "{ED760E2B-4B15-44FF-BB1E-D72B748824BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Core.Shared", "src\AppFramework.Core.Shared\AppFramework.Core.Shared.csproj", "{ED760E2B-4B15-44FF-BB1E-D72B748824BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

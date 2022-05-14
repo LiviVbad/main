@@ -1,11 +1,8 @@
 ﻿using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Permission;
-using AppFramework.DynamicEntityProperties;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using AppFramework.DynamicEntityProperties; 
+using System.Collections.Generic; 
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -40,10 +37,14 @@ namespace AppFramework.ViewModels
         {
             return new PermissionButton[]
              {
-                new PermissionButton(PermissionKey.LanguageEdit, Local.Localize("Change")),
-                new PermissionButton(PermissionKey.LanguageDelete, Local.Localize("Delete")),
-                new PermissionButton(PermissionKey.LanguageEdit, Local.Localize("EditValues")),
+                new PermissionButton(PermissionKey.LanguageEdit, Local.Localize("Change"),()=>Edit()),
+                new PermissionButton(PermissionKey.LanguageDelete, Local.Localize("Delete"),()=>Delete()),
+                new PermissionButton(PermissionKey.LanguageEdit, Local.Localize("EditValues"),()=>EditValues()),
              };
         }
+
+        private void Delete() { }
+
+        private void EditValues() { }
     }
 }

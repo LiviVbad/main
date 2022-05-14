@@ -1,4 +1,5 @@
 ﻿using AppFramework.ApiClient.Models;
+using AppFramework.Common.Models;
 using System.Threading.Tasks;
 
 namespace AppFramework.Common.Services.Account
@@ -10,6 +11,8 @@ namespace AppFramework.Common.Services.Account
         AbpAuthenticateResultModel AuthenticateResultModel { get; set; }
 
         Task<bool> LoginUserAsync();
+
+        Task LoginCurrentUserAsync(UserListModel user);
 
         Task LogoutAsync();
     }

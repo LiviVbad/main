@@ -36,23 +36,25 @@ namespace AppFramework.ViewModels
             });
         }
 
-        public override async void Delete( )
-        { 
-            if (!await dialog.Question(Local.Localize(""))) return;
-
-            await appService.DeleteRole(new EntityDto()
+        public async void Delete()
+        {
+            if (await dialog.Question(Local.Localize("RoleDeleteWarningMessage", SelectedItem.DisplayName)))
             {
-                Id = SelectedItem.Id
-            });
-            await RefreshAsync();
+                await SetBusyAsync(async () =>
+                {
+                    await WebRequest.Execute(() => appService.DeleteRole(
+                        new EntityDto(SelectedItem.Id)),
+                        RefreshAsync);
+                });
+            }
         }
 
         public override PermissionButton[] CreatePermissionButtons()
         {
             return new PermissionButton[]
             {
-                new PermissionButton(PermissionKey.RoleEdit, Local.Localize("Change")),
-                new PermissionButton(PermissionKey.RoleDelete, Local.Localize("Delete"))
+                new PermissionButton(PermissionKey.RoleEdit, Local.Localize("Change"),()=>Edit()),
+                new PermissionButton(PermissionKey.RoleDelete, Local.Localize("Delete"),()=>Delete())
             };
         }
     }

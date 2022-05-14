@@ -13,6 +13,7 @@
     using System;
     using AppFramework.WindowHost;
     using AppFramework.Views;
+    using System.Linq;
 
     public class NavigationCurdViewModel<T> : ViewModelBase, INavigationAware where T : class
     {
@@ -36,11 +37,13 @@
         public DelegateCommand RefreshCommand { get; private set; }
         public DelegateCommand<string> ExecuteCommand { get; private set; }
 
+        private T selectedItem;
+        private ObservableCollection<T> gridModelList;
+        private ObservableCollection<PermissionButton> permissions;
+
         public readonly IRegionManager regionManager;
         public readonly IHostDialogService dialog;
         private readonly IPermissionService permissionService;
-
-        private ObservableCollection<PermissionButton> permissions;
 
         public ObservableCollection<PermissionButton> Permissions
         {
@@ -48,15 +51,11 @@
             set { permissions = value; RaisePropertyChanged(); }
         }
 
-        private T? selectedItem;
-
-        public T? SelectedItem
+        public T SelectedItem
         {
             get { return selectedItem; }
             set { selectedItem = value; RaisePropertyChanged(); }
         }
-
-        private ObservableCollection<T> gridModelList;
 
         public ObservableCollection<T> GridModelList
         {
@@ -64,29 +63,33 @@
             set { gridModelList = value; RaisePropertyChanged(); }
         }
 
-        public virtual PermissionButton[] CreatePermissionButtons() => new PermissionButton[0];
-
         #endregion
 
-        #region 添加/编辑/删除/刷新
+        #region 添加/编辑/刷新
 
-        public virtual void Execute(string obj) { }
+        private void Execute(string key)
+        {
+            var permissionButton = Permissions.FirstOrDefault(t => t.Key.Equals(key));
+            if (permissionButton != null)
+                permissionButton.Ation?.Invoke();
+        }
 
-        public virtual async void Add()
+        public async void Add()
         {
             var dialogResult = await dialog.ShowDialogAsync(GetPageName("Details"));
             if (dialogResult.Result == ButtonResult.OK)
                 await RefreshAsync();
         }
 
-        public virtual async void Edit()
+        public async void Edit()
         {
-            var dialogResult = await dialog.ShowDialogAsync(GetPageName("Details"));
+            DialogParameters param = new DialogParameters();
+            param.Add("Value", SelectedItem);
+
+            var dialogResult = await dialog.ShowDialogAsync(GetPageName("Details"), param);
             if (dialogResult.Result == ButtonResult.OK)
                 await RefreshAsync();
         }
-
-        public virtual void Delete() { }
 
         public virtual async Task RefreshAsync() => await Task.CompletedTask;
 
@@ -96,6 +99,10 @@
 
         public virtual void OnNavigatedFrom(NavigationContext navigationContext)
         {
+            /*
+             * 当导航发生时,释放当前窗口资源
+             */
+
             GridModelList.Clear();
         }
 
@@ -120,20 +127,22 @@
                 .Replace("Model", $"{methodName}View");
         }
 
-        protected virtual void CreatePermissions()
+        public virtual PermissionButton[] CreatePermissionButtons() => new PermissionButton[0];
+
+        private void CreatePermissions()
         {
             if (Permissions == null)
-            {
                 Permissions = new ObservableCollection<PermissionButton>();
-            }
-
             Permissions.Clear();
 
             var permissionButtons = CreatePermissionButtons();
-            foreach (var item in permissionButtons)
+            if (permissionButtons != null)
             {
-                if (permissionService.HasPermission(item.Key))
-                    Permissions.Add(item);
+                foreach (var item in permissionButtons)
+                {
+                    if (permissionService.HasPermission(item.Key))
+                        Permissions.Add(item);
+                }
             }
         }
 
