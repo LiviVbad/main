@@ -2,6 +2,7 @@
 using AppFramework.Auditing.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Models;
+using AppFramework.Common.Services.Permission;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -40,6 +41,6 @@ namespace AppFramework.ViewModels
                                await Task.CompletedTask;
                            });
             });
-        }
+        } 
     }
 }

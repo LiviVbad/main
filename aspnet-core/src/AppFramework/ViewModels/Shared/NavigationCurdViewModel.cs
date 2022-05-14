@@ -28,7 +28,7 @@
             RefreshCommand = new DelegateCommand(async () => await RefreshAsync());
 
             gridModelList = new ObservableCollection<T>();
-            permissions = new ObservableCollection<PermissionButton>();
+            permissions = new ObservableCollection<PermButton>();
         }
 
         #region 字段/属性
@@ -39,13 +39,13 @@
 
         private T selectedItem;
         private ObservableCollection<T> gridModelList;
-        private ObservableCollection<PermissionButton> permissions;
+        private ObservableCollection<PermButton> permissions;
 
         public readonly IRegionManager regionManager;
         public readonly IHostDialogService dialog;
         private readonly IPermissionService permissionService;
 
-        public ObservableCollection<PermissionButton> Permissions
+        public ObservableCollection<PermButton> Permissions
         {
             get { return permissions; }
             set { permissions = value; RaisePropertyChanged(); }
@@ -127,12 +127,12 @@
                 .Replace("Model", $"{methodName}View");
         }
 
-        public virtual PermissionButton[] CreatePermissionButtons() => new PermissionButton[0];
+        public virtual PermButton[] CreatePermissionButtons() => new PermButton[0];
 
         private void CreatePermissions()
         {
             if (Permissions == null)
-                Permissions = new ObservableCollection<PermissionButton>();
+                Permissions = new ObservableCollection<PermButton>();
             Permissions.Clear();
 
             var permissionButtons = CreatePermissionButtons();

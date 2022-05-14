@@ -1,10 +1,9 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Models;
+using AppFramework.Common.Services.Permission;
 using AppFramework.Editions;
-using AppFramework.Editions.Dto;
-using System;
-using System.Collections.Generic; 
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -33,6 +32,28 @@ namespace AppFramework.ViewModels
                             await Task.CompletedTask;
                         });
             });
+        }
+
+        public override PermButton[] CreatePermissionButtons()
+        {
+            return new PermButton[]
+            {
+                new PermButton(Permkeys.EditionEdit, Local.Localize("Delete"),()=>Delete()),
+                new PermButton(Permkeys.EditionDelete, Local.Localize("EditEdition"),()=>Edit()),
+            };
+        }
+
+        private async void Delete()
+        {
+            if (await dialog.Question(Local.Localize("EditionDeleteWarningMessage", SelectedItem.DisplayName)))
+            {
+                await SetBusyAsync(async () =>
+                {
+                    await WebRequest.Execute(() =>
+                            appService.DeleteEdition(new EntityDto(SelectedItem.Id)),
+                        RefreshAsync);
+                });
+            }
         }
     }
 }

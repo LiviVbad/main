@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Services\Permission\PermissionButton.cs~RF643eb8.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="FluentValidation" Version="10.4.0" />
     <PackageReference Include="Prism.Core" Version="8.1.97" />

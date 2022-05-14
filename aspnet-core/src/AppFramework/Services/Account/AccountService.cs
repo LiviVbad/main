@@ -1,6 +1,5 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.ApiClient.Models;
-using AppFramework.Authorization.Users.Profile;
 using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Account;
@@ -8,6 +7,7 @@ using AppFramework.Common.Services.Storage;
 using AppFramework.Sessions;
 using AppFramework.Sessions.Dto;
 using Prism.Mvvm;
+using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 
 namespace AppFramework.Services.Account
@@ -15,17 +15,20 @@ namespace AppFramework.Services.Account
     public class AccountService : BindableBase, IAccountService
     {
         public readonly IAccountStorageService dataStorageService;
+        private readonly IDialogService dialogService;
         public readonly IApplicationContext applicationContext;
         public readonly ISessionAppService sessionAppService;
         public readonly IAccessTokenManager accessTokenManager;
 
         public AccountService(
+            IDialogService dialogService,
             IApplicationContext applicationContext,
             ISessionAppService sessionAppService,
             IAccessTokenManager accessTokenManager,
             IAccountStorageService dataStorageService,
             AbpAuthenticateModel authenticateModel)
         {
+            this.dialogService = dialogService;
             this.applicationContext = applicationContext;
             this.sessionAppService = sessionAppService;
             this.accessTokenManager = accessTokenManager;
@@ -77,7 +80,7 @@ namespace AppFramework.Services.Account
 
             if (AuthenticateResultModel.ShouldResetPassword)
             {
-                //await appDialogService.Show("", Local.Localize("ChangePasswordToLogin"));
+                dialogService.Show("", Local.Localize("ChangePasswordToLogin")); 
                 return false;
             }
 
@@ -110,6 +113,6 @@ namespace AppFramework.Services.Account
         {
             applicationContext.SetLoginInfo(result);
             await dataStorageService.StoreLoginInformationAsync(applicationContext.LoginInfo);
-        } 
+        }
     }
 }

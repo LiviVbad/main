@@ -1,6 +1,6 @@
 ﻿namespace AppFramework.Common
 {
-    public class PermissionKey
+    public class Permkeys
     {
         public const string Pages = "Pages";
         public const string DemoUiComponents = "Pages.DemoUiComponents";
@@ -17,7 +17,7 @@
         public const string TenantChangeFeatures = "Pages.Tenants.ChangeFeatures";
         public const string TenantDelete = "Pages.Tenants.Delete";
         public const string TenantImpersonation = "Pages.Tenants.Impersonation";
-        public const string TenantSettings = "Pages.Administration.Tenant.Settings"; 
+        public const string TenantSettings = "Pages.Administration.Tenant.Settings";
 
         /* EDITIONS */
         public const string Editions = "Pages.Editions";
@@ -46,7 +46,7 @@
         public const string UserChangePermission = "Pages.Administration.Users.ChangePermissions";
         public const string UserImpersonation = "Pages.Administration.Users.Impersonation";
         public const string UsersUnlock = "Pages.Administration.Users.Unlock";
-          
+
         /* ADMINISTRATION - LANGUAGES */
         public const string Languages = "Pages.Administration.Languages";
         public const string LanguageCreate = "Pages.Administration.Languages.Create";

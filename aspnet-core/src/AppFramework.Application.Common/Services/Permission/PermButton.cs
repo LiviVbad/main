@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AppFramework.Common.Services.Permission
 {
-    public class PermissionButton : BindableBase
+    public class PermButton : BindableBase
     {
-        public PermissionButton(string key, string name, Action ation)
+        public PermButton(string key, string name, Action ation)
         {
             Key = key;
             Name = name;

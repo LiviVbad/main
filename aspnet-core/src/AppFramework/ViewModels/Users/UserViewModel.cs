@@ -86,9 +86,8 @@ namespace AppFramework.ViewModels
         }
 
         public async void Delete()
-        {
-            var result = await dialog.Question(Local.Localize("UserDeleteWarningMessage", SelectedItem.UserName));
-            if (result)
+        { 
+            if (await dialog.Question(Local.Localize("UserDeleteWarningMessage", SelectedItem.UserName)))
             {
                 await SetBusyAsync(async () =>
                 {
@@ -134,15 +133,15 @@ namespace AppFramework.ViewModels
             });
         }
 
-        public override PermissionButton[] CreatePermissionButtons()
+        public override PermButton[] CreatePermissionButtons()
         {
-            return new PermissionButton[]
+            return new PermButton[]
             {
-                new PermissionButton(PermissionKey.Users, Local.Localize("LoginAsThisUser"),()=>LoginAsThisUser()),
-                new PermissionButton(PermissionKey.UserEdit, Local.Localize("Change"),()=>Edit()),
-                new PermissionButton(PermissionKey.UserChangePermission, Local.Localize("Permissions"),()=>UserChangePermission(SelectedItem.Id)),
-                new PermissionButton(PermissionKey.UsersUnlock, Local.Localize("Unlock"),()=>UsersUnlock(SelectedItem.Id)),
-                new PermissionButton(PermissionKey.UserDelete, Local.Localize("Delete"),()=>Delete())
+                new PermButton(Permkeys.Users, Local.Localize("LoginAsThisUser"),()=>LoginAsThisUser()),
+                new PermButton(Permkeys.UserEdit, Local.Localize("Change"),()=>Edit()),
+                new PermButton(Permkeys.UserChangePermission, Local.Localize("Permissions"),()=>UserChangePermission(SelectedItem.Id)),
+                new PermButton(Permkeys.UsersUnlock, Local.Localize("Unlock"),()=>UsersUnlock(SelectedItem.Id)),
+                new PermButton(Permkeys.UserDelete, Local.Localize("Delete"),()=>Delete())
             };
         }
     }

@@ -64,15 +64,15 @@ namespace AppFramework.ViewModels
 
         private void TenantImpersonation() { }
 
-        public override PermissionButton[] CreatePermissionButtons()
+        public override PermButton[] CreatePermissionButtons()
         {
-            return new PermissionButton[]
+            return new PermButton[]
              {
-                new PermissionButton(PermissionKey.TenantImpersonation, Local.Localize("LoginAsThisTenant"),()=>TenantImpersonation()),
-                new PermissionButton(PermissionKey.TenantEdit, Local.Localize("Change"),()=>Edit()),
-                new PermissionButton(PermissionKey.TenantChangeFeatures, Local.Localize("Features"),()=>TenantChangeFeatures(SelectedItem.Id)),
-                new PermissionButton(PermissionKey.TenantDelete, Local.Localize("Delete"),()=>Delete()),
-                new PermissionButton(PermissionKey.TenantEdit, Local.Localize("Unlock"),null)
+                new PermButton(Permkeys.TenantImpersonation, Local.Localize("LoginAsThisTenant"),()=>TenantImpersonation()),
+                new PermButton(Permkeys.TenantEdit, Local.Localize("Change"),()=>Edit()),
+                new PermButton(Permkeys.TenantChangeFeatures, Local.Localize("Features"),()=>TenantChangeFeatures(SelectedItem.Id)),
+                new PermButton(Permkeys.TenantDelete, Local.Localize("Delete"),()=>Delete()),
+                new PermButton(Permkeys.TenantEdit, Local.Localize("Unlock"),null)
              };
         }
     }

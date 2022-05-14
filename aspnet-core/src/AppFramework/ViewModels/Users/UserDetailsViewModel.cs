@@ -54,7 +54,7 @@ namespace AppFramework.ViewModels
             set
             {
                 isNewUser = value;
-                IsUnlockButtonVisible = !isNewUser && permissionService.HasPermission(PermissionKey.UserEdit);
+                IsUnlockButtonVisible = !isNewUser && permissionService.HasPermission(Permkeys.UserEdit);
                 RaisePropertyChanged();
             }
         }
@@ -117,19 +117,7 @@ namespace AppFramework.ViewModels
                       };
                   }
               });
-
-            //if (parameters.ContainsKey("Value"))
-            //{
-            //    var output = parameters.GetValue<GetUserForEditOutput>("Value");
-
-            //    UserInput.User = mapper.Map<UserEditModel>(output.User);
-            //    var organizationUnitModels = mapper.Map<List<OrganizationListModel>>
-            //       (output.AllOrganizationUnits);
-
-            //    UserRoles = mapper.Map<ObservableCollection<UserRoleModel>>(output.Roles);
-            //    OrganizationUnitModels = BuildOrganizationTree(organizationUnitModels);
-            //}
-
+             
             if (parameters.ContainsKey("Config"))
             {
                 PasswordComplexitySetting = parameters.GetValue<GetPasswordComplexitySettingOutput>("Config");

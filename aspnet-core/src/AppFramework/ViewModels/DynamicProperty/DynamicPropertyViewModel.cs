@@ -33,13 +33,13 @@ namespace AppFramework.ViewModels
             });
         }
 
-        public override PermissionButton[] CreatePermissionButtons()
+        public override PermButton[] CreatePermissionButtons()
         {
-            return new PermissionButton[]
+            return new PermButton[]
              {
-                new PermissionButton(PermissionKey.LanguageEdit, Local.Localize("Change"),()=>Edit()),
-                new PermissionButton(PermissionKey.LanguageDelete, Local.Localize("Delete"),()=>Delete()),
-                new PermissionButton(PermissionKey.LanguageEdit, Local.Localize("EditValues"),()=>EditValues()),
+                new PermButton(Permkeys.LanguageEdit, Local.Localize("Change"),()=>Edit()),
+                new PermButton(Permkeys.LanguageDelete, Local.Localize("Delete"),()=>Delete()),
+                new PermButton(Permkeys.LanguageEdit, Local.Localize("EditValues"),()=>EditValues()),
              };
         }
 
