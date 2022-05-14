@@ -104,28 +104,14 @@ namespace AppFramework.Shared.ViewModels
                 List<NameValueDto> featureValues = new List<NameValueDto>();
                 GetSelectedNodes(Features, ref featureValues);
 
-                if (Model.Id > 0)
+                await WebRequestRuner.Execute(async () =>
                 {
-                    await WebRequestRuner.Execute(async () =>
-                     {
-                         await appService.UpdateEdition(new UpdateEditionDto()
-                         {
-                             Edition = Map<EditionEditDto>(Model),
-                             FeatureValues = featureValues,
-                         });
-                     }, async () => await GoBackAsync());
-                }
-                else
-                {
-                    await WebRequestRuner.Execute(async () =>
-                    {
-                        await appService.CreateEdition(new CreateEditionDto()
-                        {
-                            Edition = Map<EditionCreateDto>(Model),
-                            FeatureValues = featureValues,
-                        });
-                    }, async () => await GoBackAsync());
-                }
+                    if (Model.Id > 0)
+                        await appService.UpdateEdition(new UpdateEditionDto() { Edition = Map<EditionEditDto>(Model), FeatureValues = featureValues, });
+                    else
+                        await appService.CreateEdition(new CreateEditionDto() { Edition = Map<EditionCreateDto>(Model), FeatureValues = featureValues, });
+                }, async () => await GoBackAsync());
+
             }, AppLocalizationKeys.SavingWithThreeDot);
         }
 

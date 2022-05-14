@@ -102,14 +102,13 @@
             /*
              * 当导航发生时,释放当前窗口资源
              */
-
+            Permissions.Clear();
             GridModelList.Clear();
         }
 
         public virtual async void OnNavigatedTo(NavigationContext navigationContext)
         {
-            CreatePermissions();
-
+            this.GeneratePermissions();
             await RefreshAsync();
         }
 
@@ -127,15 +126,15 @@
                 .Replace("Model", $"{methodName}View");
         }
 
-        public virtual PermButton[] CreatePermissionButtons() => new PermButton[0];
+        public virtual PermButton[] GeneratePermissionButtons() => new PermButton[0];
 
-        private void CreatePermissions()
+        private void GeneratePermissions()
         {
             if (Permissions == null)
                 Permissions = new ObservableCollection<PermButton>();
             Permissions.Clear();
 
-            var permissionButtons = CreatePermissionButtons();
+            var permissionButtons = GeneratePermissionButtons();
             if (permissionButtons != null)
             {
                 foreach (var item in permissionButtons)

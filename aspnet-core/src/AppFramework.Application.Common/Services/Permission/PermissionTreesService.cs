@@ -13,6 +13,8 @@ namespace AppFramework.Common
 {
     public class PermissionTreesService : BindableBase, IPermissionTreesService
     {
+        private readonly IMapper mapper;
+
         public PermissionTreesService(IMapper mapper)
         {
             this.mapper = mapper;
@@ -27,8 +29,7 @@ namespace AppFramework.Common
         }
 
         private ObservableCollection<object> selectedItems;
-        private readonly IMapper mapper;
-
+         
         public ObservableCollection<object> SelectedItems
         {
             get { return selectedItems; }

@@ -3,8 +3,8 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Permission;
 using AppFramework.MultiTenancy;
-using AppFramework.MultiTenancy.Dto; 
-using System.Collections.Generic; 
+using AppFramework.MultiTenancy.Dto;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -64,7 +64,9 @@ namespace AppFramework.ViewModels
 
         private void TenantImpersonation() { }
 
-        public override PermButton[] CreatePermissionButtons()
+        private void Unlock() { }
+
+        public override PermButton[] GeneratePermissionButtons()
         {
             return new PermButton[]
              {
@@ -72,7 +74,7 @@ namespace AppFramework.ViewModels
                 new PermButton(Permkeys.TenantEdit, Local.Localize("Change"),()=>Edit()),
                 new PermButton(Permkeys.TenantChangeFeatures, Local.Localize("Features"),()=>TenantChangeFeatures(SelectedItem.Id)),
                 new PermButton(Permkeys.TenantDelete, Local.Localize("Delete"),()=>Delete()),
-                new PermButton(Permkeys.TenantEdit, Local.Localize("Unlock"),null)
+                new PermButton(Permkeys.TenantUnlock, Local.Localize("Unlock"),()=>Unlock())
              };
         }
     }

@@ -49,7 +49,7 @@ namespace AppFramework.ViewModels
             }
         }
 
-        public override PermButton[] CreatePermissionButtons()
+        public override PermButton[] GeneratePermissionButtons()
         {
             return new PermButton[]
             {
