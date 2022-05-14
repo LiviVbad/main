@@ -39,11 +39,24 @@
 
             <sync:SfDataGrid
                 x:Name="SfDataGrid"
-                Grid.Row="1"
+                Grid.Row="1" 
+                SelectedItem="{Binding SelectedItem}"
                 Margin="15,0"
                 ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}"
                 Style="{StaticResource SimpleDataGridStyle}">
                 <sync:SfDataGrid.Columns>
+                    <sync:GridTemplateColumn
+                        AllowFiltering="False"
+                        AllowSorting="False" Width="60">
+                        <sync:GridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button  Style="{StaticResource IconButtonStyle}"
+                                    Content="&#xe633;" Padding="8"
+                                    Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                                     />
+                            </DataTemplate>
+                        </sync:GridTemplateColumn.CellTemplate>
+                    </sync:GridTemplateColumn>
                     <sync:GridTextColumn HeaderText="{extensions:Translate UserName}" MappingName="UserName" />
                     <sync:GridTextColumn HeaderText="{extensions:Translate Service}" MappingName="ServiceName" />
                     <sync:GridTextColumn HeaderText="{extensions:Translate Action}" MappingName="MethodName" />

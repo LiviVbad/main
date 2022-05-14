@@ -4,10 +4,7 @@ using Syncfusion.Windows.Shared;
 using Syncfusion.UI.Xaml.NavigationDrawer;
 
 namespace AppFramework.Views
-{
-    /// <summary>
-    /// MainView.xaml 的交互逻辑
-    /// </summary>
+{ 
     public partial class MainView : ChromelessWindow
     {
         public MainView(IThemeService themeService, IResourceService resourceService)

@@ -27,7 +27,7 @@
         <coll:ArrayList>
             <Button
                 Command="{Binding SetThemeModeCommand}"
-                Content="{Binding IsDarkTheme, Converter={StaticResource darkConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Content="{Binding themeService.IsDarkTheme, Converter={StaticResource darkConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Style="{DynamicResource IconButtonStyle}" />
 
             <sync:DropDownButtonAdv

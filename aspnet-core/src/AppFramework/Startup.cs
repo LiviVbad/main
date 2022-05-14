@@ -57,6 +57,7 @@ namespace AppFramework
             services.Add<AddRolesView, AddRolesViewModel>(AppViewManager.AddRoles);
             services.Add<AddUsersView, AddUsersViewModel>(AppViewManager.AddUsers);
             services.Add<AuditLogsView, AuditLogsViewModel>(AppViewManager.AuditLog);
+            services.Add<AuditLogsDetailsView, AuditLogsDetailsViewModel>(AppViewManager.AuditLogDetails);
             services.Add<LanguageView, LanguageViewModel>(AppViewManager.Language);
             services.Add<DashboardView, DashboardViewModel>(AppViewManager.Dashboard);
             services.Add<OrganizationsView, OrganizationsViewModel>(AppViewManager.Organization);

@@ -4,10 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace AppFramework.Views
-{
-    /// <summary>
-    /// DashboardView.xaml 的交互逻辑
-    /// </summary>
+{ 
     public partial class DashboardView : UserControl
     {
         public DashboardView()

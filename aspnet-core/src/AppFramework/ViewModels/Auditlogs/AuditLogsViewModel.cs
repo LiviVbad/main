@@ -2,7 +2,8 @@
 using AppFramework.Auditing.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Models;
-using AppFramework.Common.Services.Permission;
+using Prism.Commands;
+using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace AppFramework.ViewModels
         public GetAuditLogsInput input;
         private readonly IAuditLogAppService appService;
 
+        public DelegateCommand ViewCommand { get; private set; }
+
         public AuditLogsViewModel(IAuditLogAppService appService)
         {
             input = new GetAuditLogsInput()
@@ -23,6 +26,15 @@ namespace AppFramework.ViewModels
                 MaxResultCount = AppConsts.DefaultPageSize,
             };
             this.appService = appService;
+
+            ViewCommand = new DelegateCommand(ViewLogs);
+        }
+
+        private void ViewLogs()
+        {
+            DialogParameters param = new DialogParameters();
+            param.Add("Value", SelectedItem);
+            dialog.ShowDialogAsync(AppViewManager.AuditLogDetails, param);
         }
 
         public override async Task RefreshAsync()
@@ -41,6 +53,6 @@ namespace AppFramework.ViewModels
                                await Task.CompletedTask;
                            });
             });
-        } 
+        }
     }
 }

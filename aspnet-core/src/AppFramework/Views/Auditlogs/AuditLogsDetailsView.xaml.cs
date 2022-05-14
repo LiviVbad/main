@@ -2,9 +2,9 @@
 
 namespace AppFramework.Views
 { 
-    public partial class TenantView : UserControl
+    public partial class AuditLogsDetailsView : UserControl
     {
-        public TenantView()
+        public AuditLogsDetailsView()
         {
             InitializeComponent();
         }

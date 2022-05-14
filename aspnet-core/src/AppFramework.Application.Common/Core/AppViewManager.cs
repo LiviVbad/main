@@ -48,6 +48,8 @@
          * 详细页 
          */
 
+        public const string AuditLogDetails = "AuditLogsDetailsView";
+
         public const string EditionDetails = "EditionDetailsView";
 
         public const string TenantDetails = "TenantDetailsView";
