@@ -6,11 +6,13 @@ namespace AppFramework.Services
 {
     public interface IThemeService
     {
-        ObservableCollection<ThemeItem> GetThemes();
+        ObservableCollection<ThemeItem> ThemeItems { get; set; }
 
-        string GetCurrent();
+        string GetCurrentName();
 
         void SetTheme(string themeName);
+
+        void SetThemeMode();
 
         void SetDefaultTheme(DependencyObject dependency);
     }

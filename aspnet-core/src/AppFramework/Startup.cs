@@ -21,16 +21,15 @@ namespace AppFramework
         {
             //注册应用程序依赖服务
             services.RegisterCommonServices();
+            //注册应用程序验证器
+            services.RegisterValidator();
 
             services.RegisterSingleton<IAccountService, AccountService>();
             services.RegisterSingleton<IAccountStorageService, AccountStorageService>();
             services.RegisterSingleton<IDataStorageService, DataStorageService>();
             services.RegisterSingleton<IPermissionService, PermissionService>();
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
-
-            //注册应用程序验证器
-            services.RegisterValidator();
-
+             
             services.RegisterSingleton<ILocaleCulture, LocaleCulture>();
             services.RegisterSingleton<IThemeService, ThemeService>();
             services.RegisterSingleton<IResourceService, ResourceService>();

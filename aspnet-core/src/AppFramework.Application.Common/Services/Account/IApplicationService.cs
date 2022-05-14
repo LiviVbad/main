@@ -49,16 +49,5 @@ namespace AppFramework.Common.Services
         /// 备注: 用户名、头像、权限、应用程序名称版本等
         /// </summary>
         Task GetApplicationInfo();
-
-        /// <summary>
-        /// 设置主题样式
-        /// </summary>
-        /// <param name="displayName"></param>
-        void SetTheme(string displayName);
-
-        /// <summary>
-        /// 设置主题模式（浅色/深色）
-        /// </summary>
-        void SetThemeMode();
     }
 }

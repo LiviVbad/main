@@ -5,8 +5,7 @@
     xmlns:coll="clr-namespace:System.Collections;assembly=mscorlib"
     xmlns:const="clr-namespace:AppFramework.Common;assembly=AppFramework.Common"
     xmlns:converter="clr-namespace:AppFramework.Converters"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:extensions="clr-namespace:AppFramework.Extensions"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:region="clr-namespace:AppFramework.Common;assembly=AppFramework.Common"
@@ -35,7 +34,7 @@
                 Width="50"
                 Label=""
                 SmallIcon="/Assets/Images/color.png">
-                <ItemsControl ItemsSource="{Binding appService.ThemeItems}">
+                <ItemsControl ItemsSource="{Binding themeService.ThemeItems}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Button

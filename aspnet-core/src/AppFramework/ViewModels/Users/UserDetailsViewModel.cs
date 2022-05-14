@@ -102,26 +102,34 @@ namespace AppFramework.ViewModels
                   Input.SetRandomPassword = IsNewUser;
                   Input.SendActivationEmail = IsNewUser;
 
-                  var user = await userAppService.GetUserForEdit(new NullableIdDto<long>(userInfo?.Id));
-                  Model = Map<UserForEditModel>(user);
-                  Model.OrganizationUnits = Map<List<OrganizationUnitModel>>(user.AllOrganizationUnits);
-
-                  if (IsNewUser)
-                  {
-                      //Model.Photo = ImageSource.FromResource(AssetsHelper.ProfileImagePlaceholderNamespace);
-                      Model.User = new UserEditModel
-                      {
-                          IsActive = true,
-                          IsLockoutEnabled = true,
-                          ShouldChangePasswordOnNextLogin = true,
-                      };
-                  }
+                  await WebRequest.Execute(async () =>
+                          await userAppService.GetUserForEdit(new NullableIdDto<long>(userInfo?.Id)),
+                          GetUserForEditSuccessed);
               });
-             
+
             if (parameters.ContainsKey("Config"))
             {
                 PasswordComplexitySetting = parameters.GetValue<GetPasswordComplexitySettingOutput>("Config");
             }
+        }
+
+        private async Task GetUserForEditSuccessed(GetUserForEditOutput output)
+        {
+            Model = Map<UserForEditModel>(output);
+            Model.OrganizationUnits = Map<List<OrganizationUnitModel>>(output.AllOrganizationUnits);
+
+            if (IsNewUser)
+            {
+                //Model.Photo = ImageSource.FromResource(AssetsHelper.ProfileImagePlaceholderNamespace);
+                Model.User = new UserEditModel
+                {
+                    IsActive = true,
+                    IsLockoutEnabled = true,
+                    ShouldChangePasswordOnNextLogin = true,
+                };
+            }
+
+            await Task.CompletedTask;
         }
 
         private ObservableCollection<OrganizationListModel> BuildOrganizationTree(

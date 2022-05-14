@@ -26,13 +26,12 @@ namespace AppFramework.ViewModels
         private readonly IAccountService accountService;
         private readonly IAccountAppService accountAppService;
         private readonly IApplicationContext applicationContext;
-
-
-        private LanguageInfo selectedLanguage;
-        public string CurrentTenancyNameOrDefault { get; set; }
-        private ObservableCollection<LanguageInfo> languages;
+         
         private string tenancyName;
         private bool isLoginEnabled;
+        public string CurrentTenancyNameOrDefault { get; set; }
+        private LanguageInfo selectedLanguage;
+        private ObservableCollection<LanguageInfo> languages;
 
         public bool IsMultiTenancyEnabled { get; set; }
 
@@ -220,7 +219,10 @@ namespace AppFramework.ViewModels
                           if (configuration != null)
                           {
                               Languages = new ObservableCollection<LanguageInfo>(configuration.Localization.Languages);
-                              SelectedLanguage = Languages.FirstOrDefault(l => l.Name == applicationContext.CurrentLanguage.Name);
+
+                              var currentLanguage = Languages.FirstOrDefault(l => l.Name == applicationContext.CurrentLanguage.Name);
+                              if (currentLanguage != null)
+                                  SelectedLanguage = currentLanguage;
 
                               if (applicationContext.CurrentTenant != null)
                               {
@@ -231,8 +233,7 @@ namespace AppFramework.ViewModels
                           else
                           {
                               CurrentTenancyNameOrDefault = Local.Localize(AppLocalizationKeys.NotSelected);
-                          }
-
+                          } 
                           await Task.CompletedTask;
                       });
              });

@@ -19,7 +19,7 @@ namespace AppFramework
 {
     public partial class App : PrismApplication
     {
-        public static IAccountService accountService;
+        private static IAccountService accountService;
 
         protected override Window CreateShell()
         {

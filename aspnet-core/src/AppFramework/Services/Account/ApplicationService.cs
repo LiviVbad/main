@@ -21,8 +21,7 @@ namespace AppFramework.Services.Account
     {
         private readonly IApplicationContext applicationContext;
         private readonly IDialogService dialogService;
-        private readonly INavigationMenuService navigationItemService;
-        private readonly IThemeService themeService;
+        private readonly INavigationMenuService navigationItemService; 
         private readonly IRegionManager regionManager;
         private readonly IProfileAppService profileAppService;
         private readonly ProxyProfileControllerService profileControllerService;
@@ -30,16 +29,14 @@ namespace AppFramework.Services.Account
         public ApplicationService(
             IDialogService dialogService,
             IRegionManager regionManager,
-            INavigationMenuService navigationItemService,
-            IThemeService themeService,
+            INavigationMenuService navigationItemService, 
             IProfileAppService profileAppService,
             IApplicationContext applicationContext,
             ProxyProfileControllerService profileControllerService)
         {
             this.applicationContext = applicationContext;
             this.dialogService = dialogService;
-            this.navigationItemService = navigationItemService;
-            this.themeService = themeService;
+            this.navigationItemService = navigationItemService; 
             this.regionManager = regionManager;
             this.profileAppService = profileAppService;
             this.profileControllerService = profileControllerService;
@@ -163,9 +160,7 @@ namespace AppFramework.Services.Account
         public async Task GetApplicationInfo()
         {
             await GetUserPhoto();
-
-            GetThemeConfiguration();
-
+             
             UserNameAndSurname = applicationContext.LoginInfo.User.Name + " " + applicationContext.LoginInfo.User.Surname;
 
             var permissions = applicationContext.Configuration.Auth.GrantedPermissions;
@@ -174,44 +169,6 @@ namespace AppFramework.Services.Account
             ApplicationInfo = $"{ApplicationName}\n" +
                               $"v{applicationContext.LoginInfo.Application.Version} " +
                               $"[{applicationContext.LoginInfo.Application.ReleaseDate:yyyyMMdd}]";
-        }
-
-        #region 主题
-
-        private bool isDarkTheme;
-        private ObservableCollection<ThemeItem> themeItems;
-
-        public bool IsDarkTheme
-        {
-            get { return isDarkTheme; }
-            set { isDarkTheme = value; RaisePropertyChanged(); }
-        }
-         
-        public ObservableCollection<ThemeItem> ThemeItems
-        {
-            get { return themeItems; }
-            set { themeItems = value; RaisePropertyChanged(); }
-        }
-
-        public void SetTheme(string displayName)
-        {
-            AppSettings.Instance.ThemeName = displayName;
-            themeService.SetTheme(themeService.GetCurrent());
-        }
-
-        public void SetThemeMode()
-        {
-            IsDarkTheme = !IsDarkTheme;
-            AppSettings.Instance.IsDarkTheme = IsDarkTheme;
-            themeService.SetTheme(themeService.GetCurrent());
-        }
-
-        private void GetThemeConfiguration()
-        {
-            ThemeItems = themeService.GetThemes();
-            IsDarkTheme = AppSettings.Instance.IsDarkTheme;
-        }
-
-        #endregion
+        } 
     }
 }

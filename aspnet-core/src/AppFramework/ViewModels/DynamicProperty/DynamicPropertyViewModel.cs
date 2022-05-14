@@ -1,8 +1,9 @@
-﻿using AppFramework.Common;
+﻿using Abp.Application.Services.Dto;
+using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Permission;
-using AppFramework.DynamicEntityProperties; 
-using System.Collections.Generic; 
+using AppFramework.DynamicEntityProperties;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -43,7 +44,18 @@ namespace AppFramework.ViewModels
              };
         }
 
-        private void Delete() { }
+        private async void Delete()
+        {
+            if (await dialog.Question(Local.Localize("DeleteDynamicPropertyMessage", SelectedItem.DisplayName)))
+            {
+                await SetBusyAsync(async () =>
+                {
+                    await WebRequest.Execute(() => appService.Delete(
+                        new EntityDto(SelectedItem.Id)),
+                        RefreshAsync);
+                });
+            }
+        }
 
         private void EditValues() { }
     }

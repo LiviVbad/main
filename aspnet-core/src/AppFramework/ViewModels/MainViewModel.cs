@@ -1,7 +1,8 @@
 ﻿using AppFramework.Common;
 using AppFramework.Common.Models;
-using AppFramework.Common.Services; 
+using AppFramework.Common.Services;
 using AppFramework.Models;
+using AppFramework.Services;
 using Prism.Commands;
 using Prism.Regions;
 
@@ -10,26 +11,30 @@ namespace AppFramework.ViewModels
     public class MainViewModel : NavigationViewModel
     {
         public MainViewModel(
+            IThemeService themeService,
             IRegionManager regionManager,
             IApplicationService appService)
         {
             this.appService = appService;
+            this.themeService = themeService;
             this.regionManager = regionManager;
 
             ExecuteCommand = new DelegateCommand<string>(Execute);
             SetThemeCommand = new DelegateCommand<ThemeItem>(
-                arg => appService.SetTheme(arg.DisplayName));
-            SetThemeModeCommand = new DelegateCommand(appService.SetThemeMode);
+                arg => themeService.SetTheme(arg.DisplayName));
+            SetThemeModeCommand = new DelegateCommand(themeService.SetThemeMode);
         }
-         
+
         #region 字段/属性
 
         private readonly IRegionManager regionManager;
+
+        public IThemeService themeService { get; set; }
         public IApplicationService appService { get; init; }
         public DelegateCommand<string> ExecuteCommand { get; private set; }
         public DelegateCommand SetThemeModeCommand { get; }
         public DelegateCommand<ThemeItem> SetThemeCommand { get; }
-        
+
         #endregion
 
         #region 方法
@@ -44,7 +49,7 @@ namespace AppFramework.ViewModels
         }
 
         #endregion
-          
+
         public void Navigate(NavigationItem navigationItem)
         {
             if (navigationItem.Items?.Count > 0) return;
@@ -62,10 +67,10 @@ namespace AppFramework.ViewModels
             if (navigationResult.Result != null && !(bool)navigationResult.Result)
             { }
         }
-         
+
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
-            appService.GetApplicationInfo();
+            appService.GetApplicationInfo(); 
             Navigate(AppViewManager.Dashboard);
         }
     }
