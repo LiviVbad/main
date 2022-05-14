@@ -20,11 +20,11 @@ namespace AppFramework.Views
             SfNavigationDrawer.ItemClicked += SfNavigationDrawer_ItemClicked;
         }
 
-        private void SfNavigationDrawer_ItemClicked(object sender, NavigationItemClickedEventArgs e)
+        private void SfNavigationDrawer_ItemClicked(object? sender, NavigationItemClickedEventArgs e)
         {
             if (e.Item == null) return;
-
             var item = e.Item.DataContext as Common.Models.NavigationItem;
+            if (item == null) return;
             (this.DataContext as MainViewModel)?.Navigate(item);
         }
     }

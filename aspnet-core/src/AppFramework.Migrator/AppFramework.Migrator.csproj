@@ -27,6 +27,6 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppFrameworkDemo.EntityFrameworkCore\AppFramework.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\AppFramework.EntityFrameworkCore\AppFramework.EntityFrameworkCore.csproj" />
   </ItemGroup>
 </Project>

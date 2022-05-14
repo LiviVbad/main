@@ -11,6 +11,7 @@ using AppFramework.ViewModels;
 using AppFramework.Views;
 using AppFramework.Localization;
 using Prism.Ioc;
+using AppFramework.Common.Services;
 
 namespace AppFramework
 {
@@ -34,6 +35,7 @@ namespace AppFramework
             services.RegisterSingleton<IThemeService, ThemeService>();
             services.RegisterSingleton<IResourceService, ResourceService>();
             services.RegisterSingleton<IHostDialogService, DialogHostService>();
+            services.RegisterSingleton<IApplicationService, ApplicationService>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
 
             services.RegisterDialog<LoginView, LoginViewModel>(AppViewManager.Login);

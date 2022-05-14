@@ -27,7 +27,7 @@
     <sync:ChromelessWindow.RightHeaderItemsSource>
         <coll:ArrayList>
             <Button
-                Command="{Binding ThemeModeChangeCommand}"
+                Command="{Binding SetThemeModeCommand}"
                 Content="{Binding IsDarkTheme, Converter={StaticResource darkConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Style="{DynamicResource IconButtonStyle}" />
 
@@ -35,13 +35,13 @@
                 Width="50"
                 Label=""
                 SmallIcon="/Assets/Images/color.png">
-                <ItemsControl ItemsSource="{Binding ThemeItems}">
+                <ItemsControl ItemsSource="{Binding appService.ThemeItems}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Button
                                 Padding="5"
                                 Background="Transparent"
-                                Command="{Binding DataContext.ThemeChangeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+                                Command="{Binding DataContext.SetThemeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
                                 CommandParameter="{Binding}"
                                 Content="{Binding DisplayName}" />
                         </DataTemplate>
@@ -65,14 +65,14 @@
                 IndentationWidth="10"
                 IsOpen="False"
                 IsToggleButtonVisible="True"
-                ItemsSource="{Binding NavigationItems}">
+                ItemsSource="{Binding appService.NavigationItems}">
                 <sync:SfNavigationDrawer.ToggleButtonContentTemplate>
                     <DataTemplate>
                         <TextBlock
                             Margin="5,0"
                             VerticalAlignment="Center"
                             FontWeight="Bold"
-                            Text="{Binding DataContext.Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfNavigationDrawer}}" />
+                            Text="{Binding DataContext.appService.ApplicationName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfNavigationDrawer}}" />
                     </DataTemplate>
                 </sync:SfNavigationDrawer.ToggleButtonContentTemplate>
                 <sync:SfNavigationDrawer.ItemTemplate>

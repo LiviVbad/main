@@ -14,9 +14,9 @@
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppFrameworkDemo.GraphQL\AppFramework.GraphQL.csproj" />
-    <ProjectReference Include="..\AppFrameworkDemo.Application\AppFramework.Application.csproj" />
-    <ProjectReference Include="..\AppFrameworkDemo.EntityFrameworkCore\AppFramework.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\AppFramework.Application\AppFramework.Application.csproj" />
+    <ProjectReference Include="..\AppFramework.EntityFrameworkCore\AppFramework.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\AppFramework.GraphQL\AppFramework.GraphQL.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Abp.AspNetCore.SignalR" Version="7.1.0" />

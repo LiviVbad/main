@@ -44,6 +44,6 @@
     <PackageReference Include="Abp.AspNetCore.SignalR" Version="7.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppFrameworkDemo.Web.Core\AppFramework.Web.Core.csproj" />
+    <ProjectReference Include="..\AppFramework.Web.Core\AppFramework.Web.Core.csproj" />
   </ItemGroup>
 </Project>
