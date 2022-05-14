@@ -117,7 +117,7 @@ namespace AppFramework.Shared.ViewModels
         /// </summary>
         public async void AddUsers()
         {
-            if (!permissionService.HasPermission(PermissionKey.OrganizationUnitsManageMembers))
+            if (!permissionService.HasPermission(Permkeys.OrganizationUnitsManageMembers))
                 return;
 
             await navigationService.NavigateAsync(AppViewManager.AddUsers, GetParameter());
@@ -128,7 +128,7 @@ namespace AppFramework.Shared.ViewModels
         /// </summary>
         public async void AddRoles()
         {
-            if (!permissionService.HasPermission(PermissionKey.OrganizationUnitsManageRoles))
+            if (!permissionService.HasPermission(Permkeys.OrganizationUnitsManageRoles))
                 return;
 
             await navigationService.NavigateAsync(AppViewManager.AddRoles, GetParameter());

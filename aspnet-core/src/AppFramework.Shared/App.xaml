@@ -4,11 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:AppFramework.Shared.Converters;assembly=AppFramework.Shared"
     xmlns:prism="http://prismlibrary.com"
-    xmlns:sync="clr-namespace:Syncfusion.XForms.Themes;assembly=Syncfusion.Core.XForms">
+    xmlns:themes="clr-namespace:AppFramework.Shared.Themes">
     <Application.Resources>
         <ResourceDictionary>
-            <sync:LightTheme />
-            <sync:DarkTheme />
+            <themes:LightTheme />
+            <themes:DarkTheme />
 
             <converters:DatetimeConverter x:Key="DatetimeConverter" />
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />

@@ -39,21 +39,23 @@
 
             <sync:SfDataGrid
                 x:Name="SfDataGrid"
-                Grid.Row="1" 
-                SelectedItem="{Binding SelectedItem}"
+                Grid.Row="1"
                 Margin="15,0"
                 ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}"
+                SelectedItem="{Binding SelectedItem}"
                 Style="{StaticResource SimpleDataGridStyle}">
                 <sync:SfDataGrid.Columns>
                     <sync:GridTemplateColumn
+                        Width="60"
                         AllowFiltering="False"
-                        AllowSorting="False" Width="60">
+                        AllowSorting="False">
                         <sync:GridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button  Style="{StaticResource IconButtonStyle}"
-                                    Content="&#xe633;" Padding="8"
+                                <Button
+                                    Padding="8"
                                     Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
-                                                     />
+                                    Content="&#xe633;"
+                                    Style="{StaticResource IconButtonStyle}" />
                             </DataTemplate>
                         </sync:GridTemplateColumn.CellTemplate>
                     </sync:GridTemplateColumn>

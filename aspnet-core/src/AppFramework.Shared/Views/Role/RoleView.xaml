@@ -26,13 +26,13 @@
                                                 BackgroundColor="{DynamicResource Red}"
                                                 Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference SfListView}}"
                                                 CommandParameter="{Binding}"
-                                                IsVisible="{extensions:HasPermission Text={x:Static perm:PermissionKey.RoleEdit}}"
+                                                IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.RoleEdit}}"
                                                 Text="{extensions:Translate Remove}" />
                                             <SwipeItem
                                                 BackgroundColor="{DynamicResource PrimaryColor}"
                                                 Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfListView}}"
                                                 CommandParameter="{Binding}"
-                                                IsVisible="{extensions:HasPermission Text={x:Static perm:PermissionKey.RoleEdit}}"
+                                                IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.RoleEdit}}"
                                                 Text="{extensions:Translate Edit}" />
                                         </SwipeItems>
                                     </SwipeView.RightItems>
@@ -84,7 +84,7 @@
         <buttons:SfButton
             Margin="0,0,10,10"
             Command="{Binding AddCommand}"
-            IsVisible="{extensions:HasPermission Text={x:Static perm:PermissionKey.RoleCreate}}"
+            IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.RoleCreate}}"
             Style="{StaticResource AddButtonStyle}" />
     </Grid>
 </ContentView>

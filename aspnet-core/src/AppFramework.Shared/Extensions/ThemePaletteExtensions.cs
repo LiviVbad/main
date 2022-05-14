@@ -1,4 +1,4 @@
-﻿using EssentialUIKit.Themes;
+﻿using AppFramework.Shared.Themes;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;

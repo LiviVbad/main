@@ -7,11 +7,12 @@ using AppFramework.ApiClient;
 using AppFramework.ApiClient.Models;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Sessions;
-using AppFramework.Sessions.Dto; 
+using AppFramework.Sessions.Dto;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System.Threading.Tasks;
 using AppFramework.Common;
+using AppFramework.Common.Models;
 
 namespace AppFramework.Shared.Services.Account
 {
@@ -149,6 +150,11 @@ namespace AppFramework.Shared.Services.Account
         {
             applicationContext.SetLoginInfo(result);
             await dataStorageService.StoreLoginInformationAsync(applicationContext.LoginInfo);
+        }
+
+        public async Task LoginCurrentUserAsync(UserListModel user)
+        {
+            await Task.CompletedTask;
         }
     }
 }

@@ -87,7 +87,7 @@ namespace AppFramework.Shared.ViewModels
             set
             {
                 isNewTenant = value;
-                IsDeleteButtonVisible = !isNewTenant && permissionService.HasPermission(PermissionKey.TenantDelete);
+                IsDeleteButtonVisible = !isNewTenant && permissionService.HasPermission(Permkeys.TenantDelete);
                 PageTitle = isNewTenant ? Local.Localize(AppLocalizationKeys.CreatingNewTenant) : Local.Localize(AppLocalizationKeys.EditTenant);
                 RaisePropertyChanged();
             }

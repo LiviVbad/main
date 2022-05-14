@@ -75,7 +75,7 @@ namespace AppFramework.Shared.ViewModels
             set
             {
                 isNewUser = value;
-                IsUnlockButtonVisible = !isNewUser && permissionService.HasPermission(PermissionKey.UserEdit);
+                IsUnlockButtonVisible = !isNewUser && permissionService.HasPermission(Permkeys.UserEdit);
                 PageTitle = isNewUser ? Local.Localize(AppLocalizationKeys.CreatingNewUser) : Local.Localize(AppLocalizationKeys.EditUser);
                 RaisePropertyChanged();
             }
