@@ -1,5 +1,5 @@
 ﻿using AppFramework.DynamicEntityProperties;
-using AppFramework.DynamicEntityProperties.Dto; 
+using AppFramework.DynamicEntityProperties.Dto;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Threading.Tasks;
@@ -40,18 +40,14 @@ namespace AppFramework.Shared.ViewModels
              {
                  var input = Map<DynamicPropertyDto>(Model);
 
-                 if (input.Id > 0)
+                 await WebRequestRuner.Execute(async () =>
                  {
-                     await WebRequestRuner.Execute(async () =>
-                                await appService.Update(input),
-                                async () => await GoBackAsync());
-                 }
-                 else
-                 {
-                     await WebRequestRuner.Execute(async () =>
-                                await appService.Add(input),
-                                async () => await GoBackAsync());
-                 }
+                     if (input.Id > 0)
+                         await appService.Update(input);
+                     else
+                         await appService.Add(input);
+
+                 }, async () => await GoBackAsync());
              });
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace AppFramework.Common.ViewModels
 {
-    using AppFramework.Common.Core; 
+    using AppFramework.Common.Core;
     using AutoMapper;
     using FluentValidation.Results;
     using Prism.Ioc;
@@ -75,9 +75,6 @@
         /// <typeparam name="T">最终类型</typeparam>
         /// <param name="model">映射实体</param>
         /// <returns></returns>
-        public T Map<T>(object model)
-        {
-            return mapper.Map<T>(model);
-        }
+        public T Map<T>(object model) => mapper.Map<T>(model);
     }
 }

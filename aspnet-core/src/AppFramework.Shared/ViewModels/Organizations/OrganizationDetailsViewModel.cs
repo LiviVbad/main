@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Core;
-using AppFramework.Common.Models; 
+using AppFramework.Common.Models;
 using AppFramework.Organizations;
 using AppFramework.Organizations.Dto;
 using Prism.Commands;
@@ -82,33 +82,30 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
              {
-                 if (IsNewOrganization)
+                 await WebRequestRuner.Execute(async () =>
                  {
-                     if (OrganizationUnit.Id > 0)
-                     {
-                         await GoBackAsync();
-                         return;
-                     }
+                     OrganizationUnitDto organizationUnit = null;
 
-                     await WebRequestRuner.Execute(() => appService.CreateOrganizationUnit(
-                         new CreateOrganizationUnitInput()
+                     if (IsNewOrganization)
+                     {
+                         if (OrganizationUnit.Id > 0) return organizationUnit;
+
+                         organizationUnit = await appService.CreateOrganizationUnit(new CreateOrganizationUnitInput()
                          {
                              ParentId = ParentId,
                              DisplayName = OrganizationUnit.DisplayName
-                         }), result => CreateOrganizationUnitSuccessed(result));
-                 }
-                 else
-                 {
-                     await WebRequestRuner.Execute(async () =>
+                         });
+                     }
+                     else
                      {
-                         await appService.UpdateOrganizationUnit(
-                             new UpdateOrganizationUnitInput()
-                             {
-                                 Id = OrganizationUnit.Id,
-                                 DisplayName = OrganizationUnit.DisplayName
-                             });
-                     }, async () => await GoBackAsync());
-                 }
+                         await appService.UpdateOrganizationUnit(new UpdateOrganizationUnitInput()
+                         {
+                             Id = OrganizationUnit.Id,
+                             DisplayName = OrganizationUnit.DisplayName
+                         });
+                     };
+                     return organizationUnit;
+                 }, result => CreateOrganizationUnitSuccessed(result));
              });
         }
 
@@ -265,13 +262,17 @@ namespace AppFramework.Shared.ViewModels
         /// <returns></returns>
         private async Task CreateOrganizationUnitSuccessed(OrganizationUnitDto organizationUnit)
         {
+            if (organizationUnit == null)
+            {
+                await GoBackAsync();
+                return;
+            }
+
             //当组织新增完成之后,允许为该组织添加用户及角色
             OrganizationUnit.Id = organizationUnit.Id;
             OrganizationUnit.ParentId = ParentId;
             //显示角色和用户面板及相应操作按钮。
             NewOrganizationIsVisible = true;
-
-            await Task.CompletedTask;
         }
 
         /// <summary>

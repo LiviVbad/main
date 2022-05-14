@@ -69,9 +69,9 @@
 
         private void Execute(string key)
         {
-            var permissionButton = Permissions.FirstOrDefault(t => t.Key.Equals(key));
-            if (permissionButton != null)
-                permissionButton.Ation?.Invoke();
+            var permButton = Permissions.FirstOrDefault(t => t.Key.Equals(key));
+            if (permButton != null)
+                permButton.Ation?.Invoke();
         }
 
         public async void Add()
@@ -102,13 +102,14 @@
             /*
              * 当导航发生时,释放当前窗口资源
              */
+
             Permissions.Clear();
             GridModelList.Clear();
         }
 
         public virtual async void OnNavigatedTo(NavigationContext navigationContext)
         {
-            this.GeneratePermissions();
+            GeneratePermissions();
             await RefreshAsync();
         }
 
@@ -145,7 +146,7 @@
             }
         }
 
-        public override async Task SetBusyAsync(Func<Task> func, string loadingMessage = null)
+        public override async Task SetBusyAsync(Func<Task> func, string loadingMessage = "")
         {
             IsBusy = true;
             try

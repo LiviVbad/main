@@ -20,6 +20,7 @@
 	  <None Remove="Assets\Fonts\Montserrat-Regular.ttf" />
 	  <None Remove="Assets\Fonts\Montserrat-SemiBold.ttf" />
 	  <None Remove="Assets\Fonts\UIFontIcons.ttf" />
+	  <None Remove="ViewModels\Tenants\TenantDetailsViewModel.cs~RF211acae.TMP" />
 	</ItemGroup>
 
 	<ItemGroup>

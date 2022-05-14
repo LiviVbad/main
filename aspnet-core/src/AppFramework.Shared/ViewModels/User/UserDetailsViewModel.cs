@@ -1,14 +1,14 @@
 ﻿using Abp.Application.Services.Dto;
 using Acr.UserDialogs;
 using AppFramework.Common.Core;
-using AppFramework.Common.Models; 
+using AppFramework.Common.Models;
 using AppFramework.Authorization.Users;
-using AppFramework.Authorization.Users.Dto; 
+using AppFramework.Authorization.Users.Dto;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 using AppFramework.Common;
 
 namespace AppFramework.Shared.ViewModels
@@ -108,12 +108,9 @@ namespace AppFramework.Shared.ViewModels
             await SetBusyAsync(async () =>
             {
                 var input = Map<CreateOrUpdateUserInput>(UserInput);
-                await WebRequestRuner.Execute(async () =>
-                    await userAppService.CreateOrUpdateUser(input),
-                    async () =>
-                    {
-                        await GoBackAsync();
-                    });
+                await WebRequestRuner.Execute(() =>
+                    userAppService.CreateOrUpdateUser(input),
+                    GoBackAsync);
             }, AppLocalizationKeys.SavingWithThreeDot);
         }
 
@@ -174,29 +171,35 @@ namespace AppFramework.Shared.ViewModels
             {
                 UserListModel userInfo = null;
                 if (parameters.ContainsKey("Value"))
-                {
                     userInfo = parameters.GetValue<UserListModel>("Value");
-                }
 
                 IsNewUser = userInfo == null;
                 UserInput.SetRandomPassword = IsNewUser;
                 UserInput.SendActivationEmail = IsNewUser;
 
-                var user = await userAppService.GetUserForEdit(new NullableIdDto<long>(userInfo?.Id));
-                Model = Map<UserForEditModel>(user);
-                Model.OrganizationUnits = Map<List<OrganizationUnitModel>>(user.AllOrganizationUnits);
-
-                if (IsNewUser)
-                {
-                    //Model.Photo = ImageSource.FromResource(AssetsHelper.ProfileImagePlaceholderNamespace);
-                    Model.User = new UserEditModel
-                    {
-                        IsActive = true,
-                        IsLockoutEnabled = true,
-                        ShouldChangePasswordOnNextLogin = true,
-                    };
-                }
+                await WebRequestRuner.Execute(() =>
+                userAppService.GetUserForEdit(new NullableIdDto<long>(userInfo?.Id)),
+                result => GetUserForEditSuccessed(result));
             });
+        }
+
+        private async Task GetUserForEditSuccessed(GetUserForEditOutput output)
+        {
+            Model = Map<UserForEditModel>(output);
+            Model.OrganizationUnits = Map<List<OrganizationUnitModel>>(output.AllOrganizationUnits);
+
+            if (IsNewUser)
+            {
+                //Model.Photo = ImageSource.FromResource(AssetsHelper.ProfileImagePlaceholderNamespace);
+                Model.User = new UserEditModel
+                {
+                    IsActive = true,
+                    IsLockoutEnabled = true,
+                    ShouldChangePasswordOnNextLogin = true,
+                };
+            }
+
+            await Task.CompletedTask;
         }
     }
 }

@@ -2,11 +2,11 @@
 using Abp.Runtime.Security;
 using Acr.UserDialogs;
 using AppFramework.Common.Core;
-using AppFramework.Common.Models; 
+using AppFramework.Common.Models;
 using AppFramework.Common;
 using AppFramework.Editions.Dto;
 using AppFramework.MultiTenancy;
-using AppFramework.MultiTenancy.Dto; 
+using AppFramework.MultiTenancy.Dto;
 using MvvmHelpers;
 using Prism.Commands;
 using System;
@@ -225,56 +225,42 @@ namespace AppFramework.Shared.ViewModels
         public async void SaveTenantAsync()
         {
             if (IsNewTenant)
-                await CreateTenantAsync();
+            {
+                var input = Map<CreateTenantInput>(Model);
+                input.AdminPassword = AdminPassword;
+                NormalizeTenantCreateInput(input);
+                if (!Verify(input).IsValid) return;
+
+                await CreateTenantAsync(input);
+            }
             else
-                await UpdateTenantAsync();
+            {
+                var input = Map<TenantEditDto>(Model);
+                NormalizeTenantUpdateInput(input);
+                if (!Verify(input).IsValid) return;
+
+                await UpdateTenantAsync(input);
+            }
         }
 
-        private async Task UpdateTenantAsync()
+        private async Task UpdateTenantAsync(TenantEditDto input)
         {
-            var isValid = true;
-
             await SetBusyAsync(async () =>
-                    await WebRequestRuner.Execute(async () =>
-                    {
-                        var input = Map<TenantEditDto>(Model);
-                        NormalizeTenantUpdateInput(input);
-                        if (!Verify(input).IsValid)
-                        {
-                            isValid = false;
-                            return;
-                        }
-                        await tenantAppService.UpdateTenant(input);
-                    },
-                    async () =>
-                    {
-                        if (!isValid) return;
-                        await GoBackAsync();
-                    }), AppLocalizationKeys.SavingWithThreeDot);
+            {
+                await WebRequestRuner.Execute(() =>
+                    tenantAppService.UpdateTenant(input),
+                    GoBackAsync);
+            }, AppLocalizationKeys.SavingWithThreeDot);
         }
 
-        private async Task CreateTenantAsync()
+        private async Task CreateTenantAsync(CreateTenantInput input)
         {
-            var isValid = true;
-
             await SetBusyAsync(async () =>
-                    await WebRequestRuner.Execute(async () =>
-                    {
-                        var input = Map<CreateTenantInput>(Model);
-                        input.AdminPassword = AdminPassword;
-                        NormalizeTenantCreateInput(input);
-                        if (!Verify(input).IsValid)
-                        {
-                            isValid = false;
-                            return;
-                        }
-                        await tenantAppService.CreateTenant(input);
-                    },
-                    async () =>
-                    {
-                        if (!isValid) return;
-                        await GoBackAsync();
-                    }), AppLocalizationKeys.SavingWithThreeDot);
+            {
+                await WebRequestRuner.Execute(() =>
+                    tenantAppService.CreateTenant(input),
+                    GoBackAsync);
+            }, AppLocalizationKeys.SavingWithThreeDot);
         }
 
         private async void DeleteTenantAsync()
@@ -312,9 +298,7 @@ namespace AppFramework.Shared.ViewModels
                     InitializeEditTenant();
                 }
                 else
-                {
                     InitializeNewTenant();
-                }
 
                 await PopulateEditionsCombobox(() =>
                 {
