@@ -103,9 +103,7 @@ namespace AppFramework.ViewModels
         private async Task SearchWithDelayAsync(string filterText)
         {
             if (!string.IsNullOrEmpty(filterText))
-            {
-                await Task.Delay(1000);
-
+            { 
                 if (filterText != input.Filter)
                     return;
             }

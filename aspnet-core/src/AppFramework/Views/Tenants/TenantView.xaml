@@ -50,7 +50,7 @@
 
             <Border Grid.RowSpan="3" Style="{StaticResource BorderStyle}" />
 
-            <TextBox Margin="15" Text="{Binding FilterText, Mode=TwoWay, Delay=1000}" />
+            <TextBox Margin="15" Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=1000}" />
 
             <sync:SfDataGrid
                 x:Name="SfDataGrid"
@@ -77,14 +77,13 @@
                                     <ItemsControl ItemsSource="{Binding DataContext.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <Border>
-                                                    <i:Interaction.Triggers>
-                                                        <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                            <i:InvokeCommandAction Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}" CommandParameter="{Binding Key}" />
-                                                        </i:EventTrigger>
-                                                    </i:Interaction.Triggers>
-                                                    <TextBlock Margin="5" Text="{Binding Name}" />
-                                                </Border>
+                                                <Button
+                                                    Margin="5"
+                                                    Padding="3"
+                                                    Background="Transparent"
+                                                    Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                                    CommandParameter="{Binding Key}"
+                                                    Content="{Binding Name}" />
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>

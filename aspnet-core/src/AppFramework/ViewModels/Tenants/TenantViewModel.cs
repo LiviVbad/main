@@ -12,11 +12,11 @@ namespace AppFramework.ViewModels
     public class TenantViewModel : NavigationCurdViewModel<TenantListModel>
     {
         private readonly ITenantAppService appService;
-        private GetTenantsInput filter;
+        private GetTenantsInput input;
 
         public TenantViewModel(ITenantAppService appService)
         {
-            filter = new GetTenantsInput()
+            input = new GetTenantsInput()
             {
                 EditionIdSpecified = false,
                 MaxResultCount = 10,
@@ -25,12 +25,34 @@ namespace AppFramework.ViewModels
             this.appService = appService;
         }
 
+        public string FilterText
+        {
+            get { return input.Filter; }
+            set
+            {
+                input.Filter = value;
+                RaisePropertyChanged();
+                AsyncRunner.Run(SearchWithDelayAsync(value));
+            }
+        }
+
+        private async Task SearchWithDelayAsync(string filterText)
+        {
+            if (!string.IsNullOrEmpty(filterText))
+            {
+                if (filterText != input.Filter)
+                    return;
+            }
+            input.SkipCount = 0; 
+            await RefreshAsync();
+        }
+
         public override async Task RefreshAsync()
         {
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(
-                      () => appService.GetTenants(filter),
+                      () => appService.GetTenants(input),
                       async result =>
                       {
                           GridModelList.Clear();

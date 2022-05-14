@@ -140,7 +140,7 @@ namespace AppFramework.ViewModels
         {
             get
             {
-                if (Model == null)
+                if (Model == null || SelectedEdition == null)
                     return true;
 
                 if (!Model.EditionId.HasValue)

@@ -49,7 +49,9 @@
 
             <Border Grid.RowSpan="3" Style="{StaticResource BorderStyle}" />
 
-            <TextBox Margin="15" Text="{Binding FilterText, Mode=TwoWay, Delay=1000}" />
+            <Grid>
+                <!--  Filter  -->
+            </Grid>
 
             <sync:SfDataGrid
                 x:Name="SfDataGrid"

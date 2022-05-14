@@ -10,7 +10,7 @@
     Height="550"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <convert:BoolToVisibilityConverter x:Key="InverseBooleanConverter" />
+        <convert:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -46,23 +46,26 @@
                 <StackPanel
                     Margin="0,5"
                     Orientation="Horizontal"
-                    Visibility="{Binding IsNewTenant}">
+                    Visibility="{Binding IsNewTenant, Converter={StaticResource InverseBoolToVisibilityConverter}}">
                     <TextBlock Text="{extensions:Translate UseHostDatabase}" />
                     <CheckBox Margin="5,0" IsChecked="{Binding UseHostDatabase}" />
                 </StackPanel>
 
                 <!--  连接字符串  -->
-                <StackPanel Visibility="{Binding UseHostDatabase, Converter={StaticResource InverseBooleanConverter}}">
+                <StackPanel Margin="0,5" Visibility="{Binding UseHostDatabase, Converter={StaticResource InverseBoolToVisibilityConverter}}">
                     <TextBlock Text="{extensions:Translate DatabaseConnectionString}" />
                     <TextBox Text="{Binding Model.ConnectionString}" />
 
                     <!--  连接字符串更改警告  -->
-                    <StackPanel Orientation="Horizontal" Visibility="{Binding IsNewTenant, Converter={StaticResource InverseBooleanConverter}}">
-                        <TextBlock Margin="5" Text="{extensions:Translate TenantDatabaseConnectionStringChangeWarningMessage}" />
+                    <StackPanel
+                        Margin="0,5"
+                        Orientation="Horizontal"
+                        Visibility="{Binding IsNewTenant, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+                        <TextBlock Text="{extensions:Translate TenantDatabaseConnectionStringChangeWarningMessage}" />
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel Margin="0,5" Visibility="{Binding IsNewTenant}">
+                <StackPanel Margin="0,5" Visibility="{Binding IsNewTenant, Converter={StaticResource InverseBoolToVisibilityConverter}}">
                     <!--  管理员邮箱  -->
                     <TextBlock Text="{extensions:Translate AdminEmailAddress}" />
                     <TextBox Margin="0,5" Text="{Binding Model.AdminEmailAddress}" />
@@ -76,7 +79,7 @@
                     <StackPanel
                         Margin="0,5"
                         Orientation="Vertical"
-                        Visibility="{Binding IsSetRandomPassword, Converter={StaticResource InverseBooleanConverter}}">
+                        Visibility="{Binding IsSetRandomPassword, Converter={StaticResource InverseBoolToVisibilityConverter}}">
 
                         <!--  管理员密码  -->
                         <TextBlock Margin="0,5" Text="{extensions:Translate AdminPassword}" />
@@ -95,7 +98,7 @@
                 ItemsSource="{Binding Editions}"
                 SelectedItem="{Binding SelectedEdition}" />-->
 
-                <StackPanel Orientation="Vertical" Visibility="{Binding IsSubscriptionFieldVisible}">
+                <StackPanel Orientation="Vertical" Visibility="{Binding IsSubscriptionFieldVisible, Converter={StaticResource InverseBoolToVisibilityConverter}}">
 
                     <!--  无限时间订阅  -->
                     <StackPanel Margin="0,5" Orientation="Horizontal">
@@ -118,7 +121,7 @@
                     <StackPanel
                         Margin="0,5"
                         Orientation="Horizontal"
-                        Visibility="{Binding IsUnlimitedTimeSubscription, Converter={StaticResource InverseBooleanConverter}}">
+                        Visibility="{Binding IsUnlimitedTimeSubscription, Converter={StaticResource InverseBoolToVisibilityConverter}}">
                         <TextBlock Text="{extensions:Translate IsInTrialPeriod}" />
                         <CheckBox Margin="5,0" IsChecked="{Binding Model.IsInTrialPeriod}" />
                     </StackPanel>
@@ -126,7 +129,7 @@
                     <StackPanel
                         Margin="0,5"
                         Orientation="Horizontal"
-                        Visibility="{Binding IsSelectedEditionFree}">
+                        Visibility="{Binding IsSelectedEditionFree, Converter={StaticResource InverseBoolToVisibilityConverter}}">
                         <TextBlock Text="{extensions:Translate FreeEditionsCannotHaveTrialVersions}" />
                     </StackPanel>
 

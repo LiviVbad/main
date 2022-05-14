@@ -5,6 +5,8 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Permission;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -12,18 +14,34 @@ namespace AppFramework.ViewModels
     public class RoleViewModel : NavigationCurdViewModel<RoleListModel>
     {
         private readonly IRoleAppService appService;
+        public GetRolesInput input;
 
         public RoleViewModel(IRoleAppService appService)
         {
             this.appService = appService;
+            input = new GetRolesInput();
         }
 
+        private ObservableCollection<object> selectedItems;
+
+        public ObservableCollection<object> SelectedItems
+        {
+            get { return selectedItems; }
+            set
+            {
+                selectedItems = value;
+                RaisePropertyChanged();
+                //input.Permissions = 
+                AsyncRunner.Run(RefreshAsync());
+            }
+        }
+         
         public override async Task RefreshAsync()
         {
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(
-                        () => appService.GetRoles(new GetRolesInput()),
+                        () => appService.GetRoles(input),
                         async result =>
                         {
                             GridModelList.Clear();
