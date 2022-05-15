@@ -1,4 +1,6 @@
 ﻿using AppFramework.Auditing.Dto;
+using AppFramework.Authorization.Permissions.Dto;
+using AppFramework.Common.Models;
 using AppFramework.Models.Auditlogs;
 using AutoMapper;
 using System;
@@ -14,6 +16,7 @@ namespace AppFramework
         public AppMapper()
         {
             CreateMap<GetAuditLogsFilter, GetAuditLogsInput>().ReverseMap();
+            CreateMap<FlatPermissionWithLevelDto, PermissionModel>().ReverseMap();
         }
     }
 }

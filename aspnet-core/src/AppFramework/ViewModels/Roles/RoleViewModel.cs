@@ -33,19 +33,6 @@ namespace AppFramework.ViewModels
             set { selectPermissions = value; RaisePropertyChanged(); }
         }
 
-        private ObservableCollection<string> selectedItems;
-
-        public ObservableCollection<string> SelectedItems
-        {
-            get { return selectedItems; }
-            set
-            {
-                selectedItems = value;
-                RaisePropertyChanged();
-                AsyncRunner.Run(RefreshAsync());
-            }
-        }
-
         private ListResultDto<FlatPermissionWithLevelDto> flatPermission;
 
         public DelegateCommand SelectedCommand { get; private set; }
@@ -56,7 +43,6 @@ namespace AppFramework.ViewModels
             this.appService = appService;
             this.permissionAppService = permissionAppService;
             input = new GetRolesInput();
-            selectedItems = new ObservableCollection<string>();
             SelectedCommand = new DelegateCommand(SelectedPermission);
 
             UpdateTitle();

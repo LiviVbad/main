@@ -30,16 +30,21 @@
 
         <sync:SfTreeView
             Grid.Row="1"
-            Margin="0,5"
-            Background="Transparent"
+            AutoExpandMode="AllNodes"
+            CheckBoxMode="Recursive"
+            CheckedItems="{Binding treesService.SelectedItems}"
             ChildPropertyName="Items"
+            ExpandActionTrigger="Node"
+            IsAnimationEnabled="True"
+            ItemTemplateDataContextType="Node"
             ItemsSource="{Binding treesService.Permissions}"
+            NodePopulationMode="Instant"
             SelectionBackgroundColor="Transparent">
             <sync:SfTreeView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}" />
-                        <TextBlock Margin="5,0" Text="{Binding DisplayName}" />
+                        <CheckBox IsChecked="{Binding IsChecked}" />
+                        <TextBlock Margin="5,0" Text="{Binding Content.DisplayName}" />
                     </StackPanel>
                 </DataTemplate>
             </sync:SfTreeView.ItemTemplate>
@@ -47,7 +52,7 @@
 
         <StackPanel
             Grid.Row="2"
-            Margin="0,0,15,15"
+            Margin="15"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
             <Button
