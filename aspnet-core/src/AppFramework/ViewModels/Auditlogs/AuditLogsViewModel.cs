@@ -2,6 +2,7 @@
 using AppFramework.Auditing.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Models;
+using AppFramework.Models.Auditlogs;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
@@ -14,10 +15,29 @@ namespace AppFramework.ViewModels
     {
         #region 字段/属性
 
-        public GetAuditLogsInput input;
         private readonly IAuditLogAppService appService;
+        private string filterTitle = string.Empty;
+        private bool isAdvancedFilter;
+        private GetAuditLogsFilter filter;
 
-        private string filterTitle;
+        private int selectedIndex;
+
+        public int SelectedIndex
+        {
+            get { return selectedIndex; }
+            set
+            {
+                selectedIndex = value;
+
+                if (selectedIndex == 0)
+                    filter.HasException = null;
+                else if (selectedIndex == 1)
+                    filter.HasException = false;
+                else
+                    filter.HasException = true; 
+                RaisePropertyChanged();
+            }
+        }
 
         public string FilerTitle
         {
@@ -25,8 +45,9 @@ namespace AppFramework.ViewModels
             set { filterTitle = value; RaisePropertyChanged(); }
         }
 
-        private bool isAdvancedFilter;
-
+        /// <summary>
+        /// 高级筛选
+        /// </summary>
         public bool IsAdvancedFilter
         {
             get { return isAdvancedFilter; }
@@ -34,9 +55,15 @@ namespace AppFramework.ViewModels
             {
                 isAdvancedFilter = value;
 
-                FilerTitle = value ? Local.Localize("HideAdvancedFilters") : Local.Localize("ShowAdvancedFilters");
+                FilerTitle = value ? "△ " + Local.Localize("HideAdvancedFilters") : "▽ " + Local.Localize("ShowAdvancedFilters");
                 RaisePropertyChanged();
             }
+        }
+
+        public GetAuditLogsFilter Filter
+        {
+            get { return filter; }
+            set { filter = value; RaisePropertyChanged(); }
         }
 
         public DelegateCommand ViewCommand { get; private set; }
@@ -47,15 +74,14 @@ namespace AppFramework.ViewModels
 
         public AuditLogsViewModel(IAuditLogAppService appService)
         {
-            input = new GetAuditLogsInput()
+            IsAdvancedFilter = false;
+            filter = new GetAuditLogsFilter()
             {
                 StartDate = DateTime.Now.AddDays(-30),
                 EndDate = DateTime.Now,
-                MaxResultCount = AppConsts.DefaultPageSize,
+                MaxResultCount = AppConsts.DefaultPageSize
             };
             this.appService = appService;
-
-            IsAdvancedFilter = false;
             ViewCommand = new DelegateCommand(ViewLogs);
             AdvancedCommand = new DelegateCommand(() =>
               {
@@ -73,7 +99,7 @@ namespace AppFramework.ViewModels
 
         private async void Search()
         {
-            input.SkipCount = 0;
+            filter.SkipCount = 0;
             GridModelList.Clear();
 
             await RefreshAsync();
@@ -81,6 +107,8 @@ namespace AppFramework.ViewModels
 
         public override async Task RefreshAsync()
         {
+            var input = Map<GetAuditLogsInput>(filter);
+
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(() => appService.GetAuditLogs(input),

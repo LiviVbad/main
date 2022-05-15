@@ -15,9 +15,9 @@ using AutoMapper;
 
 namespace AppFramework.Common.Core
 {
-    public class AppMapper : Profile
+    public class AppCommonMapper : Profile
     {
-        public AppMapper()
+        public AppCommonMapper()
         {
             //系统模块中实体映射关系 
             CreateMap<UserListDto,UserListModel>().ReverseMap();

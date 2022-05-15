@@ -37,6 +37,7 @@ namespace AppFramework
             serviceCollection.AddAutoMapper(config =>
             {
                 config.AddProfile<AppMapper>();
+                config.AddProfile<AppCommonMapper>();
             });
             return new DryIocContainerExtension(new Container(CreateContainerRules())
                 .WithDependencyInjectionAdapter(serviceCollection));
