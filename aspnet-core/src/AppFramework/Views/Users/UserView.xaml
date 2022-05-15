@@ -2,19 +2,14 @@
     x:Class="AppFramework.Views.UserView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:convert="clr-namespace:AppFramework.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Extensions"
-    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:perm="clr-namespace:AppFramework.Common;assembly=AppFramework.Common"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <convert:InverseBoolToVisibilityConverter x:Key="inverseBoolToVisibility" />
-    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -111,18 +106,13 @@
                 Style="{StaticResource SimpleDataGridStyle}">
                 <sync:SfDataGrid.Columns>
                     <sync:GridTemplateColumn
+                        Width="110"
                         AllowFiltering="False"
                         AllowSorting="False"
                         HeaderText="{extensions:Translate Actions}">
                         <sync:GridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <sync:DropDownButtonAdv
-                                    Margin="5,0"
-                                    Padding="5"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Label="{extensions:Translate Actions}"
-                                    SmallIcon="/AppFramework;component/Assets/Images/Operation.png">
+                                <sync:DropDownButtonAdv Label="{extensions:Translate Actions}" Style="{StaticResource OperationButtonStyle}">
                                     <ItemsControl ItemsSource="{Binding DataContext.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
@@ -132,7 +122,8 @@
                                                     Background="Transparent"
                                                     Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
                                                     CommandParameter="{Binding Key}"
-                                                    Content="{Binding Name}" />
+                                                    Content="{Binding Name}"
+                                                    Foreground="White" />
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
@@ -143,11 +134,32 @@
                     <sync:GridTextColumn HeaderText="{extensions:Translate Name}" MappingName="Name" />
                     <sync:GridTextColumn HeaderText="{extensions:Translate Surname}" MappingName="Surname" />
                     <sync:GridTextColumn HeaderText="{extensions:Translate UserName}" MappingName="UserName" />
-                    <sync:GridTextColumn HeaderText="{extensions:Translate EmailAddress}" MappingName="EmailAddress" />
-                    <sync:GridTextColumn HeaderText="{extensions:Translate PhoneNumber}" MappingName="PhoneNumber" />
-                    <sync:GridTextColumn HeaderText="{extensions:Translate IsActive}" MappingName="IsActive" />
                     <sync:GridTextColumn
-                        DisplayBinding="{Binding Path=CreationTime, StringFormat='yyyy-MM-dd'}"
+                        Width="200"
+                        HeaderText="{extensions:Translate EmailAddress}"
+                        MappingName="EmailAddress" />
+                    <sync:GridTextColumn HeaderText="{extensions:Translate PhoneNumber}" MappingName="PhoneNumber" />
+                    <sync:GridTemplateColumn
+                        Width="60"
+                        HeaderText="{extensions:Translate Active}"
+                        MappingName="IsActive">
+                        <sync:GridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="{Binding IsActive, Converter={StaticResource boolToBackgroundConverter}}"
+                                    CornerRadius="5">
+                                    <TextBlock
+                                        Padding="5,3"
+                                        Foreground="White"
+                                        Text="{Binding IsActive, Converter={StaticResource boolToYesNoStrConverter}}" />
+                                </Border>
+                            </DataTemplate>
+                        </sync:GridTemplateColumn.CellTemplate>
+                    </sync:GridTemplateColumn>
+                    <sync:GridTextColumn
+                        DisplayBinding="{Binding Path=CreationTime, StringFormat='yyyy-MM-dd hh:mm:ss'}"
                         HeaderText="{extensions:Translate CreationTime}"
                         MappingName="CreationTime" />
                 </sync:SfDataGrid.Columns>

@@ -1,4 +1,5 @@
 ﻿using Prism.Mvvm;
+using System;
 
 namespace AppFramework.Common.Models
 {
@@ -15,5 +16,7 @@ namespace AppFramework.Common.Models
         public string Icon { get; set; }
 
         public bool IsDisabled { get; set; }
+
+        public DateTime CreationTime { get; set; }
     }
 }
