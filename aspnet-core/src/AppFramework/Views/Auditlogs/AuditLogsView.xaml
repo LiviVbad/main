@@ -87,7 +87,6 @@
                     Text="{Binding Filter.UserName}" />
             </Grid>
 
-
             <!--  高级筛选  -->
             <Grid Grid.Row="1" Visibility="{Binding IsAdvancedFilter, Converter={StaticResource inverseBoolToVisibility}}">
                 <Grid.RowDefinitions>
