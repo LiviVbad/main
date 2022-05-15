@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 
 #region ApplicationServices
- 
+
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Users;
 using AppFramework.MultiTenancy;
@@ -20,16 +20,18 @@ using AppFramework.Localization;
 using AppFramework.Sessions;
 using AppFramework.MultiTenancy.HostDashboard;
 using AppFramework.Caching;
-using AppFramework.Tenants.Dashboard; 
+using AppFramework.Tenants.Dashboard;
 using AppFramework.Organizations;
 using AppFramework.Application;
 using AppFramework.Application.Client;
 using AppFramework.Application.MultiTenancy.HostDashboard;
 using AppFramework.Application.Organizations;
-using AppFramework.Application.MultiTenancy; 
-using AppFramework.Common.Core; 
-using AppFramework.Common.Services.Navigation;  
+using AppFramework.Application.MultiTenancy;
+using AppFramework.Common.Core;
+using AppFramework.Common.Services.Navigation;
 using Abp.Configuration.Startup;
+using AppFramework.Authorization.Permissions;
+using AppFrameworkDemo.Authorization.Permissions;
 
 #endregion ApplicationServices
 
@@ -49,7 +51,7 @@ namespace AppFramework.Common
             *           动态属性服务、缓存服务、租户面板统计服务
             *           动态实体服务、账号服务、个人资料服务、
             *           统计面板服务 ...
-            */ 
+            */
 
             services.RegisterScoped<IRoleAppService, RoleAppService>();
             services.RegisterScoped<IUserAppService, ProxyUserAppService>();
@@ -70,9 +72,10 @@ namespace AppFramework.Common
             services.RegisterScoped<IProfileAppService, ProxyProfileAppService>();
             services.RegisterScoped<ISessionAppService, ProxySessionAppService>();
             services.RegisterScoped<IHostDashboardAppService, HostDashboardAppService>();
-             
-            services.RegisterSingleton<IMessenger, Messenger>(); 
-            services.RegisterSingleton<IPermissionService, PermissionService>(); 
+            services.RegisterScoped<IPermissionAppService, PermissionAppService>();
+
+            services.RegisterSingleton<IMessenger, Messenger>();
+            services.RegisterSingleton<IPermissionService, PermissionService>();
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
             services.RegisterSingleton<IMultiTenancyConfig, MultiTenancyConfig>();
             services.RegisterSingleton<IApplicationContext, ApplicationContext>();

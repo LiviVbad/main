@@ -27,9 +27,9 @@ namespace AppFramework
             services.RegisterSingleton<IAccountService, AccountService>();
             services.RegisterSingleton<IAccountStorageService, AccountStorageService>();
             services.RegisterSingleton<IDataStorageService, DataStorageService>();
-            services.RegisterSingleton<IPermissionService, PermissionService>();
+            services.RegisterSingleton<IPermissionService, PermissionService>(); 
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
-             
+
             services.RegisterSingleton<ILocaleCulture, LocaleCulture>();
             services.RegisterSingleton<IThemeService, ThemeService>();
             services.RegisterSingleton<IResourceService, ResourceService>();
@@ -47,6 +47,7 @@ namespace AppFramework
             services.Add<UserChangePermissionView, UserChangePermissionViewModel>(AppViewManager.UserChangePermission);
             services.Add<RoleView, RoleViewModel>(AppViewManager.Role);
             services.Add<RoleDetailsView, RoleDetailsViewModel>(AppViewManager.RoleDetails);
+            services.Add<SelectedPermissionView, SelectedPermissionViewModel>(AppViewManager.SelectedPermission);
 
             services.Add<EditionView, EditionViewModel>(AppViewManager.Edition);
             services.Add<EditionDetailsView, EditionDetailsViewModel>(AppViewManager.EditionDetails);

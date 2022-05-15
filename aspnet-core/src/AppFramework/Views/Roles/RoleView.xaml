@@ -50,7 +50,16 @@
             <Border Grid.RowSpan="3" Style="{StaticResource BorderStyle}" />
 
             <Grid>
-                <!--  Filter  -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    Margin="10"
+                    Padding="5"
+                    Command="{Binding SelectedCommand}"
+                    Content="{Binding SelectPermissions}" />
             </Grid>
 
             <sync:SfDataGrid
@@ -92,7 +101,7 @@
                             </DataTemplate>
                         </sync:GridTemplateColumn.CellTemplate>
                     </sync:GridTemplateColumn>
-                    <sync:GridTextColumn HeaderText="{extensions:Translate DisplayName}" MappingName="DisplayName" />
+                    <sync:GridTextColumn HeaderText="{extensions:Translate RoleName}" MappingName="DisplayName" />
                     <sync:GridDateTimeColumn HeaderText="{extensions:Translate CreationTime}" MappingName="CreationTime" />
                 </sync:SfDataGrid.Columns>
             </sync:SfDataGrid>

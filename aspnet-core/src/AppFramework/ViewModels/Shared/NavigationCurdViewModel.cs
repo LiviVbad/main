@@ -107,13 +107,18 @@
             GridModelList.Clear();
         }
 
-        public virtual async void OnNavigatedTo(NavigationContext navigationContext)
+        public async void OnNavigatedTo(NavigationContext navigationContext)
         {
             GeneratePermissions();
-            await RefreshAsync();
+            await OnNavigatedToAsync(navigationContext);
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext) => false;
+
+        public virtual async Task OnNavigatedToAsync(NavigationContext navigationContext)
+        {
+            await RefreshAsync();
+        }
 
         #endregion
 

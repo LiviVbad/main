@@ -80,12 +80,7 @@ namespace AppFramework.ViewModels
                 case "Refresh": await RefreshAsync(); break;
             }
         }
-
-        public override async void OnNavigatedTo(NavigationContext navigationContext)
-        {
-            await RefreshAsync();
-        }
-
+         
         #region 组织机构
 
         public override async Task RefreshAsync()

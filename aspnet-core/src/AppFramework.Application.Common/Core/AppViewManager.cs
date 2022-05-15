@@ -62,6 +62,8 @@
 
         public const string RoleDetails = "RoleDetailsView";
 
+        public const string SelectedPermission = "SelectedPermissionView";
+
         public const string OrganizationsDetails = "OrganizationsDetailsView";
 
         public const string AddUsers = "AddUsersView";
