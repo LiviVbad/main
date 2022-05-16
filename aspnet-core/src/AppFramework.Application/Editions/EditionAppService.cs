@@ -129,7 +129,7 @@ namespace AppFramework.Editions
             });
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Editions,AppPermissions.Pages_Tenants)]
+        [AbpAuthorize(AppPermissions.Pages_Editions, AppPermissions.Pages_Tenants)]
         public async Task<List<SubscribableEditionComboboxItemDto>> GetEditionComboboxItems(int? selectedEditionId = null, bool addAllItem = false, bool onlyFreeItems = false)
         {
             var editions = await _editionManager.Editions.ToListAsync();

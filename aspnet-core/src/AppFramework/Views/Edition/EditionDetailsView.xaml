@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     Width="800"
-    Height="450"
+    Height="550"
     mc:Ignorable="d">
     <UserControl.Resources>
         <convert:BoolToVisibilityConverter x:Key="visibilityConverter" />
@@ -30,118 +30,132 @@
             Margin="15"
             FontSize="18"
             FontWeight="Bold"
-            Text="{extensions:Translate AuditLogDetail}" />
+            Text="{extensions:Translate CreateNewEdition}" />
 
-        <StackPanel Grid.Row="1" Margin="20,10">
-            <!--  版本名称  -->
-            <TextBlock Text="{extensions:Translate EditionName}" />
-            <TextBox Text="{Binding Model.DisplayName, Mode=TwoWay}" />
+        <ScrollViewer Grid.Row="1" Margin="20,10">
+            <StackPanel Grid.Row="1">
+                <!--  版本名称  -->
+                <TextBlock Text="{extensions:Translate EditionName}" />
+                <TextBox Margin="0,5" Text="{Binding Model.DisplayName, Mode=TwoWay}" />
 
-            <!--  是否付费  -->
-            <TextBlock Text="{extensions:Translate SubscriptionPrice}" />
-            <StackPanel Orientation="Horizontal">
-                <RadioButton Content="{extensions:Translate Free}" IsChecked="True" />
-                <RadioButton Content="{extensions:Translate Paid}" IsChecked="{Binding IsPaid}" />
-            </StackPanel>
+                <!--  是否付费  -->
+                <TextBlock Text="{extensions:Translate SubscriptionPrice}" />
+                <StackPanel Margin="0,5" Orientation="Horizontal">
+                    <RadioButton Content="{extensions:Translate Free}" IsChecked="True" />
+                    <RadioButton
+                        Margin="15,0"
+                        Content="{extensions:Translate Paid}"
+                        IsChecked="{Binding IsPaid}" />
+                </StackPanel>
 
-            <StackPanel Visibility="{Binding IsPaid, Converter={StaticResource visibilityConverter}}">
+                <StackPanel Visibility="{Binding IsPaid, Converter={StaticResource visibilityConverter}}">
 
-                <!--  每天定价  -->
-                <TextBlock Text="{extensions:Translate DailyPrice}" />
-                <sync:SfMaskedEdit
-                    Mask="\$ 0000"
-                    MaskType="Simple"
-                    Watermark="$5"
-                    Value="{Binding Model.DailyPrice, Mode=TwoWay}" />
+                    <!--  每天定价  -->
+                    <TextBlock Text="{extensions:Translate DailyPrice}" />
+                    <sync:SfMaskedEdit
+                        Margin="5"
+                        Mask="\$ 0000"
+                        MaskType="Simple"
+                        Watermark="$5"
+                        Value="{Binding Model.DailyPrice, Mode=TwoWay}" />
 
-                <!--  每周定价  -->
-                <TextBlock Text="{extensions:Translate WeeklyPrice}" />
-                <sync:SfMaskedEdit
-                    Mask="\$ 0000"
-                    MaskType="Simple"
-                    Watermark="$30"
-                    Value="{Binding Model.WeeklyPrice, Mode=TwoWay}" />
+                    <!--  每周定价  -->
+                    <TextBlock Text="{extensions:Translate WeeklyPrice}" />
+                    <sync:SfMaskedEdit
+                        Margin="5"
+                        Mask="\$ 0000"
+                        MaskType="Simple"
+                        Watermark="$30"
+                        Value="{Binding Model.WeeklyPrice, Mode=TwoWay}" />
 
-                <!--  每月定价  -->
-                <TextBlock Text="{extensions:Translate MonthlyPrice}" />
-                <sync:SfMaskedEdit
-                    Mask="\$ 0000"
-                    MaskType="Simple"
-                    Watermark="$100"
-                    Value="{Binding Model.MonthlyPrice, Mode=TwoWay}" />
+                    <!--  每月定价  -->
+                    <TextBlock Text="{extensions:Translate MonthlyPrice}" />
+                    <sync:SfMaskedEdit
+                        Margin="5"
+                        Mask="\$ 0000"
+                        MaskType="Simple"
+                        Watermark="$100"
+                        Value="{Binding Model.MonthlyPrice, Mode=TwoWay}" />
 
-                <!--  每年定价  -->
-                <TextBlock Text="{extensions:Translate AnnualPrice}" />
-                <sync:SfMaskedEdit
-                    Mask="\$ 0000"
-                    MaskType="Simple"
-                    Watermark="$999"
-                    Value="{Binding Model.AnnualPrice, Mode=TwoWay}" />
+                    <!--  每年定价  -->
+                    <TextBlock Text="{extensions:Translate AnnualPrice}" />
+                    <sync:SfMaskedEdit
+                        Margin="5"
+                        Mask="\$ 0000"
+                        MaskType="Simple"
+                        Watermark="$999"
+                        Value="{Binding Model.AnnualPrice, Mode=TwoWay}" />
 
-                <!--  是否试用  -->
-                <CheckBox Content="{extensions:Translate IsTrialActive}" IsChecked="{Binding IsTrialActive}" />
-                <StackPanel Visibility="{Binding IsTrialActive, Converter={StaticResource visibilityConverter}}">
-                    <TextBlock Text="{extensions:Translate TrialDayCount}" />
-                    <!--<number:SfNumericUpDown
+                    <!--  是否试用  -->
+                    <CheckBox Content="{extensions:Translate IsTrialActive}" IsChecked="{Binding IsTrialActive}" />
+                    <StackPanel Margin="0,5" Visibility="{Binding IsTrialActive, Converter={StaticResource visibilityConverter}}">
+                        <TextBlock Text="{extensions:Translate TrialDayCount}" />
+                        <!--<number:SfNumericUpDown
                             Minimum="0"
                             StepValue="1"
                             Value="{Binding Model.TrialDayCount}" />-->
-                </StackPanel>
+                    </StackPanel>
 
-                <!--  订阅到期后  -->
-                <CheckBox Content="{extensions:Translate WaitAfterSubscriptionExpireDate}" IsChecked="{Binding IsWaitingDayAfter}" />
-                <StackPanel Visibility="{Binding IsWaitingDayAfter, Converter={StaticResource visibilityConverter}}">
-                    <TextBlock Text="{extensions:Translate WaitingDayAfterExpire}" />
-                    <!--<sync:SfNumericUpDown
+                    <!--  订阅到期后  -->
+                    <CheckBox Content="{extensions:Translate WaitAfterSubscriptionExpireDate}" IsChecked="{Binding IsWaitingDayAfter}" />
+                    <StackPanel Margin="0,5" Visibility="{Binding IsWaitingDayAfter, Converter={StaticResource visibilityConverter}}">
+                        <TextBlock Text="{extensions:Translate WaitingDayAfterExpire}" />
+                        <!--<sync:SfNumericUpDown
                             Minimum="0"
                             StepValue="1"
                             Value="{Binding Model.WaitingDayAfterExpire}" />-->
-                </StackPanel>
+                    </StackPanel>
 
-                <!--  订阅到期后怎么做？  -->
-                <TextBlock Text="{extensions:Translate WhatWillDoneAfterSubscriptionExpiry}" />
-                <StackPanel Orientation="Horizontal">
-                    <RadioButton Content="{extensions:Translate DeactiveTenant}" />
-                    <RadioButton Content="{extensions:Translate AssignToAnotherEdition}" IsChecked="{Binding IsAssignToAnotherEdition}" />
-                </StackPanel>
+                    <!--  订阅到期后怎么做？  -->
+                    <TextBlock Text="{extensions:Translate WhatWillDoneAfterSubscriptionExpiry}" />
+                    <StackPanel Margin="0,5" Orientation="Horizontal">
+                        <RadioButton Content="{extensions:Translate DeactiveTenant}" />
+                        <RadioButton
+                            Margin="10,0"
+                            Content="{extensions:Translate AssignToAnotherEdition}"
+                            IsChecked="{Binding IsAssignToAnotherEdition}" />
+                    </StackPanel>
 
-                <!--  指定版本  -->
-                <!--<Picker
+                    <!--  指定版本  -->
+                    <!--<Picker
                         Title="{extensions:Translate Edition}"
                         Visibility="{Binding IsAssignToAnotherEdition}"
                         ItemDisplayBinding="{Binding DisplayText}"
                         ItemsSource="{Binding Editions}"
                         SelectedItem="{Binding SelectedEdition}" />-->
+                </StackPanel>
+
+                <!--  功能列表  -->
+                <TextBlock Text="{extensions:Translate Features}" />
+                <sync:SfTreeView
+                    Margin="0,5"
+                    AutoExpandMode="AllNodes"
+                    BorderThickness="0"
+                    CheckBoxMode="Recursive"
+                    CheckedItems="{Binding SelectedItems}"
+                    ChildPropertyName="Items"
+                    ExpandActionTrigger="Node"
+                    IsAnimationEnabled="True"
+                    ItemTemplateDataContextType="Node"
+                    ItemsSource="{Binding Features}"
+                    NodePopulationMode="Instant"
+                    SelectionBackgroundColor="Transparent">
+                    <sync:SfTreeView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox VerticalAlignment="Center" IsChecked="{Binding IsChecked, Mode=TwoWay}" />
+                                <TextBlock VerticalAlignment="Center" Text="{Binding Content.DisplayName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </sync:SfTreeView.ItemTemplate>
+                </sync:SfTreeView>
             </StackPanel>
 
-            <!--  功能列表  -->
-            <TextBlock Text="{extensions:Translate Features}" />
-            <sync:SfTreeView
-                AutoExpandMode="AllNodes"
-                BorderThickness="0"
-                CheckBoxMode="Recursive"
-                CheckedItems="{Binding treesService.SelectedItems}"
-                ChildPropertyName="Items"
-                ExpandActionTrigger="Node"
-                IsAnimationEnabled="True"
-                ItemTemplateDataContextType="Node"
-                ItemsSource="{Binding Features}"
-                NodePopulationMode="Instant"
-                SelectionBackgroundColor="Transparent">
-                <sync:SfTreeView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox VerticalAlignment="Center" IsChecked="{Binding IsChecked, Mode=TwoWay}" />
-                            <TextBlock VerticalAlignment="Center" Text="{Binding DisplayName}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </sync:SfTreeView.ItemTemplate>
-            </sync:SfTreeView>
-        </StackPanel>
+        </ScrollViewer>
 
         <StackPanel
             Grid.Row="2"
-            Margin="0,0,15,15"
+            Margin="15"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
             <Button

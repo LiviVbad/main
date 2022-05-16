@@ -130,8 +130,7 @@ namespace AppFramework.ViewModels
                 if (parameters.ContainsKey("Value"))
                     id = parameters.GetValue<EditionListModel>("Value").Id;
 
-                await WebRequest.Execute(() =>
-                  appService.GetEditionForEdit(new NullableIdDto(id)),
+                await WebRequest.Execute(() => appService.GetEditionForEdit(new NullableIdDto(id)),
                   async result =>
                   {
                       //设置编辑版本信息对应的内容
