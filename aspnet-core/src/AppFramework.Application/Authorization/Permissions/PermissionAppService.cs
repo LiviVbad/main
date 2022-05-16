@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using AppFramework.Authorization.Permissions.Dto;
@@ -8,23 +9,21 @@ namespace AppFramework.Authorization.Permissions
 {
     public class PermissionAppService : AppFrameworkDemoAppServiceBase, IPermissionAppService
     {
-        public ListResultDto<FlatPermissionWithLevelDto> GetAllPermissions()
+        public async Task<ListResultDto<FlatPermissionWithLevelDto>> GetAllPermissions()
         {
             var permissions = PermissionManager.GetAllPermissions();
             var rootPermissions = permissions.Where(p => p.Parent == null);
 
-            var result = new List<FlatPermissionWithLevelDto>();
-
-            foreach (var rootPermission in rootPermissions)
-            {
-                var level = 0;
-                AddPermission(rootPermission, permissions, result, level);
-            }
-
-            return new ListResultDto<FlatPermissionWithLevelDto>
-            {
-                Items = result
-            };
+            return await Task.Run(() =>
+             {
+                 var result = new List<FlatPermissionWithLevelDto>();
+                 foreach (var rootPermission in rootPermissions)
+                 {
+                     var level = 0;
+                     AddPermission(rootPermission, permissions, result, level);
+                 }
+                 return new ListResultDto<FlatPermissionWithLevelDto> { Items = result };
+             });
         }
 
         private void AddPermission(Permission permission, IReadOnlyList<Permission> allPermissions, List<FlatPermissionWithLevelDto> result, int level)

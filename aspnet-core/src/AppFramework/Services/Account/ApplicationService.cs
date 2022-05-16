@@ -21,7 +21,7 @@ namespace AppFramework.Services.Account
     {
         private readonly IApplicationContext applicationContext;
         private readonly IDialogService dialogService;
-        private readonly INavigationMenuService navigationItemService; 
+        private readonly INavigationMenuService navigationItemService;
         private readonly IRegionManager regionManager;
         private readonly IProfileAppService profileAppService;
         private readonly ProxyProfileControllerService profileControllerService;
@@ -29,14 +29,14 @@ namespace AppFramework.Services.Account
         public ApplicationService(
             IDialogService dialogService,
             IRegionManager regionManager,
-            INavigationMenuService navigationItemService, 
+            INavigationMenuService navigationItemService,
             IProfileAppService profileAppService,
             IApplicationContext applicationContext,
             ProxyProfileControllerService profileControllerService)
         {
             this.applicationContext = applicationContext;
             this.dialogService = dialogService;
-            this.navigationItemService = navigationItemService; 
+            this.navigationItemService = navigationItemService;
             this.regionManager = regionManager;
             this.profileAppService = profileAppService;
             this.profileControllerService = profileControllerService;
@@ -48,7 +48,14 @@ namespace AppFramework.Services.Account
         private byte[] profilePictureBytes;
         private string userNameAndSurname;
         private string applicationInfo;
-        public string ApplicationName { get; set; } = Local.Localize("EmailActivation_Title");
+
+        private string applicationName;
+
+        public string ApplicationName
+        {
+            get { return applicationName; }
+            set { applicationName = value; RaisePropertyChanged(); }
+        }
 
         public byte[] Photo
         {
@@ -160,7 +167,9 @@ namespace AppFramework.Services.Account
         public async Task GetApplicationInfo()
         {
             await GetUserPhoto();
-             
+
+            ApplicationName = Local.Localize("EmailActivation_Title");
+
             UserNameAndSurname = applicationContext.LoginInfo.User.Name + " " + applicationContext.LoginInfo.User.Surname;
 
             var permissions = applicationContext.Configuration.Auth.GrantedPermissions;
@@ -169,6 +178,6 @@ namespace AppFramework.Services.Account
             ApplicationInfo = $"{ApplicationName}\n" +
                               $"v{applicationContext.LoginInfo.Application.Version} " +
                               $"[{applicationContext.LoginInfo.Application.ReleaseDate:yyyyMMdd}]";
-        } 
+        }
     }
 }

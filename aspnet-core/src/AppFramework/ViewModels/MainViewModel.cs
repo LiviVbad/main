@@ -20,8 +20,7 @@ namespace AppFramework.ViewModels
             this.regionManager = regionManager;
 
             ExecuteCommand = new DelegateCommand<string>(Execute);
-            SetThemeCommand = new DelegateCommand<ThemeItem>(
-                arg => themeService.SetTheme(arg.DisplayName));
+            SetThemeCommand = new DelegateCommand<ThemeItem>(arg => themeService.SetTheme(arg.DisplayName));
             SetThemeModeCommand = new DelegateCommand(themeService.SetThemeMode);
         }
 
@@ -70,7 +69,7 @@ namespace AppFramework.ViewModels
 
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
-            appService.GetApplicationInfo(); 
+            appService.GetApplicationInfo();
             Navigate(AppViewManager.Dashboard);
         }
     }
