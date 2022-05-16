@@ -2,8 +2,10 @@
 using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Permission;
+using AppFramework.Models.Tenants;
 using AppFramework.MultiTenancy;
 using AppFramework.MultiTenancy.Dto;
+using Prism.Commands;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,44 +13,38 @@ namespace AppFramework.ViewModels
 {
     public class TenantViewModel : NavigationCurdViewModel<TenantListModel>
     {
-        private readonly ITenantAppService appService;
-        private GetTenantsInput input;
+        private readonly ITenantAppService appService; 
+
+        private GetTenantsFilter filter;
+        public GetTenantsFilter Filter
+        {
+            get { return filter; }
+            set { filter = value; RaisePropertyChanged(); }
+        }
+         
+        public DelegateCommand SearchCommand { get; private set; }
 
         public TenantViewModel(ITenantAppService appService)
         {
-            input = new GetTenantsInput()
+            filter = new GetTenantsFilter()
             {
                 EditionIdSpecified = false,
                 MaxResultCount = 10,
                 SkipCount = 0,
             };
             this.appService = appService;
+            SearchCommand = new DelegateCommand(Search);
         }
 
-        public string FilterText
+        private async void Search()
         {
-            get { return input.Filter; }
-            set
-            {
-                input.Filter = value;
-                RaisePropertyChanged();
-                AsyncRunner.Run(SearchWithDelayAsync(value));
-            }
-        }
-
-        private async Task SearchWithDelayAsync(string filterText)
-        {
-            if (!string.IsNullOrEmpty(filterText))
-            {
-                if (filterText != input.Filter)
-                    return;
-            }
-            input.SkipCount = 0; 
             await RefreshAsync();
         }
 
         public override async Task RefreshAsync()
         {
+            var input = Map<GetTenantsInput>(filter);
+
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(

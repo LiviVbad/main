@@ -64,13 +64,24 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Margin="5" Text="{extensions:Translate TenantNameOrTenancyCode}" />
-                <TextBox Grid.Row="1" Margin="5" />
+
+                <DockPanel Grid.Row="1" Margin="5">
+                    <Button
+                        Padding="8"
+                        Command="{Binding SearchCommand}"
+                        Content="&#xe633;"
+                        DockPanel.Dock="Right"
+                        Style="{StaticResource IconButtonStyle}" />
+                    <TextBox Text="{Binding Filter.Filter}" />
+                </DockPanel>
+
+
 
                 <TextBlock
                     Grid.Column="1"
                     Margin="5"
                     Text="{extensions:Translate Edition}" />
-                <TextBox
+                <ComboBox
                     Grid.Row="1"
                     Grid.Column="1"
                     Margin="5" />
@@ -84,8 +95,8 @@
                     Grid.Row="3"
                     Margin="0,5"
                     Columns="2">
-                    <DatePicker Margin="5" />
-                    <DatePicker Margin="5" />
+                    <DatePicker Margin="5" SelectedDate="{Binding Filter.SubscriptionEndDateStart}" />
+                    <DatePicker Margin="5" SelectedDate="{Binding Filter.SubscriptionEndDateEnd}" />
                 </UniformGrid>
 
                 <CheckBox
@@ -99,8 +110,8 @@
                     Grid.Column="1"
                     Margin="0,5"
                     Columns="2">
-                    <DatePicker Margin="5" />
-                    <DatePicker Margin="5" />
+                    <DatePicker Margin="5" SelectedDate="{Binding Filter.CreationDateStart}" />
+                    <DatePicker Margin="5" SelectedDate="{Binding Filter.CreationDateEnd}" />
                 </UniformGrid>
             </Grid>
 

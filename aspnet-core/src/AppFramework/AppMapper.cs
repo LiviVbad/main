@@ -2,12 +2,9 @@
 using AppFramework.Authorization.Permissions.Dto;
 using AppFramework.Common.Models;
 using AppFramework.Models.Auditlogs;
-using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AppFramework.Models.Tenants;
+using AppFramework.MultiTenancy.Dto;
+using AutoMapper; 
 
 namespace AppFramework
 {
@@ -16,6 +13,7 @@ namespace AppFramework
         public AppMapper()
         {
             CreateMap<GetAuditLogsFilter, GetAuditLogsInput>().ReverseMap();
+            CreateMap<GetTenantsFilter, GetTenantsInput>().ReverseMap();
             CreateMap<FlatPermissionWithLevelDto, PermissionModel>().ReverseMap();
         }
     }
