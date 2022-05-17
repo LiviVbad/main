@@ -27,7 +27,7 @@ namespace AppFramework
             services.RegisterSingleton<IAccountService, AccountService>();
             services.RegisterSingleton<IAccountStorageService, AccountStorageService>();
             services.RegisterSingleton<IDataStorageService, DataStorageService>();
-            services.RegisterSingleton<IPermissionService, PermissionService>(); 
+            services.RegisterSingleton<IPermissionService, PermissionService>();
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
 
             services.RegisterSingleton<ILocaleCulture, LocaleCulture>();
@@ -55,6 +55,7 @@ namespace AppFramework
             services.Add<DynamicPropertyDetailsView, DynamicPropertyDetailsViewModel>(AppViewManager.DynamicPropertyDetails);
             services.Add<TenantView, TenantViewModel>(AppViewManager.Tenant);
             services.Add<TenantDetailsView, TenantDetailsViewModel>(AppViewManager.TenantDetails);
+            services.Add<TenantChangeFeaturesView, TenantChangeFeaturesViewModel>(AppViewManager.TenantChangeFeatures);
             services.Add<AddRolesView, AddRolesViewModel>(AppViewManager.AddRoles);
             services.Add<AddUsersView, AddUsersViewModel>(AppViewManager.AddUsers);
             services.Add<AuditLogsView, AuditLogsViewModel>(AppViewManager.AuditLog);

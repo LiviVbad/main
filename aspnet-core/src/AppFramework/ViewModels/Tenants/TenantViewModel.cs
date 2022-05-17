@@ -144,9 +144,19 @@ namespace AppFramework.ViewModels
             await dialog.ShowDialogAsync(AppViewManager.TenantChangeFeatures);
         }
 
-        private void TenantImpersonation() { }
+        private void TenantImpersonation()
+        {
+            //..使用当前租户登录
+        }
 
-        private void Unlock() { }
+        private async void Unlock()
+        {
+            await SetBusyAsync(async () =>
+             {
+                 await WebRequest.Execute(() => appService.UnlockTenantAdmin(
+                     new EntityDto(SelectedItem.Id)), RefreshAsync);
+             });
+        }
 
         private async void Delete()
         {
@@ -156,8 +166,7 @@ namespace AppFramework.ViewModels
                 await SetBusyAsync(async () =>
                 {
                     await WebRequest.Execute(() => appService.DeleteTenant(
-                        new EntityDto(SelectedItem.Id)),
-                        RefreshAsync);
+                        new EntityDto(SelectedItem.Id)), RefreshAsync);
                 });
             }
         }
