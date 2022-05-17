@@ -75,8 +75,7 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(
-                        () => permissionAppService.GetAllPermissions(),
+                await WebRequest.Execute(() => permissionAppService.GetAllPermissions(),
                         async result =>
                         {
                             flatPermission = result;
@@ -89,8 +88,7 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(
-                        () => appService.GetRoles(input),
+                await WebRequest.Execute(() => appService.GetRoles(input),
                         async result =>
                         {
                             GridModelList.Clear();

@@ -18,6 +18,7 @@
 
         <Border
             Grid.RowSpan="3"
+            CornerRadius="0"
             Opacity="1"
             Style="{StaticResource BorderStyle}" />
 
@@ -64,7 +65,7 @@
 
         <StackPanel
             Grid.Row="2"
-            Margin="0,0,15,15"
+            Margin="15"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
             <Button

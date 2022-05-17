@@ -32,6 +32,7 @@ using AppFramework.Common.Services.Navigation;
 using Abp.Configuration.Startup;
 using AppFramework.Authorization.Permissions;
 using AppFrameworkDemo.Authorization.Permissions;
+using AppFramework.Common.Services;
 
 #endregion ApplicationServices
 
@@ -73,7 +74,8 @@ namespace AppFramework.Common
             services.RegisterScoped<ISessionAppService, ProxySessionAppService>();
             services.RegisterScoped<IHostDashboardAppService, HostDashboardAppService>();
             services.RegisterScoped<IPermissionAppService, PermissionAppService>();
-
+            services.RegisterScoped<IFeaturesService, FeaturesService>();
+            
             services.RegisterSingleton<IMessenger, Messenger>();
             services.RegisterSingleton<IPermissionService, PermissionService>();
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();

@@ -27,7 +27,10 @@
             FontWeight="Bold"
             Text="{extensions:Translate AuditLogDetail}" />
 
-        <ScrollViewer Grid.Row="1" Margin="20,0">
+        <ScrollViewer
+            Grid.Row="1"
+            Margin="15,0"
+            VerticalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -174,7 +177,6 @@
             HorizontalAlignment="Right"
             Orientation="Horizontal">
             <Button
-                Margin="0,0,10,0"
                 Padding="10,5"
                 Command="{Binding CancelCommand}"
                 Content="{extensions:Translate Close}" />

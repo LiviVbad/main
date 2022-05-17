@@ -80,7 +80,7 @@ namespace AppFramework.ViewModels
                 case "Refresh": await RefreshAsync(); break;
             }
         }
-         
+
         #region 组织机构
 
         public override async Task RefreshAsync()
@@ -173,8 +173,7 @@ namespace AppFramework.ViewModels
             long Id = organizationUnit.Id;
 
             await WebRequest.Execute(() =>
-                       appService.FindRoles(
-                       new FindOrganizationUnitRolesInput()
+                       appService.FindRoles(new FindOrganizationUnitRolesInput()
                        {
                            OrganizationUnitId = Id
                        }),
@@ -196,8 +195,7 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
               {
-                  var pagedResult = await appService.GetOrganizationUnitRoles(
-                      new GetOrganizationUnitRolesInput() { Id = Id });
+                  var pagedResult = await appService.GetOrganizationUnitRoles(new GetOrganizationUnitRolesInput() { Id = Id });
                   if (pagedResult != null)
                   {
                       RolesModelList.Clear();
@@ -240,8 +238,7 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                var pagedResult = await appService.GetOrganizationUnitUsers(
-                    new GetOrganizationUnitUsersInput() { Id = Id });
+                var pagedResult = await appService.GetOrganizationUnitUsers(new GetOrganizationUnitUsersInput() { Id = Id });
                 if (pagedResult != null)
                 {
                     UserModelList.Clear();

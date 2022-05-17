@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Prism.Regions;
+using Prism.Services.Dialogs;
 
 namespace AppFramework.ViewModels
 {
@@ -141,7 +142,24 @@ namespace AppFramework.ViewModels
         /// <param name="Id"></param>
         private async void TenantChangeFeatures(int Id)
         {
-            await dialog.ShowDialogAsync(AppViewManager.TenantChangeFeatures);
+            GetTenantFeaturesEditOutput output = null;
+            await SetBusyAsync(async () =>
+            {
+                await WebRequest.Execute(() => appService.GetTenantFeaturesForEdit(new EntityDto(SelectedItem.Id)),
+                      async result =>
+                      {
+                          output = result;
+                          await Task.CompletedTask;
+                      });
+
+            });
+
+            if (output == null) return;
+
+            DialogParameters param = new DialogParameters();
+            param.Add("Value", output);
+
+            await dialog.ShowDialogAsync(AppViewManager.TenantChangeFeatures, param);
         }
 
         private void TenantImpersonation()
@@ -179,8 +197,7 @@ namespace AppFramework.ViewModels
 
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(
-                      () => appService.GetTenants(input),
+                await WebRequest.Execute(() => appService.GetTenants(input),
                       async result =>
                       {
                           GridModelList.Clear();

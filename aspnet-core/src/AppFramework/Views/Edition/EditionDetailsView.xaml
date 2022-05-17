@@ -32,8 +32,8 @@
             FontWeight="Bold"
             Text="{extensions:Translate CreateNewEdition}" />
 
-        <ScrollViewer Grid.Row="1" Margin="20,10">
-            <StackPanel Grid.Row="1">
+        <ScrollViewer Grid.Row="1" Margin="15,0">
+            <StackPanel>
                 <!--  版本名称  -->
                 <TextBlock Text="{extensions:Translate EditionName}" />
                 <TextBox Margin="0,5" Text="{Binding Model.DisplayName, Mode=TwoWay}" />
@@ -150,7 +150,6 @@
                     </sync:SfTreeView.ItemTemplate>
                 </sync:SfTreeView>
             </StackPanel>
-
         </ScrollViewer>
 
         <StackPanel

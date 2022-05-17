@@ -69,13 +69,12 @@ namespace AppFramework.ViewModels
                 });
             });
 
-            if (output != null)
-            {
-                DialogParameters param = new DialogParameters();
-                param.Add("Id", Id);
-                param.Add("Value", output);
-                await dialog.ShowDialogAsync(AppViewManager.UserChangePermission, param);
-            }
+            if (output == null) return;
+
+            DialogParameters param = new DialogParameters();
+            param.Add("Id", Id);
+            param.Add("Value", output);
+            await dialog.ShowDialogAsync(AppViewManager.UserChangePermission, param);
         }
 
         private async void UsersUnlock(int Id)
