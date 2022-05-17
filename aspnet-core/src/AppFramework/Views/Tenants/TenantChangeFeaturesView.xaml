@@ -44,7 +44,7 @@
             <sync:SfTreeView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding IsChecked}" />
+                        <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}" />
                         <TextBlock Margin="5,0" Text="{Binding Content.DisplayName}" />
                     </StackPanel>
                 </DataTemplate>

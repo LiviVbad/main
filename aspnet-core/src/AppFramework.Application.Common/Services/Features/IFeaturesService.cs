@@ -10,6 +10,6 @@ namespace AppFramework.Common.Services
     {
         void CreateFeatures(List<FlatFeatureDto> features, List<NameValueDto> featureValues);
 
-        List<string> GetSelectedItems();
+        List<NameValueDto> GetSelectedItems();
     }
 }

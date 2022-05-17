@@ -157,6 +157,7 @@ namespace AppFramework.ViewModels
             if (output == null) return;
 
             DialogParameters param = new DialogParameters();
+            param.Add("Id", SelectedItem.Id);
             param.Add("Value", output);
 
             await dialog.ShowDialogAsync(AppViewManager.TenantChangeFeatures, param);

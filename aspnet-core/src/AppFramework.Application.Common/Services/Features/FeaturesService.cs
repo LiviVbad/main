@@ -33,7 +33,7 @@ namespace AppFramework.Common.Services
         public ObservableCollection<object> SelectedItems
         {
             get { return selectedItems; }
-            set { selectedItems = value; }
+            set { selectedItems = value; RaisePropertyChanged(); }
         }
 
         public void CreateFeatures(List<FlatFeatureDto> features, List<NameValueDto> featureValues)
@@ -50,11 +50,21 @@ namespace AppFramework.Common.Services
             SelectedItems = GetSelectedItems(Features, featureValues);
         }
 
-        public List<string> GetSelectedItems()
+        public List<NameValueDto> GetSelectedItems()
         {
+            //TODO: 存在更新问题
             if (SelectedItems == null && SelectedItems.Count == 0) return null;
 
-            return SelectedItems.Select(t => (t as FlatFeatureModel)?.Name).ToList();
+            List<NameValueDto> items = new List<NameValueDto>();
+
+            foreach (FlatFeatureModel item in SelectedItems)
+            {
+                if (bool.TryParse(item.DefaultValue, out bool result))
+                    items.Add(new NameValueDto(item.Name, "true"));
+                else
+                    items.Add(new NameValueDto(item.Name, item.DefaultValue));
+            }
+            return items;
         }
 
         /// <summary>
@@ -79,10 +89,10 @@ namespace AppFramework.Common.Services
         private ObservableCollection<object> GetSelectedItems(ObservableCollection<FlatFeatureModel> features, List<NameValueDto> featureValues)
         {
             var items = new ObservableCollection<object>();
-            foreach (var item in featureValues)
+            foreach (var f in featureValues)
             {
-                var permItem = GetSelectedItems(features, item);
-                if (permItem != null) items.Add(permItem);
+                var item = GetSelectedItems(features, f);
+                if (item != null) items.Add(item);
             }
             return items;
         }
