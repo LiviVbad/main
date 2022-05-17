@@ -51,7 +51,16 @@
             </Grid.RowDefinitions>
 
             <Border Grid.RowSpan="5" Style="{StaticResource BorderStyle}" />
-            <TextBox Margin="10,15" Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=500}" />
+
+            <DockPanel Margin="5,15">
+                <Button
+                    Padding="8"
+                    Command="{Binding SearchCommand}"
+                    Content="&#xe633;"
+                    DockPanel.Dock="Right"
+                    Style="{StaticResource IconButtonStyle}" />
+                <TextBox Margin="5,0" Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=500}" />
+            </DockPanel>
 
             <!--  高级筛选  -->
             <Grid Grid.Row="1" Visibility="{Binding IsAdvancedFilter, Converter={StaticResource inverseBoolToVisibility}}">
@@ -71,7 +80,11 @@
                     Command="{Binding SelectedCommand}"
                     Content="{Binding SelectPermissions}" />
 
-                <ComboBox Grid.Column="1" ItemsSource="{Binding RoleList}">
+                <ComboBox
+                    Grid.Column="1"
+                    Margin="10,0"
+                    ItemsSource="{Binding RoleList}"
+                    SelectedItem="{Binding SelectedRole}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding DisplayName}" />

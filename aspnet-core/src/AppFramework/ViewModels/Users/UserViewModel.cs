@@ -49,6 +49,7 @@ namespace AppFramework.ViewModels
 
             AdvancedCommand = new DelegateCommand(() => { IsAdvancedFilter = !IsAdvancedFilter; });
             SelectedCommand = new DelegateCommand(SelectedPermission);
+            SearchCommand = new DelegateCommand(Search);
             UpdateTitle();
         }
 
@@ -113,6 +114,7 @@ namespace AppFramework.ViewModels
         public GetUsersInput input { get; set; }
         public DelegateCommand AdvancedCommand { get; private set; }
         public DelegateCommand SelectedCommand { get; private set; }
+        public DelegateCommand SearchCommand { get; private set; }
 
         /// <summary>
         /// 仅锁定用户
@@ -211,6 +213,11 @@ namespace AppFramework.ViewModels
         private void UpdateTitle(int count = 0)
         {
             SelectPermissions = Local.Localize("SelectPermissions") + $"({count})";
+        }
+
+        private async void Search()
+        {
+            await RefreshAsync();
         }
 
         /// <summary>
