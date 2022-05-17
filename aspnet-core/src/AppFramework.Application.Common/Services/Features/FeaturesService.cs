@@ -52,19 +52,34 @@ namespace AppFramework.Common.Services
 
         public List<NameValueDto> GetSelectedItems()
         {
-            //TODO: 存在更新问题
-            if (SelectedItems == null && SelectedItems.Count == 0) return null;
-
             List<NameValueDto> items = new List<NameValueDto>();
+            GetFeatures(Features, ref items);
 
-            foreach (FlatFeatureModel item in SelectedItems)
+            foreach (FlatFeatureModel model in SelectedItems)
+            {
+                var item = items.FirstOrDefault(t => t.Name.Equals(model.Name));
+                if (item != null)
+                    item.Value = "true";
+            } 
+            return items;
+        }
+
+        /// <summary>
+        /// 获取选中的功能节点
+        /// </summary>
+        /// <param name="nodes"></param>
+        /// <param name="GrantedPermissionNames"></param>
+        private void GetFeatures(ObservableCollection<FlatFeatureModel> flatFeatures, ref List<NameValueDto> featureValues)
+        {
+            foreach (var item in flatFeatures)
             {
                 if (bool.TryParse(item.DefaultValue, out bool result))
-                    items.Add(new NameValueDto(item.Name, "true"));
+                    featureValues.Add(new NameValueDto(item.Name, "false"));
                 else
-                    items.Add(new NameValueDto(item.Name, item.DefaultValue));
+                    featureValues.Add(new NameValueDto(item.Name, item.DefaultValue));
+
+                GetFeatures(item.Items, ref featureValues);
             }
-            return items;
         }
 
         /// <summary>
