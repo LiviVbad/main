@@ -319,7 +319,7 @@ namespace AppFramework.Shared.ViewModels
                         flat.IsChecked = true;
                 }
 
-                UpdateSelected(flat.Items, item);
+                UpdateSelected(flat.Items, item); 
             }
         }
 

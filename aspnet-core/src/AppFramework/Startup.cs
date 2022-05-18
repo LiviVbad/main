@@ -64,6 +64,7 @@ namespace AppFramework
             services.Add<DashboardView, DashboardViewModel>(AppViewManager.Dashboard);
             services.Add<OrganizationsView, OrganizationsViewModel>(AppViewManager.Organization);
             services.Add<OrganizationsAddView, OrganizationsAddViewModel>(AppViewManager.OrganizationAdd);
+            services.Add<SettingsView, SettingsViewModel>(AppViewManager.Setting);
         }
 
         private static void Add<TView, TViewModel>(this IContainerRegistry containerRegistry, string name = null)

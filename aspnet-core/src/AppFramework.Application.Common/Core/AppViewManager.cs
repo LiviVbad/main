@@ -42,7 +42,7 @@
 
         public const string AuditLog = "AuditLogView";
 
-        public const string Visual = "VisualView";
+        public const string Visual = "VisualView"; 
 
         /*
          * 详细页 
