@@ -35,60 +35,118 @@
                 Visibility="{extensions:HasPermission Text={x:Static perm:Permkeys.DynamicEntityPropertiesCreate}}" />
         </DockPanel>
 
-        <Grid Grid.Row="1" Margin="20">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
+        <Border
+            Grid.Row="1"
+            Margin="20"
+            Style="{StaticResource BorderStyle}" />
 
-            <Border Grid.RowSpan="2" Style="{StaticResource BorderStyle}" />
+        <TabControl Grid.Row="1" Margin="30">
+            <TabItem Header="{extensions:Translate DynamicProperty}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
 
-            <sync:SfDataGrid
-                x:Name="SfDataGrid"
-                Margin="15,0"
-                ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}"
-                SelectedItem="{Binding SelectedItem}"
-                Style="{StaticResource SimpleDataGridStyle}">
-                <sync:SfDataGrid.Columns>
-                    <sync:GridTemplateColumn
-                        Width="110"
-                        AllowFiltering="False"
-                        AllowSorting="False"
-                        HeaderText="{extensions:Translate Actions}">
-                        <sync:GridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <sync:DropDownButtonAdv Label="{extensions:Translate Actions}" Style="{StaticResource OperationButtonStyle}">
-                                    <ItemsControl ItemsSource="{Binding DataContext.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Button
-                                                    Margin="5"
-                                                    Padding="3"
-                                                    Background="Transparent"
-                                                    Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
-                                                    CommandParameter="{Binding Key}"
-                                                    Content="{Binding Name}"
-                                                    Foreground="White" />
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </sync:DropDownButtonAdv>
-                            </DataTemplate>
-                        </sync:GridTemplateColumn.CellTemplate>
-                    </sync:GridTemplateColumn>
-                    <sync:GridTextColumn HeaderText="{extensions:Translate PropertyName}" MappingName="PropertyName" />
-                    <sync:GridTextColumn HeaderText="{extensions:Translate DisplayName}" MappingName="DisplayName" />
-                    <sync:GridTextColumn HeaderText="{extensions:Translate InputType}" MappingName="InputType" />
-                </sync:SfDataGrid.Columns>
-            </sync:SfDataGrid>
+                    <Button
+                        Padding="5"
+                        HorizontalAlignment="Right"
+                        Content="{extensions:Translate AddNewDynamicProperty}" />
 
-            <sync:SfDataPager
-                x:Name="sfDataPapger"
-                Grid.Row="1"
-                HorizontalAlignment="Right"
-                NumericButtonCount="10"
-                PageSize="50"
-                Source="{Binding GridModelList}" />
-        </Grid>
+                    <sync:SfDataGrid
+                        Grid.Row="1"
+                        ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}"
+                        SelectedItem="{Binding SelectedItem}"
+                        Style="{StaticResource SimpleDataGridStyle}">
+                        <sync:SfDataGrid.Columns>
+                            <sync:GridTemplateColumn
+                                Width="110"
+                                AllowFiltering="False"
+                                AllowSorting="False"
+                                HeaderText="{extensions:Translate Actions}">
+                                <sync:GridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <sync:DropDownButtonAdv Label="{extensions:Translate Actions}" Style="{StaticResource OperationButtonStyle}">
+                                            <ItemsControl ItemsSource="{Binding DataContext.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Button
+                                                            Margin="5"
+                                                            Padding="3"
+                                                            Background="Transparent"
+                                                            Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                                            CommandParameter="{Binding Key}"
+                                                            Content="{Binding Name}"
+                                                            Foreground="White" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </sync:DropDownButtonAdv>
+                                    </DataTemplate>
+                                </sync:GridTemplateColumn.CellTemplate>
+                            </sync:GridTemplateColumn>
+                            <sync:GridTextColumn HeaderText="{extensions:Translate PropertyName}" MappingName="PropertyName" />
+                            <sync:GridTextColumn HeaderText="{extensions:Translate DisplayName}" MappingName="DisplayName" />
+                            <sync:GridTextColumn HeaderText="{extensions:Translate InputType}" MappingName="InputType" />
+                        </sync:SfDataGrid.Columns>
+                    </sync:SfDataGrid>
+
+                    <sync:SfDataPager
+                        x:Name="sfDataPapger"
+                        Grid.Row="2"
+                        HorizontalAlignment="Right"
+                        NumericButtonCount="10"
+                        PageSize="50"
+                        Source="{Binding GridModelList}" />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="{extensions:Translate DynamicEntityProperties}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Button
+                        Padding="5"
+                        HorizontalAlignment="Right"
+                        Content="{extensions:Translate AddNewDynamicEntityProperty}" />
+
+                    <sync:SfDataGrid Grid.Row="1" Style="{StaticResource SimpleDataGridStyle}">
+                        <sync:SfDataGrid.Columns>
+                            <sync:GridTemplateColumn
+                                Width="110"
+                                AllowFiltering="False"
+                                AllowSorting="False"
+                                HeaderText="{extensions:Translate Actions}">
+                                <sync:GridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <sync:DropDownButtonAdv Label="{extensions:Translate Actions}" Style="{StaticResource OperationButtonStyle}">
+                                            <ItemsControl ItemsSource="{Binding DataContext.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Button
+                                                            Margin="5"
+                                                            Padding="3"
+                                                            Background="Transparent"
+                                                            Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                                            CommandParameter="{Binding Key}"
+                                                            Content="{Binding Name}"
+                                                            Foreground="White" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </sync:DropDownButtonAdv>
+                                    </DataTemplate>
+                                </sync:GridTemplateColumn.CellTemplate>
+                            </sync:GridTemplateColumn>
+                            <sync:GridTextColumn HeaderText="{extensions:Translate EntityFullName}" MappingName="EntityFullName" />
+                        </sync:SfDataGrid.Columns>
+                    </sync:SfDataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>
