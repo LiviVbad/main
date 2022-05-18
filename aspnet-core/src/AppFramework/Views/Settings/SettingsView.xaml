@@ -37,7 +37,6 @@
         </DockPanel>
 
         <Grid Grid.Row="1" Margin="20">
-
             <Border Grid.RowSpan="5" Style="{StaticResource BorderStyle}" />
             <TabControl Margin="10">
                 <TabItem Background="Transparent" Header="{extensions:Translate TenantManagement}">

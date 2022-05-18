@@ -7,6 +7,7 @@ using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -34,7 +35,7 @@ namespace AppFramework.ViewModels
                 else if (selectedIndex == 1)
                     filter.HasException = false;
                 else
-                    filter.HasException = true; 
+                    filter.HasException = true;
                 RaisePropertyChanged();
             }
         }
@@ -72,6 +73,16 @@ namespace AppFramework.ViewModels
 
         #endregion
 
+        private ObservableCollection<EntityChangeDto> changedLogList;
+
+        public ObservableCollection<EntityChangeDto> ChangedLogList
+        {
+            get { return changedLogList; }
+            set { changedLogList = value; RaisePropertyChanged(); }
+        }
+
+        public DelegateCommand ViewChangedLogsCommand { get; private set; }
+
         public AuditLogsViewModel(IAuditLogAppService appService)
         {
             IsAdvancedFilter = false;
@@ -82,13 +93,16 @@ namespace AppFramework.ViewModels
                 MaxResultCount = AppConsts.DefaultPageSize
             };
             this.appService = appService;
-            ViewCommand = new DelegateCommand(ViewLogs);
-            AdvancedCommand = new DelegateCommand(() =>
-              {
-                  IsAdvancedFilter = !IsAdvancedFilter;
-              });
+            changedLogList = new ObservableCollection<EntityChangeDto>();
+
             SearchCommand = new DelegateCommand(Search);
+            ViewCommand = new DelegateCommand(ViewLogs);
+            ViewChangedLogsCommand = new DelegateCommand(ViewChangedLogs); 
+            AdvancedCommand = new DelegateCommand(() => { IsAdvancedFilter = !IsAdvancedFilter; });
         }
+
+        private void ViewChangedLogs()
+        { }
 
         private void ViewLogs()
         {
