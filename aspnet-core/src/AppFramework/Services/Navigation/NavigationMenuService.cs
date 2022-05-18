@@ -13,7 +13,8 @@ namespace AppFramework.Services
             return new ObservableCollection<NavigationItem>()
             {
                new NavigationItem("\ue6c4","Dashboard", AppViewManager.Dashboard, Permkeys.Administration),
-               new NavigationItem("\uec07","Administration","",Permkeys.Administration,new ObservableCollection<NavigationItem>()
+               new NavigationItem("\uec07","Administration","",Permkeys.Administration,
+               new ObservableCollection<NavigationItem>()
                {
                       new NavigationItem("\ue64e","OrganizationUnits",AppViewManager.Organization,Permkeys.OrganizationUnits),
                       new NavigationItem("\ue787","Roles",AppViewManager.Role,Permkeys.Roles),
@@ -25,6 +26,7 @@ namespace AppFramework.Services
                }),
                new NavigationItem("\ue62e","Languages",AppViewManager.Language,Permkeys.Languages),
                new NavigationItem("\ue600", "Settings", AppViewManager.Setting, Permkeys.HostSettings),
+               new NavigationItem("\ue650","DemoUiComponents",AppViewManager.Demo,Permkeys.DemoUiComponents)
             };
         }
 

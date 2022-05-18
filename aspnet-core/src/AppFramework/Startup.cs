@@ -65,6 +65,9 @@ namespace AppFramework
             services.Add<OrganizationsView, OrganizationsViewModel>(AppViewManager.Organization);
             services.Add<OrganizationsAddView, OrganizationsAddViewModel>(AppViewManager.OrganizationAdd);
             services.Add<SettingsView, SettingsViewModel>(AppViewManager.Setting);
+
+            //演示组件页
+            services.RegisterForNavigation<DemoUiView>(AppViewManager.Demo);
         }
 
         private static void Add<TView, TViewModel>(this IContainerRegistry containerRegistry, string name = null)
