@@ -13,6 +13,7 @@ namespace AppFramework
         public AppMapper()
         {
             CreateMap<GetAuditLogsFilter, GetAuditLogsInput>().ReverseMap();
+            CreateMap<GetEntityChangeFilter, GetEntityChangeInput>().ReverseMap();
             CreateMap<GetTenantsFilter, GetTenantsInput>().ReverseMap();
             CreateMap<FlatPermissionWithLevelDto, PermissionModel>().ReverseMap();
         }

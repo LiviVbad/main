@@ -20,6 +20,7 @@ namespace AppFramework.ViewModels
         private string filterTitle = string.Empty;
         private bool isAdvancedFilter;
         private GetAuditLogsFilter filter;
+        private GetEntityChangeFilter entityChangeFilter;
 
         private int selectedIndex;
 
@@ -67,22 +68,28 @@ namespace AppFramework.ViewModels
             set { filter = value; RaisePropertyChanged(); }
         }
 
-        public DelegateCommand ViewCommand { get; private set; }
-        public DelegateCommand AdvancedCommand { get; private set; }
-        public DelegateCommand SearchCommand { get; private set; }
+        public GetEntityChangeFilter EntityChangeFilter
+        {
+            get { return entityChangeFilter; }
+            set { entityChangeFilter = value; RaisePropertyChanged(); }
+        }
 
-        #endregion
+        private ObservableCollection<EntityChangeListDto> changedLogList;
 
-        private ObservableCollection<EntityChangeDto> changedLogList;
-
-        public ObservableCollection<EntityChangeDto> ChangedLogList
+        public ObservableCollection<EntityChangeListDto> ChangedLogList
         {
             get { return changedLogList; }
             set { changedLogList = value; RaisePropertyChanged(); }
         }
 
-        public DelegateCommand ViewChangedLogsCommand { get; private set; }
+        public DelegateCommand ViewLogCommand { get; private set; }
+        public DelegateCommand ViewChangedLogCommand { get; private set; }
+        public DelegateCommand AdvancedCommand { get; private set; }
+        public DelegateCommand SearchCommand { get; private set; }
+        public DelegateCommand SearchChangedCommand { get; private set; }
 
+        #endregion
+         
         public AuditLogsViewModel(IAuditLogAppService appService)
         {
             IsAdvancedFilter = false;
@@ -92,34 +99,50 @@ namespace AppFramework.ViewModels
                 EndDate = DateTime.Now,
                 MaxResultCount = AppConsts.DefaultPageSize
             };
+            entityChangeFilter = new GetEntityChangeFilter()
+            {
+                StartDate = DateTime.Now.AddDays(-30),
+                EndDate = DateTime.Now,
+                MaxResultCount = AppConsts.DefaultPageSize
+            };
             this.appService = appService;
-            changedLogList = new ObservableCollection<EntityChangeDto>();
+            changedLogList = new ObservableCollection<EntityChangeListDto>();
 
             SearchCommand = new DelegateCommand(Search);
-            ViewCommand = new DelegateCommand(ViewLogs);
-            ViewChangedLogsCommand = new DelegateCommand(ViewChangedLogs); 
+            SearchChangedCommand = new DelegateCommand(SearchChanged);
+            ViewLogCommand = new DelegateCommand(ViewLog);
+            ViewChangedLogCommand = new DelegateCommand(ViewChangedLog);
             AdvancedCommand = new DelegateCommand(() => { IsAdvancedFilter = !IsAdvancedFilter; });
         }
-
-        private void ViewChangedLogs()
+         
+        /// <summary>
+        /// 查看更改日志详情
+        /// </summary>
+        private void ViewChangedLog()
         { }
 
-        private void ViewLogs()
+        /// <summary>
+        /// 查看操作日志详情
+        /// </summary>
+        private void ViewLog()
         {
             DialogParameters param = new DialogParameters();
             param.Add("Value", SelectedItem);
             dialog.ShowDialogAsync(AppViewManager.AuditLogDetails, param);
         }
 
+        /// <summary>
+        /// 搜索操作日志
+        /// </summary>
         private async void Search()
         {
             filter.SkipCount = 0;
             GridModelList.Clear();
 
-            await RefreshAsync();
+            await GetAuditLogs();
         }
 
-        public override async Task RefreshAsync()
+        private async Task GetAuditLogs()
         {
             var input = Map<GetAuditLogsInput>(filter);
 
@@ -133,6 +156,43 @@ namespace AppFramework.ViewModels
 
                                await Task.CompletedTask;
                            });
+            });
+        }
+
+        /// <summary>
+        /// 搜索更改日志
+        /// </summary>
+        private async void SearchChanged()
+        {
+            entityChangeFilter.SkipCount = 0;
+            ChangedLogList.Clear();
+
+            await GetEntityChanges();
+        }
+
+        private async Task GetEntityChanges()
+        {
+            var input = Map<GetEntityChangeInput>(entityChangeFilter);
+
+            await SetBusyAsync(async () =>
+            {
+                await WebRequest.Execute(() => appService.GetEntityChanges(input),
+                           async result =>
+                           {
+                               foreach (var item in result.Items)
+                                   ChangedLogList.Add(item);
+
+                               await Task.CompletedTask;
+                           });
+            });
+        }
+
+        public override async Task RefreshAsync()
+        {
+            await SetBusyAsync(async () =>
+            {
+                await GetAuditLogs();
+                await GetEntityChanges();
             });
         }
     }

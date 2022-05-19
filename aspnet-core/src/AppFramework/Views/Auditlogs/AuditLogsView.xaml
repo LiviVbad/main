@@ -32,7 +32,7 @@
             Style="{StaticResource BorderStyle}" />
 
         <TabControl Grid.Row="1" Margin="30">
-            <TabItem Header="{extensions:Translate OperationLogs}">
+            <TabItem Background="Transparent" Header="{extensions:Translate OperationLogs}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <!--  日期筛选行  -->
@@ -216,7 +216,7 @@
                                     <DataTemplate>
                                         <Button
                                             Padding="8"
-                                            Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                            Command="{Binding DataContext.ViewLogCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
                                             Content="&#xe633;"
                                             Style="{StaticResource IconButtonStyle}" />
                                     </DataTemplate>
@@ -241,7 +241,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="{extensions:Translate ChangeLogs}">
+            <TabItem Background="Transparent" Header="{extensions:Translate ChangeLogs}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -271,11 +271,14 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
-                            <sync:SfDatePicker BorderThickness="1" />
+                            <sync:SfDatePicker BorderThickness="1" Value="{Binding EntityChangeFilter.StartDate}" />
                             <Border Grid.Column="1" Margin="10,0">
                                 <TextBlock VerticalAlignment="Center" Text="―" />
                             </Border>
-                            <sync:SfDatePicker Grid.Column="2" BorderThickness="1" />
+                            <sync:SfDatePicker
+                                Grid.Column="2"
+                                BorderThickness="1"
+                                Value="{Binding EntityChangeFilter.EndDate}" />
                         </Grid>
 
                         <!--  用户名  -->
@@ -287,18 +290,26 @@
                             Grid.Row="1"
                             Grid.Column="1"
                             Margin="10,0"
-                            VerticalAlignment="Center" />
+                            VerticalAlignment="Center"
+                            Text="{Binding EntityChangeFilter.UserName}" />
 
                         <!--  对象  -->
                         <TextBlock
                             Grid.Row="2"
-                            Margin="10,5"
+                            Margin="10,10,0,0"
                             Text="{extensions:Translate Object}" />
-                        <ComboBox
+                        <DockPanel
                             Grid.Row="3"
                             Grid.ColumnSpan="2"
-                            Margin="10,0"
-                            VerticalAlignment="Center" />
+                            Margin="10,0">
+                            <Button
+                                Margin="10,0,0,0"
+                                Padding="10,5"
+                                Command="{Binding SearchCommand}"
+                                Content="{extensions:Translate Search}"
+                                DockPanel.Dock="Right" />
+                            <ComboBox VerticalAlignment="Center" Text="{Binding EntityChangeFilter.EntityTypeFullName}" />
+                        </DockPanel>
                     </Grid>
 
                     <sync:SfDataGrid
@@ -315,7 +326,7 @@
                                     <DataTemplate>
                                         <Button
                                             Padding="8"
-                                            Command="{Binding DataContext.ViewChangedLogsCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                            Command="{Binding DataContext.ViewChangedLogCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
                                             Content="&#xe633;"
                                             Style="{StaticResource IconButtonStyle}" />
                                     </DataTemplate>
