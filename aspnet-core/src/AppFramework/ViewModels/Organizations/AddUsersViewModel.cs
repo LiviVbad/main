@@ -67,13 +67,14 @@ namespace AppFramework.ViewModels
 
         private async void Query()
         {
-            await WebRequest.Execute(() =>
-             appService.FindUsers(new FindOrganizationUnitUsersInput()
+            await SetBusyAsync(async () =>
              {
-                 OrganizationUnitId = Id,
-                 Filter = Filter
-             }),
-             result => FindUsersSuccessed(result));
+                 await WebRequest.Execute(() => appService.FindUsers(new FindOrganizationUnitUsersInput()
+                 {
+                     OrganizationUnitId = Id,
+                     Filter = Filter
+                 }), FindUsersSuccessed);
+             });
         }
 
         private async Task FindUsersSuccessed(PagedResultDto<NameValueDto> pagedResult)

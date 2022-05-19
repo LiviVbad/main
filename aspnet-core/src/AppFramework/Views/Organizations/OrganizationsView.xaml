@@ -50,7 +50,7 @@
                         DockPanel.Dock="Left"
                         Text="{extensions:Translate OrganizationTree}" />
                     <Button
-                        Command="{Binding ExecuteCommand}"
+                        Command="{Binding ExecuteItemCommand}"
                         CommandParameter="AddOrganizationUnit"
                         Content="{extensions:Translate AddRootUnit}"
                         DockPanel.Dock="Right"
@@ -147,7 +147,7 @@
                             <Button
                                 Margin="5"
                                 HorizontalAlignment="Right"
-                                Command="{Binding ExecuteCommand}"
+                                Command="{Binding ExecuteItemCommand}"
                                 CommandParameter="AddMember"
                                 Content="{extensions:Translate AddMember}"
                                 Style="{StaticResource SimpleButton}" />
@@ -189,7 +189,7 @@
                             <Button
                                 Margin="5"
                                 HorizontalAlignment="Right"
-                                Command="{Binding ExecuteCommand}"
+                                Command="{Binding ExecuteItemCommand}"
                                 CommandParameter="AddRole"
                                 Content="{extensions:Translate CreateNewRole}"
                                 Style="{StaticResource SimpleButton}" />

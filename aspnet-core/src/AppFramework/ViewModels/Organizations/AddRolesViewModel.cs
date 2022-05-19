@@ -67,13 +67,14 @@ namespace AppFramework.ViewModels
 
         private async void Query()
         {
-            await WebRequest.Execute(() =>
-             appService.FindRoles(new FindOrganizationUnitRolesInput()
-             {
-                 OrganizationUnitId = Id,
-                 Filter = Filter
-             }),
-             result => FindUsersSuccessed(result));
+            await SetBusyAsync(async () =>
+            {
+                await WebRequest.Execute(() => appService.FindRoles(new FindOrganizationUnitRolesInput()
+                {
+                    OrganizationUnitId = Id,
+                    Filter = Filter
+                }), FindUsersSuccessed);
+            });
         }
 
         private async Task FindUsersSuccessed(PagedResultDto<NameValueDto> pagedResult)
@@ -101,6 +102,6 @@ namespace AppFramework.ViewModels
             }
             else
                 Values = new ObservableCollection<ChooseItem>();
-        } 
+        }
     }
 }
