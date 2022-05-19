@@ -157,6 +157,21 @@
                                 ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}"
                                 Style="{StaticResource SimpleDataGridStyle}">
                                 <sync:SfDataGrid.Columns>
+                                    <sync:GridTemplateColumn
+                                        Width="60"
+                                        AllowFiltering="False"
+                                        AllowSorting="False">
+                                        <sync:GridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button
+                                                    Padding="8"
+                                                    Command="{Binding DataContext.DeleteMemberCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                                    CommandParameter="{Binding}"
+                                                    Content="&#xe65c;"
+                                                    Style="{StaticResource IconButtonStyle}" />
+                                            </DataTemplate>
+                                        </sync:GridTemplateColumn.CellTemplate>
+                                    </sync:GridTemplateColumn>
                                     <sync:GridTextColumn HeaderText="{extensions:Translate Name}" MappingName="Name" />
                                     <sync:GridTextColumn HeaderText="{extensions:Translate Surname}" MappingName="Surname" />
                                     <sync:GridTextColumn HeaderText="{extensions:Translate UserName}" MappingName="UserName" />
@@ -199,6 +214,21 @@
                                 ItemsSource="{Binding ElementName=sfRolesDataPager, Path=PagedSource}"
                                 Style="{StaticResource SimpleDataGridStyle}">
                                 <sync:SfDataGrid.Columns>
+                                    <sync:GridTemplateColumn
+                                        Width="60"
+                                        AllowFiltering="False"
+                                        AllowSorting="False">
+                                        <sync:GridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button
+                                                    Padding="8"
+                                                    Command="{Binding DataContext.DeleteRoleCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                                    CommandParameter="{Binding}"
+                                                    Content="&#xe65c;"
+                                                    Style="{StaticResource IconButtonStyle}" />
+                                            </DataTemplate>
+                                        </sync:GridTemplateColumn.CellTemplate>
+                                    </sync:GridTemplateColumn>
                                     <sync:GridTextColumn HeaderText="{extensions:Translate DisplayName}" MappingName="DisplayName" />
                                     <sync:GridTextColumn
                                         DisplayBinding="{Binding Path=AddedTime, StringFormat='yyyy-MM-dd'}"

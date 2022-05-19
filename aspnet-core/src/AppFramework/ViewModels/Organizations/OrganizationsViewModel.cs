@@ -3,9 +3,8 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Organizations;
 using AppFramework.Organizations.Dto;
-using Prism.Commands;
-using Prism.Regions;
-using Prism.Services.Dialogs;
+using Prism.Commands; 
+using Prism.Services.Dialogs; 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -37,12 +36,17 @@ namespace AppFramework.ViewModels
             set { userModelList = value; }
         }
 
+        //选中组织、添加跟组织、修改、删除组织
         public DelegateCommand<OrganizationListModel> SelectedCommand { get; }
         public DelegateCommand<OrganizationListModel> AddRootUnitCommand { get; private set; }
         public DelegateCommand<OrganizationListModel> ChangeCommand { get; private set; }
         public DelegateCommand<OrganizationListModel> RemoveCommand { get; private set; }
 
         public DelegateCommand<string> ExecuteItemCommand { get; private set; }
+
+        //删除成员、角色
+        public DelegateCommand<OrganizationUnitUserListDto> DeleteMemberCommand { get; private set; }
+        public DelegateCommand<OrganizationUnitRoleListDto> DeleteRoleCommand { get; private set; }
 
         #endregion
 
@@ -56,6 +60,9 @@ namespace AppFramework.ViewModels
             AddRootUnitCommand = new DelegateCommand<OrganizationListModel>(AddOrganizationUnit);
             ChangeCommand = new DelegateCommand<OrganizationListModel>(EditOrganizationUnit);
             RemoveCommand = new DelegateCommand<OrganizationListModel>(DeleteOrganizationUnit);
+
+            DeleteRoleCommand = new DelegateCommand<OrganizationUnitRoleListDto>(DeleteRole);
+            DeleteMemberCommand = new DelegateCommand<OrganizationUnitUserListDto>(DeleteMember);
 
             ExecuteItemCommand = new DelegateCommand<string>(ExecuteItem);
         }
@@ -96,9 +103,7 @@ namespace AppFramework.ViewModels
                           var items = BuildOrganizationTree(Map<List<OrganizationListModel>>(result.Items));
 
                           foreach (var item in items)
-                          {
                               GridModelList.Add(item);
-                          }
 
                           await Task.CompletedTask;
                       });
@@ -109,11 +114,10 @@ namespace AppFramework.ViewModels
         {
             if (await dialog.Question(Local.Localize("OrganizationUnitDeleteWarningMessage", organization.DisplayName)))
             {
-                await WebRequest.Execute(
-                    () => appService.DeleteOrganizationUnit(new EntityDto<long>()
-                    {
-                        Id = organization.Id
-                    }), () => RefreshAsync());
+                await WebRequest.Execute(() => appService.DeleteOrganizationUnit(new EntityDto<long>()
+                {
+                    Id = organization.Id
+                }), RefreshAsync);
             }
         }
 
@@ -184,10 +188,7 @@ namespace AppFramework.ViewModels
                            param.Add("Value", result);
                            var dialogResult = await dialog.ShowDialogAsync(AppViewManager.AddRoles, param);
                            if (dialogResult.Result == ButtonResult.OK)
-                           {
-                               await RefreshRoles(Id);
-                               RefreshOrganizationUnit(Id);
-                           }
+                               await RefreshRoles(Id); 
                        });
         }
 
@@ -202,12 +203,53 @@ namespace AppFramework.ViewModels
                       foreach (var item in pagedResult.Items)
                           RolesModelList.Add(item);
                   }
+                  RefreshOrganizationUnit(Id);
               });
+        }
+
+        private async void DeleteRole(OrganizationUnitRoleListDto obj)
+        {
+            if (await dialog.Question(Local.Localize("RemoveRoleFromOuWarningMessage",
+                SelectedOrganizationUnit.DisplayName, obj.DisplayName)))
+            {
+                await SetBusyAsync(async () =>
+                {
+                    await WebRequest.Execute(() =>
+                    appService.RemoveRoleFromOrganizationUnit(new RoleToOrganizationUnitInput()
+                    {
+                        RoleId = (int)obj.Id,
+                        OrganizationUnitId = SelectedOrganizationUnit.Id,
+                    }), async () =>
+                    {
+                        await RefreshRoles(SelectedOrganizationUnit.Id);
+                    });
+                });
+            }
         }
 
         #endregion Roles
 
         #region 用户
+
+        private async void DeleteMember(OrganizationUnitUserListDto obj)
+        {
+            if (await dialog.Question(Local.Localize("RemoveUserFromOuWarningMessage",
+                SelectedOrganizationUnit.DisplayName, obj.UserName)))
+            {
+                await SetBusyAsync(async () =>
+                {
+                    await WebRequest.Execute(() =>
+                    appService.RemoveUserFromOrganizationUnit(new UserToOrganizationUnitInput()
+                    {
+                        OrganizationUnitId = SelectedOrganizationUnit.Id,
+                        UserId = obj.Id
+                    }), async () =>
+                    {
+                        await RefreshUsers(SelectedOrganizationUnit.Id);
+                    });
+                });
+            }
+        }
 
         private async Task AddMember(OrganizationListModel organizationUnit)
         {
@@ -216,22 +258,19 @@ namespace AppFramework.ViewModels
             long Id = organizationUnit.Id;
 
             await WebRequest.Execute(() =>
-            appService.FindUsers(new FindOrganizationUnitUsersInput()
-            {
-                OrganizationUnitId = Id
-            }),
-            async result =>
-            {
-                DialogParameters param = new DialogParameters();
-                param.Add("Id", Id);
-                param.Add("Value", result);
-                var dialogResult = await dialog.ShowDialogAsync(AppViewManager.AddUsers, param);
-                if (dialogResult.Result == ButtonResult.OK)
-                {
-                    await RefreshUsers(Id);
-                    RefreshOrganizationUnit(Id);
-                }
-            });
+                        appService.FindUsers(new FindOrganizationUnitUsersInput()
+                        {
+                            OrganizationUnitId = Id
+                        }),
+                        async result =>
+                        {
+                            DialogParameters param = new DialogParameters();
+                            param.Add("Id", Id);
+                            param.Add("Value", result);
+                            var dialogResult = await dialog.ShowDialogAsync(AppViewManager.AddUsers, param);
+                            if (dialogResult.Result == ButtonResult.OK)
+                                await RefreshUsers(Id);  
+                        });
         }
 
         private async Task RefreshUsers(long Id)
@@ -245,6 +284,7 @@ namespace AppFramework.ViewModels
                     foreach (var item in pagedResult.Items)
                         UserModelList.Add(item);
                 }
+                RefreshOrganizationUnit(Id);
             });
         }
 
