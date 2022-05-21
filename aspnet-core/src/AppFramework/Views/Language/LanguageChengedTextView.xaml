@@ -124,9 +124,9 @@
                 x:Name="sfDataPapger"
                 Grid.Row="2"
                 HorizontalAlignment="Right"
-                NumericButtonCount="10" OnDemandLoading="sfDataPapger_OnDemandLoading"
-                PageCount="{Binding TotalCount}"
+                NumericButtonCount="10"
                 PageSize="50"
+                Source="{Binding GridModelList}"
                 UseOnDemandPaging="True" />
         </Grid>
     </Grid>
