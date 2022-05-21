@@ -15,7 +15,7 @@ using Prism.Services.Dialogs;
 
 namespace AppFramework.ViewModels
 {
-    public class TenantViewModel : NavigationCurdViewModel<TenantListModel>
+    public class TenantViewModel : NavigationCurdViewModel
     {
         #region 字段/属性
 
@@ -23,6 +23,10 @@ namespace AppFramework.ViewModels
         private readonly IEditionAppService editionAppService;
 
         private bool isSubscription;
+        private bool isCreation;
+        private GetTenantsFilter filter;
+        private EditionListModel edition;
+        private ObservableCollection<EditionListModel> editions;
 
         /// <summary>
         /// 启用订阅日期查询
@@ -41,9 +45,7 @@ namespace AppFramework.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-        private bool isCreation;
-
+         
         /// <summary>
         /// 启用创建时间查询
         /// </summary>
@@ -61,24 +63,19 @@ namespace AppFramework.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-        private GetTenantsFilter filter;
+         
         public GetTenantsFilter Filter
         {
             get { return filter; }
             set { filter = value; RaisePropertyChanged(); }
         }
-
-        private EditionListModel edition;
-
+         
         public EditionListModel Edition
         {
             get { return edition; }
             set { edition = value; RaisePropertyChanged(); }
         }
-
-        private ObservableCollection<EditionListModel> editions;
-
+         
         public ObservableCollection<EditionListModel> Editions
         {
             get { return editions; }
@@ -119,6 +116,8 @@ namespace AppFramework.ViewModels
         /// <returns></returns>
         public async Task GetAllEditions()
         {
+            if (Editions.Count > 0) return;
+
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(() => editionAppService.GetEditions(),
@@ -140,27 +139,30 @@ namespace AppFramework.ViewModels
         /// 修改租户功能
         /// </summary>
         /// <param name="Id"></param>
-        private async void TenantChangeFeatures(int Id)
+        private async void TenantChangeFeatures()
         {
-            GetTenantFeaturesEditOutput output = null;
-            await SetBusyAsync(async () =>
+            if (SelectedItem is TenantListModel item)
             {
-                await WebRequest.Execute(() => appService.GetTenantFeaturesForEdit(new EntityDto(SelectedItem.Id)),
-                      async result =>
-                      {
-                          output = result;
-                          await Task.CompletedTask;
-                      });
+                GetTenantFeaturesEditOutput output = null;
+                await SetBusyAsync(async () =>
+                {
+                    await WebRequest.Execute(() => appService.GetTenantFeaturesForEdit(new EntityDto(item.Id)),
+                          async result =>
+                          {
+                              output = result;
+                              await Task.CompletedTask;
+                          });
 
-            });
+                });
 
-            if (output == null) return;
+                if (output == null) return;
 
-            DialogParameters param = new DialogParameters();
-            param.Add("Id", SelectedItem.Id);
-            param.Add("Value", output);
+                DialogParameters param = new DialogParameters();
+                param.Add("Id", item.Id);
+                param.Add("Value", output);
 
-            await dialog.ShowDialogAsync(AppViewManager.TenantChangeFeatures, param);
+                await dialog.ShowDialogAsync(AppViewManager.TenantChangeFeatures, param);
+            }
         }
 
         private void TenantImpersonation()
@@ -170,23 +172,29 @@ namespace AppFramework.ViewModels
 
         private async void Unlock()
         {
-            await SetBusyAsync(async () =>
-             {
-                 await WebRequest.Execute(() => appService.UnlockTenantAdmin(
-                     new EntityDto(SelectedItem.Id)), RefreshAsync);
-             });
+            if (SelectedItem is TenantListModel item)
+            {
+                await SetBusyAsync(async () =>
+                {
+                    await WebRequest.Execute(() => appService.UnlockTenantAdmin(
+                        new EntityDto(item.Id)), RefreshAsync);
+                });
+            }
         }
 
         private async void Delete()
         {
-            var result = await dialog.Question(Local.Localize("TenantDeleteWarningMessage", SelectedItem.TenancyName));
-            if (result)
+            if (SelectedItem is TenantListModel item)
             {
-                await SetBusyAsync(async () =>
+                var result = await dialog.Question(Local.Localize("TenantDeleteWarningMessage", item.TenancyName));
+                if (result)
                 {
-                    await WebRequest.Execute(() => appService.DeleteTenant(
-                        new EntityDto(SelectedItem.Id)), RefreshAsync);
-                });
+                    await SetBusyAsync(async () =>
+                    {
+                        await WebRequest.Execute(() => appService.DeleteTenant(
+                            new EntityDto(item.Id)), RefreshAsync);
+                    });
+                }
             }
         }
 
@@ -198,6 +206,8 @@ namespace AppFramework.ViewModels
 
             await SetBusyAsync(async () =>
             {
+                await GetAllEditions();
+
                 await WebRequest.Execute(() => appService.GetTenants(input),
                       async result =>
                       {
@@ -217,16 +227,10 @@ namespace AppFramework.ViewModels
              {
                 new PermButton(Permkeys.TenantImpersonation, Local.Localize("LoginAsThisTenant"),()=>TenantImpersonation()),
                 new PermButton(Permkeys.TenantEdit, Local.Localize("Change"),()=>Edit()),
-                new PermButton(Permkeys.TenantChangeFeatures, Local.Localize("Features"),()=>TenantChangeFeatures(SelectedItem.Id)),
+                new PermButton(Permkeys.TenantChangeFeatures, Local.Localize("Features"),()=>TenantChangeFeatures()),
                 new PermButton(Permkeys.TenantDelete, Local.Localize("Delete"),()=>Delete()),
                 new PermButton(Permkeys.TenantUnlock, Local.Localize("Unlock"),()=>Unlock())
              };
-        }
-
-        public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
-        {
-            await GetAllEditions();
-            await base.OnNavigatedToAsync(navigationContext);
         }
     }
 }

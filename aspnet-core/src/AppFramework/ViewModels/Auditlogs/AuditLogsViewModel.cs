@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
-    public class AuditLogsViewModel : NavigationCurdViewModel<AuditLogListModel>
+    public class AuditLogsViewModel : NavigationCurdViewModel
     {
         #region 字段/属性
 
@@ -89,7 +89,7 @@ namespace AppFramework.ViewModels
         public DelegateCommand SearchChangedCommand { get; private set; }
 
         #endregion
-         
+
         public AuditLogsViewModel(IAuditLogAppService appService)
         {
             IsAdvancedFilter = false;
@@ -114,7 +114,7 @@ namespace AppFramework.ViewModels
             ViewChangedLogCommand = new DelegateCommand(ViewChangedLog);
             AdvancedCommand = new DelegateCommand(() => { IsAdvancedFilter = !IsAdvancedFilter; });
         }
-         
+
         /// <summary>
         /// 查看更改日志详情
         /// </summary>
@@ -139,24 +139,24 @@ namespace AppFramework.ViewModels
             filter.SkipCount = 0;
             GridModelList.Clear();
 
-            await GetAuditLogs();
+            await SetBusyAsync(async () =>
+            {
+                await GetAuditLogs();
+            });
         }
 
         private async Task GetAuditLogs()
         {
             var input = Map<GetAuditLogsInput>(filter);
 
-            await SetBusyAsync(async () =>
-            {
-                await WebRequest.Execute(() => appService.GetAuditLogs(input),
-                           async result =>
-                           {
-                               foreach (var item in Map<List<AuditLogListModel>>(result.Items))
-                                   GridModelList.Add(item);
+            await WebRequest.Execute(() => appService.GetAuditLogs(input),
+                         async result =>
+                         {
+                             foreach (var item in Map<List<AuditLogListModel>>(result.Items))
+                                 GridModelList.Add(item);
 
-                               await Task.CompletedTask;
-                           });
-            });
+                             await Task.CompletedTask;
+                         });
         }
 
         /// <summary>
@@ -174,9 +174,7 @@ namespace AppFramework.ViewModels
         {
             var input = Map<GetEntityChangeInput>(entityChangeFilter);
 
-            await SetBusyAsync(async () =>
-            {
-                await WebRequest.Execute(() => appService.GetEntityChanges(input),
+            await WebRequest.Execute(() => appService.GetEntityChanges(input),
                            async result =>
                            {
                                foreach (var item in result.Items)
@@ -184,7 +182,6 @@ namespace AppFramework.ViewModels
 
                                await Task.CompletedTask;
                            });
-            });
         }
 
         public override async Task RefreshAsync()

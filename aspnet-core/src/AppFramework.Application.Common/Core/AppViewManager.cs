@@ -36,6 +36,8 @@
 
         public const string Language = "LanguageView";
 
+        public const string LanguageChengedText = "LanguageChengedTextView";
+
         public const string Edition = "EditionView";
 
         public const string DynamicProperty = "DynamicPropertyView";

@@ -3,18 +3,21 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Permission;
 using AppFramework.Localization;
+using Prism.Regions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
-    public class LanguageViewModel : NavigationCurdViewModel<LanguageListModel>
+    public class LanguageViewModel : NavigationCurdViewModel
     {
         private readonly ILanguageAppService appService;
+        private readonly IRegionManager regionManager;
 
-        public LanguageViewModel(ILanguageAppService languageAppService)
+        public LanguageViewModel(ILanguageAppService languageAppService, IRegionManager regionManager)
         {
             this.appService = languageAppService;
+            this.regionManager = regionManager;
         }
 
         public override async Task RefreshAsync()
@@ -30,7 +33,7 @@ namespace AppFramework.ViewModels
                           await Task.CompletedTask;
                       });
         }
-         
+
         public override PermButton[] GeneratePermissionButtons()
         {
             return new PermButton[]
@@ -42,30 +45,47 @@ namespace AppFramework.ViewModels
             };
         }
 
-        private void ChangeTexts() { }
+        private void ChangeTexts()
+        {
+            if (SelectedItem is LanguageListModel item)
+            {
+                NavigationParameters param = new NavigationParameters();
+                param.Add("Name", item.Name);
+
+                regionManager
+                    .Regions[AppRegionManager.Main]
+                    .RequestNavigate(AppViewManager.LanguageChengedText, param);
+            }
+        }
 
         private async void SetAsDefaultLanguage()
         {
-            await SetBusyAsync(async () =>
+            if (SelectedItem is LanguageListModel item)
             {
-                await WebRequest.Execute(() =>
-                appService.SetDefaultLanguage(new Localization.Dto.SetDefaultLanguageInput()
+                await SetBusyAsync(async () =>
                 {
-                    Name = SelectedItem.Name
-                }));
-            });
+                    await WebRequest.Execute(() =>
+                    appService.SetDefaultLanguage(new Localization.Dto.SetDefaultLanguageInput()
+                    {
+                        Name = item.Name
+                    }));
+                });
+            }
         }
 
         private async void Delete()
         {
-            if (await dialog.Question(Local.Localize("LanguageDeleteWarningMessage", SelectedItem.DisplayName)))
+            if (SelectedItem is LanguageListModel item)
             {
-                await SetBusyAsync(async () =>
+                if (await dialog.Question(Local.Localize("LanguageDeleteWarningMessage", item.DisplayName)))
                 {
-                    await WebRequest.Execute(() => appService.DeleteLanguage(
-                        new EntityDto(SelectedItem.Id)),
-                        RefreshAsync);
-                });
+                    await SetBusyAsync(async () =>
+                    {
+                        await WebRequest.Execute(() => appService.DeleteLanguage(
+                            new EntityDto(item.Id)),
+                            RefreshAsync);
+                    });
+                }
             }
         }
     }

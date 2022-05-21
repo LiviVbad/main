@@ -3,8 +3,8 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Organizations;
 using AppFramework.Organizations.Dto;
-using Prism.Commands; 
-using Prism.Services.Dialogs; 
+using Prism.Commands;
+using Prism.Services.Dialogs;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
-    public class OrganizationsViewModel : NavigationCurdViewModel<OrganizationListModel>
+    public class OrganizationsViewModel : NavigationCurdViewModel
     {
         #region 字段/属性
 
@@ -142,7 +142,8 @@ namespace AppFramework.ViewModels
 
         private void RefreshOrganizationUnit(long id)
         {
-            var organizationUnit = GridModelList.FirstOrDefault(t => t.Id.Equals(id));
+            var organizationUnit = GridModelList
+                .FirstOrDefault(t => t is OrganizationListModel q && q.Id.Equals(id)) as OrganizationListModel;
 
             if (organizationUnit != null)
             {
@@ -188,7 +189,7 @@ namespace AppFramework.ViewModels
                            param.Add("Value", result);
                            var dialogResult = await dialog.ShowDialogAsync(AppViewManager.AddRoles, param);
                            if (dialogResult.Result == ButtonResult.OK)
-                               await RefreshRoles(Id); 
+                               await RefreshRoles(Id);
                        });
         }
 
@@ -269,7 +270,7 @@ namespace AppFramework.ViewModels
                             param.Add("Value", result);
                             var dialogResult = await dialog.ShowDialogAsync(AppViewManager.AddUsers, param);
                             if (dialogResult.Result == ButtonResult.OK)
-                                await RefreshUsers(Id);  
+                                await RefreshUsers(Id);
                         });
         }
 

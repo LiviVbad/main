@@ -19,7 +19,7 @@ using System.Collections.ObjectModel;
 
 namespace AppFramework.ViewModels
 {
-    public class UserViewModel : NavigationCurdViewModel<UserListModel>
+    public class UserViewModel : NavigationCurdViewModel
     {
         private readonly IUserAppService appService;
         private readonly IRoleAppService roleAppService;
@@ -55,52 +55,62 @@ namespace AppFramework.ViewModels
 
         #region 修改权限/解锁/使用当前账户登录
 
-        private async void UserChangePermission(int Id)
+        private async void UserChangePermission()
         {
-            GetUserPermissionsForEditOutput output = null;
-            await SetBusyAsync(async () =>
+            if (SelectedItem is UserListModel item)
             {
-                await WebRequest.Execute(() =>
-                appService.GetUserPermissionsForEdit(new EntityDto<long>(Id)),
-                async result =>
+                GetUserPermissionsForEditOutput output = null;
+                await SetBusyAsync(async () =>
                 {
-                    output = result;
-                    await Task.CompletedTask;
+                    await WebRequest.Execute(() =>
+                    appService.GetUserPermissionsForEdit(new EntityDto<long>(item.Id)),
+                    async result =>
+                    {
+                        output = result;
+                        await Task.CompletedTask;
+                    });
                 });
-            });
 
-            if (output == null) return;
+                if (output == null) return;
 
-            DialogParameters param = new DialogParameters();
-            param.Add("Id", Id);
-            param.Add("Value", output);
-            await dialog.ShowDialogAsync(AppViewManager.UserChangePermission, param);
+                DialogParameters param = new DialogParameters();
+                param.Add("Id", item.Id);
+                param.Add("Value", output);
+                await dialog.ShowDialogAsync(AppViewManager.UserChangePermission, param);
+            }
         }
 
-        private async void UsersUnlock(int Id)
+        private async void UsersUnlock()
         {
-            await SetBusyAsync(async () =>
-             {
-                 await WebRequest.Execute(() => appService.UnlockUser(
-                     new EntityDto<long>(Id)));
-             });
+            if (SelectedItem is UserListModel item)
+            {
+                await SetBusyAsync(async () =>
+                {
+                    await WebRequest.Execute(() => appService.UnlockUser(
+                        new EntityDto<long>(item.Id)));
+                });
+            }
         }
 
         private async void LoginAsThisUser()
         {
-            await accountService.LoginCurrentUserAsync(SelectedItem);
+            if (SelectedItem is UserListModel item)
+                await accountService.LoginCurrentUserAsync(item);
         }
 
         public async void Delete()
         {
-            if (await dialog.Question(Local.Localize("UserDeleteWarningMessage", SelectedItem.UserName)))
+            if (SelectedItem is UserListModel item)
             {
-                await SetBusyAsync(async () =>
+                if (await dialog.Question(Local.Localize("UserDeleteWarningMessage", item.UserName)))
                 {
-                    await WebRequest.Execute(() => appService.DeleteUser(
-                        new EntityDto<long>(SelectedItem.Id)),
-                        RefreshAsync);
-                });
+                    await SetBusyAsync(async () =>
+                    {
+                        await WebRequest.Execute(() => appService.DeleteUser(
+                            new EntityDto<long>(item.Id)),
+                            RefreshAsync);
+                    });
+                }
             }
         }
 
@@ -134,6 +144,11 @@ namespace AppFramework.ViewModels
         private bool isAdvancedFilter;
         private string filterTitle = string.Empty;
 
+        private string selectPermissions = string.Empty;
+        private RoleListModel selectedRole;
+        private ObservableCollection<RoleListModel> roleList;
+        private ListResultDto<FlatPermissionWithLevelDto> flatPermission;
+      
         public string FilterText
         {
             get { return input.Filter; }
@@ -166,8 +181,6 @@ namespace AppFramework.ViewModels
             }
         }
 
-        private string selectPermissions = string.Empty;
-
         /// <summary>
         /// 已选择权限的文本
         /// </summary>
@@ -176,10 +189,6 @@ namespace AppFramework.ViewModels
             get { return selectPermissions; }
             set { selectPermissions = value; RaisePropertyChanged(); }
         }
-
-        private ListResultDto<FlatPermissionWithLevelDto> flatPermission;
-
-        private RoleListModel selectedRole;
 
         /// <summary>
         /// 选中角色
@@ -195,9 +204,7 @@ namespace AppFramework.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-        private ObservableCollection<RoleListModel> roleList;
-
+         
         /// <summary>
         /// 绑定角色列表
         /// </summary>
@@ -243,16 +250,14 @@ namespace AppFramework.ViewModels
         /// <returns></returns>
         private async Task GetAllPermission()
         {
-            await SetBusyAsync(async () =>
-            {
-                await WebRequest.Execute(
-                        () => permissionAppService.GetAllPermissions(),
-                        async result =>
+            if (flatPermission != null) return;
+
+            await WebRequest.Execute(() => permissionAppService.GetAllPermissions(),
+                        result =>
                         {
                             flatPermission = result;
-                            await Task.CompletedTask;
+                            return Task.CompletedTask;
                         });
-            });
         }
 
         /// <summary>
@@ -261,18 +266,16 @@ namespace AppFramework.ViewModels
         /// <returns></returns>
         private async Task GetAllRoles()
         {
-            await SetBusyAsync(async () =>
-            {
-                await WebRequest.Execute(
-                        () => roleAppService.GetRoles(new GetRolesInput()),
-                        async result =>
-                        {
-                            foreach (var item in Map<List<RoleListModel>>(result.Items))
-                                RoleList.Add(item);
+            if (RoleList.Count > 0) return;
 
-                            await Task.CompletedTask;
-                        });
-            });
+            await WebRequest.Execute(() => roleAppService.GetRoles(new GetRolesInput()),
+                          result =>
+                          {
+                              foreach (var item in Map<List<RoleListModel>>(result.Items))
+                                  RoleList.Add(item);
+
+                              return Task.CompletedTask;
+                          });
         }
 
         #endregion
@@ -294,8 +297,10 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(
-                       () => appService.GetUsers(input),
+                await GetAllRoles();
+                await GetAllPermission();
+
+                await WebRequest.Execute(() => appService.GetUsers(input),
                        async result =>
                        {
                            GridModelList.Clear();
@@ -314,17 +319,10 @@ namespace AppFramework.ViewModels
             {
                 new PermButton(Permkeys.Users, Local.Localize("LoginAsThisUser"),()=>LoginAsThisUser()),
                 new PermButton(Permkeys.UserEdit, Local.Localize("Change"),()=>Edit()),
-                new PermButton(Permkeys.UserChangePermission, Local.Localize("Permissions"),()=>UserChangePermission(SelectedItem.Id)),
-                new PermButton(Permkeys.UsersUnlock, Local.Localize("Unlock"),()=>UsersUnlock(SelectedItem.Id)),
+                new PermButton(Permkeys.UserChangePermission, Local.Localize("Permissions"),()=>UserChangePermission()),
+                new PermButton(Permkeys.UsersUnlock, Local.Localize("Unlock"),()=>UsersUnlock()),
                 new PermButton(Permkeys.UserDelete, Local.Localize("Delete"),()=>Delete())
             };
-        }
-
-        public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
-        {
-            await GetAllRoles();
-            await GetAllPermission();
-            await base.OnNavigatedToAsync(navigationContext);
         }
     }
 }

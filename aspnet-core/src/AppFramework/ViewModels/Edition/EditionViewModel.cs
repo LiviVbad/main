@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
-    public class EditionViewModel : NavigationCurdViewModel<EditionListModel>
+    public class EditionViewModel : NavigationCurdViewModel
     {
         private readonly IEditionAppService appService;
 
@@ -45,14 +45,17 @@ namespace AppFramework.ViewModels
 
         private async void Delete()
         {
-            if (await dialog.Question(Local.Localize("EditionDeleteWarningMessage", SelectedItem.DisplayName)))
+            if (SelectedItem is EditionListModel item)
             {
-                await SetBusyAsync(async () =>
+                if (await dialog.Question(Local.Localize("EditionDeleteWarningMessage", item.DisplayName)))
                 {
-                    await WebRequest.Execute(() =>
-                            appService.DeleteEdition(new EntityDto(SelectedItem.Id)),
-                        RefreshAsync);
-                });
+                    await SetBusyAsync(async () =>
+                    {
+                        await WebRequest.Execute(() =>
+                                appService.DeleteEdition(new EntityDto(item.Id)),
+                            RefreshAsync);
+                    });
+                }
             }
         }
     }

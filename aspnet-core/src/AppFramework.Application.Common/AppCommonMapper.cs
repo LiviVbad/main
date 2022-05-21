@@ -31,7 +31,8 @@ namespace AppFramework.Common.Core
             CreateMap<DynamicPropertyDto, DynamicPropertyModel>().ReverseMap();
             CreateMap<OrganizationUnitDto, OrganizationListModel>().ReverseMap();
             CreateMap<OrganizationUnitDto, OrganizationUnitModel>().ReverseMap();
-            CreateMap<ApplicationLanguageListDto, LanguageListModel>().ReverseMap();
+            CreateMap<LanguageListModel,ApplicationLanguageListDto>().ReverseMap();
+            CreateMap<LanguageTextListModel, LanguageTextListDto>().ReverseMap();
             CreateMap<UserLoginInfoDto, UserLoginInfoModel>().ReverseMap();
             CreateMap<UserLoginInfoDto, UserLoginInfoPersistanceModel>().ReverseMap();
             CreateMap<AbpAuthenticateResultModel, AuthenticateResultPersistanceModel>().ReverseMap();

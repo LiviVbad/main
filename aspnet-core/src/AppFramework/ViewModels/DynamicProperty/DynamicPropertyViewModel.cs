@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
-    public class DynamicPropertyViewModel : NavigationCurdViewModel<DynamicPropertyModel>
+    public class DynamicPropertyViewModel : NavigationCurdViewModel
     {
         private readonly IDynamicPropertyAppService appService;
 
@@ -46,14 +46,17 @@ namespace AppFramework.ViewModels
 
         private async void Delete()
         {
-            if (await dialog.Question(Local.Localize("DeleteDynamicPropertyMessage", SelectedItem.DisplayName)))
+            if (SelectedItem is DynamicPropertyModel item)
             {
-                await SetBusyAsync(async () =>
+                if (await dialog.Question(Local.Localize("DeleteDynamicPropertyMessage", item.DisplayName)))
                 {
-                    await WebRequest.Execute(() => appService.Delete(
-                        new EntityDto(SelectedItem.Id)),
-                        RefreshAsync);
-                });
+                    await SetBusyAsync(async () =>
+                    {
+                        await WebRequest.Execute(() => appService.Delete(
+                            new EntityDto(item.Id)),
+                            RefreshAsync);
+                    });
+                }
             }
         }
 

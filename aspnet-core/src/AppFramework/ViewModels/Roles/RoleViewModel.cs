@@ -9,14 +9,12 @@ using AppFramework.Common.Services.Permission;
 using Prism.Commands;
 using Prism.Regions;
 using Prism.Services.Dialogs;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
-    public class RoleViewModel : NavigationCurdViewModel<RoleListModel>
+    public class RoleViewModel : NavigationCurdViewModel
     {
         private readonly IRoleAppService appService;
         private readonly IPermissionAppService permissionAppService;
@@ -71,23 +69,19 @@ namespace AppFramework.ViewModels
             }
         }
 
-        private async Task GetAllPermission()
-        {
-            await SetBusyAsync(async () =>
-            {
-                await WebRequest.Execute(() => permissionAppService.GetAllPermissions(),
-                        async result =>
-                        {
-                            flatPermission = result;
-                            await Task.CompletedTask;
-                        });
-            });
-        }
-
         public override async Task RefreshAsync()
         {
             await SetBusyAsync(async () =>
             {
+                if (flatPermission == null)
+                {
+                    await WebRequest.Execute(() => permissionAppService.GetAllPermissions(), result =>
+                       {
+                           flatPermission = result;
+                           return Task.CompletedTask;
+                       });
+                }
+
                 await WebRequest.Execute(() => appService.GetRoles(input),
                         async result =>
                         {
@@ -103,14 +97,17 @@ namespace AppFramework.ViewModels
 
         public async void Delete()
         {
-            if (await dialog.Question(Local.Localize("RoleDeleteWarningMessage", SelectedItem.DisplayName)))
+            if (SelectedItem is RoleListModel item)
             {
-                await SetBusyAsync(async () =>
+                if (await dialog.Question(Local.Localize("RoleDeleteWarningMessage", item.DisplayName)))
                 {
-                    await WebRequest.Execute(() => appService.DeleteRole(
-                        new EntityDto(SelectedItem.Id)),
-                        RefreshAsync);
-                });
+                    await SetBusyAsync(async () =>
+                    {
+                        await WebRequest.Execute(() => appService.DeleteRole(
+                            new EntityDto(item.Id)),
+                            RefreshAsync);
+                    });
+                }
             }
         }
 
@@ -121,12 +118,6 @@ namespace AppFramework.ViewModels
                 new PermButton(Permkeys.RoleEdit, Local.Localize("Change"),()=>Edit()),
                 new PermButton(Permkeys.RoleDelete, Local.Localize("Delete"),()=>Delete())
             };
-        }
-
-        public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
-        {
-            await GetAllPermission();
-            await base.OnNavigatedToAsync(navigationContext);
         }
     }
 }

@@ -15,7 +15,7 @@
     using AppFramework.Views;
     using System.Linq;
 
-    public class NavigationCurdViewModel<T> : ViewModelBase, INavigationAware where T : class
+    public class NavigationCurdViewModel : ViewModelBase, INavigationDataAware, INavigationAware
     {
         public NavigationCurdViewModel()
         {
@@ -27,7 +27,7 @@
             ExecuteCommand = new DelegateCommand<string>(Execute);
             RefreshCommand = new DelegateCommand(async () => await RefreshAsync());
 
-            gridModelList = new ObservableCollection<T>();
+            gridModelList = new ObservableCollection<object>();
             permissions = new ObservableCollection<PermButton>();
         }
 
@@ -37,8 +37,9 @@
         public DelegateCommand RefreshCommand { get; private set; }
         public DelegateCommand<string> ExecuteCommand { get; private set; }
 
-        private T selectedItem;
-        private ObservableCollection<T> gridModelList;
+        private int totalCount;
+        private object selectedItem;
+        private ObservableCollection<object> gridModelList;
         private ObservableCollection<PermButton> permissions;
 
         public readonly IRegionManager regionManager;
@@ -51,16 +52,22 @@
             set { permissions = value; RaisePropertyChanged(); }
         }
 
-        public T SelectedItem
+        public object SelectedItem
         {
             get { return selectedItem; }
             set { selectedItem = value; RaisePropertyChanged(); }
         }
 
-        public ObservableCollection<T> GridModelList
+        public ObservableCollection<object> GridModelList
         {
             get { return gridModelList; }
             set { gridModelList = value; RaisePropertyChanged(); }
+        }
+
+        public int TotalCount
+        {
+            get { return totalCount; }
+            set { totalCount = value; RaisePropertyChanged(); }
         }
 
         #endregion
@@ -126,10 +133,7 @@
 
         protected virtual string GetPageName(string methodName)
         {
-            return typeof(T)
-                .Name
-                .Replace("List", "")
-                .Replace("Model", $"{methodName}View");
+            return this.GetType().Name.Replace("ViewModel", $"{methodName}View");
         }
 
         public virtual PermButton[] GeneratePermissionButtons() => new PermButton[0];
