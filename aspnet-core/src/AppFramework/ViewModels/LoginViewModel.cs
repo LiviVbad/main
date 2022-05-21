@@ -132,12 +132,12 @@ namespace AppFramework.ViewModels
 
         public void ForgotPasswordAsync()
         {
-            dialogService.ShowDialog(AppViewManager.ForgotPassword);
+            dialogService.Show(AppViewManager.ForgotPassword);
         }
 
         public void EmailActivationAsync()
         {
-            dialogService.ShowDialog(AppViewManager.EmailActivation);
+            dialogService.Show(AppViewManager.EmailActivation);
         }
 
         public async void ChangeLanguage(LanguageInfo languageInfo)

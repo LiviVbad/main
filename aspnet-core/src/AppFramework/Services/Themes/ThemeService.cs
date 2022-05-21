@@ -55,7 +55,7 @@ namespace AppFramework.Services
             App.Current.MainWindow.SetTheme(themeName);
         }
 
-        public void SetDefaultTheme(DependencyObject dependency)
+        public void SetCurrentTheme(DependencyObject dependency)
         {
             dependency.SetTheme(GetCurrentName());
         }

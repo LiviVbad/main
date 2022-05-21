@@ -5,10 +5,20 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Extensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sync="http://schemas.syncfusion.com/wpf"
+    xmlns:prism="http://prismlibrary.com/" 
     Width="380"
     Height="280"
     mc:Ignorable="d">
+    <prism:Dialog.WindowStyle>
+        <Style TargetType="Window">
+            <Setter Property="prism:Dialog.WindowStartupLocation" Value="CenterScreen" />
+            <Setter Property="ShowInTaskbar" Value="False" />
+            <Setter Property="SizeToContent" Value="WidthAndHeight" />
+            <Setter Property="WindowStyle" Value="None" />
+            <Setter Property="AllowsTransparency" Value="True" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+    </prism:Dialog.WindowStyle>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -18,7 +28,7 @@
 
         <Border
             Grid.RowSpan="3"
-            CornerRadius="0"
+            CornerRadius="3"
             Opacity="1"
             Style="{StaticResource BorderStyle}" />
 
@@ -37,10 +47,11 @@
                 FontSize="16"
                 Text="{Binding Title}" />
             <TextBlock
-                Margin="0,10"
+                Margin="5,10"
                 HorizontalAlignment="Center"
                 Opacity="0.6"
-                Text="{Binding Message}" />
+                Text="{Binding Message}"
+                TextWrapping="Wrap" />
         </StackPanel>
 
         <StackPanel

@@ -12,7 +12,7 @@ namespace AppFramework.Views
             AppSettings.OnInitialized();
             InitializeComponent();
 
-            themeService.SetDefaultTheme(this);
+            themeService.SetCurrentTheme(this);
             resourceService.UpdateResources(App.Current.Resources, themeService.GetCurrentName());
             SfNavigationDrawer.ItemClicked += SfNavigationDrawer_ItemClicked;
         }

@@ -14,6 +14,6 @@ namespace AppFramework.Services
 
         void SetThemeMode();
 
-        void SetDefaultTheme(DependencyObject dependency);
+        void SetCurrentTheme(DependencyObject dependency);
     }
 }

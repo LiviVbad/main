@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Extensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sync="http://schemas.syncfusion.com/wpf"
     Width="380"
     Height="280"
     mc:Ignorable="d">
@@ -37,10 +36,11 @@
                 FontSize="16"
                 Text="{Binding Title}" />
             <TextBlock
-                Margin="0,10"
+                Margin="5,10"
                 HorizontalAlignment="Center"
                 Opacity="0.6"
-                Text="{Binding Message}" />
+                Text="{Binding Message}"
+                TextWrapping="Wrap" />
         </StackPanel>
 
         <StackPanel

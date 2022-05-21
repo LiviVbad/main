@@ -9,7 +9,7 @@ namespace AppFramework.Views
         public LoginView(IThemeService service)
         {
             InitializeComponent();
-            service.SetDefaultTheme(this);
+            service.SetCurrentTheme(this);
         }
 
         public IDialogResult Result { get; set; }

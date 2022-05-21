@@ -1,12 +1,14 @@
-﻿using System.Windows.Controls; 
+﻿using AppFramework.Services;
+using System.Windows.Controls;
 
 namespace AppFramework.Views
-{ 
+{
     public partial class MessageBoxView : UserControl
     {
-        public MessageBoxView()
+        public MessageBoxView(IThemeService themeService)
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            themeService.SetCurrentTheme(this); 
         }
     }
 }

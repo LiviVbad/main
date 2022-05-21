@@ -89,7 +89,7 @@ namespace AppFramework.Services.Account
 
         public async Task ShowMyProfile()
         {
-            dialogService.ShowDialog(AppViewManager.MyProfile);
+            dialogService.Show(AppViewManager.MyProfile);
             await Task.CompletedTask;
         }
 
