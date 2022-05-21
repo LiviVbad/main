@@ -3,7 +3,7 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Permission;
 using AppFramework.DynamicEntityProperties;
-using System.Collections.Generic;
+using AppFramework.DynamicEntityProperties.Dto; 
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -24,10 +24,10 @@ namespace AppFramework.ViewModels
                 await WebRequest.Execute(() => appService.GetAll(),
                        async result =>
                        {
-                           GridModelList.Clear();
-
-                           foreach (var item in Map<List<DynamicPropertyModel>>(result.Items))
-                               GridModelList.Add(item);
+                           dataPager.SetList(new PagedResultDto<DynamicPropertyDto>()
+                           {
+                               Items = result.Items
+                           });
 
                            await Task.CompletedTask;
                        });
@@ -46,7 +46,7 @@ namespace AppFramework.ViewModels
 
         private async void Delete()
         {
-            if (SelectedItem is DynamicPropertyModel item)
+            if (dataPager.SelectedItem is DynamicPropertyModel item)
             {
                 if (await dialog.Question(Local.Localize("DeleteDynamicPropertyMessage", item.DisplayName)))
                 {

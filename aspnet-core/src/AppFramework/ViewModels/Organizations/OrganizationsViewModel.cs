@@ -98,12 +98,10 @@ namespace AppFramework.ViewModels
                       () => appService.GetOrganizationUnits(),
                       async result =>
                       {
-                          GridModelList.Clear();
-
-                          var items = BuildOrganizationTree(Map<List<OrganizationListModel>>(result.Items));
-
-                          foreach (var item in items)
-                              GridModelList.Add(item);
+                          dataPager.SetList(new PagedResultDto<OrganizationUnitDto>()
+                          {
+                              Items = result.Items
+                          });
 
                           await Task.CompletedTask;
                       });
@@ -142,7 +140,7 @@ namespace AppFramework.ViewModels
 
         private void RefreshOrganizationUnit(long id)
         {
-            var organizationUnit = GridModelList
+            var organizationUnit = dataPager.GridModelList
                 .FirstOrDefault(t => t is OrganizationListModel q && q.Id.Equals(id)) as OrganizationListModel;
 
             if (organizationUnit != null)

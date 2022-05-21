@@ -4,8 +4,7 @@
     using System.Threading.Tasks;
     using Prism.Ioc;
     using AppFramework.Services;
-    using Prism.Services.Dialogs;
-    using System.Collections.ObjectModel;
+    using Prism.Services.Dialogs; 
     using AppFramework.Common.Services.Permission;
     using AppFramework.Common;
     using Prism.Commands;
@@ -14,18 +13,17 @@
     using AppFramework.WindowHost;
     using AppFramework.Views;
 
-    public class NavigationCurdViewModel : ViewModelBase, INavigationDataAware, INavigationAware
+    public class NavigationCurdViewModel : ViewModelBase, INavigationAware
     {
         public NavigationCurdViewModel()
         {
             dialog = ContainerLocator.Container.Resolve<IHostDialogService>();
+            dataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
             proxyService = ContainerLocator.Container.Resolve<IPermissionPorxyService>();
 
             AddCommand = new DelegateCommand(Add);
             ExecuteCommand = new DelegateCommand<string>(proxyService.Execute);
             RefreshCommand = new DelegateCommand(async () => await RefreshAsync());
-
-            gridModelList = new ObservableCollection<object>();
         }
 
         #region 字段/属性
@@ -35,34 +33,13 @@
         public DelegateCommand<string> ExecuteCommand { get; private set; }
 
         public readonly IHostDialogService dialog;
+        public IDataPagerService dataPager { get; private set; }
         public IPermissionPorxyService proxyService { get; private set; }
 
         #endregion
 
         #region 导航数据接口
-
-        private int totalCount;
-        private object selectedItem;
-        private ObservableCollection<object> gridModelList;
-
-        public int TotalCount
-        {
-            get { return totalCount; }
-            set { totalCount = value; RaisePropertyChanged(); }
-        }
-
-        public object SelectedItem
-        {
-            get { return selectedItem; }
-            set { selectedItem = value; RaisePropertyChanged(); }
-        }
-
-        public ObservableCollection<object> GridModelList
-        {
-            get { return gridModelList; }
-            set { gridModelList = value; RaisePropertyChanged(); }
-        }
-
+         
         public async void Add()
         {
             var dialogResult = await dialog.ShowDialogAsync(GetPageName("Details"));
@@ -73,7 +50,7 @@
         public async void Edit()
         {
             DialogParameters param = new DialogParameters();
-            param.Add("Value", SelectedItem);
+            param.Add("Value", dataPager.SelectedItem);
 
             var dialogResult = await dialog.ShowDialogAsync(GetPageName("Details"), param);
             if (dialogResult.Result == ButtonResult.OK)
@@ -91,7 +68,8 @@
             /*
              * 当导航发生时,释放当前窗口资源
              */
-            GridModelList.Clear();
+
+            dataPager.GridModelList.Clear();
         }
 
         public virtual bool IsNavigationTarget(NavigationContext navigationContext) => false;

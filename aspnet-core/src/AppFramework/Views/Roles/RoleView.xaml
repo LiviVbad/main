@@ -66,8 +66,8 @@
                 x:Name="SfDataGrid"
                 Grid.Row="1"
                 Margin="15,0"
-                ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}"
-                SelectedItem="{Binding SelectedItem}"
+                ItemsSource="{Binding dataPager.GridModelList}"
+                SelectedItem="{Binding dataPager.SelectedItem}"
                 Style="{StaticResource SimpleDataGridStyle}">
                 <sync:SfDataGrid.Columns>
                     <sync:GridTemplateColumn
@@ -105,12 +105,13 @@
             </sync:SfDataGrid>
 
             <sync:SfDataPager
-                x:Name="sfDataPapger"
                 Grid.Row="2"
                 HorizontalAlignment="Right"
-                NumericButtonCount="10"
-                PageSize="50"
-                Source="{Binding GridModelList}" />
+                NumericButtonCount="{Binding dataPager.NumericButtonCount}"
+                PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
+                PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
+                UseOnDemandPaging="True"
+                PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
         </Grid>
     </Grid>
 </UserControl>

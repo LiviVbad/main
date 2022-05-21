@@ -3,8 +3,8 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Permission;
 using AppFramework.Localization;
-using Prism.Regions;
-using System.Collections.Generic;
+using AppFramework.Localization.Dto;
+using Prism.Regions; 
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -25,11 +25,10 @@ namespace AppFramework.ViewModels
             await WebRequest.Execute(() => appService.GetLanguages(),
                       async result =>
                       {
-                          GridModelList.Clear();
-
-                          foreach (var item in Map<List<LanguageListModel>>(result.Items))
-                              GridModelList.Add(item);
-
+                          dataPager.SetList(new PagedResultDto<ApplicationLanguageListDto>()
+                          {
+                              Items = result.Items
+                          });  
                           await Task.CompletedTask;
                       });
         }
@@ -47,7 +46,7 @@ namespace AppFramework.ViewModels
 
         private void ChangeTexts()
         {
-            if (SelectedItem is LanguageListModel item)
+            if (dataPager.SelectedItem is LanguageListModel item)
             {
                 NavigationParameters param = new NavigationParameters();
                 param.Add("Name", item.Name);
@@ -60,7 +59,7 @@ namespace AppFramework.ViewModels
 
         private async void SetAsDefaultLanguage()
         {
-            if (SelectedItem is LanguageListModel item)
+            if (dataPager.SelectedItem is LanguageListModel item)
             {
                 await SetBusyAsync(async () =>
                 {
@@ -75,7 +74,7 @@ namespace AppFramework.ViewModels
 
         private async void Delete()
         {
-            if (SelectedItem is LanguageListModel item)
+            if (dataPager.SelectedItem is LanguageListModel item)
             {
                 if (await dialog.Question(Local.Localize("LanguageDeleteWarningMessage", item.DisplayName)))
                 {

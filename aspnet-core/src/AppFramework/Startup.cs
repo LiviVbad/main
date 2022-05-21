@@ -24,6 +24,8 @@ namespace AppFramework
             //注册应用程序验证器
             services.RegisterValidator();
 
+            services.RegisterScoped<IDataPagerService, DataPagerService>();
+
             services.RegisterSingleton<IAccountService, AccountService>();
             services.RegisterSingleton<IAccountStorageService, AccountStorageService>();
             services.RegisterSingleton<IDataStorageService, DataStorageService>();

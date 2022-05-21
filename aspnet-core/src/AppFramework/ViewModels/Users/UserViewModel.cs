@@ -12,7 +12,6 @@ using AppFramework.Common.Services.Account;
 using Prism.Commands;
 using AppFramework.Authorization.Permissions.Dto;
 using AppFramework.Authorization.Permissions;
-using Prism.Regions;
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
 using System.Collections.ObjectModel;
@@ -57,7 +56,7 @@ namespace AppFramework.ViewModels
 
         private async void UserChangePermission()
         {
-            if (SelectedItem is UserListModel item)
+            if (dataPager.SelectedItem is UserListModel item)
             {
                 GetUserPermissionsForEditOutput output = null;
                 await SetBusyAsync(async () =>
@@ -82,7 +81,7 @@ namespace AppFramework.ViewModels
 
         private async void UsersUnlock()
         {
-            if (SelectedItem is UserListModel item)
+            if (dataPager.SelectedItem is UserListModel item)
             {
                 await SetBusyAsync(async () =>
                 {
@@ -94,13 +93,13 @@ namespace AppFramework.ViewModels
 
         private async void LoginAsThisUser()
         {
-            if (SelectedItem is UserListModel item)
+            if (dataPager.SelectedItem is UserListModel item)
                 await accountService.LoginCurrentUserAsync(item);
         }
 
         public async void Delete()
         {
-            if (SelectedItem is UserListModel item)
+            if (dataPager.SelectedItem is UserListModel item)
             {
                 if (await dialog.Question(Local.Localize("UserDeleteWarningMessage", item.UserName)))
                 {
@@ -148,7 +147,7 @@ namespace AppFramework.ViewModels
         private RoleListModel selectedRole;
         private ObservableCollection<RoleListModel> roleList;
         private ListResultDto<FlatPermissionWithLevelDto> flatPermission;
-      
+
         public string FilterText
         {
             get { return input.Filter; }
@@ -204,7 +203,7 @@ namespace AppFramework.ViewModels
                 RaisePropertyChanged();
             }
         }
-         
+
         /// <summary>
         /// 绑定角色列表
         /// </summary>
@@ -221,7 +220,7 @@ namespace AppFramework.ViewModels
             SelectPermissions = Local.Localize("SelectPermissions") + $"({count})";
         }
 
-        private async void Search()
+        public async void Search()
         {
             await RefreshAsync();
         }
@@ -295,6 +294,8 @@ namespace AppFramework.ViewModels
 
         public override async Task RefreshAsync()
         {
+            input.SkipCount = dataPager.PageIndex * dataPager.PageSize;
+
             await SetBusyAsync(async () =>
             {
                 await GetAllRoles();
@@ -303,10 +304,7 @@ namespace AppFramework.ViewModels
                 await WebRequest.Execute(() => appService.GetUsers(input),
                        async result =>
                        {
-                           GridModelList.Clear();
-
-                           foreach (var item in Map<List<UserListModel>>(result.Items))
-                               GridModelList.Add(item);
+                           dataPager.SetList(result);
 
                            await Task.CompletedTask;
                        });

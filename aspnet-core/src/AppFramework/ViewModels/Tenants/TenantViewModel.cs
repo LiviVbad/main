@@ -9,8 +9,7 @@ using AppFramework.MultiTenancy.Dto;
 using Prism.Commands;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Collections.ObjectModel;
-using Prism.Regions;
+using System.Collections.ObjectModel; 
 using Prism.Services.Dialogs;
 
 namespace AppFramework.ViewModels
@@ -45,7 +44,7 @@ namespace AppFramework.ViewModels
                 RaisePropertyChanged();
             }
         }
-         
+
         /// <summary>
         /// 启用创建时间查询
         /// </summary>
@@ -63,19 +62,19 @@ namespace AppFramework.ViewModels
                 RaisePropertyChanged();
             }
         }
-         
+
         public GetTenantsFilter Filter
         {
             get { return filter; }
             set { filter = value; RaisePropertyChanged(); }
         }
-         
+
         public EditionListModel Edition
         {
             get { return edition; }
             set { edition = value; RaisePropertyChanged(); }
         }
-         
+
         public ObservableCollection<EditionListModel> Editions
         {
             get { return editions; }
@@ -141,7 +140,7 @@ namespace AppFramework.ViewModels
         /// <param name="Id"></param>
         private async void TenantChangeFeatures()
         {
-            if (SelectedItem is TenantListModel item)
+            if (dataPager.SelectedItem is TenantListModel item)
             {
                 GetTenantFeaturesEditOutput output = null;
                 await SetBusyAsync(async () =>
@@ -172,7 +171,7 @@ namespace AppFramework.ViewModels
 
         private async void Unlock()
         {
-            if (SelectedItem is TenantListModel item)
+            if (dataPager.SelectedItem is TenantListModel item)
             {
                 await SetBusyAsync(async () =>
                 {
@@ -184,7 +183,7 @@ namespace AppFramework.ViewModels
 
         private async void Delete()
         {
-            if (SelectedItem is TenantListModel item)
+            if (dataPager.SelectedItem is TenantListModel item)
             {
                 var result = await dialog.Question(Local.Localize("TenantDeleteWarningMessage", item.TenancyName));
                 if (result)
@@ -211,11 +210,7 @@ namespace AppFramework.ViewModels
                 await WebRequest.Execute(() => appService.GetTenants(input),
                       async result =>
                       {
-                          GridModelList.Clear();
-
-                          foreach (var item in Map<List<TenantListModel>>(result.Items))
-                              GridModelList.Add(item);
-
+                          dataPager.SetList(result);
                           await Task.CompletedTask;
                       });
             });

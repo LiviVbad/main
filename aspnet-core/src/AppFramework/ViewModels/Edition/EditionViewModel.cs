@@ -3,7 +3,7 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Permission;
 using AppFramework.Editions;
-using System.Collections.Generic;
+using AppFramework.Editions.Dto; 
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -24,11 +24,10 @@ namespace AppFramework.ViewModels
                 await WebRequest.Execute(() => appService.GetEditions(),
                         async result =>
                         {
-                            GridModelList.Clear();
-
-                            foreach (var item in Map<List<EditionListModel>>(result.Items))
-                                GridModelList.Add(item);
-
+                            dataPager.SetList(new PagedResultDto<EditionListDto>()
+                            {
+                                Items = result.Items
+                            });  
                             await Task.CompletedTask;
                         });
             });
@@ -45,7 +44,7 @@ namespace AppFramework.ViewModels
 
         private async void Delete()
         {
-            if (SelectedItem is EditionListModel item)
+            if (dataPager.SelectedItem is EditionListModel item)
             {
                 if (await dialog.Question(Local.Localize("EditionDeleteWarningMessage", item.DisplayName)))
                 {

@@ -7,7 +7,6 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Permission;
 using Prism.Commands;
-using Prism.Regions;
 using Prism.Services.Dialogs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -85,11 +84,10 @@ namespace AppFramework.ViewModels
                 await WebRequest.Execute(() => appService.GetRoles(input),
                         async result =>
                         {
-                            GridModelList.Clear();
-
-                            foreach (var item in Map<List<RoleListModel>>(result.Items))
-                                GridModelList.Add(item);
-
+                            dataPager.SetList(new PagedResultDto<RoleListDto>
+                            {
+                                Items = result.Items
+                            });
                             await Task.CompletedTask;
                         });
             });
@@ -97,7 +95,7 @@ namespace AppFramework.ViewModels
 
         public async void Delete()
         {
-            if (SelectedItem is RoleListModel item)
+            if (dataPager.SelectedItem is RoleListModel item)
             {
                 if (await dialog.Question(Local.Localize("RoleDeleteWarningMessage", item.DisplayName)))
                 {

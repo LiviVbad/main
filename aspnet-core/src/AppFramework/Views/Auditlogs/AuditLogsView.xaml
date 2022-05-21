@@ -204,8 +204,8 @@
                         x:Name="SfDataGrid"
                         Grid.Row="3"
                         Margin="15,0"
-                        ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}"
-                        SelectedItem="{Binding SelectedItem}"
+                        ItemsSource="{Binding dataPager.GridModelList}"
+                        SelectedItem="{Binding dataPager.SelectedItem}"
                         Style="{StaticResource SimpleDataGridStyle}">
                         <sync:SfDataGrid.Columns>
                             <sync:GridTemplateColumn
@@ -232,12 +232,13 @@
                     </sync:SfDataGrid>
 
                     <sync:SfDataPager
-                        x:Name="sfDataPapger"
                         Grid.Row="4"
                         HorizontalAlignment="Right"
-                        NumericButtonCount="10"
-                        PageSize="50"
-                        Source="{Binding GridModelList}" />
+                        NumericButtonCount="{Binding dataPager.NumericButtonCount}"
+                        PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
+                        PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
+                        UseOnDemandPaging="True"
+                        PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
                 </Grid>
             </TabItem>
 
@@ -315,7 +316,7 @@
                     <sync:SfDataGrid
                         Grid.Row="1"
                         Margin="15,0"
-                        ItemsSource="{Binding ElementName=sfLogsDataPapger, Path=PagedSource}"
+                        ItemsSource="{Binding logsdataPager.GridModelList}"
                         Style="{StaticResource SimpleDataGridStyle}">
                         <sync:SfDataGrid.Columns>
                             <sync:GridTemplateColumn
@@ -339,12 +340,13 @@
                     </sync:SfDataGrid>
 
                     <sync:SfDataPager
-                        x:Name="sfLogsDataPapger"
                         Grid.Row="4"
                         HorizontalAlignment="Right"
-                        NumericButtonCount="10"
-                        PageSize="50"
-                        Source="{Binding ChangedLogList}" />
+                        NumericButtonCount="{Binding logsdataPager.NumericButtonCount}"
+                        PageCount="{Binding logsdataPager.PageCount, Mode=TwoWay}"
+                        PageSize="{Binding logsdataPager.PageSize, Mode=TwoWay}"
+                        UseOnDemandPaging="True"
+                        PageIndex="{Binding logsdataPager.PageIndex, Mode=TwoWay}" />
                 </Grid>
             </TabItem>
         </TabControl>

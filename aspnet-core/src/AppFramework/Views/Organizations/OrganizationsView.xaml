@@ -154,7 +154,7 @@
 
                             <sync:SfDataGrid
                                 Grid.Row="1"
-                                ItemsSource="{Binding ElementName=sfDataPapger, Path=PagedSource}"
+                                ItemsSource="{Binding memberdataPager.GridModelList}"
                                 Style="{StaticResource SimpleDataGridStyle}">
                                 <sync:SfDataGrid.Columns>
                                     <sync:GridTemplateColumn
@@ -184,12 +184,13 @@
                             </sync:SfDataGrid>
 
                             <sync:SfDataPager
-                                x:Name="sfDataPapger"
                                 Grid.Row="2"
                                 HorizontalAlignment="Right"
-                                NumericButtonCount="10"
-                                PageSize="50"
-                                Source="{Binding UserModelList}" />
+                                NumericButtonCount="{Binding memberdataPager.NumericButtonCount}"
+                                PageCount="{Binding memberdataPager.PageCount, Mode=TwoWay}"
+                                PageSize="{Binding memberdataPager.PageSize, Mode=TwoWay}"
+                                UseOnDemandPaging="True"
+                                PageIndex="{Binding memberdataPager.PageIndex, Mode=TwoWay}" />
                         </Grid>
                     </TabItem>
 
@@ -211,7 +212,7 @@
 
                             <sync:SfDataGrid
                                 Grid.Row="1"
-                                ItemsSource="{Binding ElementName=sfRolesDataPager, Path=PagedSource}"
+                                ItemsSource="{Binding roledataPager.GridModelList}"
                                 Style="{StaticResource SimpleDataGridStyle}">
                                 <sync:SfDataGrid.Columns>
                                     <sync:GridTemplateColumn
@@ -238,12 +239,13 @@
                             </sync:SfDataGrid>
 
                             <sync:SfDataPager
-                                x:Name="sfRolesDataPager"
                                 Grid.Row="2"
                                 HorizontalAlignment="Right"
-                                NumericButtonCount="10"
-                                PageSize="50"
-                                Source="{Binding RolesModelList}" />
+                                NumericButtonCount="{Binding roledataPager.NumericButtonCount}"
+                                PageCount="{Binding roledataPager.PageCount, Mode=TwoWay}"
+                                PageSize="{Binding roledataPager.PageSize, Mode=TwoWay}"
+                                UseOnDemandPaging="True"
+                                PageIndex="{Binding roledataPager.PageIndex, Mode=TwoWay}" />
                         </Grid>
                     </TabItem>
                 </TabControl>

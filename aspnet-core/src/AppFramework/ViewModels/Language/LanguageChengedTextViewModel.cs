@@ -118,13 +118,7 @@ namespace AppFramework.ViewModels
             await WebRequest.Execute(() => appService.GetLanguageTexts(input),
                       async result =>
                       {
-                          GridModelList.Clear();
-
-                          foreach (var item in Map<List<LanguageTextListModel>>(result.Items))
-                              GridModelList.Add(item);
-
-                          TotalCount = result.TotalCount;
-
+                          dataPager.SetList(result);  
                           await Task.CompletedTask;
                       });
         }

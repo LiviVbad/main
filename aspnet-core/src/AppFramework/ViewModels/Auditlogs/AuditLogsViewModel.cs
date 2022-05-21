@@ -5,8 +5,7 @@ using AppFramework.Common.Models;
 using AppFramework.Models.Auditlogs;
 using Prism.Commands;
 using Prism.Services.Dialogs;
-using System;
-using System.Collections.Generic;
+using System; 
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -127,7 +126,7 @@ namespace AppFramework.ViewModels
         private void ViewLog()
         {
             DialogParameters param = new DialogParameters();
-            param.Add("Value", SelectedItem);
+            param.Add("Value", dataPager.SelectedItem);
             dialog.ShowDialogAsync(AppViewManager.AuditLogDetails, param);
         }
 
@@ -136,8 +135,7 @@ namespace AppFramework.ViewModels
         /// </summary>
         private async void Search()
         {
-            filter.SkipCount = 0;
-            GridModelList.Clear();
+            filter.SkipCount = 0; 
 
             await SetBusyAsync(async () =>
             {
@@ -152,9 +150,7 @@ namespace AppFramework.ViewModels
             await WebRequest.Execute(() => appService.GetAuditLogs(input),
                          async result =>
                          {
-                             foreach (var item in Map<List<AuditLogListModel>>(result.Items))
-                                 GridModelList.Add(item);
-
+                             dataPager.SetList(result);  
                              await Task.CompletedTask;
                          });
         }
