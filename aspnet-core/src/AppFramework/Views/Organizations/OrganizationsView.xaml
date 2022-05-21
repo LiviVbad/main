@@ -62,7 +62,7 @@
                     Margin="0,10,0,0"
                     BorderBrush="Transparent"
                     DockPanel.Dock="Top"
-                    ItemsSource="{Binding GridModelList}">
+                    ItemsSource="{Binding dataPager.GridModelList}">
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate DataType="{x:Type models:OrganizationListModel}" ItemsSource="{Binding Items}">
                             <DockPanel Margin="0,5">

@@ -8,6 +8,7 @@ using Prism.Services.Dialogs;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Prism.Ioc;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -19,22 +20,8 @@ namespace AppFramework.ViewModels
         private OrganizationListModel SelectedOrganizationUnit;
 
         private readonly IOrganizationUnitAppService appService;
-
-        private ObservableCollection<OrganizationUnitRoleListDto> rolesModelList;
-
-        public ObservableCollection<OrganizationUnitRoleListDto> RolesModelList
-        {
-            get { return rolesModelList; }
-            set { rolesModelList = value; }
-        }
-
-        private ObservableCollection<OrganizationUnitUserListDto> userModelList;
-
-        public ObservableCollection<OrganizationUnitUserListDto> UserModelList
-        {
-            get { return userModelList; }
-            set { userModelList = value; }
-        }
+        public IDataPagerService roledataPager { get; private set; }
+        public IDataPagerService memberdataPager { get; private set; }
 
         //选中组织、添加跟组织、修改、删除组织
         public DelegateCommand<OrganizationListModel> SelectedCommand { get; }
@@ -54,8 +41,6 @@ namespace AppFramework.ViewModels
         {
             this.appService = userAppService;
             SelectedCommand = new DelegateCommand<OrganizationListModel>(Selected);
-            userModelList = new ObservableCollection<OrganizationUnitUserListDto>();
-            rolesModelList = new ObservableCollection<OrganizationUnitRoleListDto>();
 
             AddRootUnitCommand = new DelegateCommand<OrganizationListModel>(AddOrganizationUnit);
             ChangeCommand = new DelegateCommand<OrganizationListModel>(EditOrganizationUnit);
@@ -64,9 +49,16 @@ namespace AppFramework.ViewModels
             DeleteRoleCommand = new DelegateCommand<OrganizationUnitRoleListDto>(DeleteRole);
             DeleteMemberCommand = new DelegateCommand<OrganizationUnitUserListDto>(DeleteMember);
 
+            roledataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
+            memberdataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
+
             ExecuteItemCommand = new DelegateCommand<string>(ExecuteItem);
         }
 
+        /// <summary>
+        /// 选中组织机构-更新成员和角色信息
+        /// </summary>
+        /// <param name="organizationUnit"></param>
         private async void Selected(OrganizationListModel organizationUnit)
         {
             if (organizationUnit == null) return;
@@ -90,6 +82,10 @@ namespace AppFramework.ViewModels
 
         #region 组织机构
 
+        /// <summary>
+        /// 刷新组织结构树
+        /// </summary>
+        /// <returns></returns>
         public override async Task RefreshAsync()
         {
             await SetBusyAsync(async () =>
@@ -98,16 +94,20 @@ namespace AppFramework.ViewModels
                       () => appService.GetOrganizationUnits(),
                       async result =>
                       {
-                          dataPager.SetList(new PagedResultDto<OrganizationUnitDto>()
-                          {
-                              Items = result.Items
-                          });
+                          var items = BuildOrganizationTree(Map<List<OrganizationListModel>>(result.Items));
+
+                          foreach (var item in items)
+                              dataPager.GridModelList.Add(item);
 
                           await Task.CompletedTask;
                       });
              });
         }
 
+        /// <summary>
+        /// 删除组织机构
+        /// </summary>
+        /// <param name="organization"></param>
         public async void DeleteOrganizationUnit(OrganizationListModel organization)
         {
             if (await dialog.Question(Local.Localize("OrganizationUnitDeleteWarningMessage", organization.DisplayName)))
@@ -119,6 +119,10 @@ namespace AppFramework.ViewModels
             }
         }
 
+        /// <summary>
+        /// 编辑组织机构
+        /// </summary>
+        /// <param name="organization"></param>
         public async void EditOrganizationUnit(OrganizationListModel organization)
         {
             DialogParameters param = new DialogParameters();
@@ -128,6 +132,10 @@ namespace AppFramework.ViewModels
                 await RefreshAsync();
         }
 
+        /// <summary>
+        /// 新增组织机构
+        /// </summary>
+        /// <param name="organization"></param>
         public async void AddOrganizationUnit(OrganizationListModel organization = null)
         {
             DialogParameters param = new DialogParameters();
@@ -145,8 +153,8 @@ namespace AppFramework.ViewModels
 
             if (organizationUnit != null)
             {
-                organizationUnit.MemberCount = UserModelList.Count;
-                organizationUnit.RoleCount = RolesModelList.Count;
+                organizationUnit.MemberCount = memberdataPager.GridModelList.Count;
+                organizationUnit.RoleCount = roledataPager.GridModelList.Count;
             }
         }
 
@@ -169,6 +177,11 @@ namespace AppFramework.ViewModels
 
         #region 角色
 
+        /// <summary>
+        /// 添加角色
+        /// </summary>
+        /// <param name="organizationUnit"></param>
+        /// <returns></returns>
         private async Task AddRole(OrganizationListModel organizationUnit)
         {
             if (organizationUnit == null) return;
@@ -191,21 +204,27 @@ namespace AppFramework.ViewModels
                        });
         }
 
+        /// <summary>
+        /// 刷新角色
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         private async Task RefreshRoles(long Id)
         {
             await SetBusyAsync(async () =>
               {
                   var pagedResult = await appService.GetOrganizationUnitRoles(new GetOrganizationUnitRolesInput() { Id = Id });
                   if (pagedResult != null)
-                  {
-                      RolesModelList.Clear();
-                      foreach (var item in pagedResult.Items)
-                          RolesModelList.Add(item);
-                  }
+                      roledataPager.SetList(pagedResult);
+
                   RefreshOrganizationUnit(Id);
               });
         }
 
+        /// <summary>
+        /// 删除角色
+        /// </summary>
+        /// <param name="obj"></param>
         private async void DeleteRole(OrganizationUnitRoleListDto obj)
         {
             if (await dialog.Question(Local.Localize("RemoveRoleFromOuWarningMessage",
@@ -228,28 +247,13 @@ namespace AppFramework.ViewModels
 
         #endregion Roles
 
-        #region 用户
+        #region 成员
 
-        private async void DeleteMember(OrganizationUnitUserListDto obj)
-        {
-            if (await dialog.Question(Local.Localize("RemoveUserFromOuWarningMessage",
-                SelectedOrganizationUnit.DisplayName, obj.UserName)))
-            {
-                await SetBusyAsync(async () =>
-                {
-                    await WebRequest.Execute(() =>
-                    appService.RemoveUserFromOrganizationUnit(new UserToOrganizationUnitInput()
-                    {
-                        OrganizationUnitId = SelectedOrganizationUnit.Id,
-                        UserId = obj.Id
-                    }), async () =>
-                    {
-                        await RefreshUsers(SelectedOrganizationUnit.Id);
-                    });
-                });
-            }
-        }
-
+        /// <summary>
+        /// 添加成员
+        /// </summary>
+        /// <param name="organizationUnit"></param>
+        /// <returns></returns>
         private async Task AddMember(OrganizationListModel organizationUnit)
         {
             if (organizationUnit == null) return;
@@ -272,21 +276,46 @@ namespace AppFramework.ViewModels
                         });
         }
 
+        /// <summary>
+        /// 刷新成员
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         private async Task RefreshUsers(long Id)
         {
             await SetBusyAsync(async () =>
             {
                 var pagedResult = await appService.GetOrganizationUnitUsers(new GetOrganizationUnitUsersInput() { Id = Id });
                 if (pagedResult != null)
-                {
-                    UserModelList.Clear();
-                    foreach (var item in pagedResult.Items)
-                        UserModelList.Add(item);
-                }
+                    memberdataPager.SetList(pagedResult);
+
                 RefreshOrganizationUnit(Id);
             });
         }
 
+        /// <summary>
+        /// 删除成员
+        /// </summary>
+        /// <param name="obj"></param>
+        private async void DeleteMember(OrganizationUnitUserListDto obj)
+        {
+            if (await dialog.Question(Local.Localize("RemoveUserFromOuWarningMessage",
+                SelectedOrganizationUnit.DisplayName, obj.UserName)))
+            {
+                await SetBusyAsync(async () =>
+                {
+                    await WebRequest.Execute(() =>
+                    appService.RemoveUserFromOrganizationUnit(new UserToOrganizationUnitInput()
+                    {
+                        OrganizationUnitId = SelectedOrganizationUnit.Id,
+                        UserId = obj.Id
+                    }), async () =>
+                    {
+                        await RefreshUsers(SelectedOrganizationUnit.Id);
+                    });
+                });
+            }
+        }
         #endregion Users 
     }
 }
