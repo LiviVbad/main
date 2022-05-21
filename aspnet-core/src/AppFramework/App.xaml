@@ -8,8 +8,10 @@
         <ResourceDictionary>
             <converter:BoolToYesNoStrConverter x:Key="boolToYesNoStrConverter" />
             <converter:BoolToBackgroundConverter x:Key="boolToBackgroundConverter" />
+            <converter:InverseBoolToYesNoStrConverter x:Key="inverseboolToYesNoStrConverter" />
+            <converter:InverseBoolToBackgroundConverter x:Key="inverseboolToBackgroundConverter" />
             <converter:InverseBoolToVisibilityConverter x:Key="inverseBoolToVisibility" />
-            <converter:InverseBooleanConverter x:Key="inverseBooleanConverter"/>
+            <converter:InverseBooleanConverter x:Key="inverseBooleanConverter" />
             <converter:ImageConverter x:Key="imageConvert" />
         </ResourceDictionary>
     </Application.Resources>

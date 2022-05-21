@@ -6,6 +6,7 @@ using AppFramework.Common;
 using AppFramework.Localization.Dto;
 using System.Collections.ObjectModel;
 using System.Linq;
+using AppFramework.Common.Models;
 
 namespace AppFramework.ViewModels
 {
@@ -16,7 +17,6 @@ namespace AppFramework.ViewModels
         private readonly ILanguageAppService appService;
         private ApplicationLanguageEditDto language;
 
-        private bool isEnabled = true;
         private ComboboxItemDto selectedFlag;
         private ComboboxItemDto selectedLanguage;
 
@@ -74,10 +74,9 @@ namespace AppFramework.ViewModels
         //是否启用
         public bool IsEnabled
         {
-            get { return isEnabled; }
+            get { return language.IsEnabled; }
             set
             {
-                isEnabled = value;
                 language.IsEnabled = value;
                 RaisePropertyChanged();
             }
@@ -109,26 +108,39 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetLanguageForEdit(new NullableIdDto()),
-                GetLanguageForEditSuccessed);
+                int? id = null;
+                if (parameters.ContainsKey("Value"))
+                    id = parameters.GetValue<LanguageListModel>("Value").Id;
+
+                await WebRequest.Execute(() =>
+                        appService.GetLanguageForEdit(new NullableIdDto(id)),
+                        GetLanguageForEditSuccessed);
             });
         }
 
         private async Task GetLanguageForEditSuccessed(GetLanguageForEditOutput output)
         {
+            Flags = new ObservableCollection<ComboboxItemDto>(output.Flags);
+            LanguageNames = new ObservableCollection<ComboboxItemDto>(output.LanguageNames);
+
             if (output.Language != null)
             {
                 language.Id = output.Language.Id;
                 language.Name = output.Language.Name;
                 language.Icon = output.Language.Icon;
-                language.IsEnabled = output.Language.IsEnabled;
+                IsEnabled = output.Language.IsEnabled;
+
+                var f = Flags.FirstOrDefault(t => t.Value.Equals(language.Icon));
+                if (f != null) SelectedFlag = f;
+
+                var l = LanguageNames.FirstOrDefault(t => t.Value.Equals(language.Name));
+                if (l != null) SelectedLanguage = l;
             }
-
-            Flags = new ObservableCollection<ComboboxItemDto>(output.Flags);
-            LanguageNames = new ObservableCollection<ComboboxItemDto>(output.LanguageNames);
-
-            SelectedFlag = Flags.First();
-            SelectedLanguage = LanguageNames.First();
+            else
+            {
+                SelectedFlag = Flags.First();
+                SelectedLanguage = LanguageNames.First();
+            }
 
             await Task.CompletedTask;
         }

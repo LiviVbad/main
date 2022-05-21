@@ -4,7 +4,7 @@ using System;
 namespace AppFramework.Common.Models
 {
     public class LanguageListModel : BindableBase
-    {
+    { 
         public int Id { get; set; }
 
         public int? TenantId { get; set; }
