@@ -313,15 +313,15 @@ namespace AppFramework.ViewModels
             });
         }
 
-        public override PermButton[] GeneratePermissionButtons()
+        public override PermissionItem[] GetDefaultPermissionItems()
         {
-            return new PermButton[]
+            return new PermissionItem[]
             {
-                new PermButton(Permkeys.Users, Local.Localize("LoginAsThisUser"),()=>LoginAsThisUser()),
-                new PermButton(Permkeys.UserEdit, Local.Localize("Change"),()=>Edit()),
-                new PermButton(Permkeys.UserChangePermission, Local.Localize("Permissions"),()=>UserChangePermission()),
-                new PermButton(Permkeys.UsersUnlock, Local.Localize("Unlock"),()=>UsersUnlock()),
-                new PermButton(Permkeys.UserDelete, Local.Localize("Delete"),()=>Delete())
+                new PermissionItem(Permkeys.Users, Local.Localize("LoginAsThisUser"),()=>LoginAsThisUser()),
+                new PermissionItem(Permkeys.UserEdit, Local.Localize("Change"),()=>Edit()),
+                new PermissionItem(Permkeys.UserChangePermission, Local.Localize("Permissions"),()=>UserChangePermission()),
+                new PermissionItem(Permkeys.UsersUnlock, Local.Localize("Unlock"),()=>UsersUnlock()),
+                new PermissionItem(Permkeys.UserDelete, Local.Localize("Delete"),()=>Delete())
             };
         }
     }

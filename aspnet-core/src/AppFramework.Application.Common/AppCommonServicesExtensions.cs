@@ -1,7 +1,4 @@
-﻿using Prism.Ioc;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Prism.Ioc; 
 
 #region ApplicationServices
 
@@ -74,6 +71,7 @@ namespace AppFramework.Common
             services.RegisterScoped<ISessionAppService, ProxySessionAppService>();
             services.RegisterScoped<IHostDashboardAppService, HostDashboardAppService>();
             services.RegisterScoped<IPermissionAppService, PermissionAppService>();
+            services.RegisterScoped<IPermissionPorxyService, PermissionPorxyService>();
             services.RegisterScoped<IFeaturesService, FeaturesService>();
             
             services.RegisterSingleton<IMessenger, Messenger>();

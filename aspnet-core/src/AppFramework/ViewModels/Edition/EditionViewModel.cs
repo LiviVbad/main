@@ -34,12 +34,12 @@ namespace AppFramework.ViewModels
             });
         }
 
-        public override PermButton[] GeneratePermissionButtons()
+        public override PermissionItem[] GetDefaultPermissionItems()
         {
-            return new PermButton[]
+            return new PermissionItem[]
             {
-                new PermButton(Permkeys.EditionEdit, Local.Localize("EditEdition"),()=>Edit()),
-                new PermButton(Permkeys.EditionDelete, Local.Localize("Delete"),()=>Delete()),
+                new PermissionItem(Permkeys.EditionEdit, Local.Localize("EditEdition"),()=>Edit()),
+                new PermissionItem(Permkeys.EditionDelete, Local.Localize("Delete"),()=>Delete()),
             };
         }
 

@@ -5,6 +5,7 @@ using AppFramework.Models;
 using AppFramework.Services;
 using Prism.Commands;
 using Prism.Regions;
+using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
@@ -67,9 +68,9 @@ namespace AppFramework.ViewModels
             { }
         }
 
-        public override void OnNavigatedTo(NavigationContext navigationContext)
+        public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
         {
-            appService.GetApplicationInfo();
+            await appService.GetApplicationInfo();
             Navigate(AppViewManager.Dashboard);
         }
     }

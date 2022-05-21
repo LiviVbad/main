@@ -14,11 +14,8 @@ namespace AppFramework.Common
 
         public bool HasPermission(string key)
         {
-            if (_appContext.Configuration.Auth.GrantedPermissions.TryGetValue(key,
-                out var permissionValue))
-            {
+            if (_appContext.Configuration.Auth.GrantedPermissions.TryGetValue(key, out var permissionValue))
                 return string.Equals(permissionValue, "true", StringComparison.OrdinalIgnoreCase);
-            }
 
             return false;
         }

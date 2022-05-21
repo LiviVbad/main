@@ -239,7 +239,7 @@ namespace AppFramework.ViewModels
 
         #region INavigationAware 接口实现
 
-        public override async void OnNavigatedTo(NavigationContext navigationContext)
+        public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
         {
             await SetBusyAsync(async () =>
             {

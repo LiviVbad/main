@@ -13,22 +13,19 @@
     using System;
     using AppFramework.WindowHost;
     using AppFramework.Views;
-    using System.Linq;
 
     public class NavigationCurdViewModel : ViewModelBase, INavigationDataAware, INavigationAware
     {
         public NavigationCurdViewModel()
         {
             dialog = ContainerLocator.Container.Resolve<IHostDialogService>();
-            regionManager = ContainerLocator.Container.Resolve<IRegionManager>();
-            permissionService = ContainerLocator.Container.Resolve<IPermissionService>();
+            proxyService = ContainerLocator.Container.Resolve<IPermissionPorxyService>();
 
             AddCommand = new DelegateCommand(Add);
-            ExecuteCommand = new DelegateCommand<string>(Execute);
+            ExecuteCommand = new DelegateCommand<string>(proxyService.Execute);
             RefreshCommand = new DelegateCommand(async () => await RefreshAsync());
 
             gridModelList = new ObservableCollection<object>();
-            permissions = new ObservableCollection<PermButton>();
         }
 
         #region 字段/属性
@@ -37,19 +34,21 @@
         public DelegateCommand RefreshCommand { get; private set; }
         public DelegateCommand<string> ExecuteCommand { get; private set; }
 
+        public readonly IHostDialogService dialog;
+        public IPermissionPorxyService proxyService { get; private set; }
+
+        #endregion
+
+        #region 导航数据接口
+
         private int totalCount;
         private object selectedItem;
         private ObservableCollection<object> gridModelList;
-        private ObservableCollection<PermButton> permissions;
 
-        public readonly IRegionManager regionManager;
-        public readonly IHostDialogService dialog;
-        private readonly IPermissionService permissionService;
-
-        public ObservableCollection<PermButton> Permissions
+        public int TotalCount
         {
-            get { return permissions; }
-            set { permissions = value; RaisePropertyChanged(); }
+            get { return totalCount; }
+            set { totalCount = value; RaisePropertyChanged(); }
         }
 
         public object SelectedItem
@@ -62,23 +61,6 @@
         {
             get { return gridModelList; }
             set { gridModelList = value; RaisePropertyChanged(); }
-        }
-
-        public int TotalCount
-        {
-            get { return totalCount; }
-            set { totalCount = value; RaisePropertyChanged(); }
-        }
-
-        #endregion
-
-        #region 添加/编辑/刷新
-
-        private void Execute(string key)
-        {
-            var permButton = Permissions.FirstOrDefault(t => t.Key.Equals(key));
-            if (permButton != null)
-                permButton.Ation?.Invoke();
         }
 
         public async void Add()
@@ -98,7 +80,7 @@
                 await RefreshAsync();
         }
 
-        public virtual async Task RefreshAsync() => await Task.CompletedTask;
+        private string GetPageName(string methodName) => this.GetType().Name.Replace("ViewModel", $"{methodName}View");
 
         #endregion
 
@@ -109,50 +91,32 @@
             /*
              * 当导航发生时,释放当前窗口资源
              */
-
-            Permissions.Clear();
             GridModelList.Clear();
         }
 
+        public virtual bool IsNavigationTarget(NavigationContext navigationContext) => false;
+
         public async void OnNavigatedTo(NavigationContext navigationContext)
         {
-            GeneratePermissions();
+            proxyService.Generate(GetDefaultPermissionItems());
             await OnNavigatedToAsync(navigationContext);
-        }
-
-        public bool IsNavigationTarget(NavigationContext navigationContext) => false;
-
-        public virtual async Task OnNavigatedToAsync(NavigationContext navigationContext)
-        {
-            await RefreshAsync();
         }
 
         #endregion
 
         #region 公共方法
 
-        protected virtual string GetPageName(string methodName)
+        /// <summary>
+        /// 创建模块具备的默认权限选项清单
+        /// </summary>
+        /// <returns></returns>
+        public virtual PermissionItem[] GetDefaultPermissionItems() => new PermissionItem[0];
+
+        public virtual async Task RefreshAsync() => await Task.CompletedTask;
+
+        public virtual async Task OnNavigatedToAsync(NavigationContext navigationContext)
         {
-            return this.GetType().Name.Replace("ViewModel", $"{methodName}View");
-        }
-
-        public virtual PermButton[] GeneratePermissionButtons() => new PermButton[0];
-
-        private void GeneratePermissions()
-        {
-            if (Permissions == null)
-                Permissions = new ObservableCollection<PermButton>();
-            Permissions.Clear();
-
-            var permissionButtons = GeneratePermissionButtons();
-            if (permissionButtons != null)
-            {
-                foreach (var item in permissionButtons)
-                {
-                    if (permissionService.HasPermission(item.Key))
-                        Permissions.Add(item);
-                }
-            }
+            await RefreshAsync();
         }
 
         public override async Task SetBusyAsync(Func<Task> func, string loadingMessage = "")

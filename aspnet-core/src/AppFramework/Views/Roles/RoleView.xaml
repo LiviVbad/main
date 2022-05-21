@@ -78,7 +78,7 @@
                         <sync:GridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <sync:DropDownButtonAdv Label="{extensions:Translate Actions}" Style="{StaticResource OperationButtonStyle}">
-                                    <ItemsControl ItemsSource="{Binding DataContext.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}">
+                                    <ItemsControl ItemsSource="{Binding DataContext.proxyService.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <Button

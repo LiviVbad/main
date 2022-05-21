@@ -1,11 +1,12 @@
-﻿using AppFramework.Authorization.Permissions.Dto;
-using AppFramework.Common.Models;
+﻿using AppFramework.Authorization.Permissions.Dto; 
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Collections.Generic; 
 
 namespace AppFramework.Common
 {
+    /// <summary>
+    /// 权限树生成接口
+    /// </summary>
     public interface IPermissionTreesService
     {
         void CreatePermissionTrees(List<FlatPermissionDto> permissions, List<string> grantedPermissionNames);

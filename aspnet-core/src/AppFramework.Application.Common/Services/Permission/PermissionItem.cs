@@ -1,14 +1,11 @@
 ﻿using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using System; 
 
 namespace AppFramework.Common.Services.Permission
 {
-    public class PermButton : BindableBase
+    public class PermissionItem : BindableBase
     {
-        public PermButton(string key, string name, Action ation)
+        public PermissionItem(string key, string name, Action ation)
         {
             Key = key;
             Name = name;
