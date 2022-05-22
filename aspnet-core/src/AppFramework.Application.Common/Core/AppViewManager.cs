@@ -36,7 +36,9 @@
 
         public const string Language = "LanguageView";
 
-        public const string LanguageChengedText = "LanguageChengedTextView";
+        public const string LanguageText = "LanguageChengedTextView";
+
+        public const string LanguageTextDetails = "LanguageTextDetailsView";
 
         public const string Edition = "EditionView";
 

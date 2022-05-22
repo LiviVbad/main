@@ -2,9 +2,9 @@
 
 namespace AppFramework.Views
 {
-    public partial class LanguageChengedTextView : UserControl
+    public partial class LanguageTextView : UserControl
     {
-        public LanguageChengedTextView()
+        public LanguageTextView()
         {
             InitializeComponent();
         } 

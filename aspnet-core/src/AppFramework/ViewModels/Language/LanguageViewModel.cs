@@ -32,7 +32,7 @@ namespace AppFramework.ViewModels
 
             regionManager
                 .Regions[AppRegionManager.Main]
-                .RequestNavigate(AppViewManager.LanguageChengedText, param);
+                .RequestNavigate(AppViewManager.LanguageText, param);
         }
 
         /// <summary>

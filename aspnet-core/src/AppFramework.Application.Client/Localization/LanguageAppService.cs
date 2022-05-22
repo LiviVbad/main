@@ -44,7 +44,7 @@ namespace AppFramework.Application
 
         public async Task UpdateLanguageText(UpdateLanguageTextInput input)
         {
-            await ApiClient.PutAsync(GetEndpoint(nameof(UpdateLanguageTextInput)), input);
+            await ApiClient.PutAsync(GetEndpoint(nameof(UpdateLanguageText)), input);
         }
     }
 }

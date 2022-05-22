@@ -6,11 +6,14 @@ namespace AppFramework.Common.Models
 {
     public struct LanguageStruct
     {
-        public LanguageStruct(string name, string displayName)
+        public LanguageStruct(string icon, string name, string displayName)
         {
+            Icon = icon;
             Name = name;
             DisplayName = displayName;
         }
+
+        public string Icon { get; }
 
         public string Name { get; }
 
