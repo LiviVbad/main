@@ -3,7 +3,7 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services.Permission;
 using AppFramework.Editions;
-using AppFramework.Editions.Dto; 
+using AppFramework.Editions.Dto;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -17,31 +17,9 @@ namespace AppFramework.ViewModels
             this.appService = appService;
         }
 
-        public override async Task RefreshAsync()
-        {
-            await SetBusyAsync(async () =>
-            {
-                await WebRequest.Execute(() => appService.GetEditions(),
-                        async result =>
-                        {
-                            dataPager.SetList(new PagedResultDto<EditionListDto>()
-                            {
-                                Items = result.Items
-                            });  
-                            await Task.CompletedTask;
-                        });
-            });
-        }
-
-        public override PermissionItem[] GetDefaultPermissionItems()
-        {
-            return new PermissionItem[]
-            {
-                new PermissionItem(Permkeys.EditionEdit, Local.Localize("EditEdition"),()=>Edit()),
-                new PermissionItem(Permkeys.EditionDelete, Local.Localize("Delete"),()=>Delete()),
-            };
-        }
-
+        /// <summary>
+        /// 删除版本信息
+        /// </summary>
         private async void Delete()
         {
             if (dataPager.SelectedItem is EditionListModel item)
@@ -57,5 +35,43 @@ namespace AppFramework.ViewModels
                 }
             }
         }
+
+        /// <summary>
+        /// 获取版本列表
+        /// </summary>
+        /// <returns></returns>
+        private async Task GetEditions()
+        {
+            await SetBusyAsync(async () =>
+            {
+                await WebRequest.Execute(() => appService.GetEditions(),
+                        async result =>
+                        {
+                            dataPager.SetList(new PagedResultDto<EditionListDto>()
+                            {
+                                Items = result.Items
+                            });
+                            await Task.CompletedTask;
+                        });
+            });
+        }
+
+        /// <summary>
+        /// 刷新版本模块
+        /// </summary>
+        /// <returns></returns>
+        public override async Task RefreshAsync()
+        {
+            await GetEditions();
+        }
+
+        public override PermissionItem[] GetDefaultPermissionItems()
+        {
+            return new PermissionItem[]
+            {
+                new PermissionItem(Permkeys.EditionEdit, Local.Localize("EditEdition"),()=>Edit()),
+                new PermissionItem(Permkeys.EditionDelete, Local.Localize("Delete"),()=>Delete()),
+            };
+        } 
     }
 }

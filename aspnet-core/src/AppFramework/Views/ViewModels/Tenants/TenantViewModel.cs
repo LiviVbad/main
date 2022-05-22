@@ -98,17 +98,40 @@ namespace AppFramework.ViewModels
 
             this.appService = appService;
             this.editionAppService = editionAppService;
-            SearchCommand = new DelegateCommand(Search);
-
+            dataPager.OnPageIndexChangedEventhandler += TenantOnPageIndexChangedEventhandler;
+            SearchCommand = new DelegateCommand(SearchTenant);
             editions = new ObservableCollection<EditionListModel>();
+        }
+
+        private async void TenantOnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
+        {
+            filter.SkipCount = e.SkipCount;
+            filter.MaxResultCount = e.PageSize;
+
+            await SetBusyAsync(GetTenants);
         }
 
         /// <summary>
         /// 搜索
         /// </summary>
-        private async void Search()
+        private void SearchTenant()
         {
-            await RefreshAsync();
+            dataPager.PageIndex = 0;
+        }
+
+        /// <summary>
+        /// 获取租户列表
+        /// </summary>
+        /// <returns></returns>
+        private async Task GetTenants()
+        {
+            var input = Map<GetTenantsInput>(filter);
+            await WebRequest.Execute(() => appService.GetTenants(input),
+                  async result =>
+                  {
+                      dataPager.SetList(result);
+                      await Task.CompletedTask;
+                  });
         }
 
         /// <summary>
@@ -119,19 +142,15 @@ namespace AppFramework.ViewModels
         {
             if (Editions.Count > 0) return;
 
-            await SetBusyAsync(async () =>
-            {
-                await WebRequest.Execute(() => editionAppService.GetEditions(),
-                        async result =>
-                        {
-                            Editions.Clear();
+            await WebRequest.Execute(() => editionAppService.GetEditions(),
+                         async result =>
+                         {
+                             Editions.Clear();
+                             foreach (var item in Map<List<EditionListModel>>(result.Items))
+                                 Editions.Add(item);
 
-                            foreach (var item in Map<List<EditionListModel>>(result.Items))
-                                Editions.Add(item);
-
-                            await Task.CompletedTask;
-                        });
-            });
+                             await Task.CompletedTask;
+                         });
         }
 
         #region 修改租户/使用当前租户登录/解锁/删除
@@ -163,11 +182,17 @@ namespace AppFramework.ViewModels
             await dialog.ShowDialogAsync(AppViewManager.TenantChangeFeatures, param);
         }
 
+        /// <summary>
+        /// 使用租户登录
+        /// </summary>
         private void TenantImpersonation()
         {
             //..使用当前租户登录
         }
 
+        /// <summary>
+        /// 解锁租户
+        /// </summary>
         private async void Unlock()
         {
             await SetBusyAsync(async () =>
@@ -177,6 +202,9 @@ namespace AppFramework.ViewModels
             });
         }
 
+        /// <summary>
+        /// 删除租户
+        /// </summary>
         private async void Delete()
         {
             var result = await dialog.Question(Local.Localize("TenantDeleteWarningMessage", SelectedItem.TenancyName));
@@ -192,20 +220,16 @@ namespace AppFramework.ViewModels
 
         #endregion
 
+        /// <summary>
+        /// 刷新租户模块
+        /// </summary>
+        /// <returns></returns>
         public override async Task RefreshAsync()
         {
-            var input = Map<GetTenantsInput>(filter);
-
             await SetBusyAsync(async () =>
             {
                 await GetAllEditions();
-
-                await WebRequest.Execute(() => appService.GetTenants(input),
-                      async result =>
-                      {
-                          dataPager.SetList(result);
-                          await Task.CompletedTask;
-                      });
+                await GetTenants();
             });
         }
 

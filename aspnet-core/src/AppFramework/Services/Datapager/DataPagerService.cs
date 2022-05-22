@@ -7,12 +7,17 @@ using System.Collections.ObjectModel;
 
 namespace AppFramework.ViewModels
 {
+    /// <summary>
+    /// 数据分页服务
+    /// </summary>
     public class DataPagerService : BindableBase, IDataPagerService
     {
+        private readonly IMapper mapper;
+
         public DataPagerService(IMapper mapper)
         {
             pageSize = AppConsts.DefaultPageSize;
-            numericButtonCount = 10;
+            numericButtonCount = AppConsts.NumericButtonCount;
             gridModelList = new ObservableCollection<object>();
             this.mapper = mapper;
         }
@@ -20,7 +25,7 @@ namespace AppFramework.ViewModels
         private object selectedItem;
         private int pageIndex, pageCount, pageSize, numericButtonCount;
         private ObservableCollection<object> gridModelList;
-        private readonly IMapper mapper;
+        public event PageIndexChangedEventhandler OnPageIndexChangedEventhandler;
 
         public int NumericButtonCount
         {
@@ -37,6 +42,17 @@ namespace AppFramework.ViewModels
             get { return pageIndex; }
             set
             {
+                if (value > 0 && pageIndex == value) return;
+
+                //分页组件的索引被UI当中变更,触发查询事件, 记录当前需要跳过的总数,以及当前的索引变化
+                OnPageIndexChangedEventhandler?.Invoke(this, new PageIndexChangedEventArgs()
+                {
+                    OldPageIndex = pageIndex,
+                    NewPageIndex = value,
+                    SkipCount = value * PageSize,
+                    PageSize = PageSize,
+                });
+
                 pageIndex = value;
                 RaisePropertyChanged();
             }

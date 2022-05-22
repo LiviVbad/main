@@ -22,7 +22,55 @@ namespace AppFramework.ViewModels
             this.regionManager = regionManager;
         }
 
-        public override async Task RefreshAsync()
+        /// <summary>
+        /// 更改文本
+        /// </summary>
+        private void ChangeTexts()
+        {
+            NavigationParameters param = new NavigationParameters();
+            param.Add("Name", SelectedItem.Name);
+
+            regionManager
+                .Regions[AppRegionManager.Main]
+                .RequestNavigate(AppViewManager.LanguageChengedText, param);
+        }
+
+        /// <summary>
+        /// 设置默认语言
+        /// </summary>
+        private async void SetAsDefaultLanguage()
+        {
+            await SetBusyAsync(async () =>
+            {
+                await WebRequest.Execute(() =>
+                appService.SetDefaultLanguage(new Localization.Dto.SetDefaultLanguageInput()
+                {
+                    Name = SelectedItem.Name
+                }));
+            });
+        }
+
+        /// <summary>
+        /// 删除语言
+        /// </summary>
+        private async void Delete()
+        {
+            if (await dialog.Question(Local.Localize("LanguageDeleteWarningMessage", SelectedItem.DisplayName)))
+            {
+                await SetBusyAsync(async () =>
+                {
+                    await WebRequest.Execute(() => appService.DeleteLanguage(
+                        new EntityDto(SelectedItem.Id)),
+                        RefreshAsync);
+                });
+            }
+        }
+
+        /// <summary>
+        /// 获取语言列表
+        /// </summary>
+        /// <returns></returns>
+        private async Task GetLanguages()
         {
             await WebRequest.Execute(() => appService.GetLanguages(),
                       async result =>
@@ -33,6 +81,15 @@ namespace AppFramework.ViewModels
                           });
                           await Task.CompletedTask;
                       });
+        }
+
+        /// <summary>
+        /// 刷新语言列表模块
+        /// </summary>
+        /// <returns></returns>
+        public override async Task RefreshAsync()
+        {
+            await GetLanguages();
         }
 
         public override PermissionItem[] GetDefaultPermissionItems()
@@ -46,39 +103,5 @@ namespace AppFramework.ViewModels
             };
         }
 
-        private void ChangeTexts()
-        { 
-            NavigationParameters param = new NavigationParameters();
-            param.Add("Name", SelectedItem.Name);
-
-            regionManager
-                .Regions[AppRegionManager.Main]
-                .RequestNavigate(AppViewManager.LanguageChengedText, param);
-        }
-
-        private async void SetAsDefaultLanguage()
-        { 
-            await SetBusyAsync(async () =>
-            {
-                await WebRequest.Execute(() =>
-                appService.SetDefaultLanguage(new Localization.Dto.SetDefaultLanguageInput()
-                {
-                    Name = SelectedItem.Name
-                }));
-            });
-        }
-
-        private async void Delete()
-        { 
-            if (await dialog.Question(Local.Localize("LanguageDeleteWarningMessage", SelectedItem.DisplayName)))
-            {
-                await SetBusyAsync(async () =>
-                {
-                    await WebRequest.Execute(() => appService.DeleteLanguage(
-                        new EntityDto(SelectedItem.Id)),
-                        RefreshAsync);
-                });
-            }
-        }
     }
 }

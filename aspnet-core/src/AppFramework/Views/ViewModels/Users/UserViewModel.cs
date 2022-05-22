@@ -26,10 +26,7 @@ namespace AppFramework.ViewModels
         private readonly IProfileAppService profileAppService;
         private readonly IPermissionAppService permissionAppService;
 
-        public UserListModel SelectedItem
-        {
-            get { return Map<UserListModel>(dataPager.SelectedItem); }
-        }
+        public UserListModel SelectedItem => Map<UserListModel>(dataPager.SelectedItem);
 
         public UserViewModel(IUserAppService appService,
             IRoleAppService roleAppService,
@@ -53,8 +50,21 @@ namespace AppFramework.ViewModels
 
             AdvancedCommand = new DelegateCommand(() => { IsAdvancedFilter = !IsAdvancedFilter; });
             SelectedCommand = new DelegateCommand(SelectedPermission);
-            SearchCommand = new DelegateCommand(Search);
+            SearchCommand = new DelegateCommand(SearchUser);
             UpdateTitle();
+
+            dataPager.OnPageIndexChangedEventhandler += UsersOnPageIndexChangedEventhandler;
+        }
+
+        private async void UsersOnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
+        {
+            input.SkipCount = e.SkipCount;
+            input.MaxResultCount = e.PageSize;
+
+            await SetBusyAsync(async () =>
+            {
+                await GetUsers(input);
+            });
         }
 
         #region 修改权限/解锁/使用当前账户登录
@@ -153,10 +163,13 @@ namespace AppFramework.ViewModels
             {
                 input.Filter = value;
                 RaisePropertyChanged();
-                AsyncRunner.Run(SearchWithDelayAsync(value));
+                SearchUser();
             }
         }
 
+        /// <summary>
+        /// 筛选标题文本: 收缩/展开
+        /// </summary>
         public string FilerTitle
         {
             get { return filterTitle; }
@@ -213,14 +226,13 @@ namespace AppFramework.ViewModels
 
         #endregion
 
+        /// <summary>
+        /// 更新选中的权限筛选文本
+        /// </summary>
+        /// <param name="count"></param>
         private void UpdateTitle(int count = 0)
         {
             SelectPermissions = Local.Localize("SelectPermissions") + $"({count})";
-        }
-
-        public async void Search()
-        {
-            await RefreshAsync();
         }
 
         /// <summary>
@@ -277,35 +289,41 @@ namespace AppFramework.ViewModels
 
         #endregion
 
-        private async Task SearchWithDelayAsync(string filterText)
+        /// <summary>
+        /// 搜索用户
+        /// </summary>
+        public void SearchUser()
         {
-            if (!string.IsNullOrEmpty(filterText))
-            {
-                if (filterText != input.Filter)
-                    return;
-            }
-
-            input.SkipCount = 0;
-
-            await RefreshAsync();
+            dataPager.PageIndex = 0;
         }
 
+        /// <summary>
+        /// 查询用户列表
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private async Task GetUsers(GetUsersInput filter)
+        {
+            await WebRequest.Execute(() => appService.GetUsers(filter),
+                        async result =>
+                        {
+                            dataPager.SetList(result);
+
+                            await Task.CompletedTask;
+                        });
+        }
+
+        /// <summary>
+        /// 刷新用户列表模块
+        /// </summary>
+        /// <returns></returns>
         public override async Task RefreshAsync()
         {
-            input.SkipCount = dataPager.PageIndex * dataPager.PageSize;
-
             await SetBusyAsync(async () =>
             {
                 await GetAllRoles();
                 await GetAllPermission();
-
-                await WebRequest.Execute(() => appService.GetUsers(input),
-                       async result =>
-                       {
-                           dataPager.SetList(result);
-
-                           await Task.CompletedTask;
-                       });
+                await GetUsers(input);
             });
         }
 

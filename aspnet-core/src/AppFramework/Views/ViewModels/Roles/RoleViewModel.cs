@@ -3,7 +3,7 @@ using AppFramework.Authorization.Permissions;
 using AppFramework.Authorization.Permissions.Dto;
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
-using AppFramework.Common; 
+using AppFramework.Common;
 using AppFramework.Common.Services.Permission;
 using Prism.Commands;
 using Prism.Services.Dialogs;
@@ -45,7 +45,18 @@ namespace AppFramework.ViewModels
             input = new GetRolesInput();
             SelectedCommand = new DelegateCommand(SelectedPermission);
 
+            dataPager.OnPageIndexChangedEventhandler += RoleOnPageIndexChangedEventhandler;
+
             UpdateTitle();
+        }
+
+        private async void RoleOnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
+        {
+            //filter... 
+            await SetBusyAsync(async () =>
+            {
+                await GetRoles(input);
+            });
         }
 
         private void UpdateTitle(int count = 0)
@@ -90,6 +101,28 @@ namespace AppFramework.ViewModels
             }
         }
 
+        /// <summary>
+        /// 获取角色列表
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        private async Task GetRoles(GetRolesInput filter)
+        {
+            await WebRequest.Execute(() => appService.GetRoles(filter),
+                       async result =>
+                       {
+                           dataPager.SetList(new PagedResultDto<RoleListDto>
+                           {
+                               Items = result.Items
+                           });
+                           await Task.CompletedTask;
+                       });
+        }
+
+        /// <summary>
+        /// 刷新角色模块
+        /// </summary>
+        /// <returns></returns>
         public override async Task RefreshAsync()
         {
             await SetBusyAsync(async () =>
@@ -103,18 +136,10 @@ namespace AppFramework.ViewModels
                        });
                 }
 
-                await WebRequest.Execute(() => appService.GetRoles(input),
-                        async result =>
-                        {
-                            dataPager.SetList(new PagedResultDto<RoleListDto>
-                            {
-                                Items = result.Items
-                            });
-                            await Task.CompletedTask;
-                        });
+                await GetRoles(input);
             });
         }
-         
+
         public override PermissionItem[] GetDefaultPermissionItems()
         {
             return new PermissionItem[]

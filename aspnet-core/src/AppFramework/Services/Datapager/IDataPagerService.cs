@@ -1,15 +1,24 @@
 ﻿using Abp.Application.Services.Dto;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System; 
+using System.Collections.ObjectModel; 
 
 namespace AppFramework.ViewModels
 {
+    public class PageIndexChangedEventArgs : EventArgs
+    {
+        public int OldPageIndex { get; internal set; }
+
+        public int NewPageIndex { get; internal set; }
+
+        public int SkipCount { get; internal set; }
+
+        public int PageSize { get; internal set; }
+    }
+
+    public delegate void PageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e);
+
     /// <summary>
-    /// 数据分页服务
+    /// 数据分页服务接口
     /// </summary>
     public interface IDataPagerService
     {
@@ -49,5 +58,10 @@ namespace AppFramework.ViewModels
         /// <typeparam name="T"></typeparam>
         /// <param name="items"></param>
         void SetList<T>(IPagedResult<T> pagedResult);
+
+        /// <summary>
+        /// 页面索引改变事件
+        /// </summary>
+        event PageIndexChangedEventhandler OnPageIndexChangedEventhandler;
     }
 }

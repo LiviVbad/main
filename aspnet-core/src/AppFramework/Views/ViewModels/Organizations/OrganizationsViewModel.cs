@@ -15,6 +15,54 @@ namespace AppFramework.ViewModels
 {
     public class OrganizationsViewModel : NavigationCurdViewModel
     {
+        public OrganizationsViewModel(IOrganizationUnitAppService userAppService)
+        {
+            this.appService = userAppService;
+            SelectedCommand = new DelegateCommand<OrganizationListModel>(Selected);
+
+            AddRootUnitCommand = new DelegateCommand<OrganizationListModel>(AddOrganizationUnit);
+            ChangeCommand = new DelegateCommand<OrganizationListModel>(EditOrganizationUnit);
+            RemoveCommand = new DelegateCommand<OrganizationListModel>(DeleteOrganizationUnit);
+
+            DeleteRoleCommand = new DelegateCommand<OrganizationUnitRoleListDto>(DeleteRole);
+            DeleteMemberCommand = new DelegateCommand<OrganizationUnitUserListDto>(DeleteMember);
+
+            usersInput = new GetOrganizationUnitUsersInput();
+            rolesInput = new GetOrganizationUnitRolesInput();
+            roledataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
+            roledataPager.OnPageIndexChangedEventhandler += RoleOnPageIndexChangedEventhandler;
+            memberdataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
+            memberdataPager.OnPageIndexChangedEventhandler += MemberdataPager_OnPageIndexChangedEventhandler;
+
+            ExecuteItemCommand = new DelegateCommand<string>(ExecuteItem);
+        }
+
+        private async void MemberdataPager_OnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
+        {
+            if (usersInput.Id == 0) return;
+
+            usersInput.SkipCount = e.SkipCount;
+            usersInput.MaxResultCount = e.PageSize;
+
+            await SetBusyAsync(async () =>
+             {
+                 await GetOrganizationUnitUsers(usersInput);
+             });
+        }
+
+        private async void RoleOnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
+        {
+            if (rolesInput.Id == 0) return;
+
+            rolesInput.SkipCount = e.SkipCount;
+            rolesInput.MaxResultCount = e.PageSize;
+
+            await SetBusyAsync(async () =>
+            {
+                await GetOrganizationUnitRoles(rolesInput);
+            });
+        }
+
         #region 字段/属性
 
         private OrganizationListModel SelectedOrganizationUnit;
@@ -22,6 +70,8 @@ namespace AppFramework.ViewModels
         private readonly IOrganizationUnitAppService appService;
         public IDataPagerService roledataPager { get; private set; }
         public IDataPagerService memberdataPager { get; private set; }
+        private GetOrganizationUnitUsersInput usersInput;
+        private GetOrganizationUnitRolesInput rolesInput;
 
         //选中组织、添加跟组织、修改、删除组织
         public DelegateCommand<OrganizationListModel> SelectedCommand { get; }
@@ -37,23 +87,7 @@ namespace AppFramework.ViewModels
 
         #endregion
 
-        public OrganizationsViewModel(IOrganizationUnitAppService userAppService)
-        {
-            this.appService = userAppService;
-            SelectedCommand = new DelegateCommand<OrganizationListModel>(Selected);
-
-            AddRootUnitCommand = new DelegateCommand<OrganizationListModel>(AddOrganizationUnit);
-            ChangeCommand = new DelegateCommand<OrganizationListModel>(EditOrganizationUnit);
-            RemoveCommand = new DelegateCommand<OrganizationListModel>(DeleteOrganizationUnit);
-
-            DeleteRoleCommand = new DelegateCommand<OrganizationUnitRoleListDto>(DeleteRole);
-            DeleteMemberCommand = new DelegateCommand<OrganizationUnitUserListDto>(DeleteMember);
-
-            roledataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
-            memberdataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
-
-            ExecuteItemCommand = new DelegateCommand<string>(ExecuteItem);
-        }
+        #region 组织机构
 
         /// <summary>
         /// 选中组织机构-更新成员和角色信息
@@ -64,11 +98,18 @@ namespace AppFramework.ViewModels
             if (organizationUnit == null) return;
 
             SelectedOrganizationUnit = organizationUnit;
+            rolesInput.Id = SelectedOrganizationUnit.Id;
+            usersInput.Id = SelectedOrganizationUnit.Id;
 
-            await RefreshUsers(organizationUnit.Id);
-            await RefreshRoles(organizationUnit.Id);
+            await GetOrganizationUnitUsers(usersInput);
+            await GetOrganizationUnitRoles(rolesInput);
         }
 
+        /// <summary>
+        /// UI的按钮命令
+        /// 说明: 添加组织、添加成员、添加角色、刷新组织机构树
+        /// </summary>
+        /// <param name="arg"></param>
         public async void ExecuteItem(string arg)
         {
             switch (arg)
@@ -79,8 +120,6 @@ namespace AppFramework.ViewModels
                 case "Refresh": await RefreshAsync(); break;
             }
         }
-
-        #region 组织机构
 
         /// <summary>
         /// 刷新组织结构树
@@ -146,7 +185,11 @@ namespace AppFramework.ViewModels
                 await RefreshAsync();
         }
 
-        private void RefreshOrganizationUnit(long id)
+        /// <summary>
+        /// 更新组织机构显示信息
+        /// </summary>
+        /// <param name="id"></param>
+        private void UpdateOrganizationUnit(long id)
         {
             var organizationUnit = dataPager.GridModelList
                 .FirstOrDefault(t => t is OrganizationListModel q && q.Id.Equals(id)) as OrganizationListModel;
@@ -188,20 +231,21 @@ namespace AppFramework.ViewModels
 
             long Id = organizationUnit.Id;
 
-            await WebRequest.Execute(() =>
-                       appService.FindRoles(new FindOrganizationUnitRolesInput()
-                       {
-                           OrganizationUnitId = Id
-                       }),
-                       async result =>
-                       {
-                           DialogParameters param = new DialogParameters();
-                           param.Add("Id", Id);
-                           param.Add("Value", result);
-                           var dialogResult = await dialog.ShowDialogAsync(AppViewManager.AddRoles, param);
-                           if (dialogResult.Result == ButtonResult.OK)
-                               await RefreshRoles(Id);
-                       });
+            await WebRequest.Execute(() => appService.FindRoles(new FindOrganizationUnitRolesInput()
+            {
+                OrganizationUnitId = Id
+            }), async result =>
+            {
+                DialogParameters param = new DialogParameters();
+                param.Add("Id", Id);
+                param.Add("Value", result);
+                var dialogResult = await dialog.ShowDialogAsync(AppViewManager.AddRoles, param);
+                if (dialogResult.Result == ButtonResult.OK)
+                {
+                    rolesInput.Id = Id;
+                    await GetOrganizationUnitRoles(rolesInput);
+                }
+            });
         }
 
         /// <summary>
@@ -209,15 +253,15 @@ namespace AppFramework.ViewModels
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        private async Task RefreshRoles(long Id)
+        private async Task GetOrganizationUnitRoles(GetOrganizationUnitRolesInput input)
         {
             await SetBusyAsync(async () =>
               {
-                  var pagedResult = await appService.GetOrganizationUnitRoles(new GetOrganizationUnitRolesInput() { Id = Id });
+                  var pagedResult = await appService.GetOrganizationUnitRoles(input);
                   if (pagedResult != null)
                       roledataPager.SetList(pagedResult);
 
-                  RefreshOrganizationUnit(Id);
+                  UpdateOrganizationUnit(input.Id);
               });
         }
 
@@ -239,7 +283,8 @@ namespace AppFramework.ViewModels
                         OrganizationUnitId = SelectedOrganizationUnit.Id,
                     }), async () =>
                     {
-                        await RefreshRoles(SelectedOrganizationUnit.Id);
+                        rolesInput.Id = SelectedOrganizationUnit.Id;
+                        await GetOrganizationUnitRoles(rolesInput);
                     });
                 });
             }
@@ -261,19 +306,16 @@ namespace AppFramework.ViewModels
             long Id = organizationUnit.Id;
 
             await WebRequest.Execute(() =>
-                        appService.FindUsers(new FindOrganizationUnitUsersInput()
-                        {
-                            OrganizationUnitId = Id
-                        }),
-                        async result =>
-                        {
-                            DialogParameters param = new DialogParameters();
-                            param.Add("Id", Id);
-                            param.Add("Value", result);
-                            var dialogResult = await dialog.ShowDialogAsync(AppViewManager.AddUsers, param);
-                            if (dialogResult.Result == ButtonResult.OK)
-                                await RefreshUsers(Id);
-                        });
+            appService.FindUsers(new FindOrganizationUnitUsersInput() { OrganizationUnitId = Id }),
+            async result =>
+            {
+                DialogParameters param = new DialogParameters();
+                param.Add("Id", Id);
+                param.Add("Value", result);
+                var dialogResult = await dialog.ShowDialogAsync(AppViewManager.AddUsers, param);
+                if (dialogResult.Result == ButtonResult.OK)
+                    await GetOrganizationUnitUsers(usersInput);
+            });
         }
 
         /// <summary>
@@ -281,15 +323,15 @@ namespace AppFramework.ViewModels
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        private async Task RefreshUsers(long Id)
+        private async Task GetOrganizationUnitUsers(GetOrganizationUnitUsersInput input)
         {
             await SetBusyAsync(async () =>
             {
-                var pagedResult = await appService.GetOrganizationUnitUsers(new GetOrganizationUnitUsersInput() { Id = Id });
+                var pagedResult = await appService.GetOrganizationUnitUsers(input);
                 if (pagedResult != null)
                     memberdataPager.SetList(pagedResult);
 
-                RefreshOrganizationUnit(Id);
+                UpdateOrganizationUnit(input.Id);
             });
         }
 
@@ -311,7 +353,7 @@ namespace AppFramework.ViewModels
                         UserId = obj.Id
                     }), async () =>
                     {
-                        await RefreshUsers(SelectedOrganizationUnit.Id);
+                        await GetOrganizationUnitUsers(usersInput);
                     });
                 });
             }
