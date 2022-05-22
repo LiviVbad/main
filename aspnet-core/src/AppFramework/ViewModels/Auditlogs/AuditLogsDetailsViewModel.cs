@@ -1,13 +1,13 @@
-﻿using AppFramework.Common.Models;
+﻿using AppFramework.Auditing.Dto; 
 using Prism.Services.Dialogs;
  
 namespace AppFramework.ViewModels
 {
     public class AuditLogsDetailsViewModel : HostDialogViewModel
     {
-        private AuditLogListModel auditLog;
+        private AuditLogListDto auditLog;
 
-        public AuditLogListModel AuditLog
+        public AuditLogListDto AuditLog
         {
             get { return auditLog; }
             set { auditLog = value; RaisePropertyChanged(); }
@@ -17,7 +17,7 @@ namespace AppFramework.ViewModels
         {
             if (parameters.ContainsKey("Value"))
             {
-                AuditLog = parameters.GetValue<AuditLogListModel>("Value");
+                AuditLog = parameters.GetValue<AuditLogListDto>("Value");
             }
         }
     }

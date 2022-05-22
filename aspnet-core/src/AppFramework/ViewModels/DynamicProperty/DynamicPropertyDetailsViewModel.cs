@@ -2,7 +2,7 @@
 using AppFramework.Common.Models;
 using AppFramework.DynamicEntityProperties;
 using AppFramework.DynamicEntityProperties.Dto;
-using Prism.Services.Dialogs; 
+using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -47,7 +47,8 @@ namespace AppFramework.ViewModels
         {
             if (parameters.ContainsKey("Value"))
             {
-                Model = parameters.GetValue<DynamicPropertyModel>("Value");
+                var dynamicProperty = parameters.GetValue<DynamicPropertyDto>("Value");
+                Model = Map<DynamicPropertyModel>(dynamicProperty);
             }
         }
     }

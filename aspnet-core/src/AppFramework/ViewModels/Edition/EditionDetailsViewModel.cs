@@ -128,7 +128,7 @@ namespace AppFramework.ViewModels
             {
                 int? id = null;
                 if (parameters.ContainsKey("Value"))
-                    id = parameters.GetValue<EditionListModel>("Value").Id;
+                    id = parameters.GetValue<EditionListDto>("Value").Id;
 
                 await WebRequest.Execute(() => appService.GetEditionForEdit(new NullableIdDto(id)),
                   async result =>

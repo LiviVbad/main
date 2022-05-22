@@ -26,6 +26,11 @@ namespace AppFramework.ViewModels
         private readonly IProfileAppService profileAppService;
         private readonly IPermissionAppService permissionAppService;
 
+        public UserListModel SelectedItem
+        {
+            get { return Map<UserListModel>(dataPager.SelectedItem); }
+        }
+
         public UserViewModel(IUserAppService appService,
             IRoleAppService roleAppService,
             IAccountService accountService,
@@ -56,7 +61,7 @@ namespace AppFramework.ViewModels
 
         private async void UserChangePermission()
         {
-            if (dataPager.SelectedItem is UserListModel item)
+            if (dataPager.SelectedItem is IEntityDto<long> item)
             {
                 GetUserPermissionsForEditOutput output = null;
                 await SetBusyAsync(async () =>
@@ -81,35 +86,28 @@ namespace AppFramework.ViewModels
 
         private async void UsersUnlock()
         {
-            if (dataPager.SelectedItem is UserListModel item)
+            await SetBusyAsync(async () =>
             {
-                await SetBusyAsync(async () =>
-                {
-                    await WebRequest.Execute(() => appService.UnlockUser(
-                        new EntityDto<long>(item.Id)));
-                });
-            }
+                await WebRequest.Execute(() => appService.UnlockUser(
+                    new EntityDto<long>(SelectedItem.Id)));
+            });
         }
 
         private async void LoginAsThisUser()
         {
-            if (dataPager.SelectedItem is UserListModel item)
-                await accountService.LoginCurrentUserAsync(item);
+            await accountService.LoginCurrentUserAsync(SelectedItem);
         }
 
         public async void Delete()
         {
-            if (dataPager.SelectedItem is UserListModel item)
+            if (await dialog.Question(Local.Localize("UserDeleteWarningMessage", SelectedItem.UserName)))
             {
-                if (await dialog.Question(Local.Localize("UserDeleteWarningMessage", item.UserName)))
+                await SetBusyAsync(async () =>
                 {
-                    await SetBusyAsync(async () =>
-                    {
-                        await WebRequest.Execute(() => appService.DeleteUser(
-                            new EntityDto<long>(item.Id)),
-                            RefreshAsync);
-                    });
-                }
+                    await WebRequest.Execute(() => appService.DeleteUser(
+                        new EntityDto<long>(SelectedItem.Id)),
+                        RefreshAsync);
+                });
             }
         }
 

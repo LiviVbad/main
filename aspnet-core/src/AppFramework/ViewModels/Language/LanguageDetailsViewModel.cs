@@ -5,8 +5,7 @@ using Abp.Application.Services.Dto;
 using AppFramework.Common;
 using AppFramework.Localization.Dto;
 using System.Collections.ObjectModel;
-using System.Linq;
-using AppFramework.Common.Models;
+using System.Linq; 
 
 namespace AppFramework.ViewModels
 {
@@ -110,7 +109,7 @@ namespace AppFramework.ViewModels
             {
                 int? id = null;
                 if (parameters.ContainsKey("Value"))
-                    id = parameters.GetValue<LanguageListModel>("Value").Id;
+                    id = parameters.GetValue<ApplicationLanguageListDto>("Value").Id;
 
                 await WebRequest.Execute(() =>
                         appService.GetLanguageForEdit(new NullableIdDto(id)),

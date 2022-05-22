@@ -3,8 +3,7 @@ using AppFramework.Authorization.Permissions;
 using AppFramework.Authorization.Permissions.Dto;
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
-using AppFramework.Common;
-using AppFramework.Common.Models;
+using AppFramework.Common; 
 using AppFramework.Common.Services.Permission;
 using Prism.Commands;
 using Prism.Services.Dialogs;
@@ -15,6 +14,8 @@ namespace AppFramework.ViewModels
 {
     public class RoleViewModel : NavigationCurdViewModel
     {
+        #region 字段/属性
+
         private readonly IRoleAppService appService;
         private readonly IPermissionAppService permissionAppService;
         public GetRolesInput input;
@@ -33,6 +34,8 @@ namespace AppFramework.ViewModels
         private ListResultDto<FlatPermissionWithLevelDto> flatPermission;
 
         public DelegateCommand SelectedCommand { get; private set; }
+
+        #endregion
 
         public RoleViewModel(IRoleAppService appService,
             IPermissionAppService permissionAppService)
@@ -68,6 +71,25 @@ namespace AppFramework.ViewModels
             }
         }
 
+        /// <summary>
+        /// 删除角色
+        /// </summary>
+        public async void Delete()
+        {
+            if (dataPager.SelectedItem is RoleListDto item)
+            {
+                if (await dialog.Question(Local.Localize("RoleDeleteWarningMessage", item.DisplayName)))
+                {
+                    await SetBusyAsync(async () =>
+                    {
+                        await WebRequest.Execute(() => appService.DeleteRole(
+                            new EntityDto(item.Id)),
+                            RefreshAsync);
+                    });
+                }
+            }
+        }
+
         public override async Task RefreshAsync()
         {
             await SetBusyAsync(async () =>
@@ -92,23 +114,7 @@ namespace AppFramework.ViewModels
                         });
             });
         }
-
-        public async void Delete()
-        {
-            if (dataPager.SelectedItem is RoleListModel item)
-            {
-                if (await dialog.Question(Local.Localize("RoleDeleteWarningMessage", item.DisplayName)))
-                {
-                    await SetBusyAsync(async () =>
-                    {
-                        await WebRequest.Execute(() => appService.DeleteRole(
-                            new EntityDto(item.Id)),
-                            RefreshAsync);
-                    });
-                }
-            }
-        }
-
+         
         public override PermissionItem[] GetDefaultPermissionItems()
         {
             return new PermissionItem[]

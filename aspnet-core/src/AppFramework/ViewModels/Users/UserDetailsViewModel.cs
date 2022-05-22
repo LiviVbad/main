@@ -22,8 +22,9 @@ namespace AppFramework.ViewModels
             this.permissionService = permissionService;
         }
 
+        #region 字段/属性
+
         private bool isNewUser;
-        private bool isUnlockButtonVisible;
         private UserForEditModel model;
 
         private UserCreateOrUpdateModel input;
@@ -38,23 +39,15 @@ namespace AppFramework.ViewModels
         private readonly IUserAppService userAppService;
         private readonly IPermissionService permissionService;
 
-        public bool IsUnlockButtonVisible
-        {
-            get => isUnlockButtonVisible;
-            set
-            {
-                isUnlockButtonVisible = value;
-                RaisePropertyChanged();
-            }
-        }
-
+        /// <summary>
+        /// 是否是新建用户
+        /// </summary>
         public bool IsNewUser
         {
             get => isNewUser;
             set
             {
                 isNewUser = value;
-                IsUnlockButtonVisible = !isNewUser && permissionService.HasPermission(Permkeys.UserEdit);
                 RaisePropertyChanged();
             }
         }
@@ -69,6 +62,11 @@ namespace AppFramework.ViewModels
             }
         }
 
+        #endregion
+
+        /// <summary>
+        /// 保存用户
+        /// </summary>
         protected override async void Save()
         {
             Input.User = Model.User;
@@ -90,29 +88,36 @@ namespace AppFramework.ViewModels
             }, AppLocalizationKeys.SavingWithThreeDot);
         }
 
+        /// <summary>
+        /// 窗口打开时
+        /// </summary>
+        /// <param name="parameters"></param>
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
             await SetBusyAsync(async () =>
               {
-                  UserListModel userInfo = null;
+                  UserListDto user = null;
                   if (parameters.ContainsKey("Value"))
-                      userInfo = parameters.GetValue<UserListModel>("Value");
+                      user = parameters.GetValue<UserListDto>("Value");
 
-                  IsNewUser = userInfo == null;
+                  IsNewUser = user == null;
                   Input.SetRandomPassword = IsNewUser;
                   Input.SendActivationEmail = IsNewUser;
 
-                  await WebRequest.Execute(async () =>
-                          await userAppService.GetUserForEdit(new NullableIdDto<long>(userInfo?.Id)),
+                  await WebRequest.Execute(() =>
+                          userAppService.GetUserForEdit(new NullableIdDto<long>(user?.Id)),
                           GetUserForEditSuccessed);
               });
 
             if (parameters.ContainsKey("Config"))
-            {
                 PasswordComplexitySetting = parameters.GetValue<GetPasswordComplexitySettingOutput>("Config");
-            }
         }
 
+        /// <summary>
+        /// 设置编辑用户数据
+        /// </summary>
+        /// <param name="output"></param>
+        /// <returns></returns>
         private async Task GetUserForEditSuccessed(GetUserForEditOutput output)
         {
             Model = Map<UserForEditModel>(output);
@@ -132,6 +137,12 @@ namespace AppFramework.ViewModels
             await Task.CompletedTask;
         }
 
+        /// <summary>
+        /// 生成可选的组织树
+        /// </summary>
+        /// <param name="organizationUnits"></param>
+        /// <param name="parentId"></param>
+        /// <returns></returns>
         private ObservableCollection<OrganizationListModel> BuildOrganizationTree(
           List<OrganizationListModel> organizationUnits, long? parentId = null)
         {

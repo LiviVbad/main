@@ -173,7 +173,7 @@ namespace AppFramework.ViewModels
             return new ObservableCollection<OrganizationListModel>(masters);
         }
 
-        #endregion OrganizationUnit
+        #endregion 
 
         #region 角色
 
@@ -245,7 +245,7 @@ namespace AppFramework.ViewModels
             }
         }
 
-        #endregion Roles
+        #endregion 
 
         #region 成员
 
@@ -316,6 +316,7 @@ namespace AppFramework.ViewModels
                 });
             }
         }
-        #endregion Users 
+
+        #endregion  
     }
 }

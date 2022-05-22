@@ -9,7 +9,7 @@ using AppFramework.MultiTenancy.Dto;
 using Prism.Commands;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Collections.ObjectModel; 
+using System.Collections.ObjectModel;
 using Prism.Services.Dialogs;
 
 namespace AppFramework.ViewModels
@@ -85,6 +85,8 @@ namespace AppFramework.ViewModels
 
         #endregion
 
+        public TenantListModel SelectedItem => Map<TenantListModel>(dataPager.SelectedItem);
+
         public TenantViewModel(ITenantAppService appService, IEditionAppService editionAppService)
         {
             filter = new GetTenantsFilter()
@@ -140,28 +142,25 @@ namespace AppFramework.ViewModels
         /// <param name="Id"></param>
         private async void TenantChangeFeatures()
         {
-            if (dataPager.SelectedItem is TenantListModel item)
+            GetTenantFeaturesEditOutput output = null;
+            await SetBusyAsync(async () =>
             {
-                GetTenantFeaturesEditOutput output = null;
-                await SetBusyAsync(async () =>
-                {
-                    await WebRequest.Execute(() => appService.GetTenantFeaturesForEdit(new EntityDto(item.Id)),
-                          async result =>
-                          {
-                              output = result;
-                              await Task.CompletedTask;
-                          });
+                await WebRequest.Execute(() => appService.GetTenantFeaturesForEdit(new EntityDto(SelectedItem.Id)),
+                      async result =>
+                      {
+                          output = result;
+                          await Task.CompletedTask;
+                      });
 
-                });
+            });
 
-                if (output == null) return;
+            if (output == null) return;
 
-                DialogParameters param = new DialogParameters();
-                param.Add("Id", item.Id);
-                param.Add("Value", output);
+            DialogParameters param = new DialogParameters();
+            param.Add("Id", SelectedItem.Id);
+            param.Add("Value", output);
 
-                await dialog.ShowDialogAsync(AppViewManager.TenantChangeFeatures, param);
-            }
+            await dialog.ShowDialogAsync(AppViewManager.TenantChangeFeatures, param);
         }
 
         private void TenantImpersonation()
@@ -171,29 +170,23 @@ namespace AppFramework.ViewModels
 
         private async void Unlock()
         {
-            if (dataPager.SelectedItem is TenantListModel item)
+            await SetBusyAsync(async () =>
             {
-                await SetBusyAsync(async () =>
-                {
-                    await WebRequest.Execute(() => appService.UnlockTenantAdmin(
-                        new EntityDto(item.Id)), RefreshAsync);
-                });
-            }
+                await WebRequest.Execute(() => appService.UnlockTenantAdmin(
+                    new EntityDto(SelectedItem.Id)), RefreshAsync);
+            });
         }
 
         private async void Delete()
         {
-            if (dataPager.SelectedItem is TenantListModel item)
+            var result = await dialog.Question(Local.Localize("TenantDeleteWarningMessage", SelectedItem.TenancyName));
+            if (result)
             {
-                var result = await dialog.Question(Local.Localize("TenantDeleteWarningMessage", item.TenancyName));
-                if (result)
+                await SetBusyAsync(async () =>
                 {
-                    await SetBusyAsync(async () =>
-                    {
-                        await WebRequest.Execute(() => appService.DeleteTenant(
-                            new EntityDto(item.Id)), RefreshAsync);
-                    });
-                }
+                    await WebRequest.Execute(() => appService.DeleteTenant(
+                        new EntityDto(SelectedItem.Id)), RefreshAsync);
+                });
             }
         }
 
