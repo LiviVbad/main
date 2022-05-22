@@ -46,7 +46,7 @@
                 AllowFiltering="False"
                 AutoGenerateColumns="False"
                 IsReadOnly="False"
-                ItemsSource="{Binding ElementName=sfDataPager, Path=PagedSource}"
+                ItemsSource="{Binding dataPager.GridModelList}"
                 Style="{StaticResource SimpleDataGridStyle}">
                 <sync:SfDataGrid.Columns>
                     <sync:GridCheckBoxColumn
@@ -59,13 +59,14 @@
             </sync:SfDataGrid>
 
             <sync:SfDataPager
-                x:Name="sfDataPager"
                 Grid.Row="3"
                 Margin="5,0"
                 HorizontalAlignment="Right"
-                NumericButtonCount="10"
-                PageSize="50"
-                Source="{Binding Values}" />
+                NumericButtonCount="{Binding dataPager.NumericButtonCount}"
+                PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
+                PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
+                UseOnDemandPaging="True"
+                PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
 
             <StackPanel
                 Grid.Row="4"

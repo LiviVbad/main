@@ -16,46 +16,58 @@ namespace AppFramework.ViewModels
     {
         #region 字段/属性
 
-        private long Id;
-        private string filter;
-
         public string Filter
         {
-            get { return filter; }
-            set { filter = value; RaisePropertyChanged(); }
+            get { return input.Filter; }
+            set
+            {
+                input.Filter = value;
+                RaisePropertyChanged();
+            }
         }
 
-        private ObservableCollection<ChooseItem> values;
+        public IDataPagerService dataPager { get; private set; }
         private readonly IOrganizationUnitAppService appService;
 
-        public ObservableCollection<ChooseItem> Values
-        {
-            get { return values; }
-            set { values = value; RaisePropertyChanged(); }
-        }
-
         public DelegateCommand QueryCommand { get; private set; }
+        public FindOrganizationUnitUsersInput input;
 
         #endregion
 
-        public AddUsersViewModel(IOrganizationUnitAppService appService)
+        public AddUsersViewModel(IOrganizationUnitAppService appService,
+            IDataPagerService dataPager)
         {
+            input = new FindOrganizationUnitUsersInput();
             QueryCommand = new DelegateCommand(Query);
+            this.dataPager = dataPager;
             this.appService = appService;
+
+            dataPager.OnPageIndexChangedEventhandler += UserOnPageIndexChangedEventhandler;
+        }
+
+        private async void UserOnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
+        {
+            input.SkipCount = e.SkipCount;
+            input.MaxResultCount = e.PageSize;
+
+            await SetBusyAsync(async () =>
+             {
+                 await FindUsers(input);
+             });
         }
 
         protected override async void Save()
         {
-            var userIds = Values.Where(q => q.IsSelected)?
-                .Select(t => Convert.ToInt64(t.Value.Value))
-                .ToArray();
+            var userIds = dataPager.GridModelList
+                .Where(t => t is ChooseItem q && q.IsSelected)
+                .Select(t => Convert.ToInt64(((ChooseItem)t).Value.Value)).ToArray();
 
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(() => appService.AddUsersToOrganizationUnit(
                     new UsersToOrganizationUnitInput()
                     {
-                        OrganizationUnitId = Id,
+                        OrganizationUnitId = input.OrganizationUnitId,
                         UserIds = userIds
                     }), () =>
                     {
@@ -65,43 +77,35 @@ namespace AppFramework.ViewModels
             });
         }
 
-        private async void Query()
+        private async Task FindUsers(FindOrganizationUnitUsersInput input)
         {
-            await SetBusyAsync(async () =>
-             {
-                 await WebRequest.Execute(() => appService.FindUsers(new FindOrganizationUnitUsersInput()
-                 {
-                     OrganizationUnitId = Id,
-                     Filter = Filter
-                 }), FindUsersSuccessed);
-             });
+            await WebRequest.Execute(() => appService.FindUsers(input),
+                async result =>
+                {
+                    dataPager.SetList(new PagedResultDto<ChooseItem>()
+                    {
+                        Items = result.Items.Select(t => new ChooseItem(t)).ToList()
+                    });
+                    await Task.CompletedTask;
+                });
         }
 
-        private async Task FindUsersSuccessed(PagedResultDto<NameValueDto> pagedResult)
+        private void Query()
         {
-            if (pagedResult == null) return;
-
-            Values.Clear();
-
-            foreach (var item in pagedResult.Items)
-                Values.Add(new ChooseItem(item));
-
-            await Task.CompletedTask;
+            dataPager.PageIndex = 0;
         }
 
         public override void OnDialogOpened(IDialogParameters parameters)
         {
             if (parameters.ContainsKey("Value"))
             {
-                Id = parameters.GetValue<long>("Id");
+                input.OrganizationUnitId = parameters.GetValue<long>("Id");
                 var pagedResult = parameters.GetValue<PagedResultDto<NameValueDto>>("Value");
-
-                Values = new ObservableCollection<ChooseItem>();
-                foreach (var item in pagedResult.Items)
-                    Values.Add(new ChooseItem(item));
+                dataPager.SetList(new PagedResultDto<ChooseItem>()
+                {
+                    Items = pagedResult.Items.Select(t => new ChooseItem(t)).ToList()
+                });
             }
-            else
-                Values = new ObservableCollection<ChooseItem>();
         }
     }
 }

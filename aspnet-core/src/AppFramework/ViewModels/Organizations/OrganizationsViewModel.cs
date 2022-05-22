@@ -305,8 +305,7 @@ namespace AppFramework.ViewModels
 
             long Id = organizationUnit.Id;
 
-            await WebRequest.Execute(() =>
-            appService.FindUsers(new FindOrganizationUnitUsersInput() { OrganizationUnitId = Id }),
+            await WebRequest.Execute(() => appService.FindUsers(new FindOrganizationUnitUsersInput() { OrganizationUnitId = Id }),
             async result =>
             {
                 DialogParameters param = new DialogParameters();

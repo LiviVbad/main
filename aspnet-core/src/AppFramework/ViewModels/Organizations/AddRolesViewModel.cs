@@ -6,7 +6,6 @@ using AppFramework.Organizations.Dto;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,46 +15,55 @@ namespace AppFramework.ViewModels
     {
         #region 字段/属性
 
-        private long Id;
-        private string filter;
-
         public string Filter
         {
-            get { return filter; }
-            set { filter = value; RaisePropertyChanged(); }
+            get { return input.Filter; }
+            set { input.Filter = value; RaisePropertyChanged(); }
         }
 
-        private ObservableCollection<ChooseItem> values;
+        public IDataPagerService dataPager { get; private set; }
         private readonly IOrganizationUnitAppService appService;
 
-        public ObservableCollection<ChooseItem> Values
-        {
-            get { return values; }
-            set { values = value; RaisePropertyChanged(); }
-        }
+        public FindOrganizationUnitRolesInput input;
 
         public DelegateCommand QueryCommand { get; private set; }
 
         #endregion
 
-        public AddRolesViewModel(IOrganizationUnitAppService appService)
+        public AddRolesViewModel(IOrganizationUnitAppService appService,
+            IDataPagerService dataPager)
         {
+            input = new FindOrganizationUnitRolesInput();
             QueryCommand = new DelegateCommand(Query);
             this.appService = appService;
+            this.dataPager = dataPager;
+
+            dataPager.OnPageIndexChangedEventhandler += RoleOnPageIndexChangedEventhandler;
+        }
+
+        private async void RoleOnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
+        {
+            input.SkipCount = e.SkipCount;
+            input.MaxResultCount = e.PageSize;
+
+            await SetBusyAsync(async () =>
+            {
+                await FindRoles(input);
+            });
         }
 
         protected override async void Save()
         {
-            var roleIds = Values.Where(q => q.IsSelected)?
-                .Select(t => Convert.ToInt32(t.Value.Value))
-                .ToArray();
+            var roleIds = dataPager.GridModelList
+               .Where(t => t is ChooseItem q && q.IsSelected)
+               .Select(t => Convert.ToInt32(((ChooseItem)t).Value.Value)).ToArray();
 
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(() => appService.AddRolesToOrganizationUnit(
                     new RolesToOrganizationUnitInput()
                     {
-                        OrganizationUnitId = Id,
+                        OrganizationUnitId = input.OrganizationUnitId,
                         RoleIds = roleIds
                     }), () =>
                     {
@@ -65,43 +73,35 @@ namespace AppFramework.ViewModels
             });
         }
 
-        private async void Query()
+        private async Task FindRoles(FindOrganizationUnitRolesInput input)
         {
-            await SetBusyAsync(async () =>
-            {
-                await WebRequest.Execute(() => appService.FindRoles(new FindOrganizationUnitRolesInput()
-                {
-                    OrganizationUnitId = Id,
-                    Filter = Filter
-                }), FindUsersSuccessed);
-            });
+            await WebRequest.Execute(() => appService.FindRoles(input),
+                async result =>
+                   {
+                       dataPager.SetList(new PagedResultDto<ChooseItem>()
+                       {
+                           Items = result.Items.Select(t => new ChooseItem(t)).ToList()
+                       });
+                       await Task.CompletedTask;
+                   });
         }
 
-        private async Task FindUsersSuccessed(PagedResultDto<NameValueDto> pagedResult)
+        private void Query()
         {
-            if (pagedResult == null) return;
-
-            Values.Clear();
-
-            foreach (var item in pagedResult.Items)
-                Values.Add(new ChooseItem(item));
-
-            await Task.CompletedTask;
+            dataPager.PageIndex = 0;
         }
 
         public override void OnDialogOpened(IDialogParameters parameters)
         {
             if (parameters.ContainsKey("Value"))
             {
-                Id = parameters.GetValue<long>("Id");
+                input.OrganizationUnitId = parameters.GetValue<long>("Id");
                 var pagedResult = parameters.GetValue<PagedResultDto<NameValueDto>>("Value");
-
-                Values = new ObservableCollection<ChooseItem>();
-                foreach (var item in pagedResult.Items)
-                    Values.Add(new ChooseItem(item));
+                dataPager.SetList(new PagedResultDto<ChooseItem>()
+                {
+                    Items = pagedResult.Items.Select(t => new ChooseItem(t)).ToList()
+                });
             }
-            else
-                Values = new ObservableCollection<ChooseItem>();
         }
     }
 }
