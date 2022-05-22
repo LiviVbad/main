@@ -1,19 +1,20 @@
 ﻿using AppFramework.Auditing;
 using AppFramework.Auditing.Dto;
 using AppFramework.Common;
-using AppFramework.Common.Models;
 using AppFramework.Models.Auditlogs;
 using Prism.Commands;
 using Prism.Services.Dialogs;
-using System; 
-using System.Collections.ObjectModel;
+using System;
 using System.Threading.Tasks;
+using Prism.Ioc;
 
 namespace AppFramework.ViewModels
 {
     public class AuditLogsViewModel : NavigationCurdViewModel
     {
         #region 字段/属性
+
+        public IDataPagerService logsdataPager { get; private set; }
 
         private readonly IAuditLogAppService appService;
         private string filterTitle = string.Empty;
@@ -23,6 +24,9 @@ namespace AppFramework.ViewModels
 
         private int selectedIndex;
 
+        /// <summary>
+        /// 错误状态选项: 全部/错误
+        /// </summary>
         public int SelectedIndex
         {
             get { return selectedIndex; }
@@ -40,6 +44,9 @@ namespace AppFramework.ViewModels
             }
         }
 
+        /// <summary>
+        /// 当前筛选标题 [展开/收缩]
+        /// </summary>
         public string FilerTitle
         {
             get { return filterTitle; }
@@ -61,26 +68,25 @@ namespace AppFramework.ViewModels
             }
         }
 
+        /// <summary>
+        /// 审计日志筛选条件
+        /// </summary>
         public GetAuditLogsFilter Filter
         {
             get { return filter; }
             set { filter = value; RaisePropertyChanged(); }
         }
 
+        /// <summary>
+        /// 更改日志筛选条件
+        /// </summary>
         public GetEntityChangeFilter EntityChangeFilter
         {
             get { return entityChangeFilter; }
             set { entityChangeFilter = value; RaisePropertyChanged(); }
         }
 
-        private ObservableCollection<EntityChangeListDto> changedLogList;
-
-        public ObservableCollection<EntityChangeListDto> ChangedLogList
-        {
-            get { return changedLogList; }
-            set { changedLogList = value; RaisePropertyChanged(); }
-        }
-
+        //查看日志、查看更改日志、高级筛选、搜索、搜索更改日志
         public DelegateCommand ViewLogCommand { get; private set; }
         public DelegateCommand ViewChangedLogCommand { get; private set; }
         public DelegateCommand AdvancedCommand { get; private set; }
@@ -105,13 +111,14 @@ namespace AppFramework.ViewModels
                 MaxResultCount = AppConsts.DefaultPageSize
             };
             this.appService = appService;
-            changedLogList = new ObservableCollection<EntityChangeListDto>();
 
             SearchCommand = new DelegateCommand(Search);
             SearchChangedCommand = new DelegateCommand(SearchChanged);
             ViewLogCommand = new DelegateCommand(ViewLog);
             ViewChangedLogCommand = new DelegateCommand(ViewChangedLog);
             AdvancedCommand = new DelegateCommand(() => { IsAdvancedFilter = !IsAdvancedFilter; });
+
+            logsdataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
         }
 
         /// <summary>
@@ -135,7 +142,7 @@ namespace AppFramework.ViewModels
         /// </summary>
         private async void Search()
         {
-            filter.SkipCount = 0; 
+            filter.SkipCount = 0;
 
             await SetBusyAsync(async () =>
             {
@@ -143,6 +150,10 @@ namespace AppFramework.ViewModels
             });
         }
 
+        /// <summary>
+        /// 获取审计日期数据
+        /// </summary>
+        /// <returns></returns>
         private async Task GetAuditLogs()
         {
             var input = Map<GetAuditLogsInput>(filter);
@@ -150,7 +161,7 @@ namespace AppFramework.ViewModels
             await WebRequest.Execute(() => appService.GetAuditLogs(input),
                          async result =>
                          {
-                             dataPager.SetList(result);  
+                             dataPager.SetList(result);
                              await Task.CompletedTask;
                          });
         }
@@ -161,11 +172,14 @@ namespace AppFramework.ViewModels
         private async void SearchChanged()
         {
             entityChangeFilter.SkipCount = 0;
-            ChangedLogList.Clear();
 
             await GetEntityChanges();
         }
 
+        /// <summary>
+        /// 获取更改日志
+        /// </summary>
+        /// <returns></returns>
         private async Task GetEntityChanges()
         {
             var input = Map<GetEntityChangeInput>(entityChangeFilter);
@@ -173,13 +187,15 @@ namespace AppFramework.ViewModels
             await WebRequest.Execute(() => appService.GetEntityChanges(input),
                            async result =>
                            {
-                               foreach (var item in result.Items)
-                                   ChangedLogList.Add(item);
-
+                               logsdataPager.SetList(result);
                                await Task.CompletedTask;
                            });
         }
 
+        /// <summary>
+        /// 刷新数据
+        /// </summary>
+        /// <returns></returns>
         public override async Task RefreshAsync()
         {
             await SetBusyAsync(async () =>

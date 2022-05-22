@@ -171,8 +171,6 @@
                     <sync:GridTextColumn HeaderText="{extensions:Translate TenancyName}" MappingName="TenancyName" />
                     <sync:GridTextColumn HeaderText="{extensions:Translate Name}" MappingName="Name" />
                     <sync:GridTextColumn HeaderText="{extensions:Translate DisplayName}" MappingName="EditionDisplayName" />
-                    <sync:GridTextColumn HeaderText="{extensions:Translate AdminEmailAddress}" MappingName="AdminEmailAddress" />
-                    <sync:GridTextColumn HeaderText="{extensions:Translate SendActivationEmail}" MappingName="SendActivationEmail" />
                     <sync:GridTextColumn HeaderText="{extensions:Translate IsActive}" MappingName="IsActive" />
                 </sync:SfDataGrid.Columns>
             </sync:SfDataGrid>
