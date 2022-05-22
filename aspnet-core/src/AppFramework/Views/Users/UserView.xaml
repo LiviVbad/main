@@ -52,7 +52,7 @@
 
             <Border Grid.RowSpan="5" Style="{StaticResource BorderStyle}" />
 
-            <DockPanel Margin="5,15">
+            <DockPanel Margin="5,15,5,0">
                 <Button
                     Padding="8"
                     Command="{Binding SearchCommand}"
@@ -63,7 +63,10 @@
             </DockPanel>
 
             <!--  高级筛选  -->
-            <Grid Grid.Row="1" Visibility="{Binding IsAdvancedFilter, Converter={StaticResource inverseBoolToVisibility}}">
+            <Grid
+                Grid.Row="1"
+                Margin="0,15,0,0"
+                Visibility="{Binding IsAdvancedFilter, Converter={StaticResource inverseBoolToVisibility}}">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />

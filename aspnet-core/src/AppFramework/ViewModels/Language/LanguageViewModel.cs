@@ -89,7 +89,7 @@ namespace AppFramework.ViewModels
         /// <returns></returns>
         public override async Task RefreshAsync()
         {
-            await GetLanguages();
+            await SetBusyAsync(GetLanguages); 
         }
 
         public override PermissionItem[] GetDefaultPermissionItems()

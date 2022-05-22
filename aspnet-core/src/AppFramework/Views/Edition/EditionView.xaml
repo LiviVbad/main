@@ -50,7 +50,7 @@
 
             <sync:SfDataGrid
                 x:Name="SfDataGrid"
-                Margin="15,0"
+                Margin="15,15,15,0"
                 ItemsSource="{Binding dataPager.GridModelList}"
                 SelectedItem="{Binding dataPager.SelectedItem}"
                 Style="{StaticResource SimpleDataGridStyle}">

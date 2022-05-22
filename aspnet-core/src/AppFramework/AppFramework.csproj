@@ -569,13 +569,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\Shared\HostMessageBoxView.xaml.cs">
+    <Compile Update="Views\HostMessageBoxView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Views\Shared\HostMessageBoxView.xaml">
+    <Page Update="Views\HostMessageBoxView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>

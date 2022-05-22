@@ -41,7 +41,7 @@
             Style="{StaticResource BorderStyle}" />
 
         <TabControl Grid.Row="1" Margin="30">
-            <TabItem Header="{extensions:Translate DynamicProperty}">
+            <TabItem Background="Transparent" Header="{extensions:Translate DynamicProperty}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -103,7 +103,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="{extensions:Translate DynamicEntityProperties}">
+            <TabItem Background="Transparent" Header="{extensions:Translate DynamicEntityProperties}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
