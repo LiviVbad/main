@@ -2,7 +2,7 @@
 using AppFramework.DynamicEntityProperties;
 using AppFramework.DynamicEntityProperties.Dto;
 using Prism.Commands;
-using Prism.Services.Dialogs; 
+using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using AppFramework.ApiClient;
@@ -14,7 +14,7 @@ namespace AppFramework.ViewModels
     {
         private readonly IDynamicPropertyValueAppService appService;
         private readonly IApplicationContext context;
-        private readonly IDataPagerService dataPager;
+        public IDataPagerService dataPager { get; private set; }
         private readonly IHostDialogService dialog;
         private int Id;
         private bool isAdd;
@@ -64,7 +64,7 @@ namespace AppFramework.ViewModels
         /// <param name="obj"></param>
         private async void Delete(DynamicPropertyValueDto obj)
         {
-            if (await dialog.Question("", AppCommonConsts.DialogIdentifier))
+            if (await dialog.Question(Local.Localize("DeleteDynamicPropertyValueMessage"), AppCommonConsts.DialogIdentifier))
             {
                 await SetBusyAsync(async () =>
                 {
@@ -134,11 +134,11 @@ namespace AppFramework.ViewModels
 
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
-            if (parameters.ContainsKey("Id"))
+            if (parameters.ContainsKey("Value"))
             {
-                Id = parameters.GetValue<int>("Id");
+                Id = parameters.GetValue<DynamicPropertyDto>("Value").Id;
 
-                await GetAllValuesOfDynamicProperty();
+                await SetBusyAsync(GetAllValuesOfDynamicProperty);
             }
         }
     }

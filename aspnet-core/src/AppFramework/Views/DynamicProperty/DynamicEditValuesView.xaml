@@ -8,10 +8,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     xmlns:win="clr-namespace:AppFramework.WindowHost"
-    Width="800"
-    Height="580"
+    Width="700"
+    Height="500"
     mc:Ignorable="d">
-    <win:DialogHost Identifier="{x:Static const:AppCommonConsts.DialogIdentifier}">
+    <win:DialogHost Identifier="{x:Static const:AppCommonConsts.DialogIdentifier}" IsOpen="{Binding IsBusy}">
+        <win:DialogHost.DialogContent>
+            <StackPanel>
+                <sync:SfBusyIndicator
+                    Width="50"
+                    Height="50"
+                    AnimationType="DoubleRing"
+                    IsBusy="True" />
+            </StackPanel>
+        </win:DialogHost.DialogContent>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -31,23 +40,35 @@
                 FontWeight="Bold"
                 Text="{extensions:Translate AddNewDynamicPropertyValue}" />
 
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                <StackPanel>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                        <Button />
-                        <Button Command="{Binding ShowAddCommand}" />
-                    </StackPanel>
-
-                    <StackPanel Visibility="{Binding IsAdd, Converter={StaticResource inverseBoolToVisibility}}">
-                        <TextBlock Text="{extensions:Translate Value}" />
-                        <DockPanel>
-                            <Button Command="{Binding AddCommand}" DockPanel.Dock="Right" />
-                            <TextBox Text="{Binding InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        </DockPanel>
-                    </StackPanel>
-
-                    <TextBlock Text="{extensions:Translate Values}" />
-                    <ItemsControl ItemsSource="{Binding dataPager.GridModelList}">
+            <StackPanel Grid.Row="1" Margin="15">
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button
+                        Padding="8"
+                        Command="{Binding RefreshCommand}"
+                        Content="&#xe61b;"
+                        Style="{StaticResource IconButtonStyle}" />
+                    <Button
+                        Margin="5,0"
+                        Padding="8"
+                        Command="{Binding ShowAddCommand}"
+                        Content="&#xe607;"
+                        Style="{StaticResource IconButtonStyle}" />
+                </StackPanel>
+                <StackPanel Visibility="{Binding IsAdd, Converter={StaticResource inverseBoolToVisibility}}">
+                    <TextBlock Text="{extensions:Translate Value}" />
+                    <DockPanel Margin="0,5">
+                        <Button
+                            Margin="5,0"
+                            Padding="10,5"
+                            Command="{Binding AddValueCommand}"
+                            Content="{extensions:Translate Save}"
+                            DockPanel.Dock="Right" />
+                        <TextBox Text="{Binding InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </DockPanel>
+                </StackPanel>
+                <TextBlock Margin="0,10,0,0" Text="{extensions:Translate Values}" />
+                <ScrollViewer Height="300" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl Margin="8" ItemsSource="{Binding dataPager.GridModelList}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel />
@@ -56,20 +77,33 @@
 
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <DockPanel LastChildFill="False">
-                                    <TextBlock Text="{Binding}" />
-                                    <Button DockPanel.Dock="Right" />
-                                    <Button DockPanel.Dock="Right" />
+                                <DockPanel Margin="0,5" LastChildFill="False">
+                                    <TextBlock Text="{Binding Value}" />
+                                    <Button
+                                        Margin="10,0,0,0"
+                                        Padding="10,5"
+                                        Background="#FF6347"
+                                        Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+                                        CommandParameter="{Binding}"
+                                        Content="{extensions:Translate Delete}"
+                                        DockPanel.Dock="Right" />
+                                    <Button
+                                        Padding="10,5"
+                                        Background="#1E90FF"
+                                        Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+                                        CommandParameter="{Binding}"
+                                        Content="{extensions:Translate Edit}"
+                                        DockPanel.Dock="Right" />
                                 </DockPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </StackPanel>
-            </ScrollViewer>
+                </ScrollViewer>
+            </StackPanel>
 
             <StackPanel
                 Grid.Row="2"
-                Margin="0,0,15,15"
+                Margin="15"
                 HorizontalAlignment="Right"
                 Orientation="Horizontal">
                 <Button

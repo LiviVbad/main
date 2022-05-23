@@ -50,6 +50,7 @@
                     </Grid.RowDefinitions>
 
                     <Button
+                        Margin="0,5"
                         Padding="5"
                         HorizontalAlignment="Right"
                         Content="{extensions:Translate AddNewDynamicProperty}" />
