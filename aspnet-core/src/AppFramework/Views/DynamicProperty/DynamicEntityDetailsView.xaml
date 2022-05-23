@@ -61,7 +61,7 @@
 
                 <TextBlock Text="{extensions:Translate Values}" />
                 <ScrollViewer Height="300" VerticalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding dataPager.GridModelList}">
+                    <ItemsControl Margin="8" ItemsSource="{Binding dataPager.GridModelList}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel />

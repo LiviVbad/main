@@ -8,6 +8,7 @@ using Abp.Application.Services.Dto;
 using AppFramework.ApiClient;
 using AppFramework.Services;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace AppFramework.ViewModels
 {
@@ -93,6 +94,17 @@ namespace AppFramework.ViewModels
                         foreach (var item in result.Items)
                             Items.Add(item);
 
+                        //移除下拉的可选项
+                        foreach (var item in dataPager.GridModelList)
+                        {
+                            var dynamicEntity = item as DynamicEntityPropertyDto;
+                            if (dynamicEntity != null)
+                            {
+                                var t = Items.FirstOrDefault(t => t.Id.Equals(dynamicEntity.DynamicPropertyId));
+                                if (t != null) Items.Remove(t);
+                            }
+                        }
+
                         await Task.CompletedTask;
                     });
             });
@@ -144,6 +156,8 @@ namespace AppFramework.ViewModels
 
         public async Task GetAllPropertiesOfAnEntity()
         {
+            IsAdd = false;
+
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(() =>

@@ -120,6 +120,8 @@ namespace AppFramework.ViewModels
         /// <returns></returns>
         public async Task GetAllValuesOfDynamicProperty()
         {
+            IsAdd = false;
+
             await SetBusyAsync(async () =>
               {
                   await WebRequest.Execute(() =>
