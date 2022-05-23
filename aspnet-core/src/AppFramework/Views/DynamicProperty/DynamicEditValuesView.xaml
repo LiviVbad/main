@@ -2,10 +2,81 @@
     x:Class="AppFramework.Views.DynamicEditValuesView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:const="clr-namespace:AppFramework.Common;assembly=AppFramework.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    xmlns:sync="http://schemas.syncfusion.com/wpf"
+    xmlns:win="clr-namespace:AppFramework.WindowHost"
+    Width="800"
+    Height="580"
     mc:Ignorable="d">
-    <Grid />
+    <win:DialogHost Identifier="{x:Static const:AppCommonConsts.DialogIdentifier}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Border
+                Grid.RowSpan="3"
+                CornerRadius="0"
+                Opacity="1"
+                Style="{StaticResource BorderStyle}" />
+
+            <TextBlock
+                Margin="15"
+                FontSize="18"
+                FontWeight="Bold"
+                Text="{extensions:Translate AddNewDynamicPropertyValue}" />
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Button />
+                        <Button Command="{Binding ShowAddCommand}" />
+                    </StackPanel>
+
+                    <StackPanel Visibility="{Binding IsAdd, Converter={StaticResource inverseBoolToVisibility}}">
+                        <TextBlock Text="{extensions:Translate Value}" />
+                        <DockPanel>
+                            <Button Command="{Binding AddCommand}" DockPanel.Dock="Right" />
+                            <TextBox Text="{Binding InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DockPanel>
+                    </StackPanel>
+
+                    <TextBlock Text="{extensions:Translate Values}" />
+                    <ItemsControl ItemsSource="{Binding dataPager.GridModelList}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel LastChildFill="False">
+                                    <TextBlock Text="{Binding}" />
+                                    <Button DockPanel.Dock="Right" />
+                                    <Button DockPanel.Dock="Right" />
+                                </DockPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+
+            <StackPanel
+                Grid.Row="2"
+                Margin="0,0,15,15"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <Button
+                    Padding="10,5"
+                    Command="{Binding CancelCommand}"
+                    Content="{extensions:Translate Close}" />
+            </StackPanel>
+        </Grid>
+    </win:DialogHost>
 </UserControl>
