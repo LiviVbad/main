@@ -79,7 +79,7 @@ namespace AppFramework
             services.Add<EditionDetailsView, EditionDetailsViewModel>(AppViewManager.EditionDetails);
             services.Add<DynamicPropertyView, DynamicPropertyViewModel>(AppViewManager.DynamicProperty);
             services.Add<DynamicPropertyDetailsView, DynamicPropertyDetailsViewModel>(AppViewManager.DynamicPropertyDetails);
-            services.Add<DynamicEntityDetailsView, DynamicEntityDetailsViewModel>(AppViewManager.DynamicEntity);
+            services.Add<DynamicEntityDetailsView, DynamicEntityDetailsViewModel>(AppViewManager.DynamicEntityDetails);
             services.Add<DynamicEditValuesView, DynamicEditValuesViewModel>(AppViewManager.DynamicEditValues);
             services.Add<TenantView, TenantViewModel>(AppViewManager.Tenant);
             services.Add<TenantDetailsView, TenantDetailsViewModel>(AppViewManager.TenantDetails);

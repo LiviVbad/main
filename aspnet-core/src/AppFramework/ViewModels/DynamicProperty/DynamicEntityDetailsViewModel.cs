@@ -7,16 +7,24 @@ using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using AppFramework.ApiClient;
 using AppFramework.Services;
+using System.Collections.ObjectModel;
 
 namespace AppFramework.ViewModels
 {
+    /// <summary>
+    /// 动态实体属性详情
+    /// </summary>
     public class DynamicEntityDetailsViewModel : HostDialogViewModel
     {
+        private readonly IDynamicPropertyAppService propertyAppService;
         private readonly IDynamicEntityPropertyAppService appService;
         private readonly IApplicationContext context;
-        private readonly IDataPagerService dataPager;
+        public IDataPagerService dataPager { get; }
         private readonly IHostDialogService dialog;
-        private int Id;
+
+        private DynamicPropertyDto selectedItem;
+        private ObservableCollection<DynamicPropertyDto> items;
+
         private string EntityFullName;
         private bool isAdd;
 
@@ -24,7 +32,7 @@ namespace AppFramework.ViewModels
         {
             get { return isAdd; }
             set { isAdd = value; RaisePropertyChanged(); }
-        } 
+        }
 
         public DelegateCommand ShowAddCommand { get; private set; }
         public DelegateCommand RefreshCommand { get; private set; }
@@ -32,20 +40,62 @@ namespace AppFramework.ViewModels
 
         public DelegateCommand<DynamicEntityPropertyDto> DeleteCommand { get; private set; }
 
+        public ObservableCollection<DynamicPropertyDto> Items
+        {
+            get { return items; }
+            set { items = value; RaisePropertyChanged(); }
+        }
+
+        /// <summary>
+        /// 选中的实体属性
+        /// </summary>
+        public DynamicPropertyDto SelectedItem
+        {
+            get { return selectedItem; }
+            set { selectedItem = value; RaisePropertyChanged(); }
+        }
+
         public DynamicEntityDetailsViewModel(
+            IDynamicPropertyAppService propertyAppService,
             IDynamicEntityPropertyAppService appService,
             IApplicationContext context,
             IDataPagerService dataPager,
             IHostDialogService dialog)
         {
-            this.appService = appService;
+            this.dialog = dialog;
             this.context = context;
             this.dataPager = dataPager;
-            this.dialog = dialog;
+            this.appService = appService;
+            this.propertyAppService = propertyAppService;
+
+            items = new ObservableCollection<DynamicPropertyDto>();
+
             RefreshCommand = new DelegateCommand(Refresh);
-            ShowAddCommand = new DelegateCommand(() => IsAdd = true);
+            ShowAddCommand = new DelegateCommand(ShowAdd);
             AddValueCommand = new DelegateCommand(AddValue);
             DeleteCommand = new DelegateCommand<DynamicEntityPropertyDto>(Delete);
+        }
+
+        /// <summary>
+        /// 添加实体属性
+        /// </summary>
+        private async void ShowAdd()
+        {
+            IsAdd = true;
+
+            await SetBusyAsync(async () =>
+            {
+                await WebRequest.Execute(() => propertyAppService.GetAll(),
+                    async result =>
+                    {
+                        Items.Clear();
+
+                        foreach (var item in result.Items)
+                            Items.Add(item);
+
+                        await Task.CompletedTask;
+                    });
+            });
         }
 
         /// <summary>
@@ -54,7 +104,7 @@ namespace AppFramework.ViewModels
         /// <param name="obj"></param>
         private async void Delete(DynamicEntityPropertyDto obj)
         {
-            if (await dialog.Question("", AppCommonConsts.DialogIdentifier))
+            if (await dialog.Question(Local.Localize("DeleteDynamicPropertyMessage"), AppCommonConsts.DialogIdentifier))
             {
                 await SetBusyAsync(async () =>
                 {
@@ -78,19 +128,20 @@ namespace AppFramework.ViewModels
         /// </summary>
         private async void AddValue()
         {
+            if (SelectedItem == null) return;
+
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(() =>
                         appService.Add(new DynamicEntityPropertyDto()
                         {
-                            DynamicPropertyId = Id,
                             TenantId = context.CurrentTenant?.TenantId,
-                            DynamicPropertyName = "",
-                            EntityFullName = ""
+                            EntityFullName = EntityFullName,
+                            DynamicPropertyId = SelectedItem.Id
                         }), GetAllPropertiesOfAnEntity);
             });
         }
-         
+
         public async Task GetAllPropertiesOfAnEntity()
         {
             await SetBusyAsync(async () =>
@@ -113,9 +164,8 @@ namespace AppFramework.ViewModels
 
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
-            if (parameters.ContainsKey("Id"))
+            if (parameters.ContainsKey("Name"))
             {
-                Id = parameters.GetValue<int>("Id");
                 EntityFullName = parameters.GetValue<string>("Name");
 
                 await GetAllPropertiesOfAnEntity();

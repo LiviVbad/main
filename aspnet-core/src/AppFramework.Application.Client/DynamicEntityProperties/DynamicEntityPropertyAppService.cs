@@ -19,7 +19,7 @@ namespace AppFramework.Application
 
         public async Task Delete(int id)
         {
-            await ApiClient.DeleteAsync(GetEndpoint(nameof(Delete)), id);
+            await ApiClient.DeleteAsync(GetEndpoint(nameof(Delete) + $"?id={id}"));
         }
 
         public async Task<DynamicEntityPropertyDto> Get(int id)

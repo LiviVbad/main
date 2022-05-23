@@ -10,6 +10,9 @@ using AppFramework.Services;
 
 namespace AppFramework.ViewModels
 {
+    /// <summary>
+    /// 编辑值视图模型
+    /// </summary>
     public class DynamicEditValuesViewModel : HostDialogViewModel
     {
         private readonly IDynamicPropertyValueAppService appService;

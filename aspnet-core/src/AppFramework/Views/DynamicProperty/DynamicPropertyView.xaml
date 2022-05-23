@@ -62,7 +62,7 @@
                         Style="{StaticResource SimpleDataGridStyle}">
                         <sync:SfDataGrid.Columns>
                             <sync:GridTemplateColumn
-                                Width="110"
+                                Width="120"
                                 AllowFiltering="False"
                                 AllowSorting="False"
                                 HeaderText="{extensions:Translate Actions}">
@@ -116,31 +116,27 @@
                         HorizontalAlignment="Right"
                         Content="{extensions:Translate AddNewDynamicEntityProperty}" />
 
-                    <sync:SfDataGrid Grid.Row="1" Style="{StaticResource SimpleDataGridStyle}">
+                    <sync:SfDataGrid
+                        Grid.Row="1"
+                        ItemsSource="{Binding entitydataPager.GridModelList}"
+                        SelectedItem="{Binding entitydataPager.SelectedItem}"
+                        Style="{StaticResource SimpleDataGridStyle}">
                         <sync:SfDataGrid.Columns>
                             <sync:GridTemplateColumn
-                                Width="110"
+                                Width="120"
                                 AllowFiltering="False"
                                 AllowSorting="False"
                                 HeaderText="{extensions:Translate Actions}">
                                 <sync:GridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <sync:DropDownButtonAdv Label="{extensions:Translate Actions}" Style="{StaticResource OperationButtonStyle}">
-                                            <ItemsControl ItemsSource="{Binding DataContext.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}">
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Button
-                                                            Margin="5"
-                                                            Padding="3"
-                                                            Background="Transparent"
-                                                            Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
-                                                            CommandParameter="{Binding Key}"
-                                                            Content="{Binding Name}"
-                                                            Foreground="White" />
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
-                                        </sync:DropDownButtonAdv>
+                                        <Button
+                                            Margin="5"
+                                            Padding="3"
+                                            Background="#1E90FF"
+                                            Command="{Binding DataContext.DetailCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                            CommandParameter="{Binding}"
+                                            Content="{extensions:Translate Detail}"
+                                            Foreground="White" />
                                     </DataTemplate>
                                 </sync:GridTemplateColumn.CellTemplate>
                             </sync:GridTemplateColumn>

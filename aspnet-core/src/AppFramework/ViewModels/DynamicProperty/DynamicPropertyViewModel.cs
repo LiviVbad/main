@@ -6,16 +6,41 @@ using AppFramework.DynamicEntityProperties;
 using AppFramework.DynamicEntityProperties.Dto;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
+using Prism.Ioc;
+using Prism.Commands;
+using System;
 
 namespace AppFramework.ViewModels
 {
     public class DynamicPropertyViewModel : NavigationCurdViewModel
     {
+        public IDataPagerService entitydataPager { get; private set; }
         private readonly IDynamicPropertyAppService appService;
+        private readonly IDynamicEntityPropertyAppService entityPropertyAppService;
 
-        public DynamicPropertyViewModel(IDynamicPropertyAppService appService)
+        public DelegateCommand<GetAllEntitiesHasDynamicPropertyOutput> DetailCommand { get; private set; }
+
+        public DynamicPropertyViewModel(
+            IDynamicPropertyAppService appService,
+            IDynamicEntityPropertyAppService entityPropertyAppService)
         {
             this.appService = appService;
+            this.entityPropertyAppService = entityPropertyAppService;
+            entitydataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
+
+            DetailCommand = new DelegateCommand<GetAllEntitiesHasDynamicPropertyOutput>(Detail);
+        }
+
+        /// <summary>
+        /// 动态实体属性详情
+        /// </summary>
+        /// <param name="output"></param>
+        private async void Detail(GetAllEntitiesHasDynamicPropertyOutput output)
+        {
+            DialogParameters param = new DialogParameters();
+            param.Add("Name", output.EntityFullName);
+
+            await dialog.ShowDialogAsync(AppViewManager.DynamicEntityDetails, param);
         }
 
         /// <summary>
@@ -49,14 +74,12 @@ namespace AppFramework.ViewModels
         }
 
         /// <summary>
-        /// 获取全部动态属性
+        /// 获取动态属性
         /// </summary>
         /// <returns></returns>
         private async Task GetDynamicPropertyAll()
         {
-            await SetBusyAsync(async () =>
-            {
-                await WebRequest.Execute(() => appService.GetAll(),
+            await WebRequest.Execute(() => appService.GetAll(),
                        async result =>
                        {
                            dataPager.SetList(new PagedResultDto<DynamicPropertyDto>()
@@ -65,8 +88,25 @@ namespace AppFramework.ViewModels
                            });
                            await Task.CompletedTask;
                        });
-            });
         }
+
+        /// <summary>
+        /// 获取动态实体属性
+        /// </summary>
+        /// <returns></returns>
+        private async Task GetAllEntitiesHasDynamicProperty()
+        {
+            await WebRequest.Execute(() => entityPropertyAppService.GetAllEntitiesHasDynamicProperty(),
+                       async result =>
+                       {
+                           entitydataPager.SetList(new PagedResultDto<GetAllEntitiesHasDynamicPropertyOutput>()
+                           {
+                               Items = result.Items
+                           });
+                           await Task.CompletedTask;
+                       });
+        }
+
 
         /// <summary>
         /// 刷新动态属性模块
@@ -74,7 +114,11 @@ namespace AppFramework.ViewModels
         /// <returns></returns>
         public override async Task RefreshAsync()
         {
-            await GetDynamicPropertyAll();
+            await SetBusyAsync(async () =>
+            {
+                await GetDynamicPropertyAll();
+                await GetAllEntitiesHasDynamicProperty();
+            });
         }
 
         public override PermissionItem[] GetDefaultPermissionItems()
