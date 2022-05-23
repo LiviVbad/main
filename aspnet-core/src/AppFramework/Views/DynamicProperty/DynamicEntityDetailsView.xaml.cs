@@ -2,9 +2,9 @@
 
 namespace AppFramework.Views
 { 
-    public partial class DynamicEntityView : UserControl
+    public partial class DynamicEntityDetailsView : UserControl
     {
-        public DynamicEntityView()
+        public DynamicEntityDetailsView()
         {
             InitializeComponent();
         }
