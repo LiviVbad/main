@@ -28,7 +28,6 @@ namespace AppFramework.Extensions
         {
             FontFamily fontFamily = new FontFamily("Microsoft YaHei");
             int bodyfontSize = 14;
-
             IThemeSetting theme = null;
             switch (themeName)
             {

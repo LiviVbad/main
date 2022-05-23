@@ -5,16 +5,12 @@ namespace AppFramework.Common
 {
     public class AsyncRunner
     {
-        public static void Run(Task task, Action<Task> onError = null)
+        public static void Run(Task task, Action<Task> failCallback = null)
         {
-            if (onError == null)
-            {
+            if (failCallback == null)
                 task.ContinueWith((task1, o) => { }, TaskContinuationOptions.OnlyOnFaulted);
-            }
             else
-            {
-                task.ContinueWith(onError, TaskContinuationOptions.OnlyOnFaulted);
-            }
+                task.ContinueWith(failCallback, TaskContinuationOptions.OnlyOnFaulted);
         }
     }
 }

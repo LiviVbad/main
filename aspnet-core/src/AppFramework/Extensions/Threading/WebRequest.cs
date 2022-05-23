@@ -5,7 +5,7 @@ using System;
 using System.Threading.Tasks;
 using Prism.Ioc;
 using AppFramework.Localization;
-using AppFramework.Extensions; 
+using AppFramework.Extensions;
 using Prism.Services.Dialogs;
 
 namespace AppFramework.Common
@@ -185,17 +185,16 @@ namespace AppFramework.Common
             Func<Task> successCallback,
             Func<System.Exception, Task> failCallback)
         {
-            if (await new ExceptionHandler().HandleIfAbpResponseAsync(httpException))
+            if (await new ExceptionHandler(dialogService).HandleIfAbpResponseAsync(httpException))
             {
                 await failCallback(httpException);
                 return;
             }
 
             var httpExceptionMessage = LocalTranslationHelper.Localize("HttpException");
-            //if (Debugger.IsAttached)
-            {
-                httpExceptionMessage += Environment.NewLine + httpException.Message;
-            }
+#if DEBUG
+            httpExceptionMessage += Environment.NewLine + httpException.Message;
+#endif
 
             var accepted = dialogService.Question(
                LocalTranslationHelper.Localize("MessageTitle"),
@@ -212,17 +211,16 @@ namespace AppFramework.Common
             Func<TResult, Task> successCallback,
             Func<System.Exception, Task> failCallback)
         {
-            if (await new ExceptionHandler().HandleIfAbpResponseAsync(httpException))
+            if (await new ExceptionHandler(dialogService).HandleIfAbpResponseAsync(httpException))
             {
                 await failCallback(httpException);
                 return;
             }
 
             var httpExceptionMessage = LocalTranslationHelper.Localize("HttpException");
-            //if (Debugger.IsAttached)
-            {
-                httpExceptionMessage += Environment.NewLine + httpException.Message;
-            }
+#if DEBUG
+            httpExceptionMessage += Environment.NewLine + httpException.Message;
+#endif
 
             var accepted = dialogService.Question(
               LocalTranslationHelper.Localize("MessageTitle"),
