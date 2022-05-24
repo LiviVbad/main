@@ -1,10 +1,9 @@
 ﻿using AppFramework.Services;
-using AppFramework.ViewModels;
 using Syncfusion.Windows.Shared;
-using Syncfusion.UI.Xaml.NavigationDrawer;
+using System.Windows.Input;
 
 namespace AppFramework.Views
-{ 
+{
     public partial class MainView : ChromelessWindow
     {
         public MainView(IThemeService themeService, IResourceService resourceService)
@@ -14,15 +13,33 @@ namespace AppFramework.Views
 
             themeService.SetCurrentTheme(this);
             resourceService.UpdateResources(App.Current.Resources, themeService.GetCurrentName());
-            SfNavigationDrawer.ItemClicked += SfNavigationDrawer_ItemClicked;
+
+            this.MouseMove += (s, e) =>
+            {
+                if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
+                    this.DragMove();
+            };
+
+            BtnMin.Click += BtnMin_Click;
+            BtnMax.Click += BtnMax_Click;
+            BtnClose.Click += BtnClose_Click;
         }
 
-        private void SfNavigationDrawer_ItemClicked(object? sender, NavigationItemClickedEventArgs e)
+        private void BtnClose_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (e.Item == null) return;
-            var item = e.Item.DataContext as Common.Models.NavigationItem;
-            if (item == null) return;
-            (this.DataContext as MainViewModel)?.Navigate(item);
+            Close();
+        }
+
+        private void BtnMax_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.WindowState = ((base.WindowState != System.Windows.WindowState.Maximized) ? System.Windows.WindowState.Maximized : System.Windows.WindowState.Normal);
+            SystemButtonsUpdate();
+        }
+
+        private void BtnMin_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            WindowState = ((base.WindowState != System.Windows.WindowState.Minimized) ?
+               System.Windows.WindowState.Minimized : System.Windows.WindowState.Normal);
         }
     }
 }

@@ -57,7 +57,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Border Margin="1" Style="{StaticResource HeaderBorderStyle}" />
+        <Border Style="{StaticResource HeaderBorderStyle}" />
 
         <DockPanel Margin="30,20" LastChildFill="False">
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">

@@ -14,9 +14,11 @@
     xmlns:win="clr-namespace:AppFramework.WindowHost"
     Width="940"
     Height="550"
+    BorderBrush="Transparent"
     Icon="/Assets/Images/logo.ico"
     ResizeMode="NoResize"
     ShowMaximizeButton="False"
+    TitleBarHeight="0"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <prism:Dialog.WindowStyle>
@@ -38,11 +40,23 @@
             ViewboxWidth="80">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.4*" />
+                    <ColumnDefinition Width="1.2*" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
                 <Image Margin="50" Source="/Assets/Images/back.png" />
+
+                <Button
+                    x:Name="btnClose"
+                    Grid.Column="1"
+                    Margin="15"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Content="&#xe63a;"
+                    FontSize="24"
+                    Style="{StaticResource IconButtonStyle}" />
 
                 <DockPanel
                     Grid.Column="1"
@@ -126,8 +140,8 @@
                                     CommandParameter="{Binding}"
                                     ToolTip="{Binding DisplayName}">
                                     <Image
-                                        Width="18"
-                                        Height="18"
+                                        Width="20"
+                                        Height="20"
                                         Source="{Binding Icon, Converter={StaticResource imageConverter}}" />
                                 </Button>
                             </DataTemplate>

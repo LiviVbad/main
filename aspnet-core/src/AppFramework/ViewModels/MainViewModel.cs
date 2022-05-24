@@ -19,21 +19,21 @@ namespace AppFramework.ViewModels
             this.appService = appService;
             this.themeService = themeService;
             this.regionManager = regionManager;
-
-            ExecuteCommand = new DelegateCommand<string>(Execute);
-            SetThemeCommand = new DelegateCommand<ThemeItem>(arg => themeService.SetTheme(arg.DisplayName));
+             
+            NavigateCommand = new DelegateCommand<NavigationItem>(Navigate); 
             SetThemeModeCommand = new DelegateCommand(themeService.SetThemeMode);
+            SetThemeCommand = new DelegateCommand<ThemeItem>(arg => themeService.SetTheme(arg.DisplayName));
         }
 
         #region 字段/属性
 
-        private readonly IRegionManager regionManager;
-
+        private bool initialize;
         public IThemeService themeService { get; set; }
         public IApplicationService appService { get; init; }
-        public DelegateCommand<string> ExecuteCommand { get; private set; }
+        private readonly IRegionManager regionManager;
         public DelegateCommand SetThemeModeCommand { get; }
         public DelegateCommand<ThemeItem> SetThemeCommand { get; }
+        public DelegateCommand<NavigationItem> NavigateCommand { get; private set; }
 
         #endregion
 
@@ -52,7 +52,7 @@ namespace AppFramework.ViewModels
 
         public void Navigate(NavigationItem navigationItem)
         {
-            if (navigationItem.Items?.Count > 0) return;
+            if (navigationItem == null) return;
 
             Navigate(navigationItem.PageViewName);
         }
@@ -70,8 +70,11 @@ namespace AppFramework.ViewModels
 
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
         {
+            if (initialize) return;
+
             await appService.GetApplicationInfo();
             Navigate(AppViewManager.Dashboard);
+            initialize = true;
         }
     }
 }

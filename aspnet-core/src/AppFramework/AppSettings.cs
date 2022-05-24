@@ -8,7 +8,7 @@ namespace AppFramework
     public class AppSettings
     {
         private bool isDarkTheme = true;
-        private string themeName = "Material";
+        private string themeName = "Fluent";
 
         static AppSettings()
         {

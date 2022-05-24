@@ -5,7 +5,8 @@
     xmlns:coll="clr-namespace:System.Collections;assembly=mscorlib"
     xmlns:const="clr-namespace:AppFramework.Common;assembly=AppFramework.Common"
     xmlns:converter="clr-namespace:AppFramework.Converters"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:region="clr-namespace:AppFramework.Common;assembly=AppFramework.Common"
@@ -17,66 +18,145 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     prism:ViewModelLocator.AutoWireViewModel="True"
-    Icon="/Assets/Images/logo.ico"
+    BorderBrush="Transparent"
+    TitleBarHeight="0"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <sync:ChromelessWindow.Resources>
         <converter:DarkModeConverter x:Key="darkConverter" />
     </sync:ChromelessWindow.Resources>
-    <sync:ChromelessWindow.RightHeaderItemsSource>
-        <coll:ArrayList>
-            <Button
-                Command="{Binding SetThemeModeCommand}"
-                Content="{Binding themeService.IsDarkTheme, Converter={StaticResource darkConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Style="{DynamicResource IconButtonStyle}" />
-
-            <sync:DropDownButtonAdv
-                Width="50"
-                Label=""
-                SmallIcon="/Assets/Images/color.png">
-                <ItemsControl ItemsSource="{Binding themeService.ThemeItems}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Button
-                                Padding="5"
-                                Background="Transparent"
-                                Command="{Binding DataContext.SetThemeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
-                                CommandParameter="{Binding}"
-                                Content="{Binding DisplayName}" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </sync:DropDownButtonAdv>
-        </coll:ArrayList>
-    </sync:ChromelessWindow.RightHeaderItemsSource>
-
     <win:DialogHost Identifier="{x:Static const:AppCommonConsts.RootIdentifier}">
         <Grid>
-            <sync:SfNavigationDrawer
-                x:Name="SfNavigationDrawer"
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="200" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Border
+                Grid.ColumnSpan="2"
+                Opacity="0.5"
+                Style="{DynamicResource HeaderBorderStyle}" />
+            <Border
                 Grid.Row="1"
-                Margin="-1"
-                prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Main}"
-                AutoChangeDisplayMode="False"
-                BorderBrush="Transparent"
-                DisplayMode="Expanded"
-                ExpandedModeWidth="220"
-                IndentationWidth="10"
-                IsOpen="False"
-                IsToggleButtonVisible="True"
+                Opacity="0.5"
+                Style="{DynamicResource HeaderBorderStyle}" />
+
+            <!--  顶部标题  -->
+            <StackPanel
+                Grid.ColumnSpan="2"
+                Margin="20,25"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <Image
+                    Width="20"
+                    Height="20"
+                    Source="/Assets/Images/logo.ico" />
+                <TextBlock
+                    Margin="5,0,2,0"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource PrimaryBackground}"
+                    Text="APP" />
+                <TextBlock Text="FRAMEWORK" />
+            </StackPanel>
+
+            <!--  顶部按钮功能 主题/最小化/最大化/退出系统  -->
+            <StackPanel
+                Grid.Column="1"
+                Margin="5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Orientation="Horizontal">
+                <sync:DropDownButtonAdv
+                    Width="50"
+                    Margin="5,0"
+                    Padding="0,2"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Label=""
+                    SmallIcon="/Assets/Images/color.png">
+                    <ItemsControl ItemsSource="{Binding themeService.ThemeItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button
+                                    Padding="5"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Command="{Binding DataContext.SetThemeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"
+                                    Content="{Binding DisplayName}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </sync:DropDownButtonAdv>
+                <Button
+                    Background="Transparent"
+                    Command="{Binding SetThemeModeCommand}"
+                    Content="{Binding themeService.IsDarkTheme, Converter={StaticResource darkConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Style="{DynamicResource IconButtonStyle}" />
+                <Button
+                    x:Name="BtnMin"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    Content="&#xe729;"
+                    Style="{DynamicResource IconButtonStyle}" />
+                <Button
+                    x:Name="BtnMax"
+                    Margin="5,0"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    Content="&#xe67b;"
+                    Style="{DynamicResource IconButtonStyle}" />
+                <Button
+                    x:Name="BtnClose"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    Content="&#xe63a;"
+                    Style="{DynamicResource IconButtonStyle}" />
+            </StackPanel>
+
+            <!--  左侧系统菜单  -->
+            <ListBox x:Name="ListMenuBox"
+                Grid.Row="1"
+                Margin="10,0"  
                 ItemsSource="{Binding appService.NavigationItems}">
-                <sync:SfNavigationDrawer.ToggleButtonContentTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Padding" Value="5,3" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Grid>
+                                        <Border
+                                            x:Name="border"
+                                            Margin="0,2"
+                                            Padding="{TemplateBinding Padding}"
+                                            CornerRadius="3">
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="{DynamicResource PrimaryBackground}" />
+                                            <Setter Property="Foreground" Value="White" />
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="{DynamicResource PrimaryBackground}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock
-                            Margin="5,0"
-                            VerticalAlignment="Center"
-                            FontWeight="Bold"
-                            Text="{Binding DataContext.appService.ApplicationName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfNavigationDrawer}}" />
-                    </DataTemplate>
-                </sync:SfNavigationDrawer.ToggleButtonContentTemplate>
-                <sync:SfNavigationDrawer.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding Items}">
-                        <StackPanel Margin="-35,0,0,0" Orientation="Horizontal">
+                        <StackPanel Margin="5" Orientation="Horizontal">
                             <TextBlock
                                 VerticalAlignment="Center"
                                 FontFamily="/Assets/Fonts/#iconfont"
@@ -89,9 +169,21 @@
                                 FontSize="14"
                                 Text="{Binding Title}" />
                         </StackPanel>
-                    </HierarchicalDataTemplate>
-                </sync:SfNavigationDrawer.ItemTemplate>
-            </sync:SfNavigationDrawer>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding NavigateCommand}"
+                                               CommandParameter="{Binding ElementName=ListMenuBox,Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ListBox>
+
+            <!--  显示页  -->
+            <ContentControl
+                Grid.Row="1"
+                Grid.Column="1"
+                prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Main}" />
         </Grid>
     </win:DialogHost>
 </sync:ChromelessWindow>

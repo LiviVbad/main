@@ -53,7 +53,7 @@ namespace AppFramework
         {
             accountService = Container.Resolve<IAccountService>();
 
-            if (!Authorization()) Environment.Exit(-1);
+            if (!Authorization()) Environment.Exit(0);
 
             (App.Current.MainWindow.DataContext as INavigationAware)?.OnNavigatedTo(null);
             base.OnInitialized();

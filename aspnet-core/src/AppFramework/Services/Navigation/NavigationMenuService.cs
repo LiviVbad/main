@@ -13,23 +13,18 @@ namespace AppFramework.Services
             return new ObservableCollection<NavigationItem>()
             {
                new NavigationItem("\ue6c4","Dashboard", AppViewManager.Dashboard, Permkeys.Administration),
-               new NavigationItem("\uec07","Administration","",Permkeys.Administration,
-               new ObservableCollection<NavigationItem>()
-               {
-                      new NavigationItem("\ue64e","OrganizationUnits",AppViewManager.Organization,Permkeys.OrganizationUnits),
-                      new NavigationItem("\ue787","Roles",AppViewManager.Role,Permkeys.Roles),
-                      new NavigationItem("\ue658","Users",AppViewManager.User,Permkeys.Users),
-                      new NavigationItem("\ue617","AuditLogs",AppViewManager.AuditLog,Permkeys.AuditLogs),
-                      new NavigationItem("\ue634","DynamicProperties",AppViewManager.DynamicProperty,Permkeys.DynamicProperties),
-                      new NavigationItem("\ue635","Tenants",AppViewManager.Tenant,Permkeys.Tenants),
-                      new NavigationItem("\ue657","Editions",AppViewManager.Edition,Permkeys.Editions),
-               }),
+               new NavigationItem("\ue64e","OrganizationUnits",AppViewManager.Organization,Permkeys.OrganizationUnits),
+               new NavigationItem("\ue787","Roles",AppViewManager.Role,Permkeys.Roles),
+               new NavigationItem("\ue658","Users",AppViewManager.User,Permkeys.Users),
+               new NavigationItem("\ue617","AuditLogs",AppViewManager.AuditLog,Permkeys.AuditLogs),
+               new NavigationItem("\ue634","DynamicProperties",AppViewManager.DynamicProperty,Permkeys.DynamicProperties),
+               new NavigationItem("\ue635","Tenants",AppViewManager.Tenant,Permkeys.Tenants),
+               new NavigationItem("\ue657","Editions",AppViewManager.Edition,Permkeys.Editions),
                new NavigationItem("\ue62e","Languages",AppViewManager.Language,Permkeys.Languages),
                new NavigationItem("\ue600", "Settings", AppViewManager.Setting, Permkeys.HostSettings),
                new NavigationItem("\ue650","DemoUiComponents",AppViewManager.Demo,Permkeys.DemoUiComponents)
             };
         }
-
 
         /// <summary>
         /// 获取权限菜单
@@ -47,11 +42,6 @@ namespace AppFramework.Services
                 if (string.IsNullOrWhiteSpace(item.RequiredPermissionName) ||
                     (permissions != null && permissions.ContainsKey(item.RequiredPermissionName)))
                 {
-                    if (item.Items != null)
-                    {
-                        foreach (var submenuItem in item.Items)
-                            submenuItem.Title = Local.Localize(submenuItem.Title);
-                    }
                     authorizedMenuItems.Add(item);
                 }
             }
