@@ -19,8 +19,8 @@ namespace AppFramework.ViewModels
             this.appService = appService;
             this.themeService = themeService;
             this.regionManager = regionManager;
-             
-            NavigateCommand = new DelegateCommand<NavigationItem>(Navigate); 
+
+            NavigateCommand = new DelegateCommand<NavigationItem>(Navigate);
             SetThemeModeCommand = new DelegateCommand(themeService.SetThemeMode);
             SetThemeCommand = new DelegateCommand<ThemeItem>(arg => themeService.SetTheme(arg.DisplayName));
         }
@@ -71,7 +71,6 @@ namespace AppFramework.ViewModels
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
         {
             if (initialize) return;
-
             await appService.GetApplicationInfo();
             Navigate(AppViewManager.Dashboard);
             initialize = true;
