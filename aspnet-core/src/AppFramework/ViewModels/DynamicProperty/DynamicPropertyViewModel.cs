@@ -48,7 +48,7 @@ namespace AppFramework.ViewModels
         /// </summary>
         private async void Delete()
         {
-            if (dataPager.SelectedItem is DynamicPropertyModel item)
+            if (dataPager.SelectedItem is DynamicPropertyDto item)
             {
                 if (await dialog.Question(Local.Localize("DeleteDynamicPropertyMessage", item.DisplayName)))
                 {

@@ -20,6 +20,7 @@ namespace AppFramework.ViewModels
 
         public DynamicPropertyDetailsViewModel(IDynamicPropertyAppService appService)
         {
+            model = new DynamicPropertyModel();
             this.appService = appService;
         }
 
