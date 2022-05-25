@@ -1,6 +1,5 @@
 ﻿using AppFramework.Services;
-using Syncfusion.Windows.Shared;
-using System.Windows.Input;
+using Syncfusion.Windows.Shared; 
 
 namespace AppFramework.Views
 {
@@ -14,7 +13,7 @@ namespace AppFramework.Views
             themeService.SetCurrentTheme(this);
             resourceService.UpdateResources(App.Current.Resources, themeService.GetCurrentName());
 
-            this.MouseMove += (s, e) =>
+            BorderHeader.MouseMove += (s, e) =>
             {
                 if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
                     this.DragMove();

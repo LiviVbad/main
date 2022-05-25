@@ -37,7 +37,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Border
+            <Border x:Name="BorderHeader"
                 Grid.ColumnSpan="2"
                 Opacity="0.5"
                 Style="{DynamicResource HeaderBorderStyle}" />
