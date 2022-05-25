@@ -44,6 +44,8 @@
 
         public const string DynamicProperty = "DynamicPropertyView";
 
+        public const string DynamicAddEntity = "DynamicAddEntityView";
+
         public const string DynamicEntityDetails = "DynamicEntityDetailsView";
 
         public const string DynamicEditValues = "DynamicEditValuesView";

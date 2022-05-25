@@ -23,11 +23,11 @@ namespace AppFramework
             services.RegisterCommonServices();
             //注册应用程序验证器
             services.RegisterValidator();
-            
+
             /*
              *  《应用程序授权相关服务》
              *  账户服务、授权缓存服务、权限验证服务、Token服务
-             */ 
+             */
 
             services.RegisterSingleton<IAccountService, AccountService>();
             services.RegisterSingleton<IAccountStorageService, AccountStorageService>();
@@ -39,7 +39,7 @@ namespace AppFramework
              * 《应用程序内部功能服务》
              * 分页服务、本地化服务、主题服务、资源服务、
              * 对话窗口服务、应用程序资源服务、导航菜单服务
-             */  
+             */
             services.Register<IDataPagerService, DataPagerService>();
             services.RegisterSingleton<ILocaleCulture, LocaleCulture>();
             services.RegisterSingleton<IThemeService, ThemeService>();
@@ -47,7 +47,7 @@ namespace AppFramework
             services.RegisterSingleton<IHostDialogService, DialogHostService>();
             services.RegisterSingleton<IApplicationService, ApplicationService>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
-             
+
             /*
              * 《注册应用程序模块》
              * 
@@ -79,13 +79,14 @@ namespace AppFramework
             services.Add<EditionDetailsView, EditionDetailsViewModel>(AppViewManager.EditionDetails);
             services.Add<DynamicPropertyView, DynamicPropertyViewModel>(AppViewManager.DynamicProperty);
             services.Add<DynamicPropertyDetailsView, DynamicPropertyDetailsViewModel>(AppViewManager.DynamicPropertyDetails);
+            services.Add<DynamicAddEntityView, DynamicAddEntityViewModel>(AppViewManager.DynamicAddEntity);
             services.Add<DynamicEntityDetailsView, DynamicEntityDetailsViewModel>(AppViewManager.DynamicEntityDetails);
             services.Add<DynamicEditValuesView, DynamicEditValuesViewModel>(AppViewManager.DynamicEditValues);
             services.Add<TenantView, TenantViewModel>(AppViewManager.Tenant);
             services.Add<TenantDetailsView, TenantDetailsViewModel>(AppViewManager.TenantDetails);
             services.Add<TenantChangeFeaturesView, TenantChangeFeaturesViewModel>(AppViewManager.TenantChangeFeatures);
             services.Add<AddRolesView, AddRolesViewModel>(AppViewManager.AddRoles);
-            services.Add<AddUsersView, AddUsersViewModel>(AppViewManager.AddUsers); 
+            services.Add<AddUsersView, AddUsersViewModel>(AppViewManager.AddUsers);
             services.Add<AuditLogsView, AuditLogsViewModel>(AppViewManager.AuditLog);
             services.Add<AuditLogsDetailsView, AuditLogsDetailsViewModel>(AppViewManager.AuditLogDetails);
             services.Add<LanguageView, LanguageViewModel>(AppViewManager.Language);
@@ -95,7 +96,7 @@ namespace AppFramework
             services.Add<DashboardView, DashboardViewModel>(AppViewManager.Dashboard);
             services.Add<OrganizationsView, OrganizationsViewModel>(AppViewManager.Organization);
             services.Add<OrganizationsAddView, OrganizationsAddViewModel>(AppViewManager.OrganizationAdd);
-            services.Add<SettingsView, SettingsViewModel>(AppViewManager.Setting); 
+            services.Add<SettingsView, SettingsViewModel>(AppViewManager.Setting);
             services.RegisterForNavigation<DemoUiView>(AppViewManager.Demo); //演示组件页
         }
 

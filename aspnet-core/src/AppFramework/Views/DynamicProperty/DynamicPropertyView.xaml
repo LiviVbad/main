@@ -109,6 +109,7 @@
                     <Button
                         Padding="5"
                         HorizontalAlignment="Right"
+                        Command="{Binding AddEntityPropertyCommand}"
                         Content="{extensions:Translate AddNewDynamicEntityProperty}" />
 
                     <sync:SfDataGrid

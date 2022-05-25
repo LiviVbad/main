@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AppFramework.DynamicEntityProperties
 {
     public interface IDynamicEntityPropertyDefinitionAppService
     {
-        List<string> GetAllAllowedInputTypeNames();
+        Task<List<string>> GetAllAllowedInputTypeNames();
 
-        List<string> GetAllEntities();
+        Task<List<string>> GetAllEntities();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.DynamicEntityProperties;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AppFramework.Application
 {
@@ -10,14 +11,14 @@ namespace AppFramework.Application
         {
         }
 
-        public List<string> GetAllAllowedInputTypeNames()
+        public async Task<List<string>> GetAllAllowedInputTypeNames()
         {
-            return ApiClient.GetAsync<List<string>>(GetEndpoint(nameof(GetAllAllowedInputTypeNames))).Result;
+            return await ApiClient.GetAsync<List<string>>(GetEndpoint(nameof(GetAllAllowedInputTypeNames)));
         }
 
-        public List<string> GetAllEntities()
+        public async Task<List<string>> GetAllEntities()
         {
-            return ApiClient.GetAsync<List<string>>(GetEndpoint(nameof(GetAllEntities))).Result;
+            return await ApiClient.GetAsync<List<string>>(GetEndpoint(nameof(GetAllEntities)));
         }
     }
 }

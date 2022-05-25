@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Abp.Authorization;
 using Abp.DynamicEntityProperties;
 using AppFramework.Authorization;
@@ -15,14 +16,14 @@ namespace AppFramework.DynamicEntityProperties
             _dynamicEntityPropertyDefinitionManager = dynamicEntityPropertyDefinitionManager;
         }
 
-        public List<string> GetAllAllowedInputTypeNames()
+        public async Task<List<string>> GetAllAllowedInputTypeNames()
         {
-            return _dynamicEntityPropertyDefinitionManager.GetAllAllowedInputTypeNames();
+            return await Task.Run(() => _dynamicEntityPropertyDefinitionManager.GetAllAllowedInputTypeNames());
         }
 
-        public List<string> GetAllEntities()
+        public async Task<List<string>> GetAllEntities()
         {
-            return _dynamicEntityPropertyDefinitionManager.GetAllEntities();
+            return await Task.Run(() => _dynamicEntityPropertyDefinitionManager.GetAllEntities());
         }
     }
 }

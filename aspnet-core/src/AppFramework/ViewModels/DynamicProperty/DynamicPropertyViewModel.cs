@@ -18,6 +18,7 @@ namespace AppFramework.ViewModels
         private readonly IDynamicPropertyAppService appService;
         private readonly IDynamicEntityPropertyAppService entityPropertyAppService;
 
+        public DelegateCommand AddEntityPropertyCommand { get; private set; }
         public DelegateCommand<GetAllEntitiesHasDynamicPropertyOutput> DetailCommand { get; private set; }
 
         public DynamicPropertyViewModel(
@@ -28,19 +29,34 @@ namespace AppFramework.ViewModels
             this.entityPropertyAppService = entityPropertyAppService;
             entitydataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
 
-            DetailCommand = new DelegateCommand<GetAllEntitiesHasDynamicPropertyOutput>(Detail);
+            DetailCommand = new DelegateCommand<GetAllEntitiesHasDynamicPropertyOutput>(Show);
+            AddEntityPropertyCommand = new DelegateCommand(AddEntityProperty);
+        }
+
+        private async void AddEntityProperty()
+        {
+            var r = await dialog.ShowDialogAsync(AppViewManager.DynamicAddEntity);
+            if (r.Result == ButtonResult.OK)
+            {
+                var EntityFullName = r.Parameters.GetValue<string>("Value");
+                Show(new GetAllEntitiesHasDynamicPropertyOutput()
+                {
+                    EntityFullName = EntityFullName,
+                });
+            }
         }
 
         /// <summary>
         /// 动态实体属性详情
         /// </summary>
         /// <param name="output"></param>
-        private async void Detail(GetAllEntitiesHasDynamicPropertyOutput output)
+        private async void Show(GetAllEntitiesHasDynamicPropertyOutput output)
         {
             DialogParameters param = new DialogParameters();
             param.Add("Name", output.EntityFullName);
 
             await dialog.ShowDialogAsync(AppViewManager.DynamicEntityDetails, param);
+            await SetBusyAsync(GetAllEntitiesHasDynamicProperty);
         }
 
         /// <summary>
