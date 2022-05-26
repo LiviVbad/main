@@ -222,14 +222,18 @@ namespace AppFramework.ViewModels
         /// <returns></returns>
         private async Task PopulateEditionsCombobox(Action editionsPopulated)
         {
-            var editions = await commonLookupAppService.GetEditionsForCombobox();
+            await WebRequest.Execute(() => commonLookupAppService.GetEditionsForCombobox(),
+                async result =>
+                {
+                    Editions.Clear();
 
-            Editions.Clear();
+                    AddNotAssignedItem();
 
-            AddNotAssignedItem();
+                    foreach (var item in result.Items)
+                        Editions.Add(item);
 
-            foreach (var item in editions.Items)
-                Editions.Add(item);
+                    await Task.CompletedTask;
+                });
 
             editionsPopulated();
         }

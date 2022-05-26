@@ -13,7 +13,6 @@
             <RowDefinition Height="auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-
         <Border Style="{StaticResource HeaderBorderStyle}" />
 
         <DockPanel Margin="20,15" LastChildFill="False">
@@ -42,13 +41,28 @@
                 <TabItem Background="Transparent" Header="{extensions:Translate TenantManagement}">
                     <StackPanel Margin="15">
                         <TextBlock FontWeight="Bold" Text="{extensions:Translate FormBasedRegistration}" />
-                        <CheckBox Margin="0,15,0,5" Content="{extensions:Translate AllowTenantsToRegisterThemselves}" />
+                        <CheckBox
+                            Margin="0,15,0,5"
+                            Content="{extensions:Translate AllowTenantsToRegisterThemselves}"
+                            IsChecked="{Binding Setting.TenantManagement.AllowSelfRegistration}" />
                         <TextBlock Opacity="0.7" Text="{extensions:Translate AllowTenantsToRegisterThemselves_Hint}" />
-                        <CheckBox Margin="0,15,0,5" Content="{extensions:Translate NewRegisteredTenantsIsActiveByDefault}" />
+                        <CheckBox
+                            Margin="0,15,0,5"
+                            Content="{extensions:Translate NewRegisteredTenantsIsActiveByDefault}"
+                            IsChecked="{Binding Setting.TenantManagement.IsNewRegisteredTenantActiveByDefault}" />
                         <TextBlock Opacity="0.7" Text="{extensions:Translate NewRegisteredTenantsIsActiveByDefault_Hint}" />
-                        <CheckBox Margin="0,15,0,0" Content="{extensions:Translate UseCaptchaOnRegistration}" />
+                        <CheckBox
+                            Margin="0,15,0,0"
+                            Content="{extensions:Translate UseCaptchaOnRegistration}"
+                            IsChecked="{Binding Setting.TenantManagement.UseCaptchaOnRegistration}" />
                         <TextBlock Margin="0,10,0,0" Text="{extensions:Translate Edition}" />
-                        <ComboBox />
+                        <ComboBox ItemsSource="{Binding Editions}" SelectedItem="{Binding SelectedEdition}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DisplayText}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </StackPanel>
                 </TabItem>
                 <TabItem Background="Transparent" Header="{extensions:Translate UserManagement}">

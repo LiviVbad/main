@@ -39,23 +39,6 @@ namespace AppFramework.Common.Core
             CreateMap<UserLoginInfoDto, UserLoginInfoModel>().ReverseMap();
             CreateMap<UserLoginInfoDto, UserLoginInfoPersistanceModel>().ReverseMap();
             CreateMap<AbpAuthenticateResultModel, AuthenticateResultPersistanceModel>().ReverseMap();
-            CreateMap<HostSettingsEditModel, HostSettingsEditDto>().ReverseMap();
-
-            CreateMap<GeneralSettingsEditModel, GeneralSettingsEditDto>().ReverseMap();
-            CreateMap<HostUserManagementSettingsEditModel, HostUserManagementSettingsEditDto>().ReverseMap();
-            CreateMap<EmailSettingsEditModel, EmailSettingsEditDto>().ReverseMap();
-            CreateMap<TenantManagementSettingsEditModel, TenantManagementSettingsEditDto>().ReverseMap();
-            CreateMap<SecuritySettingsEditModel, SecuritySettingsEditDto>().ReverseMap();
-            CreateMap<HostBillingSettingsEditModel, HostBillingSettingsEditDto>().ReverseMap();
-            CreateMap<OtherSettingsEditModel, OtherSettingsEditDto>().ReverseMap();
-            CreateMap<ExternalLoginProviderSettingsEditModel, ExternalLoginProviderSettingsEditDto>().ReverseMap();
-            CreateMap<UserLockOutSettingsEditModel, UserLockOutSettingsEditDto>().ReverseMap();
-            CreateMap<TwoFactorLoginSettingsEditModel, TwoFactorLoginSettingsEditDto>().ReverseMap(); 
-            CreateMap<SessionTimeOutSettingsEditModel, SessionTimeOutSettingsEditDto>().ReverseMap();
-            CreateMap<UserPasswordSettingsEditModel, UserPasswordSettingsEditDto>().ReverseMap();
-
-
-
             CreateMap<TenantInformation, TenantInformationPersistanceModel>().ReverseMap();
             CreateMap<TenantLoginInfoDto, TenantLoginInfoPersistanceModel>().ReverseMap();
             CreateMap<ApplicationInfoDto, ApplicationInfoPersistanceModel>().ReverseMap();
@@ -67,6 +50,24 @@ namespace AppFramework.Common.Core
             CreateMap<GetUserForEditOutput, UserForEditModel>().ReverseMap();
             CreateMap<GetCurrentLoginInformationsOutput, CurrentLoginInformationPersistanceModel>().ReverseMap();
             CreateMap<TenantListModel, CreateTenantInput>().ReverseMap();
+
+            #region 系统设置
+
+            CreateMap<HostSettingsEditModel, HostSettingsEditDto>().ReverseMap();
+            CreateMap<GeneralSettingsEditModel, GeneralSettingsEditDto>().ReverseMap();
+            CreateMap<HostUserManagementSettingsEditModel, HostUserManagementSettingsEditDto>().ReverseMap();
+            CreateMap<EmailSettingsEditModel, EmailSettingsEditDto>().ReverseMap();
+            CreateMap<TenantManagementSettingsEditModel, TenantManagementSettingsEditDto>().ReverseMap();
+            CreateMap<SecuritySettingsEditModel, SecuritySettingsEditDto>().ReverseMap();
+            CreateMap<HostBillingSettingsEditModel, HostBillingSettingsEditDto>().ReverseMap();
+            CreateMap<OtherSettingsEditModel, OtherSettingsEditDto>().ReverseMap();
+            CreateMap<ExternalLoginProviderSettingsEditModel, ExternalLoginProviderSettingsEditDto>().ReverseMap();
+            CreateMap<UserLockOutSettingsEditModel, UserLockOutSettingsEditDto>().ReverseMap();
+            CreateMap<TwoFactorLoginSettingsEditModel, TwoFactorLoginSettingsEditDto>().ReverseMap();
+            CreateMap<SessionTimeOutSettingsEditModel, SessionTimeOutSettingsEditDto>().ReverseMap();
+            CreateMap<UserPasswordSettingsEditModel, UserPasswordSettingsEditDto>().ReverseMap();
+
+            #endregion
 
             /*
              * 以下可添加更多的实体映射关系
