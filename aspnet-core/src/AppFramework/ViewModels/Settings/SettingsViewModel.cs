@@ -1,6 +1,7 @@
 ﻿using AppFramework.Common;
 using AppFramework.Common.Models.Configuration;
 using AppFramework.Configuration.Host;
+using AppFramework.Configuration.Host.Dto;
 using AppFramework.Editions.Dto;
 using Prism.Commands;
 using Prism.Regions;
@@ -66,13 +67,19 @@ namespace AppFramework.ViewModels
             SaveCommand = new DelegateCommand(Save);
             this.appService = appService;
             this.lookupAppService = lookupAppService;
-             
+
             editions = new ObservableCollection<SubscribableEditionComboboxItemDto>();
         }
 
-        private void Save()
+        private async void Save()
         {
+            //验证输入合法性...
 
+            var input = Map<HostSettingsEditDto>(Setting);
+            await SetBusyAsync(async () =>
+             {
+                 await WebRequest.Execute(() => appService.UpdateAllSettings(input));
+             });
         }
 
         private async Task GetSettings()
