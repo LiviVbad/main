@@ -6,30 +6,27 @@ using AppFramework.Editions.Dto;
 using Prism.Commands;
 using Prism.Regions;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
     public class SettingsViewModel : NavigationViewModel
     {
+        #region 字段/属性
+
         private readonly IHostSettingsAppService appService;
         private readonly ICommonLookupAppService lookupAppService;
-
         public DelegateCommand SaveCommand { get; private set; }
-
         private HostSettingsEditModel setting;
+        private SubscribableEditionComboboxItemDto selectedEdition;
+        private ObservableCollection<SubscribableEditionComboboxItemDto> editions;
 
         public HostSettingsEditModel Setting
         {
             get { return setting; }
             set { setting = value; RaisePropertyChanged(); }
         }
-
-        private SubscribableEditionComboboxItemDto selectedEdition;
 
         /// <summary>
         /// 选中版本
@@ -46,8 +43,6 @@ namespace AppFramework.ViewModels
             }
         }
 
-        public ObservableCollection<SubscribableEditionComboboxItemDto> editions;
-
         /// <summary>
         /// 版本列表
         /// </summary>
@@ -60,6 +55,8 @@ namespace AppFramework.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        #endregion
 
         public SettingsViewModel(IHostSettingsAppService appService,
             ICommonLookupAppService lookupAppService)
@@ -82,6 +79,10 @@ namespace AppFramework.ViewModels
              });
         }
 
+        /// <summary>
+        /// 获取系统设置信息
+        /// </summary>
+        /// <returns></returns>
         private async Task GetSettings()
         {
             await WebRequest.Execute(() => appService.GetAllSettings(),
@@ -92,6 +93,10 @@ namespace AppFramework.ViewModels
                 });
         }
 
+        /// <summary>
+        /// 获取版本列表
+        /// </summary>
+        /// <returns></returns>
         private async Task GetEditions()
         {
             await WebRequest.Execute(() => lookupAppService.GetEditionsForCombobox(),
