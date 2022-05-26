@@ -119,34 +119,46 @@
                 <TabItem Background="Transparent" Header="{extensions:Translate Security}">
                     <StackPanel Margin="15">
                         <TextBlock FontWeight="Bold" Text="{extensions:Translate PasswordComplexity}" />
-                        <CheckBox Margin="0,10" Content="{extensions:Translate UseDefaultSettings}" />
+                        <CheckBox
+                            Margin="0,10"
+                            Content="{extensions:Translate UseDefaultSettings}"
+                            IsChecked="{Binding Setting.Security.UseDefaultPasswordComplexitySettings}" />
 
                         <StackPanel Margin="15,0">
-                            <CheckBox Content="{extensions:Translate PasswordComplexity_RequireDigit}" />
-                            <CheckBox Margin="0,5" Content="{extensions:Translate PasswordComplexity_RequireLowercase}" />
-                            <CheckBox Content="{extensions:Translate PasswordComplexity_RequireNonAlphanumeric}" />
-                            <CheckBox Margin="0,5" Content="{extensions:Translate PasswordComplexity_RequireUppercase}" />
+                            <CheckBox Content="{extensions:Translate PasswordComplexity_RequireDigit}" IsChecked="{Binding Setting.Security.PasswordComplexity.RequireDigit}" />
+                            <CheckBox
+                                Margin="0,5"
+                                Content="{extensions:Translate PasswordComplexity_RequireLowercase}"
+                                IsChecked="{Binding Setting.Security.PasswordComplexity.RequireLowercase}" />
+                            <CheckBox Content="{extensions:Translate PasswordComplexity_RequireNonAlphanumeric}" IsChecked="{Binding Setting.Security.PasswordComplexity.RequireNonAlphanumeric}" />
+                            <CheckBox
+                                Margin="0,5"
+                                Content="{extensions:Translate PasswordComplexity_RequireUppercase}"
+                                IsChecked="{Binding Setting.Security.PasswordComplexity.RequireUppercase}" />
                             <TextBlock Text="{extensions:Translate PasswordComplexity_RequiredLength}" />
-                            <TextBox />
+                            <TextBox Text="{Binding Setting.Security.PasswordComplexity.RequiredLength}" />
                         </StackPanel>
 
                         <TextBlock
                             Margin="0,10,0,0"
                             FontWeight="Bold"
                             Text="{extensions:Translate UserLockOut}" />
-                        <CheckBox Margin="0,10" Content="{extensions:Translate EnableUserAccountLockingOnFailedLoginAttempts}" />
+                        <CheckBox
+                            Margin="0,10"
+                            Content="{extensions:Translate EnableUserAccountLockingOnFailedLoginAttempts}"
+                            IsChecked="{Binding Setting.Security.PasswordComplexity.UserLockOut.IsEnabled}" />
 
                         <TextBlock Text="{extensions:Translate MaxFailedAccessAttemptsBeforeLockout}" />
-                        <TextBox Margin="0,5" />
+                        <TextBox Margin="0,5" Text="{Binding Setting.Security.PasswordComplexity.UserLockOut.MaxFailedAccessAttemptsBeforeLockout}" />
 
                         <TextBlock Margin="0,5,0,0" Text="{extensions:Translate DefaultAccountLockoutDurationAsSeconds}" />
-                        <TextBox />
+                        <TextBox Text="{Binding Setting.Security.PasswordComplexity.UserLockOut.DefaultAccountLockoutSeconds}" />
 
                         <TextBlock Margin="0,10" Text="{extensions:Translate TwoFactorLogin}" />
-                        <CheckBox Content="{extensions:Translate EnableTwoFactorLogin}" />
+                        <CheckBox Content="{extensions:Translate EnableTwoFactorLogin}" IsChecked="{Binding Setting.Security.PasswordComplexity.TwoFactorLogin.IsEnabled}" />
 
                         <TextBlock Margin="0,10" Text="{extensions:Translate OneConcurrentLoginPerUser}" />
-                        <CheckBox Content="{extensions:Translate OneConcurrentLoginPerUserActive}" />
+                        <CheckBox Content="{extensions:Translate OneConcurrentLoginPerUserActive}" IsChecked="{Binding Setting.Security.AllowOneConcurrentLoginPerUser}" />
                     </StackPanel>
                 </TabItem>
                 <TabItem Background="Transparent" Header="{extensions:Translate EmailSmtp}">

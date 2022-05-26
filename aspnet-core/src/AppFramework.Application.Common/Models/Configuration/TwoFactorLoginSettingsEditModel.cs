@@ -1,17 +1,50 @@
-﻿namespace AppFramework.Common.Models.Configuration
+﻿using Prism.Mvvm;
+
+namespace AppFramework.Common.Models.Configuration
 {
-    public class TwoFactorLoginSettingsEditModel
+    public class TwoFactorLoginSettingsEditModel : BindableBase
     {
-        public bool IsEnabledForApplication { get; set; }
+        private bool isEnabledForApplication;
+        private bool isEnabled;
+        private bool isEmailProviderEnabled;
+        private bool isSmsProviderEnabled;
+        private bool isRememberBrowserEnabled;
+        private bool isGoogleAuthenticatorEnabled;
 
-        public bool IsEnabled { get; set; }
+        public bool IsEnabledForApplication
+        {
+            get { return isEnabledForApplication; }
+            set { isEnabledForApplication = value; RaisePropertyChanged(); }
+        }
 
-        public bool IsEmailProviderEnabled { get; set; }
+        public bool IsEnabled
+        {
+            get { return isEnabled; }
+            set { isEnabled = value; RaisePropertyChanged(); }
+        }
 
-        public bool IsSmsProviderEnabled { get; set; }
+        public bool IsEmailProviderEnabled
+        {
+            get { return isEmailProviderEnabled; }
+            set { isEmailProviderEnabled = value; RaisePropertyChanged(); }
+        }
 
-        public bool IsRememberBrowserEnabled { get; set; }
+        public bool IsSmsProviderEnabled
+        {
+            get { return isSmsProviderEnabled; }
+            set { isSmsProviderEnabled = value; RaisePropertyChanged(); }
+        }
 
-        public bool IsGoogleAuthenticatorEnabled { get; set; }
+        public bool IsRememberBrowserEnabled
+        {
+            get { return isRememberBrowserEnabled; }
+            set { isRememberBrowserEnabled = value; RaisePropertyChanged(); }
+        }
+
+        public bool IsGoogleAuthenticatorEnabled
+        {
+            get { return isGoogleAuthenticatorEnabled; }
+            set { isGoogleAuthenticatorEnabled = value; RaisePropertyChanged(); }
+        }
     }
 }

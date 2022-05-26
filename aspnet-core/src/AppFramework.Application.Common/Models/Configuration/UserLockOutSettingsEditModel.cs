@@ -1,11 +1,29 @@
-﻿namespace AppFramework.Common.Models.Configuration
+﻿using Prism.Mvvm;
+
+namespace AppFramework.Common.Models.Configuration
 {
-    public class UserLockOutSettingsEditModel
+    public class UserLockOutSettingsEditModel : BindableBase
     {
-        public bool IsEnabled { get; set; }
+        private bool isEnabled;
+        private int maxFailedAccessAttemptsBeforeLockout;
+        private int defaultAccountLockoutSeconds;
 
-        public int MaxFailedAccessAttemptsBeforeLockout { get; set; }
+        public bool IsEnabled
+        {
+            get { return isEnabled; }
+            set { isEnabled = value; RaisePropertyChanged(); }
+        }
 
-        public int DefaultAccountLockoutSeconds { get; set; }
+        public int MaxFailedAccessAttemptsBeforeLockout
+        {
+            get { return maxFailedAccessAttemptsBeforeLockout; }
+            set { maxFailedAccessAttemptsBeforeLockout = value; RaisePropertyChanged(); }
+        }
+
+        public int DefaultAccountLockoutSeconds
+        {
+            get { return defaultAccountLockoutSeconds; }
+            set { defaultAccountLockoutSeconds = value; RaisePropertyChanged(); }
+        }
     }
 }
