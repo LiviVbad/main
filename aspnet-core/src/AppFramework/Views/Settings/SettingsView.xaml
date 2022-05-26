@@ -67,34 +67,52 @@
                 </TabItem>
                 <TabItem Background="Transparent" Header="{extensions:Translate UserManagement}">
                     <StackPanel Margin="15">
-                        <CheckBox Content="{extensions:Translate EmailConfirmationRequiredForLogin}" />
-                        <CheckBox Margin="0,5" Content="{extensions:Translate SmsVerificationEnabled}" />
-                        <CheckBox Content="{extensions:Translate UseCaptchaOnLogin}" />
+                        <CheckBox Content="{extensions:Translate EmailConfirmationRequiredForLogin}" IsChecked="{Binding Setting.UserManagement.IsEmailConfirmationRequiredForLogin}" />
+                        <CheckBox
+                            Margin="0,10"
+                            Content="{extensions:Translate SmsVerificationEnabled}"
+                            IsChecked="{Binding Setting.UserManagement.SmsVerificationEnabled}" />
+                        <CheckBox Content="{extensions:Translate UseCaptchaOnLogin}" IsChecked="{Binding Setting.UserManagement.UseCaptchaOnLogin}" />
 
                         <TextBlock
                             Margin="0,10,0,0"
                             FontWeight="Bold"
                             Text="{extensions:Translate CookieConsent}" />
-                        <CheckBox Margin="0,5" Content="{extensions:Translate IsCookieConsentEnabled}" />
+                        <CheckBox
+                            Margin="0,5"
+                            Content="{extensions:Translate IsCookieConsentEnabled}"
+                            IsChecked="{Binding Setting.UserManagement.IsCookieConsentEnabled}" />
 
                         <TextBlock
                             Margin="0,10,0,0"
                             FontWeight="Bold"
                             Text="{extensions:Translate SessionTimeOut}" />
-                        <CheckBox Margin="0,5" Content="{extensions:Translate IsSessionTimeOutEnabled}" />
+                        <CheckBox
+                            Margin="0,5"
+                            Content="{extensions:Translate IsSessionTimeOutEnabled}"
+                            IsChecked="{Binding Setting.UserManagement.SessionTimeOutSettings.IsEnabled}" />
 
                         <TextBlock
                             Margin="0,10,0,0"
                             FontWeight="Bold"
                             Text="{extensions:Translate PersonalInformations}" />
-                        <CheckBox Margin="0,5" Content="{extensions:Translate AllowUsingGravatarProfilePicture}" />
+                        <CheckBox
+                            Margin="0,5"
+                            Content="{extensions:Translate AllowUsingGravatarProfilePicture}"
+                            IsChecked="{Binding Setting.UserManagement.AllowUsingGravatarProfilePicture}" />
 
                         <TextBlock
                             Margin="0,10,0,0"
                             FontWeight="Bold"
                             Text="{extensions:Translate Password}" />
-                        <CheckBox Margin="0,5" Content="{extensions:Translate EnableCheckingLastXPasswordWhenPasswordChangeSettingLabel}" />
-                        <CheckBox Margin="0,5" Content="{extensions:Translate EnablePasswordExpirationSettingLabel}" />
+                        <CheckBox
+                            Margin="0,5"
+                            Content="{extensions:Translate EnableCheckingLastXPasswordWhenPasswordChangeSettingLabel}"
+                            IsChecked="{Binding Setting.UserManagement.UserPasswordSettings.EnableCheckingLastXPasswordWhenPasswordChange}" />
+                        <CheckBox
+                            Margin="0,5"
+                            Content="{extensions:Translate EnablePasswordExpirationSettingLabel}"
+                            IsChecked="{Binding Setting.UserManagement.UserPasswordSettings.EnablePasswordExpiration}" />
 
                     </StackPanel>
                 </TabItem>

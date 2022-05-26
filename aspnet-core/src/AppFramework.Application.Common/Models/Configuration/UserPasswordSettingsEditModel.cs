@@ -1,13 +1,36 @@
-﻿namespace AppFramework.Common.Models.Configuration
+﻿using Prism.Mvvm;
+
+namespace AppFramework.Common.Models.Configuration
 {
-    public class UserPasswordSettingsEditModel
+    public class UserPasswordSettingsEditModel : BindableBase
     {
-        public bool EnableCheckingLastXPasswordWhenPasswordChange { get; set; }
+        private bool enableCheckingLastXPasswordWhenPasswordChange;
+        private int checkingLastXPasswordCount;
+        private bool enablePasswordExpiration;
+        private int passwordExpirationDayCount;
 
-        public int CheckingLastXPasswordCount { get; set; }
+        public bool EnableCheckingLastXPasswordWhenPasswordChange
+        {
+            get { return enableCheckingLastXPasswordWhenPasswordChange; }
+            set { enableCheckingLastXPasswordWhenPasswordChange = value; RaisePropertyChanged(); }
+        }
 
-        public bool EnablePasswordExpiration { get; set; }
+        public int CheckingLastXPasswordCount
+        {
+            get { return checkingLastXPasswordCount; }
+            set { checkingLastXPasswordCount = value; RaisePropertyChanged(); }
+        }
 
-        public int PasswordExpirationDayCount { get; set; }
+        public bool EnablePasswordExpiration
+        {
+            get { return enablePasswordExpiration; }
+            set { enablePasswordExpiration = value; RaisePropertyChanged(); }
+        }
+
+        public int PasswordExpirationDayCount
+        {
+            get { return passwordExpirationDayCount; }
+            set { passwordExpirationDayCount = value; RaisePropertyChanged(); }
+        }
     }
 }
