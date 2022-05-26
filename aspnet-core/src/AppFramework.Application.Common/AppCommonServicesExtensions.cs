@@ -1,4 +1,4 @@
-﻿using Prism.Ioc; 
+﻿using Prism.Ioc;
 
 #region ApplicationServices
 
@@ -30,6 +30,8 @@ using Abp.Configuration.Startup;
 using AppFramework.Authorization.Permissions;
 using AppFrameworkDemo.Authorization.Permissions;
 using AppFramework.Common.Services;
+using AppFramework.Configuration.Host;
+using AppFrameworkDemo.Configuration;
 
 #endregion ApplicationServices
 
@@ -70,10 +72,11 @@ namespace AppFramework.Common
             services.RegisterScoped<IProfileAppService, ProxyProfileAppService>();
             services.RegisterScoped<ISessionAppService, ProxySessionAppService>();
             services.RegisterScoped<IHostDashboardAppService, HostDashboardAppService>();
+            services.RegisterScoped<IHostSettingsAppService, HostSettingsAppService>();
             services.RegisterScoped<IPermissionAppService, PermissionAppService>();
             services.RegisterScoped<IPermissionPorxyService, PermissionPorxyService>();
             services.RegisterScoped<IFeaturesService, FeaturesService>();
-            
+
             services.RegisterSingleton<IMessenger, Messenger>();
             services.RegisterSingleton<IPermissionService, PermissionService>();
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
