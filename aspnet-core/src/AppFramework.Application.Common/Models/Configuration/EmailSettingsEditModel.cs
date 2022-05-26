@@ -1,28 +1,73 @@
 ﻿using Abp.Auditing;
+using Prism.Mvvm;
 
 namespace AppFramework.Common.Models.Configuration
 {
-    public class EmailSettingsEditModel
+    public class EmailSettingsEditModel : BindableBase
     {
-        //No validation is done, since we may don't want to use email system.
+        private string defaultFromAddress;
+        private string defaultFromDisplayName;
+        private string smtpHost;
+        private int smtpPort;
+        private string smtpUserName;
+        private string smtpPassword;
+        private string smtpDomain;
+        private bool smtpEnableSsl;
+        private bool smtpUseDefaultCredentials;
 
-        public string DefaultFromAddress { get; set; }
+        public string DefaultFromAddress
+        {
+            get { return defaultFromAddress; }
+            set { defaultFromAddress = value; RaisePropertyChanged(); }
+        }
 
-        public string DefaultFromDisplayName { get; set; }
+        public string DefaultFromDisplayName
+        {
+            get { return defaultFromDisplayName; }
+            set { defaultFromDisplayName = value; RaisePropertyChanged(); }
+        }
 
-        public string SmtpHost { get; set; }
+        public string SmtpHost
+        {
+            get { return smtpHost; }
+            set { smtpHost = value; RaisePropertyChanged(); }
+        }
 
-        public int SmtpPort { get; set; }
+        public int SmtpPort
+        {
+            get { return smtpPort; }
+            set { smtpPort = value; RaisePropertyChanged(); }
+        }
 
-        public string SmtpUserName { get; set; }
+        public string SmtpUserName
+        {
+            get { return smtpUserName; }
+            set { smtpUserName = value; RaisePropertyChanged(); }
+        }
 
         [DisableAuditing]
-        public string SmtpPassword { get; set; }
+        public string SmtpPassword
+        {
+            get { return smtpPassword; }
+            set { smtpPassword = value; RaisePropertyChanged(); }
+        }
 
-        public string SmtpDomain { get; set; }
+        public string SmtpDomain
+        {
+            get { return smtpDomain; }
+            set { smtpDomain = value; RaisePropertyChanged(); }
+        }
 
-        public bool SmtpEnableSsl { get; set; }
+        public bool SmtpEnableSsl
+        {
+            get { return smtpEnableSsl; }
+            set { smtpEnableSsl = value; RaisePropertyChanged(); }
+        }
 
-        public bool SmtpUseDefaultCredentials { get; set; }
+        public bool SmtpUseDefaultCredentials
+        {
+            get { return smtpUseDefaultCredentials; }
+            set { smtpUseDefaultCredentials = value; RaisePropertyChanged(); }
+        }
     }
 }

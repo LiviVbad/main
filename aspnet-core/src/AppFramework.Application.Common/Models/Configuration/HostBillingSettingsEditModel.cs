@@ -1,9 +1,22 @@
+using Prism.Mvvm;
+
 namespace AppFramework.Common.Models.Configuration
 {
-    public class HostBillingSettingsEditModel
+    public class HostBillingSettingsEditModel : BindableBase
     {
-        public string LegalName { get; set; }
+        private string legalName;
+        private string address;
 
-        public string Address { get; set; }
+        public string LegalName
+        {
+            get { return legalName; }
+            set { legalName = value; RaisePropertyChanged(); }
+        }
+
+        public string Address
+        {
+            get { return address; }
+            set { address = value; RaisePropertyChanged(); }
+        }
     }
 }

@@ -146,16 +146,16 @@
                         <CheckBox
                             Margin="0,10"
                             Content="{extensions:Translate EnableUserAccountLockingOnFailedLoginAttempts}"
-                            IsChecked="{Binding Setting.Security.PasswordComplexity.UserLockOut.IsEnabled}" />
+                            IsChecked="{Binding Setting.Security.UserLockOut.IsEnabled}" />
 
                         <TextBlock Text="{extensions:Translate MaxFailedAccessAttemptsBeforeLockout}" />
-                        <TextBox Margin="0,5" Text="{Binding Setting.Security.PasswordComplexity.UserLockOut.MaxFailedAccessAttemptsBeforeLockout}" />
+                        <TextBox Margin="0,5" Text="{Binding Setting.Security.UserLockOut.MaxFailedAccessAttemptsBeforeLockout}" />
 
                         <TextBlock Margin="0,5,0,0" Text="{extensions:Translate DefaultAccountLockoutDurationAsSeconds}" />
-                        <TextBox Text="{Binding Setting.Security.PasswordComplexity.UserLockOut.DefaultAccountLockoutSeconds}" />
+                        <TextBox Text="{Binding Setting.Security.UserLockOut.DefaultAccountLockoutSeconds}" />
 
                         <TextBlock Margin="0,10" Text="{extensions:Translate TwoFactorLogin}" />
-                        <CheckBox Content="{extensions:Translate EnableTwoFactorLogin}" IsChecked="{Binding Setting.Security.PasswordComplexity.TwoFactorLogin.IsEnabled}" />
+                        <CheckBox Content="{extensions:Translate EnableTwoFactorLogin}" IsChecked="{Binding Setting.Security.TwoFactorLogin.IsEnabled}" />
 
                         <TextBlock Margin="0,10" Text="{extensions:Translate OneConcurrentLoginPerUser}" />
                         <CheckBox Content="{extensions:Translate OneConcurrentLoginPerUserActive}" IsChecked="{Binding Setting.Security.AllowOneConcurrentLoginPerUser}" />
@@ -164,19 +164,22 @@
                 <TabItem Background="Transparent" Header="{extensions:Translate EmailSmtp}">
                     <StackPanel Margin="15">
                         <TextBlock Text="{extensions:Translate DefaultFromAddress}" />
-                        <TextBox Margin="0,5" />
+                        <TextBox Margin="0,5" Text="{Binding Setting.Email.DefaultFromAddress}" />
 
                         <TextBlock Margin="0,10,0,0" Text="{extensions:Translate DefaultFromDisplayName}" />
-                        <TextBox Margin="0,5" />
+                        <TextBox Margin="0,5" Text="{Binding Setting.Email.DefaultFromDisplayName}" />
 
                         <TextBlock Margin="0,10,0,0" Text="{extensions:Translate SmtpHost}" />
-                        <TextBox Margin="0,5" />
+                        <TextBox Margin="0,5" Text="{Binding Setting.Email.SmtpHost}" />
 
                         <TextBlock Margin="0,10,0,0" Text="{extensions:Translate SmtpPort}" />
-                        <TextBox Margin="0,5" />
+                        <TextBox Margin="0,5" Text="{Binding Setting.Email.SmtpPort}" />
 
-                        <CheckBox Margin="0,10,0,5" Content="{extensions:Translate UseSsl}" />
-                        <CheckBox Content="{extensions:Translate UseDefaultCredentials}" />
+                        <CheckBox
+                            Margin="0,10,0,5"
+                            Content="{extensions:Translate UseSsl}"
+                            IsChecked="{Binding Setting.Email.SmtpEnableSsl}" />
+                        <CheckBox Content="{extensions:Translate UseDefaultCredentials}" IsChecked="{Binding Setting.Email.SmtpUseDefaultCredentials}" />
 
                         <TextBlock
                             Margin="0,15,0,5"
@@ -195,16 +198,19 @@
                     <StackPanel Margin="15">
                         <TextBlock FontWeight="Bold" Text="{extensions:Translate InvoiceInformation}" />
                         <TextBlock Margin="0,15,0,10" Text="{extensions:Translate LegalName}" />
-                        <TextBox Padding="5" />
+                        <TextBox Text="{Binding Setting.Billing.LegalName}" />
 
                         <TextBlock Margin="0,15,0,10" Text="{extensions:Translate Address}" />
-                        <TextBox Padding="5" />
+                        <TextBox Text="{Binding Setting.Billing.Address}" />
                     </StackPanel>
                 </TabItem>
                 <TabItem Background="Transparent" Header="{extensions:Translate OtherSettings}">
                     <StackPanel Margin="15">
                         <TextBlock FontWeight="Bold" Text="{extensions:Translate QuickThemeSelection}" />
-                        <CheckBox Margin="0,10,0,0" Content="{extensions:Translate IsQuickThemeSelectEnabled}" />
+                        <CheckBox
+                            Margin="0,10,0,0"
+                            Content="{extensions:Translate IsQuickThemeSelectEnabled}"
+                            IsChecked="{Binding Setting.OtherSettings.IsQuickThemeSelectEnabled}" />
                     </StackPanel>
                 </TabItem>
             </TabControl>

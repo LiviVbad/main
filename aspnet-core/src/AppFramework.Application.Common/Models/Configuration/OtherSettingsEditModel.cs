@@ -1,7 +1,15 @@
-﻿namespace AppFramework.Common.Models.Configuration
+﻿using Prism.Mvvm;
+
+namespace AppFramework.Common.Models.Configuration
 {
-    public class OtherSettingsEditModel
+    public class OtherSettingsEditModel : BindableBase
     {
-        public bool IsQuickThemeSelectEnabled { get; set; }
+        private bool isQuickThemeSelectEnabled;
+
+        public bool IsQuickThemeSelectEnabled
+        {
+            get { return isQuickThemeSelectEnabled; }
+            set { isQuickThemeSelectEnabled = value; RaisePropertyChanged(); }
+        }
     }
 }
