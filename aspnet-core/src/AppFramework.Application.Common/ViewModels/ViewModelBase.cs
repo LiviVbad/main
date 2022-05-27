@@ -1,6 +1,6 @@
 ﻿namespace AppFramework.Common.ViewModels
 {
-    using AppFramework.Common.Core;
+    using AppFramework.Common.Validations;
     using AutoMapper;
     using FluentValidation.Results;
     using Prism.Ioc;

@@ -1,7 +1,7 @@
 ﻿using AppFramework.Common.Models;
 using FluentValidation;
 
-namespace AppFramework.Common.Core.Validations
+namespace AppFramework.Common.Validations
 {
     public class CreateEditionValidator : AbstractValidator<EditionCreateModel>
     {

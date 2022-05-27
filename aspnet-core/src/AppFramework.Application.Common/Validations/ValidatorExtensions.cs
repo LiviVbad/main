@@ -1,10 +1,11 @@
 ﻿using AppFramework.Common.Models;
+using AppFramework.Common.Models.Configuration;
 using AppFramework.MultiTenancy.Dto; 
 using FluentValidation; 
 using FluentValidation.Validators;
 using Prism.Ioc;
 
-namespace AppFramework.Common.Core.Validations
+namespace AppFramework.Common.Validations
 {
     public static class ValidatorExtensions
     {
@@ -20,6 +21,7 @@ namespace AppFramework.Common.Core.Validations
             services.RegisterScoped<IValidator<CreateTenantInput>, CreateTenantValidator>();
             services.RegisterScoped<IValidator<TenantEditDto>, UpdateTenantValidator>();
             services.RegisterScoped<IValidator<EditionCreateModel>, CreateEditionValidator>();
+            services.RegisterScoped<IValidator<HostSettingsEditModel>, SettingsValidator>();
         }
 
         #region 验证器扩展

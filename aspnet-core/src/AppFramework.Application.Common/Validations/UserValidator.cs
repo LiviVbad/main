@@ -3,7 +3,7 @@ using AppFramework.Common.Models;
 using AppFramework.Authorization.Users; 
 using FluentValidation;
 
-namespace AppFramework.Common.Core.Validations
+namespace AppFramework.Common.Validations
 {
     public class UserCreateOrUpdateValidator : AbstractValidator<UserCreateOrUpdateModel>
     {

@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace AppFramework.Common.Core
+namespace AppFramework.Common.Validations
 {
     public interface IGlobalValidator
     {
