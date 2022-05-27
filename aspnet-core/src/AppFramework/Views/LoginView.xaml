@@ -39,17 +39,26 @@
             ViewboxHeight="80"
             ViewboxWidth="80">
             <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.2*" />
+                    <ColumnDefinition Width="1*" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Image Margin="50" Source="/Assets/Images/back.png" />
+                <Border x:Name="HeaderBorder"
+                    Grid.ColumnSpan="2"
+                    Margin="-1,0"
+                    Opacity="0.2"
+                    Style="{StaticResource HeaderBorderStyle}" />
 
                 <Button
                     x:Name="btnClose"
                     Grid.Column="1"
-                    Margin="15"
+                    Grid.ColumnSpan="2"
+                    Margin="5"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Background="Transparent"
@@ -58,7 +67,13 @@
                     FontSize="24"
                     Style="{StaticResource IconButtonStyle}" />
 
+                <Image
+                    Grid.Row="1"
+                    Margin="50"
+                    Source="/Assets/Images/back.png" />
+
                 <DockPanel
+                    Grid.Row="1"
                     Grid.Column="1"
                     Margin="15"
                     HorizontalAlignment="Stretch"
@@ -98,15 +113,7 @@
                         </i:Interaction.Behaviors>
                     </PasswordBox>
 
-                    <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-                        <CheckBox Content="{extensions:Translate RememberMe}" />
-
-                        <TextBlock DockPanel.Dock="Right">
-                            <Hyperlink Foreground="AliceBlue">
-                                <TextBlock FontWeight="Bold" Text="{extensions:Translate ForgotPassword}" />
-                            </Hyperlink>
-                        </TextBlock>
-                    </DockPanel>
+                    <CheckBox Content="{extensions:Translate RememberMe}" DockPanel.Dock="Top" />
 
                     <Button
                         Margin="0,10"
@@ -118,14 +125,26 @@
                         FontSize="14"
                         IsEnabled="{Binding IsLoginEnabled}" />
 
-                    <StackPanel DockPanel.Dock="Top">
-                        <TextBlock Text="{extensions:Translate DontYouHaveAnAccount}" />
-                        <TextBlock Margin="0,5" DockPanel.Dock="Right">
-                            <Hyperlink Foreground="AliceBlue">
-                                <TextBlock Text="{extensions:Translate EmailActivation}" />
-                            </Hyperlink>
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock
+                            DockPanel.Dock="Right"
+                            FontWeight="Bold"
+                            Text="{extensions:Translate ForgotPassword}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding ExecuteCommand}" CommandParameter="ForgotPassword" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                         </TextBlock>
-                    </StackPanel>
+
+                        <TextBlock FontWeight="Bold" Text="{extensions:Translate EmailActivation}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding ExecuteCommand}" CommandParameter="EmailActivation" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBlock>
+                    </DockPanel>
 
                     <ItemsControl Margin="0,20,0,0" ItemsSource="{Binding Languages}">
                         <ItemsControl.ItemsPanel>
@@ -138,12 +157,13 @@
                             <DataTemplate>
                                 <Button
                                     Margin="2"
+                                    Padding="2"
                                     Command="{Binding DataContext.ChangeLanguageCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
                                     CommandParameter="{Binding}"
                                     ToolTip="{Binding DisplayName}">
                                     <Image
-                                        Width="18"
-                                        Height="18"
+                                        Width="20"
+                                        Height="20"
                                         Source="{Binding Icon, Converter={StaticResource imageConverter}}" />
                                 </Button>
                             </DataTemplate>

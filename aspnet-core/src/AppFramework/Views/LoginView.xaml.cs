@@ -11,7 +11,7 @@ namespace AppFramework.Views
         {
             InitializeComponent();
             service.SetCurrentTheme(this);
-            this.MouseMove += (s, e) =>
+            HeaderBorder.MouseMove += (s, e) =>
             {
                 if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
                     this.DragMove();

@@ -1,5 +1,5 @@
 ﻿using AppFramework.Services;
-using Syncfusion.Windows.Shared; 
+using Syncfusion.Windows.Shared;
 
 namespace AppFramework.Views
 {
@@ -13,7 +13,11 @@ namespace AppFramework.Views
             themeService.SetCurrentTheme(this);
             resourceService.UpdateResources(App.Current.Resources, themeService.GetCurrentName());
 
-            BorderHeader.MouseMove += (s, e) =>
+            HeaderBorder.MouseDown += (s, e) =>
+            {
+                if (e.ClickCount == 2) SetWindowState();
+            };
+            HeaderBorder.MouseMove += (s, e) =>
             {
                 if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
                     this.DragMove();
@@ -31,14 +35,19 @@ namespace AppFramework.Views
 
         private void BtnMax_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.WindowState = ((base.WindowState != System.Windows.WindowState.Maximized) ? System.Windows.WindowState.Maximized : System.Windows.WindowState.Normal);
-            SystemButtonsUpdate();
+            SetWindowState();
         }
 
         private void BtnMin_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             WindowState = ((base.WindowState != System.Windows.WindowState.Minimized) ?
                System.Windows.WindowState.Minimized : System.Windows.WindowState.Normal);
+        }
+
+        private void SetWindowState()
+        {
+            this.WindowState = ((base.WindowState != System.Windows.WindowState.Maximized) ? System.Windows.WindowState.Maximized : System.Windows.WindowState.Normal);
+            SystemButtonsUpdate();
         }
     }
 }

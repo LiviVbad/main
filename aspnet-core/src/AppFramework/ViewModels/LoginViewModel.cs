@@ -26,7 +26,7 @@ namespace AppFramework.ViewModels
         private readonly IAccountService accountService;
         private readonly IAccountAppService accountAppService;
         private readonly IApplicationContext applicationContext;
-         
+
         private string tenancyName;
         private bool isLoginEnabled;
         public string CurrentTenancyNameOrDefault { get; set; }
@@ -130,14 +130,14 @@ namespace AppFramework.ViewModels
             IsLoginEnabled = !string.IsNullOrWhiteSpace(UserName) && !string.IsNullOrWhiteSpace(Password);
         }
 
-        public void ForgotPasswordAsync()
+        public async void ForgotPasswordAsync()
         {
-            dialogService.Show(AppViewManager.ForgotPassword);
+            await dialogService.ShowDialogAsync(AppViewManager.ForgotPassword, null, AppCommonConsts.LoginIdentifier);
         }
 
-        public void EmailActivationAsync()
+        public async void EmailActivationAsync()
         {
-            dialogService.Show(AppViewManager.EmailActivation);
+            await dialogService.ShowDialogAsync(AppViewManager.EmailActivation, null, AppCommonConsts.LoginIdentifier);
         }
 
         public async void ChangeLanguage(LanguageInfo languageInfo)
@@ -233,7 +233,7 @@ namespace AppFramework.ViewModels
                           else
                           {
                               CurrentTenancyNameOrDefault = Local.Localize(AppLocalizationKeys.NotSelected);
-                          } 
+                          }
                           await Task.CompletedTask;
                       });
              });
