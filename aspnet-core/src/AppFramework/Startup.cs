@@ -98,6 +98,11 @@ namespace AppFramework
             services.Add<OrganizationsAddView, OrganizationsAddViewModel>(AppViewManager.OrganizationAdd);
             services.Add<SettingsView, SettingsViewModel>(AppViewManager.Setting);
             services.RegisterForNavigation<DemoUiView>(AppViewManager.Demo); //演示组件页
+
+            services.Add<ChangePasswordView, ChangePasswordViewModel>(AppViewManager.ChangePassword);
+            services.Add<EmailActivationView, EmailActivationViewModel>(AppViewManager.EmailActivation);
+            services.Add<ForgotPasswordView, ForgotPasswordViewModel>(AppViewManager.ForgotPassword);
+            services.Add<SendTwoFactorCodeView, SendTwoFactorCodeViewModel>(AppViewManager.SendTwoFactorCode);
         }
 
         private static void Add<TView, TViewModel>(this IContainerRegistry containerRegistry, string name = null)

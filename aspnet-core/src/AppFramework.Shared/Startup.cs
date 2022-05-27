@@ -9,7 +9,7 @@ using AppFramework.Shared.Services.Storage;
 using AppFramework.Shared.Services.Layer;
 using AppFramework.Shared.Services; 
 using AppFramework.Common; 
-using AppFramework.Common.Core.Validations; 
+using AppFramework.Common.Validations; 
 using AppFramework.Common.Services; 
 using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Layer;
