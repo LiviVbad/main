@@ -104,12 +104,13 @@
                                 IsChecked="{Binding Setting.UserManagement.SessionTimeOutSettings.IsEnabled}" />
 
                             <StackPanel Visibility="{Binding Setting.UserManagement.SessionTimeOutSettings.IsEnabled, Converter={StaticResource inverseBoolToVisibility}}">
-                                <CheckBox Content="{extensions:Translate ShowLockScreenWhenTimedOut}" />
+                                <!--  超时时显示锁定屏幕  -->
+                                <CheckBox Content="{extensions:Translate ShowLockScreenWhenTimedOut}" IsChecked="{Binding Setting.UserManagement.SessionTimeOutSettings.ShowLockScreenWhenTimedOut}" />
                                 <TextBlock Margin="0,10,0,5" Text="{extensions:Translate TimeoutSecond}" />
-                                <TextBox />
+                                <TextBox Text="{Binding Setting.UserManagement.SessionTimeOutSettings.TimeOutSecond}" />
 
                                 <TextBlock Margin="0,10,0,5" Text="{extensions:Translate CountdownModalWaitTime}" />
-                                <TextBox />
+                                <TextBox Text="{Binding Setting.UserManagement.SessionTimeOutSettings.ShowTimeOutNotificationSecond}" />
                             </StackPanel>
 
                             <!--  个人信息  -->
@@ -136,7 +137,7 @@
 
                             <StackPanel Visibility="{Binding Setting.UserManagement.UserPasswordSettings.EnableCheckingLastXPasswordWhenPasswordChange, Converter={StaticResource inverseBoolToVisibility}}">
                                 <TextBlock Text="{extensions:Translate CheckingLastXPasswordCountSettingLabel}" />
-                                <TextBox />
+                                <TextBox Text="{Binding Setting.UserManagement.UserPasswordSettings.CheckingLastXPasswordCount}" />
                             </StackPanel>
 
                             <!--  启用密码过期  -->
@@ -147,7 +148,7 @@
 
                             <StackPanel Visibility="{Binding Setting.UserManagement.UserPasswordSettings.EnablePasswordExpiration, Converter={StaticResource inverseBoolToVisibility}}">
                                 <TextBlock Text="{extensions:Translate PasswordExpirationDayCountSettingLabel}" />
-                                <TextBox />
+                                <TextBox Text="{Binding Setting.UserManagement.UserPasswordSettings.PasswordExpirationDayCount}" />
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>
@@ -209,10 +210,22 @@
                             <CheckBox Content="{extensions:Translate EnableTwoFactorLogin}" IsChecked="{Binding Setting.Security.TwoFactorLogin.IsEnabled}" />
 
                             <StackPanel Visibility="{Binding Setting.Security.TwoFactorLogin.IsEnabled, Converter={StaticResource inverseBoolToVisibility}}">
-                                <CheckBox Margin="0,4" Content="{extensions:Translate IsEmailVerificationEnabled}" />
-                                <CheckBox Margin="0,4" Content="{extensions:Translate IsSmsVerificationEnabled}" />
-                                <CheckBox Margin="0,4" Content="{extensions:Translate IsGoogleAuthenticatorEnabled}" />
-                                <CheckBox Margin="0,4" Content="{extensions:Translate AllowToRememberBrowserForTwoFactorLogin}" />
+                                <CheckBox
+                                    Margin="0,4"
+                                    Content="{extensions:Translate IsEmailVerificationEnabled}"
+                                    IsChecked="{Binding Setting.Security.TwoFactorLogin.IsEmailProviderEnabled}" />
+                                <CheckBox
+                                    Margin="0,4"
+                                    Content="{extensions:Translate IsSmsVerificationEnabled}"
+                                    IsChecked="{Binding Setting.Security.TwoFactorLogin.IsSmsProviderEnabled}" />
+                                <CheckBox
+                                    Margin="0,4"
+                                    Content="{extensions:Translate IsGoogleAuthenticatorEnabled}"
+                                    IsChecked="{Binding Setting.Security.TwoFactorLogin.IsGoogleAuthenticatorEnabled}" />
+                                <CheckBox
+                                    Margin="0,4"
+                                    Content="{extensions:Translate AllowToRememberBrowserForTwoFactorLogin}"
+                                    IsChecked="{Binding Setting.Security.TwoFactorLogin.IsRememberBrowserEnabled}" />
                             </StackPanel>
                             <!--  每个用户只能同时登录一次  -->
                             <TextBlock Margin="0,10" Text="{extensions:Translate OneConcurrentLoginPerUser}" />
@@ -246,15 +259,15 @@
                         <!--  默认身份验证  -->
                         <CheckBox Content="{extensions:Translate UseDefaultCredentials}" IsChecked="{Binding Setting.Email.SmtpUseDefaultCredentials}" />
 
-                        <StackPanel Visibility="{Binding Setting.Email.SmtpUseDefaultCredentials, Converter={StaticResource inverseBoolToVisibility}}">
+                        <StackPanel Visibility="{Binding Setting.Email.SmtpUseDefaultCredentials, Converter={StaticResource boolToVisibility}}">
                             <TextBlock Text="{extensions:Translate DomainName}" />
-                            <TextBox />
+                            <TextBox Text="{Binding Setting.Email.SmtpDomain}" />
 
                             <TextBlock Margin="0,10,0,0" Text="{extensions:Translate UserName}" />
-                            <TextBox />
+                            <TextBox Text="{Binding Setting.Email.SmtpUserName}" />
 
                             <TextBlock Margin="0,10,0,0" Text="{extensions:Translate Password}" />
-                            <TextBox />
+                            <TextBox Text="{Binding Setting.Email.SmtpPassword}" />
                         </StackPanel>
 
                         <!--  测试发送(测试邮件设置)  -->
