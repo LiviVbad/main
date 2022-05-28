@@ -134,7 +134,6 @@
                                     <Grid>
                                         <Border
                                             x:Name="htborder"
-                                            Margin="5,10"
                                             HorizontalAlignment="Left"
                                             Panel.ZIndex="1"
                                             Background="{DynamicResource PrimaryBackground}"
@@ -158,6 +157,18 @@
                                             <Setter Property="Foreground" Value="{DynamicResource PrimaryBackground}" />
                                             <Setter TargetName="hdborder" Property="Opacity" Value="1" />
                                             <Setter TargetName="htborder" Property="Width" Value="3" />
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ThicknessAnimation
+                                                            Storyboard.TargetName="htborder"
+                                                            Storyboard.TargetProperty="Margin"
+                                                            From="5"
+                                                            To="5,10"
+                                                            Duration="0:0:.2" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Foreground" Value="{DynamicResource PrimaryBackground}" />

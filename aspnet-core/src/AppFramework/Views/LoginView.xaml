@@ -48,10 +48,11 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Border x:Name="HeaderBorder"
+                <Border
+                    x:Name="HeaderBorder"
                     Grid.ColumnSpan="2"
                     Margin="-1,0"
-                    Opacity="0.2"
+                    Opacity="0"
                     Style="{StaticResource HeaderBorderStyle}" />
 
                 <Button

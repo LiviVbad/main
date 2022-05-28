@@ -88,12 +88,12 @@
             IsBusy = true;
             try
             {
-                _ = DialogHost.Show(new BusyView(), AppCommonConsts.RootIdentifier);
+                //_ = DialogHost.Show(new BusyView(), AppCommonConsts.RootIdentifier);
                 await func();
             }
             finally
             {
-                DialogHost.Close(AppCommonConsts.RootIdentifier);
+                //DialogHost.Close(AppCommonConsts.RootIdentifier);
                 IsBusy = false;
             }
         }
