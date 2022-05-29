@@ -79,7 +79,7 @@
                     <StackPanel
                         Margin="0,5"
                         Orientation="Vertical"
-                        Visibility="{Binding IsSetRandomPassword, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+                        Visibility="{Binding IsSetRandomPassword, Converter={StaticResource boolToVisibility}}">
 
                         <!--  管理员密码  -->
                         <TextBlock Margin="0,5" Text="{extensions:Translate AdminPassword}" />
@@ -92,12 +92,13 @@
                 </StackPanel>
 
                 <TextBlock Margin="0,5" Text="{extensions:Translate Edition}" />
-                <!--<DatePicker
-                Title="{extensions:Translate Edition}"
-                ItemDisplayBinding="{Binding DisplayText}"
-                ItemsSource="{Binding Editions}"
-                SelectedItem="{Binding SelectedEdition}" />-->
-
+                <ComboBox ItemsSource="{Binding Editions}" SelectedItem="{Binding SelectedEdition}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DisplayText}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <StackPanel Orientation="Vertical" Visibility="{Binding IsSubscriptionFieldVisible, Converter={StaticResource InverseBoolToVisibilityConverter}}">
 
                     <!--  无限时间订阅  -->

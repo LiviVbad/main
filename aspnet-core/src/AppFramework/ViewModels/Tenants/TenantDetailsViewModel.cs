@@ -18,6 +18,16 @@ namespace AppFramework.ViewModels
         private readonly IPermissionService permissionService;
         private readonly ICommonLookupAppService commonLookupAppService;
 
+        public TenantDetailsViewModel(
+           ITenantAppService tenantAppService,
+           ICommonLookupAppService commonLookupAppService,
+           IPermissionService permissionService)
+        {
+            this.tenantAppService = tenantAppService;
+            this.permissionService = permissionService;
+            this.commonLookupAppService = commonLookupAppService;
+        }
+
         #region 字段/属性
 
         private const string NotAssignedValue = "0";
@@ -184,37 +194,6 @@ namespace AppFramework.ViewModels
 
         #endregion
 
-        public TenantDetailsViewModel(
-            ITenantAppService tenantAppService,
-            ICommonLookupAppService commonLookupAppService,
-            IPermissionService permissionService)
-        {
-            this.tenantAppService = tenantAppService;
-            this.permissionService = permissionService;
-            this.commonLookupAppService = commonLookupAppService;
-        }
-
-        public override async void OnDialogOpened(IDialogParameters parameters)
-        {
-            await SetBusyAsync(async () =>
-            {
-                if (parameters.ContainsKey("Value"))
-                {
-                    var tenant = parameters.GetValue<TenantListDto>("Value");
-                    Model = Map<TenantListModel>(tenant);
-                    InitializeEditTenant();
-                }
-                else
-                    InitializeNewTenant();
-
-                await PopulateEditionsCombobox(() =>
-                {
-                    if (Model != null)
-                        SetSelectedEdition(Model.EditionId);
-                });
-            });
-        }
-
         #region 内部方法
 
         private void InitializeNewTenant()
@@ -269,7 +248,7 @@ namespace AppFramework.ViewModels
             if (IsUnlimitedTimeSubscription)
                 return null;
 
-            return subscriptionEndDateUtc.Value.AddDays(1).AddTicks(-1);
+            return subscriptionEndDateUtc?.Date.AddDays(1).AddTicks(-1);
         }
 
         private async Task PopulateEditionsCombobox(Action editionsPopulated)
@@ -305,5 +284,75 @@ namespace AppFramework.ViewModels
         }
 
         #endregion 内部方法
+
+        protected override async void Save()
+        {
+            if (IsNewTenant)
+            {
+                var input = Map<CreateTenantInput>(Model);
+                input.AdminPassword = AdminPassword;
+                NormalizeTenantCreateInput(input);
+                if (!Verify(input).IsValid) return;
+
+                await CreateTenantAsync(input);
+            }
+            else
+            {
+                var input = Map<TenantEditDto>(Model);
+                NormalizeTenantUpdateInput(input);
+                if (!Verify(input).IsValid) return;
+
+                await UpdateTenantAsync(input);
+            }
+        }
+
+        private async Task UpdateTenantAsync(TenantEditDto input)
+        {
+            await SetBusyAsync(async () =>
+            {
+                await WebRequest.Execute(() =>
+                    tenantAppService.UpdateTenant(input),
+                    async () =>
+                    {
+                        base.Save();
+                        await Task.CompletedTask;
+                    });
+            });
+        }
+
+        private async Task CreateTenantAsync(CreateTenantInput input)
+        {
+            await SetBusyAsync(async () =>
+            {
+                await WebRequest.Execute(() =>
+                    tenantAppService.CreateTenant(input),
+                    async () =>
+                    {
+                        base.Save();
+                        await Task.CompletedTask;
+                    });
+            });
+        }
+
+        public override async void OnDialogOpened(IDialogParameters parameters)
+        {
+            await SetBusyAsync(async () =>
+            {
+                if (parameters.ContainsKey("Value"))
+                {
+                    var tenant = parameters.GetValue<TenantListDto>("Value");
+                    Model = Map<TenantListModel>(tenant);
+                    InitializeEditTenant();
+                }
+                else
+                    InitializeNewTenant();
+
+                await PopulateEditionsCombobox(() =>
+                {
+                    if (Model != null)
+                        SetSelectedEdition(Model.EditionId);
+                });
+            });
+        }
     }
 }
