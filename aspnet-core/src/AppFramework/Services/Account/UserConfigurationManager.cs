@@ -33,6 +33,8 @@ namespace AppFramework.Services.Account
         public static async Task GetAsync(Func<Task> successCallback = null)
         {
             var userConfigurationService = ContainerLocator.Container.Resolve<UserConfigurationService>();
+            userConfigurationService.OnAccessTokenRefresh = App.OnAccessTokenRefresh;
+            userConfigurationService.OnSessionTimeOut = App.OnSessionTimeout;
 
             await WebRequest.Execute(
                 async () => await userConfigurationService.GetAsync(AccessTokenManager.IsUserLoggedIn),

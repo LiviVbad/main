@@ -1,76 +1,72 @@
-﻿using AppFramework.Common.Services.Storage;
-using System.Threading.Tasks;
+﻿using Abp.Runtime.Security;
+using AppFramework.Common.Services.Storage;
+using Newtonsoft.Json;
+using System;
 
 namespace AppFramework.Services
 {
     public class DataStorageService : IDataStorageService
     {
-        private static void SetValue(string key, object value)
+        private IniFile iniFile;
+        private string Section = "App";
+        private string appInitPath = AppDomain.CurrentDomain.BaseDirectory + "user.ini";
+
+        public DataStorageService()
         {
-            //if (value == null)
-            //    CrossSettings.Current.AddOrUpdateValue(key, null);
-            //else
-            //    CrossSettings.Current.AddOrUpdateValue(key, value.ToString());
+            iniFile = new IniFile(appInitPath);
         }
 
-        private static void SetJsonValue(string key, object value)
+        private void InternalSetValue(string key, object value)
         {
-            //CrossSettings.Current.AddOrUpdateValue(key, JsonConvert.SerializeObject(value));
+            if (value == null)
+                iniFile.SetValue(Section, key, "");
+            else
+                iniFile.SetValue(Section, key, value.ToString());
+        }
+
+        private void SetJsonValue(string key, object value)
+        {
+            iniFile.SetValue(Section, key, JsonConvert.SerializeObject(value));
         }
 
         private T GetPrimitive<T>(string key, T defaultValue = default(T))
         {
-            if (!ContainsKey(key)) return defaultValue;
-
-            //return (T)Convert.ChangeType(CrossSettings.Current.GetValueOrDefault(key, null), typeof(T));
-
-            return defaultValue;
+            return (T)Convert.ChangeType(iniFile.GetValue(key, null), typeof(T));
         }
 
         private T RetrieveObject<T>(string key, T defaultValue = default(T))
         {
-            //return !ContainsKey(key) ? defaultValue : JsonConvert.DeserializeObject<T>(Convert.ToString(CrossSettings.Current.GetValueOrDefault(key, "")));
-            return defaultValue;
-        }
-
-        public bool ContainsKey(string key)
-        {
-            //CrossSettings.Current.Contains(key);
-            return false;
+            return JsonConvert.DeserializeObject<T>(Convert.ToString(iniFile.GetValue(Section, key)));
         }
 
         public T GetValue<T>(string key, T defaultValue = default(T), bool shouldDecrpyt = false)
         {
-            //var value = TypeHelperExtended.IsPrimitive(typeof(T), false) ?
-            //    GetPrimitive(key, defaultValue) :
-            //    RetrieveObject(key, defaultValue);
+            var value = TypeHelperExtended.IsPrimitive(typeof(T), false) ?
+                GetPrimitive(key, defaultValue) :
+                RetrieveObject(key, defaultValue);
 
-            //if (!shouldDecrpyt) return value;
+            if (!shouldDecrpyt) return value;
 
-            //var decrypted = SimpleStringCipher.Instance.Decrypt(Convert.ToString(value));
-            //return (T)Convert.ChangeType(decrypted, typeof(T));
-
-            return defaultValue;
+            var decrypted = SimpleStringCipher.Instance.Decrypt(Convert.ToString(value));
+            return (T)Convert.ChangeType(decrypted, typeof(T));
         }
 
-        public async Task SetValueAsync<T>(string key, T value, bool shouldEncrypt = false)
+        public void SetValue<T>(string key, T value, bool shouldEncrypt = false)
         {
-            //if (TypeHelperExtended.IsPrimitive(typeof(T), false))
-            //{
-            //    if (shouldEncrypt)
-            //        SetValue(key, SimpleStringCipher.Instance.Encrypt(Convert.ToString(value)));
-            //    else
-            //        SetValue(key, value);
-            //}
-            //else
-            //    SetJsonValue(key, value);
-
-            await Task.CompletedTask;
+            if (TypeHelperExtended.IsPrimitive(typeof(T), false))
+            {
+                if (shouldEncrypt)
+                    InternalSetValue(key, SimpleStringCipher.Instance.Encrypt(Convert.ToString(value)));
+                else
+                    InternalSetValue(key, value);
+            }
+            else
+                SetJsonValue(key, value);
         }
 
-        public void RemoveIfExists(string key)
+        public void Remove(string key)
         {
-            //if (ContainsKey(key)) CrossSettings.Current.Remove(key);
+            iniFile.RemoveValue(Section, key);
         }
     }
 }

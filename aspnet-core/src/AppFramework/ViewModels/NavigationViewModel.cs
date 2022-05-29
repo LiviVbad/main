@@ -92,7 +92,7 @@
                 await func();
             }
             finally
-            {
+            { 
                 //DialogHost.Close(AppCommonConsts.RootIdentifier);
                 IsBusy = false;
             }

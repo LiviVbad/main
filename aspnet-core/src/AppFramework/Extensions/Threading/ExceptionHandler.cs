@@ -35,9 +35,9 @@ namespace AppFramework.Common
                 return true;
              
             if (string.IsNullOrEmpty(ajaxResponse.Error.Details))
-                dialog.Show(Local.Localize("Error"), ajaxResponse.Error.GetConsolidatedMessage());
+                dialog.ShowMessage(Local.Localize("Error"), ajaxResponse.Error.GetConsolidatedMessage());
             else
-                dialog.Show(ajaxResponse.Error.GetConsolidatedMessage(), ajaxResponse.Error.Details);
+                dialog.ShowMessage(ajaxResponse.Error.GetConsolidatedMessage(), ajaxResponse.Error.Details);
 
             return true;
         }

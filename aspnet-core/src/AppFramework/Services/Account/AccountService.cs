@@ -14,21 +14,21 @@ namespace AppFramework.Services.Account
 {
     public class AccountService : BindableBase, IAccountService
     {
+        private readonly IHostDialogService dialog;
         public readonly IAccountStorageService dataStorageService;
-        private readonly IDialogService dialogService;
         public readonly IApplicationContext applicationContext;
         public readonly ISessionAppService sessionAppService;
         public readonly IAccessTokenManager accessTokenManager;
 
         public AccountService(
-            IDialogService dialogService,
+            IHostDialogService dialog,
             IApplicationContext applicationContext,
             ISessionAppService sessionAppService,
             IAccessTokenManager accessTokenManager,
             IAccountStorageService dataStorageService,
             AbpAuthenticateModel authenticateModel)
         {
-            this.dialogService = dialogService;
+            this.dialog = dialog;
             this.applicationContext = applicationContext;
             this.sessionAppService = sessionAppService;
             this.accessTokenManager = accessTokenManager;
@@ -42,8 +42,7 @@ namespace AppFramework.Services.Account
         public async Task<bool> LoginUserAsync()
         {
             bool loginResult = false;
-            await WebRequest.Execute(
-                accessTokenManager.LoginAsync,
+            await WebRequest.Execute(accessTokenManager.LoginAsync,
                 async result =>
                 {
                     loginResult = await AuthenticateSucceed(result);
@@ -80,20 +79,21 @@ namespace AppFramework.Services.Account
 
             if (AuthenticateResultModel.ShouldResetPassword)
             {
-                dialogService.Show("", Local.Localize("ChangePasswordToLogin")); 
+                dialog.ShowMessage("", Local.Localize("ChangePasswordToLogin"));
                 return false;
             }
 
             if (AuthenticateResultModel.RequiresTwoFactorVerification)
             {
-                //await _navigationService.SetMainPage<SendTwoFactorCodeView>(AuthenticateResultModel);
-                return false;
+                DialogParameters param = new DialogParameters();
+                param.Add("Value", AuthenticateResultModel);
+                await dialog.ShowDialogAsync(AppViewManager.SendTwoFactorCode, param, AppCommonConsts.LoginIdentifier);
             }
 
-            //if (!AbpAuthenticateModel.IsTwoFactorVerification)
-            //{
-            //    await _dataStorageService.StoreAuthenticateResultAsync(AuthenticateResultModel);
-            //}
+            if (!AuthenticateModel.IsTwoFactorVerification)
+            {
+                await dataStorageService.StoreAuthenticateResultAsync(AuthenticateResultModel);
+            }
 
             AuthenticateModel.Password = null;
 

@@ -14,6 +14,7 @@ using Prism.Services.Dialogs;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
+using AppFramework.Common.Services.Storage;
 
 namespace AppFramework
 {
@@ -76,12 +77,14 @@ namespace AppFramework
 
         public static async Task OnSessionTimeout()
         {
-            await accountService.LogoutAsync();
+            await ContainerLocator.Container.Resolve<IAccountService>()
+                .LogoutAsync();
         }
 
         public static async Task OnAccessTokenRefresh(string newAccessToken)
         {
-            await Task.CompletedTask;
+            await ContainerLocator.Container.Resolve<IAccountStorageService>()
+                .StoreAccessTokenAsync(newAccessToken);
         }
     }
 }

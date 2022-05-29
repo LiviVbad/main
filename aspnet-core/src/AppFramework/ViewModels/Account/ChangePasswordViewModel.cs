@@ -83,7 +83,7 @@ namespace AppFramework.ViewModels
         {
             if (NewPassword != NewPasswordRepeat)
             {
-                dialog.Show("", Local.Localize(AppLocalizationKeys.PasswordsDontMatch));
+                dialog.ShowMessage("", Local.Localize(AppLocalizationKeys.PasswordsDontMatch));
             }
             else
             {
@@ -104,7 +104,7 @@ namespace AppFramework.ViewModels
 
         private async Task PasswordChangedAsync()
         {
-            dialog.Show(Local.Localize(AppLocalizationKeys.YourPasswordHasChangedSuccessfully),
+            dialog.ShowMessage(Local.Localize(AppLocalizationKeys.YourPasswordHasChangedSuccessfully),
                 Local.Localize(AppLocalizationKeys.ChangePassword));
 
             await Task.CompletedTask;

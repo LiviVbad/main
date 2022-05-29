@@ -48,7 +48,7 @@ namespace AppFramework.Shared.Services.Storage
             return (T)Convert.ChangeType(decrypted, typeof(T));
         }
 
-        public async Task SetValueAsync<T>(string key, T value, bool shouldEncrypt = false)
+        public void SetValue<T>(string key, T value, bool shouldEncrypt = false)
         {
             if (TypeHelperExtended.IsPrimitive(typeof(T), false))
             {
@@ -59,11 +59,9 @@ namespace AppFramework.Shared.Services.Storage
             }
             else
                 SetJsonValue(key, value);
-
-            await Task.CompletedTask;
         }
 
-        public void RemoveIfExists(string key)
+        public void Remove(string key)
         {
             if (ContainsKey(key)) CrossSettings.Current.Remove(key);
         }

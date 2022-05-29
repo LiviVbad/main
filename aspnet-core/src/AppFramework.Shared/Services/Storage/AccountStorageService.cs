@@ -1,6 +1,6 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.ApiClient.Models;
-using AppFramework.Sessions.Dto; 
+using AppFramework.Sessions.Dto;
 using AutoMapper;
 using System.Threading.Tasks;
 using AppFramework.Common.Services.Storage;
@@ -27,7 +27,9 @@ namespace AppFramework.Shared.Services.Storage
 
             authenticateResult.AccessToken = newAccessToken;
 
-            await _dataStorageManager.SetValueAsync(DataStorageKey.CurrentSession_TokenInfo, authenticateResult);
+            _dataStorageManager.SetValue(DataStorageKey.CurrentSession_TokenInfo, authenticateResult);
+
+            await Task.CompletedTask;
         }
 
         public AbpAuthenticateResultModel RetrieveAuthenticateResult()
@@ -39,10 +41,12 @@ namespace AppFramework.Shared.Services.Storage
 
         public async Task StoreAuthenticateResultAsync(AbpAuthenticateResultModel authenticateResultModel)
         {
-            await _dataStorageManager.SetValueAsync(
-                DataStorageKey.CurrentSession_TokenInfo,
-                mapper.Map<AuthenticateResultPersistanceModel>(authenticateResultModel)
-            );
+            _dataStorageManager.SetValue(
+               DataStorageKey.CurrentSession_TokenInfo,
+               mapper.Map<AuthenticateResultPersistanceModel>(authenticateResultModel)
+           );
+
+            await Task.CompletedTask;
         }
 
         public TenantInformation RetrieveTenantInfo()
@@ -56,10 +60,12 @@ namespace AppFramework.Shared.Services.Storage
 
         public async Task StoreTenantInfoAsync(TenantInformation tenantInfo)
         {
-            await _dataStorageManager.SetValueAsync(
+            _dataStorageManager.SetValue(
                 DataStorageKey.CurrentSession_TenantInfo,
                 mapper.Map<TenantInformationPersistanceModel>(tenantInfo)
             );
+
+            await Task.CompletedTask;
         }
 
         public GetCurrentLoginInformationsOutput RetrieveLoginInfo()
@@ -76,15 +82,17 @@ namespace AppFramework.Shared.Services.Storage
             var value = mapper
                 .Map<CurrentLoginInformationPersistanceModel>(loginInfo);
 
-            await _dataStorageManager.SetValueAsync(
-                DataStorageKey.CurrentSession_LoginInfo, value);
+            _dataStorageManager.SetValue(
+               DataStorageKey.CurrentSession_LoginInfo, value);
+
+            await Task.CompletedTask;
         }
 
         public void ClearSessionPersistance()
         {
-            _dataStorageManager.RemoveIfExists(DataStorageKey.CurrentSession_TokenInfo);
-            _dataStorageManager.RemoveIfExists(DataStorageKey.CurrentSession_TenantInfo);
-            _dataStorageManager.RemoveIfExists(DataStorageKey.CurrentSession_LoginInfo);
+            _dataStorageManager.Remove(DataStorageKey.CurrentSession_TokenInfo);
+            _dataStorageManager.Remove(DataStorageKey.CurrentSession_TenantInfo);
+            _dataStorageManager.Remove(DataStorageKey.CurrentSession_LoginInfo);
         }
     }
 }

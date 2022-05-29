@@ -16,7 +16,7 @@ namespace AppFramework
         /// <param name="dialogService"></param>
         /// <param name="title">标题</param>
         /// <param name="message">提示消息</param>
-        public static void Show(this IDialogService dialogService, string title, string message)
+        public static void ShowMessage(this IDialogService dialogService, string title, string message)
         {
             DialogParameters parameters = new DialogParameters();
             parameters.Add("Title", title);

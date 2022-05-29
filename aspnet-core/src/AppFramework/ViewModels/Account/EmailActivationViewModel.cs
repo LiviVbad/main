@@ -69,7 +69,7 @@ namespace AppFramework.ViewModels
 
         private async Task PasswordResetMailSentAsync()
         {  
-            dialog.Show(Local.Localize(AppLocalizationKeys.ActivationMailSentMessage),
+            dialog.ShowMessage(Local.Localize(AppLocalizationKeys.ActivationMailSentMessage),
                 Local.Localize(AppLocalizationKeys.MailSent));
 
             await Task.CompletedTask;
