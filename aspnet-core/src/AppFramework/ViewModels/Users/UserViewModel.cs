@@ -15,6 +15,7 @@ using AppFramework.Authorization.Permissions;
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
 using System.Collections.ObjectModel;
+using System;
 
 namespace AppFramework.ViewModels
 {
@@ -51,6 +52,7 @@ namespace AppFramework.ViewModels
             AdvancedCommand = new DelegateCommand(() => { IsAdvancedFilter = !IsAdvancedFilter; });
             SelectedCommand = new DelegateCommand(SelectedPermission);
             SearchCommand = new DelegateCommand(SearchUser);
+            ResetCommand = new DelegateCommand(Reset);
             UpdateTitle();
 
             dataPager.OnPageIndexChangedEventhandler += UsersOnPageIndexChangedEventhandler;
@@ -131,6 +133,7 @@ namespace AppFramework.ViewModels
         public DelegateCommand AdvancedCommand { get; private set; }
         public DelegateCommand SelectedCommand { get; private set; }
         public DelegateCommand SearchCommand { get; private set; }
+        public DelegateCommand ResetCommand { get; private set; }
 
         /// <summary>
         /// 仅锁定用户
@@ -209,8 +212,13 @@ namespace AppFramework.ViewModels
             set
             {
                 selectedRole = value;
+
                 //设置角色筛选条件
-                input.Role = value.Id;
+                if (value != null)
+                    input.Role = value.Id;
+                else
+                    input.Role = null;
+
                 RaisePropertyChanged();
             }
         }
@@ -225,6 +233,18 @@ namespace AppFramework.ViewModels
         }
 
         #endregion
+
+        /// <summary>
+        /// 重置筛选条件
+        /// </summary>
+        private void Reset()
+        {
+            SelectedRole = null;
+            FilterText = string.Empty;
+
+            input.Permissions.Clear();
+            UpdateTitle(0);
+        }
 
         /// <summary>
         /// 更新选中的权限筛选文本

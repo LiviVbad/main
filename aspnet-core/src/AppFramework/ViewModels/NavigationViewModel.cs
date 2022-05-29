@@ -75,27 +75,6 @@
         /// 异步刷新方法,当页面导航到达时触发该方法
         /// </summary>
         /// <returns></returns>
-        public virtual async Task RefreshAsync() => await Task.CompletedTask;
-
-        /// <summary>
-        /// 异步指定方法,执行耗时任务提示等待窗口
-        /// </summary>
-        /// <param name="func"></param>
-        /// <param name="loadingMessage"></param>
-        /// <returns></returns>
-        public override async Task SetBusyAsync(Func<Task> func, string loadingMessage = "")
-        {
-            IsBusy = true;
-            try
-            {
-                //_ = DialogHost.Show(new BusyView(), AppCommonConsts.RootIdentifier);
-                await func();
-            }
-            finally
-            { 
-                //DialogHost.Close(AppCommonConsts.RootIdentifier);
-                IsBusy = false;
-            }
-        }
+        public virtual async Task RefreshAsync() => await Task.CompletedTask; 
     }
 }

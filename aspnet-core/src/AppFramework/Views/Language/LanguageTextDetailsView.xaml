@@ -41,7 +41,7 @@
                     Source="{Binding TargetLanguage.Icon, Converter={StaticResource imageConvert}}" />
                 <TextBlock Margin="5,0" Text="{Binding BaseLanguage.DisplayName}" />
             </StackPanel>
-            <TextBox IsReadOnly="True" Text="{Binding BaseValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox IsEnabled="False" Text="{Binding BaseValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <StackPanel Margin="0,20,0,10" Orientation="Horizontal">
                 <Image
