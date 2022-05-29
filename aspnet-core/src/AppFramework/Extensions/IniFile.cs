@@ -18,7 +18,7 @@ namespace AppFramework
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
         public struct STRINGBUFFER
         {
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4096)]
             public string szText;
         }
 
@@ -36,7 +36,7 @@ namespace AppFramework
         public string GetValue(string Section, string Key)
         {
             STRINGBUFFER RetVal;
-            GetPrivateProfileString(Section, Key, null, out RetVal, 255, this.iniPath);
+            GetPrivateProfileString(Section, Key, null, out RetVal, 4096, this.iniPath);
             string temp = RetVal.szText;
             return temp.Trim();
         }

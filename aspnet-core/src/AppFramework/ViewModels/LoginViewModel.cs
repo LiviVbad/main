@@ -4,6 +4,7 @@ using AppFramework.Authorization.Accounts;
 using AppFramework.Authorization.Accounts.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Services.Account;
+using AppFramework.Common.Services.Storage;
 using AppFramework.Services;
 using AppFramework.Services.Account;
 using Prism.Commands;
@@ -26,6 +27,8 @@ namespace AppFramework.ViewModels
         private readonly IAccountService accountService;
         private readonly IAccountAppService accountAppService;
         private readonly IApplicationContext applicationContext;
+        private readonly IAccessTokenManager accessTokenManager;
+        private readonly IAccountStorageService dataStorageService;
 
         private string tenancyName;
         private bool isLoginEnabled;
@@ -95,21 +98,22 @@ namespace AppFramework.ViewModels
 
         #endregion
 
-        public LoginViewModel(
-            IHostDialogService dialogService,
+        public LoginViewModel(IHostDialogService dialogService,
             IAccountService accountService,
             IAccountAppService accountAppService,
-            IApplicationContext applicationContext)
+            IApplicationContext applicationContext,
+            IAccessTokenManager accessTokenManager,
+            IAccountStorageService dataStorageService)
         {
             this.dialogService = dialogService;
             this.accountService = accountService;
             this.accountAppService = accountAppService;
             this.applicationContext = applicationContext;
+            this.accessTokenManager = accessTokenManager;
+            this.dataStorageService = dataStorageService;
 
             ExecuteCommand = new DelegateCommand<string>(Execute);
             ChangeLanguageCommand = new DelegateCommand<LanguageInfo>(ChangeLanguage);
-            UserName = "admin";
-            Password = "123qwe";
         }
 
         private async void Execute(string arg)
@@ -212,31 +216,68 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
              {
-                 await WebRequest.Execute(async () => await UserConfigurationManager.GetIfNeedsAsync(),
-                      async () =>
-                      {
-                          var configuration = applicationContext.Configuration;
-                          if (configuration != null)
-                          {
-                              Languages = new ObservableCollection<LanguageInfo>(configuration.Localization.Languages);
+                 //加载本地的缓存信息
+                 accessTokenManager.AuthenticateResult = dataStorageService.RetrieveAuthenticateResult();
+                 applicationContext.Load(dataStorageService.RetrieveTenantInfo(), dataStorageService.RetrieveLoginInfo());
 
-                              var currentLanguage = Languages.FirstOrDefault(l => l.Name == applicationContext.CurrentLanguage.Name);
-                              if (currentLanguage != null)
-                                  SelectedLanguage = currentLanguage;
+                 //加载系统资源
+                 await UserConfigurationManager.GetIfNeedsAsync();
 
-                              if (applicationContext.CurrentTenant != null)
-                              {
-                                  IsMultiTenancyEnabled = configuration.MultiTenancy.IsEnabled;
-                                  CurrentTenancyNameOrDefault = applicationContext.CurrentTenant.TenancyName;
-                              }
-                          }
-                          else
-                          {
-                              CurrentTenancyNameOrDefault = Local.Localize(AppLocalizationKeys.NotSelected);
-                          }
-                          await Task.CompletedTask;
-                      });
+                 //如果本地授权存在,直接进入系统首页
+                 if (accessTokenManager.IsUserLoggedIn)
+                     OnDialogClosed();
+
+                 SetAppSettings();
+                 PopulateLoginInfoFromStorage();
              });
+        }
+
+        /// <summary>
+        /// 设置应用程序信息  语言/租户选项
+        /// </summary>
+        private void SetAppSettings()
+        {
+            var configuration = applicationContext.Configuration;
+            if (configuration != null)
+            {
+                Languages = new ObservableCollection<LanguageInfo>(configuration.Localization.Languages);
+
+                var currentLanguage = Languages.FirstOrDefault(l => l.Name == applicationContext.CurrentLanguage.Name);
+                if (currentLanguage != null)
+                    SelectedLanguage = currentLanguage;
+
+                if (applicationContext.CurrentTenant != null)
+                {
+                    IsMultiTenancyEnabled = configuration.MultiTenancy.IsEnabled;
+                    CurrentTenancyNameOrDefault = applicationContext.CurrentTenant.TenancyName;
+                }
+            }
+            else
+            {
+                CurrentTenancyNameOrDefault = Local.Localize(AppLocalizationKeys.NotSelected);
+            }
+        }
+
+        /// <summary>
+        /// 从本地存储当中读取账户信息, 可能是用户之前登陆的信息 
+        /// </summary>
+        private void PopulateLoginInfoFromStorage()
+        {
+            var loginInfo = dataStorageService.RetrieveLoginInfo();
+            if (loginInfo == null) return;
+
+            if (loginInfo.User != null)
+                UserName = loginInfo.User.UserName;
+
+            if (loginInfo.Tenant != null)
+                TenancyName = loginInfo.Tenant.TenancyName;
+
+            if (loginInfo.Tenant == null)
+                applicationContext.SetAsHost();
+            else
+                applicationContext.SetAsTenant(TenancyName, loginInfo.Tenant.Id);
+
+            RaisePropertyChanged("CurrentTenancyNameOrDefault");
         }
     }
 }

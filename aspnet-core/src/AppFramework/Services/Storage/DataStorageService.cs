@@ -36,7 +36,8 @@ namespace AppFramework.Services
 
         private T RetrieveObject<T>(string key, T defaultValue = default(T))
         {
-            return JsonConvert.DeserializeObject<T>(Convert.ToString(iniFile.GetValue(Section, key)));
+            var json = iniFile.GetValue(Section, key);
+            return JsonConvert.DeserializeObject<T>(json);
         }
 
         public T GetValue<T>(string key, T defaultValue = default(T), bool shouldDecrpyt = false)
