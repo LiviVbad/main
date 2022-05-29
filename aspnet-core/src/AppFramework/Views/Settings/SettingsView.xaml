@@ -46,21 +46,25 @@
                             Margin="0,15,0,5"
                             Content="{extensions:Translate AllowTenantsToRegisterThemselves}"
                             IsChecked="{Binding Setting.TenantManagement.AllowSelfRegistration}" />
-                        <!--  如果您禁用此，创建租户只能在租户管理页，并且需要管理员权限  -->
-                        <TextBlock Opacity="0.7" Text="{extensions:Translate AllowTenantsToRegisterThemselves_Hint}" />
+                        <StackPanel Visibility="{Binding Setting.TenantManagement.AllowSelfRegistration, Converter={StaticResource inverseBoolToVisibility}}">
 
-                        <!--  新注册的默认租户。  -->
-                        <CheckBox
-                            Margin="0,15,0,5"
-                            Content="{extensions:Translate NewRegisteredTenantsIsActiveByDefault}"
-                            IsChecked="{Binding Setting.TenantManagement.IsNewRegisteredTenantActiveByDefault}" />
-                        <!--  如果您禁用这个，新的租户将不启用（和不能登录），直到管理员手动激活帐户。  -->
-                        <TextBlock Opacity="0.7" Text="{extensions:Translate NewRegisteredTenantsIsActiveByDefault_Hint}" />
-                        <!--  用户注册时使用图片验证码(captcha).  -->
-                        <CheckBox
-                            Margin="0,15,0,0"
-                            Content="{extensions:Translate UseCaptchaOnRegistration}"
-                            IsChecked="{Binding Setting.TenantManagement.UseCaptchaOnRegistration}" />
+                            <!--  如果您禁用此，创建租户只能在租户管理页，并且需要管理员权限  -->
+                            <TextBlock Opacity="0.7" Text="{extensions:Translate AllowTenantsToRegisterThemselves_Hint}" />
+
+                            <!--  新注册的默认租户。  -->
+                            <CheckBox
+                                Margin="0,15,0,5"
+                                Content="{extensions:Translate NewRegisteredTenantsIsActiveByDefault}"
+                                IsChecked="{Binding Setting.TenantManagement.IsNewRegisteredTenantActiveByDefault}" />
+                            <!--  如果您禁用这个，新的租户将不启用（和不能登录），直到管理员手动激活帐户。  -->
+                            <TextBlock Opacity="0.7" Text="{extensions:Translate NewRegisteredTenantsIsActiveByDefault_Hint}" />
+                            <!--  用户注册时使用图片验证码(captcha).  -->
+                            <CheckBox
+                                Margin="0,15,0,0"
+                                Content="{extensions:Translate UseCaptchaOnRegistration}"
+                                IsChecked="{Binding Setting.TenantManagement.UseCaptchaOnRegistration}" />
+                        </StackPanel>
+
                         <!--  版本  -->
                         <TextBlock Margin="0,10,0,0" Text="{extensions:Translate Edition}" />
                         <ComboBox ItemsSource="{Binding Editions}" SelectedItem="{Binding SelectedEdition}">
