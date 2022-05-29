@@ -97,6 +97,14 @@
                     Command="{Binding SetThemeModeCommand}"
                     Content="{Binding themeService.IsDarkTheme, Converter={StaticResource darkConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Style="{DynamicResource IconButtonStyle}" />
+
+
+                <Button
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    Command="{Binding LogOutCommand}"
+                    Content=" &#xe652;"
+                    Style="{DynamicResource IconButtonStyle}" />
                 <Button
                     x:Name="BtnMin"
                     VerticalAlignment="Center"

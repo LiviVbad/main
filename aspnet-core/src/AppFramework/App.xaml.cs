@@ -54,25 +54,41 @@ namespace AppFramework
         {
             accountService = Container.Resolve<IAccountService>();
 
-            if (!Authorization()) Environment.Exit(0);
-
-            (App.Current.MainWindow.DataContext as INavigationAware)?.OnNavigatedTo(null);
-            base.OnInitialized();
+            if (Authorization())
+            {
+                (App.Current.MainWindow.DataContext as INavigationAware)?.OnNavigatedTo(null);
+                base.OnInitialized();
+            }
+            else
+                Environment.Exit(0);
         }
 
-        private bool Authorization()
+        private static bool Authorization()
         {
-            var validationResult = Validation(Container);
+            var validationResult = Validation();
             if (validationResult == ButtonResult.Retry)
                 return Authorization();
 
             return validationResult == ButtonResult.OK;
 
-            static ButtonResult Validation(IContainerProvider container)
+            static ButtonResult Validation()
             {
-                var dialogService = container.Resolve<IHostDialogService>();
+                var dialogService = ContainerLocator.Container.Resolve<IHostDialogService>();
                 return dialogService.ShowWindow(AppViewManager.Login).Result;
             }
+        }
+
+        public static void LogOut()
+        {
+            App.Current.MainWindow.Hide();
+
+            if (Authorization())
+            {
+                App.Current.MainWindow.Show();
+                (App.Current.MainWindow.DataContext as INavigationAware)?.OnNavigatedTo(null);
+            }
+            else
+                Environment.Exit(0);
         }
 
         public static async Task OnSessionTimeout()

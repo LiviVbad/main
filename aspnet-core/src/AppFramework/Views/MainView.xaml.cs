@@ -1,11 +1,18 @@
-﻿using AppFramework.Services;
+﻿using AppFramework.Common;
+using AppFramework.Services;
 using Syncfusion.Windows.Shared;
+using System;
 
 namespace AppFramework.Views
 {
     public partial class MainView : ChromelessWindow
     {
-        public MainView(IThemeService themeService, IResourceService resourceService)
+        private readonly IHostDialogService dialog;
+
+        public MainView(
+            IThemeService themeService,
+            IResourceService resourceService,
+            IHostDialogService dialog)
         {
             AppSettings.OnInitialized();
             InitializeComponent();
@@ -26,11 +33,13 @@ namespace AppFramework.Views
             BtnMin.Click += BtnMin_Click;
             BtnMax.Click += BtnMax_Click;
             BtnClose.Click += BtnClose_Click;
+            this.dialog = dialog;
         }
 
-        private void BtnClose_Click(object sender, System.Windows.RoutedEventArgs e)
+        private async void BtnClose_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            Close();
+            if (await dialog.Question(Local.Localize("AreYouSure")))
+                Environment.Exit(0);
         }
 
         private void BtnMax_Click(object sender, System.Windows.RoutedEventArgs e)

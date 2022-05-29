@@ -70,6 +70,8 @@ namespace AppFramework.Services.Account
 
         private async Task GoToLoginPageAsync()
         {
+            App.LogOut();
+
             await Task.CompletedTask;
         }
 
@@ -95,7 +97,8 @@ namespace AppFramework.Services.Account
                 await dataStorageService.StoreAuthenticateResultAsync(AuthenticateResultModel);
             }
 
-            AuthenticateModel.Password = null;
+            AuthenticateModel.UserNameOrEmailAddress = string.Empty;
+            AuthenticateModel.Password = string.Empty;
 
             await SetCurrentUserInfoAsync();
             await UserConfigurationManager.GetAsync();

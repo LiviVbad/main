@@ -1,10 +1,12 @@
 ﻿using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services;
+using AppFramework.Common.Services.Account;
 using AppFramework.Models;
 using AppFramework.Services;
 using Prism.Commands;
 using Prism.Regions;
+using System;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -12,14 +14,17 @@ namespace AppFramework.ViewModels
     public class MainViewModel : NavigationViewModel
     {
         public MainViewModel(
+            IAccountService accountService,
             IThemeService themeService,
             IRegionManager regionManager,
             IApplicationService appService)
         {
             this.appService = appService;
+            this.accountService = accountService;
             this.themeService = themeService;
             this.regionManager = regionManager;
 
+            LogOutCommand = new DelegateCommand(LogOut);
             NavigateCommand = new DelegateCommand<NavigationItem>(Navigate);
             SetThemeModeCommand = new DelegateCommand(themeService.SetThemeMode);
             SetThemeCommand = new DelegateCommand<ThemeItem>(arg => themeService.SetTheme(arg.DisplayName));
@@ -30,25 +35,24 @@ namespace AppFramework.ViewModels
         private bool initialize;
         public IThemeService themeService { get; set; }
         public IApplicationService appService { get; init; }
+
+        private readonly IAccountService accountService;
         private readonly IRegionManager regionManager;
         public DelegateCommand SetThemeModeCommand { get; }
         public DelegateCommand<ThemeItem> SetThemeCommand { get; }
         public DelegateCommand<NavigationItem> NavigateCommand { get; private set; }
+        public DelegateCommand LogOutCommand { get; private set; }
 
         #endregion
 
-        #region 方法
-
-        public void Execute(string arg)
+        private async void LogOut()
         {
-            switch (arg)
+            if (await dialog.Question(Local.Localize("AreYouSure")))
             {
-                case "ChangeProfilePhoto": appService.ChangeProfilePhoto(); break;
-                case "ShowProfilePhoto": appService.ShowProfilePhoto(); break;
+                initialize = false;
+                await accountService.LogoutAsync();
             }
         }
-
-        #endregion
 
         public void Navigate(NavigationItem navigationItem)
         {
