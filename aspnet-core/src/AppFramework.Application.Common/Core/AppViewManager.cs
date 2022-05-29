@@ -4,6 +4,8 @@
     {
         public const string InitialScreen = "InitialScreenView";
 
+        public const string SplashScreen = "SplashScreenView";
+
         public const string Login = "LoginView";
 
         public const string Main = "MainView";

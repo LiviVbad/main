@@ -47,8 +47,7 @@ namespace AppFramework.Services.Account
 
                     if (!result.MultiTenancy.IsEnabled)
                         AppContext.Value.SetAsTenant(TenantConsts.DefaultTenantName, TenantConsts.DefaultTenantId);
-
-                    AppContext.Value.Configuration = result;
+                     
                     AppContext.Value.CurrentLanguage = result.Localization.CurrentLanguage;
 
                     WarnIfUserHasNoPermission();

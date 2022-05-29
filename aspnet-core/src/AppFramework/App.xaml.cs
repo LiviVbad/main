@@ -54,13 +54,21 @@ namespace AppFramework
         {
             accountService = Container.Resolve<IAccountService>();
 
-            if (Authorization())
+            if (SplashScreenInitialized())
             {
                 (App.Current.MainWindow.DataContext as INavigationAware)?.OnNavigatedTo(null);
                 base.OnInitialized();
             }
-            else
-                Environment.Exit(0);
+        }
+
+        private static bool SplashScreenInitialized()
+        {
+            var dialogService = ContainerLocator.Container.Resolve<IHostDialogService>();
+            if (dialogService.ShowWindow(AppViewManager.SplashScreen).Result == ButtonResult.No)
+            {
+                if (!Authorization()) Environment.Exit(0); 
+            }
+            return true;
         }
 
         private static bool Authorization()
@@ -82,7 +90,7 @@ namespace AppFramework
         {
             App.Current.MainWindow.Hide();
 
-            if (Authorization())
+            if (SplashScreenInitialized())
             {
                 App.Current.MainWindow.Show();
                 (App.Current.MainWindow.DataContext as INavigationAware)?.OnNavigatedTo(null);

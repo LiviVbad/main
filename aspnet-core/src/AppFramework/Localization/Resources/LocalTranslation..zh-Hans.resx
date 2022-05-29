@@ -118,30 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Authenticating" xml:space="preserve">
-    <value>Kimlik bilgisi doğrulanıyor...</value>
+    <value>正在认证...</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>İptal</value>
+    <value>取消</value>
   </data>
   <data name="HttpException" xml:space="preserve">
-    <value>Sunucu ile iletişim kurarken bir hata oluştu. Tekrar denemek ister misiniz?</value>
+    <value>尝试与服务器通信时出现问题。 你想再试一次吗？</value>
   </data>
   <data name="Initializing" xml:space="preserve">
-    <value>Başlatılıyor...</value>
+    <value>正在初始化...</value>
+  </data>
+  <data name="LoadResource" xml:space="preserve">
+    <value>加载系统资源...</value>
   </data>
   <data name="MessageTitle" xml:space="preserve">
     <value>AppFramework</value>
   </data>
   <data name="NoInternet" xml:space="preserve">
-    <value>Internet bağlantısı yok! Internet bağlantısını aktif edip tekrar denemek ister misiniz?</value>
+    <value>没有网络连接！ 您要启用互联网并重试吗？</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>Tamam</value>
+    <value>确定</value>
   </data>
   <data name="RequestTimedOut" xml:space="preserve">
-    <value>İstek zaman aşımına uğradı. Tekrar denemek ister misiniz?</value>
+    <value>请求超时。 你想再试一次吗？</value>
   </data>
   <data name="UnhandledWebRequestException" xml:space="preserve">
-    <value>Bir hata oluştu. Tekrar denemek ister misiniz?</value>
+    <value>发生错误。 你想再试一次吗？</value>
   </data>
 </root>

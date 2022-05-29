@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace AppFramework.Common.Services.Storage
 {
     public interface IAccountStorageService
-    {
+    { 
         Task StoreAccessTokenAsync(string newAccessToken);
 
         Task StoreAuthenticateResultAsync(AbpAuthenticateResultModel authenticateResultModel);

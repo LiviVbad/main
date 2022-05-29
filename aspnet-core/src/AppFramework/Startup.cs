@@ -64,6 +64,7 @@ namespace AppFramework
              * 演示UI组件页
              * 
              */
+            services.RegisterDialog<SplashScreenView, SplashScreenViewModel>(AppViewManager.SplashScreen);
             services.RegisterDialog<LoginView, LoginViewModel>(AppViewManager.Login);
 
             services.Add<MainView, MainViewModel>(AppViewManager.Main);

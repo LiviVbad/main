@@ -55,19 +55,14 @@ namespace AppFramework.Shared.Services.Account
         /// 用户登录
         /// </summary>
         /// <returns></returns>
-        public async Task<bool> LoginUserAsync()
+        public async Task LoginUserAsync()
         {
-            bool loginResult = false;
-
             await WebRequestRuner.Execute(accessTokenManager.LoginAsync,
                 async result =>
                 {
                     await AuthenticateSucceed(result);
-                    loginResult = true;
                 },
                 ex => Task.CompletedTask);
-
-            return loginResult;
         }
 
         /// <summary>

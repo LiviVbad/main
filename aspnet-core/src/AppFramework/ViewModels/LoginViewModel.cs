@@ -27,11 +27,11 @@ namespace AppFramework.ViewModels
         private readonly IAccountService accountService;
         private readonly IAccountAppService accountAppService;
         private readonly IApplicationContext applicationContext;
-        private readonly IAccessTokenManager accessTokenManager;
         private readonly IAccountStorageService dataStorageService;
-
+        private readonly IDataStorageService storageService;
         private string tenancyName;
         private bool isLoginEnabled;
+        private bool isRememberMe;
         public string CurrentTenancyNameOrDefault { get; set; }
         private LanguageInfo selectedLanguage;
         private ObservableCollection<LanguageInfo> languages;
@@ -96,22 +96,27 @@ namespace AppFramework.ViewModels
             set { isLoginEnabled = value; RaisePropertyChanged(); }
         }
 
+        public bool IsRememberMe
+        {
+            get { return isRememberMe; }
+            set { isRememberMe = value; RaisePropertyChanged(); }
+        }
+
         #endregion
 
         public LoginViewModel(IHostDialogService dialogService,
             IAccountService accountService,
             IAccountAppService accountAppService,
             IApplicationContext applicationContext,
-            IAccessTokenManager accessTokenManager,
-            IAccountStorageService dataStorageService)
+            IAccountStorageService dataStorageService,
+            IDataStorageService storageService)
         {
             this.dialogService = dialogService;
             this.accountService = accountService;
             this.accountAppService = accountAppService;
             this.applicationContext = applicationContext;
-            this.accessTokenManager = accessTokenManager;
             this.dataStorageService = dataStorageService;
-
+            this.storageService = storageService;
             ExecuteCommand = new DelegateCommand<string>(Execute);
             ChangeLanguageCommand = new DelegateCommand<LanguageInfo>(ChangeLanguage);
         }
@@ -157,16 +162,30 @@ namespace AppFramework.ViewModels
         }
 
         public void ChangeTenantAsync()
-        { }
+        {
+            //切换可选租户...
+        }
 
         private async Task LoginUserAsync()
         {
             await SetBusyAsync(async () =>
             {
-                var loginResult = await accountService.LoginUserAsync();
-
-                if (loginResult) OnDialogClosed();
+                await WebRequest.Execute(() => accountService.LoginUserAsync(), LoginUserSuccessed);
             });
+        }
+
+        private async Task LoginUserSuccessed()
+        {
+            //记住密码？ 
+            storageService.SetValue(nameof(UserName), IsRememberMe ? UserName : null);
+            storageService.SetValue(nameof(Password), IsRememberMe ? Password : null, true);
+
+            //清理
+            UserName = string.Empty;
+            Password = string.Empty;
+
+            OnDialogClosed();
+            await Task.CompletedTask;
         }
 
         public async Task SetTenantAsync(string tenancyName)
@@ -216,19 +235,9 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
              {
-                 //加载本地的缓存信息
-                 accessTokenManager.AuthenticateResult = dataStorageService.RetrieveAuthenticateResult();
-                 applicationContext.Load(dataStorageService.RetrieveTenantInfo(), dataStorageService.RetrieveLoginInfo());
-
-                 //加载系统资源
-                 await UserConfigurationManager.GetIfNeedsAsync();
-
-                 //如果本地授权存在,直接进入系统首页
-                 if (accessTokenManager.IsUserLoggedIn)
-                     OnDialogClosed();
-
                  SetAppSettings();
                  PopulateLoginInfoFromStorage();
+                 await Task.CompletedTask;
              });
         }
 
@@ -263,11 +272,11 @@ namespace AppFramework.ViewModels
         /// </summary>
         private void PopulateLoginInfoFromStorage()
         {
+            UserName = storageService.GetValue(nameof(UserName), "");
+            Password = storageService.GetValue(nameof(Password), "", true);
+
             var loginInfo = dataStorageService.RetrieveLoginInfo();
             if (loginInfo == null) return;
-
-            if (loginInfo.User != null)
-                UserName = loginInfo.User.UserName;
 
             if (loginInfo.Tenant != null)
                 TenancyName = loginInfo.Tenant.TenancyName;

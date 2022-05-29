@@ -39,15 +39,10 @@ namespace AppFramework.Services.Account
         public AbpAuthenticateModel AuthenticateModel { get; set; }
         public AbpAuthenticateResultModel AuthenticateResultModel { get; set; }
 
-        public async Task<bool> LoginUserAsync()
+        public async Task LoginUserAsync()
         {
-            bool loginResult = false;
-            await WebRequest.Execute(accessTokenManager.LoginAsync,
-                async result =>
-                {
-                    loginResult = await AuthenticateSucceed(result);
-                });
-            return loginResult;
+            var result = await accessTokenManager.LoginAsync();
+            await AuthenticateSucceed(result);
         }
 
         public async Task LoginCurrentUserAsync(UserListModel user)
@@ -75,14 +70,14 @@ namespace AppFramework.Services.Account
             await Task.CompletedTask;
         }
 
-        private async Task<bool> AuthenticateSucceed(AbpAuthenticateResultModel result)
+        private async Task AuthenticateSucceed(AbpAuthenticateResultModel result)
         {
             AuthenticateResultModel = result;
 
             if (AuthenticateResultModel.ShouldResetPassword)
             {
                 dialog.ShowMessage("", Local.Localize("ChangePasswordToLogin"));
-                return false;
+                return;
             }
 
             if (AuthenticateResultModel.RequiresTwoFactorVerification)
@@ -97,13 +92,8 @@ namespace AppFramework.Services.Account
                 await dataStorageService.StoreAuthenticateResultAsync(AuthenticateResultModel);
             }
 
-            AuthenticateModel.UserNameOrEmailAddress = string.Empty;
-            AuthenticateModel.Password = string.Empty;
-
             await SetCurrentUserInfoAsync();
             await UserConfigurationManager.GetAsync();
-
-            return true;
         }
 
         public async Task SetCurrentUserInfoAsync()
