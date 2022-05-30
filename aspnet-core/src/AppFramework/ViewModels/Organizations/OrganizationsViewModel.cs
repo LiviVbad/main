@@ -133,6 +133,8 @@ namespace AppFramework.ViewModels
                       () => appService.GetOrganizationUnits(),
                       async result =>
                       {
+                          dataPager.GridModelList.Clear();
+
                           var items = BuildOrganizationTree(Map<List<OrganizationListModel>>(result.Items));
 
                           foreach (var item in items)
