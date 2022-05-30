@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary
-    x:Class="AppFramework.Shared.Themes.LightTheme"
+    x:Class="EssentialUIKit.Themes.LightTheme"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:styles="clr-namespace:AppFramework.Shared">
@@ -25,7 +25,7 @@
         <styles:CheckBoxStyles />
     </ResourceDictionary.MergedDictionaries>
 
-    <Color x:Key="PrimaryColor">#3E94FF</Color>
+    <Color x:Key="PrimaryColor">#f54e5e</Color>
     <Color x:Key="PrimaryDarkColor">#d0424f</Color>
     <Color x:Key="PrimaryDarkenColor">#ab3641</Color>
     <Color x:Key="PrimaryLighterColor">#edcacd</Color>
@@ -53,4 +53,5 @@
     <Color x:Key="Gray-Bg">#ffffff</Color>
     <Color x:Key="GrayShadowColor">#ffffff</Color>
     <Color x:Key="GrayShadowBackgroundColor">#f6f7f8</Color>
+
 </ResourceDictionary>

@@ -3,13 +3,9 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:AppFramework.Shared.Converters;assembly=AppFramework.Shared"
-    xmlns:prism="http://prismlibrary.com"
-    xmlns:themes="clr-namespace:AppFramework.Shared.Themes">
+    xmlns:prism="http://prismlibrary.com">
     <Application.Resources>
         <ResourceDictionary>
-            <themes:LightTheme />
-            <themes:DarkTheme />
-
             <converters:DatetimeConverter x:Key="DatetimeConverter" />
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <converters:BoolToYesNoConverter x:Key="BoolToYesNoConverter" />

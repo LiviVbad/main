@@ -1,4 +1,5 @@
-﻿using AppFramework.Shared.Themes;
+﻿using EssentialUIKit;
+using EssentialUIKit.Themes;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -13,11 +14,12 @@ namespace AppFramework.Shared
             if (resources != null)
             {
                 var mergedDictionaries = resources.MergedDictionaries;
-                var lightTheme = mergedDictionaries.OfType<LightTheme>().FirstOrDefault();
-                if (lightTheme != null)
-                {
-                    mergedDictionaries.Remove(lightTheme);
-                }
+
+                //var lightTheme = mergedDictionaries.OfType<LightTheme>().FirstOrDefault();
+                //if (lightTheme != null)
+                //{
+                //    mergedDictionaries.Remove(lightTheme);
+                //}
 
                 mergedDictionaries.Add(new DarkTheme());
                 AppSettings.Instance.IsDarkTheme = true;
@@ -30,11 +32,11 @@ namespace AppFramework.Shared
             {
                 var mergedDictionaries = resources.MergedDictionaries;
 
-                var darkTheme = mergedDictionaries.OfType<DarkTheme>().FirstOrDefault();
-                if (darkTheme != null)
-                {
-                    mergedDictionaries.Remove(darkTheme);
-                }
+                //var darkTheme = mergedDictionaries.OfType<DarkTheme>().FirstOrDefault();
+                //if (darkTheme != null)
+                //{
+                //    mergedDictionaries.Remove(darkTheme);
+                //}
 
                 mergedDictionaries.Add(new LightTheme());
                 AppSettings.Instance.IsDarkTheme = false;

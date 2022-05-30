@@ -2,7 +2,7 @@
 using AppFramework.Common;
 using AppFramework.Configuration;
 using AppFramework.MultiTenancy;
-using AppFramework.Shared.Core.Localization.Resources;
+using AppFramework.Shared.Localization.Resources;
 using AppFramework.Shared.Localization;
 using Prism.Ioc;
 using System;

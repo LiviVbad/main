@@ -51,7 +51,7 @@ namespace AppFramework.Droid
             /*
              * 调试模式下设置本地Web服务地址
              */
-            DebugServerIpAddresses.Current = "192.168.1.8";
+            DebugServerIpAddresses.Current = "192.168.2.6";
 
             //配置Http的会话超时及刷新Token
             FlurlHttp.Configure(c =>

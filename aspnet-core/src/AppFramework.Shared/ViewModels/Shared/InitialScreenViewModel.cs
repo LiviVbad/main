@@ -74,8 +74,7 @@ namespace AppFramework.Shared.ViewModels
             applicationContext.Load(dataStorageService.RetrieveTenantInfo(), dataStorageService.RetrieveLoginInfo());
 
             //获取应用程序资源数据(本地化资源、设置、用户信息权限等...)
-            await AppConfigurationManager.GetIfNeedsAsync();
-            await Task.Delay(5000);
+            await AppConfigurationManager.GetIfNeedsAsync(); 
             IsDisplayLayer = false;
 
             if (accessTokenManager.IsUserLoggedIn)

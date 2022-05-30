@@ -7,7 +7,7 @@ namespace AppFramework.Shared.Localization
 {
     public static class LocalTranslationHelper
     {
-        private const string ResourceId = "AppFramework.Shared.Core.Localization.Resources.LocalTranslation";
+        private const string ResourceId = "AppFramework.Shared.Localization.Resources.LocalTranslation";
 
         public static string Localize(string key)
         {

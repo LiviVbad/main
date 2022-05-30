@@ -10,14 +10,14 @@
     BackgroundColor="{DynamicResource GrayShadowBackgroundColor}">
     <ContentPage.Content>
         <Grid>
-            <lot:AnimationView
+            <!--<lot:AnimationView
                 x:Name="animationView"
                 Animation="hello.json"
                 AutoPlay="True"
                 HorizontalOptions="FillAndExpand"
                 RepeatCount="10"
                 RepeatMode="Restart"
-                VerticalOptions="FillAndExpand" />
+                VerticalOptions="FillAndExpand" />-->
 
             <ContentView prism:RegionManager.RegionName="{x:Static manager:AppRegionManager.Index}" />
         </Grid>

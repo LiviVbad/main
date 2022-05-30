@@ -22,14 +22,14 @@ namespace AppFramework.Shared.Localization.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class LocalTranslation {
+    internal class LocalTranslation_zhHans {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal LocalTranslation() {
+        internal LocalTranslation_zhHans() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace AppFramework.Shared.Localization.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AppFramework.Shared.Localization.Resources.LocalTranslation", typeof(LocalTranslation).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AppFramework.Shared.Localization.Resources.LocalTranslation.zhHans", typeof(LocalTranslation_zhHans).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace AppFramework.Shared.Localization.Resources {
         }
         
         /// <summary>
-        ///   查找类似 Authenticating... 的本地化字符串。
+        ///   查找类似 正在认证... 的本地化字符串。
         /// </summary>
         internal static string Authenticating {
             get {
@@ -70,7 +70,7 @@ namespace AppFramework.Shared.Localization.Resources {
         }
         
         /// <summary>
-        ///   查找类似 Cancel 的本地化字符串。
+        ///   查找类似 取消 的本地化字符串。
         /// </summary>
         internal static string Cancel {
             get {
@@ -79,7 +79,7 @@ namespace AppFramework.Shared.Localization.Resources {
         }
         
         /// <summary>
-        ///   查找类似 It will take effect after restarting! 的本地化字符串。
+        ///   查找类似 重启后生效！ 的本地化字符串。
         /// </summary>
         internal static string ChangeLanguage {
             get {
@@ -88,7 +88,7 @@ namespace AppFramework.Shared.Localization.Resources {
         }
         
         /// <summary>
-        ///   查找类似 A problem occurred while trying to communicate with the server. Do you want to try again? 的本地化字符串。
+        ///   查找类似 尝试与服务器通信时出现问题，你想再试一次吗？ 的本地化字符串。
         /// </summary>
         internal static string HttpException {
             get {
@@ -97,7 +97,7 @@ namespace AppFramework.Shared.Localization.Resources {
         }
         
         /// <summary>
-        ///   查找类似 Initializing... 的本地化字符串。
+        ///   查找类似 初始化中... 的本地化字符串。
         /// </summary>
         internal static string Initializing {
             get {
@@ -115,7 +115,7 @@ namespace AppFramework.Shared.Localization.Resources {
         }
         
         /// <summary>
-        ///   查找类似 No internet connection! Do you want to enable internet and try again? 的本地化字符串。
+        ///   查找类似 没有网络连接！ 您要启用互联网并重试吗？ 的本地化字符串。
         /// </summary>
         internal static string NoInternet {
             get {
@@ -124,7 +124,7 @@ namespace AppFramework.Shared.Localization.Resources {
         }
         
         /// <summary>
-        ///   查找类似 Ok 的本地化字符串。
+        ///   查找类似 确认 的本地化字符串。
         /// </summary>
         internal static string Ok {
             get {
@@ -133,7 +133,7 @@ namespace AppFramework.Shared.Localization.Resources {
         }
         
         /// <summary>
-        ///   查找类似 Request is timed out. Do you want to try again? 的本地化字符串。
+        ///   查找类似 请求超时，你想再试一次吗？ 的本地化字符串。
         /// </summary>
         internal static string RequestTimedOut {
             get {
@@ -142,7 +142,7 @@ namespace AppFramework.Shared.Localization.Resources {
         }
         
         /// <summary>
-        ///   查找类似 An error occurred. Do you want to try again? 的本地化字符串。
+        ///   查找类似 发生错误， 你想再试一次吗？ 的本地化字符串。
         /// </summary>
         internal static string UnhandledWebRequestException {
             get {
