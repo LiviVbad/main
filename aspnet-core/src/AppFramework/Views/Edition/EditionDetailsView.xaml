@@ -52,39 +52,19 @@
 
                     <!--  每天定价  -->
                     <TextBlock Text="{extensions:Translate DailyPrice}" />
-                    <sync:SfMaskedEdit
-                        Margin="5"
-                        Mask="\$ 0000"
-                        MaskType="Simple"
-                        Watermark="$5"
-                        Value="{Binding Model.DailyPrice, Mode=TwoWay}" />
+                    <TextBox Margin="5" Text="{Binding Model.DailyPrice, Mode=TwoWay}" />
 
                     <!--  每周定价  -->
                     <TextBlock Text="{extensions:Translate WeeklyPrice}" />
-                    <sync:SfMaskedEdit
-                        Margin="5"
-                        Mask="\$ 0000"
-                        MaskType="Simple"
-                        Watermark="$30"
-                        Value="{Binding Model.WeeklyPrice, Mode=TwoWay}" />
+                    <TextBox Margin="5" Text="{Binding Model.WeeklyPrice, Mode=TwoWay}" />
 
                     <!--  每月定价  -->
                     <TextBlock Text="{extensions:Translate MonthlyPrice}" />
-                    <sync:SfMaskedEdit
-                        Margin="5"
-                        Mask="\$ 0000"
-                        MaskType="Simple"
-                        Watermark="$100"
-                        Value="{Binding Model.MonthlyPrice, Mode=TwoWay}" />
+                    <TextBox Margin="5" Text="{Binding Model.MonthlyPrice, Mode=TwoWay}" />
 
                     <!--  每年定价  -->
                     <TextBlock Text="{extensions:Translate AnnualPrice}" />
-                    <sync:SfMaskedEdit
-                        Margin="5"
-                        Mask="\$ 0000"
-                        MaskType="Simple"
-                        Watermark="$999"
-                        Value="{Binding Model.AnnualPrice, Mode=TwoWay}" />
+                    <TextBox Margin="5" Text="{Binding Model.AnnualPrice, Mode=TwoWay}" />
 
                     <!--  是否试用  -->
                     <CheckBox Content="{extensions:Translate IsTrialActive}" IsChecked="{Binding IsTrialActive}" />

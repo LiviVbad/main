@@ -1,6 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFramework.Common;
-using AppFramework.Common.Models;
+using AppFramework.Common; 
 using AppFramework.Common.Services.Permission;
 using AppFramework.Editions;
 using AppFramework.Editions.Dto;
@@ -22,7 +21,7 @@ namespace AppFramework.ViewModels
         /// </summary>
         private async void Delete()
         {
-            if (dataPager.SelectedItem is EditionListModel item)
+            if (dataPager.SelectedItem is EditionListDto item)
             {
                 if (await dialog.Question(Local.Localize("EditionDeleteWarningMessage", item.DisplayName)))
                 {

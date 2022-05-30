@@ -82,7 +82,6 @@
                                 </DataTemplate>
                             </sync:GridTemplateColumn.CellTemplate>
                         </sync:GridTemplateColumn>
-                        <sync:GridTextColumn HeaderText="{extensions:Translate Name}" MappingName="Name" />
                         <sync:GridTextColumn HeaderText="{extensions:Translate DisplayName}" MappingName="DisplayName" />
                         <sync:GridTextColumn HeaderText="{extensions:Translate WaitingDayAfterExpire}" MappingName="WaitingDayAfterExpire" />
                         <sync:GridTextColumn HeaderText="{extensions:Translate TrialDayCount}" MappingName="TrialDayCount" />

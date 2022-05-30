@@ -105,7 +105,7 @@ namespace AppFramework.ViewModels
                     .Select(q => new NameValueDto
                     {
                         Name = q.Name,
-                        Value = bool.Parse(q.DefaultValue) ? q.IsChecked.ToString() : q.DefaultValue
+                        Value = bool.TryParse(q.DefaultValue, out bool result) ? result.ToString() : q.DefaultValue
                     }).ToList();
 
                 await WebRequest.Execute(async () =>
