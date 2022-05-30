@@ -11,16 +11,7 @@
     Width="700"
     Height="500"
     mc:Ignorable="d">
-    <win:DialogHost Identifier="{x:Static const:AppCommonConsts.DialogIdentifier}" IsOpen="{Binding IsBusy}">
-        <win:DialogHost.DialogContent>
-            <StackPanel>
-                <sync:SfBusyIndicator
-                    Width="50"
-                    Height="50"
-                    AnimationType="DoubleRing"
-                    IsBusy="True" />
-            </StackPanel>
-        </win:DialogHost.DialogContent>
+    <win:DialogHost Identifier="{x:Static const:AppCommonConsts.DialogIdentifier}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -72,7 +63,7 @@
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel />
-                            </ItemsPanelTemplate>
+                            </ItemsPanelTemplate>s
                         </ItemsControl.ItemsPanel>
 
                         <ItemsControl.ItemTemplate>
@@ -86,13 +77,6 @@
                                         Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
                                         CommandParameter="{Binding}"
                                         Content="{extensions:Translate Delete}"
-                                        DockPanel.Dock="Right" />
-                                    <Button
-                                        Padding="10,5"
-                                        Background="#1E90FF"
-                                        Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
-                                        CommandParameter="{Binding}"
-                                        Content="{extensions:Translate Edit}"
                                         DockPanel.Dock="Right" />
                                 </DockPanel>
                             </DataTemplate>

@@ -242,7 +242,7 @@ namespace AppFramework.ViewModels
             SelectedRole = null;
             FilterText = string.Empty;
 
-            input.Permissions.Clear();
+            input.Permissions?.Clear();
             UpdateTitle(0);
         }
 

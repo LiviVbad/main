@@ -121,20 +121,18 @@ namespace AppFramework.ViewModels
         public async Task GetAllValuesOfDynamicProperty()
         {
             IsAdd = false;
+            InputValue = string.Empty;
 
-            await SetBusyAsync(async () =>
-              {
-                  await WebRequest.Execute(() =>
-                          appService.GetAllValuesOfDynamicProperty(new EntityDto(Id))
-                          , async result =>
-                          {
-                              dataPager.SetList(new PagedResultDto<DynamicPropertyValueDto>()
-                              {
-                                  Items = result.Items
-                              });
-                              await Task.CompletedTask;
-                          });
-              });
+            await WebRequest.Execute(() =>
+                           appService.GetAllValuesOfDynamicProperty(new EntityDto(Id))
+                           , async result =>
+                           {
+                               dataPager.SetList(new PagedResultDto<DynamicPropertyValueDto>()
+                               {
+                                   Items = result.Items
+                               });
+                               await Task.CompletedTask;
+                           });
         }
 
         public override async void OnDialogOpened(IDialogParameters parameters)
