@@ -172,12 +172,17 @@ namespace AppFramework.Services.Account
 
             UserNameAndSurname = applicationContext.LoginInfo.User.Name + " " + applicationContext.LoginInfo.User.Surname;
 
-            var permissions = applicationContext.Configuration.Auth.GrantedPermissions;
-            NavigationItems = navigationItemService.GetAuthMenus(permissions);
+            RefreshAuthMenus();
 
             ApplicationInfo = $"{ApplicationName}\n" +
-                              $"v{applicationContext.LoginInfo.Application.Version} " +
-                              $"[{applicationContext.LoginInfo.Application.ReleaseDate:yyyyMMdd}]";
+                            $"v{applicationContext.LoginInfo.Application.Version} " +
+                            $"[{applicationContext.LoginInfo.Application.ReleaseDate:yyyyMMdd}]";
+        }
+
+        public void RefreshAuthMenus()
+        {
+            var permissions = applicationContext.Configuration.Auth.GrantedPermissions;
+            NavigationItems = navigationItemService.GetAuthMenus(permissions);
         }
     }
 }
