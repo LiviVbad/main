@@ -12,9 +12,7 @@
     BackgroundColor="{DynamicResource PrimaryColor}">
     <navigationdrawer:SfNavigationDrawer
         x:Name="navigationDrawer"
-        Margin="{OnPlatform iOS='0,40,0,0',
-                            Android='0'}"
-        DrawerFooterHeight="0">
+        DrawerFooterHeight="0" >
         <navigationdrawer:SfNavigationDrawer.ContentView>
             <Grid BackgroundColor="{DynamicResource GrayShadowBackgroundColor}" RowDefinitions="auto,*">
                 <StackLayout BackgroundColor="{DynamicResource PrimaryColor}" Orientation="Horizontal">
