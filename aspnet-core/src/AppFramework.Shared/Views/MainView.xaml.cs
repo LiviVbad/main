@@ -4,6 +4,8 @@ using Xamarin.Forms;
 using AppFramework.Common.Core;
 using AppFramework.Common.Models;
 using AppFramework.Common;
+using Xamarin.CommunityToolkit.Effects;
+using Xamarin.CommunityToolkit.Helpers;
 
 namespace AppFramework.Shared.Views
 {
@@ -18,6 +20,10 @@ namespace AppFramework.Shared.Views
             this.messenger = messenger;
             //注销退出时, 移除所注册的区域
             this.messenger.Sub(AppMessengerKeys.RemoveAllRegion, RemoveAll);
+
+            //设置屏幕安全区域  说明:左、上、右、下
+            var safeArea = new SafeArea(false, true, false, false);
+            SafeAreaEffect.SetSafeArea(navigationDrawer, safeArea);
         }
 
         private void SfTreeView_SelectionChanged(object sender, Syncfusion.XForms.TreeView.ItemSelectionChangedEventArgs e)
