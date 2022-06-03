@@ -62,8 +62,7 @@
                                             <toolkit:AvatarView
                                                 HeightRequest="30"
                                                 HorizontalOptions="Start"
-                                                Source="{Binding Photo}"
-                                                Text="{Binding Name}"
+                                                Text="{Binding Converter={StaticResource UserPhotoConverter}}"
                                                 VerticalOptions="Center"
                                                 WidthRequest="30" />
                                             <Label

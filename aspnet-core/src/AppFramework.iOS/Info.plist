@@ -36,6 +36,9 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>UIStatusBarHidden</key>
+  <string></string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>Use Users PhotoLibrary</string>
 	<true/>
 </dict>
 </plist>

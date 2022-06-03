@@ -6,10 +6,12 @@
     xmlns:prism="http://prismlibrary.com">
     <Application.Resources>
         <ResourceDictionary>
+            <converters:UserPhotoConverter x:Key="UserPhotoConverter" />
             <converters:DatetimeConverter x:Key="DatetimeConverter" />
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <converters:BoolToYesNoConverter x:Key="BoolToYesNoConverter" />
             <converters:ImageSourceConverter x:Key="ImageSourceConverter" />
+            <converters:ByteToImageConverter x:Key="ByteToImageConverter"/>
             <converters:BackgroundColorConverter x:Key="BackgroundColorConverter" />
             <converters:IndentConverter x:Key="IndentConverter" />
         </ResourceDictionary>

@@ -51,8 +51,7 @@ namespace AppFramework.Shared.Services
             navigationItems = new ObservableCollection<NavigationItem>();
         }
 
-        private byte[] photo;
-        private byte[] profilePictureBytes;
+        private byte[] photo; 
         private string userNameAndSurname;
         private string applicationInfo;
         public string ApplicationName { get; set; } = "AppFramework";
@@ -97,15 +96,13 @@ namespace AppFramework.Shared.Services
         protected async Task GetUserPhoto()
         {
             await WebRequestRuner.Execute(async () =>
-             await profileAppService.GetProfilePictureByUser(applicationContext.LoginInfo.User.Id),
+             await profileAppService.GetProfilePicture(),
                  async result => await GetProfilePictureByUserSuccessed(result));
         }
 
         private async Task GetProfilePictureByUserSuccessed(GetProfilePictureOutput output)
         {
-            profilePictureBytes = Convert.FromBase64String(output.ProfilePicture);
-            //Photo = ImageSource.FromStream(() => new MemoryStream(profilePictureBytes));
-
+            Photo = Convert.FromBase64String(output.ProfilePicture); 
             await Task.CompletedTask;
         }
 
@@ -160,7 +157,7 @@ namespace AppFramework.Shared.Services
                 //await ModalService.ShowModalAsync(cropModalView);
 
                 NavigationParameters param = new NavigationParameters();
-                param.Add("Value", profilePictureBytes);
+                param.Add("Value", Photo);
                 await navigationService.NavigateAsync(AppViewManager.ProfilePicture, param);
             }
             else
@@ -198,7 +195,7 @@ namespace AppFramework.Shared.Services
             {
                 await WebRequestRuner.Execute(async () => await UpdateProfilePhoto(photoAsBytes, fileName), () =>
                 {
-                    //Photo = ImageSource.FromStream(() => new MemoryStream(photoAsBytes));
+                    Photo = photoAsBytes;// ImageSource.FromStream(() => new MemoryStream(photoAsBytes));
                     CloneProfilePicture(photoAsBytes);
                     return Task.CompletedTask;
                 });
@@ -207,8 +204,8 @@ namespace AppFramework.Shared.Services
 
         private void CloneProfilePicture(byte[] photoAsBytes)
         {
-            profilePictureBytes = new byte[photoAsBytes.Length];
-            photoAsBytes.CopyTo(profilePictureBytes, 0);
+            photoAsBytes = new byte[photoAsBytes.Length];
+            photoAsBytes.CopyTo(photoAsBytes, 0);
         }
 
         private async Task UpdateProfilePhoto(byte[] photoAsBytes, string fileName)
@@ -249,11 +246,7 @@ namespace AppFramework.Shared.Services
 
         public async Task ShowProfilePhoto()
         {
-            if (profilePictureBytes == null) return;
-
-            NavigationParameters param = new NavigationParameters();
-            param.Add("Value", profilePictureBytes);
-            await navigationService.NavigateAsync(AppViewManager.ProfilePicture, param);
+            await navigationService.NavigateAsync(AppViewManager.ProfilePicture);
         }
 
         public async Task GetApplicationInfo()
