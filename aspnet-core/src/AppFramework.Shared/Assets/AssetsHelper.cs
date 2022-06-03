@@ -2,7 +2,7 @@
 {
     public static class AssetsHelper
     {
-        public const string AssetsNamespace = "AppFramework.Shared.Core.Assets";
+        public const string AssetsNamespace = "AppFramework.Shared.Assets";
 
         public static string ProfileImagePlaceholderNamespace => GetImageNamespace("Person.png");
 
