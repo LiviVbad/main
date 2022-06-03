@@ -5,7 +5,6 @@
     xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared">
     <Grid
         Padding="15"
-        BackgroundColor="{StaticResource MasterPageBackgroundColor}"
         ColumnDefinitions="25,*"
         ColumnSpacing="10"
         RowDefinitions="auto,auto,auto"

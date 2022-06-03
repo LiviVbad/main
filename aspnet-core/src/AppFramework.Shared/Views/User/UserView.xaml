@@ -7,7 +7,8 @@
     xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:perm="clr-namespace:AppFramework.Common;assembly=AppFramework.Common"
-    xmlns:refresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms">
+    xmlns:refresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+    xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -58,11 +59,11 @@
                                         RowDefinitions="auto,auto,auto"
                                         RowSpacing="2">
                                         <StackLayout Orientation="Horizontal">
-                                            <Image
-                                                Aspect="AspectFill"
+                                            <toolkit:AvatarView
                                                 HeightRequest="30"
                                                 HorizontalOptions="Start"
-                                                Source="Profile.png"
+                                                Source="{Binding Photo}"
+                                                Text="{Binding Name}"
                                                 VerticalOptions="Center"
                                                 WidthRequest="30" />
                                             <Label

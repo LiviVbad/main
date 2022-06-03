@@ -13,7 +13,7 @@
     using AppFramework.Common.Core;
     using AppFramework.Common;
 
-    public class OrganizationViewModel : RegionCurdViewModel<OrganizationListModel>
+    public class OrganizationViewModel : RegionCurdViewModel
     {
         private readonly IOrganizationUnitAppService appService;
 
@@ -36,25 +36,25 @@
             await navigationService.NavigateAsync(GetPageName("Details"), param);
         }
 
-        public override async void Delete(OrganizationListModel selectedItem)
+        public override async void Delete(object selectedItem)
         {
-            if (selectedItem == null) return;
-            if (!await dialogService.DeleteConfirm()) return;
-
-            await appService.DeleteOrganizationUnit(new EntityDto<long>()
+            if (selectedItem is OrganizationListModel item)
             {
-                Id = selectedItem.Id
-            });
-            await RefreshAsync();
+                if (!await dialogService.DeleteConfirm()) return;
+
+                await appService.DeleteOrganizationUnit(new EntityDto<long>()
+                {
+                    Id = item.Id
+                });
+                await RefreshAsync();
+            }
         }
 
         public override async Task RefreshAsync()
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(
-                   () => appService.GetOrganizationUnits(),
-                   result => RefreshSuccessed(result));
+                await WebRequestRuner.Execute(() => appService.GetOrganizationUnits(), RefreshSuccessed);
             });
         }
 
@@ -75,7 +75,7 @@
             await Task.CompletedTask;
         }
 
-        public ObservableCollection<OrganizationListModel> BuildOrganizationTree(
+        public ObservableCollection<object> BuildOrganizationTree(
            List<OrganizationListModel> organizationUnits, long? parentId = null)
         {
             var masters = organizationUnits
@@ -87,7 +87,7 @@
             foreach (OrganizationListModel dpt in masters)
                 dpt.Items = BuildOrganizationTree(childs, dpt.Id);
 
-            return new ObservableCollection<OrganizationListModel>(masters);
+            return new ObservableCollection<object>(masters);
         }
     }
 }

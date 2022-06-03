@@ -1,52 +1,33 @@
 ﻿namespace AppFramework.Shared.ViewModels
-{
-    using AppFramework.Common.Services.Layer;
-    using AppFramework.Common.ViewModels;
-    using Prism.Commands;
-    using Prism.Ioc;
-    using Prism.Navigation;
-    using Prism.Regions.Navigation;
-    using Prism.Services.Dialogs;
-    using System;
-    using System.Collections.ObjectModel;
-    using System.Threading.Tasks;
+{ 
+    using Prism.Commands; 
+    using Prism.Navigation;  
+    using System.Collections.ObjectModel; 
 
-    /// <summary>
-    /// Curd Binding的页面导航
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class RegionCurdViewModel<T> : ViewModelBase, IRegionAware where T : class
+    public class RegionCurdViewModel : RegionViewModel
     {
         public RegionCurdViewModel()
-        {
-            applayer = ContainerLocator.Container.Resolve<IApplayerService>();
-            dialogService = ContainerLocator.Container.Resolve<IDialogService>();
-            navigationService = ContainerLocator.Container.Resolve<INavigationService>();
-
+        {  
             AddCommand = new DelegateCommand(Add);
-            EditCommand = new DelegateCommand<T>(Edit);
-            DeleteCommand = new DelegateCommand<T>(Delete);
+            EditCommand = new DelegateCommand<object>(Edit);
+            DeleteCommand = new DelegateCommand<object>(Delete);
             LoadMoreCommand = new DelegateCommand(LoadMore);
 
             RefreshCommand = new DelegateCommand(async () => await RefreshAsync());
-            GridModelList = new ObservableCollection<T>();
+            GridModelList = new ObservableCollection<object>();
         }
 
         #region 字段/属性
 
         public DelegateCommand AddCommand { get; private set; }
-        public DelegateCommand<T> EditCommand { get; private set; }
-        public DelegateCommand<T> DeleteCommand { get; private set; }
+        public DelegateCommand<object> EditCommand { get; private set; }
+        public DelegateCommand<object> DeleteCommand { get; private set; }
         public DelegateCommand RefreshCommand { get; private set; }
         public DelegateCommand LoadMoreCommand { get; private set; }
+          
+        private ObservableCollection<object> gridModelList;
 
-        private readonly IApplayerService applayer;
-        public readonly IDialogService dialogService;
-        public readonly INavigationService navigationService;
-
-        private ObservableCollection<T> gridModelList;
-
-        public ObservableCollection<T> GridModelList
+        public ObservableCollection<object> GridModelList
         {
             get { return gridModelList; }
             set { gridModelList = value; RaisePropertyChanged(); }
@@ -64,14 +45,9 @@
 
         #endregion
 
-        #region 添加/编辑/删除/刷新/加载更多
+        public virtual async void Add() => await navigationService.NavigateAsync(GetPageName("Details"));
 
-        public virtual async void Add()
-        {
-            await navigationService.NavigateAsync(GetPageName("Details"));
-        }
-
-        public virtual async void Edit(T selectedItem)
+        public virtual async void Edit(object selectedItem)
         {
             NavigationParameters param = new NavigationParameters();
             param.Add("Value", selectedItem);
@@ -81,53 +57,8 @@
 
         public virtual void LoadMore() { }
 
-        public virtual void Delete(T selectedItem) { }
-
-        public virtual async Task RefreshAsync()
-        {
-            await Task.CompletedTask;
-        }
-
-        public string GetPageName(string methodName)
-        {
-            return typeof(T)
-                .Name
-                .Replace("List", "")
-                .Replace("Model", $"{methodName}View");
-        }
-
-        public override async Task SetBusyAsync(Func<Task> func, string loadingMessage = null)
-        {
-            IsBusy = true;
-            try
-            {
-                applayer.Show(loadingMessage);
-                await func();
-            }
-            finally
-            {
-                IsBusy = false;
-                applayer.Hide();
-            }
-        }
-
-        #endregion ICurdAware
-
-        #region 导航方法
-
-        public virtual bool IsNavigationTarget(INavigationContext navigationContext)
-        {
-            return false;
-        }
-
-        public virtual void OnNavigatedFrom(INavigationContext navigationContext)
-        { }
-
-        public virtual async void OnNavigatedTo(INavigationContext navigationContext)
-        {
-            await RefreshAsync();
-        }
-
-        #endregion
+        public virtual void Delete(object selectedItem) { }
+         
+        public string GetPageName(string methodName) => this.GetType().Name.Replace("ViewModel", $"{methodName}View");
     }
 }

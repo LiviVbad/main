@@ -203,7 +203,7 @@ namespace AppFramework.ViewModels
             }
         }
 
-        public ObservableCollection<OrganizationListModel> BuildOrganizationTree(
+        public ObservableCollection<object> BuildOrganizationTree(
             List<OrganizationListModel> organizationUnits, long? parentId = null)
         {
             var masters = organizationUnits
@@ -215,7 +215,7 @@ namespace AppFramework.ViewModels
             foreach (OrganizationListModel dpt in masters)
                 dpt.Items = BuildOrganizationTree(childs, dpt.Id);
 
-            return new ObservableCollection<OrganizationListModel>(masters);
+            return new ObservableCollection<object>(masters);
         }
 
         #endregion 

@@ -1,15 +1,13 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Core;
-using AppFramework.Common.Models;
 using AppFramework.Editions;
 using AppFramework.Editions.Dto;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class EditionViewModel : RegionCurdViewModel<EditionListModel>
+    public class EditionViewModel : RegionCurdViewModel
     {
         private readonly IEditionAppService appService;
 
@@ -23,30 +21,29 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(
-                        () => appService.GetEditions(),
-                        result => RefreshSuccessed(result));
+                await WebRequestRuner.Execute(() => appService.GetEditions(), RefreshSuccessed);
             });
         }
 
-        public override async void Delete(EditionListModel selectedItem)
+        public override async void Delete(object selectedItem)
         {
-            if (selectedItem == null) return;
-
-            if (!await dialogService.DeleteConfirm()) return;
-
-            await appService.DeleteEdition(new EntityDto()
+            if (selectedItem is EditionListDto item)
             {
-                Id = selectedItem.Id
-            });
-            await RefreshAsync();
+                if (!await dialogService.DeleteConfirm()) return;
+
+                await appService.DeleteEdition(new EntityDto()
+                {
+                    Id = item.Id
+                });
+                await RefreshAsync();
+            }
         }
 
         private async Task RefreshSuccessed(ListResultDto<EditionListDto> result)
         {
             GridModelList.Clear();
 
-            foreach (var item in Map<List<EditionListModel>>(result.Items))
+            foreach (var item in result.Items)
                 GridModelList.Add(item);
 
             await Task.CompletedTask;

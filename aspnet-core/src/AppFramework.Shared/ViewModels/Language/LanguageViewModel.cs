@@ -2,15 +2,13 @@
 using AppFramework.Localization;
 using AppFramework.Localization.Dto;
 using Prism.Regions.Navigation;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using AppFramework.Common.Models;
 using AppFramework.Common.Core;
 using AppFramework.Common;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class LanguageViewModel : RegionCurdViewModel<LanguageListModel>, IRegionAware
+    public class LanguageViewModel : RegionCurdViewModel
     {
         private readonly ILanguageAppService appService;
 
@@ -24,30 +22,29 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(
-                       () => appService.GetLanguages(),
-                       result => RefreshSuccessed(result));
+                await WebRequestRuner.Execute(() => appService.GetLanguages(), RefreshSuccessed);
             });
         }
 
-        public override async void Delete(LanguageListModel selectedItem)
+        public override async void Delete(object selectedItem)
         {
-            if (selectedItem == null) return;
-
-            if (!await dialogService.DeleteConfirm()) return;
-
-            await appService.DeleteLanguage(new EntityDto()
+            if (selectedItem is ApplicationLanguageListDto item)
             {
-                Id = selectedItem.Id
-            });
-            await RefreshAsync();
+                if (!await dialogService.DeleteConfirm()) return;
+
+                await appService.DeleteLanguage(new EntityDto()
+                {
+                    Id = item.Id
+                });
+                await RefreshAsync();
+            }
         }
 
         protected virtual async Task RefreshSuccessed(GetLanguagesOutput result)
         {
             GridModelList.Clear();
 
-            foreach (var item in Map<List<LanguageListModel>>(result.Items))
+            foreach (var item in result.Items)
                 GridModelList.Add(item);
 
             await Task.CompletedTask;

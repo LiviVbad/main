@@ -9,7 +9,7 @@ namespace AppFramework.Common.Models
         private string displayName;
         private int memberCount;
         private int roleCount;
-        private ObservableCollection<OrganizationListModel> items = new ObservableCollection<OrganizationListModel>();
+        private ObservableCollection<object> items = new ObservableCollection<object>();
 
         public bool IsChecked
         {
@@ -17,7 +17,7 @@ namespace AppFramework.Common.Models
             set { isChecked = value; RaisePropertyChanged(); }
         }
 
-        public ObservableCollection<OrganizationListModel> Items
+        public ObservableCollection<object> Items
         {
             get { return items; }
             set { items = value; RaisePropertyChanged(); }

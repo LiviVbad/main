@@ -1,13 +1,11 @@
 ﻿using AppFramework.Auditing;
 using AppFramework.Auditing.Dto; 
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AppFramework.Common.Models;
+using System; 
+using System.Threading.Tasks; 
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class AuditLogViewModel : RegionCurdViewModel<AuditLogListModel>
+    public class AuditLogViewModel : RegionCurdViewModel
     {
         private readonly IAuditLogAppService appService;
         public GetAuditLogsInput input;
@@ -50,7 +48,7 @@ namespace AppFramework.Shared.ViewModels
                 await WebRequestRuner.Execute(() => appService.GetAuditLogs(input),
                            async result =>
                            {
-                               foreach (var item in Map<List<AuditLogListModel>>(result.Items))
+                               foreach (var item in result.Items)
                                    GridModelList.Add(item);
 
                                TotalCount = result.TotalCount;

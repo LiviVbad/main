@@ -1,21 +1,19 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.DynamicEntityProperties;
-using AppFramework.DynamicEntityProperties.Dto; 
-using System.Collections.Generic;
+using AppFramework.DynamicEntityProperties.Dto;
 using System.Threading.Tasks;
-using AppFramework.Common.Models;
 using AppFramework.Common.Core;
 using AppFramework.Common;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class DynamicPropertyViewModel : RegionCurdViewModel<DynamicPropertyModel>
+    public class DynamicPropertyViewModel : RegionCurdViewModel
     {
         private readonly IDynamicPropertyAppService appService;
 
         public DynamicPropertyViewModel(IDynamicPropertyAppService appService, IMessenger messenger)
         {
-            this.appService=appService;
+            this.appService = appService;
             messenger.Sub(AppMessengerKeys.Dynamic, async () => await RefreshAsync());
         }
 
@@ -23,27 +21,26 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(
-                       () => appService.GetAll(),
-                       result => RefreshSuccessed(result));
+                await WebRequestRuner.Execute(() => appService.GetAll(), RefreshSuccessed);
             });
         }
 
-        public override async void Delete(DynamicPropertyModel selectedItem)
+        public override async void Delete(object selectedItem)
         {
-            if (selectedItem==null) return;
+            if (selectedItem is DynamicPropertyDto item)
+            {
+                if (!await dialogService.DeleteConfirm()) return;
 
-            if (!await dialogService.DeleteConfirm()) return;
-
-            await appService.Delete(new EntityDto(selectedItem.Id));
-            await RefreshAsync();
+                await appService.Delete(new EntityDto(item.Id));
+                await RefreshAsync();
+            } 
         }
 
         private async Task RefreshSuccessed(ListResultDto<DynamicPropertyDto> result)
         {
             GridModelList.Clear();
 
-            foreach (var item in Map<List<DynamicPropertyModel>>(result.Items))
+            foreach (var item in result.Items)
                 GridModelList.Add(item);
 
             await Task.CompletedTask;

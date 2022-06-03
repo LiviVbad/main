@@ -2,8 +2,8 @@
 using AppFramework.Common.Services.Account;
 using AppFramework.ApiClient;
 using AppFramework.Authorization.Users.Dto;
-using AppFramework.Authorization.Users.Profile; 
-using Prism.Commands; 
+using AppFramework.Authorization.Users.Profile;
+using Prism.Commands;
 using Prism.Regions.Navigation;
 using Prism.Services.Dialogs;
 using System.Collections.ObjectModel;
@@ -27,9 +27,8 @@ namespace AppFramework.Shared.ViewModels
         private LanguageInfo selectedLanguage;
 
         private bool isInitialized;
-
-        public SettingsViewModel(
-            IDialogService dialogService,
+         
+        public SettingsViewModel(IDialogService dialogService, 
             IApplicationContext applicationContext,
             IProfileAppService profileAppService,
             IAccountService accountService)
@@ -89,6 +88,6 @@ namespace AppFramework.Shared.ViewModels
             Languages = new ObservableCollection<LanguageInfo>(applicationContext.Configuration.Localization.Languages);
             SelectedLanguage = languages.FirstOrDefault(l => l.Name == applicationContext.CurrentLanguage.Name);
             isInitialized = true;
-        } 
+        }
     }
 }

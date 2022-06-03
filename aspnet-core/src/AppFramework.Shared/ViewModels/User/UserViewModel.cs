@@ -3,7 +3,6 @@ using AppFramework.Authorization.Users;
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.Authorization.Users.Profile;
 using Prism.Navigation;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using AppFramework.Common.Models;
 using AppFramework.Common.Core;
@@ -11,7 +10,7 @@ using AppFramework.Common;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class UserViewModel : RegionCurdViewModel<UserListModel>
+    public class UserViewModel : RegionCurdViewModel
     {
         #region 字段/属性
 
@@ -56,17 +55,18 @@ namespace AppFramework.Shared.ViewModels
             await GotoUserDetailsAsync(null);
         }
 
-        public override async void Delete(UserListModel selectedItem)
+        public override async void Delete(object selectedItem)
         {
-            if (selectedItem == null) return;
-
-            if (!await dialogService.DeleteConfirm()) return;
-
-            await appService.DeleteUser(new EntityDto<long>()
+            if (selectedItem is UserListDto item)
             {
-                Id = selectedItem.Id
-            });
-            await RefreshAsync();
+                if (!await dialogService.DeleteConfirm()) return;
+
+                await appService.DeleteUser(new EntityDto<long>()
+                {
+                    Id = item.Id
+                });
+                await RefreshAsync();
+            }
         }
 
         private async Task GotoUserDetailsAsync(UserListModel user)
@@ -96,9 +96,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(
-                       () => appService.GetUsers(input),
-                       result => RefreshSuccessed(result));
+                await WebRequestRuner.Execute(() => appService.GetUsers(input), RefreshSuccessed);
             });
         }
 
@@ -106,7 +104,7 @@ namespace AppFramework.Shared.ViewModels
         {
             GridModelList.Clear();
 
-            foreach (var item in Map<List<UserListModel>>(result.Items))
+            foreach (var item in result.Items)
                 GridModelList.Add(item);
 
             await Task.CompletedTask;
