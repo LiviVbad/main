@@ -61,7 +61,8 @@ namespace AppFramework.Shared.ViewModels
         {
             if (parameters.ContainsKey("Value"))
             {
-                Model = parameters.GetValue<DynamicPropertyModel>("Value");
+                var property = parameters.GetValue<DynamicPropertyDto>("Value");
+                Model = Map<DynamicPropertyModel>(property);
             }
         }
     }

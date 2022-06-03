@@ -10,6 +10,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AppFramework.Common;
+using AppFramework.Shared.Services.Account;
+using AppFramework.Common.Core;
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -19,6 +21,7 @@ namespace AppFramework.Shared.ViewModels
         public DelegateCommand ChangePasswordCommand { get; private set; }
 
         private readonly IAccountService accountService;
+        private readonly IMessenger messenger;
         private readonly IDialogService dialogService;
         private readonly IApplicationContext applicationContext;
         private readonly IProfileAppService profileAppService;
@@ -27,11 +30,12 @@ namespace AppFramework.Shared.ViewModels
         private LanguageInfo selectedLanguage;
 
         private bool isInitialized;
-         
-        public SettingsViewModel(IDialogService dialogService, 
+
+        public SettingsViewModel(IDialogService dialogService,
             IApplicationContext applicationContext,
             IProfileAppService profileAppService,
-            IAccountService accountService)
+            IAccountService accountService,
+            IMessenger messenger)
         {
             LogoutCommand = new DelegateCommand(() => accountService.LogoutAsync());
             ChangePasswordCommand = new DelegateCommand(() => AsyncRunner.Run(ChangePasswordAsync()));
@@ -39,6 +43,7 @@ namespace AppFramework.Shared.ViewModels
             this.applicationContext = applicationContext;
             this.profileAppService = profileAppService;
             this.accountService = accountService;
+            this.messenger = messenger;
         }
 
         public ObservableCollection<LanguageInfo> Languages
@@ -67,15 +72,17 @@ namespace AppFramework.Shared.ViewModels
             applicationContext.CurrentLanguage = selectedLanguage;
 
             await WebRequestRuner.Execute(async () =>
-                    await profileAppService.ChangeLanguage(new ChangeUserLanguageDto
-                    {
-                        LanguageName = selectedLanguage.Name
-                    }),
-                    () =>
-                    {
-                        AppDialogHelper.Success("ChangeLanguage", LocalizationSource.LocalTranslation);
-                        return Task.CompletedTask;
-                    });
+            {
+                await profileAppService.ChangeLanguage(new ChangeUserLanguageDto
+                {
+                    LanguageName = selectedLanguage.Name
+                });
+                await AppConfigurationManager.GetAsync();
+            }, async () =>
+            {
+                messenger.Send(AppMessengerKeys.LanguageRefresh);
+                await Task.CompletedTask;
+            });
         }
 
         private async Task ChangePasswordAsync()

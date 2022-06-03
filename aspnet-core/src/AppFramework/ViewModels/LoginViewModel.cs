@@ -163,7 +163,7 @@ namespace AppFramework.ViewModels
 
         public void ChangeTenantAsync()
         {
-            //切换可选租户...
+            //切换可选租户... 
         }
 
         private async Task LoginUserAsync()
@@ -179,7 +179,7 @@ namespace AppFramework.ViewModels
             //记住密码？ 
             storageService.SetValue(nameof(UserName), IsRememberMe ? UserName : null);
             storageService.SetValue(nameof(Password), IsRememberMe ? Password : null, true);
-
+            
             //清理
             UserName = string.Empty;
             Password = string.Empty;

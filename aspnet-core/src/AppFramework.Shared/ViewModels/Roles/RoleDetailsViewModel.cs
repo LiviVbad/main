@@ -71,7 +71,7 @@ namespace AppFramework.Shared.ViewModels
                 int? id = null;
 
                 if (parameters != null && parameters.ContainsKey("Value"))
-                    id = parameters.GetValue<RoleListModel>("Value").Id;
+                    id = parameters.GetValue<RoleListDto>("Value").Id;
                 var output = await appService.GetRoleForEdit(new NullableIdDto(id));
                 Role = Map<RoleEditModel>(output.Role);
                 treesService.CreatePermissionTrees(output.Permissions, output.GrantedPermissionNames);

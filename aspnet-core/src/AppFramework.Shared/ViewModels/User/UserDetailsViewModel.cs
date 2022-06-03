@@ -169,16 +169,16 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                UserListModel userInfo = null;
+                long? id = null;
                 if (parameters.ContainsKey("Value"))
-                    userInfo = parameters.GetValue<UserListModel>("Value");
+                    id = parameters.GetValue<UserListDto>("Value").Id;
 
-                IsNewUser = userInfo == null;
+                IsNewUser = id == null;
                 UserInput.SetRandomPassword = IsNewUser;
                 UserInput.SendActivationEmail = IsNewUser;
 
                 await WebRequestRuner.Execute(() =>
-                userAppService.GetUserForEdit(new NullableIdDto<long>(userInfo?.Id)),
+                userAppService.GetUserForEdit(new NullableIdDto<long>(id)),
                 result => GetUserForEditSuccessed(result));
             });
         }

@@ -7,8 +7,7 @@ using AppFramework.ApiClient;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Dto;
-using AppFramework.Shared.Controls;
-using AppFramework.Shared.Localization;
+using AppFramework.Shared.Controls; 
 using FFImageLoading;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -259,16 +258,19 @@ namespace AppFramework.Shared.Services
 
         public async Task GetApplicationInfo()
         {
-            await GetUserPhoto();
-
+            RefreshAuthMenus();
             UserNameAndSurname = applicationContext.LoginInfo.User.Name + " " + applicationContext.LoginInfo.User.Surname;
+            ApplicationInfo = $"{ApplicationName}\n" +
+                            $"v{applicationContext.LoginInfo.Application.Version} " +
+                            $"[{applicationContext.LoginInfo.Application.ReleaseDate:yyyyMMdd}]";
 
+            await GetUserPhoto();
+        }
+
+        public void RefreshAuthMenus()
+        {
             var permissions = applicationContext.Configuration.Auth.GrantedPermissions;
             NavigationItems = navigationItemService.GetAuthMenus(permissions);
-
-            ApplicationInfo = $"{ApplicationName}\n" +
-                              $"v{applicationContext.LoginInfo.Application.Version} " +
-                              $"[{applicationContext.LoginInfo.Application.ReleaseDate:yyyyMMdd}]";
         }
     }
 }

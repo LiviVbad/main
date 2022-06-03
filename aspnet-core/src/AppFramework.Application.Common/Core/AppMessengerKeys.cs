@@ -26,5 +26,7 @@
         public const string Logout = "App/Logout";
 
         public const string RemoveAllRegion = "App/Regions";
+
+        public const string LanguageRefresh = "Language/Refresh";
     }
 }

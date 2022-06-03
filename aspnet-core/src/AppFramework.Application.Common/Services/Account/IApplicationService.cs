@@ -49,5 +49,10 @@ namespace AppFramework.Common.Services
         /// 备注: 用户名、头像、权限、应用程序名称版本等
         /// </summary>
         Task GetApplicationInfo();
+
+        /// <summary>
+        /// 刷新菜单
+        /// </summary>
+        void RefreshAuthMenus();
     }
 }

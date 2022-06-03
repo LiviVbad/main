@@ -1,10 +1,11 @@
-﻿using AppFramework.ApiClient; 
+﻿using AppFramework.ApiClient;
 using Prism.Commands;
 using Prism.Regions.Navigation;
 using AppFramework.Common.Services;
 using AppFramework.Common.Services.Account;
 using AppFramework.Common.Models;
 using AppFramework.Common;
+using AppFramework.Common.Core;
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -14,14 +15,17 @@ namespace AppFramework.Shared.ViewModels
             IRegionNavigateService regionService,
             IAccountService accountService,
             IApplicationContext applicationContext,
-            IApplicationService appService)
+            IApplicationService appService,
+            IMessenger messenger)
         {
             this.regionService = regionService;
             this.accountService = accountService;
             this.applicationContext = applicationContext;
             this.appService = appService;
-
+            this.messenger = messenger;
             ExecuteCommand = new DelegateCommand<string>(Execute);
+
+            messenger.Sub(AppMessengerKeys.LanguageRefresh, appService.RefreshAuthMenus);
         }
 
         #region 字段/属性
@@ -29,6 +33,8 @@ namespace AppFramework.Shared.ViewModels
         private readonly IRegionNavigateService regionService;
         private readonly IAccountService accountService;
         private readonly IApplicationContext applicationContext;
+        private readonly IMessenger messenger;
+
         public IApplicationService appService { get; }
 
         public DelegateCommand<string> ExecuteCommand { get; private set; }
@@ -55,7 +61,7 @@ namespace AppFramework.Shared.ViewModels
             //初始化系统首页
             SetDefaultPage();
         }
-         
+
         public void Navigate(NavigationItem item)
         {
             regionService.Navigate(AppRegionManager.Main, item.PageViewName);
@@ -65,7 +71,7 @@ namespace AppFramework.Shared.ViewModels
         {
             regionService.Navigate(AppRegionManager.Main, AppViewManager.Dashboard);
         }
-         
+
         #endregion
     }
 }

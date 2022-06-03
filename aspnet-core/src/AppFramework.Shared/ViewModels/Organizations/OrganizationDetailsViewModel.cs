@@ -195,7 +195,7 @@ namespace AppFramework.Shared.ViewModels
                  }
                  else if (parameters.ContainsKey("Value"))
                  {
-                     //编辑组织,获取组织对应的用户以及角色列表
+                     //编辑组织,获取组织对应的用户以及角色列表 
                      OrganizationUnit = parameters.GetValue<OrganizationListModel>("Value");
                      await GetOrganizationUnitRolesAndUsers(OrganizationUnit.Id);
                  }

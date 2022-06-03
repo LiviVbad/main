@@ -294,7 +294,8 @@ namespace AppFramework.Shared.ViewModels
             {
                 if (parameters.ContainsKey("Value"))
                 {
-                    Model = parameters.GetValue<TenantListModel>("Value");
+                    var tenant = parameters.GetValue<TenantListDto>("Value");
+                    Model = Map<TenantListModel>(tenant);
                     InitializeEditTenant();
                 }
                 else
