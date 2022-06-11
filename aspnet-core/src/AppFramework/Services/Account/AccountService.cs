@@ -39,10 +39,17 @@ namespace AppFramework.Services.Account
         public AbpAuthenticateModel AuthenticateModel { get; set; }
         public AbpAuthenticateResultModel AuthenticateResultModel { get; set; }
 
-        public async Task LoginUserAsync()
+        public async Task<bool> LoginUserAsync()
         {
-            var result = await accessTokenManager.LoginAsync();
-            await AuthenticateSucceed(result);
+            bool loginResult = false;
+
+            await WebRequest.Execute(() => accessTokenManager.LoginAsync(),
+                  async result =>
+                  {
+                      loginResult = await AuthenticateSucceed(result);
+                  });
+
+            return loginResult;
         }
 
         public async Task LoginCurrentUserAsync(UserListModel user)
@@ -70,14 +77,19 @@ namespace AppFramework.Services.Account
             await Task.CompletedTask;
         }
 
-        private async Task AuthenticateSucceed(AbpAuthenticateResultModel result)
+        private async Task<bool> AuthenticateSucceed(AbpAuthenticateResultModel result)
         {
             AuthenticateResultModel = result;
 
             if (AuthenticateResultModel.ShouldResetPassword)
             {
-                dialog.ShowMessage("", Local.Localize("ChangePasswordToLogin"));
-                return;
+                DialogParameters param = new DialogParameters();
+                param.Add("Value", result);
+                var pwdResult = await dialog.ShowDialogAsync(AppViewManager.FirstChangedPwd,
+                    param, AppCommonConsts.LoginIdentifier);
+
+                if (pwdResult.Result != ButtonResult.OK)
+                    return false;
             }
 
             if (AuthenticateResultModel.RequiresTwoFactorVerification)
@@ -94,6 +106,8 @@ namespace AppFramework.Services.Account
 
             await SetCurrentUserInfoAsync();
             await UserConfigurationManager.GetAsync();
+
+            return true;
         }
 
         public async Task SetCurrentUserInfoAsync()

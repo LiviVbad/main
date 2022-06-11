@@ -190,8 +190,10 @@ namespace AppFramework.ViewModels
             });
         }
 
-        private async Task LoginUserSuccessed()
+        private async Task LoginUserSuccessed(bool result)
         {
+            if (!result) return;
+
             //记住密码？ 
             storageService.SetValue(nameof(UserName), IsRememberMe ? UserName : null);
             storageService.SetValue(nameof(Password), IsRememberMe ? Password : null, true);

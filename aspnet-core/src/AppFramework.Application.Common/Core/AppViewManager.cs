@@ -10,6 +10,8 @@
 
         public const string SelectTenant = "SelectTenantView";
 
+        public const string FirstChangedPwd = "FirstChangedPwdView";
+
         public const string Main = "MainView";
 
         public const string Setting = "SettingsView";

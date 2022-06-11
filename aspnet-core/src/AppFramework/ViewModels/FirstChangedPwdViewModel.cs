@@ -1,0 +1,117 @@
+﻿using AppFramework.ApiClient;
+using AppFramework.ApiClient.Models;
+using AppFramework.Authorization.Accounts;
+using AppFramework.Authorization.Accounts.Dto;
+using AppFramework.Common;
+using Prism.Services.Dialogs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AppFramework.ViewModels
+{
+    public class FirstChangedPwdViewModel : HostDialogViewModel
+    {
+        private readonly IAccountAppService appService;
+        private readonly IAccessTokenManager accessTokenManager;
+        private readonly AbpAuthenticateModel authenticateModel;
+
+        public FirstChangedPwdViewModel(
+            IAccountAppService appService,
+            IAccessTokenManager accessTokenManager,
+            AbpAuthenticateModel authenticateModel)
+        {
+            this.appService = appService;
+            this.accessTokenManager = accessTokenManager;
+            this.authenticateModel = authenticateModel;
+        }
+
+        private string passWord;
+        private string newpassWord;
+        private string errorMessage;
+
+        public string PassWord
+        {
+            get { return passWord; }
+            set { passWord = value; ValidationPassWord(); RaisePropertyChanged(); }
+        }
+
+        public string NewPassWord
+        {
+            get { return newpassWord; }
+            set
+            {
+                newpassWord = value;
+                ValidationPassWord();
+                RaisePropertyChanged();
+            }
+        }
+
+        public string ErrorMessage
+        {
+            get { return errorMessage; }
+            set
+            {
+                errorMessage = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private AbpAuthenticateResultModel model;
+
+        protected override async void Save()
+        {
+            if (ValidationPassWord())
+            {
+                //密码策略验证...
+
+                await SetBusyAsync(async () =>
+                {
+                    await WebRequest.Execute(() => appService.ResetPassword(
+                          new Authorization.Accounts.Dto.ResetPasswordInput()
+                          {
+                              UserId = model.UserId,
+                              Password = PassWord,
+                              ResetCode = model.PasswordResetCode
+                          }), ResetPasswordSuccessed);
+                });
+            }
+        }
+        private async Task ResetPasswordSuccessed(ResetPasswordOutput output)
+        {
+            if (output.CanLogin)
+            {
+                authenticateModel.Password = PassWord;
+                await WebRequest.Execute(() => accessTokenManager.LoginAsync(), async result =>
+                {
+                    base.Save();
+                    await Task.CompletedTask;
+                });
+            }
+            else
+                base.Cancel();
+        }
+
+        private bool ValidationPassWord()
+        {
+            if (!string.IsNullOrWhiteSpace(PassWord) && !string.IsNullOrWhiteSpace(NewPassWord))
+            {
+                if (PassWord != NewPassWord)
+                    ErrorMessage = Local.Localize("PasswordsDontMatch");
+                else
+                {
+                    ErrorMessage = string.Empty;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public override void OnDialogOpened(IDialogParameters parameters)
+        {
+            model = parameters.GetValue<AbpAuthenticateResultModel>("Value");
+        }
+    }
+}

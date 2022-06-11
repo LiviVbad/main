@@ -1,11 +1,16 @@
-﻿using AppFramework.ApiClient; 
+﻿using AppFramework.ApiClient;
 using Prism.Ioc;
+using System;
 using System.Globalization;
 
 namespace AppFramework.Common
 {
     public static class Local
     {
+        private static readonly Lazy<IApplicationContext> appContext =
+         new Lazy<IApplicationContext>(
+         ContainerLocator.Container.Resolve<IApplicationContext>);
+
         public static string Localize(string text)
         {
             return LocalizeInternal(text);
@@ -35,11 +40,10 @@ namespace AppFramework.Common
             if (string.IsNullOrWhiteSpace(text))
                 return text;
 
-            var appContext = ContainerLocator.Container.Resolve<IApplicationContext>();
-            if (appContext.Configuration == null)
+            if (appContext.Value.Configuration == null)
                 return text;
 
-            return appContext.Configuration.Localization.Localize(text);
+            return appContext.Value.Configuration.Localization.Localize(text);
         }
     }
 }

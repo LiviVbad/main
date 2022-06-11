@@ -10,7 +10,7 @@ namespace AppFramework.Common.Services.Account
 
         AbpAuthenticateResultModel AuthenticateResultModel { get; set; }
 
-        Task LoginUserAsync();
+        Task<bool> LoginUserAsync();
 
         Task LoginCurrentUserAsync(UserListModel user);
 
