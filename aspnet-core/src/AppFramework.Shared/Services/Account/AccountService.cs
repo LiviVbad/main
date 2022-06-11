@@ -55,14 +55,10 @@ namespace AppFramework.Shared.Services.Account
         /// 用户登录
         /// </summary>
         /// <returns></returns>
-        public async Task LoginUserAsync()
+        public async Task<bool> LoginUserAsync()
         {
-            await WebRequestRuner.Execute(accessTokenManager.LoginAsync,
-                async result =>
-                {
-                    await AuthenticateSucceed(result);
-                },
-                ex => Task.CompletedTask);
+            await WebRequestRuner.Execute(accessTokenManager.LoginAsync, AuthenticateSucceed);
+            return true;
         }
 
         /// <summary>
@@ -97,14 +93,14 @@ namespace AppFramework.Shared.Services.Account
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
-        protected async Task AuthenticateSucceed(AbpAuthenticateResultModel result)
+        protected async Task<bool> AuthenticateSucceed(AbpAuthenticateResultModel result)
         {
             AuthenticateResultModel = result;
 
             if (AuthenticateResultModel.ShouldResetPassword)
             {
                 await UserDialogs.Instance.AlertAsync(Local.Localize("ChangePasswordToLogin"), Local.Localize("LoginFailed"), Local.Localize("Ok"));
-                return;
+                return true; //待更新...
             }
 
             if (AuthenticateResultModel.RequiresTwoFactorVerification)
@@ -112,7 +108,7 @@ namespace AppFramework.Shared.Services.Account
                 NavigationParameters param = new NavigationParameters();
                 param.Add("Value", AuthenticateResultModel);
                 await navigationService.NavigateAsync(AppViewManager.SendTwoFactorCode, param);
-                return;
+                return true; //待更新...
             }
 
             if (!AuthenticateModel.IsTwoFactorVerification)
@@ -124,6 +120,8 @@ namespace AppFramework.Shared.Services.Account
             await SetCurrentUserInfoAsync();
             await AppConfigurationManager.GetAsync();
             regionNavigateService.Navigate(AppRegionManager.Index, AppViewManager.Main);
+
+            return true;
         }
 
         /// <summary>

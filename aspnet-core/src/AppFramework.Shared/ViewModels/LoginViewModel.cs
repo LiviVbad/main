@@ -7,8 +7,8 @@ using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Storage;
 using AppFramework.ApiClient;
 using AppFramework.Authorization.Accounts;
-using AppFramework.Authorization.Accounts.Dto; 
-using AppFramework.Shared.Services.Account; 
+using AppFramework.Authorization.Accounts.Dto;
+using AppFramework.Shared.Services.Account;
 using MvvmHelpers;
 using Prism.Commands;
 using Prism.Regions.Navigation;
@@ -156,10 +156,7 @@ namespace AppFramework.Shared.ViewModels
 
         private async Task LoginUserAsync()
         {
-            await SetBusyAsync(async () =>
-            {
-                await accountService.LoginUserAsync();
-            });
+            await SetBusyAsync(accountService.LoginUserAsync);
         }
 
         #endregion 用户登录
