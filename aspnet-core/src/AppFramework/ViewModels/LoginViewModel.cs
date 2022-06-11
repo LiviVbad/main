@@ -32,7 +32,17 @@ namespace AppFramework.ViewModels
         private string tenancyName;
         private bool isLoginEnabled;
         private bool isRememberMe;
-        public string CurrentTenancyNameOrDefault { get; set; }
+        private string currentTenancyNameOrDefault;
+
+        public string CurrentTenancyNameOrDefault
+        {
+            get => currentTenancyNameOrDefault;
+            set
+            {
+                currentTenancyNameOrDefault = value;
+                RaisePropertyChanged();
+            }
+        }
         private LanguageInfo selectedLanguage;
         private ObservableCollection<LanguageInfo> languages;
 
@@ -161,9 +171,15 @@ namespace AppFramework.ViewModels
             OnDialogClosed(ButtonResult.Retry);
         }
 
-        public void ChangeTenantAsync()
+        public async void ChangeTenantAsync()
         {
-            //切换可选租户... 
+            var dialogResult = await dialogService.ShowDialogAsync(AppViewManager.SelectTenant, null, AppCommonConsts.LoginIdentifier);
+
+            if (dialogResult.Result == ButtonResult.OK)
+            {
+                CurrentTenancyNameOrDefault = dialogResult.Parameters.GetValue<string>("Value");
+                await SetTenantAsync(CurrentTenancyNameOrDefault);
+            }
         }
 
         private async Task LoginUserAsync()
@@ -179,7 +195,7 @@ namespace AppFramework.ViewModels
             //记住密码？ 
             storageService.SetValue(nameof(UserName), IsRememberMe ? UserName : null);
             storageService.SetValue(nameof(Password), IsRememberMe ? Password : null, true);
-            
+
             //清理
             UserName = string.Empty;
             Password = string.Empty;

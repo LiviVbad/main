@@ -8,6 +8,8 @@
 
         public const string Login = "LoginView";
 
+        public const string SelectTenant = "SelectTenantView";
+
         public const string Main = "MainView";
 
         public const string Setting = "SettingsView";

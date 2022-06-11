@@ -67,6 +67,7 @@ namespace AppFramework
             services.RegisterDialog<SplashScreenView, SplashScreenViewModel>(AppViewManager.SplashScreen);
             services.RegisterDialog<LoginView, LoginViewModel>(AppViewManager.Login);
 
+            services.Add<SelectTenantView, SelectTenantViewModel>(AppViewManager.SelectTenant);
             services.Add<MainView, MainViewModel>(AppViewManager.Main);
             services.Add<HostMessageBoxView, HostMessageViewModel>(AppViewManager.HostMessageBox);
             services.Add<MessageBoxView, MessageViewModel>(AppViewManager.MessageBox);

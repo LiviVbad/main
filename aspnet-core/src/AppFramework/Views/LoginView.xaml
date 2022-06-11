@@ -81,11 +81,20 @@
                     VerticalAlignment="Center">
                     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                         <TextBlock Text="{extensions:Translate CurrentTenant}" />
-                        <TextBlock Text="{Binding CurrentTenancyNameOrDefault}" />
+                        <TextBlock
+                            Margin="5,0"
+                            FontWeight="Bold"
+                            Text="{Binding CurrentTenancyNameOrDefault}" />
                         <TextBlock Text=" ( " />
                         <TextBlock>
                             <Hyperlink Foreground="AliceBlue">
-                                <TextBlock Text="{extensions:Translate TenantSelection}" />
+                                <TextBlock Text="{extensions:Translate TenantSelection}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                            <i:InvokeCommandAction Command="{Binding ExecuteCommand}" CommandParameter="ChangeTenant" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
                             </Hyperlink>
                         </TextBlock>
                         <TextBlock Text=" )" />
