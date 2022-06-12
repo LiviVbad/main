@@ -34,9 +34,8 @@ namespace AppFramework.ViewModels
         public override async void OnDialogOpened(IDialogParameters parameters)
         { 
             await SetBusyAsync(async () =>
-            {
-                //等等别那么快。。。
-                await Task.Delay(1000);
+            { 
+                await Task.Delay(2000);
 
                 //加载本地的缓存信息
                 DisplayText = LocalTranslationHelper.Localize("Initializing");

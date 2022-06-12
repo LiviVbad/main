@@ -8,8 +8,8 @@
     xmlns:prism="http://prismlibrary.com/"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     Title="SplashScreenView"
-    Width="300"
-    Height="200"
+    Width="940"
+    Height="550"
     BorderBrush="Transparent"
     ResizeMode="NoResize"
     ShowMaximizeButton="False"
@@ -23,11 +23,22 @@
             <Setter Property="SizeToContent" Value="WidthAndHeight" />
         </Style>
     </prism:Dialog.WindowStyle>
-    <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <sync:SfBusyIndicator AnimationType="DualRing" IsBusy="{Binding IsBusy}" />
+    <Grid Margin="-1">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Image Grid.RowSpan="2" Source="/Assets/Images/SplashScreen.png" />
 
-            <TextBlock HorizontalAlignment="Center" Text="{Binding DisplayText}" />
+        <StackPanel
+            Grid.Row="1"
+            Margin="50"
+            VerticalAlignment="Bottom">
+            <TextBlock
+                FontSize="50"
+                FontWeight="Bold"
+                Text="您好,请稍候！" />
+            <sync:SfLinearProgressBar Margin="0,20" IsIndeterminate="True" />
         </StackPanel>
     </Grid>
 </sync:ChromelessWindow>

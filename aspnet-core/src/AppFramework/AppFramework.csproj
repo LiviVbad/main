@@ -6,6 +6,10 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Images\SplashScreen.png" />
+  </ItemGroup>
  
   <ItemGroup>
     <PackageReference Include="Abp" Version="7.2.1" />
@@ -302,6 +306,7 @@
     <Resource Include="Assets\Images\Operation.png" />
     <Resource Include="Assets\Images\OrganizationUnit.png" />
     <Resource Include="Assets\Images\question.png" />
+    <Resource Include="Assets\Images\SplashScreen.png" />
     <Resource Include="Assets\Images\theme12.png" />
   </ItemGroup>
 
