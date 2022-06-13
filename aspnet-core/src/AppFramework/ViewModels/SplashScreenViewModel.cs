@@ -35,10 +35,10 @@ namespace AppFramework.ViewModels
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
             await SetBusyAsync(async () =>
-            {
+            { 
                 //加载本地的缓存信息
                 DisplayText = LocalTranslationHelper.Localize("Initializing");
-                await Task.Delay(1000);  
+                await Task.Delay(1000);
 
                 accessTokenManager.AuthenticateResult = dataStorageService.RetrieveAuthenticateResult();
                 applicationContext.Load(dataStorageService.RetrieveTenantInfo(), dataStorageService.RetrieveLoginInfo());

@@ -7,7 +7,7 @@ namespace AppFramework
     /// </summary> 
     public class AppSettings
     {
-        private bool isDarkTheme = true;
+        private bool isDarkTheme = false;
         private string themeName = "Material";
 
         static AppSettings()
