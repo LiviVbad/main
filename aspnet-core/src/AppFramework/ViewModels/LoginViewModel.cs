@@ -165,10 +165,13 @@ namespace AppFramework.ViewModels
 
             await SetBusyAsync(async () =>
              {
-                 await UserConfigurationManager.GetAsync();
+                 await WebRequest.Execute(() => UserConfigurationManager.GetAsync(),
+                  async () =>
+                  {
+                      OnDialogClosed(ButtonResult.Retry);
+                      await Task.CompletedTask;
+                  });
              });
-
-            OnDialogClosed(ButtonResult.Retry);
         }
 
         public async void ChangeTenantAsync()

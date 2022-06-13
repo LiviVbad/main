@@ -43,7 +43,6 @@ namespace AppFramework.Services.Dialog
 
             MvvmHelpers.ViewAndViewModelAction<IDialogAware>(viewModel, d => d.OnDialogOpened(null));
             dialogContent.ShowDialog();
-
             return dialogResult;
         }
 

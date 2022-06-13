@@ -40,8 +40,8 @@
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Abp.Castle.Log4Net" Version="7.1.0" />
-    <PackageReference Include="Abp.AspNetCore.SignalR" Version="7.1.0" />
+    <PackageReference Include="Abp.Castle.Log4Net" Version="7.2.1" />
+    <PackageReference Include="Abp.AspNetCore.SignalR" Version="7.2.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppFramework.Web.Core\AppFramework.Web.Core.csproj" />

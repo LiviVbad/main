@@ -10,6 +10,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using AppFramework.Extensions;
+using Abp.Web.Models.AbpUserConfiguration;
 
 namespace AppFramework.Services.Account
 {
@@ -30,34 +31,29 @@ namespace AppFramework.Services.Account
             await GetAsync();
         }
 
-        public static async Task GetAsync(Func<Task> successCallback = null)
+        public static async Task GetAsync()
         {
             var userConfigurationService = ContainerLocator.Container.Resolve<UserConfigurationService>();
             userConfigurationService.OnAccessTokenRefresh = App.OnAccessTokenRefresh;
             userConfigurationService.OnSessionTimeOut = App.OnSessionTimeout;
 
-            await WebRequest.Execute(
-                async () => await userConfigurationService.GetAsync(AccessTokenManager.IsUserLoggedIn),
-                async result =>
-                {
-                    if (result == null) return;
+            await WebRequest.Execute(async () => await userConfigurationService.GetAsync(AccessTokenManager.IsUserLoggedIn),
+                GetConfigurationSuccessed);
+        }
 
-                    AppContext.Value.Configuration = result;
-                    SetCurrentCulture();
+        private static async Task GetConfigurationSuccessed(AbpUserConfigurationDto result)
+        {
+            AppContext.Value.Configuration = result;
+            SetCurrentCulture();
 
-                    if (!result.MultiTenancy.IsEnabled)
-                        AppContext.Value.SetAsTenant(TenantConsts.DefaultTenantName, TenantConsts.DefaultTenantId);
-                     
-                    AppContext.Value.CurrentLanguage = result.Localization.CurrentLanguage;
+            if (!result.MultiTenancy.IsEnabled)
+                AppContext.Value.SetAsTenant(TenantConsts.DefaultTenantName, TenantConsts.DefaultTenantId);
 
-                    WarnIfUserHasNoPermission();
-                     
-                    if (successCallback != null)
-                        await successCallback();
-                }, ex =>
-                {
-                    return Task.CompletedTask;
-                });
+            AppContext.Value.CurrentLanguage = result.Localization.CurrentLanguage;
+
+            WarnIfUserHasNoPermission();
+
+            await Task.CompletedTask;
         }
 
         private static void WarnIfUserHasNoPermission()

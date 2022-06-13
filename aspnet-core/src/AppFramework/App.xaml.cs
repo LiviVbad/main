@@ -64,10 +64,13 @@ namespace AppFramework
         private static bool SplashScreenInitialized()
         {
             var dialogService = ContainerLocator.Container.Resolve<IHostDialogService>();
-            if (dialogService.ShowWindow(AppViewManager.SplashScreen).Result == ButtonResult.No)
+            var result = dialogService.ShowWindow(AppViewManager.SplashScreen).Result;
+            if (result == ButtonResult.No)
             {
-                if (!Authorization()) Environment.Exit(0); 
+                if (!Authorization()) ExitApplication();
             }
+            else if (result == ButtonResult.None) ExitApplication();
+
             return true;
         }
 
@@ -97,6 +100,11 @@ namespace AppFramework
             }
             else
                 Environment.Exit(0);
+        }
+
+        public static void ExitApplication()
+        {
+            Environment.Exit(0);
         }
 
         public static async Task OnSessionTimeout()

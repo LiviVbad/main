@@ -35,9 +35,9 @@
             Margin="50"
             VerticalAlignment="Bottom">
             <TextBlock
-                FontSize="50"
+                FontSize="18"
                 FontWeight="Bold"
-                Text="您好,请稍候！" />
+                Text="{Binding DisplayText}" />
             <sync:SfLinearProgressBar Margin="0,20" IsIndeterminate="True" />
         </StackPanel>
     </Grid>

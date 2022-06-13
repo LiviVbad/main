@@ -1,4 +1,5 @@
 ﻿using AppFramework.ApiClient;
+using AppFramework.Common;
 using AppFramework.Common.Services.Storage;
 using AppFramework.Localization;
 using AppFramework.Services.Account;
@@ -32,21 +33,26 @@ namespace AppFramework.ViewModels
         }
 
         public override async void OnDialogOpened(IDialogParameters parameters)
-        { 
+        {
             await SetBusyAsync(async () =>
-            { 
-                await Task.Delay(2000);
-
+            {
                 //加载本地的缓存信息
                 DisplayText = LocalTranslationHelper.Localize("Initializing");
+                await Task.Delay(1000);  
 
                 accessTokenManager.AuthenticateResult = dataStorageService.RetrieveAuthenticateResult();
                 applicationContext.Load(dataStorageService.RetrieveTenantInfo(), dataStorageService.RetrieveLoginInfo());
-
+                 
                 //加载系统资源
                 DisplayText = LocalTranslationHelper.Localize("LoadResource");
-                await UserConfigurationManager.GetIfNeedsAsync();
+                await Task.Delay(1000);
 
+                await UserConfigurationManager.GetIfNeedsAsync();
+                if (applicationContext.Configuration == null)
+                {
+                    App.ExitApplication();
+                    return;
+                } 
                 //如果本地授权存在,直接进入系统首页
                 if (accessTokenManager.IsUserLoggedIn)
                     OnDialogClosed();
