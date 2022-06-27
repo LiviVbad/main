@@ -38,18 +38,20 @@
                                 <SwipeView BackgroundColor="{DynamicResource Gray-Bg}">
                                     <SwipeView.RightItems>
                                         <SwipeItems>
-                                            <SwipeItem
+                                            <SwipeItemView
                                                 BackgroundColor="{DynamicResource Red}"
                                                 Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference SfListView}}"
                                                 CommandParameter="{Binding}"
-                                                IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.UserDelete}}"
-                                                Text="{extensions:Translate Remove}" />
-                                            <SwipeItem
+                                                IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.UserDelete}}">
+                                                <Label Text="{extensions:Translate Remove}" />
+                                            </SwipeItemView>
+                                            <SwipeItemView
                                                 BackgroundColor="{DynamicResource PrimaryColor}"
                                                 Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfListView}}"
                                                 CommandParameter="{Binding}"
-                                                IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.UserEdit}}"
-                                                Text="{extensions:Translate Edit}" />
+                                                IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.UserEdit}}">
+                                                <Label Text="{extensions:Translate Edit}" />
+                                            </SwipeItemView>
                                         </SwipeItems>
                                     </SwipeView.RightItems>
 

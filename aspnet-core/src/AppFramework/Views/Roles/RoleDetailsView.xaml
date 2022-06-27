@@ -30,7 +30,7 @@
 
         <TabControl Grid.Row="1" Margin="10,0">
             <TabItem Background="Transparent" Header="{extensions:Translate RoleName}">
-                <StackPanel Margin="0,10">
+                <StackPanel Margin="5">
                     <TextBlock Text="{extensions:Translate RoleName}" />
                     <TextBox Margin="0,10" Text="{Binding Role.DisplayName, Mode=TwoWay}" />
                     <StackPanel Orientation="Horizontal">
@@ -41,25 +41,36 @@
             </TabItem>
 
             <TabItem Background="Transparent" Header="{extensions:Translate Permissions}">
-                <StackPanel Grid.Row="1" Margin="0,10">
+                <Grid Grid.Row="1" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
                     <TextBlock Text="{extensions:Translate Permission}" />
 
-                    <sync:SfTreeView
-                        Margin="0,5"
-                        Background="Transparent"
+                    <sync:SfTreeView Grid.Row="1"
+                        Margin="0,5"    
+                        x:Name="sfTreeView"
+                        AutoExpandMode="AllNodes"
+                        CheckBoxMode="None"
+                        CheckedItems="{Binding treesService.SelectedItems}"
                         ChildPropertyName="Items"
+                        ExpandActionTrigger="Node"
+                        IsAnimationEnabled="True"
+                        ItemTemplateDataContextType="Node"
                         ItemsSource="{Binding treesService.Permissions}"
+                        NodePopulationMode="Instant"
                         SelectionBackgroundColor="Transparent">
                         <sync:SfTreeView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}" />
-                                    <TextBlock Margin="5,0" Text="{Binding DisplayName}" />
+                                    <CheckBox IsChecked="{Binding IsChecked}" />
+                                    <TextBlock Margin="5,0" Text="{Binding Content.DisplayName}" />
                                 </StackPanel>
                             </DataTemplate>
                         </sync:SfTreeView.ItemTemplate>
                     </sync:SfTreeView>
-                </StackPanel>
+                </Grid>
             </TabItem>
         </TabControl>
 

@@ -29,15 +29,15 @@
             Text="{extensions:Translate ChangingPermissions}" />
 
         <sync:SfTreeView
-            Grid.Row="1"
+            Grid.Row="1" x:Name="sfTreeView"
             AutoExpandMode="AllNodes"
-            BorderThickness="0"
-            CheckBoxMode="Recursive"
+            BorderThickness="0"  
+            CheckBoxMode="None" 
             CheckedItems="{Binding treesService.SelectedItems}"
             ChildPropertyName="Items"
             ExpandActionTrigger="Node"
             IsAnimationEnabled="True"
-            ItemTemplateDataContextType="Node"
+            ItemTemplateDataContextType="Node"  
             ItemsSource="{Binding treesService.Permissions}"
             NodePopulationMode="Instant"
             SelectionBackgroundColor="Transparent">
