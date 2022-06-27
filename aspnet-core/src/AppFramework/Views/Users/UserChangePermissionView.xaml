@@ -32,7 +32,7 @@
             Grid.Row="1" x:Name="sfTreeView"
             AutoExpandMode="AllNodes"
             BorderThickness="0"  
-            CheckBoxMode="None" 
+            CheckBoxMode="Individual"    
             CheckedItems="{Binding treesService.SelectedItems}"
             ChildPropertyName="Items"
             ExpandActionTrigger="Node"

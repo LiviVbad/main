@@ -1,7 +1,7 @@
-﻿using AppFramework.Common.Models; 
+﻿using AppFramework.Common.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq; 
+using System.Linq;
 
 namespace AppFramework.Common.Services.Permission
 {
@@ -26,7 +26,7 @@ namespace AppFramework.Common.Services.Permission
             }
 
             return trees;
-        } 
+        }
 
         /// <summary>
         /// 更新选中权限节点
@@ -50,7 +50,7 @@ namespace AppFramework.Common.Services.Permission
 
                 foreach (var flat in nodes)
                 {
-                    if (flat.Name.Equals(key) && flat.Items.Count == 0)
+                    if (flat.Name.Equals(key))//&& flat.Items.Count == 0)
                     {
                         model = flat;
                         break;
