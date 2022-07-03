@@ -16,6 +16,7 @@ using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
 using System.Collections.ObjectModel;
 using System;
+using AppFramework.ViewModels.Shared;
 
 namespace AppFramework.ViewModels
 {

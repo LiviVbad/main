@@ -7,6 +7,7 @@ using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Storage;
 using AppFramework.Services;
 using AppFramework.Services.Account;
+using AppFramework.ViewModels.Shared;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;

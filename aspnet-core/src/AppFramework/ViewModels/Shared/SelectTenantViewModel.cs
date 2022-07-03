@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.ViewModels.Shared
 {
     public class SelectTenantViewModel : HostDialogViewModel
     {

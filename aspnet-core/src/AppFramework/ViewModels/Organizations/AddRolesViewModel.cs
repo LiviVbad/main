@@ -3,6 +3,7 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Organizations;
 using AppFramework.Organizations.Dto;
+using AppFramework.ViewModels.Shared;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;

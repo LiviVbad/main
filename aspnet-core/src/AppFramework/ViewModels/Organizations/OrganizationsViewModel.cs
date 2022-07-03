@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Prism.Ioc;
 using System.Threading.Tasks;
+using AppFramework.ViewModels.Shared;
 
 namespace AppFramework.ViewModels
 {

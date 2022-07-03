@@ -9,6 +9,7 @@ using AppFramework.ApiClient;
 using AppFramework.Services;
 using System.Collections.ObjectModel;
 using System.Linq;
+using AppFramework.ViewModels.Shared;
 
 namespace AppFramework.ViewModels
 {

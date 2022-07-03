@@ -3,6 +3,7 @@ using AppFramework.Common;
 using AppFramework.Common.Services.Storage;
 using AppFramework.Localization;
 using AppFramework.Services.Account;
+using AppFramework.ViewModels.Shared;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 

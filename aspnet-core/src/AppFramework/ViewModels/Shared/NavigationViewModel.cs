@@ -1,4 +1,4 @@
-﻿namespace AppFramework.ViewModels
+﻿namespace AppFramework.ViewModels.Shared
 {
     using AppFramework.Common;
     using AppFramework.Common.ViewModels;
@@ -75,6 +75,6 @@
         /// 异步刷新方法,当页面导航到达时触发该方法
         /// </summary>
         /// <returns></returns>
-        public virtual async Task RefreshAsync() => await Task.CompletedTask; 
+        public virtual async Task RefreshAsync() => await Task.CompletedTask;
     }
 }

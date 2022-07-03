@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AppFramework.Authorization.Users;
 using AppFramework.Common;
 using System.Linq;
+using AppFramework.ViewModels.Shared;
 
 namespace AppFramework.ViewModels
 {

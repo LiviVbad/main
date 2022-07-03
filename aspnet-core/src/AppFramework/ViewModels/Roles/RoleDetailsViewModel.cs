@@ -3,7 +3,8 @@ using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Models;
-using Prism.Services.Dialogs; 
+using AppFramework.ViewModels.Shared;
+using Prism.Services.Dialogs;
 
 namespace AppFramework.ViewModels
 {

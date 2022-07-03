@@ -1,8 +1,9 @@
 ﻿using AppFramework.Authorization.Accounts;
 using AppFramework.Authorization.Accounts.Dto;
 using AppFramework.Common;
+using AppFramework.ViewModels.Shared;
 using Prism.Commands;
-using Prism.Services.Dialogs; 
+using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels

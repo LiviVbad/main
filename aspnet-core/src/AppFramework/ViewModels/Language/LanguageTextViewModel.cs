@@ -3,6 +3,7 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Localization;
 using AppFramework.Localization.Dto;
+using AppFramework.ViewModels.Shared;
 using Prism.Commands;
 using Prism.Regions;
 using Prism.Services.Dialogs;

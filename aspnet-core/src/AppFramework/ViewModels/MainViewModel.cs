@@ -4,9 +4,9 @@ using AppFramework.Common.Services;
 using AppFramework.Common.Services.Account;
 using AppFramework.Models;
 using AppFramework.Services;
+using AppFramework.ViewModels.Shared;
 using Prism.Commands;
-using Prism.Regions;
-using System;
+using Prism.Regions; 
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels

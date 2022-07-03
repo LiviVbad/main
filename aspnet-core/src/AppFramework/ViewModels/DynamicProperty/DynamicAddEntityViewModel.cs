@@ -1,7 +1,8 @@
 ﻿using AppFramework.Common;
 using AppFramework.DynamicEntityProperties;
-using Prism.Services.Dialogs; 
-using System.Collections.ObjectModel; 
+using AppFramework.ViewModels.Shared;
+using Prism.Services.Dialogs;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels

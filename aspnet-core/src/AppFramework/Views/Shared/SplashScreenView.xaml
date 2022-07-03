@@ -45,7 +45,7 @@
             Grid.Row="1"
             Margin="50"
             VerticalAlignment="Bottom">
-            <TextBlock
+            <TextBlock Foreground="White"
                 FontSize="18"
                 FontWeight="Bold"
                 Text="{Binding DisplayText}" />

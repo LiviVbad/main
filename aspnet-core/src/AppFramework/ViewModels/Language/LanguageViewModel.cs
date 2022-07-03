@@ -4,6 +4,7 @@ using AppFramework.Common.Models;
 using AppFramework.Common.Services.Permission;
 using AppFramework.Localization;
 using AppFramework.Localization.Dto;
+using AppFramework.ViewModels.Shared;
 using Prism.Regions;
 using System.Threading.Tasks;
 

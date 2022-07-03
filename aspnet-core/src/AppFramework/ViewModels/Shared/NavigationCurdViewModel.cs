@@ -1,4 +1,4 @@
-﻿namespace AppFramework.ViewModels
+﻿namespace AppFramework.ViewModels.Shared
 {
     using Prism.Ioc;
     using Prism.Services.Dialogs;
@@ -44,6 +44,6 @@
         /// </summary>
         /// <param name="methodName"></param>
         /// <returns></returns>
-        private string GetPageName(string methodName) => this.GetType().Name.Replace("ViewModel", $"{methodName}View");
+        private string GetPageName(string methodName) => GetType().Name.Replace("ViewModel", $"{methodName}View");
     }
 }

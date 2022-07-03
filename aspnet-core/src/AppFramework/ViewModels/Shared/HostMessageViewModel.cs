@@ -1,11 +1,11 @@
-﻿using Prism.Services.Dialogs; 
+﻿using Prism.Services.Dialogs;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.ViewModels.Shared
 {
     public class HostMessageViewModel : HostDialogViewModel
-    { 
+    {
         private string message;
-         
+
         public string Message
         {
             get { return message; }

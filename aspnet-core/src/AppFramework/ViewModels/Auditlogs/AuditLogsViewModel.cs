@@ -7,6 +7,7 @@ using Prism.Services.Dialogs;
 using System;
 using System.Threading.Tasks;
 using Prism.Ioc;
+using AppFramework.ViewModels.Shared;
 
 namespace AppFramework.ViewModels
 {

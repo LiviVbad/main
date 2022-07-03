@@ -3,6 +3,7 @@ using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Editions;
 using AppFramework.Editions.Dto;
+using AppFramework.ViewModels.Shared;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;

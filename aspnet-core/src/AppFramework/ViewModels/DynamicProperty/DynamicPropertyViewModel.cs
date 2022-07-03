@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Prism.Ioc;
 using Prism.Commands;
 using System;
+using AppFramework.ViewModels.Shared;
 
 namespace AppFramework.ViewModels
 {

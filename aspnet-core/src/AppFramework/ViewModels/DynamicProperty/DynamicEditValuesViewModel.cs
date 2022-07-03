@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using AppFramework.ApiClient;
 using AppFramework.Services;
+using AppFramework.ViewModels.Shared;
 
 namespace AppFramework.ViewModels
 {

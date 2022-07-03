@@ -1,6 +1,7 @@
-﻿using AppFramework.Auditing.Dto; 
+﻿using AppFramework.Auditing.Dto;
+using AppFramework.ViewModels.Shared;
 using Prism.Services.Dialogs;
- 
+
 namespace AppFramework.ViewModels
 {
     public class AuditLogsDetailsViewModel : HostDialogViewModel

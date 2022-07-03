@@ -2,6 +2,7 @@
 using AppFramework.Common.Models;
 using AppFramework.DynamicEntityProperties;
 using AppFramework.DynamicEntityProperties.Dto;
+using AppFramework.ViewModels.Shared;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 

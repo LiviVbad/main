@@ -2,6 +2,7 @@
 using AppFramework.Common.Services;
 using AppFramework.MultiTenancy;
 using AppFramework.MultiTenancy.Dto;
+using AppFramework.ViewModels.Shared;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;

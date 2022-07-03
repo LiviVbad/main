@@ -3,14 +3,10 @@ using AppFramework.ApiClient.Models;
 using AppFramework.Authorization.Accounts;
 using AppFramework.Authorization.Accounts.Dto;
 using AppFramework.Common;
-using Prism.Services.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Prism.Services.Dialogs; 
 using System.Threading.Tasks;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.ViewModels.Shared
 {
     public class FirstChangedPwdViewModel : HostDialogViewModel
     {
@@ -70,7 +66,7 @@ namespace AppFramework.ViewModels
                 await SetBusyAsync(async () =>
                 {
                     await WebRequest.Execute(() => appService.ResetPassword(
-                          new Authorization.Accounts.Dto.ResetPasswordInput()
+                          new ResetPasswordInput()
                           {
                               UserId = model.UserId,
                               Password = PassWord,

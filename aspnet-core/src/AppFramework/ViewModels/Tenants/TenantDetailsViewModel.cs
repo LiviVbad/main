@@ -4,6 +4,7 @@ using AppFramework.Common.Models;
 using AppFramework.Editions.Dto;
 using AppFramework.MultiTenancy;
 using AppFramework.MultiTenancy.Dto;
+using AppFramework.ViewModels.Shared;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;

@@ -4,6 +4,7 @@ using AppFramework.Authorization.Users.Dto;
 using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Models;
+using AppFramework.ViewModels.Shared;
 using Prism.Services.Dialogs;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

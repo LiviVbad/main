@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Prism.Services.Dialogs;
+using AppFramework.ViewModels.Shared;
 
 namespace AppFramework.ViewModels
 {

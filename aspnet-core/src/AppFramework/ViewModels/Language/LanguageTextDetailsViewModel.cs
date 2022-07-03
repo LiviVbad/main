@@ -2,6 +2,7 @@
 using AppFramework.Common.Models;
 using AppFramework.Localization;
 using AppFramework.Localization.Dto;
+using AppFramework.ViewModels.Shared;
 using Prism.Services.Dialogs;
 
 namespace AppFramework.ViewModels

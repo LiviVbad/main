@@ -4,7 +4,7 @@ using AppFramework.WindowHost;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.ViewModels.Shared
 {
     public abstract class HostDialogViewModel : ViewModelBase, IHostDialogAware
     {

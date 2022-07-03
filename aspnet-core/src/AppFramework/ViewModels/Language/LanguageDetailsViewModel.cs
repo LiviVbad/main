@@ -5,7 +5,8 @@ using Abp.Application.Services.Dto;
 using AppFramework.Common;
 using AppFramework.Localization.Dto;
 using System.Collections.ObjectModel;
-using System.Linq; 
+using System.Linq;
+using AppFramework.ViewModels.Shared;
 
 namespace AppFramework.ViewModels
 {

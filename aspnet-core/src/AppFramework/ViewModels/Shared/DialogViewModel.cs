@@ -3,7 +3,7 @@ using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.ViewModels.Shared
 {
     public class DialogViewModel : ViewModelBase, IDialogAware
     {

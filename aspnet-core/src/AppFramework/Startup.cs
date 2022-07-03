@@ -12,6 +12,7 @@ using AppFramework.Views;
 using AppFramework.Localization;
 using Prism.Ioc;
 using AppFramework.Common.Services;
+using AppFramework.ViewModels.Shared;
 
 namespace AppFramework
 {

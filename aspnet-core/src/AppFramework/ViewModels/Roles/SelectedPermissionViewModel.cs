@@ -2,6 +2,7 @@
 using AppFramework.Authorization.Permissions.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Models;
+using AppFramework.ViewModels.Shared;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;

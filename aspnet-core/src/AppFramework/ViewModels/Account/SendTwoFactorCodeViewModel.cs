@@ -1,11 +1,12 @@
 ﻿using AppFramework.ApiClient.Models;
-using AppFramework.Authorization.Accounts; 
+using AppFramework.Authorization.Accounts;
 using AppFramework.Common.Services.Account;
 using AppFramework.Services;
+using AppFramework.ViewModels.Shared;
 using Prism.Commands;
-using Prism.Services.Dialogs; 
+using Prism.Services.Dialogs;
 using System.Collections.Generic;
-using System.Linq; 
+using System.Linq;
 
 namespace AppFramework.ViewModels
 {

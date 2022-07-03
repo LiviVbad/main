@@ -3,6 +3,7 @@ using AppFramework.Common.Models;
 using AppFramework.Localization;
 using AppFramework.MultiTenancy.HostDashboard;
 using AppFramework.MultiTenancy.HostDashboard.Dto;
+using AppFramework.ViewModels.Shared;
 using Prism.Regions;
 using System;
 using System.Collections.ObjectModel;
