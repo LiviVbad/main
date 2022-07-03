@@ -1,7 +1,7 @@
 ﻿<ContentView
     x:Class="AppFramework.Shared.Views.LoginView"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:AppFramework.Shared.Controls;assembly=AppFramework.Shared"
@@ -16,10 +16,10 @@
             HorizontalOptions="Center"
             Source="dotnetbot.png"
             VerticalOptions="FillAndExpand"
-            WidthRequest="250" />
+            WidthRequest="250" /> 
 
         <Grid
-            Grid.RowSpan="2"
+            Grid.RowSpan="2" 
             HorizontalOptions="Center"
             VerticalOptions="Center">
             <border:SfBorder
@@ -27,7 +27,7 @@
                 BorderWidth="0"
                 CornerRadius="4"
                 HeightRequest="400"
-                Opacity="0.9"
+                Opacity="0.9"  
                 WidthRequest="{OnIdiom Phone=350,
                                        Default=400}" />
 
@@ -42,7 +42,7 @@
                         <Label LineBreakMode="WordWrap" Text="{extensions:Translate CurrentTenant}" />
 
                         <Label
-                            Grid.Column="1"
+                            Grid.Column="1"   
                             LineBreakMode="WordWrap"
                             Text="{Binding CurrentTenancyNameOrDefault}" />
                     </Grid>
@@ -86,7 +86,7 @@
                     <buttons:SfButton
                         Command="{Binding ExecuteCommand}"
                         CommandParameter="EmailActivation"
-                        FontSize="12"
+                        FontSize="12"   
                         HorizontalOptions="Start"
                         Style="{StaticResource TransparentButtonStyle}"
                         Text="{extensions:Translate EmailActivation}"
@@ -102,5 +102,5 @@
                 </StackLayout>
             </Grid>
         </Grid>
-    </Grid> 
+    </Grid>
 </ContentView>

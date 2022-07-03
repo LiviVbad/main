@@ -31,7 +31,7 @@
         <sync:SfTreeView
             Grid.Row="1" x:Name="sfTreeView"
             AutoExpandMode="AllNodes"
-            CheckBoxMode="None"
+            CheckBoxMode="Individual"
             CheckedItems="{Binding treesService.SelectedItems}"
             ChildPropertyName="Items"
             ExpandActionTrigger="Node"

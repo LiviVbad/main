@@ -1,6 +1,7 @@
-﻿using AppFramework.Authorization.Permissions.Dto; 
+﻿using AppFramework.Authorization.Permissions.Dto;
 using System;
-using System.Collections.Generic; 
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace AppFramework.Common
 {
@@ -12,5 +13,7 @@ namespace AppFramework.Common
         void CreatePermissionTrees(List<FlatPermissionDto> permissions, List<string> grantedPermissionNames);
 
         List<string> GetSelectedItems();
+
+        ObservableCollection<object> SelectedItems { get; set; } 
     }
 }
