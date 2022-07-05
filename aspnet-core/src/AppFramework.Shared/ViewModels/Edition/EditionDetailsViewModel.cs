@@ -104,7 +104,7 @@ namespace AppFramework.Shared.ViewModels
                 List<NameValueDto> featureValues = new List<NameValueDto>();
                 GetSelectedNodes(Features, ref featureValues);
 
-                await WebRequestRuner.Execute(async () =>
+                await WebRequest.Execute(async () =>
                 {
                     if (Model.Id > 0)
                         await appService.UpdateEdition(new UpdateEditionDto() { Edition = Map<EditionEditDto>(Model), FeatureValues = featureValues, });
@@ -153,7 +153,7 @@ namespace AppFramework.Shared.ViewModels
                 if (parameters.ContainsKey("Value"))
                     id = parameters.GetValue<EditionListDto>("Value").Id;
 
-                await WebRequestRuner.Execute(() =>
+                await WebRequest.Execute(() =>
                   appService.GetEditionForEdit(new NullableIdDto(id)),
                   async result =>
                   {

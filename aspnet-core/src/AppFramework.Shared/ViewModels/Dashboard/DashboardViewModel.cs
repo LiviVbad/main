@@ -123,7 +123,7 @@ namespace AppFramework.Shared.ViewModels
         /// <returns></returns>
         private async Task GetTopStatsData()
         {
-            await WebRequestRuner.Execute(() => appService.GetTopStatsData(new GetTopStatsInput()
+            await WebRequest.Execute(() => appService.GetTopStatsData(new GetTopStatsInput()
             {
                 StartDate = startDate,
                 EndDate = endDate
@@ -136,7 +136,7 @@ namespace AppFramework.Shared.ViewModels
         /// <returns></returns>
         private async Task GetEditionTenantStatistics()
         {
-            await WebRequestRuner.Execute(() =>
+            await WebRequest.Execute(() =>
                 appService.GetEditionTenantStatistics(new GetEditionTenantStatisticsInput()
                 {
                     StartDate = startDate,
@@ -152,7 +152,7 @@ namespace AppFramework.Shared.ViewModels
         /// <param name="interval"></param>
         private async Task GetIncomeStatistics(ChartDateInterval interval)
         {
-            await WebRequestRuner.Execute(() => appService.GetIncomeStatistics(new GetIncomeStatisticsDataInput()
+            await WebRequest.Execute(() => appService.GetIncomeStatistics(new GetIncomeStatisticsDataInput()
             {
                 IncomeStatisticsDateInterval = interval,
                 StartDate = startDate,

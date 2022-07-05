@@ -108,7 +108,7 @@ namespace AppFramework.Shared.ViewModels
             await SetBusyAsync(async () =>
             {
                 var input = Map<CreateOrUpdateUserInput>(UserInput);
-                await WebRequestRuner.Execute(() =>
+                await WebRequest.Execute(() =>
                     userAppService.CreateOrUpdateUser(input),
                     GoBackAsync);
             }, AppLocalizationKeys.SavingWithThreeDot);
@@ -177,7 +177,7 @@ namespace AppFramework.Shared.ViewModels
                 UserInput.SetRandomPassword = IsNewUser;
                 UserInput.SendActivationEmail = IsNewUser;
 
-                await WebRequestRuner.Execute(() =>
+                await WebRequest.Execute(() =>
                 userAppService.GetUserForEdit(new NullableIdDto<long>(id)),
                 result => GetUserForEditSuccessed(result));
             });

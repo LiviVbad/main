@@ -40,7 +40,7 @@ namespace AppFramework.Shared.ViewModels
              {
                  var input = Map<DynamicPropertyDto>(Model);
 
-                 await WebRequestRuner.Execute(async () =>
+                 await WebRequest.Execute(async () =>
                  {
                      if (input.Id > 0)
                          await appService.Update(input);

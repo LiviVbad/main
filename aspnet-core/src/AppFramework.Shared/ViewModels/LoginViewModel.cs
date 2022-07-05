@@ -212,7 +212,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(
+                await WebRequest.Execute(
                     async () => await accountAppService.IsTenantAvailable(
                         new IsTenantAvailableInput { TenancyName = tenancyName }),
                     result => IsTenantAvailableExecuted(result, tenancyName)

@@ -21,7 +21,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(() => appService.GetAll(), RefreshSuccessed);
+                await WebRequest.Execute(() => appService.GetAll(), RefreshSuccessed);
             });
         }
 

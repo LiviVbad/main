@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AppFramework.Shared
 {
-    public static class WebRequestRuner
+    public static class WebRequest
     {
         public static async Task Execute<TResult>(
             Func<Task<TResult>> func,

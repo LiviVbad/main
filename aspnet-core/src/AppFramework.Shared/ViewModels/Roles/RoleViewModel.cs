@@ -23,7 +23,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(() => appService.GetRoles(new GetRolesInput()), RefreshSuccessed);
+                await WebRequest.Execute(() => appService.GetRoles(new GetRolesInput()), RefreshSuccessed);
             });
         }
 

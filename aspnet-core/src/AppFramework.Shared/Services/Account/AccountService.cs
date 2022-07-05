@@ -57,7 +57,7 @@ namespace AppFramework.Shared.Services.Account
         /// <returns></returns>
         public async Task<bool> LoginUserAsync()
         {
-            await WebRequestRuner.Execute(accessTokenManager.LoginAsync, AuthenticateSucceed);
+            await WebRequest.Execute(accessTokenManager.LoginAsync, AuthenticateSucceed);
             return true;
         }
 
@@ -130,7 +130,7 @@ namespace AppFramework.Shared.Services.Account
         /// <returns></returns>
         public async Task SetCurrentUserInfoAsync()
         {
-            await WebRequestRuner.Execute(async () =>
+            await WebRequest.Execute(async () =>
                 await sessionAppService.GetCurrentLoginInformations(), GetCurrentUserInfoExecuted);
         }
 

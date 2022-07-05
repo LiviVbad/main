@@ -82,7 +82,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
              {
-                 await WebRequestRuner.Execute(async () =>
+                 await WebRequest.Execute(async () =>
                  {
                      OrganizationUnitDto organizationUnit = null;
 
@@ -139,7 +139,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(async () =>
+                await WebRequest.Execute(async () =>
                  await appService.RemoveUserFromOrganizationUnit(new UserToOrganizationUnitInput()
                  {
                      OrganizationUnitId = OrganizationUnit.Id,
@@ -162,7 +162,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(async () =>
+                await WebRequest.Execute(async () =>
                 {
                     await appService.RemoveRoleFromOrganizationUnit(new RoleToOrganizationUnitInput()
                     {
@@ -240,14 +240,14 @@ namespace AppFramework.Shared.ViewModels
         /// <returns></returns>
         private async Task GetOrganizationUnitRolesAndUsers(long id)
         {
-            await WebRequestRuner.Execute(async () =>
+            await WebRequest.Execute(async () =>
             {
                 return await appService.GetOrganizationUnitRoles(new
                     GetOrganizationUnitRolesInput()
                 { Id = id });
             }, result => GetOrganizationUnitRolesSuccessed(result));
 
-            await WebRequestRuner.Execute(async () =>
+            await WebRequest.Execute(async () =>
             {
                 return await appService.GetOrganizationUnitUsers(new
                     GetOrganizationUnitUsersInput()

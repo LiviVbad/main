@@ -30,7 +30,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(() => appService.GetTenants(filter), RefreshSuccessed);
+                await WebRequest.Execute(() => appService.GetTenants(filter), RefreshSuccessed);
             });
         }
 

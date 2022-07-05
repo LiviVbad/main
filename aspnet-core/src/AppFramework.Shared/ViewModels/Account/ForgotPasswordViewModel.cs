@@ -53,7 +53,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(
+                await WebRequest.Execute(
                     async () =>
                     await _accountAppService.SendPasswordResetCode(new SendPasswordResetCodeInput { EmailAddress = EmailAddress }),
                     PasswordResetMailSentAsync

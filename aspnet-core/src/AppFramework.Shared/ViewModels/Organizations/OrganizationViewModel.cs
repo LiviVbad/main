@@ -54,7 +54,7 @@
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(() => appService.GetOrganizationUnits(), RefreshSuccessed);
+                await WebRequest.Execute(() => appService.GetOrganizationUnits(), RefreshSuccessed);
             });
         }
 

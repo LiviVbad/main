@@ -71,7 +71,7 @@ namespace AppFramework.Shared.ViewModels
         {
             applicationContext.CurrentLanguage = selectedLanguage;
 
-            await WebRequestRuner.Execute(async () =>
+            await WebRequest.Execute(async () =>
             {
                 await profileAppService.ChangeLanguage(new ChangeUserLanguageDto
                 {

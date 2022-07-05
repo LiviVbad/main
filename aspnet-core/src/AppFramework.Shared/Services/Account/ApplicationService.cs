@@ -95,7 +95,7 @@ namespace AppFramework.Shared.Services
 
         protected async Task GetUserPhoto()
         {
-            await WebRequestRuner.Execute(async () =>
+            await WebRequest.Execute(async () =>
              await profileAppService.GetProfilePicture(),
                  async result => await GetProfilePictureByUserSuccessed(result));
         }
@@ -193,7 +193,7 @@ namespace AppFramework.Shared.Services
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(async () => await UpdateProfilePhoto(photoAsBytes, fileName), () =>
+                await WebRequest.Execute(async () => await UpdateProfilePhoto(photoAsBytes, fileName), () =>
                 {
                     Photo = photoAsBytes;// ImageSource.FromStream(() => new MemoryStream(photoAsBytes));
                     CloneProfilePicture(photoAsBytes);

@@ -22,7 +22,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(() => appService.GetLanguages(), RefreshSuccessed);
+                await WebRequest.Execute(() => appService.GetLanguages(), RefreshSuccessed);
             });
         }
 

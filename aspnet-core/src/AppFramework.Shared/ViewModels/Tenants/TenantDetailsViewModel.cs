@@ -247,7 +247,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(() =>
+                await WebRequest.Execute(() =>
                     tenantAppService.UpdateTenant(input),
                     GoBackAsync);
             }, AppLocalizationKeys.SavingWithThreeDot);
@@ -257,7 +257,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(() =>
+                await WebRequest.Execute(() =>
                     tenantAppService.CreateTenant(input),
                     GoBackAsync);
             }, AppLocalizationKeys.SavingWithThreeDot);

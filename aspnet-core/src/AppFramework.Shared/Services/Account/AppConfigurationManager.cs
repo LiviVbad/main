@@ -42,7 +42,7 @@ namespace AppFramework.Shared.Services.Account
             userConfigurationService.OnAccessTokenRefresh = App.OnAccessTokenRefresh;
             userConfigurationService.OnSessionTimeOut = App.OnSessionTimeout;
 
-            await WebRequestRuner.Execute(
+            await WebRequest.Execute(
                 async () => await userConfigurationService.GetAsync(AccessTokenManager.IsUserLoggedIn),
                 async result =>
                 {

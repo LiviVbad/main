@@ -42,7 +42,7 @@ namespace AppFramework.Shared.ViewModels
                 {
                     organizationUnit = parameters.GetValue<OrganizationListModel>("Value");
 
-                    await WebRequestRuner.Execute(async () =>
+                    await WebRequest.Execute(async () =>
                     {
                         return await appService.FindRoles(new FindOrganizationUnitRolesInput()
                         {
@@ -66,7 +66,7 @@ namespace AppFramework.Shared.ViewModels
 
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(async () =>
+                await WebRequest.Execute(async () =>
                  await appService.AddRolesToOrganizationUnit(new RolesToOrganizationUnitInput()
                  {
                      OrganizationUnitId = organizationUnit.Id,

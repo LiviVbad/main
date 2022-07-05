@@ -45,7 +45,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(() => appService.GetAuditLogs(input),
+                await WebRequest.Execute(() => appService.GetAuditLogs(input),
                            async result =>
                            {
                                foreach (var item in result.Items)

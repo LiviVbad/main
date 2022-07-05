@@ -96,7 +96,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequestRuner.Execute(() => appService.GetUsers(input), RefreshSuccessed);
+                await WebRequest.Execute(() => appService.GetUsers(input), RefreshSuccessed);
             });
         }
 
