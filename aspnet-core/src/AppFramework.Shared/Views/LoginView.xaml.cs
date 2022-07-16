@@ -1,4 +1,4 @@
-﻿using Xamarin.Forms;
+﻿using Xamarin.Forms; 
 
 namespace AppFramework.Shared.Views
 {
@@ -6,7 +6,7 @@ namespace AppFramework.Shared.Views
     {
         public LoginView()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
     }
 }

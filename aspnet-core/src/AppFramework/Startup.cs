@@ -38,13 +38,12 @@ namespace AppFramework
 
             /*
              * 《应用程序内部功能服务》
-             * 分页服务、本地化服务、主题服务、资源服务、
+             * 分页服务、本地化服务、主题服务、
              * 对话窗口服务、应用程序资源服务、导航菜单服务
              */
             services.Register<IDataPagerService, DataPagerService>();
             services.RegisterSingleton<ILocaleCulture, LocaleCulture>();
             services.RegisterSingleton<IThemeService, ThemeService>();
-            services.RegisterSingleton<IResourceService, ResourceService>();
             services.RegisterSingleton<IHostDialogService, DialogHostService>();
             services.RegisterSingleton<IApplicationService, ApplicationService>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();

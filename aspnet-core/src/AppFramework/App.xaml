@@ -6,6 +6,9 @@
     xmlns:prism="http://prismlibrary.com/" >
     <Application.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/AppFramework;component/Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
             <converter:BoolToYesNoStrConverter x:Key="boolToYesNoStrConverter" />
             <converter:BoolToBackgroundConverter x:Key="boolToBackgroundConverter" />
             <converter:BoolToVisibilityConverter x:Key="boolToVisibility"/>
@@ -13,7 +16,7 @@
             <converter:InverseBoolToBackgroundConverter x:Key="inverseboolToBackgroundConverter" />
             <converter:InverseBoolToVisibilityConverter x:Key="inverseBoolToVisibility" />
             <converter:InverseBooleanConverter x:Key="inverseBooleanConverter" />
-            <converter:ImageConverter x:Key="imageConvert" /> 
+            <converter:ImageConverter x:Key="imageConvert" />
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

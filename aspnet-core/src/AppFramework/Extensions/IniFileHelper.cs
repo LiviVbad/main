@@ -3,9 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace AppFramework
 {
-    public class IniFile
+    public class IniFileHelper
     {
-        public IniFile(string iniPath)
+        public IniFileHelper(string iniPath)
         {
             this.iniPath = iniPath;
             if (!File.Exists(this.iniPath))

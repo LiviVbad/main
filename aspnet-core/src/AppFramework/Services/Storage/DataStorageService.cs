@@ -7,13 +7,13 @@ namespace AppFramework.Services
 {
     public class DataStorageService : IDataStorageService
     {
-        private IniFile iniFile;
+        private IniFileHelper iniFile;
         private string Section = "App";
         private string appInitPath = AppDomain.CurrentDomain.BaseDirectory + "user.ini";
 
         public DataStorageService()
         {
-            iniFile = new IniFile(appInitPath);
+            iniFile = new IniFileHelper(appInitPath);
         }
 
         private void InternalSetValue(string key, object value)

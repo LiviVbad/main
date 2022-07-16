@@ -10,15 +10,12 @@ namespace AppFramework.Views
         private readonly IHostDialogService dialog;
 
         public MainView(
-            IThemeService themeService,
-            IResourceService resourceService,
+            IThemeService themeService, 
             IHostDialogService dialog)
         {
             AppSettings.OnInitialized();
-            InitializeComponent();
-
-            themeService.SetCurrentTheme(this);
-            resourceService.UpdateResources(App.Current.Resources, themeService.GetCurrentName());
+            InitializeComponent(); 
+            themeService.SetCurrentTheme(this); 
 
             HeaderBorder.MouseDown += (s, e) =>
             {

@@ -1,15 +1,13 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.Common;
-using AppFramework.Configuration;
-using AppFramework.Localization;
+using AppFramework.Configuration; 
 using AppFramework.MultiTenancy;
 using AppFramework.Localization.Resources;
 using Prism.Ioc;
 using System;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
-using AppFramework.Extensions;
+using System.Threading.Tasks; 
 using Abp.Web.Models.AbpUserConfiguration;
 
 namespace AppFramework.Services.Account
