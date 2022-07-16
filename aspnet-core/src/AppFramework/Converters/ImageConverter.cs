@@ -21,4 +21,21 @@ namespace AppFramework.Converters
             throw new NotImplementedException();
         }
     }
+
+    public class MenuImageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value != null)
+            {
+                return $"/Assets/Images/menus/{value.ToString()}.png";
+            }
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

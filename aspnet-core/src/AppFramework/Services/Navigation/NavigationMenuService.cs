@@ -12,17 +12,17 @@ namespace AppFramework.Services
         {
             return new ObservableCollection<NavigationItem>()
             {
-               new NavigationItem("\ue6c4","Dashboard", AppViewManager.Dashboard, Permkeys.Administration),
-               new NavigationItem("\ue64e","OrganizationUnits",AppViewManager.Organization,Permkeys.OrganizationUnits),
-               new NavigationItem("\ue787","Roles",AppViewManager.Role,Permkeys.Roles),
-               new NavigationItem("\ue658","Users",AppViewManager.User,Permkeys.Users),
-               new NavigationItem("\ue617","AuditLogs",AppViewManager.AuditLog,Permkeys.AuditLogs),
-               new NavigationItem("\ue634","DynamicProperties",AppViewManager.DynamicProperty,Permkeys.DynamicProperties),
-               new NavigationItem("\ue635","Tenants",AppViewManager.Tenant,Permkeys.Tenants),
-               new NavigationItem("\ue657","Editions",AppViewManager.Edition,Permkeys.Editions),
-               new NavigationItem("\ue62e","Languages",AppViewManager.Language,Permkeys.Languages),
-               new NavigationItem("\ue600", "Settings", AppViewManager.Setting, Permkeys.HostSettings),
-               new NavigationItem("\ue650","DemoUiComponents",AppViewManager.Demo,Permkeys.DemoUiComponents)
+               new NavigationItem("dashboard","Dashboard", AppViewManager.Dashboard, Permkeys.Administration),
+               new NavigationItem("organization","OrganizationUnits",AppViewManager.Organization,Permkeys.OrganizationUnits),
+               new NavigationItem("role","Roles",AppViewManager.Role,Permkeys.Roles),
+               new NavigationItem("user","Users",AppViewManager.User,Permkeys.Users),
+               new NavigationItem("auditlog","AuditLogs",AppViewManager.AuditLog,Permkeys.AuditLogs),
+               new NavigationItem("property","DynamicProperties",AppViewManager.DynamicProperty,Permkeys.DynamicProperties),
+               new NavigationItem("tenant","Tenants",AppViewManager.Tenant,Permkeys.Tenants),
+               new NavigationItem("edition","Editions",AppViewManager.Edition,Permkeys.Editions),
+               new NavigationItem("language","Languages",AppViewManager.Language,Permkeys.Languages),
+               new NavigationItem("setting", "Settings", AppViewManager.Setting, Permkeys.HostSettings),
+               new NavigationItem("setting","DemoUiComponents",AppViewManager.Demo,Permkeys.DemoUiComponents)
             };
         }
 

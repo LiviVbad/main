@@ -29,10 +29,10 @@
 
             <Border
                 Grid.Row="1"
-                Margin="20"
+                Margin="10"
                 Style="{StaticResource BorderStyle}" />
 
-            <TabControl Grid.Row="1" Margin="30">
+            <TabControl Grid.Row="1" Margin="20">
                 <TabItem Background="Transparent" Header="{extensions:Translate OperationLogs}">
                     <Grid>
                         <Grid.RowDefinitions>

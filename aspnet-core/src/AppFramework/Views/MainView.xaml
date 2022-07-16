@@ -194,13 +194,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="5" Orientation="Horizontal">
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                FontFamily="/Assets/Fonts/#iconfont"
-                                FontSize="18"
-                                Style="{x:Null}"
-                                Text="{Binding Icon}"
-                                ToolTip="{Binding Title}" />
+                            <Image Width="20" Height="20" Source="{Binding Icon,Converter={StaticResource menuConverter}}" ToolTip="{Binding Title}"/>
                             <TextBlock
                                 Margin="10,0,0,0"
                                 VerticalAlignment="Center"

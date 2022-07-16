@@ -26,7 +26,7 @@
             </StackPanel>
         </DockPanel>
 
-        <Grid Grid.Row="1" Margin="15">
+        <Grid Grid.Row="1" Margin="10">
             <Border
                 Grid.RowSpan="5"
                 Grid.ColumnSpan="2"

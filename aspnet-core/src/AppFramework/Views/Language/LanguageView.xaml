@@ -40,7 +40,7 @@
                     Visibility="{extensions:HasPermission Text={x:Static perm:Permkeys.LanguageCreate}}" />
             </DockPanel>
 
-            <Grid Grid.Row="1" Margin="20">
+            <Grid Grid.Row="1" Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition />
