@@ -12,7 +12,7 @@
 
         public const string FirstChangedPwd = "FirstChangedPwdView";
 
-        public const string Main = "MainView";
+        public const string Main = "MainView"; 
 
         public const string Setting = "SettingsView";
 
@@ -36,7 +36,7 @@
 
         public const string Role = "RoleView";
 
-        public const string Organization = "OrganizationView";
+        public const string Organization = "OrganizationsView";
 
         public const string OrganizationAdd = "OrganizationsAddView";
 

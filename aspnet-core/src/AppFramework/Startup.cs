@@ -70,6 +70,7 @@ namespace AppFramework
             services.Add<FirstChangedPwdView, FirstChangedPwdViewModel>(AppViewManager.FirstChangedPwd);
             services.Add<SelectTenantView, SelectTenantViewModel>(AppViewManager.SelectTenant);
             services.Add<MainView, MainViewModel>(AppViewManager.Main);
+            services.Add<MainTabsView, MainTabsViewModel>(AppViewManager.Main);
             services.Add<HostMessageBoxView, HostMessageViewModel>(AppViewManager.HostMessageBox);
             services.Add<MessageBoxView, MessageViewModel>(AppViewManager.MessageBox);
             services.Add<UserView, UserViewModel>(AppViewManager.User);
@@ -100,7 +101,7 @@ namespace AppFramework
             services.Add<OrganizationsView, OrganizationsViewModel>(AppViewManager.Organization);
             services.Add<OrganizationsAddView, OrganizationsAddViewModel>(AppViewManager.OrganizationAdd);
             services.Add<SettingsView, SettingsViewModel>(AppViewManager.Setting);
-            services.RegisterForNavigation<DemoUiView>(AppViewManager.Demo); //演示组件页
+            services.Add<DemoUiView, DemoUiViewModel>(AppViewManager.Demo); //演示组件页
 
             services.Add<ChangePasswordView, ChangePasswordViewModel>(AppViewManager.ChangePassword);
             services.Add<EmailActivationView, EmailActivationViewModel>(AppViewManager.EmailActivation);

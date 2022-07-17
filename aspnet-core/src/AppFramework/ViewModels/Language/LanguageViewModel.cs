@@ -19,6 +19,7 @@ namespace AppFramework.ViewModels
 
         public LanguageViewModel(ILanguageAppService languageAppService, IRegionManager regionManager)
         {
+            Title = Local.Localize("Languages");
             this.appService = languageAppService;
             this.regionManager = regionManager;
         }

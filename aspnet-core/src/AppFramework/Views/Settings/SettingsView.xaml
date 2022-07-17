@@ -22,7 +22,7 @@
                     <TextBlock
                         FontSize="18"
                         FontWeight="Bold"
-                        Text="{extensions:Translate Settings}" />
+                        Text="{Binding Title}" />
                     <TextBlock
                         Margin="10,0,0,0"
                         VerticalAlignment="Center"

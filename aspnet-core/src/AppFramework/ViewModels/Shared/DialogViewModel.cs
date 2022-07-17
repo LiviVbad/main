@@ -8,7 +8,9 @@ namespace AppFramework.ViewModels.Shared
     public class DialogViewModel : ViewModelBase, IDialogAware
     {
         public string Title { get; set; }
+
         public event Action<IDialogResult> RequestClose;
+
         public DelegateCommand SaveCommand { get; private set; }
         public DelegateCommand CancelCommand { get; private set; }
 

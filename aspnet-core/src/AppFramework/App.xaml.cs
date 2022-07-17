@@ -24,7 +24,7 @@ namespace AppFramework
 
         protected override Window CreateShell()
         {
-            return Container.Resolve<MainView>();
+            return Container.Resolve<MainTabsView>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

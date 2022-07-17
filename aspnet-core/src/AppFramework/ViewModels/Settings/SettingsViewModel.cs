@@ -62,6 +62,7 @@ namespace AppFramework.ViewModels
         public SettingsViewModel(IHostSettingsAppService appService,
             ICommonLookupAppService lookupAppService)
         {
+            Title = Local.Localize("Settings");
             SaveCommand = new DelegateCommand(Save);
             this.appService = appService;
             this.lookupAppService = lookupAppService;

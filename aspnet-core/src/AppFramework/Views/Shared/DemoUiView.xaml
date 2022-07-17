@@ -22,7 +22,7 @@
                 <TextBlock
                     FontSize="18"
                     FontWeight="Bold"
-                    Text="{extensions:Translate DemoUiComponents}" />
+                    Text="{Binding Title}" />
             </StackPanel>
         </DockPanel>
 

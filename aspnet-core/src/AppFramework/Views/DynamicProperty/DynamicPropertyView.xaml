@@ -24,7 +24,7 @@
                     <TextBlock
                         FontSize="18"
                         FontWeight="Bold"
-                        Text="{extensions:Translate DynamicPropertyManagement}" />
+                        Text="{Binding Title}" />
                 </StackPanel>
             </DockPanel>
 

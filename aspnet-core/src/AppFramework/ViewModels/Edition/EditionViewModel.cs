@@ -14,6 +14,7 @@ namespace AppFramework.ViewModels
 
         public EditionViewModel(IEditionAppService appService)
         {
+            Title = Local.Localize("Editions");
             this.appService = appService;
         }
 

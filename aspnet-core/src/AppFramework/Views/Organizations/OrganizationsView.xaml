@@ -25,7 +25,7 @@
                     <TextBlock
                         FontSize="18"
                         FontWeight="Bold"
-                        Text="{extensions:Translate OrganizationUnits}" />
+                        Text="{Binding Title}" />
                     <TextBlock
                         Margin="10,0,0,0"
                         VerticalAlignment="Center"
@@ -45,7 +45,10 @@
                     Style="{StaticResource BorderStyle}" />
 
                 <DockPanel LastChildFill="False">
-                    <DockPanel DockPanel.Dock="Top"  Margin="10"  LastChildFill="False">
+                    <DockPanel
+                        Margin="10"
+                        DockPanel.Dock="Top"
+                        LastChildFill="False">
                         <TextBlock
                             VerticalAlignment="Center"
                             DockPanel.Dock="Left"
@@ -59,25 +62,31 @@
                     </DockPanel>
 
                     <TreeView
-                        x:Name="TreeViewOriganizations" 
-                        BorderBrush="Transparent"  
-                        DockPanel.Dock="Top"  
+                        x:Name="TreeViewOriganizations"
+                        BorderBrush="Transparent"
+                        DockPanel.Dock="Top"
                         ItemsSource="{Binding dataPager.GridModelList}">
                         <TreeView.ItemTemplate>
                             <HierarchicalDataTemplate DataType="{x:Type models:OrganizationListModel}" ItemsSource="{Binding Items}">
                                 <DockPanel Margin="0,5" HorizontalAlignment="Stretch">
                                     <Image
                                         Width="20"
-                                        Height="20" 
+                                        Height="20"
                                         Source="/Assets/Images/menus/organization.png" />
                                     <TextBlock
                                         Margin="5,0"
                                         VerticalAlignment="Center"
                                         Text="{Binding DisplayName}" />
                                     <TextBlock VerticalAlignment="Center" Text="{Binding MemberCount}" />
-                                    <TextBlock VerticalAlignment="Center" Margin="5,0" Text="{extensions:Translate Members}" />
+                                    <TextBlock
+                                        Margin="5,0"
+                                        VerticalAlignment="Center"
+                                        Text="{extensions:Translate Members}" />
                                     <TextBlock VerticalAlignment="Center" Text="{Binding RoleCount}" />
-                                    <TextBlock VerticalAlignment="Center" Margin="5,0" Text="{extensions:Translate Roles}" />
+                                    <TextBlock
+                                        Margin="5,0"
+                                        VerticalAlignment="Center"
+                                        Text="{extensions:Translate Roles}" />
 
                                     <Button
                                         Margin="10,0,2,0"

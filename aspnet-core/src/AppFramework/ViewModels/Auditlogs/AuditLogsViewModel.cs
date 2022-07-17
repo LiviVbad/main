@@ -15,6 +15,7 @@ namespace AppFramework.ViewModels
     {
         public AuditLogsViewModel(IAuditLogAppService appService)
         {
+            Title = Local.Localize("AuditLogs");
             IsAdvancedFilter = false;
             filter = new GetAuditLogsFilter()
             {

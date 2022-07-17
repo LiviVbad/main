@@ -18,6 +18,7 @@
             <converter:InverseBooleanConverter x:Key="inverseBooleanConverter" />
             <converter:ImageConverter x:Key="imageConvert" />
             <converter:MenuImageConverter x:Key="menuConverter"/>
+            <converter:MenuTitleConverter x:Key="menuTitleConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

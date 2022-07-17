@@ -15,6 +15,7 @@ namespace AppFramework.ViewModels
     {
         public DashboardViewModel(IHostDashboardAppService appService)
         {
+            Title = Local.Localize("Dashboard");
             this.appService = appService;
             EditionStatistics = new ObservableCollection<DoughnutChartPopulations>();
             IncomeStatistics = new ObservableCollection<AreaSeriesChart3DModel>();

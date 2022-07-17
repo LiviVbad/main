@@ -18,6 +18,7 @@ namespace AppFramework.ViewModels
     {
         public OrganizationsViewModel(IOrganizationUnitAppService userAppService)
         {
+            Title = Local.Localize("OrganizationUnits");
             this.appService = userAppService;
             SelectedCommand = new DelegateCommand<OrganizationListModel>(Selected);
 

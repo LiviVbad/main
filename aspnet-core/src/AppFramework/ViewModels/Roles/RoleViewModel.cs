@@ -41,6 +41,7 @@ namespace AppFramework.ViewModels
         public RoleViewModel(IRoleAppService appService,
             IPermissionAppService permissionAppService)
         {
+            Title = Local.Localize("Roles");
             this.appService = appService;
             this.permissionAppService = permissionAppService;
             input = new GetRolesInput();

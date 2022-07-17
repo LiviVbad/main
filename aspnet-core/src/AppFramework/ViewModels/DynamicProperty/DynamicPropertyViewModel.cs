@@ -26,6 +26,7 @@ namespace AppFramework.ViewModels
             IDynamicPropertyAppService appService,
             IDynamicEntityPropertyAppService entityPropertyAppService)
         {
+            Title = Local.Localize("DynamicPropertyManagement");
             this.appService = appService;
             this.entityPropertyAppService = entityPropertyAppService;
             entitydataPager = ContainerLocator.Container.Resolve<IDataPagerService>();

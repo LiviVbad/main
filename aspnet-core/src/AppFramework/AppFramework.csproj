@@ -55,6 +55,7 @@
     <PackageReference Include="Syncfusion.Themes.MaterialLightBlue.WPF" Version="20.1.0.48" />
     <PackageReference Include="Syncfusion.Themes.Office2019Black.WPF" Version="20.1.0.48" />
     <PackageReference Include="Syncfusion.Themes.Office2019White.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Syncfusion.Tools.WPF" Version="20.1.0.48" />
   </ItemGroup>
 
   <ItemGroup>
@@ -351,6 +352,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Views\MainTabsView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
     <Page Update="Views\Shared\HostMessageBoxView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>

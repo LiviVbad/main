@@ -17,6 +17,7 @@ using AppFramework.Authorization.Roles.Dto;
 using System.Collections.ObjectModel;
 using System;
 using AppFramework.ViewModels.Shared;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AppFramework.ViewModels
 {
@@ -36,6 +37,7 @@ namespace AppFramework.ViewModels
             IProfileAppService profileAppService,
             IPermissionAppService permissionAppService)
         {
+            Title = Local.Localize("UserManagement");
             IsAdvancedFilter = false;
             input = new GetUsersInput
             {

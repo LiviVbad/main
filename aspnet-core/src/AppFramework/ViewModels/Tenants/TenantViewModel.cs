@@ -90,6 +90,7 @@ namespace AppFramework.ViewModels
 
         public TenantViewModel(ITenantAppService appService, IEditionAppService editionAppService)
         {
+            Title = Local.Localize("TenantManagement");
             filter = new GetTenantsFilter()
             {
                 EditionIdSpecified = false,

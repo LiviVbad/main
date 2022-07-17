@@ -22,6 +22,14 @@
             RefreshCommand = new DelegateCommand(async () => await RefreshAsync());
         }
 
+        private string title;
+
+        public string Title
+        {
+            get { return title; }
+            set { title = value; RaisePropertyChanged(); }
+        }
+
         public readonly IHostDialogService dialog;
         public IPermissionPorxyService proxyService { get; private set; }
 
