@@ -94,7 +94,7 @@ namespace AppFramework
             App.Current.MainWindow.Hide();
 
             if (SplashScreenInitialized())
-            {
+            { 
                 App.Current.MainWindow.Show();
                 (App.Current.MainWindow.DataContext as INavigationAware)?.OnNavigatedTo(null);
             }
@@ -109,14 +109,12 @@ namespace AppFramework
 
         public static async Task OnSessionTimeout()
         {
-            await ContainerLocator.Container.Resolve<IAccountService>()
-                .LogoutAsync();
+            await ContainerLocator.Container.Resolve<IAccountService>().LogoutAsync();
         }
 
         public static async Task OnAccessTokenRefresh(string newAccessToken)
         {
-            await ContainerLocator.Container.Resolve<IAccountStorageService>()
-                .StoreAccessTokenAsync(newAccessToken);
+            await ContainerLocator.Container.Resolve<IAccountStorageService>().StoreAccessTokenAsync(newAccessToken);
         }
     }
 }

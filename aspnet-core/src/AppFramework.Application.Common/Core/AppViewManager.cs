@@ -56,7 +56,7 @@
 
         public const string DynamicEditValues = "DynamicEditValuesView";
 
-        public const string AuditLog = "AuditLogView";
+        public const string AuditLog = "AuditLogsView";
 
         public const string Visual = "VisualView";
 

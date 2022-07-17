@@ -62,6 +62,7 @@ namespace AppFramework.ViewModels
             if (await dialog.Question(Local.Localize("AreYouSure")))
             {
                 initialize = false;
+                NavigationRegion.RemoveAll();
                 await accountService.LogoutAsync();
             }
         }
@@ -75,22 +76,23 @@ namespace AppFramework.ViewModels
 
         private void Navigate(string pageName)
         {
-            var region = regionManager.Regions[AppRegionManager.Main];
-            var view = region.Views.FirstOrDefault(q => q.GetType().Name.Equals(pageName));
+            var view = NavigationRegion.Views.FirstOrDefault(q => q.GetType().Name.Equals(pageName));
             if (view == null)
-                region.RequestNavigate(pageName, NavigateionCallBack);
+                NavigationRegion.RequestNavigate(pageName, NavigateionCallBack);
             else
             {
-                SelectedIndex = region.Views.IndexOf(view);
+                SelectedIndex = NavigationRegion.Views.IndexOf(view);
             }
         }
 
         public void RemoveView(object view)
         {
-            var region = regionManager.Regions[AppRegionManager.Main];
-            if (region.Views.Contains(view))
-                region.Remove(view);
+            if (NavigationRegion.Views.Contains(view))
+                NavigationRegion.Remove(view);
         }
+
+
+        private IRegion NavigationRegion => regionManager.Regions[AppRegionManager.Main];
 
         private void NavigateionCallBack(NavigationResult navigationResult)
         {
