@@ -74,7 +74,7 @@ namespace AppFramework.Common
             services.RegisterScoped<IHostDashboardAppService, HostDashboardAppService>();
             services.RegisterScoped<IHostSettingsAppService, HostSettingsAppService>();
             services.RegisterScoped<IPermissionAppService, PermissionAppService>();
-            services.RegisterScoped<IPermissionPorxyService, PermissionPorxyService>();
+            services.Register<IPermissionPorxyService, PermissionPorxyService>();
             services.RegisterScoped<IFeaturesService, FeaturesService>();
 
             services.RegisterSingleton<IMessenger, Messenger>();

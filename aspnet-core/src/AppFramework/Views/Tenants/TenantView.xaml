@@ -135,8 +135,7 @@
                     </UniformGrid>
                 </Grid>
 
-                <sync:SfDataGrid
-                    x:Name="SfDataGrid"
+                <sync:SfDataGrid 
                     Grid.Row="1"
                     Margin="15,0"
                     ItemsSource="{Binding dataPager.GridModelList}"
