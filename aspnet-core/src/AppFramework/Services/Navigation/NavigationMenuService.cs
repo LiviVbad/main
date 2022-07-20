@@ -48,5 +48,31 @@ namespace AppFramework.Services
             }
             return authorizedMenuItems;
         }
+
+        /// <summary>
+        /// 获取用户的功能选项列表
+        /// </summary>
+        /// <returns></returns>
+        public ObservableCollection<NavigationItem> GetUserItems()
+        {
+            var items = new ObservableCollection<NavigationItem>()
+            {
+               new NavigationItem("accounts","ManageLinkedAccounts", AppViewManager.Login, Permkeys.Administration),
+               new NavigationItem("manageuser","ManageUserDelegations",AppViewManager.Login,Permkeys.Administration),
+               new NavigationItem("password","ChangePassword",AppViewManager.Login,Permkeys.Administration),
+               new NavigationItem("loginattempts","LoginAttempts",AppViewManager.Login,Permkeys.Administration),
+               new NavigationItem("picture","ChangeProfilePicture",AppViewManager.Login,Permkeys.Administration),
+               new NavigationItem("mysettings","MySettings",AppViewManager.Login,Permkeys.Administration),
+               new NavigationItem("download","Download",AppViewManager.Login,Permkeys.Administration),
+               new NavigationItem("logout","Logout",AppViewManager.Login,Permkeys.Administration),
+            };
+
+            foreach (var item in items)
+            { 
+                //转换特定地区语言的标题
+                item.Title = Local.Localize(item.Title);  
+            }
+            return items;
+        }
     }
 }

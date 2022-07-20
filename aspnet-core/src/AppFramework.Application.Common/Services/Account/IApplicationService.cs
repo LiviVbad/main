@@ -18,6 +18,11 @@ namespace AppFramework.Common.Services
         string UserNameAndSurname { get; set; }
 
         /// <summary>
+        /// 邮箱地址
+        /// </summary>
+        string EmailAddress { get; set; }
+
+        /// <summary>
         /// 应用程序信息
         /// </summary>
         string ApplicationInfo { get; set; }

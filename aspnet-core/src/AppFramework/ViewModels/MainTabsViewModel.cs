@@ -1,34 +1,43 @@
 ﻿using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services;
-using AppFramework.Common.Services.Account; 
+using AppFramework.Common.Services.Account;
 using AppFramework.ViewModels.Shared;
 using Prism.Commands;
 using Prism.Regions;
 using Syncfusion.Data.Extensions;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
     public class MainTabsViewModel : NavigationViewModel
     {
         public MainTabsViewModel(
-            IAccountService accountService, 
+            IAccountService accountService,
             IRegionManager regionManager,
             IApplicationService appService)
         {
             this.appService = appService;
-            this.accountService = accountService; 
+            this.accountService = accountService;
             this.regionManager = regionManager;
 
             LogOutCommand = new DelegateCommand(LogOut);
-            NavigateCommand = new DelegateCommand<NavigationItem>(Navigate); 
+            NavigateCommand = new DelegateCommand<NavigationItem>(Navigate);
         }
 
         #region 字段/属性
 
         private bool initialize;
+
+        private bool isShowUserPanel;
+
+        public bool IsShowUserPanel
+        {
+            get { return isShowUserPanel; }
+            set { isShowUserPanel = value; RaisePropertyChanged(); }
+        }
 
         private int selectedIndex;
 
@@ -37,14 +46,14 @@ namespace AppFramework.ViewModels
             get { return selectedIndex; }
             set { selectedIndex = value; RaisePropertyChanged(); }
         }
-         
+
         public IApplicationService appService { get; init; }
 
         private readonly IAccountService accountService;
-        private readonly IRegionManager regionManager; 
+        private readonly IRegionManager regionManager;
         public DelegateCommand<NavigationItem> NavigateCommand { get; private set; }
         public DelegateCommand LogOutCommand { get; private set; }
-
+         
         #endregion
 
         private async void LogOut()

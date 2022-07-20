@@ -47,6 +47,7 @@ namespace AppFramework.Services.Account
         private byte[] photo;
         private byte[] profilePictureBytes;
         private string userNameAndSurname;
+        private string emailAddress;
         private string applicationInfo;
 
         private string applicationName;
@@ -73,6 +74,12 @@ namespace AppFramework.Services.Account
             set { userNameAndSurname = value; RaisePropertyChanged(); }
         }
 
+        public string EmailAddress
+        {
+            get => emailAddress;
+            set { emailAddress = value; RaisePropertyChanged(); }
+        }
+
         public string ApplicationInfo
         {
             get => applicationInfo;
@@ -85,6 +92,14 @@ namespace AppFramework.Services.Account
         {
             get { return navigationItems; }
             set { navigationItems = value; RaisePropertyChanged(); }
+        }
+
+        private ObservableCollection<NavigationItem> userMenuItems;
+
+        public ObservableCollection<NavigationItem> UserMenuItems
+        {
+            get { return userMenuItems; }
+            set { userMenuItems = value; RaisePropertyChanged(); }
         }
 
         public async Task ShowMyProfile()
@@ -171,6 +186,7 @@ namespace AppFramework.Services.Account
             ApplicationName = Local.Localize("EmailActivation_Title");
 
             UserNameAndSurname = applicationContext.LoginInfo.User.Name + " " + applicationContext.LoginInfo.User.Surname;
+            EmailAddress = applicationContext.LoginInfo.User.EmailAddress;
 
             RefreshAuthMenus();
 
@@ -183,6 +199,7 @@ namespace AppFramework.Services.Account
         {
             var permissions = applicationContext.Configuration.Auth.GrantedPermissions;
             NavigationItems = navigationItemService.GetAuthMenus(permissions);
+            UserMenuItems = navigationItemService.GetUserItems();
         }
     }
 }

@@ -19,6 +19,64 @@
             <converter:ImageConverter x:Key="imageConvert" />
             <converter:MenuImageConverter x:Key="menuConverter"/>
             <converter:MenuTitleConverter x:Key="menuTitleConverter"/>
+
+            <Style x:Key="listMenuItemStyle" TargetType="ListBoxItem">
+                <Setter Property="Padding" Value="10,3" />
+                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListBoxItem">
+                            <Grid>
+                                <Border
+                                            x:Name="htborder"
+                                            HorizontalAlignment="Left"
+                                            Panel.ZIndex="1"
+                                            Background="{DynamicResource PrimaryBackground}"
+                                            CornerRadius="2"
+                                            Opacity="1"
+                                            Style="{DynamicResource BorderStyle}" />
+                                <Border
+                                            x:Name="hdborder"
+                                            Margin="0,2"
+                                            Style="{DynamicResource BorderStyle}" />
+                                <Border
+                                            x:Name="border"
+                                            Margin="0,2"
+                                            Padding="{TemplateBinding Padding}"
+                                            CornerRadius="3">
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Foreground" Value="{DynamicResource PrimaryBackground}" />
+                                    <Setter TargetName="hdborder" Property="Opacity" Value="1" />
+                                    <Setter TargetName="htborder" Property="Width" Value="3" />
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ThicknessAnimation
+                                                            Storyboard.TargetName="htborder"
+                                                            Storyboard.TargetProperty="Margin"
+                                                            From="5"
+                                                            To="5,10"
+                                                            Duration="0:0:.2" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="{DynamicResource PrimaryBackground}" />
+                                    <Setter TargetName="hdborder" Property="Opacity" Value="1" />
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="False">
+                                    <Setter TargetName="hdborder" Property="Opacity" Value="0" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

@@ -8,16 +8,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Images\menus\accounts.png" />
     <None Remove="Assets\Images\menus\addr.png" />
     <None Remove="Assets\Images\menus\auditlog.png" />
     <None Remove="Assets\Images\menus\dashboard.png" />
     <None Remove="Assets\Images\menus\demo.png" />
+    <None Remove="Assets\Images\menus\download.png" />
     <None Remove="Assets\Images\menus\edition.png" />
     <None Remove="Assets\Images\menus\email.png" />
     <None Remove="Assets\Images\menus\language.png" />
     <None Remove="Assets\Images\menus\link.png" />
+    <None Remove="Assets\Images\menus\loginattempts.png" />
+    <None Remove="Assets\Images\menus\logout.png" />
+    <None Remove="Assets\Images\menus\manageuser.png" />
+    <None Remove="Assets\Images\menus\mysettings.png" />
     <None Remove="Assets\Images\menus\organization.png" />
+    <None Remove="Assets\Images\menus\password.png" />
     <None Remove="Assets\Images\menus\phone.png" />
+    <None Remove="Assets\Images\menus\picture.png" />
     <None Remove="Assets\Images\menus\property.png" />
     <None Remove="Assets\Images\menus\role.png" />
     <None Remove="Assets\Images\menus\setting.png" />
@@ -28,6 +36,7 @@
     <None Remove="Assets\Images\menus\version.png" />
     <None Remove="Assets\Images\menus\visual.png" />
     <None Remove="Assets\Images\SplashScreen.png" />
+    <None Remove="Assets\Images\user.png" />
   </ItemGroup>
  
   <ItemGroup>
@@ -321,16 +330,24 @@
     <Resource Include="Assets\Images\flags\zw.png" />
     <Resource Include="Assets\Images\info.png" />
     <Resource Include="Assets\Images\logo.ico" />
+    <Resource Include="Assets\Images\menus\accounts.png" />
     <Resource Include="Assets\Images\menus\addr.png" />
     <Resource Include="Assets\Images\menus\auditlog.png" />
     <Resource Include="Assets\Images\menus\dashboard.png" />
     <Resource Include="Assets\Images\menus\demo.png" />
+    <Resource Include="Assets\Images\menus\download.png" />
     <Resource Include="Assets\Images\menus\edition.png" />
     <Resource Include="Assets\Images\menus\email.png" />
     <Resource Include="Assets\Images\menus\language.png" />
     <Resource Include="Assets\Images\menus\link.png" />
+    <Resource Include="Assets\Images\menus\loginattempts.png" />
+    <Resource Include="Assets\Images\menus\logout.png" />
+    <Resource Include="Assets\Images\menus\manageuser.png" />
+    <Resource Include="Assets\Images\menus\mysettings.png" />
     <Resource Include="Assets\Images\menus\organization.png" />
+    <Resource Include="Assets\Images\menus\password.png" />
     <Resource Include="Assets\Images\menus\phone.png" />
+    <Resource Include="Assets\Images\menus\picture.png" />
     <Resource Include="Assets\Images\menus\property.png" />
     <Resource Include="Assets\Images\menus\role.png" />
     <Resource Include="Assets\Images\menus\setting.png" />
@@ -347,6 +364,7 @@
     <Resource Include="Assets\Images\question.png" />
     <Resource Include="Assets\Images\SplashScreen.png" />
     <Resource Include="Assets\Images\theme12.png" />
+    <Resource Include="Assets\Images\user.png" />
   </ItemGroup>
 
   <ItemGroup>
