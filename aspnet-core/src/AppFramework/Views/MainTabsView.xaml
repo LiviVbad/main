@@ -3,7 +3,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:const="clr-namespace:AppFramework.Common;assembly=AppFramework.Common"
-    xmlns:converter="clr-namespace:AppFramework.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -21,10 +20,7 @@
     Icon="/Assets/Images/logo.ico"
     TitleBarHeight="0"
     WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d">
-    <sync:ChromelessWindow.Resources>
-        <converter:DarkModeConverter x:Key="darkConverter" />
-    </sync:ChromelessWindow.Resources>
+    mc:Ignorable="d"> 
     <win:DialogHost Identifier="{x:Static const:AppCommonConsts.RootIdentifier}">
         <Grid>
             <Grid.RowDefinitions>
@@ -69,7 +65,7 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
                 Orientation="Horizontal">
-                <sync:DropDownButtonAdv
+                <!--<sync:DropDownButtonAdv
                     Width="50"
                     Margin="5,0"
                     Padding="0,2"
@@ -95,7 +91,7 @@
                     Background="Transparent"
                     Command="{Binding SetThemeModeCommand}"
                     Content="{Binding themeService.IsDarkTheme, Converter={StaticResource darkConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Style="{DynamicResource IconButtonStyle}" />
+                    Style="{DynamicResource IconButtonStyle}" />-->
 
 
                 <Button
@@ -216,12 +212,12 @@
 
             <sync:TabControlExt
                 Grid.Row="1"
-                Grid.Column="1"
+                Grid.Column="1"  
                 prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Main}"
                 AllowDragDrop="False"
                 BorderThickness="0"
-                CloseButtonType="Individual"
-                EnableLabelEdit="False"
+                CloseButtonType="Individual"  
+                EnableLabelEdit="False"  
                 OnCloseButtonClick="TabControlExt_OnCloseButtonClick"
                 SelectedIndex="{Binding SelectedIndex}"
                 ShowTabListContextMenu="False">

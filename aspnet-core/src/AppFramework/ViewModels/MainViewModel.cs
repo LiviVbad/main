@@ -1,9 +1,7 @@
 ﻿using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services;
-using AppFramework.Common.Services.Account;
-using AppFramework.Models;
-using AppFramework.Services;
+using AppFramework.Common.Services.Account; 
 using AppFramework.ViewModels.Shared;
 using Prism.Commands;
 using Prism.Regions; 
@@ -14,32 +12,25 @@ namespace AppFramework.ViewModels
     public class MainViewModel : NavigationViewModel
     {
         public MainViewModel(
-            IAccountService accountService,
-            IThemeService themeService,
+            IAccountService accountService, 
             IRegionManager regionManager,
             IApplicationService appService)
         {
             this.appService = appService;
-            this.accountService = accountService;
-            this.themeService = themeService;
+            this.accountService = accountService; 
             this.regionManager = regionManager;
 
             LogOutCommand = new DelegateCommand(LogOut);
-            NavigateCommand = new DelegateCommand<NavigationItem>(Navigate);
-            SetThemeModeCommand = new DelegateCommand(themeService.SetThemeMode);
-            SetThemeCommand = new DelegateCommand<ThemeItem>(arg => themeService.SetTheme(arg.DisplayName));
+            NavigateCommand = new DelegateCommand<NavigationItem>(Navigate); 
         }
 
         #region 字段/属性
 
-        private bool initialize;
-        public IThemeService themeService { get; set; }
+        private bool initialize; 
         public IApplicationService appService { get; init; }
 
         private readonly IAccountService accountService;
-        private readonly IRegionManager regionManager;
-        public DelegateCommand SetThemeModeCommand { get; }
-        public DelegateCommand<ThemeItem> SetThemeCommand { get; }
+        private readonly IRegionManager regionManager; 
         public DelegateCommand<NavigationItem> NavigateCommand { get; private set; }
         public DelegateCommand LogOutCommand { get; private set; }
 

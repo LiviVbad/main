@@ -102,6 +102,7 @@ namespace AppFramework
             services.Add<OrganizationsAddView, OrganizationsAddViewModel>(AppViewManager.OrganizationAdd);
             services.Add<SettingsView, SettingsViewModel>(AppViewManager.Setting);
             services.Add<DemoUiView, DemoUiViewModel>(AppViewManager.Demo); //演示组件页
+            services.Add<VisualView, VisualViewModel>(AppViewManager.Visual);
 
             services.Add<ChangePasswordView, ChangePasswordViewModel>(AppViewManager.ChangePassword);
             services.Add<EmailActivationView, EmailActivationViewModel>(AppViewManager.EmailActivation);

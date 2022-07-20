@@ -28,7 +28,12 @@ namespace AppFramework.Services
         public bool IsDarkTheme
         {
             get { return isDarkTheme; }
-            set { isDarkTheme = value; RaisePropertyChanged(); }
+            set
+            {
+                isDarkTheme = value;
+                SetThemeMode();
+                RaisePropertyChanged();
+            }
         }
 
         public ObservableCollection<ThemeItem> ThemeItems
@@ -45,14 +50,14 @@ namespace AppFramework.Services
 
         public void SetThemeMode()
         {
-            IsDarkTheme = !IsDarkTheme;
             AppSettings.Instance.IsDarkTheme = IsDarkTheme;
             SetThemeInternal(GetCurrentName());
         }
 
         private void SetThemeInternal(string themeName)
         {
-            App.Current.MainWindow.SetTheme(themeName);
+            if (App.Current.MainWindow != null)
+                App.Current.MainWindow.SetTheme(themeName);
         }
 
         public void SetCurrentTheme(DependencyObject dependency)
@@ -64,6 +69,6 @@ namespace AppFramework.Services
         {
             var item = ThemeItems.FirstOrDefault(t => t.DisplayName.Equals(AppSettings.Instance.ThemeName));
             return AppSettings.Instance.IsDarkTheme ? item.DarkName : item.LightName;
-        } 
+        }
     }
 }
