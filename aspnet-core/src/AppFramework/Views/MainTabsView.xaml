@@ -45,7 +45,7 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </sync:ChromelessWindow.Resources>
-    <win:DialogHost Identifier="{x:Static const:AppCommonConsts.RootIdentifier}">
+    <win:DialogHost Identifier="{x:Static const:AppCommonConsts.RootIdentifier}" Margin="-2">
         <Grid>
             <Grid.Resources>
                 <Storyboard x:Key="SlideIn">
@@ -104,20 +104,14 @@
 
                 <ToggleButton Template="{StaticResource UserPanelButton}" 
                               Margin="5"   
-                              IsChecked="{Binding IsShowUserPanel,Mode=TwoWay}"  
+                              IsChecked="{Binding appService.IsShowUserPanel,Mode=TwoWay}"  
                               Padding="10,5">
                     <StackPanel Orientation="Horizontal">
                         <Image Width="20" Height="20" Source="/Assets/Images/user.png" />
-                        <TextBlock Text="Admin" Margin="5,0 "/>
+                        <TextBlock Text="{Binding appService.UserNameAndSurname}" Margin="5,0 "/>
                     </StackPanel>
                 </ToggleButton>
-
-                <Button
-                    VerticalAlignment="Center"
-                    Background="Transparent"
-                    Command="{Binding LogOutCommand}"
-                    Content=" &#xe652;"
-                    Style="{DynamicResource IconButtonStyle}" />
+ 
                 <Button
                     x:Name="BtnMin"
                     VerticalAlignment="Center"
@@ -198,7 +192,7 @@
                 Grid.Row="1">
                 <Grid>
                     <Grid.Effect>
-                        <DropShadowEffect Direction="180" BlurRadius="20" ShadowDepth="-10" Opacity="0.1"  Color="#1F000000"    />
+                        <DropShadowEffect Direction="180" BlurRadius="20" ShadowDepth="-10" Opacity="0.2"  Color="#1F000000"    />
                     </Grid.Effect>
                     
                     <Grid.RowDefinitions>
@@ -216,30 +210,34 @@
                         </StackPanel>
                     </StackPanel>
 
-                    <ListBox Grid.Row="1" Margin="15,0" ItemsSource="{Binding appService.UserMenuItems}"  ItemContainerStyle="{StaticResource listMenuItemStyle}">
+                    <ListBox x:Name="ListUserMenu" Grid.Row="1" Margin="15,0" ItemsSource="{Binding appService.UserMenuItems}"  ItemContainerStyle="{StaticResource listMenuItemStyle}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="5" Orientation="Horizontal">
                                     <Image
                                 Width="20"
                                 Height="20"
-                                Source="{Binding Icon, Converter={StaticResource menuConverter}}"
-                                ToolTip="{Binding Title}" />
+                                Source="{Binding Icon, Converter={StaticResource menuConverter}}" />
                                     <TextBlock
                                 Margin="10,0,0,0"
                                 VerticalAlignment="Center"
                                 FontSize="14"
                                 Style="{x:Null}"
-                                Text="{Binding Title}" />
+                                Text="{Binding Key}" />
                                 </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate> 
+                            </DataTemplate> 
+                        </ListBox.ItemTemplate>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding ExecuteUserActionCommand}" CommandParameter="{Binding ElementName=ListUserMenu, Path=SelectedItem.Key}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                     </ListBox>
                 </Grid>
                 <Border.Style>
                     <Style TargetType="{x:Type Border}">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsShowUserPanel}" Value="true">
+                            <DataTrigger Binding="{Binding appService.IsShowUserPanel}" Value="true">
                                 <DataTrigger.EnterActions>
                                     <BeginStoryboard Storyboard="{StaticResource SlideIn}"/>
                                 </DataTrigger.EnterActions>

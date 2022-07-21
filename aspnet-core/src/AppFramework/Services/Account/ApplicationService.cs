@@ -4,7 +4,9 @@ using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Models;
 using AppFramework.Common.Services;
+using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Navigation;
+using AppFramework.Common.Services.Permission;
 using AppFramework.Common.ViewModels;
 using AppFramework.Dto;
 using AppFramework.Models;
@@ -13,27 +15,25 @@ using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AppFramework.Services.Account
 {
     public class ApplicationService : ViewModelBase, IApplicationService
     {
-        private readonly IApplicationContext applicationContext;
-        private readonly IDialogService dialogService;
-        private readonly INavigationMenuService navigationItemService;
-        private readonly IRegionManager regionManager;
-        private readonly IProfileAppService profileAppService;
-        private readonly ProxyProfileControllerService profileControllerService;
-
         public ApplicationService(
+            IHostDialogService dialog,
             IDialogService dialogService,
             IRegionManager regionManager,
+            IAccountService accountService,
             INavigationMenuService navigationItemService,
             IProfileAppService profileAppService,
             IApplicationContext applicationContext,
             ProxyProfileControllerService profileControllerService)
         {
+            this.dialog = dialog;
+            this.accountService = accountService;
             this.applicationContext = applicationContext;
             this.dialogService = dialogService;
             this.navigationItemService = navigationItemService;
@@ -43,6 +43,17 @@ namespace AppFramework.Services.Account
 
             navigationItems = new ObservableCollection<NavigationItem>();
         }
+
+        #region 字段/属性
+
+        private readonly IApplicationContext applicationContext;
+        private readonly IDialogService dialogService;
+        private readonly IHostDialogService dialog;
+        private readonly INavigationMenuService navigationItemService;
+        private readonly IRegionManager regionManager;
+        private readonly IAccountService accountService;
+        private readonly IProfileAppService profileAppService;
+        private readonly ProxyProfileControllerService profileControllerService;
 
         private byte[] photo;
         private byte[] profilePictureBytes;
@@ -94,13 +105,17 @@ namespace AppFramework.Services.Account
             set { navigationItems = value; RaisePropertyChanged(); }
         }
 
-        private ObservableCollection<NavigationItem> userMenuItems;
+        private ObservableCollection<PermissionItem> userMenuItems;
 
-        public ObservableCollection<NavigationItem> UserMenuItems
+        public ObservableCollection<PermissionItem> UserMenuItems
         {
             get { return userMenuItems; }
             set { userMenuItems = value; RaisePropertyChanged(); }
         }
+
+        #endregion
+
+        #region 用户方法
 
         public async Task ShowMyProfile()
         {
@@ -179,13 +194,25 @@ namespace AppFramework.Services.Account
             await Task.CompletedTask;
         }
 
+        #endregion
+
+        #region 用户菜单方法
+
+        private bool isShowUserPanel;
+
+        public bool IsShowUserPanel
+        {
+            get { return isShowUserPanel; }
+            set { isShowUserPanel = value; RaisePropertyChanged(); }
+        }
+
         public async Task GetApplicationInfo()
         {
             await GetUserPhoto();
 
             ApplicationName = Local.Localize("EmailActivation_Title");
 
-            UserNameAndSurname = applicationContext.LoginInfo.User.Name + " " + applicationContext.LoginInfo.User.Surname;
+            UserNameAndSurname = applicationContext.LoginInfo.User.Name;
             EmailAddress = applicationContext.LoginInfo.User.EmailAddress;
 
             RefreshAuthMenus();
@@ -199,7 +226,36 @@ namespace AppFramework.Services.Account
         {
             var permissions = applicationContext.Configuration.Auth.GrantedPermissions;
             NavigationItems = navigationItemService.GetAuthMenus(permissions);
-            UserMenuItems = navigationItemService.GetUserItems();
+            UserMenuItems = new ObservableCollection<PermissionItem>()
+            {
+               new PermissionItem("accounts",Local.Localize("ManageLinkedAccounts"), "",()=>{}),
+               new PermissionItem("manageuser",Local.Localize("ManageUserDelegations"),"",()=>{}),
+               new PermissionItem("password",Local.Localize("ChangePassword"),"",()=>{}),
+               new PermissionItem("loginattempts",Local.Localize("LoginAttempts"),"",()=>{}),
+               new PermissionItem("picture",Local.Localize("ChangeProfilePicture"),"",()=>{}),
+               new PermissionItem("mysettings",Local.Localize("MySettings"),"",()=>{}),
+               new PermissionItem("download",Local.Localize("Download"),"",()=>{}),
+               new PermissionItem("logout",Local.Localize("Logout"),"",LogOut),
+            };
         }
+
+        private async void LogOut()
+        {
+            if (await dialog.Question(Local.Localize("AreYouSure")))
+            {
+                IsShowUserPanel = false;
+                regionManager.Regions[AppRegionManager.Main].RemoveAll();
+                await accountService.LogoutAsync();
+            }
+        }
+
+        public void ExecuteUserAction(string key)
+        {
+            var item = UserMenuItems.FirstOrDefault(t => t.Key.Equals(key));
+            if (item != null) item.Action?.Invoke();
+        }
+
+        #endregion
+
     }
 }

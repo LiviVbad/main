@@ -15,9 +15,7 @@ using AppFramework.Authorization.Permissions;
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
 using System.Collections.ObjectModel;
-using System;
 using AppFramework.ViewModels.Shared;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace AppFramework.ViewModels
 {

@@ -14,31 +14,19 @@ namespace AppFramework.ViewModels
 {
     public class MainTabsViewModel : NavigationViewModel
     {
-        public MainTabsViewModel(
-            IAccountService accountService,
+        public MainTabsViewModel( 
             IRegionManager regionManager,
             IApplicationService appService)
         {
-            this.appService = appService;
-            this.accountService = accountService;
+            this.appService = appService; 
             this.regionManager = regionManager;
 
-            LogOutCommand = new DelegateCommand(LogOut);
             NavigateCommand = new DelegateCommand<NavigationItem>(Navigate);
+            ExecuteUserActionCommand = new DelegateCommand<string>(appService.ExecuteUserAction);
         }
 
         #region 字段/属性
-
-        private bool initialize;
-
-        private bool isShowUserPanel;
-
-        public bool IsShowUserPanel
-        {
-            get { return isShowUserPanel; }
-            set { isShowUserPanel = value; RaisePropertyChanged(); }
-        }
-
+            
         private int selectedIndex;
 
         public int SelectedIndex
@@ -47,25 +35,13 @@ namespace AppFramework.ViewModels
             set { selectedIndex = value; RaisePropertyChanged(); }
         }
 
-        public IApplicationService appService { get; init; }
-
-        private readonly IAccountService accountService;
+        public IApplicationService appService { get; init; } 
         private readonly IRegionManager regionManager;
-        public DelegateCommand<NavigationItem> NavigateCommand { get; private set; }
-        public DelegateCommand LogOutCommand { get; private set; }
+        public DelegateCommand<NavigationItem> NavigateCommand { get; private set; } 
+        public DelegateCommand<string> ExecuteUserActionCommand { get; private set; }
          
         #endregion
-
-        private async void LogOut()
-        {
-            if (await dialog.Question(Local.Localize("AreYouSure")))
-            {
-                initialize = false;
-                NavigationRegion.RemoveAll();
-                await accountService.LogoutAsync();
-            }
-        }
-
+         
         public void Navigate(NavigationItem navigationItem)
         {
             if (navigationItem == null) return;
@@ -100,11 +76,9 @@ namespace AppFramework.ViewModels
         }
 
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
-        {
-            if (initialize) return;
+        { 
             await appService.GetApplicationInfo();
-            Navigate(AppViewManager.Dashboard);
-            initialize = true;
+            Navigate(AppViewManager.Dashboard); 
         }
     }
 }

@@ -1,15 +1,20 @@
 ﻿using Prism.Mvvm;
-using System; 
+using System;
 
 namespace AppFramework.Common.Services.Permission
 {
     public class PermissionItem : BindableBase
     {
-        public PermissionItem(string key, string name, Action ation)
+        public PermissionItem(string key, string name, Action action)
         {
             Key = key;
             Name = name;
-            Ation = ation;
+            Action = action;
+        }
+
+        public PermissionItem(string icon, string key, string name, Action action) : this(key, name, action)
+        {
+            Icon = icon;
         }
 
         private string name;
@@ -20,7 +25,8 @@ namespace AppFramework.Common.Services.Permission
             set { name = value; RaisePropertyChanged(); }
         }
 
-        public Action Ation { get; }
+        public Action Action { get; }
         public string Key { get; set; }
+        public string Icon { get; set; }
     }
 }

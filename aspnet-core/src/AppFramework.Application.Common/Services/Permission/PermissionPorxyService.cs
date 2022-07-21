@@ -26,7 +26,7 @@ namespace AppFramework.Common
         public void Execute(string key)
         {
             var item = Permissions.FirstOrDefault(t => t.Key.Equals(key));
-            if (item != null) item.Ation?.Invoke();
+            if (item != null) item.Action?.Invoke();
         }
          
         public void Generate(PermissionItem[] items)

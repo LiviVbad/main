@@ -59,5 +59,11 @@ namespace AppFramework.Common.Services
         /// 刷新菜单
         /// </summary>
         void RefreshAuthMenus();
+
+        /// <summary>
+        /// 执行用户功能请求
+        /// </summary>
+        /// <param name="key"></param>
+        void ExecuteUserAction(string key);
     }
 }
