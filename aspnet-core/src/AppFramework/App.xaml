@@ -19,6 +19,7 @@
             <converter:ImageConverter x:Key="imageConvert" />
             <converter:MenuImageConverter x:Key="menuConverter"/>
             <converter:MenuTitleConverter x:Key="menuTitleConverter"/>
+            <converter:ByteToImageConverter x:Key="bytesToImageConverter"/>
 
             <Style x:Key="listMenuItemStyle" TargetType="ListBoxItem">
                 <Setter Property="Padding" Value="10,3" />

@@ -107,11 +107,11 @@
                               IsChecked="{Binding appService.IsShowUserPanel,Mode=TwoWay}"  
                               Padding="10,5">
                     <StackPanel Orientation="Horizontal">
-                        <Image Width="20" Height="20" Source="/Assets/Images/user.png" />
+                        <Image Width="20" Height="20" Source="{Binding appService.Photo,Converter={StaticResource bytesToImageConverter}}" />
                         <TextBlock Text="{Binding appService.UserNameAndSurname}" Margin="5,0 "/>
                     </StackPanel>
                 </ToggleButton>
- 
+
                 <Button
                     x:Name="BtnMin"
                     VerticalAlignment="Center"
@@ -139,7 +139,7 @@
                 Grid.Row="1"
                 Margin="10"  
                 ItemContainerStyle="{StaticResource listMenuItemStyle}"
-                ItemsSource="{Binding appService.NavigationItems}"> 
+                ItemsSource="{Binding appService.NavigationItems}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="5" Orientation="Horizontal">
@@ -165,9 +165,9 @@
             </ListBox>
 
             <sync:TabControlExt
-                Grid.Row="1"
-                Grid.Column="1"  
-                prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Main}"
+                Grid.Row="1"  
+                Grid.Column="1"    
+                prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Main}" 
                 AllowDragDrop="False"
                 BorderThickness="0"
                 CloseButtonType="Individual"  
@@ -194,7 +194,7 @@
                     <Grid.Effect>
                         <DropShadowEffect Direction="180" BlurRadius="20" ShadowDepth="-10" Opacity="0.2"  Color="#1F000000"    />
                     </Grid.Effect>
-                    
+
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition/>
@@ -203,7 +203,7 @@
                     <Border  Grid.RowSpan="2"  Opacity="1" Style="{DynamicResource HeaderBorderStyle}" />
 
                     <StackPanel Orientation="Horizontal" Margin="15">
-                        <Image Width="40" Height="40" Source="/Assets/Images/user.png" />
+                        <Image Width="40" Height="40" Source="{Binding appService.Photo,Converter={StaticResource bytesToImageConverter}}" />
                         <StackPanel Margin="10,0" VerticalAlignment="Center">
                             <TextBlock Text="{Binding appService.UserNameAndSurname}"/>
                             <TextBlock Text="{Binding appService.EmailAddress}" Margin="0,2"/>
@@ -225,7 +225,7 @@
                                 Style="{x:Null}"
                                 Text="{Binding Key}" />
                                 </StackPanel>
-                            </DataTemplate> 
+                            </DataTemplate>
                         </ListBox.ItemTemplate>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">

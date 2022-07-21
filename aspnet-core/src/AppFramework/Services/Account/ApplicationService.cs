@@ -8,15 +8,14 @@ using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Navigation;
 using AppFramework.Common.Services.Permission;
 using AppFramework.Common.ViewModels;
-using AppFramework.Dto;
-using AppFramework.Models;
+using AppFramework.Dto; 
 using Prism.Regions;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Threading.Tasks; 
 
 namespace AppFramework.Services.Account
 {
@@ -132,8 +131,7 @@ namespace AppFramework.Services.Account
 
         private async Task GetProfilePictureByUserSuccessed(GetProfilePictureOutput output)
         {
-            profilePictureBytes = Convert.FromBase64String(output.ProfilePicture);
-            //Photo = ImageSource.FromStream(() => new MemoryStream(profilePictureBytes));
+            Photo = Convert.FromBase64String(output.ProfilePicture); 
 
             await Task.CompletedTask;
         }
@@ -144,7 +142,7 @@ namespace AppFramework.Services.Account
             {
                 await WebRequest.Execute(async () => await UpdateProfilePhoto(photoAsBytes, fileName), () =>
                 {
-                    //Photo = ImageSource.FromStream(() => new MemoryStream(photoAsBytes));
+                    Photo = photoAsBytes; 
                     CloneProfilePicture(photoAsBytes);
                     return Task.CompletedTask;
                 });
@@ -256,6 +254,5 @@ namespace AppFramework.Services.Account
         }
 
         #endregion
-
     }
 }
