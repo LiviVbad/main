@@ -10,8 +10,9 @@ namespace AppFramework
 
         private readonly string _serviceUrlSegment;
 
-        protected ProxyControllerBase()
+        protected ProxyControllerBase(AbpApiClient apiClient)
         {
+            ApiClient = apiClient;
             _serviceUrlSegment = GetServiceUrlSegmentByConvention();
         }
 

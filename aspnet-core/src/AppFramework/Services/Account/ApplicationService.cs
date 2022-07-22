@@ -8,14 +8,14 @@ using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Navigation;
 using AppFramework.Common.Services.Permission;
 using AppFramework.Common.ViewModels;
-using AppFramework.Dto; 
+using AppFramework.Dto;
 using Prism.Regions;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
 namespace AppFramework.Services.Account
 {
@@ -131,7 +131,7 @@ namespace AppFramework.Services.Account
 
         private async Task GetProfilePictureByUserSuccessed(GetProfilePictureOutput output)
         {
-            Photo = Convert.FromBase64String(output.ProfilePicture); 
+            Photo = Convert.FromBase64String(output.ProfilePicture);
 
             await Task.CompletedTask;
         }
@@ -142,7 +142,7 @@ namespace AppFramework.Services.Account
             {
                 await WebRequest.Execute(async () => await UpdateProfilePhoto(photoAsBytes, fileName), () =>
                 {
-                    Photo = photoAsBytes; 
+                    Photo = photoAsBytes;
                     CloneProfilePicture(photoAsBytes);
                     return Task.CompletedTask;
                 });
@@ -230,7 +230,7 @@ namespace AppFramework.Services.Account
                new PermissionItem("manageuser",Local.Localize("ManageUserDelegations"),"",()=>{}),
                new PermissionItem("password",Local.Localize("ChangePassword"),"",()=>{}),
                new PermissionItem("loginattempts",Local.Localize("LoginAttempts"),"",()=>{}),
-               new PermissionItem("picture",Local.Localize("ChangeProfilePicture"),"",()=>{}),
+               new PermissionItem("picture",Local.Localize("ChangeProfilePicture"),"",ChangeProfilePicture),
                new PermissionItem("mysettings",Local.Localize("MySettings"),"",()=>{}),
                new PermissionItem("download",Local.Localize("Download"),"",()=>{}),
                new PermissionItem("logout",Local.Localize("Logout"),"",LogOut),
@@ -251,6 +251,16 @@ namespace AppFramework.Services.Account
         {
             var item = UserMenuItems.FirstOrDefault(t => t.Key.Equals(key));
             if (item != null) item.Action?.Invoke();
+        }
+
+        public async void ChangeProfilePicture()
+        {
+            var dialogResult = await dialog.ShowDialogAsync(AppViewManager.ChangeAvatar);
+
+            if (dialogResult.Result == ButtonResult.OK)
+            {
+                Photo = dialogResult.Parameters.GetValue<byte[]>("Value");
+            }
         }
 
         #endregion

@@ -22,41 +22,45 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <sync:ChromelessWindow.Resources>
-        <ControlTemplate TargetType="{x:Type ToggleButton}" x:Key="UserPanelButton">
-            <Border x:Name="ThemeButtonBorder"
+        <ControlTemplate x:Key="UserPanelButton" TargetType="{x:Type ToggleButton}">
+            <Border
+                x:Name="ThemeButtonBorder"
+                Padding="{TemplateBinding Padding}"
+                Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
-                Padding="{TemplateBinding Padding}"
-                CornerRadius="2"
-                Background="{TemplateBinding Background}">
-                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                CornerRadius="2">
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
             </Border>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#1AFFFFFF" />
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#33FFFFFF"/>
+                    <Setter Property="Background" Value="#33FFFFFF" />
                 </Trigger>
                 <Trigger Property="IsChecked" Value="True">
-                    <Setter Property="Background" Value="#33FFFFFF"/>
+                    <Setter Property="Background" Value="#33FFFFFF" />
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </sync:ChromelessWindow.Resources>
-    <win:DialogHost Identifier="{x:Static const:AppCommonConsts.RootIdentifier}" Margin="-2">
+    <win:DialogHost Margin="-2" Identifier="{x:Static const:AppCommonConsts.RootIdentifier}">
         <Grid>
             <Grid.Resources>
                 <Storyboard x:Key="SlideIn">
-                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
-                             From="0" To=" -305"
-                             Duration="0:0:0.3" />
+                    <DoubleAnimation
+                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                        From="0"
+                        To=" -305"
+                        Duration="0:0:0.3" />
                 </Storyboard>
                 <Storyboard x:Key="SlideOut">
-                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
-                             From="-305" To="0"
-                              Duration="0:0:0.3" />
+                    <DoubleAnimation
+                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                        From="-305"
+                        To="0"
+                        Duration="0:0:0.3" />
                 </Storyboard>
             </Grid.Resources>
 
@@ -102,13 +106,17 @@
                 VerticalAlignment="Top"
                 Orientation="Horizontal">
 
-                <ToggleButton Template="{StaticResource UserPanelButton}" 
-                              Margin="5"   
-                              IsChecked="{Binding appService.IsShowUserPanel,Mode=TwoWay}"  
-                              Padding="10,5">
+                <ToggleButton
+                    Margin="5"
+                    Padding="10,5"
+                    IsChecked="{Binding appService.IsShowUserPanel, Mode=TwoWay}"
+                    Template="{StaticResource UserPanelButton}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Width="20" Height="20" Source="{Binding appService.Photo,Converter={StaticResource bytesToImageConverter}}" />
-                        <TextBlock Text="{Binding appService.UserNameAndSurname}" Margin="5,0 "/>
+                        <Image
+                            Width="20"
+                            Height="20"
+                            Source="{Binding appService.Photo, Converter={StaticResource bytesToImageConverter}}" />
+                        <TextBlock Margin="5,0" Text="{Binding appService.UserNameAndSurname}" />
                     </StackPanel>
                 </ToggleButton>
 
@@ -137,7 +145,7 @@
             <ListBox
                 x:Name="ListMenuBox"
                 Grid.Row="1"
-                Margin="10"  
+                Margin="10"
                 ItemContainerStyle="{StaticResource listMenuItemStyle}"
                 ItemsSource="{Binding appService.NavigationItems}">
                 <ListBox.ItemTemplate>
@@ -165,13 +173,13 @@
             </ListBox>
 
             <sync:TabControlExt
-                Grid.Row="1"  
-                Grid.Column="1"    
-                prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Main}" 
+                Grid.Row="1"
+                Grid.Column="1"
+                prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Main}"
                 AllowDragDrop="False"
                 BorderThickness="0"
-                CloseButtonType="Individual"  
-                EnableLabelEdit="False"  
+                CloseButtonType="Individual"
+                EnableLabelEdit="False"
                 OnCloseButtonClick="TabControlExt_OnCloseButtonClick"
                 SelectedIndex="{Binding SelectedIndex}"
                 ShowTabListContextMenu="False">
@@ -182,48 +190,64 @@
                 </sync:TabControlExt.ItemTemplate>
             </sync:TabControlExt>
 
-            <Border     
-                Margin="0,0,-305,0"  
-                Width="280"  
-                Opacity="1"
-                HorizontalAlignment="Right" 
-                VerticalAlignment="Stretch" 
-                Grid.Column="1" 
-                Grid.Row="1">
+            <Border
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="280"
+                Margin="0,0,-305,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Stretch"
+                Opacity="1">
                 <Grid>
                     <Grid.Effect>
-                        <DropShadowEffect Direction="180" BlurRadius="20" ShadowDepth="-10" Opacity="0.2"  Color="#1F000000"    />
+                        <DropShadowEffect
+                            BlurRadius="20"
+                            Direction="180"
+                            Opacity="0.2"
+                            ShadowDepth="-10"
+                            Color="#1F000000" />
                     </Grid.Effect>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition/>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <Border  Grid.RowSpan="2"  Opacity="1" Style="{DynamicResource HeaderBorderStyle}" />
+                    <Border
+                        Grid.RowSpan="2"
+                        Opacity="1"
+                        Style="{DynamicResource HeaderBorderStyle}" />
 
-                    <StackPanel Orientation="Horizontal" Margin="15">
-                        <Image Width="40" Height="40" Source="{Binding appService.Photo,Converter={StaticResource bytesToImageConverter}}" />
+                    <StackPanel Margin="15" Orientation="Horizontal">
+                        <Image
+                            Width="40"
+                            Height="40"
+                            Source="{Binding appService.Photo, Converter={StaticResource bytesToImageConverter}}" />
                         <StackPanel Margin="10,0" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding appService.UserNameAndSurname}"/>
-                            <TextBlock Text="{Binding appService.EmailAddress}" Margin="0,2"/>
+                            <TextBlock Text="{Binding appService.UserNameAndSurname}" />
+                            <TextBlock Margin="0,2" Text="{Binding appService.EmailAddress}" />
                         </StackPanel>
                     </StackPanel>
 
-                    <ListBox x:Name="ListUserMenu" Grid.Row="1" Margin="15,0" ItemsSource="{Binding appService.UserMenuItems}"  ItemContainerStyle="{StaticResource listMenuItemStyle}">
+                    <ListBox
+                        x:Name="ListUserMenu"
+                        Grid.Row="1"
+                        Margin="15,0"
+                        ItemContainerStyle="{StaticResource listMenuItemStyle}"
+                        ItemsSource="{Binding appService.UserMenuItems}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="5" Orientation="Horizontal">
                                     <Image
-                                Width="20"
-                                Height="20"
-                                Source="{Binding Icon, Converter={StaticResource menuConverter}}" />
+                                        Width="20"
+                                        Height="20"
+                                        Source="{Binding Icon, Converter={StaticResource menuConverter}}" />
                                     <TextBlock
-                                Margin="10,0,0,0"
-                                VerticalAlignment="Center"
-                                FontSize="14"
-                                Style="{x:Null}"
-                                Text="{Binding Key}" />
+                                        Margin="10,0,0,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        Style="{x:Null}"
+                                        Text="{Binding Key}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -239,17 +263,17 @@
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding appService.IsShowUserPanel}" Value="true">
                                 <DataTrigger.EnterActions>
-                                    <BeginStoryboard Storyboard="{StaticResource SlideIn}"/>
+                                    <BeginStoryboard Storyboard="{StaticResource SlideIn}" />
                                 </DataTrigger.EnterActions>
                                 <DataTrigger.ExitActions>
-                                    <BeginStoryboard Storyboard="{StaticResource SlideOut}"/>
+                                    <BeginStoryboard Storyboard="{StaticResource SlideOut}" />
                                 </DataTrigger.ExitActions>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Border.Style>
                 <Border.RenderTransform>
-                    <TranslateTransform/>
+                    <TranslateTransform />
                 </Border.RenderTransform>
             </Border>
         </Grid>

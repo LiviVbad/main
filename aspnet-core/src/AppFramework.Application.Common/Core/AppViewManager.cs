@@ -18,6 +18,8 @@
 
         public const string MyProfile = "MyProfileView";
 
+        public const string ChangeAvatar = "ChangeAvatarView";
+
         public const string ChangePassword = "ChangePasswordView";
 
         public const string EmailActivation = "EmailActivationView";
