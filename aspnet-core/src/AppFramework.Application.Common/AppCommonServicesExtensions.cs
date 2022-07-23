@@ -55,6 +55,7 @@ namespace AppFramework.Common
 
             services.RegisterScoped<IRoleAppService, RoleAppService>();
             services.RegisterScoped<IUserAppService, ProxyUserAppService>();
+            services.RegisterScoped<IUserLoginAppService, UserLoginAppService>();
             services.RegisterScoped<ITenantAppService, ProxyTenantAppService>();
             services.RegisterScoped<IEditionAppService, EditionAppService>();
             services.RegisterScoped<IAuditLogAppService, AuditLogAppService>();

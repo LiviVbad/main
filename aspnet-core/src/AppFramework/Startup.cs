@@ -47,6 +47,7 @@ namespace AppFramework
             services.RegisterSingleton<IHostDialogService, DialogHostService>();
             services.RegisterSingleton<IApplicationService, ApplicationService>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
+            services.RegisterSingleton<NavigationService>();
 
             /*
              * 《注册应用程序模块》

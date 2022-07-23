@@ -29,11 +29,13 @@ namespace AppFramework.Services.Account
             INavigationMenuService navigationItemService,
             IProfileAppService profileAppService,
             IApplicationContext applicationContext,
+            NavigationService navigationService,
             ProxyProfileControllerService profileControllerService)
         {
             this.dialog = dialog;
             this.accountService = accountService;
             this.applicationContext = applicationContext;
+            this.navigationService = navigationService;
             this.dialogService = dialogService;
             this.navigationItemService = navigationItemService;
             this.regionManager = regionManager;
@@ -46,6 +48,7 @@ namespace AppFramework.Services.Account
         #region 字段/属性
 
         private readonly IApplicationContext applicationContext;
+        private readonly NavigationService navigationService;
         private readonly IDialogService dialogService;
         private readonly IHostDialogService dialog;
         private readonly INavigationMenuService navigationItemService;
@@ -270,7 +273,7 @@ namespace AppFramework.Services.Account
 
         private void LoginAttempts()
         {
-            regionManager.Regions[AppRegionManager.Main].RequestNavigate(AppViewManager.LoginAttempts);
+            navigationService.Navigate(AppViewManager.LoginAttempts);
         }
 
         private async void MySettings()

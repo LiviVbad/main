@@ -181,7 +181,7 @@
                 CloseButtonType="Individual"
                 EnableLabelEdit="False"
                 OnCloseButtonClick="TabControlExt_OnCloseButtonClick"
-                SelectedIndex="{Binding SelectedIndex}"
+                SelectedIndex="{Binding NavigationService.SelectedIndex}"
                 ShowTabListContextMenu="False">
                 <sync:TabControlExt.ItemTemplate>
                     <DataTemplate>

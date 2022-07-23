@@ -60,7 +60,7 @@ namespace AppFramework.Views
         private void TabControlExt_OnCloseButtonClick(object sender, Syncfusion.Windows.Tools.Controls.CloseTabEventArgs e)
         {
             if (e.TargetTabItem != null)
-                (this.DataContext as MainTabsViewModel)?.RemoveView(e.TargetTabItem.Content);
-        } 
+                (this.DataContext as MainTabsViewModel).NavigationService.RemoveView(e.TargetTabItem.Content);
+        }
     }
 }
