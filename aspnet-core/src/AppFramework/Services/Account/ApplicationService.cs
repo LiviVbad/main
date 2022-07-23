@@ -275,7 +275,7 @@ namespace AppFramework.Services.Account
 
         private async void MySettings()
         {
-            await dialog.ShowDialogAsync(AppViewManager.MySetting);
+            await dialog.ShowDialogAsync(AppViewManager.MyProfile);
         }
 
         private void Download()

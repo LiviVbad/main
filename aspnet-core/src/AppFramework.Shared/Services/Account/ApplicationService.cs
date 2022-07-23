@@ -7,7 +7,7 @@ using AppFramework.ApiClient;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Dto;
-using AppFramework.Shared.Controls; 
+using AppFramework.Shared.Controls;
 using FFImageLoading;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -51,7 +51,7 @@ namespace AppFramework.Shared.Services
             navigationItems = new ObservableCollection<NavigationItem>();
         }
 
-        private byte[] photo; 
+        private byte[] photo;
         private string userNameAndSurname;
         private string applicationInfo;
         public string ApplicationName { get; set; } = "AppFramework";
@@ -86,6 +86,14 @@ namespace AppFramework.Shared.Services
             set { navigationItems = value; RaisePropertyChanged(); }
         }
 
+        private string emailAddress;
+
+        public string EmailAddress
+        {
+            get { return emailAddress; }
+            set { emailAddress = value; RaisePropertyChanged(); }
+        }
+
         public async Task ShowMyProfile()
         {
             dialogService.ShowDialog(AppViewManager.MyProfile);
@@ -102,7 +110,7 @@ namespace AppFramework.Shared.Services
 
         private async Task GetProfilePictureByUserSuccessed(GetProfilePictureOutput output)
         {
-            Photo = Convert.FromBase64String(output.ProfilePicture); 
+            Photo = Convert.FromBase64String(output.ProfilePicture);
             await Task.CompletedTask;
         }
 
@@ -252,7 +260,10 @@ namespace AppFramework.Shared.Services
         public async Task GetApplicationInfo()
         {
             RefreshAuthMenus();
-            UserNameAndSurname = applicationContext.LoginInfo.User.Name + " " + applicationContext.LoginInfo.User.Surname;
+            UserNameAndSurname = applicationContext.LoginInfo.User.Name;
+
+            EmailAddress = applicationContext.LoginInfo.User.EmailAddress;
+
             ApplicationInfo = $"{ApplicationName}\n" +
                             $"v{applicationContext.LoginInfo.Application.Version} " +
                             $"[{applicationContext.LoginInfo.Application.ReleaseDate:yyyyMMdd}]";
@@ -265,5 +276,8 @@ namespace AppFramework.Shared.Services
             var permissions = applicationContext.Configuration.Auth.GrantedPermissions;
             NavigationItems = navigationItemService.GetAuthMenus(permissions);
         }
+
+        public void ExecuteUserAction(string key)
+        { }
     }
 }

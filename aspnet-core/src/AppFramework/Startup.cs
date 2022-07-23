@@ -104,6 +104,7 @@ namespace AppFramework
             services.Add<DemoUiView, DemoUiViewModel>(AppViewManager.Demo); //演示组件页
             services.Add<VisualView, VisualViewModel>(AppViewManager.Visual);
 
+            services.Add<MyProfileView, MyProfileViewModel>(AppViewManager.MyProfile);
             services.Add<LoginAttemptsView, LoginAttemptsViewModel>(AppViewManager.LoginAttempts);
             services.Add<ManageLinkedAccountsView, ManageLinkedAccountsViewModel>(AppViewManager.ManageLinkedAccounts);
             services.Add<ManageUserDelegationsView, ManageUserDelegationsViewModel>(AppViewManager.ManageUserDelegations);
