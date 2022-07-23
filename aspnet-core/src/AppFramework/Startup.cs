@@ -104,6 +104,10 @@ namespace AppFramework
             services.Add<DemoUiView, DemoUiViewModel>(AppViewManager.Demo); //演示组件页
             services.Add<VisualView, VisualViewModel>(AppViewManager.Visual);
 
+            services.Add<LoginAttemptsView, LoginAttemptsViewModel>(AppViewManager.LoginAttempts);
+            services.Add<ManageLinkedAccountsView, ManageLinkedAccountsViewModel>(AppViewManager.ManageLinkedAccounts);
+            services.Add<ManageUserDelegationsView, ManageUserDelegationsViewModel>(AppViewManager.ManageUserDelegations);
+            services.Add<MySettingsView, MySettingsViewModel>(AppViewManager.MySetting);
             services.Add<ChangeAvatarView, ChangeAvatarViewModel>(AppViewManager.ChangeAvatar);
             services.Add<ChangePasswordView, ChangePasswordViewModel>(AppViewManager.ChangePassword);
             services.Add<EmailActivationView, EmailActivationViewModel>(AppViewManager.EmailActivation);

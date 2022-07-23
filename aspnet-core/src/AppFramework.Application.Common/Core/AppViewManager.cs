@@ -18,9 +18,17 @@
 
         public const string MyProfile = "MyProfileView";
 
+        public const string LoginAttempts = "LoginAttemptsView";
+
         public const string ChangeAvatar = "ChangeAvatarView";
 
         public const string ChangePassword = "ChangePasswordView";
+
+        public const string ManageLinkedAccounts = "ManageLinkedAccountsView";
+
+        public const string ManageUserDelegations = "ManageUserDelegationsView";
+
+        public const string MySetting = "MySettingView";
 
         public const string EmailActivation = "EmailActivationView";
 

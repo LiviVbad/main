@@ -253,14 +253,14 @@ namespace AppFramework.Services.Account
             }
         }
 
-        private void ManageLinkedAccounts()
+        private async void ManageLinkedAccounts()
         {
-
+            await dialog.ShowDialogAsync(AppViewManager.ManageLinkedAccounts);
         }
 
-        private void ManageUserDelegations()
+        private async void ManageUserDelegations()
         {
-
+            await dialog.ShowDialogAsync(AppViewManager.ManageUserDelegations);
         }
 
         private async void ChangePassword()
@@ -270,12 +270,12 @@ namespace AppFramework.Services.Account
 
         private void LoginAttempts()
         {
-
+            regionManager.Regions[AppRegionManager.Main].RequestNavigate(AppViewManager.LoginAttempts);
         }
 
-        private void MySettings()
+        private async void MySettings()
         {
-
+            await dialog.ShowDialogAsync(AppViewManager.MySetting);
         }
 
         private void Download()
