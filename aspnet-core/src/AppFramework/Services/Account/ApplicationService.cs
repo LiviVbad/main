@@ -226,15 +226,21 @@ namespace AppFramework.Services.Account
             NavigationItems = navigationItemService.GetAuthMenus(permissions);
             UserMenuItems = new ObservableCollection<PermissionItem>()
             {
-               new PermissionItem("accounts",Local.Localize("ManageLinkedAccounts"), "",()=>{}),
-               new PermissionItem("manageuser",Local.Localize("ManageUserDelegations"),"",()=>{}),
-               new PermissionItem("password",Local.Localize("ChangePassword"),"",()=>{}),
-               new PermissionItem("loginattempts",Local.Localize("LoginAttempts"),"",()=>{}),
+               new PermissionItem("accounts",Local.Localize("ManageLinkedAccounts"), "",ManageLinkedAccounts),
+               new PermissionItem("manageuser",Local.Localize("ManageUserDelegations"),"",ManageUserDelegations),
+               new PermissionItem("password",Local.Localize("ChangePassword"),"",ChangePassword),
+               new PermissionItem("loginattempts",Local.Localize("LoginAttempts"),"",LoginAttempts),
                new PermissionItem("picture",Local.Localize("ChangeProfilePicture"),"",ChangeProfilePicture),
-               new PermissionItem("mysettings",Local.Localize("MySettings"),"",()=>{}),
-               new PermissionItem("download",Local.Localize("Download"),"",()=>{}),
+               new PermissionItem("mysettings",Local.Localize("MySettings"),"",MySettings),
+               new PermissionItem("download",Local.Localize("Download"),"",Download),
                new PermissionItem("logout",Local.Localize("Logout"),"",LogOut),
             };
+        }
+
+        public void ExecuteUserAction(string key)
+        {
+            var item = UserMenuItems.FirstOrDefault(t => t.Key.Equals(key));
+            if (item != null) item.Action?.Invoke();
         }
 
         private async void LogOut()
@@ -247,13 +253,37 @@ namespace AppFramework.Services.Account
             }
         }
 
-        public void ExecuteUserAction(string key)
+        private void ManageLinkedAccounts()
         {
-            var item = UserMenuItems.FirstOrDefault(t => t.Key.Equals(key));
-            if (item != null) item.Action?.Invoke();
+
         }
 
-        public async void ChangeProfilePicture()
+        private void ManageUserDelegations()
+        {
+
+        }
+
+        private async void ChangePassword()
+        {
+            await dialog.ShowDialogAsync(AppViewManager.ChangePassword);
+        }
+
+        private void LoginAttempts()
+        {
+
+        }
+
+        private void MySettings()
+        {
+
+        }
+
+        private void Download()
+        {
+
+        }
+
+        private async void ChangeProfilePicture()
         {
             var dialogResult = await dialog.ShowDialogAsync(AppViewManager.ChangeAvatar);
 
