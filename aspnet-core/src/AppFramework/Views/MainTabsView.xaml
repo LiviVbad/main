@@ -102,9 +102,42 @@
             <!--  顶部按钮功能 主题/最小化/最大化/退出系统  -->
             <StackPanel
                 Grid.Column="1"
+                Margin="10"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
                 Orientation="Horizontal">
+
+                <Button
+                    Margin="8,0"
+                    Padding="10,5"
+                    VerticalAlignment="Center"
+                    Background="Transparent">
+                    <Image
+                        Width="20"
+                        Height="20"
+                        Source="/Assets/Images/notification.png" />
+                </Button>
+
+                <Button
+                    Margin="8,0"
+                    Padding="10,5"
+                    VerticalAlignment="Center"
+                    Background="Transparent">
+                    <Button.Content>
+                        <Image
+                            Width="20"
+                            Height="20"
+                            Source="/Assets/Images/message.png" />
+                    </Button.Content>
+                    <sync:SfBadge.Badge>
+                        <sync:SfBadge
+                            HorizontalAlignment="Left"
+                            AnimationType="None"
+                            Content="1"
+                            Fill="Warning"
+                            Shape="Oval" />
+                    </sync:SfBadge.Badge>
+                </Button>
 
                 <ToggleButton
                     Margin="5"

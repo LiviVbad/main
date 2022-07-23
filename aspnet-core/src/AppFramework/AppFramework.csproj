@@ -35,6 +35,8 @@
     <None Remove="Assets\Images\menus\user.png" />
     <None Remove="Assets\Images\menus\version.png" />
     <None Remove="Assets\Images\menus\visual.png" />
+    <None Remove="Assets\Images\message.png" />
+    <None Remove="Assets\Images\notification.png" />
     <None Remove="Assets\Images\SplashScreen.png" />
     <None Remove="Assets\Images\user.png" />
   </ItemGroup>
@@ -358,8 +360,10 @@
     <Resource Include="Assets\Images\menus\user.png" />
     <Resource Include="Assets\Images\menus\version.png" />
     <Resource Include="Assets\Images\menus\visual.png" />
+    <Resource Include="Assets\Images\message.png" />
     <Resource Include="Assets\Images\NewSubscriptionAmount.png" />
     <Resource Include="Assets\Images\NewTenants.png" />
+    <Resource Include="Assets\Images\notification.png" />
     <Resource Include="Assets\Images\Operation.png" />
     <Resource Include="Assets\Images\OrganizationUnit.png" />
     <Resource Include="Assets\Images\question.png" />
