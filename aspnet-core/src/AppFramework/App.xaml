@@ -9,18 +9,19 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/AppFramework;component/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <converter:BoolToYesNoStrConverter x:Key="boolToYesNoStrConverter" />
-            <converter:BoolToBackgroundConverter x:Key="boolToBackgroundConverter" />
-            <converter:BoolToVisibilityConverter x:Key="boolToVisibility" />
-            <converter:InverseBoolToYesNoStrConverter x:Key="inverseboolToYesNoStrConverter" />
-            <converter:InverseBoolToBackgroundConverter x:Key="inverseboolToBackgroundConverter" />
-            <converter:InverseBoolToVisibilityConverter x:Key="inverseBoolToVisibility" />
-            <converter:NotificationToMessageConverter x:Key="notifycationConverter" />
-            <converter:InverseBooleanConverter x:Key="inverseBooleanConverter" />
             <converter:ImageConverter x:Key="imageConvert" />
             <converter:MenuImageConverter x:Key="menuConverter" />
             <converter:MenuTitleConverter x:Key="menuTitleConverter" />
             <converter:ByteToImageConverter x:Key="bytesToImageConverter" />
+            <converter:BoolToVisibilityConverter x:Key="boolToVisibility" />
+            <converter:InverseBoolToVisibilityConverter x:Key="inverseBoolToVisibility" />
+            <converter:InverseBooleanConverter x:Key="inverseBooleanConverter" />
+            <converter:BoolToYesNoStrConverter x:Key="boolToYesNoStrConverter" />
+            <converter:BoolToBackgroundConverter x:Key="boolToBackgroundConverter" />
+            <converter:NotificationToMessageConverter x:Key="notifycationConverter" />
+            <converter:InverseBoolToYesNoStrConverter x:Key="inverseboolToYesNoStrConverter" />
+            <converter:InverseBoolToBackgroundConverter x:Key="inverseboolToBackgroundConverter" />
+            <converter:StateToVisibilityConverter x:Key="stateConverter" />
 
             <Style x:Key="listMenuItemStyle" TargetType="ListBoxItem">
                 <Setter Property="Padding" Value="10,3" />

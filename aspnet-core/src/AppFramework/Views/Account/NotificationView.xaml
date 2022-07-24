@@ -26,7 +26,10 @@
                         Margin="10,0"
                         Content="{extensions:Translate NotificationSettings}"
                         Style="{StaticResource SimpleButton}" />
-                    <Button Content="{extensions:Translate SetAllAsRead}" Style="{StaticResource SimpleButton}" />
+                    <Button
+                        Command="{Binding SetAllNotificationsAsReadCommand}"
+                        Content="{extensions:Translate SetAllAsRead}"
+                        Style="{StaticResource SimpleButton}" />
                 </StackPanel>
             </DockPanel>
 
@@ -47,8 +50,30 @@
                     </Grid.RowDefinitions>
 
                     <UniformGrid Margin="5,0" Columns="2">
-                        <DatePicker Margin="3" />
-                        <ComboBox Margin="3" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <sync:SfDatePicker BorderThickness="1" Value="{Binding StartDate, Mode=TwoWay}" />
+                            <Border Grid.Column="1" Margin="10,0">
+                                <TextBlock VerticalAlignment="Center" Text="―" />
+                            </Border>
+                            <sync:SfDatePicker
+                                Grid.Column="2"
+                                BorderThickness="1"
+                                Value="{Binding EndDate, Mode=TwoWay}" />
+                        </Grid>
+
+                        <ComboBox
+                            Margin="3"
+                            VerticalAlignment="Center"
+                            SelectedIndex="{Binding SelectedIndex}">
+                            <ComboBoxItem Content="{extensions:Translate All}" />
+                            <ComboBoxItem Content="{extensions:Translate Unread}" />
+                        </ComboBox>
                     </UniformGrid>
 
                     <StackPanel
@@ -58,9 +83,13 @@
                         Orientation="Horizontal">
                         <Button
                             Margin="10,0"
+                            Command="{Binding DeleteAllUserNotificationsCommand}"
                             Content="{extensions:Translate DeleteListedNotifications}"
                             Style="{StaticResource SimpleButton}" />
-                        <Button Content="{extensions:Translate Refresh}" Style="{StaticResource SimpleButton}" />
+                        <Button
+                            Command="{Binding RefreshCommand}"
+                            Content="{extensions:Translate Refresh}"
+                            Style="{StaticResource SimpleButton}" />
                     </StackPanel>
                 </Grid>
 
@@ -81,11 +110,14 @@
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         Orientation="Horizontal">
-
                                         <Button
                                             Margin="10,0"
                                             VerticalAlignment="Center"
-                                            Background="Transparent">
+                                            Background="Transparent"
+                                            Command="{Binding DataContext.SetNotificationAsReadCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                            CommandParameter="{Binding}"
+                                            ToolTip="{extensions:Translate SetAsRead}"
+                                            Visibility="{Binding State, Converter={StaticResource stateConverter}}">
                                             <Button.Content>
                                                 <Image
                                                     Width="20"
@@ -94,7 +126,12 @@
                                             </Button.Content>
                                         </Button>
 
-                                        <Button VerticalAlignment="Center" Background="Transparent">
+                                        <Button
+                                            VerticalAlignment="Center"
+                                            Background="Transparent"
+                                            Command="{Binding DataContext.DeleteNotificationCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                            CommandParameter="{Binding}"
+                                            ToolTip="{extensions:Translate Delete}">
                                             <Button.Content>
                                                 <Image
                                                     Width="20"

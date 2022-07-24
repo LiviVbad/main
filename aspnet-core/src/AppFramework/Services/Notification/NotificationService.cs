@@ -3,6 +3,7 @@ using AppFramework.Common;
 using AppFramework.Notifications;
 using AppFramework.Notifications.Dto;
 using Prism.Mvvm;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -22,6 +23,14 @@ namespace AppFramework.Services.Notification
 
         public GetUserNotificationsInput input;
 
+        private bool isunRead;
+
+        public bool IsUnRead
+        {
+            get { return isunRead; }
+            set { isunRead = value; RaisePropertyChanged(); }
+        }
+         
         public NotificationService(INotificationAppService appService,
             NavigationService navigationService)
         {
@@ -41,6 +50,8 @@ namespace AppFramework.Services.Notification
                 {
                     Items.Clear();
 
+                    IsUnRead = output.UnreadCount > 0 ? true : false;
+
                     foreach (var item in output.Items)
                         Items.Add(item);
 
@@ -49,9 +60,7 @@ namespace AppFramework.Services.Notification
         }
 
         public void Settings()
-        {
-
-        }
+        { }
 
         public void SeeAllNotifications()
         {
@@ -64,8 +73,6 @@ namespace AppFramework.Services.Notification
         }
 
         public void SetNotificationAsRead()
-        {
-
-        }
+        { }
     }
 }

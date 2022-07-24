@@ -274,6 +274,7 @@ namespace AppFramework.Services.Account
         private void LoginAttempts()
         {
             navigationService.Navigate(AppViewManager.LoginAttempts);
+            IsShowUserPanel = false;
         }
 
         private async void MySettings()

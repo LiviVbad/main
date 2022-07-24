@@ -23,7 +23,7 @@ namespace AppFramework.ViewModels
         {
             this.appService = appService;
             Title = Local.Localize("LoginAttempts");
-            
+
             input = new GetLoginAttemptsInput()
             {
                 Filter = "",
@@ -60,6 +60,14 @@ namespace AppFramework.ViewModels
 
                             await Task.CompletedTask;
                         });
-        } 
+        }
+
+        public override async Task RefreshAsync()
+        {
+            await SetBusyAsync(async () =>
+            {
+                await GetUserLogins(input);
+            });
+        }
     }
 }

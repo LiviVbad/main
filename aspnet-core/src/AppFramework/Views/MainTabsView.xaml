@@ -252,21 +252,19 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
-                    <UniformGrid
-                        Grid.Row="2"
-                        Margin="5"
-                        Columns="2">
+                    <DockPanel Grid.Row="2" Margin="5">
                         <Button
                             Margin="5"
                             Command="{Binding SetAllNotificationsAsReadCommand}"
                             Content="{extensions:Translate SetAllAsRead}"
-                            Style="{StaticResource SimpleButton}" />
+                            Style="{StaticResource SimpleButton}"
+                            Visibility="{Binding notificationService.IsUnRead, Converter={StaticResource inverseBoolToVisibility}}" />
                         <Button
                             Margin="5"
                             Command="{Binding SeeAllNotificationsCommand}"
                             Content="{extensions:Translate SeeAllNotifications}"
                             Style="{StaticResource SimpleButton}" />
-                    </UniformGrid>
+                    </DockPanel>
                 </Grid>
             </Popup>
 
