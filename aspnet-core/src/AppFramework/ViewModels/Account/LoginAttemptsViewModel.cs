@@ -60,11 +60,6 @@ namespace AppFramework.ViewModels
 
                             await Task.CompletedTask;
                         });
-        }
-
-        public override Task OnNavigatedToAsync(NavigationContext navigationContext)
-        {
-            return base.OnNavigatedToAsync(navigationContext);
-        }
+        } 
     }
 }

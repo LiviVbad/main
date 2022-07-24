@@ -111,7 +111,7 @@
                 <ToggleButton
                     x:Name="toggleNotification"
                     Margin="5"
-                    Padding="10,5"
+                    Padding="5"
                     Template="{StaticResource UserPanelButton}">
                     <StackPanel Orientation="Horizontal">
                         <Image
@@ -122,8 +122,8 @@
                 </ToggleButton>
 
                 <Button
-                    Margin="8,0"
-                    Padding="10,5"
+                    Margin="5"
+                    Padding="5"
                     VerticalAlignment="Center"
                     Background="Transparent">
                     <Button.Content>
@@ -132,14 +132,6 @@
                             Height="20"
                             Source="/Assets/Images/message.png" />
                     </Button.Content>
-                    <sync:SfBadge.Badge>
-                        <sync:SfBadge
-                            HorizontalAlignment="Left"
-                            AnimationType="None"
-                            Content="1"
-                            Fill="Warning"
-                            Shape="Oval" />
-                    </sync:SfBadge.Badge>
                 </Button>
 
                 <ToggleButton
@@ -247,12 +239,12 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Image
-                                        Width="30"
-                                        Height="30"
+                                        Width="35"
+                                        Height="35"
                                         Source="/Assets/Images/info.png" />
 
                                     <StackPanel Grid.Column="1" Margin="10,0">
-                                        <TextBlock Text="{Binding Notification.NotificationName}" TextWrapping="Wrap" />
+                                        <TextBlock Text="{Binding Converter={StaticResource notifycationConverter}}" TextWrapping="Wrap" />
                                         <TextBlock Margin="0,2" Text="{Binding Notification.CreationTime, StringFormat='yyyy-MM-dd hh:mm:ss'}" />
                                     </StackPanel>
                                 </Grid>

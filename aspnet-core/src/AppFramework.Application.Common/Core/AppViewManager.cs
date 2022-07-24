@@ -12,9 +12,11 @@
 
         public const string FirstChangedPwd = "FirstChangedPwdView";
 
-        public const string Main = "MainView"; 
+        public const string Main = "MainView";
 
         public const string Setting = "SettingsView";
+
+        public const string Notification = "NotificationView";
 
         public const string MyProfile = "MyProfileView";
 

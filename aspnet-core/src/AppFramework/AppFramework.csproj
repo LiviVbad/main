@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Images\delete.png" />
     <None Remove="Assets\Images\info.png" />
     <None Remove="Assets\Images\menus\accounts.png" />
     <None Remove="Assets\Images\menus\addr.png" />
@@ -38,7 +39,9 @@
     <None Remove="Assets\Images\menus\visual.png" />
     <None Remove="Assets\Images\message.png" />
     <None Remove="Assets\Images\notification.png" />
+    <None Remove="Assets\Images\ok.png" />
     <None Remove="Assets\Images\SplashScreen.png" />
+    <None Remove="Assets\Images\sure.png" />
     <None Remove="Assets\Images\user.png" />
   </ItemGroup>
  
@@ -85,6 +88,7 @@
     <Resource Include="Assets\Images\color.png" />
     <Resource Include="Assets\Images\DashboardSampleStatistics.png" />
     <Resource Include="Assets\Images\DashboardSampleStatistics2.png" />
+    <Resource Include="Assets\Images\delete.png" />
     <Resource Include="Assets\Images\flags\ad.png" />
     <Resource Include="Assets\Images\flags\ae.png" />
     <Resource Include="Assets\Images\flags\af.png" />
@@ -365,10 +369,12 @@
     <Resource Include="Assets\Images\NewSubscriptionAmount.png" />
     <Resource Include="Assets\Images\NewTenants.png" />
     <Resource Include="Assets\Images\notification.png" />
+    <Resource Include="Assets\Images\ok.png" />
     <Resource Include="Assets\Images\Operation.png" />
     <Resource Include="Assets\Images\OrganizationUnit.png" />
     <Resource Include="Assets\Images\question.png" />
     <Resource Include="Assets\Images\SplashScreen.png" />
+    <Resource Include="Assets\Images\sure.png" />
     <Resource Include="Assets\Images\theme12.png" />
     <Resource Include="Assets\Images\user.png" />
   </ItemGroup>

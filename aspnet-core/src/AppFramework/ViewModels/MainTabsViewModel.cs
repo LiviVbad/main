@@ -23,7 +23,7 @@ namespace AppFramework.ViewModels
 
             SettingsCommand = new DelegateCommand(notificationService.Settings);
             NavigateCommand = new DelegateCommand<NavigationItem>(Navigate);
-            SeeAllNotificationsCommand = new DelegateCommand(notificationService.GetAllNotifications);
+            SeeAllNotificationsCommand = new DelegateCommand(notificationService.SeeAllNotifications);
             SetNotificationAsRead = new DelegateCommand(notificationService.SetNotificationAsRead);
             SetAllNotificationsAsReadCommand = new DelegateCommand(notificationService.SetAllNotificationsAsRead);
             ExecuteUserActionCommand = new DelegateCommand<string>(appService.ExecuteUserAction);

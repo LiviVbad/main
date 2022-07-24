@@ -2,8 +2,8 @@
 using AppFramework.Common;
 using AppFramework.Notifications;
 using AppFramework.Notifications.Dto;
-using Prism.Mvvm; 
-using System.Collections.ObjectModel; 
+using Prism.Mvvm;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace AppFramework.Services.Notification
@@ -11,7 +11,7 @@ namespace AppFramework.Services.Notification
     public class NotificationService : BindableBase
     {
         private readonly INotificationAppService appService;
-
+        private readonly NavigationService navigationService;
         private ObservableCollection<UserNotification> items;
 
         public ObservableCollection<UserNotification> Items
@@ -22,9 +22,11 @@ namespace AppFramework.Services.Notification
 
         public GetUserNotificationsInput input;
 
-        public NotificationService(INotificationAppService appService)
+        public NotificationService(INotificationAppService appService,
+            NavigationService navigationService)
         {
             this.appService = appService;
+            this.navigationService = navigationService;
             items = new ObservableCollection<UserNotification>();
             input = new GetUserNotificationsInput()
             {
@@ -51,13 +53,14 @@ namespace AppFramework.Services.Notification
 
         }
 
-        public void GetAllNotifications()
+        public void SeeAllNotifications()
         {
-
+            navigationService.Navigate(AppViewManager.Notification);
         }
 
-        public void SetAllNotificationsAsRead()
+        public async void SetAllNotificationsAsRead()
         {
+            await WebRequest.Execute(async () => await appService.SetAllNotificationsAsRead(), GetNotifications);
         }
 
         public void SetNotificationAsRead()
