@@ -23,7 +23,11 @@ namespace AppFramework.ViewModels
 
             SettingsCommand = new DelegateCommand(notificationService.Settings);
             NavigateCommand = new DelegateCommand<NavigationItem>(Navigate);
-            SeeAllNotificationsCommand = new DelegateCommand(notificationService.SeeAllNotifications);
+            SeeAllNotificationsCommand = new DelegateCommand(() =>
+            {
+                NotificationPanelIsOpen = false;
+                notificationService.SeeAllNotificationsPage();
+            });
             SetNotificationAsRead = new DelegateCommand(notificationService.SetNotificationAsRead);
             SetAllNotificationsAsReadCommand = new DelegateCommand(notificationService.SetAllNotificationsAsRead);
             ExecuteUserActionCommand = new DelegateCommand<string>(appService.ExecuteUserAction);
@@ -36,6 +40,14 @@ namespace AppFramework.ViewModels
         public IApplicationService appService { get; init; }
         public DelegateCommand<NavigationItem> NavigateCommand { get; private set; }
         public DelegateCommand<string> ExecuteUserActionCommand { get; private set; }
+
+        private bool notificationPanelIsOpen;
+
+        public bool NotificationPanelIsOpen
+        {
+            get { return notificationPanelIsOpen; }
+            set { notificationPanelIsOpen = value; RaisePropertyChanged(); }
+        }
 
         public DelegateCommand SeeAllNotificationsCommand { get; private set; }
         public DelegateCommand SettingsCommand { get; private set; }

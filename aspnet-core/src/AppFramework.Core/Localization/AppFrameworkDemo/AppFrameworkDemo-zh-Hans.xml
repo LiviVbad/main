@@ -1007,6 +1007,15 @@
 		<text name="WidgetCanNotBePlacedMoreThanOnceInAPageWarning">您不能在一个页面中多次放置选定的小部件。</text>
     <text name="LightTheme">浅色</text>
     <text name="DarkTheme">深色</text>
-    <text name="PickYourColor">选择主题颜色</text>
+    <text name="PickYourColor">选择主题颜色</text> 
+    <text name="TenancyNameRequired">租户名称是必需的！</text>
+    <text name="EnterTenancyName">输入租户名称...</text>
+    <text name="SwitchToTheTenant">切换到租户</text>
+    <text name="SwitchToTheHost">切换到主机</text>
+    <text name="DeleteListedNotifications">删除列出的通知</text>
+    <text name="DeleteListedNotificationsWarningMessage">所有列出的通知都将被删除。</text>
+    <text name="YourSessionIsAboutToExpire">您的会话即将到期</text>
+    <text name="SessionExpireRedirectingInXSecond">您的会话将过期，因为您已长时间处于非活动状态。 在站点上提供任何鼠标/键盘输入以停止会话终止。 {0} 秒后重定向。</text>
+    <text name="SessionTimeOut">会话超时控制</text>
   </texts>
 </localizationDictionary>

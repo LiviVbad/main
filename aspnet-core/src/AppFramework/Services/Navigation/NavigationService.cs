@@ -12,7 +12,6 @@ namespace AppFramework.Services
         private readonly IRegionManager regionManager;
         private IRegion NavigationRegion => regionManager.Regions[AppRegionManager.Main];
 
-
         private int selectedIndex;
 
         public int SelectedIndex
