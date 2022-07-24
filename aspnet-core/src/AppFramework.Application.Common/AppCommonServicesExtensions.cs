@@ -32,6 +32,7 @@ using AppFrameworkDemo.Authorization.Permissions;
 using AppFramework.Common.Services;
 using AppFramework.Configuration.Host;
 using AppFrameworkDemo.Configuration;
+using AppFramework.Notifications;
 
 #endregion ApplicationServices
 
@@ -61,6 +62,7 @@ namespace AppFramework.Common
             services.RegisterScoped<IAuditLogAppService, AuditLogAppService>();
             services.RegisterScoped<ILanguageAppService, LanguageAppService>();
             services.RegisterScoped<IPermissionTreesService, PermissionTreesService>();
+            services.RegisterScoped<INotificationAppService, NotificationAppService>();
             services.RegisterScoped<IOrganizationUnitAppService, OrganizationUnitAppService>();
             services.RegisterScoped<IDynamicPropertyAppService, DynamicPropertyAppService>();
             services.RegisterScoped<ICachingAppService, CachingAppService>();

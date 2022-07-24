@@ -13,6 +13,7 @@ using AppFramework.Localization;
 using Prism.Ioc;
 using AppFramework.Common.Services;
 using AppFramework.ViewModels.Shared;
+using AppFramework.Services.Notification;
 
 namespace AppFramework
 {
@@ -48,6 +49,7 @@ namespace AppFramework
             services.RegisterSingleton<IApplicationService, ApplicationService>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
             services.RegisterSingleton<NavigationService>();
+            services.RegisterSingleton<NotificationService>();
 
             /*
              * 《注册应用程序模块》

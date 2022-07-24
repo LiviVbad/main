@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:const="clr-namespace:AppFramework.Common;assembly=AppFramework.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
@@ -107,16 +108,18 @@
                 VerticalAlignment="Top"
                 Orientation="Horizontal">
 
-                <Button
-                    Margin="8,0"
+                <ToggleButton
+                    x:Name="toggleNotification"
+                    Margin="5"
                     Padding="10,5"
-                    VerticalAlignment="Center"
-                    Background="Transparent">
-                    <Image
-                        Width="20"
-                        Height="20"
-                        Source="/Assets/Images/notification.png" />
-                </Button>
+                    Template="{StaticResource UserPanelButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image
+                            Width="20"
+                            Height="20"
+                            Source="/Assets/Images/notification.png" />
+                    </StackPanel>
+                </ToggleButton>
 
                 <Button
                     Margin="8,0"
@@ -174,6 +177,107 @@
                     Style="{DynamicResource IconButtonStyle}" />
             </StackPanel>
 
+            <!--  通知  -->
+            <Popup
+                Grid.Row="1"
+                Width="400"
+                Height="400"
+                AllowsTransparency="True"
+                HorizontalOffset="0"
+                IsOpen="{Binding ElementName=toggleNotification, Path=IsChecked}"
+                Placement="Bottom"
+                PlacementTarget="{Binding ElementName=toggleNotification}"
+                StaysOpen="False"
+                VerticalOffset="5">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <Border
+                        Grid.RowSpan="3"
+                        CornerRadius="5"
+                        Opacity="1"
+                        Style="{DynamicResource HeaderBorderStyle}">
+                        <Border.Effect>
+                            <DropShadowEffect
+                                BlurRadius="15"
+                                Direction="180"
+                                Opacity="0.3"
+                                ShadowDepth="-10"
+                                Color="#1F000000" />
+                        </Border.Effect>
+                    </Border>
+
+                    <Border Background="{DynamicResource PrimaryBackground}" CornerRadius="5,5,0,0" />
+
+                    <TextBlock
+                        Margin="15"
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Text="{extensions:Translate Notifications}" />
+
+                    <Button
+                        Margin="8,0"
+                        Padding="10,5"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        Command="{Binding SettingsCommand}">
+                        <Button.Content>
+                            <Image
+                                Width="20"
+                                Height="20"
+                                Source="/Assets/Images/menus/setting.png" />
+                        </Button.Content>
+                    </Button>
+
+                    <ItemsControl
+                        Grid.Row="1"
+                        Margin="10"
+                        ItemsSource="{Binding notificationService.Items}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image
+                                        Width="30"
+                                        Height="30"
+                                        Source="/Assets/Images/info.png" />
+
+                                    <StackPanel Grid.Column="1" Margin="10,0">
+                                        <TextBlock Text="{Binding Notification.NotificationName}" TextWrapping="Wrap" />
+                                        <TextBlock Margin="0,2" Text="{Binding Notification.CreationTime, StringFormat='yyyy-MM-dd hh:mm:ss'}" />
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <UniformGrid
+                        Grid.Row="2"
+                        Margin="5"
+                        Columns="2">
+                        <Button
+                            Margin="5"
+                            Command="{Binding SetAllNotificationsAsReadCommand}"
+                            Content="{extensions:Translate SetAllAsRead}"
+                            Style="{StaticResource SimpleButton}" />
+                        <Button
+                            Margin="5"
+                            Command="{Binding SeeAllNotificationsCommand}"
+                            Content="{extensions:Translate SeeAllNotifications}"
+                            Style="{StaticResource SimpleButton}" />
+                    </UniformGrid>
+                </Grid>
+            </Popup>
+
             <!--  左侧系统菜单  -->
             <ListBox
                 x:Name="ListMenuBox"
@@ -205,6 +309,7 @@
                 </i:Interaction.Triggers>
             </ListBox>
 
+            <!--  选项卡  -->
             <sync:TabControlExt
                 Grid.Row="1"
                 Grid.Column="1"
@@ -223,6 +328,7 @@
                 </sync:TabControlExt.ItemTemplate>
             </sync:TabControlExt>
 
+            <!--  用户功能面板  -->
             <Border
                 Grid.Row="1"
                 Grid.Column="1"

@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Images\info.png" />
     <None Remove="Assets\Images\menus\accounts.png" />
     <None Remove="Assets\Images\menus\addr.png" />
     <None Remove="Assets\Images\menus\auditlog.png" />
