@@ -66,6 +66,8 @@ namespace AppFramework.ViewModels
 
         private async void UsersOnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
         {
+            input.StartDate = Convert.ToDateTime(Convert.ToDateTime(StartDate).ToString("D"));
+            input.EndDate = Convert.ToDateTime((Convert.ToDateTime(EndDate).AddDays(1).ToString("D"))).AddSeconds(-1);
             input.SkipCount = e.SkipCount;
             input.MaxResultCount = e.PageSize;
 
