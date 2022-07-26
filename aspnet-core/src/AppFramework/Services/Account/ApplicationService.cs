@@ -9,6 +9,7 @@ using AppFramework.Common.Services.Navigation;
 using AppFramework.Common.Services.Permission;
 using AppFramework.Common.ViewModels;
 using AppFramework.Dto;
+using AppFramework.Services.Notification;
 using Prism.Regions;
 using Prism.Services.Dialogs;
 using System;
@@ -30,12 +31,14 @@ namespace AppFramework.Services.Account
             IProfileAppService profileAppService,
             IApplicationContext applicationContext,
             NavigationService navigationService,
+            NotificationService notificationService,
             ProxyProfileControllerService profileControllerService)
         {
             this.dialog = dialog;
             this.accountService = accountService;
             this.applicationContext = applicationContext;
             this.navigationService = navigationService;
+            this.notificationService = notificationService;
             this.dialogService = dialogService;
             this.navigationItemService = navigationItemService;
             this.regionManager = regionManager;
@@ -49,6 +52,7 @@ namespace AppFramework.Services.Account
 
         private readonly IApplicationContext applicationContext;
         private readonly NavigationService navigationService;
+        private readonly NotificationService notificationService;
         private readonly IDialogService dialogService;
         private readonly IHostDialogService dialog;
         private readonly INavigationMenuService navigationItemService;
@@ -282,9 +286,12 @@ namespace AppFramework.Services.Account
             await dialog.ShowDialogAsync(AppViewManager.MyProfile);
         }
 
-        private void Download()
+        private async void Download()
         {
-
+            await WebRequest.Execute(() => profileAppService.PrepareCollectedData(), async () =>
+            {
+                await notificationService.GetNotifications();
+            });
         }
 
         private async void ChangeProfilePicture()

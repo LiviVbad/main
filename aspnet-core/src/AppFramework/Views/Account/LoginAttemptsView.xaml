@@ -59,8 +59,35 @@
                         Rows="2">
                         <TextBlock Margin="3,0" Text="{extensions:Translate DateRange}" />
                         <TextBlock Margin="3,0" Text="{extensions:Translate Result}" />
-                        <DatePicker Margin="3" />
-                        <ComboBox Margin="3" />
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <sync:SfDatePicker BorderThickness="1" Value="{Binding StartDate, Mode=TwoWay}" />
+                            <Border Grid.Column="1" Margin="10,0">
+                                <TextBlock VerticalAlignment="Center" Text="―" />
+                            </Border>
+                            <sync:SfDatePicker
+                                Grid.Column="2"
+                                BorderThickness="1"
+                                Value="{Binding EndDate, Mode=TwoWay}" />
+                        </Grid>
+                        <ComboBox Margin="3">
+                            <ComboBoxItem Content="{extensions:Translate All}" />
+                            <ComboBoxItem Content="{extensions:Translate AbpLoginResultType_Success}" />
+                            <ComboBoxItem Content="{extensions:Translate AbpLoginResultType_InvalidUserNameOrEmailAddress}" />
+                            <ComboBoxItem Content="{extensions:Translate AbpLoginResultType_InvalidPassword}" />
+                            <ComboBoxItem Content="{extensions:Translate AbpLoginResultType_UserIsNotActive}" />
+                            <ComboBoxItem Content="{extensions:Translate AbpLoginResultType_InvalidTenancyName}" />
+                            <ComboBoxItem Content="{extensions:Translate AbpLoginResultType_TenantIsNotActive}" />
+                            <ComboBoxItem Content="{extensions:Translate AbpLoginResultType_UserEmailIsNotConfirmed}" />
+                            <ComboBoxItem Content="{extensions:Translate AbpLoginResultType_UnknownExternalLogin}" />
+                            <ComboBoxItem Content="{extensions:Translate AbpLoginResultType_LockedOut}" />
+                            <ComboBoxItem Content="{extensions:Translate AbpLoginResultType_UserPhoneNumberIsNotConfirmed}" />
+                        </ComboBox>
                     </UniformGrid>
                 </Grid>
 

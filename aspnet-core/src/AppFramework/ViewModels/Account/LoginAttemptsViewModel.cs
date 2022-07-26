@@ -19,6 +19,30 @@ namespace AppFramework.ViewModels
         private GetLoginAttemptsInput input;
         public DelegateCommand SearchCommand { get; private set; }
 
+        public DateTime? StartDate
+        {
+            get { return input.StartDate; }
+            set { input.StartDate = value; RaisePropertyChanged(); }
+        }
+
+        public DateTime? EndDate
+        {
+            get { return input.EndDate; }
+            set { input.EndDate = value; RaisePropertyChanged(); }
+        }
+
+        public string FilterText
+        {
+            get { return input.Filter; }
+            set
+            {
+                input.Filter = value;
+                RaisePropertyChanged();
+                Search();
+            }
+        }
+
+
         public LoginAttemptsViewModel(IUserLoginAppService appService)
         {
             this.appService = appService;
