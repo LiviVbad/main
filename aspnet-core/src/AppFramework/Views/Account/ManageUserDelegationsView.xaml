@@ -67,6 +67,8 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Background="Transparent"
+                                        Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                        CommandParameter="{Binding}"
                                         ToolTip="{extensions:Translate Delete}">
                                         <Button.Content>
                                             <Image

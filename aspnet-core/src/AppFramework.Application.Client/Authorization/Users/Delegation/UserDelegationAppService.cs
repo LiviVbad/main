@@ -14,7 +14,7 @@ namespace AppFramework.Authorization.Users.Delegation
 
         public async Task DelegateNewUser(CreateUserDelegationDto input)
         {
-            await ApiClient.DeleteAsync(GetEndpoint(nameof(DelegateNewUser)), input);
+            await ApiClient.PostAsync(GetEndpoint(nameof(DelegateNewUser)), input);
         }
 
         public async Task<List<UserDelegationDto>> GetActiveUserDelegations()
