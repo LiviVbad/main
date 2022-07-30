@@ -33,6 +33,7 @@ using AppFramework.Common.Services;
 using AppFramework.Configuration.Host;
 using AppFrameworkDemo.Configuration;
 using AppFramework.Notifications;
+using AppFramework.Authorization.Users.Delegation;
 
 #endregion ApplicationServices
 
@@ -57,6 +58,7 @@ namespace AppFramework.Common
             services.RegisterScoped<IRoleAppService, RoleAppService>();
             services.RegisterScoped<IUserAppService, ProxyUserAppService>();
             services.RegisterScoped<IUserLoginAppService, UserLoginAppService>();
+            services.RegisterScoped<IUserDelegationAppService, UserDelegationAppService>();
             services.RegisterScoped<ITenantAppService, ProxyTenantAppService>();
             services.RegisterScoped<IEditionAppService, EditionAppService>();
             services.RegisterScoped<IAuditLogAppService, AuditLogAppService>();

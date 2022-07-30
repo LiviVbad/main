@@ -903,7 +903,7 @@
 		<text name="UserDelegations">用户委托</text>
 		<text name="DelegateNewUser">委派新用户</text>
 		<text name="StartTime">开始时间</text>
-		<text name="EndTime">结束事件</text>
+		<text name="EndTime">结束时间</text>
 		<text name="UserDelegationDeleteWarningMessage">将删除对用户 {0} 的委派。</text>
 		<text name="SwitchToDelegatedUserWarningMessage">您确定切换到用户 {0} 吗？</text>
 		<text name="SwitchToUser">切换到用户</text>
