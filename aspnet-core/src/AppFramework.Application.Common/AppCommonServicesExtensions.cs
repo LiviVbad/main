@@ -81,6 +81,7 @@ namespace AppFramework.Common
             services.RegisterScoped<IPermissionAppService, PermissionAppService>();
             services.Register<IPermissionPorxyService, PermissionPorxyService>();
             services.RegisterScoped<IFeaturesService, FeaturesService>();
+            services.RegisterScoped<IUserLinkAppService, UserLinkAppService>();
 
             services.RegisterSingleton<IMessenger, Messenger>();
             services.RegisterSingleton<IPermissionService, PermissionService>();
