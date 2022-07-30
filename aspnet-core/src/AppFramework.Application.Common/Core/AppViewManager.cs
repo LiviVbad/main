@@ -60,7 +60,7 @@
 
         public const string Language = "LanguageView";
 
-        public const string LanguageText = "LanguageChengedTextView";
+        public const string LanguageText = "LanguageTextView";
 
         public const string LanguageTextDetails = "LanguageTextDetailsView";
 

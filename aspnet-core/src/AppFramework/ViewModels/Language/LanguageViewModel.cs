@@ -4,6 +4,7 @@ using AppFramework.Common.Models;
 using AppFramework.Common.Services.Permission;
 using AppFramework.Localization;
 using AppFramework.Localization.Dto;
+using AppFramework.Services;
 using AppFramework.ViewModels.Shared;
 using Prism.Regions;
 using System.Threading.Tasks;
@@ -13,15 +14,14 @@ namespace AppFramework.ViewModels
     public class LanguageViewModel : NavigationCurdViewModel
     {
         private readonly ILanguageAppService appService;
-        private readonly IRegionManager regionManager;
-
+        private readonly NavigationService navigationService; 
         public LanguageListModel SelectedItem => Map<LanguageListModel>(dataPager.SelectedItem);
 
-        public LanguageViewModel(ILanguageAppService languageAppService, IRegionManager regionManager)
+        public LanguageViewModel(ILanguageAppService languageAppService, NavigationService  navigationService)
         {
             Title = Local.Localize("Languages");
             this.appService = languageAppService;
-            this.regionManager = regionManager;
+            this.navigationService = navigationService; 
         }
 
         /// <summary>
@@ -32,9 +32,7 @@ namespace AppFramework.ViewModels
             NavigationParameters param = new NavigationParameters();
             param.Add("Name", SelectedItem.Name);
 
-            regionManager
-                .Regions[AppRegionManager.Main]
-                .RequestNavigate(AppViewManager.LanguageText, param);
+            navigationService.Navigate(AppViewManager.LanguageText, param);
         }
 
         /// <summary>

@@ -17,6 +17,7 @@ namespace AppFramework.ViewModels
     {
         public LanguageTextViewModel(ILanguageAppService appService, IApplicationContext context)
         {
+            Title = Local.Localize("ChangeTexts");
             sources = new ObservableCollection<string>();
             baseLanguages = new ObservableCollection<LanguageStruct>();
             targetLanguages = new ObservableCollection<LanguageStruct>();

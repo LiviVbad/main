@@ -2,8 +2,8 @@
 using Prism.Mvvm;
 using Prism.Regions;
 using Syncfusion.Data.Extensions;
-using System; 
-using System.Linq; 
+using System;
+using System.Linq;
 
 namespace AppFramework.Services
 {
@@ -25,13 +25,13 @@ namespace AppFramework.Services
             this.regionManager = regionManager;
         }
 
-        public void Navigate(string pageName)
+        public void Navigate(string pageName, NavigationParameters navigationParameters = null)
         {
             if (string.IsNullOrWhiteSpace(pageName)) return;
 
             var view = NavigationRegion.Views.FirstOrDefault(q => q.GetType().Name.Equals(pageName));
             if (view == null)
-                NavigationRegion.RequestNavigate(pageName, NavigateionCallBack);
+                NavigationRegion.RequestNavigate(pageName, NavigateionCallBack, navigationParameters);
             else
             {
                 SelectedIndex = NavigationRegion.Views.IndexOf(view);
@@ -43,7 +43,7 @@ namespace AppFramework.Services
             if (NavigationRegion.Views.Contains(view))
                 NavigationRegion.Remove(view);
         }
-         
+
         private void NavigateionCallBack(NavigationResult navigationResult)
         {
             if (navigationResult.Result != null && !(bool)navigationResult.Result)
