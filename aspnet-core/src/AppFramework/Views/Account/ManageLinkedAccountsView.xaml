@@ -3,95 +3,107 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:extensions="clr-namespace:AppFramework.Extensions"
+    xmlns:host="clr-namespace:AppFramework.WindowHost"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     Width="800"
     Height="450">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
+    <host:DialogHost Identifier="ManageLinkedAccounts">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
 
-        <Border
-            Grid.RowSpan="5"
-            CornerRadius="0"
-            Opacity="1"
-            Style="{StaticResource BorderStyle}" />
+            <Border
+                Grid.RowSpan="5"
+                CornerRadius="0"
+                Opacity="1"
+                Style="{StaticResource BorderStyle}" />
 
-        <TextBlock
-            Margin="25"
-            FontSize="18"
-            FontWeight="Bold"
-            Text="{extensions:Translate LinkedAccounts}" />
+            <TextBlock
+                Margin="25"
+                FontSize="18"
+                FontWeight="Bold"
+                Text="{extensions:Translate LinkedAccounts}" />
 
-        <sync:SfDataGrid
-            Grid.Row="1"
-            Margin="20,0"
-            AllowEditing="True"
-            AllowFiltering="False"
-            AutoGenerateColumns="False"
-            IsReadOnly="False"
-            ItemsSource="{Binding dataPager.GridModelList}"
-            Style="{StaticResource SimpleDataGridStyle}">
-            <sync:SfDataGrid.Columns>
-                <sync:GridTemplateColumn
-                    Width="60"
-                    AllowFiltering="False"
-                    AllowSorting="False"
-                    HeaderText="{extensions:Translate Actions}">
-                    <sync:GridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Background="Transparent"
-                                Content="&#xe651;"
-                                Style="{StaticResource IconButtonStyle}" />
-                        </DataTemplate>
-                    </sync:GridTemplateColumn.CellTemplate>
-                </sync:GridTemplateColumn>
-                <sync:GridTextColumn HeaderText="{extensions:Translate UserName}" MappingName="Name" />
-                <sync:GridTemplateColumn
-                    Width="60"
-                    AllowFiltering="False"
-                    AllowSorting="False"
-                    HeaderText="{extensions:Translate Delete}">
-                    <sync:GridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Background="Transparent"
-                                Content="&#xe65c;"
-                                Style="{StaticResource IconButtonStyle}" />
-                        </DataTemplate>
-                    </sync:GridTemplateColumn.CellTemplate>
-                </sync:GridTemplateColumn>
-            </sync:SfDataGrid.Columns>
-        </sync:SfDataGrid>
-
-        <sync:SfDataPager
-            Grid.Row="2"
-            Margin="20,0"
-            HorizontalAlignment="Right"
-            NumericButtonCount="{Binding dataPager.NumericButtonCount}"
-            PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
-            PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
-            UseOnDemandPaging="True"
-            PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
-
-        <StackPanel
-            Grid.Row="3"
-            Margin="15"
-            HorizontalAlignment="Right"
-            Orientation="Horizontal">
             <Button
-                Command="{Binding CancelCommand}"
-                Content="{extensions:Translate Close}"
+                Margin="25"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Command="{Binding AddCommand}"
+                Content="{extensions:Translate LinkNewAccount}"
                 Style="{StaticResource SimpleButton}" />
-        </StackPanel>
-    </Grid>
+
+
+            <sync:SfDataGrid
+                Grid.Row="1"
+                Margin="20,0"
+                AllowEditing="True"
+                AllowFiltering="False"
+                AutoGenerateColumns="False"
+                IsReadOnly="False"
+                ItemsSource="{Binding dataPager.GridModelList}"
+                Style="{StaticResource SimpleDataGridStyle}">
+                <sync:SfDataGrid.Columns>
+                    <sync:GridTemplateColumn
+                        Width="60"
+                        AllowFiltering="False"
+                        AllowSorting="False"
+                        HeaderText="{extensions:Translate Actions}">
+                        <sync:GridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Content="&#xe651;"
+                                    Style="{StaticResource IconButtonStyle}" />
+                            </DataTemplate>
+                        </sync:GridTemplateColumn.CellTemplate>
+                    </sync:GridTemplateColumn>
+                    <sync:GridTextColumn HeaderText="{extensions:Translate UserName}" MappingName="Name" />
+                    <sync:GridTemplateColumn
+                        Width="60"
+                        AllowFiltering="False"
+                        AllowSorting="False"
+                        HeaderText="{extensions:Translate Delete}">
+                        <sync:GridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Content="&#xe65c;"
+                                    Style="{StaticResource IconButtonStyle}" />
+                            </DataTemplate>
+                        </sync:GridTemplateColumn.CellTemplate>
+                    </sync:GridTemplateColumn>
+                </sync:SfDataGrid.Columns>
+            </sync:SfDataGrid>
+
+            <sync:SfDataPager
+                Grid.Row="2"
+                Margin="20,0"
+                HorizontalAlignment="Right"
+                NumericButtonCount="{Binding dataPager.NumericButtonCount}"
+                PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
+                PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
+                UseOnDemandPaging="True"
+                PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
+
+            <StackPanel
+                Grid.Row="3"
+                Margin="15"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <Button
+                    Command="{Binding CancelCommand}"
+                    Content="{extensions:Translate Close}"
+                    Style="{StaticResource SimpleButton}" />
+            </StackPanel>
+        </Grid>
+    </host:DialogHost>
 </UserControl>

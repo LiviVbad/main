@@ -34,6 +34,8 @@
 
         public const string ManageNewUser = "ManageNewUserView";
 
+        public const string CreateLinkedAccount = "CreateLinkedAccountView";
+
         public const string MySetting = "MySettingView";
 
         public const string EmailActivation = "EmailActivationView";

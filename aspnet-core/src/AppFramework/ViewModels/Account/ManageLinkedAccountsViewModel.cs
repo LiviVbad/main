@@ -3,6 +3,7 @@ using AppFramework.Authorization.Users.Dto;
 using AppFramework.Common;
 using AppFramework.Services;
 using AppFramework.ViewModels.Shared;
+using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace AppFramework.ViewModels
 
         public GetLinkedUsersInput input;
 
+        public DelegateCommand AddCommand { get; private set; }
+
         public ManageLinkedAccountsViewModel(IUserLinkAppService appService, IDataPagerService dataPager, IHostDialogService dialog)
         {
             this.appService = appService;
@@ -30,6 +33,7 @@ namespace AppFramework.ViewModels
             {
                 MaxResultCount = 10,
             };
+            AddCommand = new DelegateCommand(Add);
             dataPager.OnPageIndexChangedEventhandler += DataPager_OnPageIndexChangedEventhandler;
         }
 
@@ -39,6 +43,16 @@ namespace AppFramework.ViewModels
             input.MaxResultCount = e.PageSize;
 
             await GetRecentlyUsedLinkedUsers(input);
+        }
+
+        private async void Add()
+        {
+            var dialogResult = await dialog.ShowDialogAsync(
+                AppViewManager.CreateLinkedAccount, null, "ManageLinkedAccounts");
+            if (dialogResult.Result == ButtonResult.OK)
+            {
+                await GetRecentlyUsedLinkedUsers(input);
+            }
         }
 
         private async Task GetRecentlyUsedLinkedUsers(GetLinkedUsersInput filter)
