@@ -25,7 +25,7 @@
         /// 首页的唯一会话标识 
         /// </summary>
         public const string RootIdentifier = "Root";
-
+         
         /// <summary>
         /// 弹出窗口中的唯一会话标识
         /// </summary>

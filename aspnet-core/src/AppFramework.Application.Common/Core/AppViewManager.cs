@@ -30,6 +30,8 @@
 
         public const string ManageUserDelegations = "ManageUserDelegationsView";
 
+        public const string ManageNewUser = "ManageNewUserView";
+
         public const string MySetting = "MySettingView";
 
         public const string EmailActivation = "EmailActivationView";

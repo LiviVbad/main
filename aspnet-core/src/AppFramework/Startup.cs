@@ -112,6 +112,7 @@ namespace AppFramework
             services.Add<LoginAttemptsView, LoginAttemptsViewModel>(AppViewManager.LoginAttempts);
             services.Add<ManageLinkedAccountsView, ManageLinkedAccountsViewModel>(AppViewManager.ManageLinkedAccounts);
             services.Add<ManageUserDelegationsView, ManageUserDelegationsViewModel>(AppViewManager.ManageUserDelegations);
+            services.Add<ManageNewUserView, ManageNewUserViewModel>(AppViewManager.ManageNewUser);
             services.Add<MySettingsView, MySettingsViewModel>(AppViewManager.MySetting);
             services.Add<ChangeAvatarView, ChangeAvatarViewModel>(AppViewManager.ChangeAvatar);
             services.Add<ChangePasswordView, ChangePasswordViewModel>(AppViewManager.ChangePassword);

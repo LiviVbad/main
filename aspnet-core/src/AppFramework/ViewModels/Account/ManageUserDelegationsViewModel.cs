@@ -3,6 +3,7 @@ using AppFramework.Authorization.Users.Delegation;
 using AppFramework.Authorization.Users.Delegation.Dto;
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.Common;
+using AppFramework.Services;
 using AppFramework.ViewModels.Shared;
 using Prism.Commands;
 using Prism.Services.Dialogs;
@@ -17,6 +18,8 @@ namespace AppFramework.ViewModels
     public class ManageUserDelegationsViewModel : HostDialogViewModel
     {
         private readonly IUserDelegationAppService appService;
+        private readonly IHostDialogService hostDialogService;
+
         public IDataPagerService dataPager { get; private set; }
         public DelegateCommand AddCommand { get; private set; }
 
@@ -24,10 +27,12 @@ namespace AppFramework.ViewModels
 
         public ManageUserDelegationsViewModel(
             IUserDelegationAppService appService,
-            IDataPagerService dataPager)
+            IDataPagerService dataPager,
+            IHostDialogService hostDialogService)
         {
             this.appService = appService;
             this.dataPager = dataPager;
+            this.hostDialogService = hostDialogService;
             AddCommand = new DelegateCommand(Add);
 
             input = new GetUserDelegationsInput()
@@ -38,7 +43,7 @@ namespace AppFramework.ViewModels
 
         private void Add()
         {
-
+            hostDialogService.ShowDialogAsync(AppViewManager.ManageNewUser, null, "ManageUserDelegationsView");
         }
 
         public override async void OnDialogOpened(IDialogParameters parameters)
@@ -52,7 +57,7 @@ namespace AppFramework.ViewModels
         }
 
         private async Task GetDelegatedUsersSuccessed(PagedResultDto<UserDelegationDto> output)
-        { 
+        {
             dataPager.SetList(output);
 
             await Task.CompletedTask;
