@@ -23,6 +23,8 @@ namespace AppFramework.ViewModels
         public GetLinkedUsersInput input;
 
         public DelegateCommand AddCommand { get; private set; }
+        public DelegateCommand<LinkedUserDto> DeleteCommand { get; private set; }
+        public DelegateCommand<LinkedUserDto> LoginUserCommand { get; private set; }
 
         public ManageLinkedAccountsViewModel(IUserLinkAppService appService, IDataPagerService dataPager, IHostDialogService dialog)
         {
@@ -34,7 +36,27 @@ namespace AppFramework.ViewModels
                 MaxResultCount = 10,
             };
             AddCommand = new DelegateCommand(Add);
+            DeleteCommand = new DelegateCommand<LinkedUserDto>(Delete);
+            LoginUserCommand = new DelegateCommand<LinkedUserDto>(LoginUser);
             dataPager.OnPageIndexChangedEventhandler += DataPager_OnPageIndexChangedEventhandler;
+        }
+
+        private void LoginUser(LinkedUserDto obj)
+        {
+            //..
+        }
+
+        private async void Delete(LinkedUserDto obj)
+        {
+            if (await dialog.Question(
+                Local.Localize("LinkedUserDeleteWarningMessage", obj.Username), "ManageLinkedAccounts"))
+            {
+                await WebRequest.Execute(() => appService.UnlinkUser(new UnlinkUserInput()
+                {
+                    TenantId = obj.TenantId,
+                    UserId = obj.Id
+                }), async () => await GetRecentlyUsedLinkedUsers(input));
+            }
         }
 
         private async void DataPager_OnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)

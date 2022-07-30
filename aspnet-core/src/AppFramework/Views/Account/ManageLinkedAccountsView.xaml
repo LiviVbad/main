@@ -6,8 +6,8 @@
     xmlns:host="clr-namespace:AppFramework.WindowHost"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
-    Width="800"
-    Height="450">
+    Width="600"
+    Height="350">
     <host:DialogHost Identifier="ManageLinkedAccounts">
         <Grid>
             <Grid.RowDefinitions>
@@ -59,12 +59,15 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Background="Transparent"
-                                    Content="&#xe651;"
-                                    Style="{StaticResource IconButtonStyle}" />
+                                    Command="{Binding DataContext.LoginUserCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                    CommandParameter="{Binding}"
+                                    Content="&#xe608;"
+                                    Style="{StaticResource IconButtonStyle}"
+                                    ToolTip="{extensions:Translate LogIn}" />
                             </DataTemplate>
                         </sync:GridTemplateColumn.CellTemplate>
                     </sync:GridTemplateColumn>
-                    <sync:GridTextColumn HeaderText="{extensions:Translate UserName}" MappingName="Name" />
+                    <sync:GridTextColumn HeaderText="{extensions:Translate UserName}" MappingName="Username" />
                     <sync:GridTemplateColumn
                         Width="60"
                         AllowFiltering="False"
@@ -76,6 +79,8 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Background="Transparent"
+                                    Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                    CommandParameter="{Binding}"
                                     Content="&#xe65c;"
                                     Style="{StaticResource IconButtonStyle}" />
                             </DataTemplate>
