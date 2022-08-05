@@ -11,5 +11,9 @@ namespace AppFramework.Dto
         public string Version { get; set; }
 
         public string FileName { get; set; }
+
+        public bool IsEnable { get; set; }
+
+        public bool IsForced { get; set; }
     }
 }

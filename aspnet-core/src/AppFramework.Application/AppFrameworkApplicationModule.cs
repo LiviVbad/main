@@ -9,7 +9,7 @@ namespace AppFramework
     /// Application layer module of the application.
     /// </summary>
     [DependsOn(
-        typeof(AppFrameworkApplicationSharedModule),
+        typeof(AppFrameworkSharedModule),
         typeof(AppFrameworkCoreModule)
         )]
     public class AppFrameworkApplicationModule : AbpModule

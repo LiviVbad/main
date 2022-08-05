@@ -14,16 +14,26 @@ using Abp.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Abp.UI;
 using AppFramework.Storage;
+using PayPalHttp;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace AppFramework.Update
 {
     [AbpAuthorize(AppPermissions.Pages_AbpVersions)]
     public class AbpVersionsAppService : AppFrameworkAppServiceBase, IAbpVersionsAppService
     {
+        private readonly IHttpContextAccessor httpContext;
+        private readonly IWebHostEnvironment environment;
         private readonly IRepository<AbpVersion> _abpVersionRepository;
 
-        public AbpVersionsAppService(IRepository<AbpVersion> abpVersionRepository)
+        public AbpVersionsAppService(
+            IHttpContextAccessor httpContext,
+            IWebHostEnvironment environment, IRepository<AbpVersion> abpVersionRepository)
         {
+            this.httpContext = httpContext;
+            this.environment = environment;
             _abpVersionRepository = abpVersionRepository;
 
         }
@@ -105,6 +115,27 @@ namespace AppFramework.Update
 
         public async Task CreateOrEdit(CreateOrEditAbpVersionDto input)
         {
+            var file = httpContext.HttpContext.Request.Form.Files.First();
+
+            if (file == null)
+                throw new UserFriendlyException(L("RequestedFileDoesNotExists"));
+
+            var rootPath = environment.WebRootPath + "\\app\\version";
+
+            if (!Directory.Exists(rootPath))
+                Directory.CreateDirectory(rootPath);
+
+            //生成随机文件名
+            var fileName = Path.GetExtension(file.FileName).ToLowerInvariant();
+            string filePath = Path.Combine(rootPath, fileName);
+            using (FileStream fs = System.IO.File.Create(filePath))
+            {
+                file.CopyTo(fs);
+                fs.Flush();
+            }
+
+            input.DownloadUrl = filePath;
+
             if (input.Id == null)
             {
                 await Create(input);
