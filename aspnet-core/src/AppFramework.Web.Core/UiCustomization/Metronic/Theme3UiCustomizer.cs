@@ -77,7 +77,7 @@ namespace AppFramework.Web.UiCustomization.Metronic
                 settings.Menu.SearchActive.ToString());
         }
 
-        public async Task UpdateTenantUiManagementSettingsAsync(int tenantId, ThemeSettingsDto settings)
+        public async Task UpdateTenantUiManagementSettingsAsync(int tenantId, ThemeSettingsDto settings, UserIdentifier changerUser)
         {
             await SettingManager.ChangeSettingForTenantAsync(tenantId, AppSettings.UiManagement.Theme, ThemeName);
 
@@ -95,9 +95,11 @@ namespace AppFramework.Web.UiCustomization.Metronic
                 settings.Footer.FixedFooter.ToString());
             await ChangeSettingForTenantAsync(tenantId, AppSettings.UiManagement.SearchActive,
                 settings.Menu.SearchActive.ToString());
+            
+            await ResetDarkModeSettingsAsync(changerUser);
         }
 
-        public async Task UpdateApplicationUiManagementSettingsAsync(ThemeSettingsDto settings)
+        public async Task UpdateApplicationUiManagementSettingsAsync(ThemeSettingsDto settings, UserIdentifier changerUser)
         {
             await SettingManager.ChangeSettingForApplicationAsync(AppSettings.UiManagement.Theme, ThemeName);
 
@@ -115,6 +117,8 @@ namespace AppFramework.Web.UiCustomization.Metronic
                 settings.Footer.FixedFooter.ToString());
             await ChangeSettingForApplicationAsync(AppSettings.UiManagement.SearchActive,
                 settings.Menu.SearchActive.ToString());
+            
+            await ResetDarkModeSettingsAsync(changerUser);
         }
 
         public async Task<ThemeSettingsDto> GetHostUiManagementSettings()

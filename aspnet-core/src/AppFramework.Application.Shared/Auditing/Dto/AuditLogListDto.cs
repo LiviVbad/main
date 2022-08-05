@@ -1,5 +1,5 @@
-﻿using Abp.Application.Services.Dto;
-using System;
+﻿using System;
+using Abp.Application.Services.Dto;
 
 namespace AppFramework.Auditing.Dto
 {

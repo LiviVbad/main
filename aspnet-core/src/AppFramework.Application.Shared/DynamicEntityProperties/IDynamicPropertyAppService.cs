@@ -1,7 +1,7 @@
-﻿using Abp.Application.Services.Dto;
+﻿using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
 using Abp.UI.Inputs;
 using AppFramework.DynamicEntityProperties.Dto;
-using System.Threading.Tasks;
 
 namespace AppFramework.DynamicEntityProperties
 {
@@ -15,7 +15,7 @@ namespace AppFramework.DynamicEntityProperties
 
         Task Update(DynamicPropertyDto dto);
 
-        Task Delete(EntityDto input);
+        Task Delete(EntityDto id);
 
         IInputType FindAllowedInputType(string name);
     }

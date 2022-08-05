@@ -12,7 +12,7 @@ using AppFramework.Friendships;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20170406083347_Initial_Migration")]
     partial class Initial_Migration
     {

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Abp.Authorization;
 using Abp.MultiTenancy;
 using AppFramework.Authorization;
 
@@ -35,55 +36,62 @@ namespace AppFramework.DashboardCustomization.Definitions
 
             #region TenantWidgets
 
-            var tenantWidgetsDefaultPermission = new List<string>
-            {
-                AppPermissions.Pages_Tenant_Dashboard
-            };
+            var simplePermissionDependencyForTenantDashboard = new SimplePermissionDependency(AppPermissions.Pages_Tenant_Dashboard);
 
             var dailySales = new WidgetDefinition(
                 AppFrameworkDashboardCustomizationConsts.Widgets.Tenant.DailySales,
                 "WidgetDailySales",
                 side: MultiTenancySides.Tenant,
                 usedWidgetFilters: new List<string> { dateRangeFilter.Id },
-                permissions: tenantWidgetsDefaultPermission
+                permissionDependency: simplePermissionDependencyForTenantDashboard
             );
 
             var generalStats = new WidgetDefinition(
                 AppFrameworkDashboardCustomizationConsts.Widgets.Tenant.GeneralStats,
                 "WidgetGeneralStats",
                 side: MultiTenancySides.Tenant,
-                permissions: tenantWidgetsDefaultPermission.Concat(new List<string>{ AppPermissions.Pages_Administration_AuditLogs }).ToList());
+                permissionDependency: new SimplePermissionDependency(
+                    requiresAll: true,
+                    AppPermissions.Pages_Tenant_Dashboard,
+                    AppPermissions.Pages_Administration_AuditLogs
+                )
+            );
 
             var profitShare = new WidgetDefinition(
                 AppFrameworkDashboardCustomizationConsts.Widgets.Tenant.ProfitShare,
                 "WidgetProfitShare",
                 side: MultiTenancySides.Tenant,
-                permissions: tenantWidgetsDefaultPermission);
+                permissionDependency: simplePermissionDependencyForTenantDashboard
+            );
 
             var memberActivity = new WidgetDefinition(
                 AppFrameworkDashboardCustomizationConsts.Widgets.Tenant.MemberActivity,
                 "WidgetMemberActivity",
                 side: MultiTenancySides.Tenant,
-                permissions: tenantWidgetsDefaultPermission);
-
+                permissionDependency: simplePermissionDependencyForTenantDashboard
+            );
+            
             var regionalStats = new WidgetDefinition(
                 AppFrameworkDashboardCustomizationConsts.Widgets.Tenant.RegionalStats,
                 "WidgetRegionalStats",
                 side: MultiTenancySides.Tenant,
-                permissions: tenantWidgetsDefaultPermission);
+                permissionDependency: simplePermissionDependencyForTenantDashboard
+            );
 
             var salesSummary = new WidgetDefinition(
                 AppFrameworkDashboardCustomizationConsts.Widgets.Tenant.SalesSummary,
                 "WidgetSalesSummary",
                 usedWidgetFilters: new List<string>() { dateRangeFilter.Id },
                 side: MultiTenancySides.Tenant,
-                permissions: tenantWidgetsDefaultPermission);
-
+                permissionDependency: simplePermissionDependencyForTenantDashboard
+            );
+            
             var topStats = new WidgetDefinition(
                 AppFrameworkDashboardCustomizationConsts.Widgets.Tenant.TopStats,
                 "WidgetTopStats",
                 side: MultiTenancySides.Tenant,
-                permissions: tenantWidgetsDefaultPermission);
+                permissionDependency: simplePermissionDependencyForTenantDashboard
+            );
 
             WidgetDefinitions.Add(generalStats);
             WidgetDefinitions.Add(dailySales);
@@ -98,41 +106,43 @@ namespace AppFramework.DashboardCustomization.Definitions
 
             #region HostWidgets
 
-            var hostWidgetsDefaultPermission = new List<string>
-            {
-                AppPermissions.Pages_Administration_Host_Dashboard
-            };
+            var simplePermissionDependencyForHostDashboard = new SimplePermissionDependency(AppPermissions.Pages_Administration_Host_Dashboard);
 
             var incomeStatistics = new WidgetDefinition(
                 AppFrameworkDashboardCustomizationConsts.Widgets.Host.IncomeStatistics,
                 "WidgetIncomeStatistics",
                 side: MultiTenancySides.Host,
-                permissions: hostWidgetsDefaultPermission);
+                permissionDependency: simplePermissionDependencyForHostDashboard
+            );
 
             var hostTopStats = new WidgetDefinition(
                 AppFrameworkDashboardCustomizationConsts.Widgets.Host.TopStats,
                 "WidgetTopStats",
                 side: MultiTenancySides.Host,
-                permissions: hostWidgetsDefaultPermission);
+                permissionDependency: simplePermissionDependencyForHostDashboard
+            );
 
             var editionStatistics = new WidgetDefinition(
                 AppFrameworkDashboardCustomizationConsts.Widgets.Host.EditionStatistics,
                 "WidgetEditionStatistics",
                 side: MultiTenancySides.Host,
-                permissions: hostWidgetsDefaultPermission);
+                permissionDependency: simplePermissionDependencyForHostDashboard
+            );
 
             var subscriptionExpiringTenants = new WidgetDefinition(
                 AppFrameworkDashboardCustomizationConsts.Widgets.Host.SubscriptionExpiringTenants,
                 "WidgetSubscriptionExpiringTenants",
                 side: MultiTenancySides.Host,
-                permissions: hostWidgetsDefaultPermission);
+                permissionDependency: simplePermissionDependencyForHostDashboard
+            );
 
             var recentTenants = new WidgetDefinition(
                 AppFrameworkDashboardCustomizationConsts.Widgets.Host.RecentTenants,
                 "WidgetRecentTenants",
                 side: MultiTenancySides.Host,
                 usedWidgetFilters: new List<string>() { dateRangeFilter.Id },
-                permissions: hostWidgetsDefaultPermission);
+                permissionDependency: simplePermissionDependencyForHostDashboard
+            );
 
             WidgetDefinitions.Add(incomeStatistics);
             WidgetDefinitions.Add(hostTopStats);
@@ -171,7 +181,7 @@ namespace AppFramework.DashboardCustomization.Definitions
 
             DashboardDefinitions.Add(defaultHostDashboard);
 
-            // Add your dashboard definiton here
+            // Add your dashboard definition here
 
             #endregion
 

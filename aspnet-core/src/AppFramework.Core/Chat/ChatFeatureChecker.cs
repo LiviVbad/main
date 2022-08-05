@@ -4,7 +4,7 @@ using AppFramework.Features;
 
 namespace AppFramework.Chat
 {
-    public class ChatFeatureChecker : AppFrameworkDemoDomainServiceBase, IChatFeatureChecker
+    public class ChatFeatureChecker : AppFrameworkDomainServiceBase, IChatFeatureChecker
     {
         private readonly IFeatureChecker _featureChecker;
 

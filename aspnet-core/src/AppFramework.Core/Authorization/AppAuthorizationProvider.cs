@@ -29,6 +29,12 @@ namespace AppFramework.Authorization
             //COMMON PERMISSIONS (FOR BOTH OF TENANTS AND HOST)
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
+
+            var abpVersions = pages.CreateChildPermission(AppPermissions.Pages_AbpVersions, L("AbpVersions"));
+            abpVersions.CreateChildPermission(AppPermissions.Pages_AbpVersions_Create, L("CreateNewAbpVersion"));
+            abpVersions.CreateChildPermission(AppPermissions.Pages_AbpVersions_Edit, L("EditAbpVersion"));
+            abpVersions.CreateChildPermission(AppPermissions.Pages_AbpVersions_Delete, L("DeleteAbpVersion"));
+
             pages.CreateChildPermission(AppPermissions.Pages_DemoUiComponents, L("DemoUiComponents"));
 
             var administration = pages.CreateChildPermission(AppPermissions.Pages_Administration, L("Administration"));
@@ -45,6 +51,7 @@ namespace AppFramework.Authorization
             users.CreateChildPermission(AppPermissions.Pages_Administration_Users_ChangePermissions, L("ChangingPermissions"));
             users.CreateChildPermission(AppPermissions.Pages_Administration_Users_Impersonation, L("LoginForUsers"));
             users.CreateChildPermission(AppPermissions.Pages_Administration_Users_Unlock, L("Unlock"));
+            users.CreateChildPermission(AppPermissions.Pages_Administration_Users_ChangeProfilePicture, L("UpdateUsersProfilePicture"));
 
             var languages = administration.CreateChildPermission(AppPermissions.Pages_Administration_Languages, L("Languages"));
             languages.CreateChildPermission(AppPermissions.Pages_Administration_Languages_Create, L("CreatingNewLanguage"), multiTenancySides: _isMultiTenancyEnabled ? MultiTenancySides.Host : MultiTenancySides.Tenant);
@@ -52,7 +59,7 @@ namespace AppFramework.Authorization
             languages.CreateChildPermission(AppPermissions.Pages_Administration_Languages_Delete, L("DeletingLanguages"), multiTenancySides: _isMultiTenancyEnabled ? MultiTenancySides.Host : MultiTenancySides.Tenant);
             languages.CreateChildPermission(AppPermissions.Pages_Administration_Languages_ChangeTexts, L("ChangingTexts"));
             languages.CreateChildPermission(AppPermissions.Pages_Administration_Languages_ChangeDefaultLanguage, L("ChangeDefaultLanguage"));
-            
+
             administration.CreateChildPermission(AppPermissions.Pages_Administration_AuditLogs, L("AuditLogs"));
 
             var organizationUnits = administration.CreateChildPermission(AppPermissions.Pages_Administration_OrganizationUnits, L("OrganizationUnits"));

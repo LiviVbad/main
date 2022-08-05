@@ -12,7 +12,7 @@ using AppFramework.Configuration;
 namespace AppFramework.Web.Controllers
 {
     [Route("api/[controller]/[action]")]
-    public class TwitterController : AppFrameworkDemoControllerBase
+    public class TwitterController : AppFrameworkControllerBase
     {
         private readonly ExternalAuthConfiguration _externalAuthConfiguration;
         private readonly IConfigurationRoot _appConfiguration;

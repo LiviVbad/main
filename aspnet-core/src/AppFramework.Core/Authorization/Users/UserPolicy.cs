@@ -7,7 +7,7 @@ using AppFramework.Features;
 
 namespace AppFramework.Authorization.Users
 {
-    public class UserPolicy : AppFrameworkDemoServiceBase, IUserPolicy
+    public class UserPolicy : AppFrameworkServiceBase, IUserPolicy
     {
         private readonly IFeatureChecker _featureChecker;
         private readonly IRepository<User, long> _userRepository;

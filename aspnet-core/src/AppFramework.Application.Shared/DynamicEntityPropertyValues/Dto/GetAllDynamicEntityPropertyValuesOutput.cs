@@ -1,5 +1,5 @@
-﻿using Abp.UI.Inputs;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Abp.UI.Inputs;
 
 namespace AppFramework.DynamicEntityPropertyValues.Dto
 {

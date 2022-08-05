@@ -6,48 +6,11 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Assets\Images\delete.png" />
-    <None Remove="Assets\Images\info.png" />
-    <None Remove="Assets\Images\menus\accounts.png" />
-    <None Remove="Assets\Images\menus\addr.png" />
-    <None Remove="Assets\Images\menus\auditlog.png" />
-    <None Remove="Assets\Images\menus\dashboard.png" />
-    <None Remove="Assets\Images\menus\demo.png" />
-    <None Remove="Assets\Images\menus\download.png" />
-    <None Remove="Assets\Images\menus\edition.png" />
-    <None Remove="Assets\Images\menus\email.png" />
-    <None Remove="Assets\Images\menus\language.png" />
-    <None Remove="Assets\Images\menus\link.png" />
-    <None Remove="Assets\Images\menus\loginattempts.png" />
-    <None Remove="Assets\Images\menus\logout.png" />
-    <None Remove="Assets\Images\menus\manageuser.png" />
-    <None Remove="Assets\Images\menus\mysettings.png" />
-    <None Remove="Assets\Images\menus\organization.png" />
-    <None Remove="Assets\Images\menus\password.png" />
-    <None Remove="Assets\Images\menus\phone.png" />
-    <None Remove="Assets\Images\menus\picture.png" />
-    <None Remove="Assets\Images\menus\property.png" />
-    <None Remove="Assets\Images\menus\role.png" />
-    <None Remove="Assets\Images\menus\setting.png" />
-    <None Remove="Assets\Images\menus\tenant.png" />
-    <None Remove="Assets\Images\menus\time.png" />
-    <None Remove="Assets\Images\menus\tree.png" />
-    <None Remove="Assets\Images\menus\user.png" />
-    <None Remove="Assets\Images\menus\version.png" />
-    <None Remove="Assets\Images\menus\visual.png" />
-    <None Remove="Assets\Images\message.png" />
-    <None Remove="Assets\Images\notification.png" />
-    <None Remove="Assets\Images\ok.png" />
-    <None Remove="Assets\Images\SplashScreen.png" />
-    <None Remove="Assets\Images\sure.png" />
-    <None Remove="Assets\Images\user.png" />
-  </ItemGroup>
  
   <ItemGroup>
-    <PackageReference Include="Abp" Version="7.2.1" />
+    <PackageReference Include="Abp" Version="7.3.0" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="Autoupdater.NET.Official" Version="1.7.4" />
     <PackageReference Include="FluentValidation" Version="10.4.0" />
     <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />

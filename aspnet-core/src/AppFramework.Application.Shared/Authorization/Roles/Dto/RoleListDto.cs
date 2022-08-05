@@ -1,6 +1,6 @@
-﻿using Abp.Application.Services.Dto;
+﻿using System;
+using Abp.Application.Services.Dto;
 using Abp.Domain.Entities.Auditing;
-using System;
 
 namespace AppFramework.Authorization.Roles.Dto
 {

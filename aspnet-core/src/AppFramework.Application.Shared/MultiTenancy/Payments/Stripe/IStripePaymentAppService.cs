@@ -1,7 +1,7 @@
-﻿using Abp.Application.Services;
+﻿using System.Threading.Tasks;
+using Abp.Application.Services;
 using AppFramework.MultiTenancy.Payments.Dto;
 using AppFramework.MultiTenancy.Payments.Stripe.Dto;
-using System.Threading.Tasks;
 
 namespace AppFramework.MultiTenancy.Payments.Stripe
 {

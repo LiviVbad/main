@@ -1,8 +1,9 @@
-﻿using Abp.Auditing;
+﻿using System.ComponentModel.DataAnnotations;
+using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.MultiTenancy;
 using AppFramework.MultiTenancy.Payments;
-using System.ComponentModel.DataAnnotations;
+using AppFramework.MultiTenancy.Payments.Dto;
 
 namespace AppFramework.MultiTenancy.Dto
 {
@@ -21,6 +22,12 @@ namespace AppFramework.MultiTenancy.Dto
         [StringLength(AbpUserBase.MaxEmailAddressLength)]
         public string AdminEmailAddress { get; set; }
 
+        [StringLength(AbpUserBase.MaxNameLength)]
+        public string AdminName { get; set; }
+        
+        [StringLength(AbpUserBase.MaxSurnameLength)]
+        public string AdminSurname { get; set; }
+        
         [StringLength(AbpUserBase.MaxPlainPasswordLength)]
         [DisableAuditing]
         public string AdminPassword { get; set; }

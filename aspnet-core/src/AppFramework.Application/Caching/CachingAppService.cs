@@ -9,7 +9,7 @@ using AppFramework.Caching.Dto;
 namespace AppFramework.Caching
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_Host_Maintenance)]
-    public class CachingAppService : AppFrameworkDemoAppServiceBase, ICachingAppService
+    public class CachingAppService : AppFrameworkAppServiceBase, ICachingAppService
     {
         private readonly ICacheManager _cacheManager;
 

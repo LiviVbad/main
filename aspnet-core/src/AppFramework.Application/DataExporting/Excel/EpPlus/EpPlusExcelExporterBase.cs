@@ -18,7 +18,7 @@ using OfficeOpenXml;
 
 namespace AppFramework.DataExporting.Excel.EpPlus
 {
-    public abstract class EpPlusExcelExporterBase : AppFrameworkDemoServiceBase, ITransientDependency
+    public abstract class EpPlusExcelExporterBase : AppFrameworkServiceBase, ITransientDependency
     {
         private readonly ITempFileCacheManager _tempFileCacheManager;
 

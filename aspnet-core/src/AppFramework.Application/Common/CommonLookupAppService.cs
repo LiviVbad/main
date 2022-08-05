@@ -14,7 +14,7 @@ using AppFramework.Editions.Dto;
 namespace AppFramework.Common
 {
     [AbpAuthorize]
-    public class CommonLookupAppService : AppFrameworkDemoAppServiceBase, ICommonLookupAppService
+    public class CommonLookupAppService : AppFrameworkAppServiceBase, ICommonLookupAppService
     {
         private readonly EditionManager _editionManager;
 

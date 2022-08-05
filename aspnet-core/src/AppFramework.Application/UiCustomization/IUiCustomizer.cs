@@ -12,12 +12,14 @@ namespace AppFramework.UiCustomization
 
         Task UpdateUserUiManagementSettingsAsync(UserIdentifier user, ThemeSettingsDto settings);
 
-        Task UpdateTenantUiManagementSettingsAsync(int tenantId, ThemeSettingsDto settings);
+        Task UpdateTenantUiManagementSettingsAsync(int tenantId, ThemeSettingsDto settings, UserIdentifier changerUser);
 
-        Task UpdateApplicationUiManagementSettingsAsync(ThemeSettingsDto settings);
+        Task UpdateApplicationUiManagementSettingsAsync(ThemeSettingsDto settings, UserIdentifier changerUser);
 
         Task<ThemeSettingsDto> GetHostUiManagementSettings();
 
         Task<ThemeSettingsDto> GetTenantUiCustomizationSettings(int tenantId);
+
+        Task UpdateDarkModeSettingsAsync(UserIdentifier user, bool isDarkModeEnabled);
     }
 }

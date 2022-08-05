@@ -15,7 +15,7 @@ using AppFramework.Friendships.Cache;
 namespace AppFramework.Chat
 {
     [AbpAuthorize]
-    public class ChatMessageManager : AppFrameworkDemoDomainServiceBase, IChatMessageManager
+    public class ChatMessageManager : AppFrameworkDomainServiceBase, IChatMessageManager
     {
         private readonly IFriendshipManager _friendshipManager;
         private readonly IChatCommunicator _chatCommunicator;
@@ -37,7 +37,7 @@ namespace AppFramework.Chat
             IUserFriendsCache userFriendsCache,
             IUserEmailer userEmailer,
             IRepository<ChatMessage, long> chatMessageRepository,
-            IChatFeatureChecker chatFeatureChecker, 
+            IChatFeatureChecker chatFeatureChecker,
             IUnitOfWorkManager unitOfWorkManager)
         {
             _friendshipManager = friendshipManager;
@@ -90,7 +90,7 @@ namespace AppFramework.Chat
                 }
             });
         }
-        
+
         public virtual int GetUnreadMessageCount(UserIdentifier sender, UserIdentifier receiver)
         {
             return _unitOfWorkManager.WithUnitOfWork(() =>
@@ -157,23 +157,31 @@ namespace AppFramework.Chat
 
         private async Task HandleReceiverToSenderAsync(UserIdentifier senderIdentifier, UserIdentifier receiverIdentifier, string message, Guid sharedMessageId)
         {
-            var friendshipState = (await _friendshipManager.GetFriendshipOrNullAsync(receiverIdentifier, senderIdentifier))?.State;
+            var friendship = await _friendshipManager.GetFriendshipOrNullAsync(receiverIdentifier, senderIdentifier);
+            var friendshipState = friendship?.State;
+            var clients = _onlineClientManager.GetAllByUserId(receiverIdentifier);
 
             if (friendshipState == null)
             {
                 var senderTenancyName = await GetTenancyNameOrNull(senderIdentifier.TenantId);
-
                 var senderUser = await _userManager.GetUserAsync(senderIdentifier);
-                await _friendshipManager.CreateFriendshipAsync(
-                    new Friendship(
-                        receiverIdentifier,
-                        senderIdentifier,
-                        senderTenancyName,
-                        senderUser.UserName,
-                        senderUser.ProfilePictureId,
-                        FriendshipState.Accepted
-                    )
+
+                friendship = new Friendship(
+                    receiverIdentifier,
+                    senderIdentifier,
+                    senderTenancyName,
+                    senderUser.UserName,
+                    senderUser.ProfilePictureId,
+                    FriendshipState.Accepted
                 );
+
+                await _friendshipManager.CreateFriendshipAsync(friendship);
+
+                if (clients.Any())
+                {
+                    var isFriendOnline = _onlineClientManager.IsOnline(receiverIdentifier);
+                    await _chatCommunicator.SendFriendshipRequestToClient(clients, friendship, false, isFriendOnline);
+                }
             }
 
             if (friendshipState == FriendshipState.Blocked)
@@ -194,7 +202,6 @@ namespace AppFramework.Chat
 
             Save(sentMessage);
 
-            var clients = _onlineClientManager.GetAllByUserId(receiverIdentifier);
             if (clients.Any())
             {
                 await _chatCommunicator.SendMessageToClient(clients, sentMessage);

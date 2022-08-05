@@ -16,9 +16,9 @@ namespace AppFramework.Migrations.Seed.Host
 {
     public class HostRoleAndUserCreator
     {
-        private readonly AppFrameworkDemoDbContext _context;
+        private readonly AppFrameworkDbContext _context;
 
-        public HostRoleAndUserCreator(AppFrameworkDemoDbContext context)
+        public HostRoleAndUserCreator(AppFrameworkDbContext context)
         {
             _context = context;
         }

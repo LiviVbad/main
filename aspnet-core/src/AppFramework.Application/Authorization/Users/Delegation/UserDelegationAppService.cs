@@ -17,7 +17,7 @@ using AppFramework.Authorization.Users.Delegation.Dto;
 namespace AppFramework.Authorization.Users.Delegation
 {
     [AbpAuthorize]
-    public class UserDelegationAppService : AppFrameworkDemoAppServiceBase, IUserDelegationAppService
+    public class UserDelegationAppService : AppFrameworkAppServiceBase, IUserDelegationAppService
     {
         private readonly IRepository<UserDelegation, long> _userDelegationRepository;
         private readonly IRepository<User, long> _userRepository;

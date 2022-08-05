@@ -15,7 +15,7 @@ using AppFramework.Authorization.Users.Importing;
 
 namespace AppFramework.Web.Controllers
 {
-    public abstract class UsersControllerBase : AppFrameworkDemoControllerBase
+    public abstract class UsersControllerBase : AppFrameworkControllerBase
     {
         protected readonly IBinaryObjectManager BinaryObjectManager;
         protected readonly IBackgroundJobManager BackgroundJobManager;

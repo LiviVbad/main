@@ -1,6 +1,6 @@
-﻿using Abp.Runtime.Validation;
+﻿using System.Collections.Generic;
+using Abp.Runtime.Validation;
 using AppFramework.Dto;
-using System.Collections.Generic;
 
 namespace AppFramework.Authorization.Users.Dto
 {

@@ -9,6 +9,7 @@ namespace AppFramework.Tenants.Dashboard.Dto
             SalesSummary = salesSummary;
         }
 
+
         public int TotalSales { get; set; }
 
         public int Revenue { get; set; }
@@ -18,5 +19,6 @@ namespace AppFramework.Tenants.Dashboard.Dto
         public int Growth { get; set; }
 
         public List<SalesSummaryData> SalesSummary { get; set; }
+
     }
 }

@@ -9,9 +9,9 @@ namespace AppFramework.Migrations.Seed.Host
 {
     public class DefaultEditionCreator
     {
-        private readonly AppFrameworkDemoDbContext _context;
+        private readonly AppFrameworkDbContext _context;
 
-        public DefaultEditionCreator(AppFrameworkDemoDbContext context)
+        public DefaultEditionCreator(AppFrameworkDbContext context)
         {
             _context = context;
         }

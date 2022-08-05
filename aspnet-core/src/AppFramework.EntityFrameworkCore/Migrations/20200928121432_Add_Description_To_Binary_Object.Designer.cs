@@ -9,7 +9,7 @@ using AppFramework.EntityFrameworkCore;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20200928121432_Add_Description_To_Binary_Object")]
     partial class Add_Description_To_Binary_Object
     {

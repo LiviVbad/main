@@ -2,6 +2,7 @@
 using Abp;
 using Abp.Configuration;
 using Abp.Extensions;
+using AppFramework.Configuration;
 
 namespace AppFramework.Web.UiCustomization.Metronic
 {
@@ -43,7 +44,8 @@ namespace AppFramework.Web.UiCustomization.Metronic
 
         protected async Task<T> GetSettingValueForTenantAsync<T>(string settingName, int tenantId) where T : struct
         {
-            return (await SettingManager.GetSettingValueForTenantAsync(ThemeName + "." + settingName, tenantId)).To<T>();
+            return (await SettingManager.GetSettingValueForTenantAsync(ThemeName + "." + settingName, tenantId))
+                .To<T>();
         }
 
         protected async Task ChangeSettingForUserAsync(UserIdentifier user, string name, string value)
@@ -59,6 +61,27 @@ namespace AppFramework.Web.UiCustomization.Metronic
         protected async Task ChangeSettingForApplicationAsync(string name, string value)
         {
             await SettingManager.ChangeSettingForApplicationAsync(ThemeName + "." + name, value);
+        }
+
+        public virtual async Task UpdateDarkModeSettingsAsync(UserIdentifier user, bool isDarkModeEnabled)
+        {
+            await ChangeSettingForUserAsync(user, AppSettings.UiManagement.DarkMode, isDarkModeEnabled.ToString());
+        }
+
+        protected virtual async Task ResetDarkModeSettingsAsync(UserIdentifier user)
+        {
+            string applicationDefault;
+            if (user.TenantId.HasValue)
+            {
+                applicationDefault = await GetSettingValueForTenantAsync(AppSettings.UiManagement.DarkMode, user.TenantId.Value);
+            }
+            else
+            {
+
+                applicationDefault = await GetSettingValueForApplicationAsync(AppSettings.UiManagement.DarkMode);
+            }
+
+            await ChangeSettingForUserAsync(user, AppSettings.UiManagement.DarkMode, applicationDefault);
         }
     }
 }

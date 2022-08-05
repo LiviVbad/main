@@ -9,7 +9,7 @@ using AppFramework.EntityFrameworkCore;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20201217075257_Upgrade_To_ABP_6_1")]
     partial class Upgrade_To_ABP_6_1
     {

@@ -17,7 +17,7 @@ namespace AppFramework.ViewModels
         public DataPagerService(IMapper mapper)
         {
             pageSize = AppConsts.DefaultPageSize;
-            numericButtonCount = AppConsts.NumericButtonCount;
+            numericButtonCount = 10;
             gridModelList = new ObservableCollection<object>();
             this.mapper = mapper;
         }

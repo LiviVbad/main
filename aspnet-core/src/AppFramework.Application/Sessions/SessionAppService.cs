@@ -20,7 +20,7 @@ using AppFramework.Features;
 
 namespace AppFramework.Sessions
 {
-    public class SessionAppService : AppFrameworkDemoAppServiceBase, ISessionAppService
+    public class SessionAppService : AppFrameworkAppServiceBase, ISessionAppService
     {
         private readonly IUiThemeCustomizerFactory _uiThemeCustomizerFactory;
         private readonly ISubscriptionPaymentRepository _subscriptionPaymentRepository;

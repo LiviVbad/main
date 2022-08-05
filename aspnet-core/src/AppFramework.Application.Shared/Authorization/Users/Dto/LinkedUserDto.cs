@@ -1,4 +1,5 @@
-﻿using Abp.Application.Services.Dto;
+﻿using System;
+using Abp.Application.Services.Dto;
 
 namespace AppFramework.Authorization.Users.Dto
 {

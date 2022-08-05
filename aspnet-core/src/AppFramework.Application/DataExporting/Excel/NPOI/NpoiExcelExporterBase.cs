@@ -11,7 +11,7 @@ using NPOI.XSSF.UserModel;
 
 namespace AppFramework.DataExporting.Excel.NPOI
 {
-    public abstract class NpoiExcelExporterBase : AppFrameworkDemoServiceBase, ITransientDependency
+    public abstract class NpoiExcelExporterBase : AppFrameworkServiceBase, ITransientDependency
     {
         private readonly ITempFileCacheManager _tempFileCacheManager;
 
@@ -124,7 +124,7 @@ namespace AppFramework.DataExporting.Excel.NPOI
             }
         }
 
-        protected void Save(XSSFWorkbook excelPackage, FileDto file)
+        protected virtual void Save(XSSFWorkbook excelPackage, FileDto file)
         {
             using (var stream = new MemoryStream())
             {

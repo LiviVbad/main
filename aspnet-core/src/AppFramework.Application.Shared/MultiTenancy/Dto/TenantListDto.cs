@@ -1,8 +1,8 @@
-﻿using Abp.Application.Services.Dto;
+﻿using System;
+using Abp.Application.Services.Dto;
 using Abp.Auditing;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
-using System;
 
 namespace AppFramework.MultiTenancy.Dto
 {

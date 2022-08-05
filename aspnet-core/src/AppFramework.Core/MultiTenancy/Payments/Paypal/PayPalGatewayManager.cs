@@ -7,7 +7,7 @@ using PayPalCheckoutSdk.Orders;
 
 namespace AppFramework.MultiTenancy.Payments.Paypal
 {
-    public class PayPalGatewayManager : AppFrameworkDemoServiceBase, ITransientDependency
+    public class PayPalGatewayManager : AppFrameworkServiceBase, ITransientDependency
     {
         private readonly PayPalHttpClient _client;
         

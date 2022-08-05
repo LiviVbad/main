@@ -18,7 +18,7 @@ using System;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20180320065710_Upgraded_To_Abp_V3_5")]
     partial class Upgraded_To_Abp_V3_5
     {

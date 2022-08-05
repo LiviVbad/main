@@ -1,6 +1,4 @@
 using System;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,19 +13,23 @@ using AppFramework.Authorization.Users.Profile;
 using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Dto;
 using AppFramework.Storage;
-using AppFramework.Web.Helpers;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats;
+using SixLabors.ImageSharp.Formats.Gif;
+using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.ImageSharp.Formats.Png;
 
 namespace AppFramework.Web.Controllers
 {
-    public abstract class ProfileControllerBase : AppFrameworkDemoControllerBase
+    public abstract class ProfileControllerBase : AppFrameworkControllerBase
     {
         private readonly ITempFileCacheManager _tempFileCacheManager;
         private readonly IProfileAppService _profileAppService;
-        
+
         private const int MaxProfilePictureSize = 5242880; //5MB
 
         protected ProfileControllerBase(
-            ITempFileCacheManager tempFileCacheManager, 
+            ITempFileCacheManager tempFileCacheManager,
             IProfileAppService profileAppService)
         {
             _tempFileCacheManager = tempFileCacheManager;
@@ -48,7 +50,8 @@ namespace AppFramework.Web.Controllers
 
                 if (profilePictureFile.Length > MaxProfilePictureSize)
                 {
-                    throw new UserFriendlyException(L("ProfilePicture_Warn_SizeLimit", AppConsts.MaxProfilePictureBytesUserFriendlyValue));
+                    throw new UserFriendlyException(L("ProfilePicture_Warn_SizeLimit",
+                        AppConsts.MaxProfilePictureBytesUserFriendlyValue));
                 }
 
                 byte[] fileBytes;
@@ -57,22 +60,22 @@ namespace AppFramework.Web.Controllers
                     fileBytes = stream.GetAllBytes();
                 }
 
-                if (!ImageFormatHelper.GetRawImageFormat(fileBytes).IsIn(ImageFormat.Jpeg, ImageFormat.Png, ImageFormat.Gif))
+                using (var image = Image.Load(fileBytes, out IImageFormat format))
                 {
-                    throw new Exception(L("IncorrectImageFormat"));
-                }
+                    if (!format.IsIn(JpegFormat.Instance, PngFormat.Instance, GifFormat.Instance))
+                    {
+                        throw new UserFriendlyException(L("IncorrectImageFormat"));
+                    }
 
-                _tempFileCacheManager.SetFile(input.FileToken, fileBytes);
+                    _tempFileCacheManager.SetFile(input.FileToken, fileBytes);
 
-                using (var bmpImage = new Bitmap(new MemoryStream(fileBytes)))
-                {
                     return new UploadProfilePictureOutput
                     {
                         FileToken = input.FileToken,
                         FileName = input.FileName,
                         FileType = input.FileType,
-                        Width = bmpImage.Width,
-                        Height = bmpImage.Height
+                        Width = image.Width,
+                        Height = image.Height
                     };
                 }
             }
@@ -98,7 +101,7 @@ namespace AppFramework.Web.Controllers
 
             return File(Convert.FromBase64String(output.ProfilePicture), MimeTypeNames.ImageJpeg);
         }
-        
+
         protected FileResult GetDefaultProfilePictureInternal()
         {
             return File(Path.Combine("Common", "Images", "default-profile-picture.png"), MimeTypeNames.ImagePng);

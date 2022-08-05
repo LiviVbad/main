@@ -18,15 +18,18 @@ using Abp.Organizations;
 using Abp.Runtime.Session;
 using Abp.UI;
 using Abp.Zero.Configuration;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using AppFramework.Authorization.Permissions;
 using AppFramework.Authorization.Permissions.Dto;
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.Authorization.Users.Exporting;
 using AppFramework.Dto;
+using AppFramework.Net.Emailing;
 using AppFramework.Notifications;
 using AppFramework.Url;
 using AppFramework.Organizations.Dto;
@@ -34,7 +37,7 @@ using AppFramework.Organizations.Dto;
 namespace AppFramework.Authorization.Users
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_Users)]
-    public class UserAppService : AppFrameworkDemoAppServiceBase, IUserAppService
+    public class UserAppService : AppFrameworkAppServiceBase, IUserAppService
     {
         public IAppUrlService AppUrlService { get; set; }
 
@@ -55,7 +58,9 @@ namespace AppFramework.Authorization.Users
         private readonly UserManager _userManager;
         private readonly IRepository<UserOrganizationUnit, long> _userOrganizationUnitRepository;
         private readonly IRepository<OrganizationUnitRole, long> _organizationUnitRoleRepository;
-
+        private readonly IOptions<UserOptions> _userOptions;
+        private readonly IEmailSettingsChecker _emailSettingsChecker;
+        
         public UserAppService(
             RoleManager roleManager,
             IUserEmailer userEmailer,
@@ -73,7 +78,8 @@ namespace AppFramework.Authorization.Users
             IRoleManagementConfig roleManagementConfig,
             UserManager userManager,
             IRepository<UserOrganizationUnit, long> userOrganizationUnitRepository,
-            IRepository<OrganizationUnitRole, long> organizationUnitRoleRepository)
+            IRepository<OrganizationUnitRole, long> organizationUnitRoleRepository, 
+            IOptions<UserOptions> userOptions, IEmailSettingsChecker emailSettingsChecker)
         {
             _roleManager = roleManager;
             _userEmailer = userEmailer;
@@ -91,6 +97,8 @@ namespace AppFramework.Authorization.Users
             _userManager = userManager;
             _userOrganizationUnitRepository = userOrganizationUnitRepository;
             _organizationUnitRoleRepository = organizationUnitRoleRepository;
+            _userOptions = userOptions;
+            _emailSettingsChecker = emailSettingsChecker;
             _roleRepository = roleRepository;
 
             AppUrlService = NullAppUrlService.Instance;
@@ -151,12 +159,14 @@ namespace AppFramework.Authorization.Users
             {
                 Roles = userRoleDtos,
                 AllOrganizationUnits = ObjectMapper.Map<List<OrganizationUnitDto>>(allOrganizationUnits),
-                MemberedOrganizationUnits = new List<string>()
+                MemberedOrganizationUnits = new List<string>(),
+                AllowedUserNameCharacters = _userOptions.Value.AllowedUserNameCharacters,
+                IsSMTPSettingsProvided = await _emailSettingsChecker.EmailSettingsValidAsync() 
             };
 
             if (!input.Id.HasValue)
             {
-                //Creating a new user
+                // Creating a new user
                 output.User = new UserEditDto
                 {
                     IsActive = true,

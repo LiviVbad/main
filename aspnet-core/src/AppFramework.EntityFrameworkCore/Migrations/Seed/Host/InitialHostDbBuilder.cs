@@ -4,9 +4,9 @@ namespace AppFramework.Migrations.Seed.Host
 {
     public class InitialHostDbBuilder
     {
-        private readonly AppFrameworkDemoDbContext _context;
+        private readonly AppFrameworkDbContext _context;
 
-        public InitialHostDbBuilder(AppFrameworkDemoDbContext context)
+        public InitialHostDbBuilder(AppFrameworkDbContext context)
         {
             _context = context;
         }

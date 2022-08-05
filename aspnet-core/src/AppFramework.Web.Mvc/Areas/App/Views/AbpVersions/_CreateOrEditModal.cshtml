@@ -1,0 +1,75 @@
+﻿
+@using System.Globalization
+@using AppFramework.Web.Areas.App.Models.Common.Modals
+@using AppFramework.Web.Areas.App.Models.AbpVersions
+@model CreateOrEditAbpVersionModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditAbpVersion")) : L("CreateNewAbpVersion")))
+
+<div class="modal-body">
+        <div id="AbpVersionInformationsTab">
+            <form name="AbpVersionInformationsForm" role="form" novalidate class="form-validation">
+
+                @if (Model.IsEditMode)
+                {
+                    <input type="hidden" name="id" value="@Model.AbpVersion.Id" />
+                }
+
+				
+                
+				
+                
+								<div class="my-3">
+									<label class="form-label" for="AbpVersion_Name">@L("Name")</label>
+									<input class="form-control" id="AbpVersion_Name" value="@Model.AbpVersion.Name" type="text" name="name"  required    />
+								</div>
+					
+								<div class="my-3">
+									<label class="form-label" for="AbpVersion_Version">@L("Version")</label>
+									<input class="form-control" id="AbpVersion_Version" value="@Model.AbpVersion.Version" type="text" name="version"  required    />
+								</div>
+					
+								<div class="my-3">
+									<label class="form-label" for="AbpVersion_DownloadUrl">@L("DownloadUrl")</label>
+									<input class="form-control" id="AbpVersion_DownloadUrl" value="@Model.AbpVersion.DownloadUrl" type="text" name="downloadUrl"     />
+								</div>
+					
+								<div class="my-3">
+									<label class="form-label" for="AbpVersion_ChangelogURL">@L("ChangelogURL")</label>
+									<input class="form-control" id="AbpVersion_ChangelogURL" value="@Model.AbpVersion.ChangelogURL" type="text" name="changelogURL"     />
+								</div>
+					
+                                <label class="form-check form-check-custom">
+                                    <input
+                                        id="AbpVersion_IsEnable"
+                                        name="isEnable"                                        
+                                        type="checkbox"
+                                        class="form-check-input"
+                                        value="true"
+                                        @Html.Raw(Model.AbpVersion.IsEnable ?"checked=\"checked\"":"") 
+                                    />
+                                    <span class="form-check-label">
+                                        @L("IsEnable")
+                                    </span>
+                                </label>
+					
+                                <label class="form-check form-check-custom">
+                                    <input
+                                        id="AbpVersion_IsForced"
+                                        name="isForced"                                        
+                                        type="checkbox"
+                                        class="form-check-input"
+                                        value="true"
+                                        @Html.Raw(Model.AbpVersion.IsForced ?"checked=\"checked\"":"") 
+                                    />
+                                    <span class="form-check-label">
+                                        @L("IsForced")
+                                    </span>
+                                </label>
+					
+
+            </form>
+        </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

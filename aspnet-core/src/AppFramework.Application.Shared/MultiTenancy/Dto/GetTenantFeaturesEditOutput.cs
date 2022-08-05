@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using Abp.Application.Services.Dto;
 using AppFramework.Editions.Dto;
-using System.Collections.Generic;
 
 namespace AppFramework.MultiTenancy.Dto
 {

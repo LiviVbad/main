@@ -9,7 +9,7 @@ using AppFramework.EntityFrameworkCore;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20190103081952_Recurring_Payment_Changes")]
     partial class Recurring_Payment_Changes
     {

@@ -1,5 +1,5 @@
-﻿using Abp.Application.Services.Dto;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Abp.Application.Services.Dto;
 
 namespace AppFramework.Dto
 {

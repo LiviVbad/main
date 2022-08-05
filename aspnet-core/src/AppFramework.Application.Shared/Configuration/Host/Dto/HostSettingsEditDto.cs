@@ -1,5 +1,6 @@
-﻿using AppFramework.Configuration.Dto;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using AppFramework.Configuration.Dto;
+using AppFramework.Configuration.Tenants.Dto;
 
 namespace AppFramework.Configuration.Host.Dto
 {

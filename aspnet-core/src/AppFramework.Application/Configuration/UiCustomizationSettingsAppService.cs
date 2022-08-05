@@ -12,7 +12,7 @@ using AppFramework.UiCustomization;
 namespace AppFramework.Configuration
 {
     [AbpAuthorize]
-    public class UiCustomizationSettingsAppService : AppFrameworkDemoAppServiceBase, IUiCustomizationSettingsAppService
+    public class UiCustomizationSettingsAppService : AppFrameworkAppServiceBase, IUiCustomizationSettingsAppService
     {
         private readonly SettingManager _settingManager;
         private readonly IIocResolver _iocResolver;
@@ -71,11 +71,11 @@ namespace AppFramework.Configuration
 
             if (AbpSession.TenantId.HasValue)
             {
-                await themeCustomizer.UpdateTenantUiManagementSettingsAsync(AbpSession.TenantId.Value, settings);
+                await themeCustomizer.UpdateTenantUiManagementSettingsAsync(AbpSession.TenantId.Value, settings, AbpSession.ToUserIdentifier());
             }
             else
             {
-                await themeCustomizer.UpdateApplicationUiManagementSettingsAsync(settings);
+                await themeCustomizer.UpdateApplicationUiManagementSettingsAsync(settings, AbpSession.ToUserIdentifier());
             }
         }
 
@@ -95,6 +95,15 @@ namespace AppFramework.Configuration
                 var settings = await themeCustomizer.GetHostUiManagementSettings();
                 await themeCustomizer.UpdateUserUiManagementSettingsAsync(AbpSession.ToUserIdentifier(), settings);
             }
+        }
+
+        public async Task ChangeDarkModeOfCurrentTheme(bool isDarkModeActive)
+        {
+            var user = AbpSession.ToUserIdentifier();
+            var theme = await _settingManager.GetSettingValueForUserAsync(AppSettings.UiManagement.Theme, user);
+
+            var themeCustomizer = _uiThemeCustomizerFactory.GetUiCustomizer(theme);
+            await themeCustomizer.UpdateDarkModeSettingsAsync(user, isDarkModeActive);
         }
     }
 }

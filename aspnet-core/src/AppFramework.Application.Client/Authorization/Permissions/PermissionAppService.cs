@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Authorization.Permissions
+namespace AppFramework.Authorization.Permissions
 {
     public class PermissionAppService : ProxyAppServiceBase, IPermissionAppService
     {

@@ -18,7 +18,7 @@ using AppFramework.Friendships.Dto;
 namespace AppFramework.Chat
 {
     [AbpAuthorize]
-    public class ChatAppService : AppFrameworkDemoAppServiceBase, IChatAppService
+    public class ChatAppService : AppFrameworkAppServiceBase, IChatAppService
     {
         private readonly IRepository<ChatMessage, long> _chatMessageRepository;
         private readonly IUserFriendsCache _userFriendsCache;

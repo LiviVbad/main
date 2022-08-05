@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Abp;
 using Abp.Authorization;
@@ -13,7 +13,7 @@ using AppFramework.Friendships.Dto;
 namespace AppFramework.Friendships
 {
     [AbpAuthorize]
-    public class FriendshipAppService : AppFrameworkDemoAppServiceBase, IFriendshipAppService
+    public class FriendshipAppService : AppFrameworkAppServiceBase, IFriendshipAppService
     {
         private readonly IFriendshipManager _friendshipManager;
         private readonly IOnlineClientManager<ChatChannel> _onlineClientManager;
@@ -55,19 +55,25 @@ namespace AppFramework.Friendships
                 probableFriendUser = await UserManager.FindByIdAsync(input.UserId.ToString());
             }
 
+            // Friend requester
             var friendTenancyName = await GetTenancyNameAsync(probableFriend.TenantId);
             var sourceFriendship = new Friendship(userIdentifier, probableFriend, friendTenancyName, probableFriendUser.UserName, probableFriendUser.ProfilePictureId, FriendshipState.Accepted);
             await _friendshipManager.CreateFriendshipAsync(sourceFriendship);
 
+            // Target friend
             var userTenancyName = await GetTenancyNameAsync(user.TenantId);
             var targetFriendship = new Friendship(probableFriend, userIdentifier, userTenancyName, user.UserName, user.ProfilePictureId, FriendshipState.Accepted);
-            await _friendshipManager.CreateFriendshipAsync(targetFriendship);
 
-            var clients = _onlineClientManager.GetAllByUserId(probableFriend);
-            if (clients.Any())
+            if (await _friendshipManager.GetFriendshipOrNullAsync(probableFriend, userIdentifier) == null)
             {
-                var isFriendOnline = _onlineClientManager.IsOnline(sourceFriendship.ToUserIdentifier());
-                await _chatCommunicator.SendFriendshipRequestToClient(clients, targetFriendship, false, isFriendOnline);
+                await _friendshipManager.CreateFriendshipAsync(targetFriendship);
+
+                var clients = _onlineClientManager.GetAllByUserId(probableFriend);
+                if (clients.Any())
+                {
+                    var isFriendOnline = _onlineClientManager.IsOnline(sourceFriendship.ToUserIdentifier());
+                    await _chatCommunicator.SendFriendshipRequestToClient(clients, targetFriendship, false, isFriendOnline);
+                }
             }
 
             var senderClients = _onlineClientManager.GetAllByUserId(userIdentifier);
@@ -171,5 +177,13 @@ namespace AppFramework.Friendships
                 return user.ToUserIdentifier();
             }
         }
+
+        public async Task RemoveFriend(RemoveFriendInput input)
+        {
+            var userIdentifier = AbpSession.ToUserIdentifier();
+            var friendIdentifier = new UserIdentifier(input.TenantId, input.UserId);
+            await _friendshipManager.RemoveFriendAsync(userIdentifier, friendIdentifier);
+        }
+
     }
 }

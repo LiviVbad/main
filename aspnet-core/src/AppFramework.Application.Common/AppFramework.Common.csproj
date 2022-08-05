@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AppFramework.Application.Client\AppFramework.Application.Client.csproj" />
+    <ProjectReference Include="..\AppFramework.Application.Shared\AppFramework.Application.Shared.csproj" />
   </ItemGroup>
 
 </Project>

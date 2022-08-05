@@ -9,7 +9,7 @@ using AppFramework.DynamicEntityProperties.Dto;
 namespace AppFramework.DynamicEntityProperties
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_DynamicPropertyValue)]
-    public class DynamicPropertyValueAppService : AppFrameworkDemoAppServiceBase, IDynamicPropertyValueAppService
+    public class DynamicPropertyValueAppService : AppFrameworkAppServiceBase, IDynamicPropertyValueAppService
     {
         private readonly IDynamicPropertyValueManager _dynamicPropertyValueManager;
         private readonly IDynamicPropertyValueStore _dynamicPropertyValueStore;

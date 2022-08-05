@@ -16,5 +16,10 @@ namespace AppFramework.Authorization.Users.Profile
         {
             return await ApiClient.PostMultipartAsync<UploadProfilePictureOutput>(GetEndpoint(nameof(UploadProfilePicture)), buildContent);
         }
+
+        public async Task<UploadFileOutput> UploadVersionFile(Action<CapturedMultipartContent> buildContent)
+        {
+            return await ApiClient.PostMultipartAsync<UploadFileOutput>(GetEndpoint(nameof(UploadVersionFile)), buildContent);
+        }
     }
 }

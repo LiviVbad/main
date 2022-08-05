@@ -13,7 +13,7 @@ using AppFramework.MultiTenancy.Payments;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20170704084731_Added_GoogleAuthenticatorKey_Column")]
     partial class Added_GoogleAuthenticatorKey_Column
     {

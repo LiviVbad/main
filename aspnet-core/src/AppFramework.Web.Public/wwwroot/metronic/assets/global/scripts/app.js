@@ -299,14 +299,6 @@ var App = function() {
         });
     };
 
-    // Handles Bootstrap switches
-    var handleBootstrapSwitch = function() {
-        if (!$().bootstrapSwitch) {
-            return;
-        }
-        $('.make-switch').bootstrapSwitch();
-    };
-
     // Handles Bootstrap confirmations
     var handleBootstrapConfirmation = function() {
         if (!$().confirmation) {

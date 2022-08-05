@@ -5,7 +5,7 @@ using AppFramework.MultiTenancy.Payments.PayPal.Dto;
 
 namespace AppFramework.MultiTenancy.Payments
 {
-    public class PayPalPaymentAppService : AppFrameworkDemoAppServiceBase, IPayPalPaymentAppService
+    public class PayPalPaymentAppService : AppFrameworkAppServiceBase, IPayPalPaymentAppService
     {
         private readonly PayPalGatewayManager _payPalGatewayManager;
         private readonly ISubscriptionPaymentRepository _subscriptionPaymentRepository;

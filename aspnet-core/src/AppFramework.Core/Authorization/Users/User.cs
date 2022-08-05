@@ -37,15 +37,17 @@ namespace AppFramework.Authorization.Users
         /// </summary>
         /// <param name="tenantId">Tenant Id</param>
         /// <param name="emailAddress">Email address</param>
+        /// <param name="name">Name of admin user</param>
+        /// <param name="surname">Surname of admin user</param>
         /// <returns>Created <see cref="User"/> object</returns>
-        public static User CreateTenantAdminUser(int tenantId, string emailAddress)
+        public static User CreateTenantAdminUser(int tenantId, string emailAddress, string name = null, string surname = null)
         {
             var user = new User
             {
                 TenantId = tenantId,
                 UserName = AdminUserName,
-                Name = AdminUserName,
-                Surname = AdminUserName,
+                Name = string.IsNullOrWhiteSpace(name) ? AdminUserName : name,
+                Surname = string.IsNullOrWhiteSpace(surname) ? AdminUserName : surname,
                 EmailAddress = emailAddress,
                 Roles = new List<UserRole>(),
                 OrganizationUnits = new List<UserOrganizationUnit>()

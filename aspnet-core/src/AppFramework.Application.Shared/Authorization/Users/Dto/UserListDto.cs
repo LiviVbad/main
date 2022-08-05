@@ -1,8 +1,8 @@
-﻿using Abp.Application.Services.Dto;
+﻿using System;
+using System.Collections.Generic;
+using Abp.Application.Services.Dto;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
-using System;
-using System.Collections.Generic;
 
 namespace AppFramework.Authorization.Users.Dto
 {

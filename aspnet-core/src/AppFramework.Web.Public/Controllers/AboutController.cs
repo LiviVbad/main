@@ -3,7 +3,7 @@ using AppFramework.Web.Controllers;
 
 namespace AppFramework.Web.Public.Controllers
 {
-    public class AboutController : AppFrameworkDemoControllerBase
+    public class AboutController : AppFrameworkControllerBase
     {
         public ActionResult Index()
         {

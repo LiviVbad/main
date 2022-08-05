@@ -1,5 +1,5 @@
-﻿using Abp.Organizations;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Abp.Organizations;
 
 namespace AppFramework.Organizations.Dto
 {
@@ -9,6 +9,6 @@ namespace AppFramework.Organizations.Dto
 
         [Required]
         [StringLength(OrganizationUnit.MaxDisplayNameLength)]
-        public string DisplayName { get; set; }
+        public string DisplayName { get; set; } 
     }
 }

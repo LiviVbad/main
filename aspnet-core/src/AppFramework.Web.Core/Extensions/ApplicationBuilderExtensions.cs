@@ -5,7 +5,7 @@ namespace AppFramework.Web.Extensions
 {
     public static class ApplicationBuilderExtensions
     {
-        public static IApplicationBuilder UseAppFrameworkDemoForwardedHeaders(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseAppFrameworkForwardedHeaders(this IApplicationBuilder builder)
         {
             var options = new ForwardedHeadersOptions
             {

@@ -8,11 +8,11 @@ namespace AppFramework.EntityFrameworkCore
 {
     public class DatabaseCheckHelper : ITransientDependency
     {
-        private readonly IDbContextProvider<AppFrameworkDemoDbContext> _dbContextProvider;
+        private readonly IDbContextProvider<AppFrameworkDbContext> _dbContextProvider;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
 
         public DatabaseCheckHelper(
-            IDbContextProvider<AppFrameworkDemoDbContext> dbContextProvider,
+            IDbContextProvider<AppFrameworkDbContext> dbContextProvider,
             IUnitOfWorkManager unitOfWorkManager
         )
         {

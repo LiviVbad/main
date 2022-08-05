@@ -4,7 +4,7 @@ using Abp.Dependency;
 
 namespace AppFramework.Authorization
 {
-    public class AbpLoginResultTypeHelper : AppFrameworkDemoServiceBase, ITransientDependency
+    public class AbpLoginResultTypeHelper : AppFrameworkServiceBase, ITransientDependency
     {
         public Exception CreateExceptionForFailedLoginAttempt(AbpLoginResultType result, string usernameOrEmailAddress, string tenancyName)
         {

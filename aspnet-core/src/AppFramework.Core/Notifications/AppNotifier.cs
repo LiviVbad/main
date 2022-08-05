@@ -9,7 +9,7 @@ using AppFramework.MultiTenancy;
 
 namespace AppFramework.Notifications
 {
-    public class AppNotifier : AppFrameworkDemoDomainServiceBase, IAppNotifier
+    public class AppNotifier : AppFrameworkDomainServiceBase, IAppNotifier
     {
         private readonly INotificationPublisher _notificationPublisher;
 

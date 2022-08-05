@@ -7,7 +7,7 @@ using AppFramework.Authorization;
 namespace AppFramework.WebHooks
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_WebhookSubscription)]
-    public class WebhookEventAppService : AppFrameworkDemoAppServiceBase, IWebhookEventAppService
+    public class WebhookEventAppService : AppFrameworkAppServiceBase, IWebhookEventAppService
     {
         private readonly IWebhookEventStore _webhookEventStore;
 

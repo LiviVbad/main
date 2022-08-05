@@ -18,7 +18,7 @@ using AppFramework.Notifications;
 
 namespace AppFramework.Authorization.Users
 {
-    public class UserRegistrationManager : AppFrameworkDemoDomainServiceBase
+    public class UserRegistrationManager : AppFrameworkDomainServiceBase
     {
         public IAbpSession AbpSession { get; set; }
         public IAsyncQueryableExecuter AsyncQueryableExecuter { get; set; }

@@ -11,7 +11,7 @@ using Owl.reCAPTCHA.v3;
 
 namespace AppFramework.Web.Security.Recaptcha
 {
-    public class RecaptchaValidator : AppFrameworkDemoServiceBase, IRecaptchaValidator, ITransientDependency
+    public class RecaptchaValidator : AppFrameworkServiceBase, IRecaptchaValidator, ITransientDependency
     {
         public const string RecaptchaResponseKey = "g-recaptcha-response";
 

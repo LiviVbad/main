@@ -30,7 +30,7 @@ namespace AppFramework.Net.Emailing
 
             return _defaultTemplates.GetOrAdd(tenancyKey, key =>
             {
-                using (var stream = typeof(EmailTemplateProvider).GetAssembly().GetManifestResourceStream("AppFrameworkDemo.Net.Emailing.EmailTemplates.default.html"))
+                using (var stream = typeof(EmailTemplateProvider).GetAssembly().GetManifestResourceStream("AppFramework.Net.Emailing.EmailTemplates.default.html"))
                 {
                     var bytes = stream.GetAllBytes();
                     var template = Encoding.UTF8.GetString(bytes, 3, bytes.Length - 3);

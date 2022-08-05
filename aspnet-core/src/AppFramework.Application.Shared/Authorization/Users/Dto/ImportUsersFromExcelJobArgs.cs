@@ -1,5 +1,5 @@
-﻿using Abp;
-using System;
+﻿using System;
+using Abp;
 
 namespace AppFramework.Authorization.Users.Dto
 {

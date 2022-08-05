@@ -1,0 +1,21 @@
+﻿using System;
+using Abp.Application.Services.Dto;
+
+namespace AppFramework.Update.Dtos
+{
+    public class AbpVersionDto : EntityDto
+    {
+        public string Name { get; set; }
+
+        public string Version { get; set; }
+
+        public string DownloadUrl { get; set; }
+
+        public string ChangelogUrl { get; set; }
+
+        public bool IsEnable { get; set; }
+
+        public bool IsForced { get; set; }
+
+    }
+}

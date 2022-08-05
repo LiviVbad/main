@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Abp.Auditing;
 using Abp.Dependency;
 using Abp.Domain.Repositories;
@@ -11,6 +12,8 @@ using Abp.Threading;
 using Abp.Threading.BackgroundWorkers;
 using Abp.Threading.Timers;
 using Abp.Timing;
+using Microsoft.EntityFrameworkCore;
+using AppFramework.Configuration;
 using AppFramework.MultiTenancy;
 
 namespace AppFramework.Auditing
@@ -21,7 +24,7 @@ namespace AppFramework.Auditing
         /// Set this const field to true if you want to enable ExpiredAuditLogDeleterWorker.
         /// Be careful, If you enable this, all expired logs will be permanently deleted.
         /// </summary>
-        public const bool IsEnabled = false;
+        public bool IsEnabled { get; }
 
         private const int CheckPeriodAsMilliseconds = 1 * 1000 * 60 * 3; // 3min
         private const int MaxDeletionCount = 10000;
@@ -29,25 +32,37 @@ namespace AppFramework.Auditing
         private readonly TimeSpan _logExpireTime = TimeSpan.FromDays(7);
         private readonly IRepository<AuditLog, long> _auditLogRepository;
         private readonly IRepository<Tenant> _tenantRepository;
+        private readonly IExpiredAndDeletedAuditLogBackupService _expiredAndDeletedAuditLogBackupService;
 
         public ExpiredAuditLogDeleterWorker(
             AbpTimer timer,
             IRepository<AuditLog, long> auditLogRepository,
-            IRepository<Tenant> tenantRepository
-            )
+            IRepository<Tenant> tenantRepository,
+            IExpiredAndDeletedAuditLogBackupService expiredAndDeletedAuditLogBackupService,
+            IAppConfigurationAccessor configurationAccessor
+        )
             : base(timer)
         {
             _auditLogRepository = auditLogRepository;
             _tenantRepository = tenantRepository;
+            _expiredAndDeletedAuditLogBackupService = expiredAndDeletedAuditLogBackupService;
 
             LocalizationSourceName = AppFrameworkConsts.LocalizationSourceName;
 
             Timer.Period = CheckPeriodAsMilliseconds;
             Timer.RunOnStart = true;
+
+            IsEnabled = configurationAccessor.Configuration["App:AuditLog:AutoDeleteExpiredLogs:IsEnabled"] ==
+                        true.ToString();
         }
 
         protected override void DoWork()
         {
+            if (!IsEnabled)
+            {
+                return;
+            }
+
             var expireDate = Clock.Now - _logExpireTime;
 
             List<int> tenantIds;
@@ -106,7 +121,8 @@ namespace AppFramework.Auditing
             }
             catch (Exception e)
             {
-                Logger.Log(LogSeverity.Error, $"An error occured while deleting audit log for tenant. TenantId: {tenantId}", e);
+                Logger.Log(LogSeverity.Error,
+                    $"An error occured while deleting audit log for tenant. TenantId: {tenantId}", e);
             }
         }
 
@@ -119,15 +135,28 @@ namespace AppFramework.Auditing
                 return;
             }
 
+            void BatchDelete(Expression<Func<AuditLog, bool>> expression)
+            {
+                if (_expiredAndDeletedAuditLogBackupService.CanBackup())
+                {
+                    var auditLogs = _auditLogRepository.GetAll().AsNoTracking().Where(expression).ToList();
+                    _expiredAndDeletedAuditLogBackupService.Backup(auditLogs);
+                }
+
+                //will not delete the logs from database if backup operation throws an exception
+                AsyncHelper.RunSync(() => _auditLogRepository.BatchDeleteAsync(expression));
+            }
+
             if (expiredEntryCount > MaxDeletionCount)
             {
-                var deleteStartId = _auditLogRepository.GetAll().OrderBy(l => l.Id).Skip(MaxDeletionCount).Select(x => x.Id).First();
+                var deleteStartId = _auditLogRepository.GetAll().OrderBy(l => l.Id).Skip(MaxDeletionCount)
+                    .Select(x => x.Id).First();
 
-                AsyncHelper.RunSync(() => _auditLogRepository.BatchDeleteAsync(l => l.Id < deleteStartId));
+                BatchDelete(l => l.Id < deleteStartId);
             }
             else
             {
-                AsyncHelper.RunSync(() => _auditLogRepository.BatchDeleteAsync(l => l.ExecutionTime < expireDate));
+                BatchDelete(l => l.ExecutionTime < expireDate);
             }
         }
     }

@@ -11,13 +11,13 @@ namespace AppFramework.Configuration.Dto
         public bool AllowAsideMinimizing { get; set; }
 
         public bool DefaultMinimizedAside { get; set; }
-
+        
         public string SubmenuToggle { get; set; }
 
         public bool SearchActive { get; set; }
-
+        
         public bool EnableSecondary { get; set; }
-
+        
         public bool HoverableAside { get; set; }
     }
 }

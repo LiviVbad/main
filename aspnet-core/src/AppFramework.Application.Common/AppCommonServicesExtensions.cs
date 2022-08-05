@@ -28,10 +28,10 @@ using AppFramework.Common.Core;
 using AppFramework.Common.Services.Navigation;
 using Abp.Configuration.Startup;
 using AppFramework.Authorization.Permissions;
-using AppFrameworkDemo.Authorization.Permissions;
+using AppFramework.Authorization.Permissions;
 using AppFramework.Common.Services;
 using AppFramework.Configuration.Host;
-using AppFrameworkDemo.Configuration;
+using AppFramework.Configuration;
 using AppFramework.Notifications;
 using AppFramework.Authorization.Users.Delegation;
 

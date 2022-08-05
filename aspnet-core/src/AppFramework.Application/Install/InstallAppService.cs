@@ -30,9 +30,9 @@ namespace AppFramework.Install
 {
     [AbpAllowAnonymous]
     [DisableAuditing]
-    public class InstallAppService : AppFrameworkDemoAppServiceBase, IInstallAppService
+    public class InstallAppService : AppFrameworkAppServiceBase, IInstallAppService
     {
-        private readonly AbpZeroDbMigrator<AppFrameworkDemoDbContext> _migrator;
+        private readonly AbpZeroDbMigrator<AppFrameworkDbContext> _migrator;
         private readonly LogInManager _logInManager;
         private readonly SignInManager _signInManager;
         private readonly DatabaseCheckHelper _databaseCheckHelper;

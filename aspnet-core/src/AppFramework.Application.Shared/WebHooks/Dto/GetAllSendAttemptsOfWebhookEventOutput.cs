@@ -1,13 +1,13 @@
-﻿using Abp.Webhooks;
-using System;
+﻿using System;
 using System.Net;
+using Abp.Webhooks;
 
 namespace AppFramework.WebHooks.Dto
 {
     public class GetAllSendAttemptsOfWebhookEventOutput
     {
         /// <summary>
-        /// <see cref="WebhookSendAttempt"/> unique id
+        /// <see cref="WebhookSendAttempt"/> unique id 
         /// </summary>
         public Guid Id { get; set; }
 
@@ -17,7 +17,7 @@ namespace AppFramework.WebHooks.Dto
         public string WebhookUri { get; set; }
 
         /// <summary>
-        /// <see cref="WebhookSubscription"/> foreign id
+        /// <see cref="WebhookSubscription"/> foreign id 
         /// </summary>
         public Guid WebhookSubscriptionId { get; set; }
 

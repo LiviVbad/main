@@ -8,9 +8,9 @@ using AppFramework.EntityFrameworkCore.Repositories;
 
 namespace AppFramework.MultiTenancy.Payments
 {
-    public class SubscriptionPaymentRepository : AppFrameworkDemoRepositoryBase<SubscriptionPayment, long>, ISubscriptionPaymentRepository
+    public class SubscriptionPaymentRepository : AppFrameworkRepositoryBase<SubscriptionPayment, long>, ISubscriptionPaymentRepository
     {
-        public SubscriptionPaymentRepository(IDbContextProvider<AppFrameworkDemoDbContext> dbContextProvider)
+        public SubscriptionPaymentRepository(IDbContextProvider<AppFrameworkDbContext> dbContextProvider)
             : base(dbContextProvider)
         {
         }

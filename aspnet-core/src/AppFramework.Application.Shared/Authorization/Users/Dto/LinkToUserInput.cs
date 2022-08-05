@@ -1,5 +1,5 @@
-using Abp.Auditing;
 using System.ComponentModel.DataAnnotations;
+using Abp.Auditing;
 
 namespace AppFramework.Authorization.Users.Dto
 {

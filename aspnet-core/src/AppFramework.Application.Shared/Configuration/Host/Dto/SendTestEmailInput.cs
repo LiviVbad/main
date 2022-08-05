@@ -1,5 +1,5 @@
-﻿using Abp.Authorization.Users;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Abp.Authorization.Users;
 
 namespace AppFramework.Configuration.Host.Dto
 {

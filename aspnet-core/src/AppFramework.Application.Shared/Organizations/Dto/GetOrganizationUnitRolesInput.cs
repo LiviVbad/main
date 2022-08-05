@@ -1,7 +1,7 @@
+using System.ComponentModel.DataAnnotations;
 using Abp.Runtime.Validation;
 using AppFramework.Common;
 using AppFramework.Dto;
-using System.ComponentModel.DataAnnotations;
 
 namespace AppFramework.Organizations.Dto
 {

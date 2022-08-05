@@ -1,6 +1,6 @@
-﻿using Abp.Notifications;
+﻿using System;
+using Abp.Notifications;
 using AppFramework.Dto;
-using System;
 
 namespace AppFramework.Notifications.Dto
 {

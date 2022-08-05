@@ -21,7 +21,7 @@ using AppFramework.Url;
 namespace AppFramework.MultiTenancy
 {
     [AbpAuthorize(AppPermissions.Pages_Tenants)]
-    public class TenantAppService : AppFrameworkDemoAppServiceBase, ITenantAppService
+    public class TenantAppService : AppFrameworkAppServiceBase, ITenantAppService
     {
         public IAppUrlService AppUrlService { get; set; }
         public IEventBus EventBus { get; set; }
@@ -67,7 +67,9 @@ namespace AppFramework.MultiTenancy
                 input.SendActivationEmail,
                 input.SubscriptionEndDateUtc?.ToUniversalTime(),
                 input.IsInTrialPeriod,
-                AppUrlService.CreateEmailActivationUrlFormat(input.TenancyName)
+                AppUrlService.CreateEmailActivationUrlFormat(input.TenancyName),
+                adminName:input.AdminName,
+                adminSurname:input.AdminSurname
             );
         }
 

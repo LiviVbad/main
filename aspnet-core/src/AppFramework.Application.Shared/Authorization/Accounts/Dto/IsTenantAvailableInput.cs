@@ -1,5 +1,5 @@
-﻿using Abp.MultiTenancy;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Abp.MultiTenancy;
 
 namespace AppFramework.Authorization.Accounts.Dto
 {

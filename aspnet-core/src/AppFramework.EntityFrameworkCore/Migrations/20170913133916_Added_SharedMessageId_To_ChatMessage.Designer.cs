@@ -17,7 +17,7 @@ using System;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20170913133916_Added_SharedMessageId_To_ChatMessage")]
     partial class Added_SharedMessageId_To_ChatMessage
     {

@@ -14,7 +14,7 @@ using AppFramework.Notifications.Dto;
 namespace AppFramework.Notifications
 {
     [AbpAuthorize]
-    public class NotificationAppService : AppFrameworkDemoAppServiceBase, INotificationAppService
+    public class NotificationAppService : AppFrameworkAppServiceBase, INotificationAppService
     {
         private readonly INotificationDefinitionManager _notificationDefinitionManager;
         private readonly IUserNotificationManager _userNotificationManager;

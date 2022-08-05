@@ -19,6 +19,6 @@ namespace AppFramework.Application
         public async Task<List<string>> GetAllEntities()
         {
             return await ApiClient.GetAsync<List<string>>(GetEndpoint(nameof(GetAllEntities)));
-        }
+        } 
     }
 }

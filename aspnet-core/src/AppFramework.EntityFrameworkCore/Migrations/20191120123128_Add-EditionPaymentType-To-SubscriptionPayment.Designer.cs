@@ -9,7 +9,7 @@ using AppFramework.EntityFrameworkCore;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20191120123128_Add-EditionPaymentType-To-SubscriptionPayment")]
     partial class AddEditionPaymentTypeToSubscriptionPayment
     {

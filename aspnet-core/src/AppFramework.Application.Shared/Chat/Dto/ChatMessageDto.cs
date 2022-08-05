@@ -1,5 +1,5 @@
-using Abp.Application.Services.Dto;
 using System;
+using Abp.Application.Services.Dto;
 
 namespace AppFramework.Chat.Dto
 {
@@ -20,7 +20,7 @@ namespace AppFramework.Chat.Dto
         public ChatMessageReadState ReceiverReadState { get; set; }
 
         public string Message { get; set; }
-
+        
         public DateTime CreationTime { get; set; }
 
         public string SharedMessageId { get; set; }

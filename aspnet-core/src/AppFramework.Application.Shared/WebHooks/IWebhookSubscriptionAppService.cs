@@ -1,7 +1,7 @@
-﻿using Abp.Application.Services.Dto;
+﻿using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
 using Abp.Webhooks;
 using AppFramework.WebHooks.Dto;
-using System.Threading.Tasks;
 
 namespace AppFramework.WebHooks
 {
@@ -14,7 +14,7 @@ namespace AppFramework.WebHooks
         Task<ListResultDto<GetAllSubscriptionsOutput>> GetAllSubscriptions();
 
         /// <summary>
-        /// Returns subscription for given id.
+        /// Returns subscription for given id. 
         /// </summary>
         /// <param name="subscriptionId">Unique identifier of <see cref="WebhookSubscriptionInfo"/></param>
         Task<WebhookSubscription> GetSubscription(string subscriptionId);

@@ -1,5 +1,5 @@
-using Abp.Organizations;
 using System.ComponentModel.DataAnnotations;
+using Abp.Organizations;
 
 namespace AppFramework.Organizations.Dto
 {

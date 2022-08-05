@@ -12,9 +12,9 @@ namespace AppFramework.Configuration.Dto
         public int SubheaderSize { get; set; }
 
         public string TitleStyle { get; set; }
-
+        
         public string ContainerStyle { get; set; }
-
+        
         public string SubContainerStyle { get; set; }
 
         public ThemeSubHeaderSettingsDto()

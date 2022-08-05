@@ -17,7 +17,7 @@ using System;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20170914121022_TypeChange_SharedMessageId_String_Guid")]
     partial class TypeChange_SharedMessageId_String_Guid
     {

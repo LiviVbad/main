@@ -18,10 +18,10 @@ namespace AppFramework.Migrations.Seed.Tenants
 {
     public class TenantRoleAndUserBuilder
     {
-        private readonly AppFrameworkDemoDbContext _context;
+        private readonly AppFrameworkDbContext _context;
         private readonly int _tenantId;
 
-        public TenantRoleAndUserBuilder(AppFrameworkDemoDbContext context, int tenantId)
+        public TenantRoleAndUserBuilder(AppFrameworkDbContext context, int tenantId)
         {
             _context = context;
             _tenantId = tenantId;

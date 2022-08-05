@@ -12,7 +12,7 @@ using AppFramework.WebHooks.Dto;
 namespace AppFramework.WebHooks
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_WebhookSubscription)]
-    public class WebhookSubscriptionAppService : AppFrameworkDemoAppServiceBase, IWebhookSubscriptionAppService
+    public class WebhookSubscriptionAppService : AppFrameworkAppServiceBase, IWebhookSubscriptionAppService
     {
         private readonly IWebhookSubscriptionManager _webHookSubscriptionManager;
         private readonly IAppWebhookPublisher _appWebhookPublisher;

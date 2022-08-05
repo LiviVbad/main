@@ -8,7 +8,7 @@ using Stripe;
 
 namespace AppFramework.Web.Controllers
 {
-    public class StripeControllerBase : AppFrameworkDemoControllerBase
+    public class StripeControllerBase : AppFrameworkControllerBase
     {
         protected readonly IStripePaymentAppService StripePaymentAppService;
         private readonly StripeGatewayManager _stripeGatewayManager;

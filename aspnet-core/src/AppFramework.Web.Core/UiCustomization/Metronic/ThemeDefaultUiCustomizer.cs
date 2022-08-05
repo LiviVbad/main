@@ -84,7 +84,7 @@ namespace AppFramework.Web.UiCustomization.Metronic
             await ChangeSettingForUserAsync(user, AppSettings.UiManagement.Footer.FixedFooter, settings.Footer.FixedFooter.ToString());
         }
 
-        public async Task UpdateTenantUiManagementSettingsAsync(int tenantId, ThemeSettingsDto settings)
+        public async Task UpdateTenantUiManagementSettingsAsync(int tenantId, ThemeSettingsDto settings, UserIdentifier changerUser)
         {
             await SettingManager.ChangeSettingForTenantAsync(tenantId, AppSettings.UiManagement.Theme, settings.Theme);
             
@@ -104,9 +104,11 @@ namespace AppFramework.Web.UiCustomization.Metronic
             await ChangeSettingForTenantAsync(tenantId, AppSettings.UiManagement.SearchActive, settings.Menu.SearchActive.ToString());
 
             await ChangeSettingForTenantAsync(tenantId, AppSettings.UiManagement.Footer.FixedFooter, settings.Footer.FixedFooter.ToString());
+
+            await ResetDarkModeSettingsAsync(changerUser);
         }
 
-        public async Task UpdateApplicationUiManagementSettingsAsync(ThemeSettingsDto settings)
+        public async Task UpdateApplicationUiManagementSettingsAsync(ThemeSettingsDto settings, UserIdentifier changerUser)
         {
             await SettingManager.ChangeSettingForApplicationAsync(AppSettings.UiManagement.Theme, settings.Theme);
             
@@ -126,6 +128,8 @@ namespace AppFramework.Web.UiCustomization.Metronic
             await ChangeSettingForApplicationAsync(AppSettings.UiManagement.SearchActive, settings.Menu.SearchActive.ToString());
 
             await ChangeSettingForApplicationAsync(AppSettings.UiManagement.Footer.FixedFooter, settings.Footer.FixedFooter.ToString());
+            
+            await ResetDarkModeSettingsAsync(changerUser);
         }
 
         public async Task<ThemeSettingsDto> GetHostUiManagementSettings()
@@ -192,6 +196,29 @@ namespace AppFramework.Web.UiCustomization.Metronic
                     FixedFooter = await GetSettingValueForTenantAsync<bool>(AppSettings.UiManagement.Footer.FixedFooter, tenantId)
                 }
             };
+        }
+        
+        public override async Task UpdateDarkModeSettingsAsync(UserIdentifier user, bool isDarkModeEnabled)
+        {
+            await base.UpdateDarkModeSettingsAsync(user, isDarkModeEnabled);
+            await ChangeSettingForUserAsync(user, AppSettings.UiManagement.LeftAside.AsideSkin, isDarkModeEnabled ? "dark" : "light");
+        }
+        
+        protected override async Task ResetDarkModeSettingsAsync(UserIdentifier user)
+        {
+            await base.ResetDarkModeSettingsAsync(user);
+            
+            string asideSkinSetting;
+            if (user.TenantId.HasValue)
+            {
+                asideSkinSetting = await GetSettingValueForTenantAsync(AppSettings.UiManagement.LeftAside.AsideSkin, user.TenantId.Value);
+            }
+            else
+            {
+                asideSkinSetting = await GetSettingValueForApplicationAsync(AppSettings.UiManagement.LeftAside.AsideSkin);
+            }
+
+            await ChangeSettingForUserAsync(user, AppSettings.UiManagement.LeftAside.AsideSkin, asideSkinSetting);
         }
     }
 }

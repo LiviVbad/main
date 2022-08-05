@@ -1,13 +1,9 @@
-﻿using AppFramework;
-using AppFramework.ApiClient;
+﻿using AppFramework.ApiClient;
 using AppFramework.Configuration.Host;
-using AppFramework.Configuration.Host.Dto;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using AppFramework.Configuration.Host.Dto; 
 using System.Threading.Tasks;
 
-namespace AppFrameworkDemo.Configuration
+namespace AppFramework.Configuration
 {
     public class HostSettingsAppService : ProxyAppServiceBase, IHostSettingsAppService
     {

@@ -1,6 +1,6 @@
-﻿using Abp.Application.Services;
+﻿using System.Threading.Tasks;
+using Abp.Application.Services;
 using AppFramework.Authorization.Accounts.Dto;
-using System.Threading.Tasks;
 
 namespace AppFramework.Authorization.Accounts
 {
@@ -19,13 +19,13 @@ namespace AppFramework.Authorization.Accounts
         Task SendEmailActivationLink(SendEmailActivationLinkInput input);
 
         Task ActivateEmail(ActivateEmailInput input);
-
+        
         Task<ImpersonateOutput> ImpersonateUser(ImpersonateUserInput input);
-
+        
         Task<ImpersonateOutput> ImpersonateTenant(ImpersonateTenantInput input);
 
         Task<ImpersonateOutput> DelegatedImpersonate(DelegatedImpersonateInput input);
-
+        
         Task<ImpersonateOutput> BackToImpersonator();
 
         Task<SwitchToLinkedAccountOutput> SwitchToLinkedAccount(SwitchToLinkedAccountInput input);

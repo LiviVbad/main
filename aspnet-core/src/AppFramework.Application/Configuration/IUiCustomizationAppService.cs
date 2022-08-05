@@ -14,5 +14,7 @@ namespace AppFramework.Configuration
         Task UpdateDefaultUiManagementSettings(ThemeSettingsDto settings);
 
         Task UseSystemDefaultSettings();
+
+        Task ChangeDarkModeOfCurrentTheme(bool isDarkModeActive);
     }
 }

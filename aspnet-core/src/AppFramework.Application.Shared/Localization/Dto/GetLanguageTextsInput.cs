@@ -1,8 +1,8 @@
+using System.ComponentModel.DataAnnotations;
 using Abp.Application.Services.Dto;
 using Abp.Extensions;
 using Abp.Localization;
 using Abp.Runtime.Validation;
-using System.ComponentModel.DataAnnotations;
 
 namespace AppFramework.Localization
 {
@@ -30,7 +30,7 @@ namespace AppFramework.Localization
         public string TargetValueFilter { get; set; }
 
         public string FilterText { get; set; }
-
+        
         public void Normalize()
         {
             if (TargetValueFilter.IsNullOrEmpty())

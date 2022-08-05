@@ -24,7 +24,7 @@ namespace AppFramework.MultiTenancy.Demo
     /// Creates sample organization units, users... etc.
     /// It works only if in DEMO mode ("App.DemoMode" should be "true" in web.config). Otherwise, does nothing.
     /// </summary>
-    public class TenantDemoDataBuilder : AppFrameworkDemoServiceBase, ITransientDependency
+    public class TenantDemoDataBuilder : AppFrameworkServiceBase, ITransientDependency
     {
         public bool IsInDemoMode
         {

@@ -91,7 +91,10 @@ namespace AppFramework.MultiTenancy
             bool sendActivationEmail,
             DateTime? subscriptionEndDate,
             bool isInTrialPeriod,
-            string emailActivationLink)
+            string emailActivationLink,
+            string adminName = null,
+            string adminSurname = null
+            )
         {
             int newTenantId;
             long newAdminId;
@@ -141,7 +144,7 @@ namespace AppFramework.MultiTenancy
                     CheckErrors(await _roleManager.UpdateAsync(userRole));
 
                     //Create admin user for the tenant
-                    var adminUser = User.CreateTenantAdminUser(tenant.Id, adminEmailAddress);
+                    var adminUser = User.CreateTenantAdminUser(tenant.Id, adminEmailAddress, adminName, adminSurname);
                     adminUser.ShouldChangePasswordOnNextLogin = shouldChangePasswordOnNextLogin;
                     adminUser.IsActive = true;
 

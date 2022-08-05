@@ -1,9 +1,9 @@
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Abp.Runtime.Validation;
 using Abp.Timing;
 using AppFramework.Configuration.Dto;
 using AppFramework.Configuration.Host.Dto;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace AppFramework.Configuration.Tenants.Dto
 {

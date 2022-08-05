@@ -9,7 +9,7 @@ using AppFramework.DemoUiComponents.Dto;
 namespace AppFramework.DemoUiComponents
 {
     [AbpAuthorize(AppPermissions.Pages_DemoUiComponents)]
-    public class DemoUiComponentsAppService : AppFrameworkDemoAppServiceBase, IDemoUiComponentsAppService
+    public class DemoUiComponentsAppService : AppFrameworkAppServiceBase, IDemoUiComponentsAppService
     {
         #region date & time pickers
         public DateToStringOutput SendAndGetDate(DateTime? date)

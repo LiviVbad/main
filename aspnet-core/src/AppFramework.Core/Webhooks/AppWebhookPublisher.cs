@@ -4,7 +4,7 @@ using Abp.Webhooks;
 
 namespace AppFramework.WebHooks
 {
-    public class AppWebhookPublisher : AppFrameworkDemoDomainServiceBase, IAppWebhookPublisher
+    public class AppWebhookPublisher : AppFrameworkDomainServiceBase, IAppWebhookPublisher
     {
         private readonly IWebhookPublisher _webHookPublisher;
 

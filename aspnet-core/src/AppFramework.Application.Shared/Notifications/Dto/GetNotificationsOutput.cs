@@ -1,6 +1,6 @@
-﻿using Abp.Application.Services.Dto;
+﻿using System.Collections.Generic;
+using Abp.Application.Services.Dto;
 using Abp.Notifications;
-using System.Collections.Generic;
 
 namespace AppFramework.Notifications.Dto
 {
@@ -9,7 +9,7 @@ namespace AppFramework.Notifications.Dto
         public int UnreadCount { get; set; }
 
         public GetNotificationsOutput(int totalCount, int unreadCount, List<UserNotification> notifications)
-            : base(totalCount, notifications)
+            :base(totalCount, notifications)
         {
             UnreadCount = unreadCount;
         }

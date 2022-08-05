@@ -1,6 +1,6 @@
-﻿using Abp.Extensions;
+﻿using System;
+using Abp.Extensions;
 using Abp.UI;
-using System;
 
 namespace AppFramework.Authentication
 {

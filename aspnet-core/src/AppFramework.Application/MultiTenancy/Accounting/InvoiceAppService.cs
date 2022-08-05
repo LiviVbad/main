@@ -15,7 +15,7 @@ using AppFramework.MultiTenancy.Payments;
 
 namespace AppFramework.MultiTenancy.Accounting
 {
-    public class InvoiceAppService : AppFrameworkDemoAppServiceBase, IInvoiceAppService
+    public class InvoiceAppService : AppFrameworkAppServiceBase, IInvoiceAppService
     {
         private readonly ISubscriptionPaymentRepository _subscriptionPaymentRepository;
         private readonly IInvoiceNumberGenerator _invoiceNumberGenerator;

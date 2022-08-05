@@ -1,7 +1,7 @@
-﻿using Abp.Application.Services;
+﻿using System.Threading.Tasks;
+using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using AppFramework.Localization.Dto;
-using System.Threading.Tasks;
 
 namespace AppFramework.Localization
 {

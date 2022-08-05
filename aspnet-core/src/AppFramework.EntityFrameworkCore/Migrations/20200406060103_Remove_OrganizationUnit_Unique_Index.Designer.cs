@@ -9,7 +9,7 @@ using AppFramework.EntityFrameworkCore;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20200406060103_Remove_OrganizationUnit_Unique_Index")]
     partial class Remove_OrganizationUnit_Unique_Index
     {

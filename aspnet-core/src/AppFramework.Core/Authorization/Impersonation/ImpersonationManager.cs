@@ -11,7 +11,7 @@ using AppFramework.Authorization.Users;
 
 namespace AppFramework.Authorization.Impersonation
 {
-    public class ImpersonationManager : AppFrameworkDemoDomainServiceBase, IImpersonationManager
+    public class ImpersonationManager : AppFrameworkDomainServiceBase, IImpersonationManager
     {
         public IAbpSession AbpSession { get; set; }
 

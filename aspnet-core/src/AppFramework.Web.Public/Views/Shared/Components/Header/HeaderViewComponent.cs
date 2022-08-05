@@ -15,7 +15,7 @@ using AppFramework.Web.Session;
 
 namespace AppFramework.Web.Public.Views.Shared.Components.Header
 {
-    public class HeaderViewComponent : AppFrameworkDemoViewComponent
+    public class HeaderViewComponent : AppFrameworkViewComponent
     {
         private readonly IUserNavigationManager _userNavigationManager;
         private readonly IMultiTenancyConfig _multiTenancyConfig;

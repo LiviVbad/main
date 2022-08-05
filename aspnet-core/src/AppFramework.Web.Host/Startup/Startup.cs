@@ -169,7 +169,7 @@ namespace AppFramework.Web.Startup
             }
 
             //Configure Abp and Dependency Injection
-            return services.AddAbp<AppFrameworkDemoWebHostModule>(options =>
+            return services.AddAbp<AppFrameworkWebHostModule>(options =>
             {
                 //Configure Log4Net logging
                 options.IocManager.IocContainer.AddFacility<LoggingFacility>(

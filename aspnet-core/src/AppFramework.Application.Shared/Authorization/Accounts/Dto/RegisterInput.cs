@@ -1,10 +1,10 @@
-﻿using Abp.Auditing;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.Extensions;
 using AppFramework.Validation;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace AppFramework.Authorization.Accounts.Dto
 {

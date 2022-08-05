@@ -16,7 +16,7 @@ using AppFramework.Types;
 
 namespace AppFramework.Queries
 {
-    public class OrganizationUnitQuery : AppFrameworkDemoQueryBase<ListGraphType<OrganizationUnitType>, List<OrganizationUnitDto>>
+    public class OrganizationUnitQuery : AppFrameworkQueryBase<ListGraphType<OrganizationUnitType>, List<OrganizationUnitDto>>
     {
         private readonly IRepository<OrganizationUnit, long> _organizationUnitRepository;
 

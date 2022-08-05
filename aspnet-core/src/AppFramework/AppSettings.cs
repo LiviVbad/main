@@ -7,6 +7,8 @@ namespace AppFramework
     /// </summary> 
     public class AppSettings
     {
+        public const string AppName = "AppFramework";
+
         private bool isDarkTheme = false;
         private string themeName = "Material";
 

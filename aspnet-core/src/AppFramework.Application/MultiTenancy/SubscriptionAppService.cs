@@ -5,7 +5,7 @@ using AppFramework.MultiTenancy.Payments;
 
 namespace AppFramework.MultiTenancy
 {
-    public class SubscriptionAppService : AppFrameworkDemoAppServiceBase, ISubscriptionAppService
+    public class SubscriptionAppService : AppFrameworkAppServiceBase, ISubscriptionAppService
     {
         public IEventBus EventBus { get; set; }
 

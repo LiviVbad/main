@@ -15,7 +15,7 @@ using AppFramework.Authorization.Impersonation;
 
 namespace AppFramework.Authorization.Users
 {
-    public class UserLinkManager : AppFrameworkDemoDomainServiceBase, IUserLinkManager
+    public class UserLinkManager : AppFrameworkDomainServiceBase, IUserLinkManager
     {
         private readonly IRepository<UserAccount, long> _userAccountRepository;
         private readonly ICacheManager _cacheManager;

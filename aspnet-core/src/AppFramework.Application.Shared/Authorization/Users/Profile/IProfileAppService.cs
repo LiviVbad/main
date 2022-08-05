@@ -1,7 +1,9 @@
-﻿using Abp.Application.Services;
+﻿using System;
+using System.Threading.Tasks;
+using Abp.Application.Services;
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.Authorization.Users.Profile.Dto;
-using System.Threading.Tasks;
+using AppFramework.Dto;
 
 namespace AppFramework.Authorization.Users.Profile
 {
@@ -20,7 +22,7 @@ namespace AppFramework.Authorization.Users.Profile
         Task<GetProfilePictureOutput> GetProfilePicture();
 
         Task<GetProfilePictureOutput> GetProfilePictureByUser(long userId);
-
+        
         Task<GetProfilePictureOutput> GetProfilePictureByUserName(string username);
 
         Task<GetProfilePictureOutput> GetFriendProfilePicture(GetFriendProfilePictureInput input);

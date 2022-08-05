@@ -1,4 +1,5 @@
-﻿using Abp;
+﻿using System;
+using Abp;
 
 namespace AppFramework.Authorization.Users.Profile.Dto
 {

@@ -13,7 +13,7 @@ using Stripe.Checkout;
 
 namespace AppFramework.MultiTenancy.Payments
 {
-    public class StripePaymentAppService : AppFrameworkDemoAppServiceBase, IStripePaymentAppService
+    public class StripePaymentAppService : AppFrameworkAppServiceBase, IStripePaymentAppService
     {
         private readonly ISubscriptionPaymentRepository _subscriptionPaymentRepository;
         private readonly ISubscriptionPaymentExtensionDataRepository _subscriptionPaymentExtensionDataRepository;

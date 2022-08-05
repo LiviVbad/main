@@ -24,6 +24,7 @@ namespace AppFramework.Tenants.Dashboard.Dto
 
         public int TransactionPercent { get; set; }
 
+
         public int NewVisitPercent { get; set; }
 
         public int BouncePercent { get; set; }
@@ -31,5 +32,6 @@ namespace AppFramework.Tenants.Dashboard.Dto
         public int[] DailySales { get; set; }
 
         public int[] ProfitShares { get; set; }
+
     }
 }

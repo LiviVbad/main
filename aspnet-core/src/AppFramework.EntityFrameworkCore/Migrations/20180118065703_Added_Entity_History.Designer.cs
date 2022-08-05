@@ -18,7 +18,7 @@ using System;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20180118065703_Added_Entity_History")]
     partial class Added_Entity_History
     {

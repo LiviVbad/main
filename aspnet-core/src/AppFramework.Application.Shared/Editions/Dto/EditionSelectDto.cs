@@ -1,5 +1,5 @@
-﻿using AppFramework.MultiTenancy.Payments;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using AppFramework.MultiTenancy.Payments;
 
 namespace AppFramework.Editions.Dto
 {
@@ -27,11 +27,8 @@ namespace AppFramework.Editions.Dto
 
         public bool IsFree { get; set; }
 
-        public Dictionary<SubscriptionPaymentGatewayType, Dictionary<string, string>> AdditionalData { get; set; }
-
         public EditionSelectDto()
         {
-            AdditionalData = new Dictionary<SubscriptionPaymentGatewayType, Dictionary<string, string>>();
         }
 
         public decimal GetPaymentAmount(PaymentPeriodType? paymentPeriodType)
@@ -40,16 +37,12 @@ namespace AppFramework.Editions.Dto
             {
                 case PaymentPeriodType.Daily:
                     return DailyPrice ?? 0;
-
                 case PaymentPeriodType.Weekly:
                     return WeeklyPrice ?? 0;
-
                 case PaymentPeriodType.Monthly:
                     return MonthlyPrice ?? 0;
-
                 case PaymentPeriodType.Annual:
                     return AnnualPrice ?? 0;
-
                 default:
                     return 0;
             }

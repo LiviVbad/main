@@ -9,7 +9,7 @@ using AppFramework.MultiTenancy.Payments;
 
 namespace AppFramework.MultiTenancy.HostDashboard
 {
-    public class IncomeStatisticsService : AppFrameworkDemoDomainServiceBase, IIncomeStatisticsService
+    public class IncomeStatisticsService : AppFrameworkDomainServiceBase, IIncomeStatisticsService
     {
         private readonly ISubscriptionPaymentRepository _subscriptionPaymentRepository;
 

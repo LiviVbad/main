@@ -1,7 +1,7 @@
-﻿using Abp.Application.Services;
+﻿using System.Threading.Tasks;
+using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using AppFramework.Organizations.Dto;
-using System.Threading.Tasks;
 
 namespace AppFramework.Organizations
 {
@@ -9,9 +9,9 @@ namespace AppFramework.Organizations
     {
         Task<ListResultDto<OrganizationUnitDto>> GetOrganizationUnits();
 
-        Task<PagedResultDto<OrganizationUnitUserListDto>> GetOrganizationUnitUsers(GetOrganizationUnitUsersInput input);
-
         Task<PagedResultDto<OrganizationUnitRoleListDto>> GetOrganizationUnitRoles(GetOrganizationUnitRolesInput input);
+
+        Task<PagedResultDto<OrganizationUnitUserListDto>> GetOrganizationUnitUsers(GetOrganizationUnitUsersInput input);
 
         Task<OrganizationUnitDto> CreateOrganizationUnit(CreateOrganizationUnitInput input);
 

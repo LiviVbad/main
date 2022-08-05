@@ -13,7 +13,7 @@ using AppFramework.DynamicEntityPropertyValues.Dto;
 namespace AppFramework.DynamicEntityProperties
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_DynamicEntityPropertyValue)]
-    public class DynamicEntityPropertyValueAppService : AppFrameworkDemoAppServiceBase, IDynamicEntityPropertyValueAppService
+    public class DynamicEntityPropertyValueAppService : AppFrameworkAppServiceBase, IDynamicEntityPropertyValueAppService
     {
         private readonly IDynamicEntityPropertyValueManager _dynamicEntityPropertyValueManager;
         private readonly IDynamicPropertyValueManager _dynamicPropertyValueManager;

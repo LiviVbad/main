@@ -1,5 +1,5 @@
-﻿using Abp.Notifications;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Abp.Notifications;
 
 namespace AppFramework.Notifications.Dto
 {

@@ -11,7 +11,7 @@ using Stripe.Checkout;
 
 namespace AppFramework.MultiTenancy.Payments.Stripe
 {
-    public class StripeGatewayManager : AppFrameworkDemoServiceBase,
+    public class StripeGatewayManager : AppFrameworkServiceBase,
         ISupportsRecurringPayments,
         ITransientDependency
     {

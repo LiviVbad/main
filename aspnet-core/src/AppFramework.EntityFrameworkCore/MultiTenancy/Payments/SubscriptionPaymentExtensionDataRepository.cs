@@ -5,10 +5,10 @@ using AppFramework.EntityFrameworkCore.Repositories;
 
 namespace AppFramework.MultiTenancy.Payments
 {
-    public class SubscriptionPaymentExtensionDataRepository : AppFrameworkDemoRepositoryBase<SubscriptionPaymentExtensionData, long>,
+    public class SubscriptionPaymentExtensionDataRepository : AppFrameworkRepositoryBase<SubscriptionPaymentExtensionData, long>,
         ISubscriptionPaymentExtensionDataRepository
     {
-        public SubscriptionPaymentExtensionDataRepository(IDbContextProvider<AppFrameworkDemoDbContext> dbContextProvider) : base(dbContextProvider)
+        public SubscriptionPaymentExtensionDataRepository(IDbContextProvider<AppFrameworkDbContext> dbContextProvider) : base(dbContextProvider)
         {
         }
 

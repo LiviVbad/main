@@ -17,7 +17,7 @@ using AppFramework.MultiTenancy;
 namespace AppFramework.Authorization.Users
 {
     [AbpAuthorize]
-    public class UserLinkAppService : AppFrameworkDemoAppServiceBase, IUserLinkAppService
+    public class UserLinkAppService : AppFrameworkAppServiceBase, IUserLinkAppService
     {
         private readonly AbpLoginResultTypeHelper _abpLoginResultTypeHelper;
         private readonly IUserLinkManager _userLinkManager;

@@ -2,7 +2,7 @@
 
 namespace AppFramework.Web.Controllers
 {
-    public class AntiForgeryController : AppFrameworkDemoControllerBase
+    public class AntiForgeryController : AppFrameworkControllerBase
     {
         private readonly IAntiforgery _antiforgery;
 

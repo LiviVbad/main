@@ -6,7 +6,7 @@ using AppFramework.Authorization.Users;
 
 namespace AppFramework.Authentication.TwoFactor.Google
 {
-    public class GoogleAuthenticatorProvider : AppFrameworkDemoServiceBase, IUserTwoFactorTokenProvider<User>, ITransientDependency
+    public class GoogleAuthenticatorProvider : AppFrameworkServiceBase, IUserTwoFactorTokenProvider<User>, ITransientDependency
     {
         private readonly GoogleTwoFactorAuthenticateService _googleTwoFactorAuthenticateService;
 

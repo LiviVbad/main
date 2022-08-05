@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Abp.Authorization;
+using Abp.Application.Features;
 using Abp.MultiTenancy;
 
 namespace AppFramework.DashboardCustomization.Definitions
@@ -11,30 +13,34 @@ namespace AppFramework.DashboardCustomization.Definitions
 
         public MultiTenancySides Side { get; }
 
-        public List<string> Permissions { get; }
+        public IPermissionDependency PermissionDependency { get; }
 
         public List<string> UsedWidgetFilters { get; }
 
         public string Description { get; }
 
         public bool AllowMultipleInstanceInSamePage { get; }
+        
+        public IFeatureDependency FeatureDependency { get; }
 
         public WidgetDefinition(
             string id,
             string name,
             MultiTenancySides side = MultiTenancySides.Tenant | MultiTenancySides.Host,
             List<string> usedWidgetFilters = null,
-            List<string> permissions = null,
+            IPermissionDependency permissionDependency = null,
             string description = null,
-            bool allowMultipleInstanceInSamePage = true)
+            bool allowMultipleInstanceInSamePage = true,
+            IFeatureDependency featureDependency = null)
         {
             Id = id;
             Name = name;
             Side = side;
-            Permissions = permissions ?? new List<string>();
             UsedWidgetFilters = usedWidgetFilters;
+            PermissionDependency = permissionDependency;
             Description = description;
             AllowMultipleInstanceInSamePage = allowMultipleInstanceInSamePage;
+            FeatureDependency = featureDependency;
         }
     }
 }

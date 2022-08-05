@@ -1,8 +1,8 @@
+using System;
 using Abp.Extensions;
 using Abp.Runtime.Validation;
 using AppFramework.Common;
 using AppFramework.Dto;
-using System;
 
 namespace AppFramework.Auditing.Dto
 {

@@ -1,9 +1,9 @@
-﻿using Abp.Application.Services;
-using Abp.Application.Services.Dto;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Abp.Application.Services;
 using AppFramework.MultiTenancy.Dto;
 using AppFramework.MultiTenancy.Payments.Dto;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
 
 namespace AppFramework.MultiTenancy.Payments
 {

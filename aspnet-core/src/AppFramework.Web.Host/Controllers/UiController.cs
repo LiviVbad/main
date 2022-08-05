@@ -16,7 +16,7 @@ using AppFramework.Web.Session;
 
 namespace AppFramework.Web.Controllers
 {
-    public class UiController : AppFrameworkDemoControllerBase
+    public class UiController : AppFrameworkControllerBase
     {
         private readonly IPerRequestSessionCache _sessionCache;
         private readonly IMultiTenancyConfig _multiTenancyConfig;

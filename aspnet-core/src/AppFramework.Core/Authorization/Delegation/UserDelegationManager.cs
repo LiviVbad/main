@@ -6,7 +6,7 @@ using Abp.Domain.Uow;
 
 namespace AppFramework.Authorization.Delegation
 {
-    public class UserDelegationManager : AppFrameworkDemoServiceBase, IUserDelegationManager
+    public class UserDelegationManager : AppFrameworkServiceBase, IUserDelegationManager
     {
         private readonly IRepository<UserDelegation, long> _userDelegationRepository;
         private readonly IUnitOfWorkManager _unitOfWorkManager;

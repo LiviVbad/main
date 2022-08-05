@@ -1,6 +1,6 @@
 ﻿/*
  *  Coppied from https://github.com/dotnet/aspnetcore/blob/main/src/Security/Authentication/JwtBearer/src/LoggingExtensions.cs
- *  Used in AppFrameworkDemoAsyncJwtBearerHandler. Since it is internal in "Microsoft.Extensions.Logging", we need to copy it here.
+ *  Used in AppFrameworkAsyncJwtBearerHandler. Since it is internal in "Microsoft.Extensions.Logging", we need to copy it here.
  */
 
 using System;

@@ -8,7 +8,7 @@ using AppFramework.MultiTenancy;
 
 namespace AppFramework.Authorization.Users.Password
 {
-    public class PasswordExpirationService : AppFrameworkDemoDomainServiceBase, IPasswordExpirationService
+    public class PasswordExpirationService : AppFrameworkDomainServiceBase, IPasswordExpirationService
     {
         private readonly IRepository<RecentPassword, Guid> _recentPasswordRepository;
         private readonly IUserRepository _userRepository;

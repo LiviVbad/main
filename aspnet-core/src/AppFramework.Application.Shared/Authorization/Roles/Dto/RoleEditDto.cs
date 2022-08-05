@@ -8,7 +8,7 @@ namespace AppFramework.Authorization.Roles.Dto
 
         [Required]
         public string DisplayName { get; set; }
-
+        
         public bool IsDefault { get; set; }
     }
 }

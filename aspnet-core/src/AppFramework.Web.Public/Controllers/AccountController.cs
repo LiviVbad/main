@@ -15,7 +15,7 @@ using AppFramework.Web.Controllers;
 
 namespace AppFramework.Web.Public.Controllers
 {
-    public class AccountController : AppFrameworkDemoControllerBase
+    public class AccountController : AppFrameworkControllerBase
     {
         private readonly UserManager _userManager;
         private readonly SignInManager _signInManager;

@@ -7,7 +7,7 @@
       "commandName": "Docker",
       "environmentVariables": {
         "ASPNETCORE_Docker_Enabled": "true",
-        "ConnectionStrings__Default": "Server=mssqlDb;Database=AppFrameworkDemoDb;User=sa;Password=Super_Encrypted_Passw0rd!"
+        "ConnectionStrings__Default": "Server=mssqlDb;Database=AppFrameworkDb;User=sa;Password=Super_Encrypted_Passw0rd!"
       }
     }
   }

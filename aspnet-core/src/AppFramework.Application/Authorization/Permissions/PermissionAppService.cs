@@ -7,23 +7,25 @@ using AppFramework.Authorization.Permissions.Dto;
 
 namespace AppFramework.Authorization.Permissions
 {
-    public class PermissionAppService : AppFrameworkDemoAppServiceBase, IPermissionAppService
+    public class PermissionAppService : AppFrameworkAppServiceBase, IPermissionAppService
     {
         public async Task<ListResultDto<FlatPermissionWithLevelDto>> GetAllPermissions()
         {
             var permissions = PermissionManager.GetAllPermissions();
             var rootPermissions = permissions.Where(p => p.Parent == null);
 
+            var result = new List<FlatPermissionWithLevelDto>();
+
             return await Task.Run(() =>
-             {
-                 var result = new List<FlatPermissionWithLevelDto>();
-                 foreach (var rootPermission in rootPermissions)
-                 {
-                     var level = 0;
-                     AddPermission(rootPermission, permissions, result, level);
-                 }
-                 return new ListResultDto<FlatPermissionWithLevelDto> { Items = result };
-             });
+            {
+                var result = new List<FlatPermissionWithLevelDto>();
+                foreach (var rootPermission in rootPermissions)
+                {
+                    var level = 0;
+                    AddPermission(rootPermission, permissions, result, level);
+                }
+                return new ListResultDto<FlatPermissionWithLevelDto> { Items = result };
+            });
         }
 
         private void AddPermission(Permission permission, IReadOnlyList<Permission> allPermissions, List<FlatPermissionWithLevelDto> result, int level)

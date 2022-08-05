@@ -70,7 +70,7 @@ namespace AppFramework.Web.UiCustomization.Metronic
             await ChangeSettingForUserAsync(user, AppSettings.UiManagement.SearchActive, settings.Menu.SearchActive.ToString());
         }
 
-        public async Task UpdateTenantUiManagementSettingsAsync(int tenantId, ThemeSettingsDto settings)
+        public async Task UpdateTenantUiManagementSettingsAsync(int tenantId, ThemeSettingsDto settings, UserIdentifier changerUser)
         {
             await SettingManager.ChangeSettingForTenantAsync(tenantId, AppSettings.UiManagement.Theme, ThemeName);
 
@@ -81,9 +81,11 @@ namespace AppFramework.Web.UiCustomization.Metronic
             await ChangeSettingForTenantAsync(tenantId, AppSettings.UiManagement.SubHeader.Style, settings.SubHeader.SubheaderStyle);
             await ChangeSettingForTenantAsync(tenantId, AppSettings.UiManagement.Footer.FixedFooter, settings.Footer.FixedFooter.ToString());
             await ChangeSettingForTenantAsync(tenantId, AppSettings.UiManagement.SearchActive, settings.Menu.SearchActive.ToString());
+            
+            await ResetDarkModeSettingsAsync(changerUser);
         }
 
-        public async Task UpdateApplicationUiManagementSettingsAsync(ThemeSettingsDto settings)
+        public async Task UpdateApplicationUiManagementSettingsAsync(ThemeSettingsDto settings, UserIdentifier changerUser)
         {
             await SettingManager.ChangeSettingForApplicationAsync(AppSettings.UiManagement.Theme, ThemeName);
 
@@ -94,6 +96,8 @@ namespace AppFramework.Web.UiCustomization.Metronic
             await ChangeSettingForApplicationAsync(AppSettings.UiManagement.SubHeader.Style, settings.SubHeader.SubheaderStyle);
             await ChangeSettingForApplicationAsync(AppSettings.UiManagement.Footer.FixedFooter, settings.Footer.FixedFooter.ToString());
             await ChangeSettingForApplicationAsync(AppSettings.UiManagement.SearchActive, settings.Menu.SearchActive.ToString());
+            
+            await ResetDarkModeSettingsAsync(changerUser);
         }
 
         public async Task<ThemeSettingsDto> GetHostUiManagementSettings()

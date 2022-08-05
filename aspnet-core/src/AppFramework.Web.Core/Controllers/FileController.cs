@@ -11,7 +11,7 @@ using AppFramework.Storage;
 
 namespace AppFramework.Web.Controllers
 {
-    public class FileController : AppFrameworkDemoControllerBase
+    public class FileController : AppFrameworkControllerBase
     {
         private readonly ITempFileCacheManager _tempFileCacheManager;
         private readonly IBinaryObjectManager _binaryObjectManager;

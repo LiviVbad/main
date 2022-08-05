@@ -10,7 +10,7 @@ namespace AppFramework.Migrations.Seed.Host
     {
         public static List<ApplicationLanguage> InitialLanguages => GetInitialLanguages();
 
-        private readonly AppFrameworkDemoDbContext _context;
+        private readonly AppFrameworkDbContext _context;
 
         private static List<ApplicationLanguage> GetInitialLanguages()
         {
@@ -35,7 +35,7 @@ namespace AppFramework.Migrations.Seed.Host
             };
         }
 
-        public DefaultLanguagesCreator(AppFrameworkDemoDbContext context)
+        public DefaultLanguagesCreator(AppFrameworkDbContext context)
         {
             _context = context;
         }

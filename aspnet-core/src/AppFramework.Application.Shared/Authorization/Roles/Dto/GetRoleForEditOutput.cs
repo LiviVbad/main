@@ -1,5 +1,5 @@
-using AppFramework.Authorization.Permissions.Dto;
 using System.Collections.Generic;
+using AppFramework.Authorization.Permissions.Dto;
 
 namespace AppFramework.Authorization.Roles.Dto
 {

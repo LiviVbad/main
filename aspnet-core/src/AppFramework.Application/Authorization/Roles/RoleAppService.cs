@@ -17,7 +17,7 @@ namespace AppFramework.Authorization.Roles
     /// Application service that is used by 'role management' page.
     /// </summary>
     [AbpAuthorize(AppPermissions.Pages_Administration_Roles)]
-    public class RoleAppService : AppFrameworkDemoAppServiceBase, IRoleAppService
+    public class RoleAppService : AppFrameworkAppServiceBase, IRoleAppService
     {
         private readonly RoleManager _roleManager;
         private readonly IRoleManagementConfig _roleManagementConfig;

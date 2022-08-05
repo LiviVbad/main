@@ -23,7 +23,7 @@ using GraphQL;
 
 namespace AppFramework.Queries
 {
-    public class UserQuery : AppFrameworkDemoQueryBase<UserPagedResultGraphType, PagedResultDto<UserDto>>
+    public class UserQuery : AppFrameworkQueryBase<UserPagedResultGraphType, PagedResultDto<UserDto>>
     {
         private readonly UserManager _userManager;
         private readonly IRepository<OrganizationUnit, long> _organizationUnitRepository;

@@ -17,7 +17,7 @@ using System;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20170914070123_Added_ReceiverReadState_To_ChatMessage")]
     partial class Added_ReceiverReadState_To_ChatMessage
     {

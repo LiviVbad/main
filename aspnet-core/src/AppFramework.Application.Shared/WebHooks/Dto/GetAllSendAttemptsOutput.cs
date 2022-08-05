@@ -1,6 +1,7 @@
-﻿using Abp.Webhooks;
-using System;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Net;
+using Abp.Webhooks;
 
 namespace AppFramework.WebHooks.Dto
 {
@@ -9,7 +10,7 @@ namespace AppFramework.WebHooks.Dto
         public Guid Id { get; set; }
 
         /// <summary>
-        /// <see cref="WebhookEvent"/> foreign id
+        /// <see cref="WebhookEvent"/> foreign id 
         /// </summary>
         public Guid WebhookEventId { get; set; }
 

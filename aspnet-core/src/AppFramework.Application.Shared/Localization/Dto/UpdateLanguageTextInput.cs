@@ -1,5 +1,5 @@
-﻿using Abp.Localization;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Abp.Localization;
 
 namespace AppFramework.Localization.Dto
 {

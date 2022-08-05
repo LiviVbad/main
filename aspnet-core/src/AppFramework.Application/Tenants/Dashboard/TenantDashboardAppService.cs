@@ -7,7 +7,7 @@ namespace AppFramework.Tenants.Dashboard
 {
     [DisableAuditing]
     [AbpAuthorize(AppPermissions.Pages_Tenant_Dashboard)]
-    public class TenantDashboardAppService : AppFrameworkDemoAppServiceBase, ITenantDashboardAppService
+    public class TenantDashboardAppService : AppFrameworkAppServiceBase, ITenantDashboardAppService
     {
         public GetMemberActivityOutput GetMemberActivity()
         {

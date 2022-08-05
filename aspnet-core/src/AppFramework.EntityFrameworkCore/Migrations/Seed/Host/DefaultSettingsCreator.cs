@@ -10,9 +10,9 @@ namespace AppFramework.Migrations.Seed.Host
 {
     public class DefaultSettingsCreator
     {
-        private readonly AppFrameworkDemoDbContext _context;
+        private readonly AppFrameworkDbContext _context;
 
-        public DefaultSettingsCreator(AppFrameworkDemoDbContext context)
+        public DefaultSettingsCreator(AppFrameworkDbContext context)
         {
             _context = context;
         }

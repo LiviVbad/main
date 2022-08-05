@@ -588,164 +588,116 @@ namespace AppFramework.Configuration
 
         private IEnumerable<SettingDefinition> GetDashboardSettings()
         {
-            var mvcDefaultSettings = GetDefaultMvcDashboardViews();
-            var mvcDefaultSettingsJson = JsonConvert.SerializeObject(mvcDefaultSettings);
+            var mvcDefaultHostView = GetDefaultMvcHostDashboardView();
+            var mvcDefaultTenantView = GetDefaultMvcTenantDashboardView();
+            
+            var angularDefaultHostView = GetDefaultAngularHostDashboardView();
+            var angularDefaultTenantView = GetDefaultAngularTenantDashboardView();
 
-            var angularDefaultSettings = GetDefaultAngularDashboardViews();
-            var angularDefaultSettingsJson = JsonConvert.SerializeObject(angularDefaultSettings);
+            string GetSettingName(string application, string dashboardName)
+            {
+                return AppSettings.DashboardCustomization.Configuration + "." + application + "." + dashboardName;
+            }
 
             return new[]
             {
                 new SettingDefinition(
-                    AppSettings.DashboardCustomization.Configuration + "." +
-                    AppFrameworkDashboardCustomizationConsts.Applications.Mvc, mvcDefaultSettingsJson,
-                    scopes: SettingScopes.All, clientVisibilityProvider: _visibleSettingClientVisibilityProvider),
+                    GetSettingName(
+                        AppFrameworkDashboardCustomizationConsts.Applications.Mvc,
+                        mvcDefaultHostView.DashboardName
+                    ),
+                    JsonConvert.SerializeObject(mvcDefaultHostView),
+                    scopes: SettingScopes.All,
+                    clientVisibilityProvider: _visibleSettingClientVisibilityProvider
+                ),
                 new SettingDefinition(
-                    AppSettings.DashboardCustomization.Configuration + "." +
-                    AppFrameworkDashboardCustomizationConsts.Applications.Angular, angularDefaultSettingsJson,
-                    scopes: SettingScopes.All, clientVisibilityProvider: _visibleSettingClientVisibilityProvider)
+                    GetSettingName(
+                        AppFrameworkDashboardCustomizationConsts.Applications.Mvc,
+                        mvcDefaultTenantView.DashboardName
+                    ),
+                    JsonConvert.SerializeObject(mvcDefaultTenantView),
+                    scopes: SettingScopes.All,
+                    clientVisibilityProvider: _visibleSettingClientVisibilityProvider
+                ),
+                new SettingDefinition(
+                    GetSettingName(
+                        AppFrameworkDashboardCustomizationConsts.Applications.Angular,
+                        angularDefaultHostView.DashboardName
+                    ),
+                    JsonConvert.SerializeObject(angularDefaultHostView),
+                    scopes: SettingScopes.All,
+                    clientVisibilityProvider: _visibleSettingClientVisibilityProvider
+                ),
+                new SettingDefinition(
+                    GetSettingName(
+                        AppFrameworkDashboardCustomizationConsts.Applications.Angular,
+                        angularDefaultTenantView.DashboardName
+                    ),
+                    JsonConvert.SerializeObject(angularDefaultTenantView),
+                    scopes: SettingScopes.All,
+                    clientVisibilityProvider: _visibleSettingClientVisibilityProvider
+                )
             };
         }
 
-        public List<Dashboard> GetDefaultMvcDashboardViews()
+        public Dashboard GetDefaultMvcHostDashboardView()
         {
             //It is the default dashboard view which your user will see if they don't do any customization.
-            return new List<Dashboard>
+            return new Dashboard
             {
-                new Dashboard
+                DashboardName = AppFrameworkDashboardCustomizationConsts.DashboardNames.DefaultHostDashboard,
+                Pages = new List<Page>
                 {
-                    DashboardName = AppFrameworkDashboardCustomizationConsts.DashboardNames.DefaultTenantDashboard,
-                    Pages = new List<Page>
+                    new Page
                     {
-                        new Page
+                        Name = AppFrameworkDashboardCustomizationConsts.DefaultPageName,
+                        Widgets = new List<Widget>
                         {
-                            Name = AppFrameworkDashboardCustomizationConsts.DefaultPageName,
-                            Widgets = new List<Widget>
+                            new Widget
                             {
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
-                                        .GeneralStats, // General Stats
-                                    Height = 9,
-                                    Width = 6,
-                                    PositionX = 0,
-                                    PositionY = 19
-                                },
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
-                                        .ProfitShare, // Profit Share
-                                    Height = 13,
-                                    Width = 6,
-                                    PositionX = 0,
-                                    PositionY = 28
-                                },
-                                new Widget
-                                {
-                                    WidgetId =
-                                        AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
-                                            .MemberActivity, // Memeber Activity
-                                    Height = 13,
-                                    Width = 6,
-                                    PositionX = 6,
-                                    PositionY = 28
-                                },
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
-                                        .RegionalStats, // Regional Stats
-                                    Height = 14,
-                                    Width = 6,
-                                    PositionX = 6,
-                                    PositionY = 5
-                                },
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
-                                        .DailySales, // Daily Sales
-                                    Height = 9,
-                                    Width = 6,
-                                    PositionX = 6,
-                                    PositionY = 19
-                                },
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
-                                        .TopStats, // Top Stats
-                                    Height = 5,
-                                    Width = 12,
-                                    PositionX = 0,
-                                    PositionY = 0
-                                },
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
-                                        .SalesSummary, // Sales Summary
-                                    Height = 14,
-                                    Width = 6,
-                                    PositionX = 0,
-                                    PositionY = 5
-                                }
-                            }
-                        }
-                    }
-                },
-                new Dashboard
-                {
-                    DashboardName = AppFrameworkDashboardCustomizationConsts.DashboardNames.DefaultHostDashboard,
-                    Pages = new List<Page>
-                    {
-                        new Page
-                        {
-                            Name = AppFrameworkDashboardCustomizationConsts.DefaultPageName,
-                            Widgets = new List<Widget>
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Host
+                                    .TopStats, // Top Stats
+                                Height = 6,
+                                Width = 12,
+                                PositionX = 0,
+                                PositionY = 0
+                            },
+                            new Widget
                             {
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Host
-                                        .TopStats, // Top Stats
-                                    Height = 6,
-                                    Width = 12,
-                                    PositionX = 0,
-                                    PositionY = 0
-                                },
-                                new Widget
-                                {
-                                    WidgetId =
-                                        AppFrameworkDashboardCustomizationConsts.Widgets.Host
-                                            .IncomeStatistics, // Income Statistics
-                                    Height = 11,
-                                    Width = 7,
-                                    PositionX = 0,
-                                    PositionY = 6
-                                },
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Host
-                                        .RecentTenants, // Recent tenants
-                                    Height = 10,
-                                    Width = 5,
-                                    PositionX = 7,
-                                    PositionY = 17
-                                },
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Host
-                                        .SubscriptionExpiringTenants, // Subscription expiring tenants
-                                    Height = 10,
-                                    Width = 7,
-                                    PositionX = 0,
-                                    PositionY = 17
-                                },
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Host
-                                        .EditionStatistics, // Edition statistics
-                                    Height = 11,
-                                    Width = 5,
-                                    PositionX = 7,
-                                    PositionY = 6
-                                }
+                                WidgetId =
+                                    AppFrameworkDashboardCustomizationConsts.Widgets.Host
+                                        .IncomeStatistics, // Income Statistics
+                                Height = 11,
+                                Width = 7,
+                                PositionX = 0,
+                                PositionY = 6
+                            },
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Host
+                                    .RecentTenants, // Recent tenants
+                                Height = 10,
+                                Width = 5,
+                                PositionX = 7,
+                                PositionY = 17
+                            },
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Host
+                                    .SubscriptionExpiringTenants, // Subscription expiring tenants
+                                Height = 10,
+                                Width = 7,
+                                PositionX = 0,
+                                PositionY = 17
+                            },
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Host
+                                    .EditionStatistics, // Edition statistics
+                                Height = 11,
+                                Width = 5,
+                                PositionX = 7,
+                                PositionY = 6
                             }
                         }
                     }
@@ -753,146 +705,231 @@ namespace AppFramework.Configuration
             };
         }
 
-        public List<Dashboard> GetDefaultAngularDashboardViews()
+        public Dashboard GetDefaultMvcTenantDashboardView()
         {
             //It is the default dashboard view which your user will see if they don't do any customization.
-            return new List<Dashboard>
+            return new Dashboard
             {
-                new Dashboard
+                DashboardName = AppFrameworkDashboardCustomizationConsts.DashboardNames.DefaultTenantDashboard,
+                Pages = new List<Page>
                 {
-                    DashboardName = AppFrameworkDashboardCustomizationConsts.DashboardNames.DefaultTenantDashboard,
-                    Pages = new List<Page>
+                    new Page
                     {
-                        new Page
+                        Name = AppFrameworkDashboardCustomizationConsts.DefaultPageName,
+                        Widgets = new List<Widget>
                         {
-                            Name = AppFrameworkDashboardCustomizationConsts.DefaultPageName,
-                            Widgets = new List<Widget>
+                            new Widget
                             {
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
-                                        .TopStats, // Top Stats
-                                    Height = 4,
-                                    Width = 12,
-                                    PositionX = 0,
-                                    PositionY = 0
-                                },
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
-                                        .SalesSummary, // Sales Summary
-                                    Height = 12,
-                                    Width = 6,
-                                    PositionX = 0,
-                                    PositionY = 4
-                                },
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
-                                        .RegionalStats, // Regional Stats
-                                    Height = 12,
-                                    Width = 6,
-                                    PositionX = 6,
-                                    PositionY = 4
-                                },
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
-                                        .GeneralStats, // General Stats
-                                    Height = 8,
-                                    Width = 6,
-                                    PositionX = 0,
-                                    PositionY = 16
-                                },
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
-                                        .DailySales, // Daily Sales
-                                    Height = 8,
-                                    Width = 6,
-                                    PositionX = 6,
-                                    PositionY = 16
-                                },
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
-                                        .ProfitShare, // Profit Share
-                                    Height = 11,
-                                    Width = 6,
-                                    PositionX = 0,
-                                    PositionY = 24
-                                },
-                                new Widget
-                                {
-                                    WidgetId =
-                                        AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
-                                            .MemberActivity, // Member Activity
-                                    Height = 11,
-                                    Width = 6,
-                                    PositionX = 6,
-                                    PositionY = 24
-                                }
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
+                                    .GeneralStats, // General Stats
+                                Height = 9,
+                                Width = 6,
+                                PositionX = 0,
+                                PositionY = 19
+                            },
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
+                                    .ProfitShare, // Profit Share
+                                Height = 13,
+                                Width = 6,
+                                PositionX = 0,
+                                PositionY = 28
+                            },
+                            new Widget
+                            {
+                                WidgetId =
+                                    AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
+                                        .MemberActivity, // Memeber Activity
+                                Height = 13,
+                                Width = 6,
+                                PositionX = 6,
+                                PositionY = 28
+                            },
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
+                                    .RegionalStats, // Regional Stats
+                                Height = 14,
+                                Width = 6,
+                                PositionX = 6,
+                                PositionY = 5
+                            },
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
+                                    .DailySales, // Daily Sales
+                                Height = 9,
+                                Width = 6,
+                                PositionX = 6,
+                                PositionY = 19
+                            },
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
+                                    .TopStats, // Top Stats
+                                Height = 5,
+                                Width = 12,
+                                PositionX = 0,
+                                PositionY = 0
+                            },
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
+                                    .SalesSummary, // Sales Summary
+                                Height = 14,
+                                Width = 6,
+                                PositionX = 0,
+                                PositionY = 5
                             }
                         }
                     }
-                },
-                new Dashboard
+                }
+            };
+        }
+
+        public Dashboard GetDefaultAngularHostDashboardView()
+        {
+            //It is the default dashboard view which your user will see if they don't do any customization.
+            return new Dashboard
+            {
+                DashboardName = AppFrameworkDashboardCustomizationConsts.DashboardNames.DefaultHostDashboard,
+                Pages = new List<Page>
                 {
-                    DashboardName = AppFrameworkDashboardCustomizationConsts.DashboardNames.DefaultHostDashboard,
-                    Pages = new List<Page>
+                    new Page
                     {
-                        new Page
+                        Name = AppFrameworkDashboardCustomizationConsts.DefaultPageName,
+                        Widgets = new List<Widget>
                         {
-                            Name = AppFrameworkDashboardCustomizationConsts.DefaultPageName,
-                            Widgets = new List<Widget>
+                            new Widget
                             {
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Host
-                                        .TopStats, // Top Stats
-                                    Height = 4,
-                                    Width = 12,
-                                    PositionX = 0,
-                                    PositionY = 0
-                                },
-                                new Widget
-                                {
-                                    WidgetId =
-                                        AppFrameworkDashboardCustomizationConsts.Widgets.Host
-                                            .IncomeStatistics, // Income Statistics
-                                    Height = 8,
-                                    Width = 7,
-                                    PositionX = 0,
-                                    PositionY = 4
-                                },
-                                new Widget
-                                {
-                                    WidgetId =
-                                        AppFrameworkDashboardCustomizationConsts.Widgets.Host
-                                            .RecentTenants, // Recent tenants
-                                    Height = 9,
-                                    Width = 5,
-                                    PositionX = 7,
-                                    PositionY = 12
-                                },
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Host
-                                        .SubscriptionExpiringTenants, // Subscription expiring tenants
-                                    Height = 9,
-                                    Width = 7,
-                                    PositionX = 0,
-                                    PositionY = 12
-                                },
-                                new Widget
-                                {
-                                    WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Host
-                                        .EditionStatistics, // Edition statistics
-                                    Height = 8,
-                                    Width = 5,
-                                    PositionX = 7,
-                                    PositionY = 4
-                                }
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Host
+                                    .TopStats, // Top Stats
+                                Height = 5,
+                                Width = 12,
+                                PositionX = 0,
+                                PositionY = 0
+                            },
+                            new Widget
+                            {
+                                WidgetId =
+                                    AppFrameworkDashboardCustomizationConsts.Widgets.Host
+                                        .IncomeStatistics, // Income Statistics
+                                Height = 8,
+                                Width = 7,
+                                PositionX = 0,
+                                PositionY = 5
+                            },
+                            new Widget
+                            {
+                                WidgetId =
+                                    AppFrameworkDashboardCustomizationConsts.Widgets.Host
+                                        .RecentTenants, // Recent tenants
+                                Height = 9,
+                                Width = 5,
+                                PositionX = 7,
+                                PositionY = 13
+                            },
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Host
+                                    .SubscriptionExpiringTenants, // Subscription expiring tenants
+                                Height = 9,
+                                Width = 7,
+                                PositionX = 0,
+                                PositionY = 13
+                            },
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Host
+                                    .EditionStatistics, // Edition statistics
+                                Height = 8,
+                                Width = 5,
+                                PositionX = 7,
+                                PositionY = 5
+                            }
+                        }
+                    }
+                }
+            };
+        }
+
+        public Dashboard GetDefaultAngularTenantDashboardView()
+        {
+            //It is the default dashboard view which your user will see if they don't do any customization.
+            return new Dashboard
+            {
+                DashboardName = AppFrameworkDashboardCustomizationConsts.DashboardNames.DefaultTenantDashboard,
+                Pages = new List<Page>
+                {
+                    new Page
+                    {
+                        Name = AppFrameworkDashboardCustomizationConsts.DefaultPageName,
+                        Widgets = new List<Widget>
+                        {
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
+                                    .TopStats, // Top Stats
+                                Height = 4,
+                                Width = 12,
+                                PositionX = 0,
+                                PositionY = 0
+                            },
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
+                                    .SalesSummary, // Sales Summary
+                                Height = 12,
+                                Width = 6,
+                                PositionX = 0,
+                                PositionY = 4
+                            },
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
+                                    .RegionalStats, // Regional Stats
+                                Height = 12,
+                                Width = 6,
+                                PositionX = 6,
+                                PositionY = 4
+                            },
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
+                                    .GeneralStats, // General Stats
+                                Height = 8,
+                                Width = 6,
+                                PositionX = 0,
+                                PositionY = 16
+                            },
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
+                                    .DailySales, // Daily Sales
+                                Height = 8,
+                                Width = 6,
+                                PositionX = 6,
+                                PositionY = 16
+                            },
+                            new Widget
+                            {
+                                WidgetId = AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
+                                    .ProfitShare, // Profit Share
+                                Height = 11,
+                                Width = 6,
+                                PositionX = 0,
+                                PositionY = 24
+                            },
+                            new Widget
+                            {
+                                WidgetId =
+                                    AppFrameworkDashboardCustomizationConsts.Widgets.Tenant
+                                        .MemberActivity, // Member Activity
+                                Height = 11,
+                                Width = 6,
+                                PositionX = 6,
+                                PositionY = 24
                             }
                         }
                     }

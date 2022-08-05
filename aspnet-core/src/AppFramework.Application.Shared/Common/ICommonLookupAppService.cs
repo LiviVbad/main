@@ -1,8 +1,8 @@
-﻿using Abp.Application.Services;
+﻿using System.Threading.Tasks;
+using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using AppFramework.Common.Dto;
 using AppFramework.Editions.Dto;
-using System.Threading.Tasks;
 
 namespace AppFramework.Common
 {

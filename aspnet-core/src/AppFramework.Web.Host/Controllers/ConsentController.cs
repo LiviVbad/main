@@ -12,7 +12,7 @@ using AppFramework.Web.Models.Consent;
 
 namespace AppFramework.Web.Controllers
 {
-    public class ConsentController : AppFrameworkDemoControllerBase
+    public class ConsentController : AppFrameworkControllerBase
     {
         private readonly IIdentityServerInteractionService _interaction;
         private readonly IResourceStore _resourceStore;

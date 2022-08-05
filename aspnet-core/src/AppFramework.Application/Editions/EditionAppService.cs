@@ -18,7 +18,7 @@ using AppFramework.MultiTenancy;
 
 namespace AppFramework.Editions
 {
-    public class EditionAppService : AppFrameworkDemoAppServiceBase, IEditionAppService
+    public class EditionAppService : AppFrameworkAppServiceBase, IEditionAppService
     {
         private readonly EditionManager _editionManager;
         private readonly IRepository<SubscribableEdition> _editionRepository;
@@ -129,7 +129,7 @@ namespace AppFramework.Editions
             });
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Editions, AppPermissions.Pages_Tenants)]
+        [AbpAuthorize(AppPermissions.Pages_Editions,AppPermissions.Pages_Tenants)]
         public async Task<List<SubscribableEditionComboboxItemDto>> GetEditionComboboxItems(int? selectedEditionId = null, bool addAllItem = false, bool onlyFreeItems = false)
         {
             var editions = await _editionManager.Editions.ToListAsync();

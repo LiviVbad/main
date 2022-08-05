@@ -1,5 +1,5 @@
-﻿using Abp;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Abp;
 
 namespace AppFramework.Authorization.Accounts.Dto
 {

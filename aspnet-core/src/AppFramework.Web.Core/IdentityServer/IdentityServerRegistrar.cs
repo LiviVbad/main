@@ -18,7 +18,7 @@ namespace AppFramework.Web.IdentityServer
                 .AddInMemoryApiScopes(IdentityServerConfig.GetApiScopes())
                 .AddInMemoryApiResources(IdentityServerConfig.GetApiResources())
                 .AddInMemoryClients(IdentityServerConfig.GetClients(configuration))
-                .AddAbpPersistedGrants<AppFrameworkDemoDbContext>()
+                .AddAbpPersistedGrants<AppFrameworkDbContext>()
                 .AddAbpIdentityServer<User>();
         }
 

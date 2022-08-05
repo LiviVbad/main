@@ -7,7 +7,7 @@ using AppFramework.Configuration;
 
 namespace AppFramework.Web.Controllers
 {
-    public class HomeController : AppFrameworkDemoControllerBase
+    public class HomeController : AppFrameworkControllerBase
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
         readonly IConfigurationRoot _appConfiguration;

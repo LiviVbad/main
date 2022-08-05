@@ -17,7 +17,7 @@ namespace AppFramework.Migrator
 
             bool.TryParse(Environment.GetEnvironmentVariable("ASPNETCORE_Docker_Enabled"), out bool isDockerEnabled);
 
-            using (var bootstrapper = AbpBootstrapper.Create<AppFrameworkDemoMigratorModule>())
+            using (var bootstrapper = AbpBootstrapper.Create<AppFrameworkMigratorModule>())
             {
                 bootstrapper.IocManager.IocContainer
                     .AddFacility<LoggingFacility>(f => f.UseAbpLog4Net()

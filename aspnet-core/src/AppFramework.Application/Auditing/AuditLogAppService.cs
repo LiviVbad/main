@@ -18,13 +18,12 @@ using AppFramework.Authorization.Users;
 using AppFramework.Dto;
 using AppFramework.EntityHistory;
 using EntityHistoryHelper = AppFramework.EntityHistory.EntityHistoryHelper;
-using AppFramework.Auditing;
 
 namespace AppFramework.Auditing
 {
     [DisableAuditing]
     [AbpAuthorize(AppPermissions.Pages_Administration_AuditLogs)]
-    public class AuditLogAppService : AppFrameworkDemoAppServiceBase, IAuditLogAppService
+    public class AuditLogAppService : AppFrameworkAppServiceBase, IAuditLogAppService
     {
         private readonly IRepository<AuditLog, long> _auditLogRepository;
         private readonly IRepository<EntityChange, long> _entityChangeRepository;

@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using Abp;
@@ -26,11 +25,14 @@ using AppFramework.Net.Sms;
 using AppFramework.Security;
 using AppFramework.Storage;
 using AppFramework.Timing;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats;
+using SixLabors.ImageSharp.Processing;
 
 namespace AppFramework.Authorization.Users.Profile
 {
     [AbpAuthorize]
-    public class ProfileAppService : AppFrameworkDemoAppServiceBase, IProfileAppService
+    public class ProfileAppService : AppFrameworkAppServiceBase, IProfileAppService
     {
         private const int MaxProfilPictureBytes = 5242880; //5MB
         private readonly IBinaryObjectManager _binaryObjectManager;
@@ -208,14 +210,49 @@ namespace AppFramework.Authorization.Users.Profile
 
         public async Task UpdateProfilePicture(UpdateProfilePictureInput input)
         {
-            var allowToUseGravatar = await SettingManager.GetSettingValueAsync<bool>(AppSettings.UserManagement.AllowUsingGravatarProfilePicture);
+            var userId = AbpSession.GetUserId();
+            if (input.UserId.HasValue && input.UserId.Value != userId)
+            {
+                await CheckUpdateUsersProfilePicturePermission();
+                userId = input.UserId.Value;
+            }
+            
+            await UpdateProfilePictureForUser(userId, input);
+        }
+
+        private async Task CheckUpdateUsersProfilePicturePermission()
+        {
+            var permissionToChangeAnotherUsersProfilePicture = await PermissionChecker.IsGrantedAsync(
+                AppPermissions.Pages_Administration_Languages_ChangeDefaultLanguage
+            );
+
+            if (!permissionToChangeAnotherUsersProfilePicture)
+            {
+                var localizedPermissionName = L("UpdateUsersProfilePicture");
+                throw new AbpAuthorizationException(
+                    string.Format(
+                        L("AllOfThesePermissionsMustBeGranted"),
+                        localizedPermissionName
+                    )
+                );
+            }
+        }
+
+        private async Task UpdateProfilePictureForUser(long userId, UpdateProfilePictureInput input)
+        {
+            var userIdentifier = new UserIdentifier(AbpSession.TenantId, userId);
+            var allowToUseGravatar = await SettingManager.GetSettingValueForUserAsync<bool>(
+                AppSettings.UserManagement.AllowUsingGravatarProfilePicture,
+                user: userIdentifier
+            );
+            
             if (!allowToUseGravatar)
             {
                 input.UseGravatarProfilePicture = false;
             }
 
             await SettingManager.ChangeSettingForUserAsync(
-                AbpSession.ToUserIdentifier(),
+                userIdentifier,
                 AppSettings.UserManagement.UseGravatarProfilePicture,
                 input.UseGravatarProfilePicture.ToString().ToLowerInvariant()
             );
@@ -234,15 +271,18 @@ namespace AppFramework.Authorization.Users.Profile
                 throw new UserFriendlyException("There is no such image file with the token: " + input.FileToken);
             }
 
-            using (var bmpImage = new Bitmap(new MemoryStream(imageBytes)))
+            using (var image = Image.Load(imageBytes, out IImageFormat format))
             {
-                var width = (input.Width == 0 || input.Width > bmpImage.Width) ? bmpImage.Width : input.Width;
-                var height = (input.Height == 0 || input.Height > bmpImage.Height) ? bmpImage.Height : input.Height;
-                var bmCrop = bmpImage.Clone(new Rectangle(input.X, input.Y, width, height), bmpImage.PixelFormat);
+                var width = (input.Width == 0 || input.Width > image.Width) ? image.Width : input.Width;
+                var height = (input.Height == 0 || input.Height > image.Height) ? image.Height : input.Height;
 
-                using (var stream = new MemoryStream())
+                var bmCrop = image.Clone(i =>
+                    i.Crop(new Rectangle(input.X, input.Y, width, height))
+                );
+
+                await using (var stream = new MemoryStream())
                 {
-                    bmCrop.Save(stream, bmpImage.RawFormat);
+                    await bmCrop.SaveAsync(stream, format);
                     byteArray = stream.ToArray();
                 }
             }
@@ -253,18 +293,19 @@ namespace AppFramework.Authorization.Users.Profile
                     AppConsts.ResizedMaxProfilePictureBytesUserFriendlyValue));
             }
 
-            var user = await UserManager.GetUserByIdAsync(AbpSession.GetUserId());
+            var user = await UserManager.GetUserByIdAsync(userIdentifier.UserId);
 
             if (user.ProfilePictureId.HasValue)
             {
                 await _binaryObjectManager.DeleteAsync(user.ProfilePictureId.Value);
             }
 
-            var storedFile = new BinaryObject(AbpSession.TenantId, byteArray, $"Profile picture of user {AbpSession.UserId}. {DateTime.UtcNow}");
+            var storedFile = new BinaryObject(userIdentifier.TenantId, byteArray, $"Profile picture of user {userIdentifier.UserId}. {DateTime.UtcNow}");
             await _binaryObjectManager.SaveAsync(storedFile);
 
             user.ProfilePictureId = storedFile.Id;
         }
+        
 
         [AbpAllowAnonymous]
         public async Task<GetPasswordComplexitySettingOutput> GetPasswordComplexitySetting()

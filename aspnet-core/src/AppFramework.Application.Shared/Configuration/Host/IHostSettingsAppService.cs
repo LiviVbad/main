@@ -1,6 +1,6 @@
-﻿using Abp.Application.Services;
+﻿using System.Threading.Tasks;
+using Abp.Application.Services;
 using AppFramework.Configuration.Host.Dto;
-using System.Threading.Tasks;
 
 namespace AppFramework.Configuration.Host
 {

@@ -11,7 +11,7 @@ using AppFramework.Storage;
 
 namespace AppFramework.Web.Controllers
 {
-    public class ChatControllerBase : AppFrameworkDemoControllerBase
+    public class ChatControllerBase : AppFrameworkControllerBase
     {
         protected readonly IBinaryObjectManager BinaryObjectManager;
         protected readonly IChatMessageManager ChatMessageManager;

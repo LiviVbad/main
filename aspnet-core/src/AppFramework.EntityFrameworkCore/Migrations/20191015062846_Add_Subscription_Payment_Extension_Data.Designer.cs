@@ -9,7 +9,7 @@ using AppFramework.EntityFrameworkCore;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20191015062846_Add_Subscription_Payment_Extension_Data")]
     partial class Add_Subscription_Payment_Extension_Data
     {

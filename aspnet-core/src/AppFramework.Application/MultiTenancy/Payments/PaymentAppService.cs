@@ -20,7 +20,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AppFramework.MultiTenancy.Payments
 {
-    public class PaymentAppService : AppFrameworkDemoAppServiceBase, IPaymentAppService
+    public class PaymentAppService : AppFrameworkAppServiceBase, IPaymentAppService
     {
         private readonly ISubscriptionPaymentRepository _subscriptionPaymentRepository;
         private readonly EditionManager _editionManager;

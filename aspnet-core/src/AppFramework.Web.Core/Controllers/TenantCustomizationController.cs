@@ -1,5 +1,4 @@
 using System;
-using System.Drawing.Imaging;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -16,14 +15,20 @@ using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using AppFramework.Authorization;
+using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.MultiTenancy;
 using AppFramework.Storage;
 using AppFramework.Web.Helpers;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats;
+using SixLabors.ImageSharp.Formats.Gif;
+using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.ImageSharp.Formats.Png;
 
 namespace AppFramework.Web.Controllers
 {
     [AbpMvcAuthorize]
-    public class TenantCustomizationController : AppFrameworkDemoControllerBase
+    public class TenantCustomizationController : AppFrameworkControllerBase
     {
         private readonly TenantManager _tenantManager;
         private readonly IBinaryObjectManager _binaryObjectManager;
@@ -63,11 +68,13 @@ namespace AppFramework.Web.Controllers
                 {
                     fileBytes = stream.GetAllBytes();
                 }
-
-                var imageFormat = ImageFormatHelper.GetRawImageFormat(fileBytes);
-                if (!imageFormat.IsIn(ImageFormat.Jpeg, ImageFormat.Png, ImageFormat.Gif))
+                
+                using (Image.Load(fileBytes, out IImageFormat format))
                 {
-                    throw new UserFriendlyException(L("File_Invalid_Type_Error"));
+                    if (!format.IsIn(JpegFormat.Instance, PngFormat.Instance, GifFormat.Instance))
+                    {
+                        throw new UserFriendlyException(L("File_Invalid_Type_Error"));
+                    }
                 }
 
                 var logoObject = new BinaryObject(AbpSession.GetTenantId(), fileBytes, $"Logo {DateTime.UtcNow}");

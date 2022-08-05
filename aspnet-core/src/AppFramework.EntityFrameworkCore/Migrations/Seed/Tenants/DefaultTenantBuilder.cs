@@ -8,9 +8,9 @@ namespace AppFramework.Migrations.Seed.Tenants
 {
     public class DefaultTenantBuilder
     {
-        private readonly AppFrameworkDemoDbContext _context;
+        private readonly AppFrameworkDbContext _context;
 
-        public DefaultTenantBuilder(AppFrameworkDemoDbContext context)
+        public DefaultTenantBuilder(AppFrameworkDbContext context)
         {
             _context = context;
         }

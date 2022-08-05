@@ -50,7 +50,7 @@ namespace AppFramework.Web.Startup
                     };
 
                     options.SecurityTokenValidators.Clear();
-                    options.AsyncSecurityTokenValidators.Add(new AppFrameworkDemoAsyncJwtSecurityTokenHandler());
+                    options.AsyncSecurityTokenValidators.Add(new AppFrameworkAsyncJwtSecurityTokenHandler());
 
                     options.Events = new JwtBearerEvents
                     {

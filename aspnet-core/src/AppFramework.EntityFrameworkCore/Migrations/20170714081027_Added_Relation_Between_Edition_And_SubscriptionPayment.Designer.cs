@@ -13,7 +13,7 @@ using AppFramework.MultiTenancy.Payments;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20170714081027_Added_Relation_Between_Edition_And_SubscriptionPayment")]
     partial class Added_Relation_Between_Edition_And_SubscriptionPayment
     {

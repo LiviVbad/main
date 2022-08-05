@@ -1,15 +1,15 @@
-﻿using Abp.Application.Services;
+﻿using System;
+using System.Threading.Tasks;
+using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using AppFramework.Notifications.Dto;
-using System;
-using System.Threading.Tasks;
 
 namespace AppFramework.Notifications
 {
     public interface INotificationAppService : IApplicationService
     {
         Task<GetNotificationsOutput> GetUserNotifications(GetUserNotificationsInput input);
-
+        
         Task SetAllNotificationsAsRead();
 
         Task<SetNotificationAsReadOutput> SetNotificationAsRead(EntityDto<Guid> input);

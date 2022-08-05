@@ -1,6 +1,6 @@
-﻿using Abp.Application.Services.Dto;
+﻿using System;
+using Abp.Application.Services.Dto;
 using AppFramework.Friendships;
-using System;
 
 namespace AppFramework.Chat.Dto
 {

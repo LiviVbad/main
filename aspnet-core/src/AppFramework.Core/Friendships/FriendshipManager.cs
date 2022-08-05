@@ -7,7 +7,7 @@ using Abp.UI;
 
 namespace AppFramework.Friendships
 {
-    public class FriendshipManager : AppFrameworkDemoDomainServiceBase, IFriendshipManager
+    public class FriendshipManager : AppFrameworkDomainServiceBase, IFriendshipManager
     {
         private readonly IRepository<Friendship, long> _friendshipRepository;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
@@ -77,6 +77,20 @@ namespace AppFramework.Friendships
 
                 friendship.State = FriendshipState.Blocked;
                 await UpdateFriendshipAsync(friendship);
+            });
+        }
+
+        public async Task RemoveFriendAsync(UserIdentifier userIdentifier, UserIdentifier probableFriend)
+        {
+            await _unitOfWorkManager.WithUnitOfWorkAsync(async () =>
+            {
+                var friendship = (await GetFriendshipOrNullAsync(userIdentifier, probableFriend));
+                if (friendship == null)
+                {
+                    throw new Exception("Friendship does not exist between " + userIdentifier + " and " + probableFriend);
+                }
+
+                await _friendshipRepository.DeleteAsync(friendship);
             });
         }
 

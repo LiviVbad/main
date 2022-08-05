@@ -1,7 +1,7 @@
-using Abp.Extensions;
-using Abp.Runtime.Validation;
 using System;
 using System.ComponentModel.DataAnnotations;
+using Abp.Extensions;
+using Abp.Runtime.Validation;
 
 namespace AppFramework.Authorization.Users.Profile.Dto
 {
@@ -17,9 +17,11 @@ namespace AppFramework.Authorization.Users.Profile.Dto
         public int Width { get; set; }
 
         public int Height { get; set; }
-
+        
         public bool UseGravatarProfilePicture { get; set; }
-
+        
+        public long? UserId { get; set; }
+        
         public void AddValidationErrors(CustomValidationContext context)
         {
             if (!UseGravatarProfilePicture && FileToken.IsNullOrEmpty())

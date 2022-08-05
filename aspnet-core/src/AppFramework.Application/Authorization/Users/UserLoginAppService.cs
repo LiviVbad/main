@@ -16,7 +16,7 @@ using AppFramework.Authorization.Users.Dto;
 namespace AppFramework.Authorization.Users
 {
     [AbpAuthorize]
-    public class UserLoginAppService : AppFrameworkDemoAppServiceBase, IUserLoginAppService
+    public class UserLoginAppService : AppFrameworkAppServiceBase, IUserLoginAppService
     {
         private readonly IRepository<UserLoginAttempt, long> _userLoginAttemptRepository;
 

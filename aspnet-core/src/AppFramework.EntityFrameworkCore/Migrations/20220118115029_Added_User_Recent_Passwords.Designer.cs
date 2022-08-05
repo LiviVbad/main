@@ -11,7 +11,7 @@ using AppFramework.EntityFrameworkCore;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20220118115029_Added_User_Recent_Passwords")]
     partial class Added_User_Recent_Passwords
     {

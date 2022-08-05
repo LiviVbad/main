@@ -13,7 +13,7 @@ using AppFramework.MultiTenancy.Payments;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20170623075109_AspNetZero_V4_1_Changes")]
     partial class AspNetZero_V4_1_Changes
     {

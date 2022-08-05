@@ -15,10 +15,10 @@ namespace AppFramework.Migrations.Seed
     {
         public static void SeedHostDb(IIocResolver iocResolver)
         {
-            WithDbContext<AppFrameworkDemoDbContext>(iocResolver, SeedHostDb);
+            WithDbContext<AppFrameworkDbContext>(iocResolver, SeedHostDb);
         }
 
-        public static void SeedHostDb(AppFrameworkDemoDbContext context)
+        public static void SeedHostDb(AppFrameworkDbContext context)
         {
             context.SuppressAutoSetTenantId = true;
 

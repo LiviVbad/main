@@ -15,7 +15,7 @@ namespace AppFramework.MultiTenancy.HostDashboard
 {
     [DisableAuditing]
     [AbpAuthorize(AppPermissions.Pages_Administration_Host_Dashboard)]
-    public class HostDashboardAppService : AppFrameworkDemoAppServiceBase, IHostDashboardAppService
+    public class HostDashboardAppService : AppFrameworkAppServiceBase, IHostDashboardAppService
     {
         private const int SubscriptionEndAlertDayCount = 30;
         private const int MaxExpiringTenantsShownCount = 10;

@@ -1,6 +1,6 @@
-﻿using Abp.Application.Services.Dto;
+﻿using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
 using AppFramework.DynamicEntityProperties.Dto;
-using System.Threading.Tasks;
 
 namespace AppFramework.DynamicEntityProperties
 {
@@ -10,6 +10,7 @@ namespace AppFramework.DynamicEntityProperties
 
         Task<ListResultDto<DynamicEntityPropertyDto>> GetAllPropertiesOfAnEntity(DynamicEntityPropertyGetAllInput input);
 
+
         Task<ListResultDto<DynamicEntityPropertyDto>> GetAll();
 
         Task Add(DynamicEntityPropertyDto dto);
@@ -17,7 +18,7 @@ namespace AppFramework.DynamicEntityProperties
         Task Update(DynamicEntityPropertyDto dto);
 
         Task Delete(int id);
-
+        
         Task<ListResultDto<GetAllEntitiesHasDynamicPropertyOutput>> GetAllEntitiesHasDynamicProperty();
     }
 }

@@ -1,5 +1,5 @@
-﻿using AppFramework.Editions.Dto;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using AppFramework.Editions.Dto;
 
 namespace AppFramework.MultiTenancy.Dto
 {

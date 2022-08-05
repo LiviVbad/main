@@ -1,11 +1,11 @@
+using System.Threading.Tasks;
 using Abp.Application.Services;
 using AppFramework.Editions.Dto;
 using AppFramework.MultiTenancy.Dto;
-using System.Threading.Tasks;
 
 namespace AppFramework.MultiTenancy
 {
-    public interface ITenantRegistrationAppService : IApplicationService
+    public interface ITenantRegistrationAppService: IApplicationService
     {
         Task<RegisterTenantOutput> RegisterTenant(RegisterTenantInput input);
 

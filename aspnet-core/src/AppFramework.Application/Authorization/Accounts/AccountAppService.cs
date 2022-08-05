@@ -23,7 +23,7 @@ using Abp.Domain.Repositories;
 
 namespace AppFramework.Authorization.Accounts
 {
-    public class AccountAppService : AppFrameworkDemoAppServiceBase, IAccountAppService
+    public class AccountAppService : AppFrameworkAppServiceBase, IAccountAppService
     {
         public IAppUrlService AppUrlService { get; set; }
 

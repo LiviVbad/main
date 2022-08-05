@@ -13,7 +13,7 @@ using AppFramework.MultiTenancy.Payments;
 
 namespace AppFramework.Migrations
 {
-    [DbContext(typeof(AppFrameworkDemoDbContext))]
+    [DbContext(typeof(AppFrameworkDbContext))]
     [Migration("20170914084815_Invoice_Changes")]
     partial class Invoice_Changes
     {

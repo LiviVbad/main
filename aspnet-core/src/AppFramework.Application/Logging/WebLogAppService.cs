@@ -13,7 +13,7 @@ using AppFramework.Storage;
 namespace AppFramework.Logging
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_Host_Maintenance)]
-    public class WebLogAppService : AppFrameworkDemoAppServiceBase, IWebLogAppService
+    public class WebLogAppService : AppFrameworkAppServiceBase, IWebLogAppService
     {
         private readonly IAppFolders _appFolders;
         private readonly ITempFileCacheManager _tempFileCacheManager;

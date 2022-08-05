@@ -15,7 +15,7 @@ using AppFramework.Types;
 
 namespace AppFramework.Queries
 {
-    public class RoleQuery : AppFrameworkDemoQueryBase<ListGraphType<RoleType>, List<RoleDto>>
+    public class RoleQuery : AppFrameworkQueryBase<ListGraphType<RoleType>, List<RoleDto>>
     {
         private readonly RoleManager _roleManager;
 

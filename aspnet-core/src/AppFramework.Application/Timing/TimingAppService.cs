@@ -8,7 +8,7 @@ using TimeZoneConverter;
 
 namespace AppFramework.Timing
 {
-    public class TimingAppService : AppFrameworkDemoAppServiceBase, ITimingAppService
+    public class TimingAppService : AppFrameworkAppServiceBase, ITimingAppService
     {
         private readonly ITimeZoneService _timeZoneService;
 

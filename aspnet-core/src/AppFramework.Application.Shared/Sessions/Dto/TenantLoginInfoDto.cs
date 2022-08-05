@@ -1,8 +1,8 @@
-﻿using Abp.Application.Services.Dto;
+﻿using System;
+using System.Collections.Generic;
+using Abp.Application.Services.Dto;
 using Abp.Timing;
 using AppFramework.MultiTenancy.Payments;
-using System;
-using System.Collections.Generic;
 
 namespace AppFramework.Sessions.Dto
 {
@@ -25,7 +25,7 @@ namespace AppFramework.Sessions.Dto
         public SubscriptionPaymentType SubscriptionPaymentType { get; set; }
 
         public EditionInfoDto Edition { get; set; }
-
+        
         public List<NameValueDto> FeatureValues { get; set; }
 
         public DateTime CreationTime { get; set; }
@@ -40,7 +40,7 @@ namespace AppFramework.Sessions.Dto
         {
             FeatureValues = new List<NameValueDto>();
         }
-
+        
         public bool IsInTrial()
         {
             return IsInTrialPeriod;

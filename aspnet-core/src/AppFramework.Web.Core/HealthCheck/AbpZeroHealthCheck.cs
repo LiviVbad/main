@@ -8,8 +8,8 @@ namespace AppFramework.Web.HealthCheck
         public static IHealthChecksBuilder AddAbpZeroHealthCheck(this IServiceCollection services)
         {
             var builder = services.AddHealthChecks();
-            builder.AddCheck<AppFrameworkDemoDbContextHealthCheck>("Database Connection");
-            builder.AddCheck<AppFrameworkDemoDbContextUsersHealthCheck>("Database Connection with user check");
+            builder.AddCheck<AppFrameworkDbContextHealthCheck>("Database Connection");
+            builder.AddCheck<AppFrameworkDbContextUsersHealthCheck>("Database Connection with user check");
             builder.AddCheck<CacheHealthCheck>("Cache");
 
             // add your custom health checks here

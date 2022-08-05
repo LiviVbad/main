@@ -50,7 +50,7 @@ using AppFramework.Authorization.Delegation;
 namespace AppFramework.Web.Controllers
 {
     [Route("api/[controller]/[action]")]
-    public class TokenAuthController : AppFrameworkDemoControllerBase
+    public class TokenAuthController : AppFrameworkControllerBase
     {
         private const string UserIdentifierClaimType = "http://aspnetzero.com/claims/useridentifier";
 
@@ -60,7 +60,7 @@ namespace AppFramework.Web.Controllers
         private readonly TokenAuthConfiguration _configuration;
         private readonly UserManager _userManager;
         private readonly ICacheManager _cacheManager;
-        private readonly IOptions<JwtBearerOptions> _jwtOptions;
+        private readonly IOptions<AsyncJwtBearerOptions> _jwtOptions;
         private readonly IExternalAuthConfiguration _externalAuthConfiguration;
         private readonly IExternalAuthManager _externalAuthManager;
         private readonly UserRegistrationManager _userRegistrationManager;
@@ -85,7 +85,7 @@ namespace AppFramework.Web.Controllers
             TokenAuthConfiguration configuration,
             UserManager userManager,
             ICacheManager cacheManager,
-            IOptions<JwtBearerOptions> jwtOptions,
+            IOptions<AsyncJwtBearerOptions> jwtOptions,
             IExternalAuthConfiguration externalAuthConfiguration,
             IExternalAuthManager externalAuthManager,
             UserRegistrationManager userRegistrationManager,
@@ -195,11 +195,7 @@ namespace AppFramework.Web.Controllers
             // One Concurrent Login 
             if (AllowOneConcurrentLoginPerUser())
             {
-                await _userManager.UpdateSecurityStampAsync(loginResult.User);
-                await _securityStampHandler.SetSecurityStampCacheItem(loginResult.User.TenantId, loginResult.User.Id,
-                    loginResult.User.SecurityStamp);
-                loginResult.Identity.ReplaceClaim(new Claim(AppConsts.SecurityStampKey,
-                    loginResult.User.SecurityStamp));
+                await ResetSecurityStampForLoginResult(loginResult);
             }
 
             var refreshToken = CreateRefreshToken(await CreateJwtClaims(loginResult.Identity, loginResult.User,
@@ -228,7 +224,8 @@ namespace AppFramework.Web.Controllers
                 throw new ArgumentNullException(nameof(refreshToken));
             }
 
-            if (!IsRefreshTokenValid(refreshToken, out var principal))
+            var (isRefreshTokenValid, principal) = await IsRefreshTokenValid(refreshToken);
+            if (!isRefreshTokenValid)
             {
                 throw new ValidationException("Refresh token is not valid!");
             }
@@ -242,6 +239,12 @@ namespace AppFramework.Web.Controllers
                 if (user == null)
                 {
                     throw new UserFriendlyException("Unknown user or user identifier");
+                }
+
+                if (AllowOneConcurrentLoginPerUser())
+                {
+                    await _userManager.UpdateSecurityStampAsync(user);
+                    await _securityStampHandler.SetSecurityStampCacheItem(user.TenantId, user.Id, user.SecurityStamp);
                 }
 
                 principal = await _claimsPrincipalFactory.CreateAsync(user);
@@ -457,6 +460,12 @@ namespace AppFramework.Web.Controllers
             {
                 case AbpLoginResultType.Success:
                 {
+                    // One Concurrent Login 
+                    if (AllowOneConcurrentLoginPerUser())
+                    {
+                        await ResetSecurityStampForLoginResult(loginResult);
+                    }
+                    
                     var refreshToken = CreateRefreshToken(await CreateJwtClaims(loginResult.Identity, loginResult.User,
                         tokenType: TokenType.RefreshToken));
                     var accessToken = CreateAccessToken(await CreateJwtClaims(loginResult.Identity, loginResult.User,
@@ -533,6 +542,14 @@ namespace AppFramework.Web.Controllers
                     );
                 }
             }
+        }
+
+        private async Task ResetSecurityStampForLoginResult(AbpLoginResult<Tenant, User> loginResult)
+        {
+            await _userManager.UpdateSecurityStampAsync(loginResult.User);
+            await _securityStampHandler.SetSecurityStampCacheItem(loginResult.User.TenantId, loginResult.User.Id,
+                loginResult.User.SecurityStamp);
+            loginResult.Identity.ReplaceClaim(new Claim(AppConsts.SecurityStampKey, loginResult.User.SecurityStamp));
         }
 
         #region Etc
@@ -665,21 +682,20 @@ namespace AppFramework.Web.Controllers
                     IssuerSigningKey = _configuration.SecurityKey
                 };
 
-                foreach (var validator in _jwtOptions.Value.SecurityTokenValidators)
+                foreach (var validator in _jwtOptions.Value.AsyncSecurityTokenValidators)
                 {
                     if (validator.CanReadToken(authenticateModel.TwoFactorRememberClientToken))
                     {
                         try
                         {
-                            var principal = validator.ValidateToken(authenticateModel.TwoFactorRememberClientToken,
-                                validationParameters, out _);
-                            var useridentifierClaim = principal.FindFirst(c => c.Type == UserIdentifierClaimType);
-                            if (useridentifierClaim == null)
+                            var (principal, _) = await validator.ValidateToken(authenticateModel.TwoFactorRememberClientToken, validationParameters);
+                            var userIdentifierClaim = principal.FindFirst(c => c.Type == UserIdentifierClaimType);
+                            if (userIdentifierClaim == null)
                             {
                                 return false;
                             }
 
-                            return useridentifierClaim.Value == userIdentifier.ToString();
+                            return userIdentifierClaim.Value == userIdentifier.ToString();
                         }
                         catch (Exception ex)
                         {
@@ -862,9 +878,9 @@ namespace AppFramework.Web.Controllers
         }
 
 
-        private bool IsRefreshTokenValid(string refreshToken, out ClaimsPrincipal principal)
+        private async Task<(bool isValid, ClaimsPrincipal principal)> IsRefreshTokenValid(string refreshToken)
         {
-            principal = null;
+            ClaimsPrincipal principal = null;
 
             try
             {
@@ -875,7 +891,7 @@ namespace AppFramework.Web.Controllers
                     IssuerSigningKey = _configuration.SecurityKey
                 };
 
-                foreach (var validator in _jwtOptions.Value.SecurityTokenValidators)
+                foreach (var validator in _jwtOptions.Value.AsyncSecurityTokenValidators)
                 {
                     if (!validator.CanReadToken(refreshToken))
                     {
@@ -884,12 +900,12 @@ namespace AppFramework.Web.Controllers
 
                     try
                     {
-                        principal = validator.ValidateToken(refreshToken, validationParameters, out _);
+                        (principal,_) = await validator.ValidateToken(refreshToken, validationParameters);
 
                         if (principal.Claims.FirstOrDefault(x => x.Type == AppConsts.TokenType)?.Value ==
                             TokenType.RefreshToken.To<int>().ToString())
                         {
-                            return true;
+                            return (true, principal);
                         }
                     }
                     catch (Exception ex)
@@ -903,7 +919,7 @@ namespace AppFramework.Web.Controllers
                 Logger.Debug(ex.ToString(), ex);
             }
 
-            return false;
+            return (false, principal);
         }
 
 

@@ -1,7 +1,7 @@
+using System;
 using Abp.Runtime.Validation;
 using AppFramework.Common;
 using AppFramework.Dto;
-using System;
 
 namespace AppFramework.MultiTenancy.Dto
 {
@@ -29,3 +29,4 @@ namespace AppFramework.MultiTenancy.Dto
         }
     }
 }
+

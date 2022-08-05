@@ -12,7 +12,7 @@ using AppFramework.Storage;
 namespace AppFramework.Web.Controllers
 {
     [AbpMvcAuthorize]
-    public class DemoUiComponentsController : AppFrameworkDemoControllerBase
+    public class DemoUiComponentsController : AppFrameworkControllerBase
     {
         private readonly IBinaryObjectManager _binaryObjectManager;
 

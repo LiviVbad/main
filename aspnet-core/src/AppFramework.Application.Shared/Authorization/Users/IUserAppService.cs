@@ -1,8 +1,8 @@
-﻿using Abp.Application.Services;
+﻿using System.Threading.Tasks;
+using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.Dto;
-using System.Threading.Tasks;
 
 namespace AppFramework.Authorization.Users
 {

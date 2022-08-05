@@ -18,7 +18,7 @@ using AppFramework.Localization.Dto;
 namespace AppFramework.Localization
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_Languages)]
-    public class LanguageAppService : AppFrameworkDemoAppServiceBase, ILanguageAppService
+    public class LanguageAppService : AppFrameworkAppServiceBase, ILanguageAppService
     {
         private readonly IApplicationLanguageManager _applicationLanguageManager;
         private readonly IApplicationLanguageTextManager _applicationLanguageTextManager;

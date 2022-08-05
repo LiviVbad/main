@@ -14,7 +14,7 @@ using AppFramework.WebHooks.Dto;
 namespace AppFramework.WebHooks
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_Webhook_ListSendAttempts)]
-    public class WebhookSendAttemptAppService : AppFrameworkDemoAppServiceBase, IWebhookAttemptAppService
+    public class WebhookSendAttemptAppService : AppFrameworkAppServiceBase, IWebhookAttemptAppService
     {
         private readonly IWebhookSendAttemptStore _webhookSendAttemptStore;
         private readonly IBackgroundJobManager _backgroundJobManager;

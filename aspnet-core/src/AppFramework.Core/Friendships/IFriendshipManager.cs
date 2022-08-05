@@ -13,6 +13,7 @@ namespace AppFramework.Friendships
         Task<Friendship> GetFriendshipOrNullAsync(UserIdentifier user, UserIdentifier probableFriend);
 
         Task BanFriendAsync(UserIdentifier userIdentifier, UserIdentifier probableFriend);
+        Task RemoveFriendAsync(UserIdentifier userIdentifier, UserIdentifier probableFriend);
 
         Task AcceptFriendshipRequestAsync(UserIdentifier userIdentifier, UserIdentifier probableFriend);
     }

@@ -8,9 +8,9 @@ using Z.EntityFramework.Plus;
 
 namespace AppFramework.Authorization.Users
 {
-    public class UserRepository : AppFrameworkDemoRepositoryBase<User, long>, IUserRepository
+    public class UserRepository : AppFrameworkRepositoryBase<User, long>, IUserRepository
     {
-        public UserRepository(IDbContextProvider<AppFrameworkDemoDbContext> dbContextProvider)
+        public UserRepository(IDbContextProvider<AppFrameworkDbContext> dbContextProvider)
             : base(dbContextProvider)
         {
         }

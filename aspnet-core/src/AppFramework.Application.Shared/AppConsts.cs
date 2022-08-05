@@ -3,29 +3,24 @@
 namespace AppFramework
 {
     /// <summary>
-    /// 应用程序中使用的一些常量
+    /// Some consts used in the application.
     /// </summary>
     public class AppConsts
     {
         /// <summary>
-        /// 默认页面大小
+        /// Default page size for paged requests.
         /// </summary>
         public const int DefaultPageSize = 10;
 
         /// <summary>
-        /// 默认分页组件显示的按钮数量
-        /// </summary>
-        public const int NumericButtonCount = 10;
-
-        /// <summary>
-        /// 最大的页面大小
+        /// Maximum allowed page size for paged requests.
         /// </summary>
         public const int MaxPageSize = 1000;
 
         /// <summary>
-        /// SimpleStringCipher 解密/加密操作的默认密码短语
+        /// Default pass phrase for SimpleStringCipher decrypt/encrypt operations
         /// </summary>
-        public const string DefaultPassPhrase = "ca62ad7126ec4688a178b4063cdfd0cc";
+        public const string DefaultPassPhrase = "5d190a4912e7481980b90fc706e4c5f5";
 
         public const int ResizedMaxProfilePictureBytesUserFriendlyValue = 1024;
 

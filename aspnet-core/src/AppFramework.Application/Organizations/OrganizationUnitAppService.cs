@@ -16,7 +16,7 @@ using AppFramework.Authorization.Roles;
 namespace AppFramework.Organizations
 {
     [AbpAuthorize(AppPermissions.Pages_Administration_OrganizationUnits)]
-    public class OrganizationUnitAppService : AppFrameworkDemoAppServiceBase, IOrganizationUnitAppService
+    public class OrganizationUnitAppService : AppFrameworkAppServiceBase, IOrganizationUnitAppService
     {
         private readonly OrganizationUnitManager _organizationUnitManager;
         private readonly IRepository<OrganizationUnit, long> _organizationUnitRepository;

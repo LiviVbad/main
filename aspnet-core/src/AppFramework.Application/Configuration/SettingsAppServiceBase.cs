@@ -8,7 +8,7 @@ using AppFramework.Configuration.Host.Dto;
 
 namespace AppFramework.Configuration
 {
-    public abstract class SettingsAppServiceBase : AppFrameworkDemoAppServiceBase
+    public abstract class SettingsAppServiceBase : AppFrameworkAppServiceBase
     {
         private readonly IEmailSender _emailSender;
         private readonly IAppConfigurationAccessor _configurationAccessor;
