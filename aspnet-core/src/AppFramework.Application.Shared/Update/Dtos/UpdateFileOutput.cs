@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AppFramework.Update.Dto
+namespace AppFramework.Update.Dtos
 {
     public class UpdateFileOutput
     {

@@ -106,6 +106,7 @@ namespace AppFramework
             services.Add<SettingsView, SettingsViewModel>(AppViewManager.Setting);
             services.Add<DemoUiView, DemoUiViewModel>(AppViewManager.Demo); //演示组件页
             services.Add<VisualView, VisualViewModel>(AppViewManager.Visual);
+            services.Add<VersionManagerView, VersionManagerViewModel>(AppViewManager.Update);
 
             services.Add<NotificationView, NotificationViewModel>(AppViewManager.Notification);
             services.Add<MyProfileView, MyProfileViewModel>(AppViewManager.MyProfile);

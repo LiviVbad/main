@@ -1,6 +1,6 @@
 ﻿using AppFramework.Common;
 using AppFramework.Update;
-using AppFramework.Update.Dto;
+using AppFramework.Update.Dtos;
 using AutoUpdaterDotNET;
 using System;
 using System.Reflection;
@@ -23,7 +23,7 @@ namespace AppFramework.Services.Update
             string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 #pragma warning restore CS8602
 
-            await WebRequest.Execute(() => appService.CheckVersion(new AppFramework.Update.Dto.CheckVersionInput()
+            await WebRequest.Execute(() => appService.CheckVersion(new AppFramework.Update.Dtos.CheckVersionInput()
             {
                 Version = version,
                 ApplicationName = AppSettings.AppName

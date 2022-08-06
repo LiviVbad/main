@@ -1,5 +1,5 @@
 ﻿using AppFramework.Dto;
-using AppFramework.Update.Dto; 
+using AppFramework.Update.Dtos;
 using System;
 using System.Threading.Tasks;
 

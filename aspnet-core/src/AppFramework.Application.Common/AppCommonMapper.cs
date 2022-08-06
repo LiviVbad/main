@@ -15,6 +15,7 @@ using AutoMapper;
 using AppFramework.Common.Models.Configuration;
 using AppFramework.Configuration.Host.Dto;
 using AppFramework.Configuration.Dto;
+using AppFramework.Update.Dtos;
 
 namespace AppFramework.Common.Core
 {
@@ -50,6 +51,7 @@ namespace AppFramework.Common.Core
             CreateMap<GetUserForEditOutput, UserForEditModel>().ReverseMap();
             CreateMap<GetCurrentLoginInformationsOutput, CurrentLoginInformationPersistanceModel>().ReverseMap();
             CreateMap<TenantListModel, CreateTenantInput>().ReverseMap();
+            CreateMap<AbpVersionDto, VersionListModel>().ReverseMap();
 
             #region 系统设置
 

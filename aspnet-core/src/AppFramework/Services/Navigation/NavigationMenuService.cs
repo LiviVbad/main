@@ -22,6 +22,7 @@ namespace AppFramework.Services
                new NavigationItem("edition","Editions",AppViewManager.Edition,Permkeys.Editions),
                new NavigationItem("language","Languages",AppViewManager.Language,Permkeys.Languages),
                new NavigationItem("visual", "VisualSettings", AppViewManager.Visual, Permkeys.Administration),
+               new NavigationItem("version", "VersionManager", AppViewManager.Update, Permkeys.Administration),
                new NavigationItem("setting", "Settings", AppViewManager.Setting, Permkeys.HostSettings),
                new NavigationItem("demo","DemoUiComponents",AppViewManager.Demo,Permkeys.DemoUiComponents)
             };

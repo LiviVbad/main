@@ -185,11 +185,11 @@ namespace AppFramework.Common
             Func<Task> successCallback,
             Func<System.Exception, Task> failCallback)
         {
-            if (await new ExceptionHandler(dialogService).HandleIfAbpResponseAsync(httpException))
-            {
-                await failCallback(httpException);
-                return;
-            }
+            //if (await new ExceptionHandler(dialogService).HandleIfAbpResponseAsync(httpException))
+            //{
+            //    await failCallback(httpException);
+            //    return;
+            //}
 
             var httpExceptionMessage = LocalTranslationHelper.Localize("HttpException");
 #if DEBUG
@@ -211,11 +211,11 @@ namespace AppFramework.Common
             Func<TResult, Task> successCallback,
             Func<System.Exception, Task> failCallback)
         {
-            if (await new ExceptionHandler(dialogService).HandleIfAbpResponseAsync(httpException))
-            {
-                await failCallback(httpException);
-                return;
-            }
+            //if (await new ExceptionHandler(dialogService).HandleIfAbpResponseAsync(httpException))
+            //{
+            //    await failCallback(httpException);
+            //    return;
+            //}
 
             var httpExceptionMessage = LocalTranslationHelper.Localize("HttpException");
 #if DEBUG

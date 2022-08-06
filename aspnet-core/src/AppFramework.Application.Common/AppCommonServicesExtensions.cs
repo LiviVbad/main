@@ -34,6 +34,7 @@ using AppFramework.Configuration.Host;
 using AppFramework.Configuration;
 using AppFramework.Notifications;
 using AppFramework.Authorization.Users.Delegation;
+using AppFramework.Update;
 
 #endregion ApplicationServices
 
@@ -82,6 +83,7 @@ namespace AppFramework.Common
             services.Register<IPermissionPorxyService, PermissionPorxyService>();
             services.RegisterScoped<IFeaturesService, FeaturesService>();
             services.RegisterScoped<IUserLinkAppService, UserLinkAppService>();
+            services.RegisterScoped<IAbpVersionsAppService, AbpVersionsAppService>();
 
             services.RegisterSingleton<IMessenger, Messenger>();
             services.RegisterSingleton<IPermissionService, PermissionService>();

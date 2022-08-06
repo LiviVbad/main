@@ -78,6 +78,8 @@
 
         public const string Visual = "VisualView";
 
+        public const string Update = "UpdateView";
+
         public const string Demo = "DemoUiView";
 
         /*

@@ -9,11 +9,11 @@ namespace AppFramework.Update
 {
     public interface IAbpVersionsAppService : IApplicationService
     {
-        Task<PagedResultDto<GetAbpVersionForViewDto>> GetAll(GetAllAbpVersionsInput input);
+        Task<PagedResultDto<AbpVersionDto>> GetAll(GetAllAbpVersionsInput input);
 
-        Task<GetAbpVersionForViewDto> GetAbpVersionForView(int id);
+        Task<AbpVersionDto> GetAbpVersionForView(int id);
 
-        Task<GetAbpVersionForEditOutput> GetAbpVersionForEdit(EntityDto input);
+        Task<AbpVersionDto> GetAbpVersionForEdit(EntityDto input);
 
         Task CreateOrEdit(CreateOrEditAbpVersionDto input);
 

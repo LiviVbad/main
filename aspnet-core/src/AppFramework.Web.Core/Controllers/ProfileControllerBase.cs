@@ -18,6 +18,7 @@ using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Formats.Gif;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Formats.Png;
+using AppFramework.Update.Dtos;
 
 namespace AppFramework.Web.Controllers
 {
@@ -35,7 +36,7 @@ namespace AppFramework.Web.Controllers
             _tempFileCacheManager = tempFileCacheManager;
             _profileAppService = profileAppService;
         }
-
+          
         public UploadProfilePictureOutput UploadProfilePicture(FileDto input)
         {
             try

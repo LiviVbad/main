@@ -5,40 +5,29 @@ using Abp.Linq.Extensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Domain.Repositories;
-using AppFramework.Update.Dtos;
-using AppFramework.Dto;
+using AppFramework.Update.Dtos; 
 using Abp.Application.Services.Dto;
-using AppFramework.Authorization;
-using Abp.Extensions;
+using AppFramework.Authorization; 
 using Abp.Authorization;
-using Microsoft.EntityFrameworkCore;
-using Abp.UI;
-using AppFramework.Storage;
-using PayPalHttp;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore; 
+using Microsoft.AspNetCore.Http; 
 
 namespace AppFramework.Update
 {
     [AbpAuthorize(AppPermissions.Pages_AbpVersions)]
     public class AbpVersionsAppService : AppFrameworkAppServiceBase, IAbpVersionsAppService
     {
-        private readonly IHttpContextAccessor httpContext;
-        private readonly IWebHostEnvironment environment;
         private readonly IRepository<AbpVersion> _abpVersionRepository;
 
         public AbpVersionsAppService(
             IHttpContextAccessor httpContext,
-            IWebHostEnvironment environment, IRepository<AbpVersion> abpVersionRepository)
+             IRepository<AbpVersion> abpVersionRepository)
         {
-            this.httpContext = httpContext;
-            this.environment = environment;
             _abpVersionRepository = abpVersionRepository;
 
         }
 
-        public async Task<PagedResultDto<GetAbpVersionForViewDto>> GetAll(GetAllAbpVersionsInput input)
+        public async Task<PagedResultDto<AbpVersionDto>> GetAll(GetAllAbpVersionsInput input)
         {
 
             var filteredAbpVersions = _abpVersionRepository.GetAll()
@@ -65,77 +54,49 @@ namespace AppFramework.Update
             var totalCount = await filteredAbpVersions.CountAsync();
 
             var dbList = await abpVersions.ToListAsync();
-            var results = new List<GetAbpVersionForViewDto>();
+            var results = new List<AbpVersionDto>();
 
             foreach (var o in dbList)
             {
-                var res = new GetAbpVersionForViewDto()
+                var res = new AbpVersionDto
                 {
-                    AbpVersion = new AbpVersionDto
-                    {
 
-                        Name = o.Name,
-                        Version = o.Version,
-                        DownloadUrl = o.DownloadUrl,
-                        ChangelogUrl = o.ChangelogUrl,
-                        IsEnable = o.IsEnable,
-                        IsForced = o.IsForced,
-                        Id = o.Id,
-                    }
+                    Name = o.Name,
+                    Version = o.Version,
+                    DownloadUrl = o.DownloadUrl,
+                    ChangelogUrl = o.ChangelogUrl,
+                    IsEnable = o.IsEnable,
+                    IsForced = o.IsForced,
+                    Id = o.Id,
                 };
 
                 results.Add(res);
             }
 
-            return new PagedResultDto<GetAbpVersionForViewDto>(
+            return new PagedResultDto<AbpVersionDto>(
                 totalCount,
                 results
             );
 
         }
 
-        public async Task<GetAbpVersionForViewDto> GetAbpVersionForView(int id)
+        public async Task<AbpVersionDto> GetAbpVersionForView(int id)
         {
             var abpVersion = await _abpVersionRepository.GetAsync(id);
 
-            var output = new GetAbpVersionForViewDto { AbpVersion = ObjectMapper.Map<AbpVersionDto>(abpVersion) };
-
-            return output;
+            return ObjectMapper.Map<AbpVersionDto>(abpVersion);
         }
 
         [AbpAuthorize(AppPermissions.Pages_AbpVersions_Edit)]
-        public async Task<GetAbpVersionForEditOutput> GetAbpVersionForEdit(EntityDto input)
+        public async Task<AbpVersionDto> GetAbpVersionForEdit(EntityDto input)
         {
             var abpVersion = await _abpVersionRepository.FirstOrDefaultAsync(input.Id);
-
-            var output = new GetAbpVersionForEditOutput { AbpVersion = ObjectMapper.Map<CreateOrEditAbpVersionDto>(abpVersion) };
-
-            return output;
+             
+            return ObjectMapper.Map<AbpVersionDto>(abpVersion);
         }
 
         public async Task CreateOrEdit(CreateOrEditAbpVersionDto input)
         {
-            var file = httpContext.HttpContext.Request.Form.Files.First();
-
-            if (file == null)
-                throw new UserFriendlyException(L("RequestedFileDoesNotExists"));
-
-            var rootPath = environment.WebRootPath + "\\app\\version";
-
-            if (!Directory.Exists(rootPath))
-                Directory.CreateDirectory(rootPath);
-
-            //生成随机文件名
-            var fileName = Path.GetExtension(file.FileName).ToLowerInvariant();
-            string filePath = Path.Combine(rootPath, fileName);
-            using (FileStream fs = System.IO.File.Create(filePath))
-            {
-                file.CopyTo(fs);
-                fs.Flush();
-            }
-
-            input.DownloadUrl = filePath;
-
             if (input.Id == null)
             {
                 await Create(input);

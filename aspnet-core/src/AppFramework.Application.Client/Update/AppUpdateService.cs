@@ -1,7 +1,7 @@
-﻿using AppFramework.ApiClient; 
-using AppFramework.Update.Dto;
+﻿using AppFramework.ApiClient;
+using AppFramework.Update.Dtos;
 using Flurl.Http.Content;
-using System; 
+using System;
 using System.Threading.Tasks;
 
 namespace AppFramework.Update
