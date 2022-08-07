@@ -24,17 +24,14 @@ using AppFramework.Application.Client;
 using AppFramework.Application.MultiTenancy.HostDashboard;
 using AppFramework.Application.Organizations;
 using AppFramework.Application.MultiTenancy;
-using AppFramework.Common.Core;
-using AppFramework.Common.Services.Navigation;
+using AppFramework.Common.Core; 
 using Abp.Configuration.Startup;
-using AppFramework.Authorization.Permissions;
-using AppFramework.Authorization.Permissions;
+using AppFramework.Authorization.Permissions; 
 using AppFramework.Common.Services;
-using AppFramework.Configuration.Host;
-using AppFramework.Configuration;
+using AppFramework.Configuration.Host; 
 using AppFramework.Notifications;
 using AppFramework.Authorization.Users.Delegation;
-using AppFramework.Update;
+using AppFramework.Version;
 
 #endregion ApplicationServices
 

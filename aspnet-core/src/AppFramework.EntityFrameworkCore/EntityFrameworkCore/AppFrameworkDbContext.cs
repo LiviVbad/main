@@ -1,4 +1,4 @@
-﻿using AppFramework.Update;
+﻿using AppFramework.Version;
 using Abp.IdentityServer4vNext;
 using Abp.Zero.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

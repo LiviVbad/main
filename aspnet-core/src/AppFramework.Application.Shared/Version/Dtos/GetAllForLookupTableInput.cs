@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 
-namespace AppFramework.Update.Dtos
+namespace AppFramework.Version.Dtos
 {
     public class GetAllForLookupTableInput : PagedAndSortedResultRequestDto
     {

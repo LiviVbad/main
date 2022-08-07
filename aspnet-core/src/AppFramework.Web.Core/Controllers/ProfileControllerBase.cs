@@ -18,11 +18,10 @@ using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Formats.Gif;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Formats.Png;
-using AppFramework.Update.Dtos;
-using Abp.Auditing;
-using PayPalHttp;
-using AppFramework.Update;
+using AppFramework.Version.Dtos;
+using Abp.Auditing; 
 using Microsoft.AspNetCore.Hosting;
+using AppFramework.Version;
 
 namespace AppFramework.Web.Controllers
 {

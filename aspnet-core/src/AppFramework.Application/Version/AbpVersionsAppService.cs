@@ -5,14 +5,14 @@ using Abp.Linq.Extensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Domain.Repositories;
-using AppFramework.Update.Dtos; 
+using AppFramework.Version.Dtos; 
 using Abp.Application.Services.Dto;
 using AppFramework.Authorization; 
 using Abp.Authorization;
 using Microsoft.EntityFrameworkCore; 
 using Microsoft.AspNetCore.Http; 
 
-namespace AppFramework.Update
+namespace AppFramework.Version
 {
     [AbpAuthorize(AppPermissions.Pages_AbpVersions)]
     public class AbpVersionsAppService : AppFrameworkAppServiceBase, IAbpVersionsAppService

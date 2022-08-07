@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AppFramework.Update.Dtos
+namespace AppFramework.Version.Dtos
 {
     public class CheckVersionInput
     {

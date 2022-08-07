@@ -1,7 +1,7 @@
 ﻿using Abp.AspNetCore.Mvc.Authorization;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Storage;
-using AppFramework.Update;
+using AppFramework.Version;
 using Microsoft.AspNetCore.Hosting;
 
 namespace AppFramework.Web.Controllers

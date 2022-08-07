@@ -1,10 +1,10 @@
 ﻿using AppFramework.ApiClient;
-using AppFramework.Update.Dtos;
+using AppFramework.Version.Dtos;
 using Flurl.Http.Content;
 using System;
 using System.Threading.Tasks;
 
-namespace AppFramework.Update
+namespace AppFramework.Version
 {
     public class AppUpdateService : ProxyAppServiceBase, IAppUpdateService
     {

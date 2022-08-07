@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using AppFramework.Update.Dtos;
+using AppFramework.Version.Dtos;
 using AppFramework.Dto;
 
-namespace AppFramework.Update
+namespace AppFramework.Version
 {
     public interface IAbpVersionsAppService : IApplicationService
     {

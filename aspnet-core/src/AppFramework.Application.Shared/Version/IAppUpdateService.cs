@@ -1,9 +1,9 @@
 ﻿using AppFramework.Dto;
-using AppFramework.Update.Dtos;
+using AppFramework.Version.Dtos;
 using System;
 using System.Threading.Tasks;
 
-namespace AppFramework.Update
+namespace AppFramework.Version
 {
     public interface IAppUpdateService
     {  

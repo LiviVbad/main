@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Domain.Entities.Auditing;
 using Abp.Domain.Entities;
 
-namespace AppFramework.Update
+namespace AppFramework.Version
 {
     [Table("AbpVersions")]
     public class AbpVersion : Entity, IMayHaveTenant

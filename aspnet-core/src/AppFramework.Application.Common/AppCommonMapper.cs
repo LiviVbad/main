@@ -15,7 +15,7 @@ using AutoMapper;
 using AppFramework.Common.Models.Configuration;
 using AppFramework.Configuration.Host.Dto;
 using AppFramework.Configuration.Dto;
-using AppFramework.Update.Dtos;
+using AppFramework.Version.Dtos;
 
 namespace AppFramework.Common.Core
 {

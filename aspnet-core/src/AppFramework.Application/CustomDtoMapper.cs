@@ -1,5 +1,5 @@
-﻿using AppFramework.Update.Dtos;
-using AppFramework.Update;
+﻿using AppFramework.Version.Dtos;
+using AppFramework.Version;
 using Abp.Application.Editions;
 using Abp.Application.Features;
 using Abp.Auditing;

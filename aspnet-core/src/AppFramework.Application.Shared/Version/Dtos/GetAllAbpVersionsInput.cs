@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using System;
 
-namespace AppFramework.Update.Dtos
+namespace AppFramework.Version.Dtos
 {
     public class GetAllAbpVersionsInput : PagedAndSortedResultRequestDto
     {
