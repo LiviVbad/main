@@ -78,7 +78,9 @@
 
         public const string Visual = "VisualView";
 
-        public const string Update = "UpdateView";
+        public const string Version = "VersionManagerView";
+
+        public const string VersionDetails = "VersionManagerDetailsView";
 
         public const string Demo = "DemoUiView";
 

@@ -88,7 +88,7 @@ namespace AppFramework.ViewModels
                         });
         }
 
-        public override async Task RefreshAsync()
+        public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {
             await SetBusyAsync(async () =>
             {

@@ -165,13 +165,8 @@ namespace AppFramework.ViewModels
                      });
         }
 
-        public override async Task RefreshAsync()
-        {
-            await SetBusyAsync(async () => await GetLanguageTexts(input));
-        }
-
-        public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
-        {
+        public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
+        { 
             foreach (var item in context.Configuration.Localization.Sources)
             {
                 Sources.Add(item.Name);
@@ -198,7 +193,7 @@ namespace AppFramework.ViewModels
                 input.SourceName = Sources.Last();
             }
 
-            await RefreshAsync();
-        }
+            await SetBusyAsync(async () => await GetLanguageTexts(input));
+        } 
     }
 }

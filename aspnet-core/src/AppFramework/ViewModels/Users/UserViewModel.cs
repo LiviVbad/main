@@ -16,6 +16,7 @@ using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
 using System.Collections.ObjectModel;
 using AppFramework.ViewModels.Shared;
+using Prism.Regions;
 
 namespace AppFramework.ViewModels
 {
@@ -119,7 +120,7 @@ namespace AppFramework.ViewModels
                 {
                     await WebRequest.Execute(() => appService.DeleteUser(
                         new EntityDto<long>(SelectedItem.Id)),
-                        RefreshAsync);
+                        async () => await OnNavigatedToAsync());
                 });
             }
         }
@@ -270,7 +271,7 @@ namespace AppFramework.ViewModels
 
                 input.Permissions = selectedPermissions;
                 UpdateTitle(selectedPermissions.Count);
-                await RefreshAsync();
+                await OnNavigatedToAsync();
             }
         }
 
@@ -338,7 +339,7 @@ namespace AppFramework.ViewModels
         /// 刷新用户列表模块
         /// </summary>
         /// <returns></returns>
-        public override async Task RefreshAsync()
+        public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {
             await SetBusyAsync(async () =>
             {
@@ -348,15 +349,15 @@ namespace AppFramework.ViewModels
             });
         }
 
-        public override PermissionItem[] GetDefaultPermissionItems()
+        public override PermissionItem[] CreatePermissionItems()
         {
             return new PermissionItem[]
             {
-                new PermissionItem(Permkeys.Users, Local.Localize("LoginAsThisUser"),()=>LoginAsThisUser()),
-                new PermissionItem(Permkeys.UserEdit, Local.Localize("Change"),()=>Edit()),
-                new PermissionItem(Permkeys.UserChangePermission, Local.Localize("Permissions"),()=>UserChangePermission()),
-                new PermissionItem(Permkeys.UsersUnlock, Local.Localize("Unlock"),()=>UsersUnlock()),
-                new PermissionItem(Permkeys.UserDelete, Local.Localize("Delete"),()=>Delete())
+                new PermissionItem(AppPermissions.Users, Local.Localize("LoginAsThisUser"),()=>LoginAsThisUser()),
+                new PermissionItem(AppPermissions.UserEdit, Local.Localize("Change"),()=>Edit()),
+                new PermissionItem(AppPermissions.UserChangePermission, Local.Localize("Permissions"),()=>UserChangePermission()),
+                new PermissionItem(AppPermissions.UsersUnlock, Local.Localize("Unlock"),()=>UsersUnlock()),
+                new PermissionItem(AppPermissions.UserDelete, Local.Localize("Delete"),()=>Delete())
             };
         }
     }

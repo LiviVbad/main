@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Prism.Services.Dialogs;
 using AppFramework.ViewModels.Shared;
+using Prism.Regions;
 
 namespace AppFramework.ViewModels
 {
@@ -200,7 +201,7 @@ namespace AppFramework.ViewModels
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(() => appService.UnlockTenantAdmin(
-                    new EntityDto(SelectedItem.Id)), RefreshAsync);
+                    new EntityDto(SelectedItem.Id)), async () => await OnNavigatedToAsync());
             });
         }
 
@@ -215,7 +216,7 @@ namespace AppFramework.ViewModels
                 await SetBusyAsync(async () =>
                 {
                     await WebRequest.Execute(() => appService.DeleteTenant(
-                        new EntityDto(SelectedItem.Id)), RefreshAsync);
+                        new EntityDto(SelectedItem.Id)), async () => await OnNavigatedToAsync());
                 });
             }
         }
@@ -226,7 +227,7 @@ namespace AppFramework.ViewModels
         /// 刷新租户模块
         /// </summary>
         /// <returns></returns>
-        public override async Task RefreshAsync()
+        public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {
             await SetBusyAsync(async () =>
             {
@@ -235,15 +236,15 @@ namespace AppFramework.ViewModels
             });
         }
 
-        public override PermissionItem[] GetDefaultPermissionItems()
+        public override PermissionItem[] CreatePermissionItems()
         {
             return new PermissionItem[]
              {
-                new PermissionItem(Permkeys.TenantImpersonation, Local.Localize("LoginAsThisTenant"),()=>TenantImpersonation()),
-                new PermissionItem(Permkeys.TenantEdit, Local.Localize("Change"),()=>Edit()),
-                new PermissionItem(Permkeys.TenantChangeFeatures, Local.Localize("Features"),()=>TenantChangeFeatures()),
-                new PermissionItem(Permkeys.TenantDelete, Local.Localize("Delete"),()=>Delete()),
-                new PermissionItem(Permkeys.TenantUnlock, Local.Localize("Unlock"),()=>Unlock())
+                new PermissionItem(AppPermissions.TenantImpersonation, Local.Localize("LoginAsThisTenant"),()=>TenantImpersonation()),
+                new PermissionItem(AppPermissions.TenantEdit, Local.Localize("Change"),()=>Edit()),
+                new PermissionItem(AppPermissions.TenantChangeFeatures, Local.Localize("Features"),()=>TenantChangeFeatures()),
+                new PermissionItem(AppPermissions.TenantDelete, Local.Localize("Delete"),()=>Delete()),
+                new PermissionItem(AppPermissions.TenantUnlock, Local.Localize("Unlock"),()=>Unlock())
              };
         }
     }

@@ -5,8 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace AppFramework.Update.Dtos
 {
     public class CreateOrEditAbpVersionDto : EntityDto<int?>
-    {
-
+    { 
         [Required]
         public string Name { get; set; }
 
@@ -19,7 +18,6 @@ namespace AppFramework.Update.Dtos
 
         public bool IsEnable { get; set; }
 
-        public bool IsForced { get; set; }
-
+        public bool IsForced { get; set; } 
     }
 }

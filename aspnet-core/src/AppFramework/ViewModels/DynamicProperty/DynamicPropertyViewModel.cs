@@ -10,6 +10,7 @@ using Prism.Ioc;
 using Prism.Commands;
 using System;
 using AppFramework.ViewModels.Shared;
+using Prism.Regions;
 
 namespace AppFramework.ViewModels
 {
@@ -74,7 +75,7 @@ namespace AppFramework.ViewModels
                     {
                         await WebRequest.Execute(() => appService.Delete(
                             new EntityDto(item.Id)),
-                            RefreshAsync);
+                            async ()=>await OnNavigatedToAsync());
                     });
                 }
             }
@@ -130,7 +131,7 @@ namespace AppFramework.ViewModels
         /// 刷新动态属性模块
         /// </summary>
         /// <returns></returns>
-        public override async Task RefreshAsync()
+        public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {
             await SetBusyAsync(async () =>
             {
@@ -139,13 +140,13 @@ namespace AppFramework.ViewModels
             });
         }
 
-        public override PermissionItem[] GetDefaultPermissionItems()
+        public override PermissionItem[] CreatePermissionItems()
         {
             return new PermissionItem[]
              {
-                new PermissionItem(Permkeys.LanguageEdit, Local.Localize("Change"),()=>Edit()),
-                new PermissionItem(Permkeys.LanguageDelete, Local.Localize("Delete"),()=>Delete()),
-                new PermissionItem(Permkeys.LanguageChangeTexts, Local.Localize("EditValues"),()=>EditValues()),
+                new PermissionItem(AppPermissions.LanguageEdit, Local.Localize("Change"),()=>Edit()),
+                new PermissionItem(AppPermissions.LanguageDelete, Local.Localize("Delete"),()=>Delete()),
+                new PermissionItem(AppPermissions.LanguageChangeTexts, Local.Localize("EditValues"),()=>EditValues()),
              };
         }
     }

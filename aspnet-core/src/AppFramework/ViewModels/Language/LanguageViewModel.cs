@@ -61,7 +61,7 @@ namespace AppFramework.ViewModels
                 {
                     await WebRequest.Execute(() => appService.DeleteLanguage(
                         new EntityDto(SelectedItem.Id)),
-                        RefreshAsync);
+                        async()=> await OnNavigatedToAsync());
                 });
             }
         }
@@ -87,19 +87,19 @@ namespace AppFramework.ViewModels
         /// 刷新语言列表模块
         /// </summary>
         /// <returns></returns>
-        public override async Task RefreshAsync()
+        public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {
             await SetBusyAsync(GetLanguages); 
         }
 
-        public override PermissionItem[] GetDefaultPermissionItems()
+        public override PermissionItem[] CreatePermissionItems()
         {
             return new PermissionItem[]
             {
-                new PermissionItem(Permkeys.LanguageEdit, Local.Localize("Change"),()=>Edit()),
-                new PermissionItem(Permkeys.LanguageChangeTexts, Local.Localize("ChangeTexts"),()=>ChangeTexts()),
-                new PermissionItem(Permkeys.Languages, Local.Localize("SetAsDefaultLanguage"),()=>SetAsDefaultLanguage()),
-                new PermissionItem(Permkeys.LanguageDelete, Local.Localize("Delete"),()=>Delete())
+                new PermissionItem(AppPermissions.LanguageEdit, Local.Localize("Change"),()=>Edit()),
+                new PermissionItem(AppPermissions.LanguageChangeTexts, Local.Localize("ChangeTexts"),()=>ChangeTexts()),
+                new PermissionItem(AppPermissions.Languages, Local.Localize("SetAsDefaultLanguage"),()=>SetAsDefaultLanguage()),
+                new PermissionItem(AppPermissions.LanguageDelete, Local.Localize("Delete"),()=>Delete())
             };
         }
 

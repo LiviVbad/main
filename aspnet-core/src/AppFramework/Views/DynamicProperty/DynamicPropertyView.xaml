@@ -49,7 +49,7 @@
                             Command="{Binding AddCommand}"
                             Content="{extensions:Translate AddNewDynamicPropertyValue}"
                             Style="{StaticResource SimpleButton}"
-                            Visibility="{extensions:HasPermission Text={x:Static perm:Permkeys.DynamicEntityPropertiesCreate}}" />
+                            Visibility="{extensions:HasPermission Text={x:Static perm:AppPermissions.DynamicEntityPropertiesCreate}}" />
 
                         <sync:SfDataGrid
                             Grid.Row="1"

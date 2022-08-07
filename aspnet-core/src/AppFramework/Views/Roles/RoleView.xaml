@@ -37,7 +37,7 @@
                     Content="{extensions:Translate AddRole}"
                     DockPanel.Dock="Right"
                     Style="{StaticResource SimpleButton}"
-                    Visibility="{extensions:HasPermission Text={x:Static perm:Permkeys.RoleCreate}}" />
+                    Visibility="{extensions:HasPermission Text={x:Static perm:AppPermissions.RoleCreate}}" />
             </DockPanel>
 
             <Grid Grid.Row="1" Margin="10">

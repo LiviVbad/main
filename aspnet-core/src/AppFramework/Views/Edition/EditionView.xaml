@@ -38,7 +38,7 @@
                     Content="{extensions:Translate CreateNewEdition}"
                     DockPanel.Dock="Right"
                     Style="{StaticResource SimpleButton}"
-                    Visibility="{extensions:HasPermission Text={x:Static perm:Permkeys.EditionCreate}}" />
+                    Visibility="{extensions:HasPermission Text={x:Static perm:AppPermissions.EditionCreate}}" />
             </DockPanel>
 
             <Grid Grid.Row="1" Margin="10">

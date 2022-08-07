@@ -1025,5 +1025,6 @@
     <text name="Version">版本号</text>
     <text name="IsEnable">是否启用</text>
     <text name="IsForced">是否强制更新</text>
+    <text name="VersionDeleteWarningMessage">您确定删除版本 {0}?</text>
   </texts>
 </localizationDictionary>

@@ -11,6 +11,7 @@ using System.Linq;
 using Prism.Ioc;
 using System.Threading.Tasks;
 using AppFramework.ViewModels.Shared;
+using Prism.Regions;
 
 namespace AppFramework.ViewModels
 {
@@ -119,7 +120,7 @@ namespace AppFramework.ViewModels
                 case "AddOrganizationUnit": AddOrganizationUnit(); break;
                 case "AddMember": await AddMember(SelectedOrganizationUnit); break;
                 case "AddRole": await AddRole(SelectedOrganizationUnit); break;
-                case "Refresh": await RefreshAsync(); break;
+                case "Refresh": await OnNavigatedToAsync(); break;
             }
         }
 
@@ -127,7 +128,7 @@ namespace AppFramework.ViewModels
         /// 刷新组织结构树
         /// </summary>
         /// <returns></returns>
-        public override async Task RefreshAsync()
+        public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {
             await SetBusyAsync(async () =>
              {
@@ -158,7 +159,7 @@ namespace AppFramework.ViewModels
                 await WebRequest.Execute(() => appService.DeleteOrganizationUnit(new EntityDto<long>()
                 {
                     Id = organization.Id
-                }), RefreshAsync);
+                }), async () => await OnNavigatedToAsync());
             }
         }
 
@@ -172,7 +173,7 @@ namespace AppFramework.ViewModels
             param.Add("Value", organization);
             var dialogResult = await dialog.ShowDialogAsync("OrganizationsAddView", param);
             if (dialogResult.Result == ButtonResult.OK)
-                await RefreshAsync();
+                await OnNavigatedToAsync();
         }
 
         /// <summary>
@@ -186,7 +187,7 @@ namespace AppFramework.ViewModels
 
             var dialogResult = await dialog.ShowDialogAsync("OrganizationsAddView", param);
             if (dialogResult.Result == ButtonResult.OK)
-                await RefreshAsync();
+                await OnNavigatedToAsync();
         }
 
         /// <summary>

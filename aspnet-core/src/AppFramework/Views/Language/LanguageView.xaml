@@ -37,7 +37,7 @@
                     Content="{extensions:Translate CreateNewLanguage}"
                     DockPanel.Dock="Right"
                     Style="{StaticResource SimpleButton}"
-                    Visibility="{extensions:HasPermission Text={x:Static perm:Permkeys.LanguageCreate}}" />
+                    Visibility="{extensions:HasPermission Text={x:Static perm:AppPermissions.LanguageCreate}}" />
             </DockPanel>
 
             <Grid Grid.Row="1" Margin="10">

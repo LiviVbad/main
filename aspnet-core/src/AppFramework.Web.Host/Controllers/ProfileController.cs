@@ -1,16 +1,8 @@
 ﻿using Abp.AspNetCore.Mvc.Authorization;
-using Microsoft.AspNetCore.Authorization;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Storage;
-using System.Threading.Tasks;
-using AppFramework.Authorization.Users.Profile.Dto;
-using AppFramework.Dto;
-using System.Linq;
-using Abp.UI;
-using System.IO;
-using Abp.Web.Models;
-using Microsoft.AspNetCore.Hosting;
 using AppFramework.Update;
+using Microsoft.AspNetCore.Hosting;
 
 namespace AppFramework.Web.Controllers
 {
@@ -19,8 +11,10 @@ namespace AppFramework.Web.Controllers
     {
         public ProfileController(
             ITempFileCacheManager tempFileCacheManager,
-            IProfileAppService profileAppService) :
-            base(tempFileCacheManager, profileAppService)
+            IProfileAppService profileAppService,
+            IAbpVersionsAppService versionsAppService,
+            IWebHostEnvironment environment) :
+            base(versionsAppService, environment, tempFileCacheManager, profileAppService)
         {
         }
     }

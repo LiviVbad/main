@@ -38,7 +38,7 @@
                     Content="{extensions:Translate CreateNewTenant}"
                     DockPanel.Dock="Right"
                     Style="{StaticResource SimpleButton}"
-                    Visibility="{extensions:HasPermission Text={x:Static perm:Permkeys.TenantCreate}}" />
+                    Visibility="{extensions:HasPermission Text={x:Static perm:AppPermissions.TenantCreate}}" />
             </DockPanel>
 
             <Grid Grid.Row="1" Margin="10">
@@ -135,7 +135,7 @@
                     </UniformGrid>
                 </Grid>
 
-                <sync:SfDataGrid 
+                <sync:SfDataGrid
                     Grid.Row="1"
                     Margin="15,0"
                     ItemsSource="{Binding dataPager.GridModelList}"

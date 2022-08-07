@@ -7,6 +7,7 @@ using AppFramework.Common;
 using AppFramework.Common.Services.Permission;
 using AppFramework.ViewModels.Shared;
 using Prism.Commands;
+using Prism.Regions;
 using Prism.Services.Dialogs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -80,7 +81,7 @@ namespace AppFramework.ViewModels
 
                 input.Permissions = selectedPermissions;
                 UpdateTitle(selectedPermissions.Count);
-                await RefreshAsync();
+                await OnNavigatedToAsync();
             }
         }
 
@@ -97,7 +98,7 @@ namespace AppFramework.ViewModels
                     {
                         await WebRequest.Execute(() => appService.DeleteRole(
                             new EntityDto(item.Id)),
-                            RefreshAsync);
+                            async()=>await OnNavigatedToAsync());
                     });
                 }
             }
@@ -125,7 +126,7 @@ namespace AppFramework.ViewModels
         /// 刷新角色模块
         /// </summary>
         /// <returns></returns>
-        public override async Task RefreshAsync()
+        public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {
             await SetBusyAsync(async () =>
             {
@@ -142,12 +143,12 @@ namespace AppFramework.ViewModels
             });
         }
 
-        public override PermissionItem[] GetDefaultPermissionItems()
+        public override PermissionItem[] CreatePermissionItems()
         {
             return new PermissionItem[]
             {
-                new PermissionItem(Permkeys.RoleEdit, Local.Localize("Change"),()=>Edit()),
-                new PermissionItem(Permkeys.RoleDelete, Local.Localize("Delete"),()=>Delete())
+                new PermissionItem(AppPermissions.RoleEdit, Local.Localize("Change"),()=>Edit()),
+                new PermissionItem(AppPermissions.RoleDelete, Local.Localize("Delete"),()=>Delete())
             };
         }
     }

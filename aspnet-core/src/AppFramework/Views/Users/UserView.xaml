@@ -37,7 +37,7 @@
                     Content="{extensions:Translate CreatingNewUser}"
                     DockPanel.Dock="Right"
                     Style="{StaticResource SimpleButton}"
-                    Visibility="{extensions:HasPermission Text={x:Static perm:Permkeys.UserCreate}}" />
+                    Visibility="{extensions:HasPermission Text={x:Static perm:AppPermissions.UserCreate}}" />
             </DockPanel>
 
             <Grid Grid.Row="1" Margin="10">

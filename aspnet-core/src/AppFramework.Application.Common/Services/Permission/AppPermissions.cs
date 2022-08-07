@@ -1,7 +1,13 @@
 ﻿namespace AppFramework.Common
 {
-    public class Permkeys
+    public class AppPermissions
     {
+        public const string Pages_AbpVersions = "Pages.AbpVersions";
+        public const string Pages_AbpVersions_Create = "Pages.AbpVersions.Create";
+        public const string Pages_AbpVersions_Edit = "Pages.AbpVersions.Edit";
+        public const string Pages_AbpVersions_Delete = "Pages.AbpVersions.Delete";
+
+        //COMMON PERMISSIONS (FOR BOTH OF TENANTS AND HOST) 
         public const string Pages = "Pages";
         public const string DemoUiComponents = "Pages.DemoUiComponents";
         public const string Administration = "Pages.Administration";

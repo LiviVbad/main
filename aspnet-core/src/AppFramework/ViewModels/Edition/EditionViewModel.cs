@@ -4,6 +4,7 @@ using AppFramework.Common.Services.Permission;
 using AppFramework.Editions;
 using AppFramework.Editions.Dto;
 using AppFramework.ViewModels.Shared;
+using Prism.Regions;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -31,7 +32,7 @@ namespace AppFramework.ViewModels
                     {
                         await WebRequest.Execute(() =>
                                 appService.DeleteEdition(new EntityDto(item.Id)),
-                            RefreshAsync);
+                            async () => await OnNavigatedToAsync());
                     });
                 }
             }
@@ -61,18 +62,18 @@ namespace AppFramework.ViewModels
         /// 刷新版本模块
         /// </summary>
         /// <returns></returns>
-        public override async Task RefreshAsync()
+        public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {
             await GetEditions();
         }
 
-        public override PermissionItem[] GetDefaultPermissionItems()
+        public override PermissionItem[] CreatePermissionItems()
         {
             return new PermissionItem[]
             {
-                new PermissionItem(Permkeys.EditionEdit, Local.Localize("EditEdition"),()=>Edit()),
-                new PermissionItem(Permkeys.EditionDelete, Local.Localize("Delete"),()=>Delete()),
+                new PermissionItem(AppPermissions.EditionEdit, Local.Localize("EditEdition"),()=>Edit()),
+                new PermissionItem(AppPermissions.EditionDelete, Local.Localize("Delete"),()=>Delete()),
             };
-        } 
+        }
     }
 }

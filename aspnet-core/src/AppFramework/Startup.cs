@@ -14,6 +14,7 @@ using Prism.Ioc;
 using AppFramework.Common.Services;
 using AppFramework.ViewModels.Shared;
 using AppFramework.Services.Notification;
+using AppFramework.ViewModels.Version;
 
 namespace AppFramework
 {
@@ -106,7 +107,8 @@ namespace AppFramework
             services.Add<SettingsView, SettingsViewModel>(AppViewManager.Setting);
             services.Add<DemoUiView, DemoUiViewModel>(AppViewManager.Demo); //演示组件页
             services.Add<VisualView, VisualViewModel>(AppViewManager.Visual);
-            services.Add<VersionManagerView, VersionManagerViewModel>(AppViewManager.Update);
+            services.Add<VersionManagerView, VersionManagerViewModel>(AppViewManager.Version);
+            services.Add<VersionManagerDetailsView, VersionManagerDetailsViewModel>(AppViewManager.VersionDetails);
 
             services.Add<NotificationView, NotificationViewModel>(AppViewManager.Notification);
             services.Add<MyProfileView, MyProfileViewModel>(AppViewManager.MyProfile);

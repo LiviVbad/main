@@ -8,6 +8,7 @@ using System;
 using System.Threading.Tasks;
 using Prism.Ioc;
 using AppFramework.ViewModels.Shared;
+using Prism.Regions;
 
 namespace AppFramework.ViewModels
 {
@@ -218,7 +219,7 @@ namespace AppFramework.ViewModels
         /// 刷新数据
         /// </summary>
         /// <returns></returns>
-        public override async Task RefreshAsync()
+        public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {
             await SetBusyAsync(async () =>
             {

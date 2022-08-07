@@ -1,10 +1,11 @@
-﻿using Abp.Notifications; 
+﻿using Abp.Notifications;
 using AppFramework.Common;
 using AppFramework.Notifications;
 using AppFramework.Notifications.Dto;
 using AppFramework.Services.Notification;
 using AppFramework.ViewModels.Shared;
 using Prism.Commands;
+using Prism.Regions;
 using System;
 using System.Threading.Tasks;
 
@@ -79,7 +80,7 @@ namespace AppFramework.ViewModels
                     StartDate = input.StartDate,
                     EndDate = input.EndDate,
                     State = input.State
-                }), RefreshAsync);
+                }), async () => await OnNavigatedToAsync());
             }
         }
 
@@ -88,7 +89,7 @@ namespace AppFramework.ViewModels
             await WebRequest.Execute(async () => await appService.SetNotificationAsRead(new Abp.Application.Services.Dto.EntityDto<Guid>()
             {
                 Id = obj.Id
-            }), RefreshAsync);
+            }), async () => await OnNavigatedToAsync());
         }
 
         private async void DeleteNotification(UserNotification obj)
@@ -98,7 +99,7 @@ namespace AppFramework.ViewModels
                 await WebRequest.Execute(async () => await appService.DeleteNotification(new Abp.Application.Services.Dto.EntityDto<Guid>()
                 {
                     Id = obj.Id
-                }), RefreshAsync);
+                }), async () => await OnNavigatedToAsync());
             }
         }
 
@@ -125,7 +126,7 @@ namespace AppFramework.ViewModels
                         });
         }
 
-        public override async Task RefreshAsync()
+        public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {
             dataPager.PageIndex = 0;
 
