@@ -50,12 +50,12 @@
             <CheckBox
                 Margin="0,5"
                 Content="{extensions:Translate IsEnable}"
-                IsChecked="{Binding Model.IsEnable}" />
+                IsChecked="{Binding Model.IsEnable, Mode=TwoWay}" />
 
             <CheckBox
                 Margin="0,5"
                 Content="{extensions:Translate IsForced}"
-                IsChecked="{Binding Model.IsForced}" />
+                IsChecked="{Binding Model.IsForced, Mode=TwoWay}" />
         </StackPanel>
 
         <StackPanel
@@ -65,7 +65,7 @@
             Orientation="Horizontal">
             <Button
                 Margin="10,0"
-                Command="{Binding SendChangePasswordCommand}"
+                Command="{Binding SaveCommand}"
                 Content="{extensions:Translate Save}"
                 IsEnabled="{Binding IsChangePasswordEnabled}"
                 Style="{StaticResource SimpleButton}" />

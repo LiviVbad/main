@@ -83,11 +83,11 @@
                     <sync:GridTextColumn HeaderText="{extensions:Translate AppName}" MappingName="Name" />
                     <sync:GridTextColumn HeaderText="{extensions:Translate Version}" MappingName="Version" />
                     <sync:GridTextColumn
-                        DisplayBinding="{Binding IsEnable, Converter={StaticResource inverseboolToYesNoStrConverter}}"
+                        DisplayBinding="{Binding IsEnable, Converter={StaticResource boolToYesNoStrConverter}}"
                         HeaderText="{extensions:Translate IsEnable}"
                         MappingName="IsEnable" />
                     <sync:GridTextColumn
-                        DisplayBinding="{Binding IsForced, Converter={StaticResource inverseboolToYesNoStrConverter}}"
+                        DisplayBinding="{Binding IsForced, Converter={StaticResource boolToYesNoStrConverter}}"
                         HeaderText="{extensions:Translate IsForced}"
                         MappingName="IsForced" />
                 </sync:SfDataGrid.Columns>

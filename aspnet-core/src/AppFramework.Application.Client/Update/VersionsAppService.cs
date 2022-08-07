@@ -19,7 +19,7 @@ namespace AppFramework.Update
 
         public async Task Delete(EntityDto input)
         {
-            await ApiClient.DeleteAsync(GetEndpoint(nameof(Delegate)), input);
+            await ApiClient.DeleteAsync(GetEndpoint(nameof(Delete)), input);
         }
 
         public async Task<AbpVersionDto> GetAbpVersionForEdit(EntityDto input)

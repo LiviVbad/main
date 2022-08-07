@@ -22,6 +22,7 @@ namespace AppFramework.Common.Validations
             services.RegisterScoped<IValidator<TenantEditDto>, UpdateTenantValidator>();
             services.RegisterScoped<IValidator<EditionCreateModel>, CreateEditionValidator>();
             services.RegisterScoped<IValidator<HostSettingsEditModel>, SettingsValidator>();
+            services.RegisterScoped<IValidator<VersionListModel>, VersionValidator>();
         }
 
         #region 验证器扩展
