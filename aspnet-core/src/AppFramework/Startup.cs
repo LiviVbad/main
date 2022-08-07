@@ -21,7 +21,7 @@ namespace AppFramework
     public static class Startup
     {
         public static void ConfigurationServices(this IContainerRegistry services)
-        {
+        {  
             //注册应用程序依赖服务
             services.RegisterCommonServices();
             //注册应用程序验证器

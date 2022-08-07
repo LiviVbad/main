@@ -10,9 +10,9 @@ namespace AppFramework.Services.Update
 {
     public class UpdateService : IUpdateService
     {
-        private readonly IAppUpdateService appService;
+        private readonly IAbpVersionsAppService appService;
 
-        public UpdateService(IAppUpdateService appService)
+        public UpdateService(IAbpVersionsAppService appService)
         {
             this.appService = appService;
         }
@@ -32,6 +32,8 @@ namespace AppFramework.Services.Update
 
         private async Task CheckVersionFinish(UpdateFileOutput output)
         {
+            if (!output.IsNewVersion) return;
+
             AutoUpdater.ShowSkipButton = false;
             AutoUpdater.ShowRemindLaterButton = false;
             AutoUpdater.LetUserSelectRemindLater = false;

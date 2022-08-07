@@ -19,7 +19,7 @@ using SixLabors.ImageSharp.Formats.Gif;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Formats.Png;
 using AppFramework.Version.Dtos;
-using Abp.Auditing; 
+using Abp.Auditing;
 using Microsoft.AspNetCore.Hosting;
 using AppFramework.Version;
 
@@ -39,7 +39,7 @@ namespace AppFramework.Web.Controllers
             IWebHostEnvironment environment,
             ITempFileCacheManager tempFileCacheManager,
             IProfileAppService profileAppService)
-        { 
+        {
             this.versionsAppService = versionsAppService;
             this.environment = environment;
             _tempFileCacheManager = tempFileCacheManager;
@@ -49,26 +49,29 @@ namespace AppFramework.Web.Controllers
         [DisableAuditing]
         public async Task<ActionResult> UploadVersionFile(CreateOrEditAbpVersionDto input)
         {
-            var file = Request.Form.Files.First();
+            var file = Request.Form.Files.FirstOrDefault();
 
-            if (file == null)
+            if (file == null && input.Id == null)
                 throw new UserFriendlyException(L("RequestedFileDoesNotExists"));
 
-            var rootPath = environment.WebRootPath + "\\app\\version";
-
-            if (!Directory.Exists(rootPath))
-                Directory.CreateDirectory(rootPath);
-
-            //生成随机文件名
-            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName).ToLowerInvariant();
-            string filePath = Path.Combine(rootPath, fileName);
-            using (FileStream fs = System.IO.File.Create(filePath))
+            if (file != null)
             {
-                file.CopyTo(fs);
-                fs.Flush();
-            }
+                var rootPath = environment.WebRootPath + "\\app\\version";
 
-            input.DownloadUrl = filePath;
+                if (!Directory.Exists(rootPath))
+                    Directory.CreateDirectory(rootPath);
+
+                //生成随机文件名
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName).ToLowerInvariant();
+                string filePath = Path.Combine(rootPath, fileName);
+                using (FileStream fs = System.IO.File.Create(filePath))
+                {
+                    file.CopyTo(fs);
+                    fs.Flush();
+                }
+
+                input.DownloadUrl = filePath;
+            }
 
             await versionsAppService.CreateOrEdit(input);
 

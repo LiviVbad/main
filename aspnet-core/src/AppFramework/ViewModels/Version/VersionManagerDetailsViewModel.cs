@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels.Version
 {
@@ -29,7 +29,7 @@ namespace AppFramework.ViewModels.Version
 
             SelectedFileCommand = new DelegateCommand(SelectedFile);
         }
-         
+
         private VersionListModel model;
 
         public VersionListModel Model
@@ -53,7 +53,7 @@ namespace AppFramework.ViewModels.Version
         private void SelectedFile()
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "压缩文件(*.rar;*.zip)|*.rar;*.zip";
+            fileDialog.Filter = "压缩文件(*.zip)|*.zip";
             var dialogResult = (bool)fileDialog.ShowDialog();
             if (dialogResult)
             {
@@ -63,29 +63,35 @@ namespace AppFramework.ViewModels.Version
 
         protected override async void Save()
         {
-            if (string.IsNullOrWhiteSpace(FilePath)) return;
+            if (Model.Id == 0 && string.IsNullOrWhiteSpace(FilePath)) return;
 
             if (!Verify(Model).IsValid) return;
 
             await SetBusyAsync(async () =>
             {
-                var fileBytes = File.ReadAllBytes(FilePath);
-
-                using (Stream photoStream = new MemoryStream(fileBytes))
+                await WebRequest.Execute(() => profileControllerService.UploadVersionFile(content =>
                 {
-                    await WebRequest.Execute(() => profileControllerService.UploadVersionFile(content =>
+                    if (!string.IsNullOrWhiteSpace(FilePath))
                     {
-                        content.AddFile("file", photoStream, "versionfile");
-                        content.AddString(nameof(CreateOrEditAbpVersionDto.Name), Model.Name);
-                        content.AddString(nameof(CreateOrEditAbpVersionDto.Version), Model.Version);
-                        content.AddString(nameof(CreateOrEditAbpVersionDto.IsForced), Model.IsForced.ToString());
-                        content.AddString(nameof(CreateOrEditAbpVersionDto.IsEnable), Model.IsEnable.ToString());
-                    }), async () =>
-                    {
-                        base.Save();
-                        await Task.CompletedTask;
-                    });
-                }
+                        var fileBytes = File.ReadAllBytes(FilePath);
+                        using (Stream photoStream = new MemoryStream(fileBytes))
+                        {
+                            content.AddFile("file", photoStream, "file.zip");
+                        }
+                    }
+
+                    if (Model.Id > 0)
+                        content.AddString(nameof(CreateOrEditAbpVersionDto.Id), Model.Id.ToString());
+
+                    content.AddString(nameof(CreateOrEditAbpVersionDto.Name), Model.Name);
+                    content.AddString(nameof(CreateOrEditAbpVersionDto.Version), Model.Version);
+                    content.AddString(nameof(CreateOrEditAbpVersionDto.IsForced), Model.IsForced.ToString());
+                    content.AddString(nameof(CreateOrEditAbpVersionDto.IsEnable), Model.IsEnable.ToString());
+                }), async () =>
+                {
+                    base.Save();
+                    await Task.CompletedTask;
+                });
             });
         }
 

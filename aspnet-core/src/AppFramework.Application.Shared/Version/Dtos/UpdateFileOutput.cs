@@ -6,6 +6,8 @@ namespace AppFramework.Version.Dtos
 {
     public class UpdateFileOutput
     {
+        public bool IsNewVersion { get; set; }
+
         public string DownloadURL { get; set; }
 
         public string ChangelogURL { get; set; }

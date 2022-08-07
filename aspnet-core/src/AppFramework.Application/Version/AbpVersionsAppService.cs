@@ -5,12 +5,14 @@ using Abp.Linq.Extensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Domain.Repositories;
-using AppFramework.Version.Dtos; 
+using AppFramework.Version.Dtos;
 using Abp.Application.Services.Dto;
-using AppFramework.Authorization; 
+using AppFramework.Authorization;
 using Abp.Authorization;
-using Microsoft.EntityFrameworkCore; 
-using Microsoft.AspNetCore.Http; 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using Nito.AsyncEx;
+using System.Runtime.Versioning;
 
 namespace AppFramework.Version
 {
@@ -91,7 +93,7 @@ namespace AppFramework.Version
         public async Task<AbpVersionDto> GetAbpVersionForEdit(EntityDto input)
         {
             var abpVersion = await _abpVersionRepository.FirstOrDefaultAsync(input.Id);
-             
+
             return ObjectMapper.Map<AbpVersionDto>(abpVersion);
         }
 
@@ -135,5 +137,24 @@ namespace AppFramework.Version
             await _abpVersionRepository.DeleteAsync(input.Id);
         }
 
+        public async Task<UpdateFileOutput> CheckVersion(CheckVersionInput input)
+        {
+            var abpVersion = await _abpVersionRepository.FirstOrDefaultAsync(t => t.Name.Equals(input.ApplicationName) &&
+            new System.Version(t.Version) > new System.Version(input.Version));
+
+            if (abpVersion != null)
+            {
+                return new UpdateFileOutput()
+                {
+                    IsNewVersion = true,
+                    Version = abpVersion.Version,
+                    IsForced = abpVersion.IsForced,
+                    DownloadURL = abpVersion.DownloadUrl,
+                    ChangelogURL = abpVersion.ChangelogUrl
+                };
+            }
+            else
+                return new UpdateFileOutput();
+        }
     }
 }

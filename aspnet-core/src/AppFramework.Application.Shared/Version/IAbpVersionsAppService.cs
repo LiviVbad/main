@@ -19,5 +19,6 @@ namespace AppFramework.Version
 
         Task Delete(EntityDto input);
 
+        Task<UpdateFileOutput> CheckVersion(CheckVersionInput input);
     }
 }
