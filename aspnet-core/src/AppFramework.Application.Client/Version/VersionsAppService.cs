@@ -36,5 +36,10 @@ namespace AppFramework.Version
         {
             return await ApiClient.GetAsync<PagedResultDto<AbpVersionDto>>(GetEndpoint(nameof(GetAll)), input);
         }
+
+        public async Task<UpdateFileOutput> CheckVersion(CheckVersionInput input)
+        {
+            return await ApiClient.PostAnonymousAsync<UpdateFileOutput>(GetEndpoint(nameof(CheckVersion)), input);
+        }
     }
 }

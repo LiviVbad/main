@@ -69,16 +69,17 @@ namespace AppFramework.ViewModels.Version
 
             await SetBusyAsync(async () =>
             {
+                MemoryStream stream = null;
+                if (!string.IsNullOrWhiteSpace(FilePath))
+                {
+                    var fileBytes = File.ReadAllBytes(FilePath);
+                    stream = new MemoryStream(fileBytes);
+                }
+
                 await WebRequest.Execute(() => profileControllerService.UploadVersionFile(content =>
                 {
-                    if (!string.IsNullOrWhiteSpace(FilePath))
-                    {
-                        var fileBytes = File.ReadAllBytes(FilePath);
-                        using (Stream photoStream = new MemoryStream(fileBytes))
-                        {
-                            content.AddFile("file", photoStream, "file.zip");
-                        }
-                    }
+                    if (stream != null)
+                        content.AddFile("file", stream, "file.zip");
 
                     if (Model.Id > 0)
                         content.AddString(nameof(CreateOrEditAbpVersionDto.Id), Model.Id.ToString());
@@ -89,6 +90,8 @@ namespace AppFramework.ViewModels.Version
                     content.AddString(nameof(CreateOrEditAbpVersionDto.IsEnable), Model.IsEnable.ToString());
                 }), async () =>
                 {
+                    stream?.Dispose();
+                    stream?.Close();
                     base.Save();
                     await Task.CompletedTask;
                 });

@@ -15,6 +15,7 @@ using AppFramework.Common.Services;
 using AppFramework.ViewModels.Shared;
 using AppFramework.Services.Notification;
 using AppFramework.ViewModels.Version;
+using AppFramework.Services.Update;
 
 namespace AppFramework
 {
@@ -51,6 +52,7 @@ namespace AppFramework
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
             services.RegisterSingleton<NavigationService>();
             services.RegisterSingleton<NotificationService>();
+            services.RegisterSingleton<IUpdateService, UpdateService>();
 
             /*
              * 《注册应用程序模块》

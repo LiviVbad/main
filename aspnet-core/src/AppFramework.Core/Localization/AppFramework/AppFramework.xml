@@ -1180,5 +1180,12 @@
     <text name="AdminSurname">Admin User's Surname</text>
     <text name="UnknownWidgetId">Unknown WidgetId: {0} </text>
     <text name="AllowedUserNameCharactersInfoText">Allowed characters: {0}</text>
+
+    <text name="VersionManager">VersionManager</text>
+    <text name="VersionManagerInfo">VersionManagerInfo</text>
+    <text name="CreateVersion">CreateVersion</text>
+    <text name="AppName">AppName</text>  
+    <text name="VersionDeleteWarningMessage">Are you sure you want to delete the version {0}?</text>
+    <text name="CheckSystemUpdates">CheckSystemUpdates</text>
   </texts>
 </localizationDictionary>

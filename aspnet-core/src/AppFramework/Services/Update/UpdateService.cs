@@ -37,8 +37,6 @@ namespace AppFramework.Services.Update
             AutoUpdater.ShowSkipButton = false;
             AutoUpdater.ShowRemindLaterButton = false;
             AutoUpdater.LetUserSelectRemindLater = false;
-            AutoUpdater.Mandatory = true;
-            AutoUpdater.UpdateMode = Mode.Forced;
             AutoUpdater.InstallationPath = Environment.CurrentDirectory;
             AutoUpdater.ReportErrors = true;
             AutoUpdater.ShowUpdateForm(new UpdateInfoEventArgs()
@@ -49,7 +47,7 @@ namespace AppFramework.Services.Update
                 Mandatory = new Mandatory
                 {
                     Value = false,
-                    UpdateMode = Mode.Forced,
+                    UpdateMode = output.IsForced ? Mode.Forced : Mode.Normal
                 },
             });
 

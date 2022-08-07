@@ -45,8 +45,7 @@ namespace AppFramework.Web.Controllers
             _tempFileCacheManager = tempFileCacheManager;
             _profileAppService = profileAppService;
         }
-
-        [DisableAuditing]
+         
         public async Task<ActionResult> UploadVersionFile(CreateOrEditAbpVersionDto input)
         {
             var file = Request.Form.Files.FirstOrDefault();

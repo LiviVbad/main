@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Nito.AsyncEx;
 using System.Runtime.Versioning;
+using Microsoft.AspNetCore.Authorization;
+using NPOI.SS.Formula.Functions;
 
 namespace AppFramework.Version
 {
@@ -137,24 +139,30 @@ namespace AppFramework.Version
             await _abpVersionRepository.DeleteAsync(input.Id);
         }
 
+        [AllowAnonymous]
         public async Task<UpdateFileOutput> CheckVersion(CheckVersionInput input)
         {
-            var abpVersion = await _abpVersionRepository.FirstOrDefaultAsync(t => t.Name.Equals(input.ApplicationName) &&
-            new System.Version(t.Version) > new System.Version(input.Version));
+            var abpVersion = await _abpVersionRepository.GetAll()
+                .WhereIf(!string.IsNullOrWhiteSpace(input.ApplicationName), e => e.Name == input.ApplicationName && e.IsEnable).ToListAsync();
 
-            if (abpVersion != null)
+            var newVersion = abpVersion.OrderBy(t => t.Version).FirstOrDefault();
+
+            if (newVersion != null)
             {
-                return new UpdateFileOutput()
+                if (new System.Version(newVersion.Version) > new System.Version(input.Version))
                 {
-                    IsNewVersion = true,
-                    Version = abpVersion.Version,
-                    IsForced = abpVersion.IsForced,
-                    DownloadURL = abpVersion.DownloadUrl,
-                    ChangelogURL = abpVersion.ChangelogUrl
-                };
+                    return new UpdateFileOutput()
+                    {
+                        IsNewVersion = true,
+                        Version = newVersion.Version,
+                        IsForced = newVersion.IsForced,
+                        DownloadURL = newVersion.DownloadUrl,
+                        ChangelogURL = newVersion.ChangelogUrl
+                    };
+                }
             }
-            else
-                return new UpdateFileOutput();
+
+            return new UpdateFileOutput();
         }
     }
 }
