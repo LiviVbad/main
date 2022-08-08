@@ -17,6 +17,7 @@ namespace AppFramework.Configuration
         public static IConfigurationRoot Get(string path, string environmentName = null, bool addUserSecrets = false)
         {
             var cacheKey = path + "#" + environmentName + "#" + addUserSecrets;
+
             return ConfigurationCache.GetOrAdd(
                 cacheKey,
                 _ => BuildConfiguration(path, environmentName, addUserSecrets)
