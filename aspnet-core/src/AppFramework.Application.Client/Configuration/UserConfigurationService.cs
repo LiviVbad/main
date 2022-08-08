@@ -43,7 +43,9 @@ namespace AppFramework.Configuration
                 return await HandleSessionTimeOut(userConfig);
             }
 
-            return await RefreshAccessTokenAndSendRequestAgain();
+            var refreshConfig = await RefreshAccessTokenAndSendRequestAgain();
+
+            return refreshConfig == null ? userConfig : refreshConfig;
         }
 
         private async Task<AbpUserConfigurationDto> HandleSessionTimeOut(AbpUserConfigurationDto userConfig)
@@ -60,14 +62,21 @@ namespace AppFramework.Configuration
 
         private async Task<AbpUserConfigurationDto> RefreshAccessTokenAndSendRequestAgain()
         {
-            var newAccessToken = await _tokenManager.RefreshTokenAsync();
-
-            if (OnAccessTokenRefresh != null)
+            try
             {
-                await OnAccessTokenRefresh(newAccessToken);
-            }
+                var newAccessToken = await _tokenManager.RefreshTokenAsync();
 
-            return await _apiClient.GetAsync<AbpUserConfigurationDto>(Endpoint);
+                if (OnAccessTokenRefresh != null)
+                {
+                    await OnAccessTokenRefresh(newAccessToken);
+                }
+                return await _apiClient.GetAsync<AbpUserConfigurationDto>(Endpoint);
+            }
+            catch
+            {
+                _tokenManager.AuthenticateResult = null;
+                return null;
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks; 
 using Abp.Web.Models.AbpUserConfiguration;
+using AppFramework.Services.Update;
 
 namespace AppFramework.Services.Account
 {
@@ -20,6 +21,9 @@ namespace AppFramework.Services.Account
 
         private static IAccessTokenManager AccessTokenManager =>
             ContainerLocator.Container.Resolve<IAccessTokenManager>();
+
+        private static IUpdateService CheckVersionService =>
+            ContainerLocator.Container.Resolve<IUpdateService>();
 
         public static async Task GetIfNeedsAsync()
         {
@@ -48,10 +52,9 @@ namespace AppFramework.Services.Account
                 AppContext.Value.SetAsTenant(TenantConsts.DefaultTenantName, TenantConsts.DefaultTenantId);
 
             AppContext.Value.CurrentLanguage = result.Localization.CurrentLanguage;
+WarnIfUserHasNoPermission();
 
-            WarnIfUserHasNoPermission();
-
-            await Task.CompletedTask;
+            await CheckVersionService.CheckVersion();
         }
 
         private static void WarnIfUserHasNoPermission()

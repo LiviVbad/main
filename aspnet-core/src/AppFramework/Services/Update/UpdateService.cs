@@ -32,7 +32,7 @@ namespace AppFramework.Services.Update
 
         private async Task CheckVersionFinish(UpdateFileOutput output)
         {
-            if (!output.IsNewVersion) return;
+            if (output == null && !output.IsNewVersion) return;
 
             AutoUpdater.ShowSkipButton = false;
             AutoUpdater.ShowRemindLaterButton = false;

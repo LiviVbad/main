@@ -14,7 +14,6 @@ namespace AppFramework.ViewModels
     {
         private readonly IAccessTokenManager accessTokenManager;
         private readonly IAccountStorageService dataStorageService;
-        private readonly IUpdateService updateService;
         private readonly IApplicationContext applicationContext;
 
         private string displayText;
@@ -25,12 +24,11 @@ namespace AppFramework.ViewModels
             set { displayText = value; RaisePropertyChanged(); }
         }
 
-        public SplashScreenViewModel(IUpdateService updateService,
+        public SplashScreenViewModel(
            IApplicationContext applicationContext,
            IAccessTokenManager accessTokenManager,
            IAccountStorageService dataStorageService)
         {
-            this.updateService = updateService;
             this.applicationContext = applicationContext;
             this.accessTokenManager = accessTokenManager;
             this.dataStorageService = dataStorageService;
@@ -40,24 +38,17 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                DisplayText = LocalTranslationHelper.Localize("CheckSystemUpdates");
-                await updateService.CheckVersion();
-
                 //加载本地的缓存信息
                 DisplayText = LocalTranslationHelper.Localize("Initializing");
                 accessTokenManager.AuthenticateResult = dataStorageService.RetrieveAuthenticateResult();
                 applicationContext.Load(dataStorageService.RetrieveTenantInfo(), dataStorageService.RetrieveLoginInfo());
-                await Task.Delay(500);
+
                 //加载系统资源
                 DisplayText = LocalTranslationHelper.Localize("LoadResource");
                 await UserConfigurationManager.GetIfNeedsAsync();
-                if (applicationContext.Configuration == null)
-                {
-                    App.ExitApplication();
-                    return;
-                }
+
                 //如果本地授权存在,直接进入系统首页
-                if (accessTokenManager.IsUserLoggedIn)
+                if (accessTokenManager.IsUserLoggedIn && applicationContext.Configuration != null)
                     OnDialogClosed();
                 else
                     OnDialogClosed(ButtonResult.No);
