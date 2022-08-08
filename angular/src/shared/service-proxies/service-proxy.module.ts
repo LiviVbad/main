@@ -6,8 +6,7 @@ import { ZeroRefreshTokenService } from '@account/auth/zero-refresh-token.servic
 import { ZeroTemplateHttpConfigurationService } from './zero-template-http-configuration.service';
 
 @NgModule({
-    providers: [
-        ApiServiceProxies.AbpVersionsServiceProxy,        
+    providers: [      
         ApiServiceProxies.AuditLogServiceProxy,
         ApiServiceProxies.CachingServiceProxy,
         ApiServiceProxies.ChatServiceProxy,

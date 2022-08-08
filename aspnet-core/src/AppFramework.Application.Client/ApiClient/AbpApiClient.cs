@@ -333,13 +333,15 @@ namespace AppFramework.ApiClient
 
         private void AddHeaders(string accessToken)
         {
-            _client.HttpClient.DefaultRequestHeaders.Clear(); 
+            _client.Headers.Clear();
+            _client.HttpClient.DefaultRequestHeaders.Clear();
+
             _client.WithHeader("Accept", "application/json");
             _client.WithHeader("User-Agent", AppFrameworkConsts.AbpApiClientUserAgent);
             /* Disabled due to https://github.com/paulcbetts/ModernHttpClient/issues/198#issuecomment-181263988
                _client.WithHeader("Accept-Encoding", "gzip,deflate");
             */
-             
+
             if (_applicationContext.CurrentLanguage != null)
             {
                 _client.WithHeader(".AspNetCore.Culture", "c=" + _applicationContext.CurrentLanguage.Name + "|uic=" + _applicationContext.CurrentLanguage.Name);

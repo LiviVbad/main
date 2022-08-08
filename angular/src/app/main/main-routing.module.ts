@@ -6,14 +6,7 @@ import { RouterModule } from '@angular/router';
         RouterModule.forChild([
             {
                 path: '',
-                children: [
-                    
-                    {
-                        path: 'update/abpVersions',
-                        loadChildren: () => import('./update/abpVersions/abpVersion.module').then(m => m.AbpVersionModule),
-                        data: { permission: 'Pages.AbpVersions' }
-                    },
-                
+                children: [ 
                     {
                         path: 'dashboard',
                         loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
