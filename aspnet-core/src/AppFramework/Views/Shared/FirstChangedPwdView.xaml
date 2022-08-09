@@ -30,6 +30,15 @@
                 FontSize="18"
                 FontWeight="Bold"
                 Text="{extensions:Translate ChangePassword}" />
+
+            <TextBlock Style="{StaticResource closeTextBlock}" ToolTip="{extensions:Translate Close}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding CancelCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBlock>
+
             <StackPanel Grid.Row="1" Margin="20,5">
                 <TextBlock Text="{extensions:Translate PleaseEnterYourNewPassword}" />
                 <PasswordBox Margin="0,10,0,5" b:PasswordExtensions.Password="{Binding PassWord, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
