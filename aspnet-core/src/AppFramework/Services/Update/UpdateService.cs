@@ -12,6 +12,8 @@ namespace AppFramework.Services.Update
     {
         private readonly IAbpVersionsAppService appService;
 
+        private readonly string CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
         public UpdateService(IAbpVersionsAppService appService)
         {
             this.appService = appService;
@@ -19,13 +21,9 @@ namespace AppFramework.Services.Update
 
         public async Task CheckVersion()
         {
-#pragma warning disable CS8602 
-            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-#pragma warning restore CS8602
-
             await WebRequest.Execute(() => appService.CheckVersion(new AppFramework.Version.Dtos.CheckVersionInput()
             {
-                Version = version,
+                Version = CurrentVersion,
                 ApplicationName = AppSettings.AppName
             }), CheckVersionFinish);
         }
@@ -42,7 +40,8 @@ namespace AppFramework.Services.Update
             AutoUpdater.ShowUpdateForm(new UpdateInfoEventArgs()
             {
                 ChangelogURL = output.ChangelogURL,
-                CurrentVersion = $"{AppSettings.AppName}{output.Version}",
+                InstalledVersion = new System.Version(CurrentVersion),
+                CurrentVersion = $"{AppSettings.AppName} {output.Version}",
                 DownloadURL = output.DownloadURL,
                 Mandatory = new Mandatory
                 {
