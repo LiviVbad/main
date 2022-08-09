@@ -88,6 +88,7 @@ namespace AppFramework.ViewModels.Version
                     content.AddString(nameof(CreateOrEditAbpVersionDto.Version), Model.Version);
                     content.AddString(nameof(CreateOrEditAbpVersionDto.IsForced), Model.IsForced.ToString());
                     content.AddString(nameof(CreateOrEditAbpVersionDto.IsEnable), Model.IsEnable.ToString());
+                    content.AddString(nameof(CreateOrEditAbpVersionDto.MinimumVersion), Model.MinimumVersion.ToString());
                 }), async () =>
                 {
                     stream?.Dispose();

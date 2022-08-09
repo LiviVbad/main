@@ -46,9 +46,14 @@ namespace AppFramework.Services.Update
                 DownloadURL = output.DownloadURL,
                 Mandatory = new Mandatory
                 {
-                    Value = false,
-                    UpdateMode = output.IsForced ? Mode.Forced : Mode.Normal
+                    Value = output.IsForced,
+                    MinimumVersion = output.MinimumVersion,
                 },
+                CheckSum = new CheckSum()
+                {
+                    Value = output.AlgorithmValue,
+                    HashingAlgorithm = output.HashingAlgorithm,
+                }
             });
 
             await Task.CompletedTask;

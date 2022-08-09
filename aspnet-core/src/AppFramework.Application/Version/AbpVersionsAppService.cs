@@ -10,11 +10,8 @@ using Abp.Application.Services.Dto;
 using AppFramework.Authorization;
 using Abp.Authorization;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
-using Nito.AsyncEx;
-using System.Runtime.Versioning;
-using Microsoft.AspNetCore.Authorization;
-using NPOI.SS.Formula.Functions;
+using Microsoft.AspNetCore.Http; 
+using Microsoft.AspNetCore.Authorization; 
 
 namespace AppFramework.Version
 {
@@ -45,7 +42,9 @@ namespace AppFramework.Version
             var abpVersions = from o in pagedAndFilteredAbpVersions
                               select new
                               {
-
+                                  o.MinimumVersion,
+                                  o.HashingAlgorithm,
+                                  o.AlgorithmValue,
                                   o.Name,
                                   o.Version,
                                   o.DownloadUrl,
@@ -72,6 +71,9 @@ namespace AppFramework.Version
                     IsEnable = o.IsEnable,
                     IsForced = o.IsForced,
                     Id = o.Id,
+                    AlgorithmValue = o.AlgorithmValue,
+                    HashingAlgorithm = o.HashingAlgorithm,
+                    MinimumVersion = o.MinimumVersion
                 };
 
                 results.Add(res);
@@ -157,7 +159,10 @@ namespace AppFramework.Version
                         Version = newVersion.Version,
                         IsForced = newVersion.IsForced,
                         DownloadURL = newVersion.DownloadUrl,
-                        ChangelogURL = newVersion.ChangelogUrl
+                        ChangelogURL = newVersion.ChangelogUrl,
+                        AlgorithmValue = newVersion.AlgorithmValue,
+                        HashingAlgorithm = newVersion.HashingAlgorithm,
+                        MinimumVersion = newVersion.MinimumVersion
                     };
                 }
             }

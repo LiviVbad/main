@@ -82,6 +82,7 @@
                     </sync:GridTemplateColumn>
                     <sync:GridTextColumn HeaderText="{extensions:Translate AppName}" MappingName="Name" />
                     <sync:GridTextColumn HeaderText="{extensions:Translate Version}" MappingName="Version" />
+                    <sync:GridTextColumn HeaderText="{extensions:Translate MinimumVersion}" MappingName="MinimumVersion" />
                     <sync:GridTextColumn
                         DisplayBinding="{Binding IsEnable, Converter={StaticResource boolToYesNoStrConverter}}"
                         HeaderText="{extensions:Translate IsEnable}"

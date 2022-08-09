@@ -1184,6 +1184,7 @@
     <text name="VersionManager">VersionManager</text>
     <text name="VersionManagerInfo">VersionManagerInfo</text>
     <text name="CreateVersion">CreateVersion</text>
+    <text name="MinimumVersion">MinimumVersion</text>
     <text name="AppName">AppName</text>  
     <text name="VersionDeleteWarningMessage">Are you sure you want to delete the version {0}?</text>
     <text name="CheckSystemUpdates">CheckSystemUpdates</text>

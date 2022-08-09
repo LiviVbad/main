@@ -13,6 +13,12 @@ namespace AppFramework.Version.Dtos
 
         public string ChangelogUrl { get; set; }
 
+        public string MinimumVersion { get; set; }
+
+        public string AlgorithmValue { get; set; }
+
+        public string HashingAlgorithm { get; set; }
+
         public bool IsEnable { get; set; }
 
         public bool IsForced { get; set; }

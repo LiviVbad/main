@@ -22,6 +22,8 @@ using AppFramework.Version.Dtos;
 using Abp.Auditing;
 using Microsoft.AspNetCore.Hosting;
 using AppFramework.Version;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace AppFramework.Web.Controllers
 {
@@ -45,7 +47,7 @@ namespace AppFramework.Web.Controllers
             _tempFileCacheManager = tempFileCacheManager;
             _profileAppService = profileAppService;
         }
-         
+
         public async Task<ActionResult> UploadVersionFile(CreateOrEditAbpVersionDto input)
         {
             var file = Request.Form.Files.FirstOrDefault();
@@ -69,12 +71,28 @@ namespace AppFramework.Web.Controllers
                     fs.Flush();
                 }
 
+                input.AlgorithmValue = GetMd5HashFromFile(filePath);
+                input.HashingAlgorithm = "MD5";
                 input.DownloadUrl = filePath;
             }
 
             await versionsAppService.CreateOrEdit(input);
 
             return Ok();
+
+            static string GetMd5HashFromFile(string fileName)
+            {
+                FileStream file = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                MD5 md5 = new MD5CryptoServiceProvider();
+                byte[] retVal = md5.ComputeHash(file);
+                file.Close();
+
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < retVal.Length; i++)
+                    sb.Append(retVal[i].ToString("x2"));
+
+                return sb.ToString();
+            }
         }
 
         public UploadProfilePictureOutput UploadProfilePicture(FileDto input)

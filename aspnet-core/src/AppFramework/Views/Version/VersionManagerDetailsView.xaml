@@ -6,7 +6,7 @@
     xmlns:extensions="clr-namespace:AppFramework.Extensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="600"
-    Height="350"
+    Height="380"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -32,6 +32,9 @@
 
             <TextBlock Text="{extensions:Translate Version}" />
             <TextBox Margin="0,5" Text="{Binding Model.Version}" />
+
+            <TextBlock Text="{extensions:Translate MinimumVersion}" />
+            <TextBox Margin="0,5" Text="{Binding Model.MinimumVersion}" />
 
             <TextBlock Text="{extensions:Translate FileUpload}" />
             <DockPanel Margin="0,5">
@@ -69,7 +72,7 @@
                 Content="{extensions:Translate Cancel}"
                 Style="{StaticResource SimpleButton}" />
             <Button
-                Margin="10,0"
+                Margin="10,0,0,0"
                 Command="{Binding SaveCommand}"
                 Content="{extensions:Translate Save}"
                 IsEnabled="{Binding IsChangePasswordEnabled}"

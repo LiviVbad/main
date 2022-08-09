@@ -21,6 +21,12 @@ namespace AppFramework.Version
 
         public virtual string ChangelogUrl { get; set; }
 
+        public virtual string MinimumVersion { get; set; }
+
+        public virtual string AlgorithmValue { get; set; }
+
+        public virtual string HashingAlgorithm { get; set; }
+
         public virtual bool IsEnable { get; set; }
 
         public virtual bool IsForced { get; set; }
