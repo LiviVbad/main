@@ -5,6 +5,7 @@ using AppFramework.Authorization.Accounts.Dto;
 using AppFramework.Common;
 using AppFramework.Common.Services.Account;
 using AppFramework.Common.Services.Storage;
+using AppFramework.Localization;
 using AppFramework.Services;
 using AppFramework.Services.Account;
 using AppFramework.ViewModels.Shared;
@@ -119,7 +120,7 @@ namespace AppFramework.ViewModels
             IAccountService accountService,
             IAccountAppService accountAppService,
             IApplicationContext applicationContext,
-            IAccountStorageService dataStorageService,
+            IAccountStorageService dataStorageService, 
             IDataStorageService storageService)
         {
             this.dialogService = dialogService;
@@ -165,7 +166,7 @@ namespace AppFramework.ViewModels
             applicationContext.CurrentLanguage = languageInfo;
 
             await SetBusyAsync(async () =>
-             {
+             { 
                  await WebRequest.Execute(() => UserConfigurationManager.GetAsync(),
                   async () =>
                   {
@@ -273,7 +274,7 @@ namespace AppFramework.ViewModels
             {
                 Languages = new ObservableCollection<LanguageInfo>(configuration.Localization.Languages);
 
-                var currentLanguage = Languages.FirstOrDefault(l => l.Name == applicationContext.CurrentLanguage.Name);
+                var currentLanguage = Languages.FirstOrDefault(l => l.Name == applicationContext.Configuration.Localization.CurrentLanguage.Name);
                 if (currentLanguage != null)
                     SelectedLanguage = currentLanguage;
 

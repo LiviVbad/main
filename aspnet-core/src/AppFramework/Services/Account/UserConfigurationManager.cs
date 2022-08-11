@@ -1,33 +1,30 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.Common;
-using AppFramework.Configuration; 
+using AppFramework.Configuration;
 using AppFramework.MultiTenancy;
 using AppFramework.Localization.Resources;
 using Prism.Ioc;
 using System;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks; 
-using Abp.Web.Models.AbpUserConfiguration;
-using AppFramework.Services.Update;
+using System.Threading.Tasks;
+using Abp.Web.Models.AbpUserConfiguration; 
+using AppFramework.Authorization.Users.Profile;
 
 namespace AppFramework.Services.Account
 {
     public class UserConfigurationManager
     {
-        private static readonly Lazy<IApplicationContext> AppContext =
+        private static readonly Lazy<IApplicationContext> appContext =
           new Lazy<IApplicationContext>(
           ContainerLocator.Container.Resolve<IApplicationContext>);
 
         private static IAccessTokenManager AccessTokenManager =>
             ContainerLocator.Container.Resolve<IAccessTokenManager>();
 
-        private static IUpdateService CheckVersionService =>
-            ContainerLocator.Container.Resolve<IUpdateService>();
-
         public static async Task GetIfNeedsAsync()
         {
-            if (AppContext.Value.Configuration != null)
+            if (appContext.Value.Configuration != null)
                 return;
 
             await GetAsync();
@@ -45,16 +42,32 @@ namespace AppFramework.Services.Account
 
         private static async Task GetConfigurationSuccessed(AbpUserConfigurationDto result)
         {
-            AppContext.Value.Configuration = result;
+            appContext.Value.Configuration = result;
             SetCurrentCulture();
 
             if (!result.MultiTenancy.IsEnabled)
-                AppContext.Value.SetAsTenant(TenantConsts.DefaultTenantName, TenantConsts.DefaultTenantId);
+                appContext.Value.SetAsTenant(TenantConsts.DefaultTenantName, TenantConsts.DefaultTenantId);
 
-            AppContext.Value.CurrentLanguage = result.Localization.CurrentLanguage;
-WarnIfUserHasNoPermission();
+            var profileAppService = ContainerLocator.Container.Resolve<IProfileAppService>();
+            var currentLanguage = appContext.Value.CurrentLanguage;
+            if (currentLanguage != null && currentLanguage.Name != result.Localization.CurrentLanguage.Name)
+            {
+                if (AccessTokenManager.IsUserLoggedIn)
+                {
+                    //如果授权成功后, 当前客户端选择的语言和后端的不一致,那么修改默认语言
+                    await profileAppService.ChangeLanguage(new Authorization.Users.Dto.ChangeUserLanguageDto()
+                    {
+                        LanguageName = currentLanguage.Name
+                    });
+                    await GetAsync();
+                }
+            }
+            else
+            {
+                appContext.Value.CurrentLanguage = result.Localization.CurrentLanguage;
+            }
 
-            await CheckVersionService.CheckVersion();
+            WarnIfUserHasNoPermission();
         }
 
         private static void WarnIfUserHasNoPermission()
@@ -64,8 +77,8 @@ WarnIfUserHasNoPermission();
                 return;
             }
 
-            var hasAnyPermission = AppContext.Value.Configuration.Auth.GrantedPermissions != null &&
-                                   AppContext.Value.Configuration.Auth.GrantedPermissions.Any();
+            var hasAnyPermission = appContext.Value.Configuration.Auth.GrantedPermissions != null &&
+                                   appContext.Value.Configuration.Auth.GrantedPermissions.Any();
 
             if (!hasAnyPermission)
             {
@@ -92,12 +105,12 @@ WarnIfUserHasNoPermission();
         /// <returns></returns>
         private static CultureInfo GetUserCulture(ILocaleCulture locale)
         {
-            if (AppContext.Value.Configuration.Localization.CurrentCulture.Name == null)
+            if (appContext.Value.Configuration.Localization.CurrentCulture.Name == null)
                 return locale.GetCurrentCultureInfo();
 
             try
             {
-                return new CultureInfo(AppContext.Value.Configuration.Localization.CurrentCulture.Name);
+                return new CultureInfo(appContext.Value.Configuration.Localization.CurrentCulture.Name);
             }
             catch (CultureNotFoundException)
             {

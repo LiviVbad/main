@@ -15,6 +15,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows;
 using AppFramework.Common.Services.Storage;
+using AppFramework.Services.Update;
 
 namespace AppFramework
 {
@@ -50,8 +51,11 @@ namespace AppFramework
             regionAdapterMappings.ConfigurationAdapters(Container);
         }
 
-        protected override void OnInitialized()
+        protected override async void OnInitialized()
         {
+            var appVersionService = ContainerLocator.Container.Resolve<IUpdateService>();
+            await appVersionService.CheckVersion();
+
             accountService = Container.Resolve<IAccountService>();
 
             if (SplashScreenInitialized())
@@ -94,7 +98,7 @@ namespace AppFramework
             App.Current.MainWindow.Hide();
 
             if (SplashScreenInitialized())
-            { 
+            {
                 App.Current.MainWindow.Show();
                 (App.Current.MainWindow.DataContext as INavigationAware)?.OnNavigatedTo(null);
             }
