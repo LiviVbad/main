@@ -41,19 +41,19 @@
                                 <Border
                                     x:Name="hdborder"
                                     Margin="0,2"
+                                    CornerRadius="0"
+                                    Opacity="0"
                                     Style="{DynamicResource BorderStyle}" />
                                 <Border
                                     x:Name="border"
                                     Margin="0,2"
-                                    Padding="{TemplateBinding Padding}"
-                                    CornerRadius="3">
+                                    Padding="{TemplateBinding Padding}">
                                     <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                                 </Border>
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
                                     <Setter Property="Foreground" Value="{DynamicResource PrimaryBackground}" />
-                                    <Setter TargetName="hdborder" Property="Opacity" Value="1" />
                                     <Setter TargetName="htborder" Property="Width" Value="3" />
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
@@ -70,7 +70,19 @@
                                 </Trigger>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Foreground" Value="{DynamicResource PrimaryBackground}" />
-                                    <Setter TargetName="hdborder" Property="Opacity" Value="1" />
+                                    <Setter TargetName="htborder" Property="Width" Value="3" />
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ThicknessAnimation
+                                                    Storyboard.TargetName="htborder"
+                                                    Storyboard.TargetProperty="Margin"
+                                                    From="5"
+                                                    To="5,10"
+                                                    Duration="0:0:.2" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
                                 </Trigger>
                                 <Trigger Property="IsSelected" Value="False">
                                     <Setter TargetName="hdborder" Property="Opacity" Value="0" />

@@ -3,6 +3,7 @@ using AppFramework.Services;
 using AppFramework.ViewModels;
 using Syncfusion.Windows.Shared;
 using System;
+using System.Windows;
 
 namespace AppFramework.Views
 {
@@ -31,7 +32,25 @@ namespace AppFramework.Views
             BtnMin.Click += BtnMin_Click;
             BtnMax.Click += BtnMax_Click;
             BtnClose.Click += BtnClose_Click;
+
+            BtnDoubleLeft.Click += BtnDoubleLeft_Click;
             this.dialog = dialog;
+        }
+
+        private void BtnDoubleLeft_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if ((bool)BtnDoubleLeft.IsChecked)
+            {
+                TitltStack.Visibility = Visibility.Collapsed;
+                leftGridColumn.Width = new GridLength(65);
+                TxtDoubleTitle.Text = "\ue74d";
+            }
+            else
+            {
+                TitltStack.Visibility = Visibility.Visible;
+                leftGridColumn.Width = new GridLength(200);
+                TxtDoubleTitle.Text = "\ue74c";
+            }
         }
 
         private async void BtnClose_Click(object sender, System.Windows.RoutedEventArgs e)

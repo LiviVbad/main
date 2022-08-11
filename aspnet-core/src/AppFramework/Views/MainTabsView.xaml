@@ -65,347 +65,364 @@
                 </Storyboard>
             </Grid.Resources>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition MaxWidth="200" />
+                <ColumnDefinition x:Name="leftGridColumn" Width="200" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Border
-                x:Name="HeaderBorder"
-                Grid.ColumnSpan="2"
-                Opacity="0.5"
-                Style="{DynamicResource HeaderBorderStyle}" />
-            <Border Grid.Row="1" Style="{DynamicResource HeaderBorderStyle}" />
+            <Border Opacity="0.5" Style="{DynamicResource HeaderBorderStyle}" />
 
-            <!--  顶部标题  -->
-            <StackPanel
-                Grid.ColumnSpan="2"
-                Margin="20,25"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Orientation="Horizontal">
-                <Image
-                    Width="20"
-                    Height="20"
-                    Source="/Assets/Images/logo.ico" />
-                <TextBlock
-                    Margin="5,0,2,0"
-                    FontWeight="Bold"
-                    Foreground="{DynamicResource PrimaryBackground}"
-                    Text="APP" />
-                <TextBlock Text="FRAMEWORK" />
-            </StackPanel>
-
-            <!--  顶部按钮功能 主题/最小化/最大化/退出系统  -->
-            <StackPanel
-                Grid.Column="1"
-                Margin="10"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Orientation="Horizontal">
-
-                <ToggleButton
-                    x:Name="toggleNotification"
-                    Margin="5"
-                    Padding="5"
-                    IsChecked="{Binding NotificationPanelIsOpen}"
-                    Template="{StaticResource UserPanelButton}">
-                    <StackPanel Orientation="Horizontal">
+            <DockPanel>
+                <!--  顶部标题  -->
+                <DockPanel
+                    Margin="15,25"
+                    VerticalAlignment="Center"
+                    DockPanel.Dock="Top">
+                    <StackPanel x:Name="TitltStack" Orientation="Horizontal">
                         <Image
                             Width="20"
                             Height="20"
-                            Source="/Assets/Images/notification.png" />
+                            VerticalAlignment="Center"
+                            Source="/Assets/Images/logo.ico" />
+                        <TextBlock
+                            Margin="5,0,2,0"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Foreground="{DynamicResource PrimaryBackground}"
+                            Text="APP" />
+                        <TextBlock VerticalAlignment="Center" Text="FRAMEWORK" />
                     </StackPanel>
-                </ToggleButton>
 
-                <Button
-                    Margin="5"
-                    Padding="5"
-                    VerticalAlignment="Center"
-                    Background="Transparent">
-                    <Button.Content>
-                        <Image
-                            Width="20"
-                            Height="20"
-                            Source="/Assets/Images/message.png" />
-                    </Button.Content>
-                </Button>
-
-                <ToggleButton
-                    Margin="5"
-                    Padding="10,5"
-                    IsChecked="{Binding appService.IsShowUserPanel, Mode=TwoWay}"
-                    Template="{StaticResource UserPanelButton}">
-                    <StackPanel Orientation="Horizontal">
-                        <Image
-                            Width="20"
-                            Height="20"
-                            Source="{Binding appService.Photo, Converter={StaticResource bytesToImageConverter}}" />
-                        <TextBlock Margin="5,0" Text="{Binding appService.UserNameAndSurname}" />
-                    </StackPanel>
-                </ToggleButton>
-
-                <Button
-                    x:Name="BtnMin"
-                    VerticalAlignment="Center"
-                    Background="Transparent"
-                    Content="&#xe729;"
-                    Style="{DynamicResource IconButtonStyle}" />
-                <Button
-                    x:Name="BtnMax"
-                    Margin="5,0"
-                    VerticalAlignment="Center"
-                    Background="Transparent"
-                    Content="&#xe67b;"
-                    Style="{DynamicResource IconButtonStyle}" />
-                <Button
-                    x:Name="BtnClose"
-                    VerticalAlignment="Center"
-                    Background="Transparent"
-                    Content="&#xe63a;"
-                    Style="{DynamicResource IconButtonStyle}" />
-            </StackPanel>
-
-            <!--  通知  -->
-            <Popup
-                Grid.Row="1"
-                Width="400"
-                Height="400"
-                AllowsTransparency="True"
-                HorizontalOffset="0"
-                IsOpen="{Binding ElementName=toggleNotification, Path=IsChecked}"
-                Placement="Bottom"
-                PlacementTarget="{Binding ElementName=toggleNotification}"
-                StaysOpen="False"
-                VerticalOffset="5">
-                <Grid Margin="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-
-                    <Border
-                        Grid.RowSpan="3"
-                        CornerRadius="5"
-                        Opacity="1"
-                        Style="{DynamicResource HeaderBorderStyle}">
-                        <Border.Effect>
-                            <DropShadowEffect
-                                BlurRadius="15"
-                                Direction="180"
-                                Opacity="0.3"
-                                ShadowDepth="-10"
-                                Color="#1F000000" />
-                        </Border.Effect>
-                    </Border>
-
-                    <Border Background="{DynamicResource PrimaryBackground}" CornerRadius="5,5,0,0" />
-
-                    <TextBlock
-                        Margin="15"
-                        FontSize="18"
-                        FontWeight="Bold"
-                        Text="{Binding notificationService.Title}" />
-
-                    <Button
-                        Margin="8,0"
-                        Padding="10,5"
-                        HorizontalAlignment="Right"
+                    <ToggleButton
+                        x:Name="BtnDoubleLeft"
+                        HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Background="Transparent"
-                        Command="{Binding SettingsCommand}">
+                        Template="{StaticResource UserPanelButton}">
+                        <TextBlock
+                            x:Name="TxtDoubleTitle"
+                            FontFamily="/Assets/Fonts/#iconfont"
+                            FontSize="22"
+                            Text="&#xe74c;" />
+                    </ToggleButton>
+                </DockPanel>
+
+                <!--  左侧系统菜单  -->
+                <ListBox
+                    x:Name="ListMenuBox"
+                    Margin="10"
+                    ItemContainerStyle="{StaticResource listMenuItemStyle}"
+                    ItemsSource="{Binding appService.NavigationItems}"
+                    ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5" Orientation="Horizontal">
+                                <Image
+                                    Width="20"
+                                    Height="20"
+                                    Source="{Binding Icon, Converter={StaticResource menuConverter}}"
+                                    ToolTip="{Binding Title}" />
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Style="{x:Null}"
+                                    Text="{Binding Title}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="{Binding ElementName=ListMenuBox, Path=SelectedItem}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ListBox>
+            </DockPanel>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Border
+                    x:Name="HeaderBorder"
+                    Opacity="0"
+                    Style="{DynamicResource HeaderBorderStyle}" />
+
+                <!--  顶部按钮功能 主题/最小化/最大化/退出系统  -->
+                <StackPanel
+                    Margin="10"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+
+                    <ToggleButton
+                        x:Name="toggleNotification"
+                        Margin="5"
+                        Padding="5"
+                        IsChecked="{Binding NotificationPanelIsOpen}"
+                        Template="{StaticResource UserPanelButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image
+                                Width="20"
+                                Height="20"
+                                Source="/Assets/Images/notification.png" />
+                        </StackPanel>
+                    </ToggleButton>
+
+                    <Button
+                        Margin="5"
+                        Padding="5"
+                        VerticalAlignment="Center"
+                        Background="Transparent">
                         <Button.Content>
                             <Image
                                 Width="20"
                                 Height="20"
-                                Source="/Assets/Images/menus/setting.png" />
+                                Source="/Assets/Images/message.png" />
                         </Button.Content>
                     </Button>
 
-                    <ItemsControl
-                        Grid.Row="1"
-                        Margin="10"
-                        ItemsSource="{Binding notificationService.Items}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="0,5">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto" />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-
-                                    <Image
-                                        Width="35"
-                                        Height="35"
-                                        Source="/Assets/Images/info.png" />
-
-                                    <StackPanel Grid.Column="1" Margin="10,0">
-                                        <TextBlock Text="{Binding Converter={StaticResource notifycationConverter}}" TextWrapping="Wrap" />
-                                        <TextBlock Margin="0,2" Text="{Binding Notification.CreationTime, StringFormat='yyyy-MM-dd hh:mm:ss'}" />
-                                    </StackPanel>
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-
-                    <DockPanel Grid.Row="2" Margin="5">
-                        <Button
-                            Margin="5"
-                            Command="{Binding SetAllNotificationsAsReadCommand}"
-                            Content="{Binding notificationService.SetAllAsRead}"
-                            Style="{StaticResource SimpleButton}"
-                            Visibility="{Binding notificationService.IsUnRead, Converter={StaticResource inverseBoolToVisibility}}" />
-                        <Button
-                            Margin="5"
-                            Command="{Binding SeeAllNotificationsCommand}"
-                            Content="{Binding notificationService.SeeAllNotifications}"
-                            Style="{StaticResource SimpleButton}" />
-                    </DockPanel>
-                </Grid>
-            </Popup>
-
-            <!--  左侧系统菜单  -->
-            <ListBox
-                x:Name="ListMenuBox"
-                Grid.Row="1"
-                Margin="10"
-                ItemContainerStyle="{StaticResource listMenuItemStyle}"
-                ItemsSource="{Binding appService.NavigationItems}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="5" Orientation="Horizontal">
+                    <ToggleButton
+                        Margin="5"
+                        Padding="10,5"
+                        IsChecked="{Binding appService.IsShowUserPanel, Mode=TwoWay}"
+                        Template="{StaticResource UserPanelButton}">
+                        <StackPanel Orientation="Horizontal">
                             <Image
                                 Width="20"
                                 Height="20"
-                                Source="{Binding Icon, Converter={StaticResource menuConverter}}"
-                                ToolTip="{Binding Title}" />
-                            <TextBlock
-                                Margin="10,0,0,0"
-                                VerticalAlignment="Center"
-                                FontSize="14"
-                                Style="{x:Null}"
-                                Text="{Binding Title}" />
+                                Source="{Binding appService.Photo, Converter={StaticResource bytesToImageConverter}}" />
+                            <TextBlock Margin="5,0" Text="{Binding appService.UserNameAndSurname}" />
                         </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="{Binding ElementName=ListMenuBox, Path=SelectedItem}" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </ListBox>
+                    </ToggleButton>
 
-            <!--  选项卡  -->
-            <sync:TabControlExt
-                Grid.Row="1"
-                Grid.Column="1"
-                prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Main}"
-                AllowDragDrop="False"
-                BorderThickness="0"
-                CloseButtonType="Individual"
-                EnableLabelEdit="False"
-                OnCloseButtonClick="TabControlExt_OnCloseButtonClick"
-                SelectedIndex="{Binding NavigationService.SelectedIndex}"
-                ShowTabListContextMenu="False">
-                <sync:TabControlExt.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:TabItemExt}, Converter={StaticResource menuTitleConverter}}" />
-                    </DataTemplate>
-                </sync:TabControlExt.ItemTemplate>
-            </sync:TabControlExt>
+                    <Button
+                        x:Name="BtnMin"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        Content="&#xe729;"
+                        Style="{DynamicResource IconButtonStyle}" />
+                    <Button
+                        x:Name="BtnMax"
+                        Margin="5,0"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        Content="&#xe67b;"
+                        Style="{DynamicResource IconButtonStyle}" />
+                    <Button
+                        x:Name="BtnClose"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        Content="&#xe63a;"
+                        Style="{DynamicResource IconButtonStyle}" />
+                </StackPanel>
 
-            <!--  用户功能面板  -->
-            <Border
-                Grid.Row="1"
-                Grid.Column="1"
-                Width="280"
-                Margin="0,0,-305,0"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Stretch"
-                Opacity="1">
-                <Grid>
-                    <Grid.Effect>
-                        <DropShadowEffect
-                            BlurRadius="20"
-                            Direction="180"
-                            Opacity="0.2"
-                            ShadowDepth="-10"
-                            Color="#1F000000" />
-                    </Grid.Effect>
+                <!--  通知  -->
+                <Popup
+                    Grid.Row="1"
+                    Width="400"
+                    Height="400"
+                    AllowsTransparency="True"
+                    HorizontalOffset="0"
+                    IsOpen="{Binding ElementName=toggleNotification, Path=IsChecked}"
+                    Placement="Bottom"
+                    PlacementTarget="{Binding ElementName=toggleNotification}"
+                    StaysOpen="False"
+                    VerticalOffset="5">
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
+                        <Border
+                            Grid.RowSpan="3"
+                            CornerRadius="5"
+                            Opacity="1"
+                            Style="{DynamicResource HeaderBorderStyle}">
+                            <Border.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Direction="180"
+                                    Opacity="0.3"
+                                    ShadowDepth="-10"
+                                    Color="#1F000000" />
+                            </Border.Effect>
+                        </Border>
 
-                    <Border
-                        Grid.RowSpan="2"
-                        Opacity="1"
-                        Style="{DynamicResource HeaderBorderStyle}" />
+                        <Border Background="{DynamicResource PrimaryBackground}" CornerRadius="5,5,0,0" />
 
-                    <StackPanel Margin="15" Orientation="Horizontal">
-                        <Image
-                            Width="40"
-                            Height="40"
-                            Source="{Binding appService.Photo, Converter={StaticResource bytesToImageConverter}}" />
-                        <StackPanel Margin="10,0" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding appService.UserNameAndSurname}" />
-                            <TextBlock Margin="0,2" Text="{Binding appService.EmailAddress}" />
+                        <TextBlock
+                            Margin="15"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Text="{Binding notificationService.Title}" />
+
+                        <Button
+                            Margin="8,0"
+                            Padding="10,5"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            Command="{Binding SettingsCommand}">
+                            <Button.Content>
+                                <Image
+                                    Width="20"
+                                    Height="20"
+                                    Source="/Assets/Images/menus/setting.png" />
+                            </Button.Content>
+                        </Button>
+
+                        <ItemsControl
+                            Grid.Row="1"
+                            Margin="10"
+                            ItemsSource="{Binding notificationService.Items}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image
+                                            Width="35"
+                                            Height="35"
+                                            Source="/Assets/Images/info.png" />
+
+                                        <StackPanel Grid.Column="1" Margin="10,0">
+                                            <TextBlock Text="{Binding Converter={StaticResource notifycationConverter}}" TextWrapping="Wrap" />
+                                            <TextBlock Margin="0,2" Text="{Binding Notification.CreationTime, StringFormat='yyyy-MM-dd hh:mm:ss'}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <DockPanel Grid.Row="2" Margin="5">
+                            <Button
+                                Margin="5"
+                                Command="{Binding SetAllNotificationsAsReadCommand}"
+                                Content="{Binding notificationService.SetAllAsRead}"
+                                Style="{StaticResource SimpleButton}"
+                                Visibility="{Binding notificationService.IsUnRead, Converter={StaticResource inverseBoolToVisibility}}" />
+                            <Button
+                                Margin="5"
+                                Command="{Binding SeeAllNotificationsCommand}"
+                                Content="{Binding notificationService.SeeAllNotifications}"
+                                Style="{StaticResource SimpleButton}" />
+                        </DockPanel>
+                    </Grid>
+                </Popup>
+
+                <!--  选项卡  -->
+                <sync:TabControlExt
+                    Grid.Row="1"
+                    prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Main}"
+                    AllowDragDrop="False"
+                    BorderThickness="0"
+                    CloseButtonType="Individual"
+                    EnableLabelEdit="False"
+                    OnCloseButtonClick="TabControlExt_OnCloseButtonClick"
+                    SelectedIndex="{Binding NavigationService.SelectedIndex}"
+                    ShowTabListContextMenu="False">
+                    <sync:TabControlExt.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:TabItemExt}, Converter={StaticResource menuTitleConverter}}" />
+                        </DataTemplate>
+                    </sync:TabControlExt.ItemTemplate>
+                </sync:TabControlExt>
+
+                <!--  用户功能面板  -->
+                <Border
+                    Grid.Row="1"
+                    Width="280"
+                    Margin="0,0,-305,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Stretch"
+                    Opacity="1">
+                    <Grid>
+                        <Grid.Effect>
+                            <DropShadowEffect
+                                BlurRadius="20"
+                                Direction="180"
+                                Opacity="0.2"
+                                ShadowDepth="-10"
+                                Color="#1F000000" />
+                        </Grid.Effect>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Border
+                            Grid.RowSpan="2"
+                            Opacity="1"
+                            Style="{DynamicResource HeaderBorderStyle}" />
+
+                        <StackPanel Margin="15" Orientation="Horizontal">
+                            <Image
+                                Width="40"
+                                Height="40"
+                                Source="{Binding appService.Photo, Converter={StaticResource bytesToImageConverter}}" />
+                            <StackPanel Margin="10,0" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding appService.UserNameAndSurname}" />
+                                <TextBlock Margin="0,2" Text="{Binding appService.EmailAddress}" />
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
 
-                    <ListBox
-                        x:Name="ListUserMenu"
-                        Grid.Row="1"
-                        Margin="15,0"
-                        ItemContainerStyle="{StaticResource listMenuItemStyle}"
-                        ItemsSource="{Binding appService.UserMenuItems}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="5" Orientation="Horizontal">
-                                    <Image
-                                        Width="20"
-                                        Height="20"
-                                        Source="{Binding Icon, Converter={StaticResource menuConverter}}" />
-                                    <TextBlock
-                                        Margin="10,0,0,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="14"
-                                        Style="{x:Null}"
-                                        Text="{Binding Key}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding ExecuteUserActionCommand}" CommandParameter="{Binding ElementName=ListUserMenu, Path=SelectedItem.Key}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </ListBox>
-                </Grid>
-                <Border.Style>
-                    <Style TargetType="{x:Type Border}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding appService.IsShowUserPanel}" Value="true">
-                                <DataTrigger.EnterActions>
-                                    <BeginStoryboard Storyboard="{StaticResource SlideIn}" />
-                                </DataTrigger.EnterActions>
-                                <DataTrigger.ExitActions>
-                                    <BeginStoryboard Storyboard="{StaticResource SlideOut}" />
-                                </DataTrigger.ExitActions>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Border.Style>
-                <Border.RenderTransform>
-                    <TranslateTransform />
-                </Border.RenderTransform>
-            </Border>
+                        <ListBox
+                            x:Name="ListUserMenu"
+                            Grid.Row="1"
+                            Margin="15,0"
+                            ItemContainerStyle="{StaticResource listMenuItemStyle}"
+                            ItemsSource="{Binding appService.UserMenuItems}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="5" Orientation="Horizontal">
+                                        <Image
+                                            Width="20"
+                                            Height="20"
+                                            Source="{Binding Icon, Converter={StaticResource menuConverter}}" />
+                                        <TextBlock
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            Style="{x:Null}"
+                                            Text="{Binding Key}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding ExecuteUserActionCommand}" CommandParameter="{Binding ElementName=ListUserMenu, Path=SelectedItem.Key}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ListBox>
+                    </Grid>
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding appService.IsShowUserPanel}" Value="true">
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard Storyboard="{StaticResource SlideIn}" />
+                                    </DataTrigger.EnterActions>
+                                    <DataTrigger.ExitActions>
+                                        <BeginStoryboard Storyboard="{StaticResource SlideOut}" />
+                                    </DataTrigger.ExitActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <Border.RenderTransform>
+                        <TranslateTransform />
+                    </Border.RenderTransform>
+                </Border>
+            </Grid>
         </Grid>
     </win:DialogHost>
 </sync:ChromelessWindow>

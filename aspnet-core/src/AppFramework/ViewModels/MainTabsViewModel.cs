@@ -58,7 +58,7 @@ namespace AppFramework.ViewModels
 
         public void Navigate(NavigationItem navigationItem)
         {
-            NavigationService.Navigate(navigationItem.PageViewName);
+            NavigationService.Navigate(navigationItem?.PageViewName);
         }
 
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
