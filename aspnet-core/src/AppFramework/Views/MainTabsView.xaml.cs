@@ -2,6 +2,7 @@
 using AppFramework.Services;
 using AppFramework.ViewModels;
 using Syncfusion.Windows.Shared;
+using Syncfusion.Windows.Tools.Controls;
 using System;
 using System.Windows;
 
@@ -79,7 +80,34 @@ namespace AppFramework.Views
         private void TabControlExt_OnCloseButtonClick(object sender, Syncfusion.Windows.Tools.Controls.CloseTabEventArgs e)
         {
             if (e.TargetTabItem != null)
-                (this.DataContext as MainTabsViewModel).NavigationService.RemoveView(e.TargetTabItem.Content);
+            {
+                (this.DataContext as MainTabsViewModel)?.NavigationService.RemoveView(e.TargetTabItem.Content);
+            }
+        }
+
+        private void TabControlExt_OnCloseAllTabs(object sender, Syncfusion.Windows.Tools.Controls.CloseTabEventArgs e)
+        {
+            if (e.ClosingTabItems != null)
+            {
+                var conext = this.DataContext as MainTabsViewModel;
+                foreach (var item in e.ClosingTabItems)
+                    conext?.NavigationService.RemoveView(item);
+            }
+        }
+
+        private void TabControlExt_OnCloseOtherTabs(object sender, Syncfusion.Windows.Tools.Controls.CloseTabEventArgs e)
+        {
+            if (e.ClosingTabItems != null)
+            {
+                var conext = this.DataContext as MainTabsViewModel;
+                foreach (var item in e.ClosingTabItems)
+                {
+                    if (item != e.TargetTabItem.Content)
+                    {
+                        conext?.NavigationService.RemoveView(item);
+                    }
+                }
+            }
         }
     }
 }

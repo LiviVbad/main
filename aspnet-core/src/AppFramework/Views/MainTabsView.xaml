@@ -320,7 +320,8 @@
 
                 <!--  选项卡  -->
                 <sync:TabControlExt
-                    Grid.Row="1"
+                    OnCloseOtherTabs="TabControlExt_OnCloseOtherTabs"
+                    Grid.Row="1" OnCloseAllTabs="TabControlExt_OnCloseAllTabs"
                     prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Main}"
                     AllowDragDrop="False"
                     BorderThickness="0"
