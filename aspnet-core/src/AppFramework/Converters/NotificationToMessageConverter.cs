@@ -33,10 +33,15 @@ namespace AppFramework.Converters
                     {
                         if (item.Key.Equals("Message"))
                         {
-                            var val = JsonConvert.DeserializeObject<NotificationMessage>(item.Value.ToString());
-                            if (val != null)
+                            var msg = item.Value.ToString();
+                            try
                             {
-                                sb.Append(Local.Localize(val.Name));
+                                var val = JsonConvert.DeserializeObject<NotificationMessage>(msg);
+                                if (val != null) sb.Append(Local.Localize(val.Name));
+                            }
+                            catch
+                            {
+                                sb.Append(msg);
                             }
                         }
                     }
