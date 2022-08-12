@@ -290,6 +290,8 @@ namespace AppFramework.Services.Account
         {
             await WebRequest.Execute(() => profileAppService.PrepareCollectedData(), async () =>
             {
+                NotifyBar.Info(Local.Localize("Notifications"), 
+                    Local.Localize("GdprDataPreparedNotificationMessage"));
                 await notificationService.GetNotifications();
             });
         }

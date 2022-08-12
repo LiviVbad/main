@@ -11,14 +11,7 @@ using System.Threading.Tasks;
 namespace AppFramework.Common
 {
     public class ExceptionHandler
-    {
-        private readonly IDialogService dialog;
-
-        public ExceptionHandler(IDialogService dialog)
-        {
-            this.dialog = dialog;
-        }
-
+    { 
         public async Task<bool> HandleIfAbpResponseAsync(FlurlHttpException httpException)
         {
             AjaxResponse ajaxResponse = await httpException.GetResponseJsonAsync<AjaxResponse>();
@@ -35,9 +28,9 @@ namespace AppFramework.Common
                 return true;
              
             if (string.IsNullOrEmpty(ajaxResponse.Error.Details))
-                dialog.ShowMessage(Local.Localize("Error"), ajaxResponse.Error.GetConsolidatedMessage());
+                NotifyBar.Error(Local.Localize("Error"), ajaxResponse.Error.GetConsolidatedMessage());
             else
-                dialog.ShowMessage(ajaxResponse.Error.GetConsolidatedMessage(), ajaxResponse.Error.Details);
+                NotifyBar.Error(ajaxResponse.Error.GetConsolidatedMessage(), ajaxResponse.Error.Details);
 
             return true;
         }

@@ -1028,5 +1028,7 @@
     <text name="IsForced">是否强制更新</text>
     <text name="VersionDeleteWarningMessage">您确定删除版本 {0}?</text>
     <text name="CheckSystemUpdates">检查系统更新</text>
+
+    <text name="GdprDataPreparedNotificationMessage">您的数据已准备好，请点击通知下载。</text>
   </texts>
 </localizationDictionary>

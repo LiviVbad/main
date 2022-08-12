@@ -142,9 +142,9 @@ namespace AppFramework.Common
            Func<Exception, Task> failCallback)
         {
             if (string.IsNullOrEmpty(userFriendlyException.Details))
-                dialogService.ShowMessage(Local.Localize("Error"), userFriendlyException.Message);
+                NotifyBar.Error(Local.Localize("Error"), userFriendlyException.Message); 
             else
-                dialogService.ShowMessage(userFriendlyException.Message, userFriendlyException.Details);
+                NotifyBar.Error(userFriendlyException.Message, userFriendlyException.Details); 
 
             await failCallback(userFriendlyException);
         }
@@ -184,13 +184,7 @@ namespace AppFramework.Common
             Func<Task> func,
             Func<Task> successCallback,
             Func<System.Exception, Task> failCallback)
-        {
-            //if (await new ExceptionHandler(dialogService).HandleIfAbpResponseAsync(httpException))
-            //{
-            //    await failCallback(httpException);
-            //    return;
-            //}
-
+        { 
             var httpExceptionMessage = LocalTranslationHelper.Localize("HttpException");
 #if DEBUG
             httpExceptionMessage += Environment.NewLine + httpException.Message;
@@ -210,13 +204,7 @@ namespace AppFramework.Common
             Func<Task<TResult>> func,
             Func<TResult, Task> successCallback,
             Func<System.Exception, Task> failCallback)
-        {
-            //if (await new ExceptionHandler(dialogService).HandleIfAbpResponseAsync(httpException))
-            //{
-            //    await failCallback(httpException);
-            //    return;
-            //}
-
+        { 
             var httpExceptionMessage = LocalTranslationHelper.Localize("HttpException");
 #if DEBUG
             httpExceptionMessage += Environment.NewLine + httpException.Message;

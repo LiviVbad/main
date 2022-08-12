@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:const="clr-namespace:AppFramework.Common;assembly=AppFramework.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:extensions="clr-namespace:AppFramework.Extensions"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
@@ -320,14 +319,15 @@
 
                 <!--  选项卡  -->
                 <sync:TabControlExt
-                    OnCloseOtherTabs="TabControlExt_OnCloseOtherTabs"
-                    Grid.Row="1" OnCloseAllTabs="TabControlExt_OnCloseAllTabs"
+                    Grid.Row="1"
                     prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Main}"
                     AllowDragDrop="False"
                     BorderThickness="0"
                     CloseButtonType="Individual"
                     EnableLabelEdit="False"
+                    OnCloseAllTabs="TabControlExt_OnCloseAllTabs"
                     OnCloseButtonClick="TabControlExt_OnCloseButtonClick"
+                    OnCloseOtherTabs="TabControlExt_OnCloseOtherTabs"
                     SelectedIndex="{Binding NavigationService.SelectedIndex}"
                     ShowTabListContextMenu="False">
                     <sync:TabControlExt.ItemTemplate>
