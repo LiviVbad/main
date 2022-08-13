@@ -16,10 +16,10 @@ namespace AppFramework.Views
             IThemeService themeService,
             IHostDialogService dialog)
         {
+            this.dialog = dialog;
             AppSettings.OnInitialized();
             InitializeComponent();
             themeService.SetCurrentTheme(this);
-
             HeaderBorder.MouseDown += (s, e) =>
             {
                 if (e.ClickCount == 2) SetWindowState();
@@ -29,30 +29,42 @@ namespace AppFramework.Views
                 if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
                     this.DragMove();
             };
-
             this.MouseDown += (s, e) => toggleShowPanel.IsChecked = false;
-
             BtnMin.Click += BtnMin_Click;
             BtnMax.Click += BtnMax_Click;
             BtnClose.Click += BtnClose_Click;
-
             BtnDoubleLeft.Click += BtnDoubleLeft_Click;
-            this.dialog = dialog;
+
+            treeViewItems.NodeExpanded += TreeViewItems_NodeExpanded;
+        }
+
+        private void TreeViewItems_NodeExpanded(object? sender, Syncfusion.UI.Xaml.TreeView.NodeExpandedCollapsedEventArgs e)
+        {
+            if (treeViewItems.ExpanderWidth == 0) CollapseMenu();
         }
 
         private void BtnDoubleLeft_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if ((bool)BtnDoubleLeft.IsChecked)
+            CollapseMenu();
+        }
+
+        private void CollapseMenu()
+        {
+            if (treeViewItems.ExpanderWidth > 0)
             {
                 TitltStack.Visibility = Visibility.Collapsed;
-                leftGridColumn.Width = new GridLength(65);
+                leftGridColumn.Width = new GridLength(50);
                 TxtDoubleTitle.Text = "\ue74d";
+
+                treeViewItems.ExpanderWidth = 0;
+                treeViewItems.CollapseAll();
             }
             else
             {
                 TitltStack.Visibility = Visibility.Visible;
                 leftGridColumn.Width = new GridLength(200);
                 TxtDoubleTitle.Text = "\ue74c";
+                treeViewItems.ExpanderWidth = 15;
             }
         }
 

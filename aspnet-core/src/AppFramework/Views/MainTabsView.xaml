@@ -74,7 +74,7 @@
             <DockPanel>
                 <!--  顶部标题  -->
                 <DockPanel
-                    Margin="15,25"
+                    Margin="15,20"
                     VerticalAlignment="Center"
                     DockPanel.Dock="Top">
                     <StackPanel x:Name="TitltStack" Orientation="Horizontal">
@@ -97,6 +97,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Background="Transparent"
+                        BorderThickness="0"
                         Template="{StaticResource UserPanelButton}">
                         <TextBlock
                             x:Name="TxtDoubleTitle"
@@ -107,35 +108,42 @@
                 </DockPanel>
 
                 <!--  左侧系统菜单  -->
-                <ListBox
-                    x:Name="ListMenuBox"
-                    Margin="10"
-                    ItemContainerStyle="{StaticResource listMenuItemStyle}"
-                    ItemsSource="{Binding appService.NavigationItems}"
-                    ScrollViewer.HorizontalScrollBarVisibility="Hidden">
-                    <ListBox.ItemTemplate>
+                <sync:SfTreeView
+                    x:Name="treeViewItems"
+                    HorizontalContentAlignment="Stretch"
+                    AutoExpandMode="AllNodes"
+                    BorderBrush="Transparent"
+                    ChildPropertyName="Items"
+                    ExpandActionTrigger="Node"
+                    FocusVisualStyle="{x:Null}"
+                    FullRowSelect="True"
+                    IsAnimationEnabled="True"
+                    ItemHeight="35"
+                    ItemsSource="{Binding appService.NavigationItems}">
+                    <sync:SfTreeView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="5" Orientation="Horizontal">
+                            <StackPanel Margin="0,5" Orientation="Horizontal">
                                 <Image
                                     Width="20"
                                     Height="20"
+                                    Margin="10,0"
                                     Source="{Binding Icon, Converter={StaticResource menuConverter}}"
                                     ToolTip="{Binding Title}" />
                                 <TextBlock
-                                    Margin="10,0,0,0"
                                     VerticalAlignment="Center"
                                     FontSize="14"
                                     Style="{x:Null}"
                                     Text="{Binding Title}" />
                             </StackPanel>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
+                    </sync:SfTreeView.ItemTemplate>
+
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="{Binding ElementName=ListMenuBox, Path=SelectedItem}" />
+                            <i:InvokeCommandAction Command="{Binding NavigateCommand}" PassEventArgsToCommand="True" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                </ListBox>
+                </sync:SfTreeView>
             </DockPanel>
 
             <Grid Grid.Column="1">

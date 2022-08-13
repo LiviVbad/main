@@ -6,6 +6,7 @@ using AppFramework.Services.Notification;
 using AppFramework.ViewModels.Shared;
 using Prism.Commands;
 using Prism.Regions;
+using Syncfusion.UI.Xaml.TreeView;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
@@ -23,7 +24,7 @@ namespace AppFramework.ViewModels
             this.appService = appService;
 
             SettingsCommand = new DelegateCommand(notificationService.Settings);
-            NavigateCommand = new DelegateCommand<NavigationItem>(Navigate);
+            NavigateCommand = new DelegateCommand<ItemSelectionChangedEventArgs>(Navigate);
             SeeAllNotificationsCommand = new DelegateCommand(() =>
             {
                 NotificationPanelIsOpen = false;
@@ -39,7 +40,7 @@ namespace AppFramework.ViewModels
         public NavigationService NavigationService { get; set; }
         public NotificationService notificationService { get; set; }
         public IApplicationService appService { get; init; }
-        public DelegateCommand<NavigationItem> NavigateCommand { get; private set; }
+        public DelegateCommand<ItemSelectionChangedEventArgs> NavigateCommand { get; private set; }
         public DelegateCommand<string> ExecuteUserActionCommand { get; private set; }
 
         private bool notificationPanelIsOpen;
@@ -65,15 +66,21 @@ namespace AppFramework.ViewModels
 
         #endregion
 
-        public void Navigate(NavigationItem navigationItem)
+        public void Navigate(ItemSelectionChangedEventArgs args)
         {
-            NavigationService.Navigate(navigationItem?.PageViewName);
+            if (args != null && args.AddedItems != null)
+            {
+                if (args.AddedItems[0] is NavigationItem item)
+                {
+                    NavigationService.Navigate(item.PageViewName);
+                }
+            }
         }
 
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
         {
             await appService.GetApplicationInfo();
-            NavigationService.Navigate(AppViewManager.Dashboard); 
+            NavigationService.Navigate(AppViewManager.Dashboard);
         }
     }
 }

@@ -12,17 +12,21 @@ namespace AppFramework.Services
         {
             return new ObservableCollection<NavigationItem>()
             {
-               new NavigationItem("dashboard","Dashboard", AppViewManager.Dashboard, AppPermissions.Administration),
-               new NavigationItem("organization","OrganizationUnits",AppViewManager.Organization,AppPermissions.OrganizationUnits),
-               new NavigationItem("role","Roles",AppViewManager.Role,AppPermissions.Roles),
-               new NavigationItem("user","Users",AppViewManager.User,AppPermissions.Users),
-               new NavigationItem("auditlog","AuditLogs",AppViewManager.AuditLog,AppPermissions.AuditLogs),
-               new NavigationItem("property","DynamicProperties",AppViewManager.DynamicProperty,AppPermissions.DynamicProperties),
+               new NavigationItem("demo","Administration","",AppPermissions.Administration,new ObservableCollection<NavigationItem>()
+               {
+                      new NavigationItem("dashboard","Dashboard", AppViewManager.Dashboard, AppPermissions.Administration),
+                      new NavigationItem("organization","OrganizationUnits",AppViewManager.Organization,AppPermissions.OrganizationUnits),
+                      new NavigationItem("role","Roles",AppViewManager.Role,AppPermissions.Roles),
+                      new NavigationItem("user","Users",AppViewManager.User,AppPermissions.Users),
+                      new NavigationItem("auditlog","AuditLogs",AppViewManager.AuditLog,AppPermissions.AuditLogs),
+                      new NavigationItem("property","DynamicProperties",AppViewManager.DynamicProperty,AppPermissions.DynamicProperties),
+                      new NavigationItem("language","Languages",AppViewManager.Language,AppPermissions.Languages),
+                      new NavigationItem("version", "VersionManager", AppViewManager.Version, AppPermissions.Administration),
+                      new NavigationItem("edition","Editions",AppViewManager.Edition,AppPermissions.Editions),
+               }),
+
                new NavigationItem("tenant","Tenants",AppViewManager.Tenant,AppPermissions.Tenants),
-               new NavigationItem("edition","Editions",AppViewManager.Edition,AppPermissions.Editions),
-               new NavigationItem("language","Languages",AppViewManager.Language,AppPermissions.Languages),
                new NavigationItem("visual", "VisualSettings", AppViewManager.Visual, AppPermissions.Administration),
-               new NavigationItem("version", "VersionManager", AppViewManager.Version, AppPermissions.Administration),
                new NavigationItem("setting", "Settings", AppViewManager.Setting, AppPermissions.HostSettings),
                new NavigationItem("demo","DemoUiComponents",AppViewManager.Demo,AppPermissions.DemoUiComponents)
             };
@@ -44,6 +48,11 @@ namespace AppFramework.Services
                 if (string.IsNullOrWhiteSpace(item.RequiredPermissionName) ||
                     (permissions != null && permissions.ContainsKey(item.RequiredPermissionName)))
                 {
+                    if (item.Items != null)
+                    {
+                        foreach (var submenuItem in item.Items)
+                            submenuItem.Title = Local.Localize(submenuItem.Title);
+                    }
                     authorizedMenuItems.Add(item);
                 }
             }
