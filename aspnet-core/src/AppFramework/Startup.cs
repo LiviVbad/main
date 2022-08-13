@@ -74,8 +74,7 @@ namespace AppFramework
             services.RegisterDialog<LoginView, LoginViewModel>(AppViewManager.Login);
 
             services.Add<FirstChangedPwdView, FirstChangedPwdViewModel>(AppViewManager.FirstChangedPwd);
-            services.Add<SelectTenantView, SelectTenantViewModel>(AppViewManager.SelectTenant);
-            services.Add<MainView, MainViewModel>(AppViewManager.Main);
+            services.Add<SelectTenantView, SelectTenantViewModel>(AppViewManager.SelectTenant); 
             services.Add<MainTabsView, MainTabsViewModel>(AppViewManager.Main);
             services.Add<HostMessageBoxView, HostMessageViewModel>(AppViewManager.HostMessageBox);
             services.Add<MessageBoxView, MessageViewModel>(AppViewManager.MessageBox);

@@ -203,6 +203,14 @@ namespace AppFramework.Services.Account
 
         #region 用户菜单方法
 
+        private int selectedIndex = -1;
+
+        public int SelectedIndex
+        {
+            get { return selectedIndex; }
+            set { selectedIndex = value; RaisePropertyChanged(); }
+        }
+
         private bool isShowUserPanel;
 
         public bool IsShowUserPanel
@@ -256,43 +264,52 @@ namespace AppFramework.Services.Account
             {
                 IsShowUserPanel = false;
                 regionManager.Regions[AppRegionManager.Main].RemoveAll();
-                await accountService.LogoutAsync();
+                await accountService.LogoutAsync(); 
             }
+
+            await ResetClickIndex();
         }
 
-        private async void ManageLinkedAccounts()
+        private void ManageLinkedAccounts()
         {
-            await dialog.ShowDialogAsync(AppViewManager.ManageLinkedAccounts);
+            ShowPage(AppViewManager.ManageLinkedAccounts);
         }
 
-        private async void ManageUserDelegations()
+        private void ManageUserDelegations()
         {
-            await dialog.ShowDialogAsync(AppViewManager.ManageUserDelegations);
+            ShowPage(AppViewManager.ManageUserDelegations);
         }
 
-        private async void ChangePassword()
+        private void ChangePassword()
         {
-            await dialog.ShowDialogAsync(AppViewManager.ChangePassword);
+            ShowPage(AppViewManager.ChangePassword);
         }
 
         private void LoginAttempts()
         {
-            navigationService.Navigate(AppViewManager.LoginAttempts);
             IsShowUserPanel = false;
+            ShowPage(AppViewManager.LoginAttempts);
         }
 
-        private async void MySettings()
+        private void MySettings()
         {
-            await dialog.ShowDialogAsync(AppViewManager.MyProfile);
+            ShowPage(AppViewManager.MyProfile);
+        }
+
+        private async void ShowPage(string pageName)
+        {
+            await dialog.ShowDialogAsync(pageName);
+            await ResetClickIndex();
         }
 
         private async void Download()
         {
             await WebRequest.Execute(() => profileAppService.PrepareCollectedData(), async () =>
             {
-                NotifyBar.Info(Local.Localize("Notifications"), 
-                    Local.Localize("GdprDataPreparedNotificationMessage"));
                 await notificationService.GetNotifications();
+                await ResetClickIndex();
+                NotifyBar.Info(Local.Localize("Notifications"),
+                   Local.Localize("GdprDataPreparedNotificationMessage"));
             });
         }
 
@@ -303,7 +320,16 @@ namespace AppFramework.Services.Account
             if (dialogResult.Result == ButtonResult.OK)
             {
                 Photo = dialogResult.Parameters.GetValue<byte[]>("Value");
+
+                await ResetClickIndex();
             }
+        }
+
+        private async Task ResetClickIndex()
+        {
+            SelectedIndex = -1;
+
+            await Task.Delay(200);
         }
 
         #endregion

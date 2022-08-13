@@ -7,6 +7,7 @@ using AppFramework.ViewModels.Shared;
 using Prism.Commands;
 using Prism.Regions;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace AppFramework.ViewModels
 {
@@ -46,7 +47,15 @@ namespace AppFramework.ViewModels
         public bool NotificationPanelIsOpen
         {
             get { return notificationPanelIsOpen; }
-            set { notificationPanelIsOpen = value; RaisePropertyChanged(); }
+            set
+            {
+                notificationPanelIsOpen = value;
+                if (value)
+                {
+                    AsyncRunner.Run(notificationService.GetNotifications());
+                }
+                RaisePropertyChanged();
+            }
         }
 
         public DelegateCommand SeeAllNotificationsCommand { get; private set; }
@@ -64,8 +73,7 @@ namespace AppFramework.ViewModels
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
         {
             await appService.GetApplicationInfo();
-            NavigationService.Navigate(AppViewManager.Dashboard);
-            await notificationService.GetNotifications();
+            NavigationService.Navigate(AppViewManager.Dashboard); 
         }
     }
 }

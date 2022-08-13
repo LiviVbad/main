@@ -30,6 +30,8 @@ namespace AppFramework.Views
                     this.DragMove();
             };
 
+            this.MouseDown += (s, e) => toggleShowPanel.IsChecked = false;
+
             BtnMin.Click += BtnMin_Click;
             BtnMax.Click += BtnMax_Click;
             BtnClose.Click += BtnClose_Click;

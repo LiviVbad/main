@@ -34,7 +34,7 @@ namespace AppFramework.Notifications
 
         public async Task SetAllNotificationsAsRead()
         {
-            await ApiClient.GetAsync(GetEndpoint(nameof(SetAllNotificationsAsRead)));
+            await ApiClient.PostAsync(GetEndpoint(nameof(SetAllNotificationsAsRead)));
         }
 
         public async Task<SetNotificationAsReadOutput> SetNotificationAsRead(EntityDto<Guid> input)

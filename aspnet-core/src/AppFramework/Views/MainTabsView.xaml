@@ -184,6 +184,7 @@
                     </Button>
 
                     <ToggleButton
+                        x:Name="toggleShowPanel"
                         Margin="5"
                         Padding="10,5"
                         IsChecked="{Binding appService.IsShowUserPanel, Mode=TwoWay}"
@@ -381,7 +382,8 @@
                             Grid.Row="1"
                             Margin="15,0"
                             ItemContainerStyle="{StaticResource listMenuItemStyle}"
-                            ItemsSource="{Binding appService.UserMenuItems}">
+                            ItemsSource="{Binding appService.UserMenuItems}"
+                            SelectedIndex="{Binding appService.SelectedIndex}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Margin="5" Orientation="Horizontal">

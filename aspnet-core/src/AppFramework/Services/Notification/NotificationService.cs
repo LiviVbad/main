@@ -19,7 +19,8 @@ namespace AppFramework.Services.Notification
             items = new ObservableCollection<UserNotification>();
             input = new GetUserNotificationsInput()
             {
-                MaxResultCount = 3,
+                MaxResultCount = 4,
+                State = UserNotificationState.Unread
             };
         }
 

@@ -59,7 +59,7 @@ namespace AppFramework.ViewModels
 
             input = new GetUserNotificationsInput()
             {
-                StartDate = new DateTime(year, month, day, 0, 0, 0),
+                StartDate = new DateTime(year, month, day - 7, 0, 0, 0),
                 EndDate = new DateTime(year, month, day, 23, 59, 59),
                 MaxResultCount = 10,
             };
