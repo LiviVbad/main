@@ -4,7 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:extensions="clr-namespace:AppFramework.Extensions"
     xmlns:sync="http://schemas.syncfusion.com/wpf">
-    <sync:SfBusyIndicator AnimationType="DualRing" IsBusy="{Binding IsBusy}">
+    <sync:SfBusyIndicator
+        AnimationType="DualRing"
+        FocusVisualStyle="{x:Null}"
+        IsBusy="{Binding IsBusy}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -116,29 +119,19 @@
                                             Background="Transparent"
                                             Command="{Binding DataContext.SetNotificationAsReadCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
                                             CommandParameter="{Binding}"
+                                            Content="&#xe66f;"
+                                            Style="{StaticResource IconButtonStyle}"
                                             ToolTip="{extensions:Translate SetAsRead}"
-                                            Visibility="{Binding State, Converter={StaticResource stateConverter}}">
-                                            <Button.Content>
-                                                <Image
-                                                    Width="20"
-                                                    Height="20"
-                                                    Source="/Assets/Images/sure.png" />
-                                            </Button.Content>
-                                        </Button>
+                                            Visibility="{Binding State, Converter={StaticResource stateConverter}}" />
 
                                         <Button
                                             VerticalAlignment="Center"
                                             Background="Transparent"
                                             Command="{Binding DataContext.DeleteNotificationCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
                                             CommandParameter="{Binding}"
-                                            ToolTip="{extensions:Translate Delete}">
-                                            <Button.Content>
-                                                <Image
-                                                    Width="20"
-                                                    Height="20"
-                                                    Source="/Assets/Images/delete.png" />
-                                            </Button.Content>
-                                        </Button>
+                                            Content="&#xe63a;"
+                                            Style="{StaticResource IconButtonStyle}"
+                                            ToolTip="{extensions:Translate Delete}" />
                                     </StackPanel>
                                 </DataTemplate>
                             </sync:GridTemplateColumn.CellTemplate>

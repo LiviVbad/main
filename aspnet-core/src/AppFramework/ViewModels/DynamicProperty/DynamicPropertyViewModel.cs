@@ -144,9 +144,9 @@ namespace AppFramework.ViewModels
         {
             return new PermissionItem[]
              {
-                new PermissionItem(AppPermissions.LanguageEdit, Local.Localize("Change"),()=>Edit()),
-                new PermissionItem(AppPermissions.LanguageDelete, Local.Localize("Delete"),()=>Delete()),
-                new PermissionItem(AppPermissions.LanguageChangeTexts, Local.Localize("EditValues"),()=>EditValues()),
+                new PermissionItem(AppPermissions.LanguageEdit, Local.Localize("Change"),Edit),
+                new PermissionItem(AppPermissions.LanguageDelete, Local.Localize("Delete"),Delete),
+                new PermissionItem(AppPermissions.LanguageChangeTexts, Local.Localize("EditValues"),EditValues),
              };
         }
     }

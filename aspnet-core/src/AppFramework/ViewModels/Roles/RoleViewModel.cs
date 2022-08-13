@@ -147,8 +147,8 @@ namespace AppFramework.ViewModels
         {
             return new PermissionItem[]
             {
-                new PermissionItem(AppPermissions.RoleEdit, Local.Localize("Change"),()=>Edit()),
-                new PermissionItem(AppPermissions.RoleDelete, Local.Localize("Delete"),()=>Delete())
+                new PermissionItem(AppPermissions.RoleEdit, Local.Localize("Change"),Edit),
+                new PermissionItem(AppPermissions.RoleDelete, Local.Localize("Delete"),Delete)
             };
         }
     }

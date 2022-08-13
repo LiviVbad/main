@@ -353,11 +353,11 @@ namespace AppFramework.ViewModels
         {
             return new PermissionItem[]
             {
-                new PermissionItem(AppPermissions.Users, Local.Localize("LoginAsThisUser"),()=>LoginAsThisUser()),
-                new PermissionItem(AppPermissions.UserEdit, Local.Localize("Change"),()=>Edit()),
-                new PermissionItem(AppPermissions.UserChangePermission, Local.Localize("Permissions"),()=>UserChangePermission()),
-                new PermissionItem(AppPermissions.UsersUnlock, Local.Localize("Unlock"),()=>UsersUnlock()),
-                new PermissionItem(AppPermissions.UserDelete, Local.Localize("Delete"),()=>Delete())
+                new PermissionItem(AppPermissions.Users, Local.Localize("LoginAsThisUser"),LoginAsThisUser),
+                new PermissionItem(AppPermissions.UserEdit, Local.Localize("Change"),Edit),
+                new PermissionItem(AppPermissions.UserChangePermission, Local.Localize("Permissions"),UserChangePermission),
+                new PermissionItem(AppPermissions.UsersUnlock, Local.Localize("Unlock"),UsersUnlock),
+                new PermissionItem(AppPermissions.UserDelete, Local.Localize("Delete"),Delete)
             };
         }
     }

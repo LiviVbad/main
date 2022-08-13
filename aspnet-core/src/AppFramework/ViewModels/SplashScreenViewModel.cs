@@ -37,7 +37,7 @@ namespace AppFramework.ViewModels
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
             await SetBusyAsync(async () =>
-            {
+            { 
                 //加载本地的缓存信息
                 DisplayText = LocalTranslationHelper.Localize("Initializing");
                 accessTokenManager.AuthenticateResult = dataStorageService.RetrieveAuthenticateResult();
@@ -46,7 +46,7 @@ namespace AppFramework.ViewModels
                 //加载系统资源
                 DisplayText = LocalTranslationHelper.Localize("LoadResource");
                 await UserConfigurationManager.GetIfNeedsAsync();
-
+                 
                 //如果本地授权存在,直接进入系统首页
                 if (accessTokenManager.IsUserLoggedIn && applicationContext.Configuration != null)
                     OnDialogClosed();
