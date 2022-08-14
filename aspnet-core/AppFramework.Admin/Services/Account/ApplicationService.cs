@@ -217,7 +217,7 @@ namespace AppFramework.Services.Account
 
         public async Task GetApplicationInfo()
         {
-            //await GetUserPhoto();
+            await GetUserPhoto();
 
             ApplicationName = Local.Localize("EmailActivation_Title");
 
