@@ -49,8 +49,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\AppFramework.Admin\AppFramework.Admin.csproj" />
+    <ProjectReference Include="..\..\AppFramework.Shared\AppFramework.Shared.csproj" />
     <ProjectReference Include="..\AppFramework.Application.Client\AppFramework.Application.Client.csproj" />
-    <ProjectReference Include="..\AppFramework.Application.Common\AppFramework.Common.csproj" />
     <ProjectReference Include="..\AppFramework.Application.Shared\AppFramework.Application.Shared.csproj" />
   </ItemGroup>
 
@@ -351,22 +352,6 @@
     <Resource Include="Assets\Images\sure.png" />
     <Resource Include="Assets\Images\theme12.png" />
     <Resource Include="Assets\Images\user.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Views\Shared\HostMessageBoxView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Views\MainTabsView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-    <Page Update="Views\Shared\HostMessageBoxView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
 
 </Project>

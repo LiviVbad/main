@@ -4,7 +4,7 @@ using System;
 using System.Reflection;
 using System.Resources;
 
-namespace AppFramework.Localization
+namespace AppFramework.Shared
 {
     public static class LocalTranslationHelper
     {

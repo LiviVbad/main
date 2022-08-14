@@ -6,9 +6,7 @@ namespace AppFramework
     /// 应用程序配置文件
     /// </summary> 
     public class AppSettings
-    {
-        public const string AppName = "AppFramework";
-
+    { 
         private bool isDarkTheme = false;
         private string themeName = "Fluent";
 

@@ -1,36 +1,35 @@
-﻿using AppFramework.Common;
-using AppFramework.Common.Core;
-using AppFramework.Views;
-using AppFramework.Common.Services.Account;
-using AppFramework.Extensions;
+﻿using AppFramework.Extensions;
 using AppFramework.Services;
 using DryIoc;
 using DryIoc.Microsoft.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.DryIoc;
 using Prism.Ioc;
-using Prism.Regions;
-using Prism.Services.Dialogs;
-using System;
-using System.Threading.Tasks;
-using System.Windows;
-using AppFramework.Common.Services.Storage;
-using AppFramework.Services.Update;
+using Prism.Regions; 
+using System.Windows; 
+using Prism.Modularity;
+using AppFramework.Shared; 
+using AppFramework.Admin;
+using AppFramework.Shared.Core; 
+using AppFramework.Shared.Services.App; 
 
 namespace AppFramework
 {
     public partial class App : PrismApplication
-    {
-        private static IAccountService accountService;
-
-        protected override Window CreateShell()
-        {
-            return Container.Resolve<MainTabsView>();
-        }
+    {  
+        protected override Window CreateShell() => null;
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.ConfigurationServices();
+            containerRegistry.RegisterSingleton<ILocaleCulture, LocaleCulture>();
+            containerRegistry.RegisterSingleton<IThemeService, ThemeService>();
+        }
+
+        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+        {
+            moduleCatalog.AddModule<AdminModule>();
+            moduleCatalog.AddModule<SharedModule>();
+            base.ConfigureModuleCatalog(moduleCatalog);
         }
 
         protected override IContainerExtension CreateContainerExtension()
@@ -38,8 +37,8 @@ namespace AppFramework
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddAutoMapper(config =>
             {
-                config.AddProfile<AppMapper>();
-                config.AddProfile<AppCommonMapper>();
+                config.AddProfile<AdminMapper>();
+                config.AddProfile<SharedMapper>();
             });
             return new DryIocContainerExtension(new Container(CreateContainerRules())
                 .WithDependencyInjectionAdapter(serviceCollection));
@@ -53,72 +52,12 @@ namespace AppFramework
 
         protected override async void OnInitialized()
         {
-            var appVersionService = ContainerLocator.Container.Resolve<IUpdateService>();
-            await appVersionService.CheckVersion();
+            AppSettings.OnInitialized();
 
-            accountService = Container.Resolve<IAccountService>();
+            var appStart = ContainerLocator.Container.Resolve<IAppStartService>();
+            MainWindow = await appStart.CreateShell(this);
 
-            if (SplashScreenInitialized())
-            {
-                (App.Current.MainWindow.DataContext as INavigationAware)?.OnNavigatedTo(null);
-                base.OnInitialized();
-            }
-        }
-
-        private static bool SplashScreenInitialized()
-        {
-            var dialogService = ContainerLocator.Container.Resolve<IHostDialogService>();
-            var result = dialogService.ShowWindow(AppViewManager.SplashScreen).Result;
-            if (result == ButtonResult.No)
-            {
-                if (!Authorization()) ExitApplication();
-            }
-            else if (result == ButtonResult.None) ExitApplication();
-
-            return true;
-        }
-
-        private static bool Authorization()
-        {
-            var validationResult = Validation();
-            if (validationResult == ButtonResult.Retry)
-                return Authorization();
-
-            return validationResult == ButtonResult.OK;
-
-            static ButtonResult Validation()
-            {
-                var dialogService = ContainerLocator.Container.Resolve<IHostDialogService>();
-                return dialogService.ShowWindow(AppViewManager.Login).Result;
-            }
-        }
-
-        public static void LogOut()
-        {
-            App.Current.MainWindow.Hide();
-
-            if (SplashScreenInitialized())
-            {
-                App.Current.MainWindow.Show();
-                (App.Current.MainWindow.DataContext as INavigationAware)?.OnNavigatedTo(null);
-            }
-            else
-                Environment.Exit(0);
-        }
-
-        public static void ExitApplication()
-        {
-            Environment.Exit(0);
-        }
-
-        public static async Task OnSessionTimeout()
-        {
-            await ContainerLocator.Container.Resolve<IAccountService>().LogoutAsync();
-        }
-
-        public static async Task OnAccessTokenRefresh(string newAccessToken)
-        {
-            await ContainerLocator.Container.Resolve<IAccountStorageService>().StoreAccessTokenAsync(newAccessToken);
-        }
+            base.OnInitialized();
+        } 
     }
 }
