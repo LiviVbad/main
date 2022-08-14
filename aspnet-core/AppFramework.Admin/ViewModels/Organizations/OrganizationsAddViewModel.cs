@@ -1,5 +1,5 @@
 ﻿using AppFramework.Shared;
-using AppFramework.Shared.Models;
+using AppFramework.Models;
 using AppFramework.Organizations;
 using AppFramework.Organizations.Dto;
 using AppFramework.ViewModels.Shared;

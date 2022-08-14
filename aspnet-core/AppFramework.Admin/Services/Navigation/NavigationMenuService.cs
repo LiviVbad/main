@@ -1,7 +1,6 @@
 ﻿using AppFramework.Shared.Models;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using AppFramework.Shared.Services.Navigation;
+using System.Collections.ObjectModel; 
 using AppFramework.Shared;  
 
 namespace AppFramework.Services

@@ -2,19 +2,17 @@
 using Prism.Ioc;
 using Prism.Modularity;
 using AppFramework.ApiClient;
-using AppFramework.Shared;
-using AppFramework.Shared.Services.Account;
-using AppFramework.Shared.Services.Navigation;
+using AppFramework.Shared; 
 using AppFramework.Shared.Services.Storage;
 using AppFramework.Services;
 using AppFramework.Services.Account;
-using AppFramework.Views;
-using AppFramework.Shared.Services;
+using AppFramework.Views; 
 using AppFramework.ViewModels.Shared;
 using AppFramework.Services.Notification;
 using AppFramework.ViewModels.Version;
 using AppFramework.Services.Update;
 using AppFramework.Shared.Services.App;
+using Validations;
 
 namespace AppFramework.Admin
 {
@@ -25,12 +23,17 @@ namespace AppFramework.Admin
 
         public void RegisterTypes(IContainerRegistry services)
         {
+            services.RegisterValidator();
+
             services.RegisterSingleton<IAppStartService, AppStartService>();
             services.RegisterSingleton<IAccountService, AccountService>();
             services.RegisterSingleton<IAccountStorageService, AccountStorageService>();
             services.RegisterSingleton<IDataStorageService, DataStorageService>();
             services.RegisterSingleton<IPermissionService, PermissionService>();
-            services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
+            services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>(); 
+            services.RegisterScoped<IPermissionTreesService, PermissionTreesService>();
+            services.Register<IPermissionPorxyService, PermissionPorxyService>();
+            services.RegisterScoped<IFeaturesService, FeaturesService>();
 
             services.RegisterSingleton<IApplicationService, ApplicationService>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();

@@ -1,5 +1,5 @@
 ﻿using AppFramework.Shared;
-using AppFramework.Shared.Models; 
+using AppFramework.Models; 
 using AppFramework.MultiTenancy.HostDashboard;
 using AppFramework.MultiTenancy.HostDashboard.Dto; 
 using Prism.Regions;

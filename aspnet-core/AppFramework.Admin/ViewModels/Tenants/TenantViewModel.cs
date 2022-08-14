@@ -1,9 +1,8 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFramework.Shared;
-using AppFramework.Shared.Models;
+using AppFramework.Shared; 
 using AppFramework.Shared.Services.Permission;
 using AppFramework.Editions;
-using AppFramework.Models.Tenants;
+using AppFramework.Models;
 using AppFramework.MultiTenancy;
 using AppFramework.MultiTenancy.Dto;
 using Prism.Commands;

@@ -2,8 +2,7 @@
 using System;
 using System.Windows;
 using Prism.Ioc;
-using AppFramework.Services.Update;
-using AppFramework.Shared.Services.Account;
+using AppFramework.Services.Update; 
 using System.Threading.Tasks;
 using AppFramework.Shared;
 using Prism.Regions;

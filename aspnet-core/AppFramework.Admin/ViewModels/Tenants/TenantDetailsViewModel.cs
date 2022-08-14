@@ -1,10 +1,9 @@
 ﻿using Abp.Runtime.Security;
 using AppFramework.Shared;
-using AppFramework.Shared.Models;
+using AppFramework.Models;
 using AppFramework.Editions.Dto;
 using AppFramework.MultiTenancy;
-using AppFramework.MultiTenancy.Dto;
-using AppFramework.ViewModels.Shared;
+using AppFramework.MultiTenancy.Dto; 
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;

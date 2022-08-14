@@ -1,11 +1,10 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Shared;
-using AppFramework.Shared.Models;
+using AppFramework.Models;
 using AppFramework.Shared.Services.Permission;
 using AppFramework.Localization;
 using AppFramework.Localization.Dto;
-using AppFramework.Services;
-using AppFramework.ViewModels.Shared;
+using AppFramework.Services; 
 using Prism.Regions;
 using System.Threading.Tasks; 
 

@@ -1,14 +1,9 @@
-﻿using AppFramework.Shared;
-using AppFramework.Shared.Services;
+﻿using AppFramework.Shared; 
 using AppFramework.MultiTenancy;
-using AppFramework.MultiTenancy.Dto;
-using AppFramework.ViewModels.Shared;
-using Prism.Services.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using AppFramework.MultiTenancy.Dto; 
+using Prism.Services.Dialogs; 
 using System.Threading.Tasks;
+using AppFramework.Services;
 
 namespace AppFramework.ViewModels
 {

@@ -1,7 +1,5 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.ApiClient.Models;
-using AppFramework.Shared.Models;
-using AppFramework.Shared.Services.Account;
 using AppFramework.Shared.Services.Storage;
 using AppFramework.Sessions;
 using AppFramework.Sessions.Dto;
@@ -10,6 +8,7 @@ using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 using AppFramework.Shared;
 using AppFramework.Shared.Services.App;
+using AppFramework.Models;
 
 namespace AppFramework.Services.Account
 {

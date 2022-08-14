@@ -2,9 +2,6 @@
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Shared.Models;
-using AppFramework.Shared.Services;
-using AppFramework.Shared.Services.Account;
-using AppFramework.Shared.Services.Navigation;
 using AppFramework.Shared.Services.Permission; 
 using AppFramework.Dto;
 using AppFramework.Services.Notification;

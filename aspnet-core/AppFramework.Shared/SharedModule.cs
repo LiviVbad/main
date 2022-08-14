@@ -31,9 +31,7 @@ using Prism.Ioc;
 using Prism.Modularity;
 using AppFramework.Shared.Services;
 using AppFramework.Services;
-using AppFramework.Services.Dialog;
-using AppFramework.Shared.Services.Account;
-using AppFramework.Shared.Services.Storage;
+using AppFramework.Services.Dialog; 
 using AppFramework.Shared.Validations;
 
 namespace AppFramework.Shared
@@ -45,11 +43,11 @@ namespace AppFramework.Shared
 
         public void RegisterTypes(IContainerRegistry services)
         {
-            services.RegisterValidator();
+            services.RegisterSingleton<IGlobalValidator, GlobalValidator>();
 
             services.Register<IDataPagerService, DataPagerService>();
             services.RegisterSingleton<IHostDialogService, DialogHostService>();
-            services.RegisterSingleton<IPermissionService, PermissionService>();
+          
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
             services.RegisterSingleton<IMultiTenancyConfig, MultiTenancyConfig>();
             services.RegisterSingleton<IApplicationContext, ApplicationContext>();
@@ -67,7 +65,7 @@ namespace AppFramework.Shared
             services.RegisterScoped<IEditionAppService, EditionAppService>();
             services.RegisterScoped<IAuditLogAppService, AuditLogAppService>();
             services.RegisterScoped<ILanguageAppService, LanguageAppService>();
-            services.RegisterScoped<IPermissionTreesService, PermissionTreesService>();
+         
             services.RegisterScoped<INotificationAppService, NotificationAppService>();
             services.RegisterScoped<IOrganizationUnitAppService, OrganizationUnitAppService>();
             services.RegisterScoped<IDynamicPropertyAppService, DynamicPropertyAppService>();
@@ -83,8 +81,7 @@ namespace AppFramework.Shared
             services.RegisterScoped<IHostDashboardAppService, HostDashboardAppService>();
             services.RegisterScoped<IHostSettingsAppService, HostSettingsAppService>();
             services.RegisterScoped<IPermissionAppService, PermissionAppService>();
-            services.Register<IPermissionPorxyService, PermissionPorxyService>();
-            services.RegisterScoped<IFeaturesService, FeaturesService>();
+       
             services.RegisterScoped<IUserLinkAppService, UserLinkAppService>();
             services.RegisterScoped<IAbpVersionsAppService, AbpVersionsAppService>();
         }

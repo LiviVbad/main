@@ -1,8 +1,7 @@
 ﻿using AppFramework.Shared;
-using AppFramework.Shared.Models;
+using AppFramework.Models;
 using AppFramework.Localization;
-using AppFramework.Localization.Dto;
-using AppFramework.ViewModels.Shared;
+using AppFramework.Localization.Dto; 
 using Prism.Services.Dialogs;
 
 namespace AppFramework.ViewModels

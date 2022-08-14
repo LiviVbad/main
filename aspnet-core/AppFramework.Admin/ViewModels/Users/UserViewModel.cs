@@ -2,13 +2,12 @@
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Shared;
-using AppFramework.Shared.Models;
+using AppFramework.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AppFramework.Shared.Services.Permission;
 using Abp.Application.Services.Dto;
-using Prism.Services.Dialogs;
-using AppFramework.Shared.Services.Account;
+using Prism.Services.Dialogs; 
 using Prism.Commands;
 using AppFramework.Authorization.Permissions.Dto;
 using AppFramework.Authorization.Permissions;
@@ -16,7 +15,8 @@ using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
 using System.Collections.ObjectModel; 
 using Prism.Regions;
-using AppFramework.Shared.Services; 
+using AppFramework.Shared.Services;
+using AppFramework.Services;
 
 namespace AppFramework.ViewModels
 {

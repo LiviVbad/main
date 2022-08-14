@@ -1,5 +1,5 @@
 ﻿using Abp.Application.Services.Dto; 
-using AppFramework.Shared.Models;
+using AppFramework.Models;
 using AppFramework.Organizations;
 using AppFramework.Organizations.Dto; 
 using Prism.Commands;

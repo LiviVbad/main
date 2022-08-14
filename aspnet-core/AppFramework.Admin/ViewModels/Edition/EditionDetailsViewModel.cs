@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Shared;
-using AppFramework.Shared.Models;
+using AppFramework.Models;
 using AppFramework.Editions;
 using AppFramework.Editions.Dto; 
 using Prism.Services.Dialogs;

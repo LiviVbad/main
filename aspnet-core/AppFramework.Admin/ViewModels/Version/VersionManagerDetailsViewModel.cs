@@ -1,20 +1,12 @@
-﻿using AppFramework.Authorization.Users.Profile;
-using AppFramework.Authorization.Users.Profile.Dto;
+﻿using AppFramework.Authorization.Users.Profile; 
 using AppFramework.Shared;
-using AppFramework.Shared.Models;
-using AppFramework.Dto;
-using AppFramework.MultiTenancy.Dto;
+using AppFramework.Models; 
 using AppFramework.Version;
-using AppFramework.Version.Dtos;
-using AppFramework.ViewModels.Shared;
+using AppFramework.Version.Dtos; 
 using Microsoft.Win32;
 using Prism.Commands;
-using Prism.Services.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+using Prism.Services.Dialogs; 
+using System.IO; 
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels.Version

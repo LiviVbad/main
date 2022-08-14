@@ -1,5 +1,4 @@
-﻿using Abp.Application.Services.Dto; 
-using AppFramework.Shared.Models;
+﻿using Abp.Application.Services.Dto;  
 using AppFramework.Organizations;
 using AppFramework.Organizations.Dto; 
 using Prism.Commands;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AppFramework.Shared.Services;
 using AppFramework.Shared;
+using AppFramework.Models;
 
 namespace AppFramework.ViewModels
 {

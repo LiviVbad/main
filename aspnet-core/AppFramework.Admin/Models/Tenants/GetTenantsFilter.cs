@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppFramework.Models.Tenants
+namespace AppFramework.Models
 {
     public class GetTenantsFilter : PagedAndSortedFilter
     {

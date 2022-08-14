@@ -69,12 +69,12 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Border Opacity="0.5" Style="{DynamicResource HeaderBorderStyle}" />
+            <Border Opacity="0.8" Style="{DynamicResource HeaderBorderStyle}" />
 
             <DockPanel>
                 <!--  顶部标题  -->
                 <DockPanel
-                    Margin="15,20"
+                    Margin="15"
                     VerticalAlignment="Center"
                     DockPanel.Dock="Top">
                     <StackPanel x:Name="TitltStack" Orientation="Horizontal">
@@ -154,16 +154,15 @@
 
                 <Border
                     x:Name="HeaderBorder"
-                    Opacity="0"
+                    Opacity="0.3"
                     Style="{DynamicResource HeaderBorderStyle}" />
 
                 <!--  顶部按钮功能 主题/最小化/最大化/退出系统  -->
                 <StackPanel
-                    Margin="10"
+                    Margin="6"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Orientation="Horizontal">
-
                     <ToggleButton
                         x:Name="toggleNotification"
                         Margin="5"
@@ -349,10 +348,12 @@
                 <!--  用户功能面板  -->
                 <Border
                     Grid.Row="1"
-                    Width="280"
+                    Width="300"
                     Margin="0,0,-305,0"
                     HorizontalAlignment="Right"
-                    VerticalAlignment="Stretch">
+                    VerticalAlignment="Stretch"
+                    Background="WhiteSmoke"
+                    BorderThickness="0">
                     <Grid>
                         <Grid.Effect>
                             <DropShadowEffect

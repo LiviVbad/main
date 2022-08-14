@@ -2,9 +2,9 @@
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
 using AppFramework.Shared;
-using AppFramework.Shared.Models;
-using AppFramework.ViewModels.Shared;
+using AppFramework.Models; 
 using Prism.Services.Dialogs;
+using AppFramework.Services;
 
 namespace AppFramework.ViewModels
 {

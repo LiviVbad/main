@@ -1,6 +1,5 @@
 ﻿using AppFramework.ApiClient.Models;
-using AppFramework.Authorization.Accounts;
-using AppFramework.Shared.Services.Account;
+using AppFramework.Authorization.Accounts; 
 using AppFramework.Services; 
 using Prism.Commands;
 using Prism.Services.Dialogs;

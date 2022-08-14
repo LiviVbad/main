@@ -1,14 +1,14 @@
 ﻿using AppFramework.Auditing;
 using AppFramework.Auditing.Dto;
-using AppFramework.Shared;
-using AppFramework.Models.Auditlogs;
+using AppFramework.Shared; 
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
 using System.Threading.Tasks;
 using Prism.Ioc; 
 using Prism.Regions;
-using AppFramework.Shared.Services; 
+using AppFramework.Shared.Services;
+using AppFramework.Models;
 
 namespace AppFramework.ViewModels
 {
