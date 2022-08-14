@@ -76,7 +76,8 @@
                 <DockPanel
                     Margin="15"
                     VerticalAlignment="Center"
-                    DockPanel.Dock="Top">
+                    DockPanel.Dock="Top"
+                    LastChildFill="False">
                     <StackPanel x:Name="TitltStack" Orientation="Horizontal">
                         <Image
                             Width="20"
@@ -84,7 +85,7 @@
                             VerticalAlignment="Center"
                             Source="/Assets/Images/logo.ico" />
                         <TextBlock
-                            Margin="5,0,2,0"
+                            Margin="5,0"
                             VerticalAlignment="Center"
                             FontWeight="Bold"
                             Foreground="{DynamicResource PrimaryBackground}"
@@ -98,6 +99,7 @@
                         VerticalAlignment="Center"
                         Background="Transparent"
                         BorderThickness="0"
+                        DockPanel.Dock="Right"
                         Template="{StaticResource UserPanelButton}">
                         <TextBlock
                             x:Name="TxtDoubleTitle"
@@ -110,11 +112,12 @@
                 <!--  左侧系统菜单  -->
                 <sync:SfTreeView
                     x:Name="treeViewItems"
-                    HorizontalContentAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
                     AutoExpandMode="AllNodes"
                     BorderBrush="Transparent"
                     ChildPropertyName="Items"
                     ExpandActionTrigger="Node"
+                    ExpanderPosition="End"
                     FocusVisualStyle="{x:Null}"
                     FullRowSelect="True"
                     IsAnimationEnabled="True"
@@ -122,7 +125,10 @@
                     ItemsSource="{Binding appService.NavigationItems}">
                     <sync:SfTreeView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="0,5" Orientation="Horizontal">
+                            <StackPanel
+                                Margin="0,5"
+                                HorizontalAlignment="Left"
+                                Orientation="Horizontal">
                                 <Image
                                     Width="20"
                                     Height="20"

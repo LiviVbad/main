@@ -11,7 +11,7 @@ namespace AppFramework.Services
         {
             return new ObservableCollection<NavigationItem>()
             {
-               new NavigationItem("demo","Administration","",AppPermissions.Administration,new ObservableCollection<NavigationItem>()
+               new NavigationItem("home","Administration","",AppPermissions.Administration,new ObservableCollection<NavigationItem>()
                {
                       new NavigationItem("dashboard","Dashboard", AppViews.Dashboard, AppPermissions.Administration),
                       new NavigationItem("organization","OrganizationUnits",AppViews.Organization,AppPermissions.OrganizationUnits),

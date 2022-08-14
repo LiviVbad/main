@@ -10,6 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Images\logo.ico" />
+    <None Remove="Assets\Images\menus\home.png" />
     <None Remove="Assets\Images\SplashScreen1.png" />
     <None Remove="Assets\Images\SplashScreen2.png" />
   </ItemGroup>
@@ -62,6 +64,7 @@
     <Resource Include="Assets\Images\DashboardSampleStatistics.png" />
     <Resource Include="Assets\Images\DashboardSampleStatistics2.png" />
     <Resource Include="Assets\Images\delete.png" />
+    <Resource Include="Assets\Images\logo.ico" />
     <Resource Include="Assets\Images\flags\ad.png" />
     <Resource Include="Assets\Images\flags\ae.png" />
     <Resource Include="Assets\Images\flags\af.png" />
@@ -310,7 +313,6 @@
     <Resource Include="Assets\Images\flags\zm.png" />
     <Resource Include="Assets\Images\flags\zw.png" />
     <Resource Include="Assets\Images\info.png" />
-    <Resource Include="Assets\Images\logo.ico" />
     <Resource Include="Assets\Images\menus\accounts.png" />
     <Resource Include="Assets\Images\menus\addr.png" />
     <Resource Include="Assets\Images\menus\auditlog.png" />
@@ -319,6 +321,7 @@
     <Resource Include="Assets\Images\menus\download.png" />
     <Resource Include="Assets\Images\menus\edition.png" />
     <Resource Include="Assets\Images\menus\email.png" />
+    <Resource Include="Assets\Images\menus\home.png" />
     <Resource Include="Assets\Images\menus\language.png" />
     <Resource Include="Assets\Images\menus\link.png" />
     <Resource Include="Assets\Images\menus\loginattempts.png" />
