@@ -36,7 +36,7 @@
             <Grid Grid.Row="1" Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
-                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1.8*" />
                 </Grid.ColumnDefinitions>
 
                 <Border

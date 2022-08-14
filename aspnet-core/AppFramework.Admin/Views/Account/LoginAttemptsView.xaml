@@ -98,17 +98,29 @@
                     SelectedItem="{Binding dataPager.SelectedItem}"
                     Style="{StaticResource SimpleDataGridStyle}">
                     <sync:SfDataGrid.Columns>
-                        <sync:GridTextColumn HeaderText="{extensions:Translate IpAddress}" MappingName="ClientIpAddress" />
-                        <sync:GridTextColumn HeaderText="{extensions:Translate Client}" MappingName="ClientName" />
+                        <sync:GridTextColumn
+                            Width="150"
+                            HeaderText="{extensions:Translate IpAddress}"
+                            MappingName="ClientIpAddress" />
+                        <sync:GridTextColumn
+                            Width="100"
+                            HeaderText="{extensions:Translate Client}"
+                            MappingName="ClientName" />
                         <sync:GridTextColumn HeaderText="{extensions:Translate Browser}" MappingName="BrowserInfo" />
-                        <sync:GridTextColumn HeaderText="{extensions:Translate Time}" MappingName="CreationTime" />
+                        <sync:GridTextColumn
+                            DisplayBinding="{Binding Path=CreationTime, StringFormat='yyyy-MM-dd hh:mm:ss'}"
+                            HeaderText="{extensions:Translate Time}"
+                            MappingName="CreationTime" />
                         <sync:GridTemplateColumn
-                            Width="60"
+                            Width="100"
                             HeaderText="{extensions:Translate Result}"
                             MappingName="Result">
                             <sync:GridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Foreground="White" Text="{Binding Result}" />
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        Foreground="White"
+                                        Text="{Binding Result}" />
                                 </DataTemplate>
                             </sync:GridTemplateColumn.CellTemplate>
                         </sync:GridTemplateColumn>
