@@ -186,8 +186,8 @@ namespace AppFramework
             Func<System.Exception, Task> failCallback)
         { 
             var httpExceptionMessage = LocalTranslationHelper.Localize("HttpException");
-#if DEBUG
-            httpExceptionMessage += Environment.NewLine + httpException.Message;
+#if DEBUG 
+            System.Diagnostics.Debug.WriteLine(httpExceptionMessage + httpException.Message);
 #endif
 
             var accepted = dialogService.Question(
@@ -206,8 +206,8 @@ namespace AppFramework
             Func<System.Exception, Task> failCallback)
         { 
             var httpExceptionMessage = LocalTranslationHelper.Localize("HttpException");
-#if DEBUG
-            httpExceptionMessage += Environment.NewLine + httpException.Message;
+#if DEBUG 
+            System.Diagnostics.Debug.WriteLine(httpExceptionMessage + httpException.Message);
 #endif
 
             var accepted = dialogService.Question(
@@ -223,9 +223,8 @@ namespace AppFramework
         private static async Task HandleAbpValidationException(AbpValidationException abpValidationException,
             Func<System.Exception, Task> failCallback)
         {
-            dialogService.ShowMessage(
-               LocalTranslationHelper.Localize("MessageTitle"),
-               abpValidationException.GetConsolidatedMessage());
+            NotifyBar.Warning(LocalTranslationHelper.Localize("MessageTitle"),
+               abpValidationException.GetConsolidatedMessage()); 
 
             await failCallback(abpValidationException);
         }

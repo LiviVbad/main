@@ -32,7 +32,7 @@ namespace AppFramework.Services
 
         private T GetPrimitive<T>(string key, T defaultValue = default(T))
         {
-            return (T)Convert.ChangeType(iniFile.GetValue(key, null), typeof(T));
+            return (T)Convert.ChangeType(iniFile.GetValue(Section, key), typeof(T));
         }
 
         private T RetrieveObject<T>(string key, T defaultValue = default(T))
@@ -58,7 +58,7 @@ namespace AppFramework.Services
             if (TypeHelperExtended.IsPrimitive(typeof(T), false))
             {
                 if (shouldEncrypt)
-                    InternalSetValue(key, SimpleStringCipher.Instance.Encrypt(Convert.ToString(value)));
+                    InternalSetValue(key, value == null ? "" : SimpleStringCipher.Instance.Encrypt(Convert.ToString(value)));
                 else
                     InternalSetValue(key, value);
             }

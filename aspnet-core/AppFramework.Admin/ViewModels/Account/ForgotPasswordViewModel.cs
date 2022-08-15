@@ -65,9 +65,8 @@ namespace AppFramework.ViewModels
         }
 
         private async Task PasswordResetMailSentAsync()
-        {
-            dialog.ShowMessage(
-               Local.Localize(AppLocalizationKeys.PasswordResetMailSentMessage),
+        {  
+            NotifyBar.Info(Local.Localize(AppLocalizationKeys.PasswordResetMailSentMessage),
                Local.Localize(AppLocalizationKeys.MailSent));
 
             base.Save();

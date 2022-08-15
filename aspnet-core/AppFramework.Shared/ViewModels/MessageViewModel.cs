@@ -11,7 +11,7 @@ namespace AppFramework.Shared
             get { return message; }
             set { message = value; RaisePropertyChanged(); }
         }
-
+         
         public override void OnDialogOpened(IDialogParameters parameters)
         {
             if (parameters.ContainsKey("Title"))

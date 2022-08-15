@@ -1,6 +1,6 @@
 ﻿using AppFramework.Authorization.Accounts;
 using AppFramework.Authorization.Accounts.Dto;
-using AppFramework.Shared; 
+using AppFramework.Shared;
 using AppFramework.ViewModels.Shared;
 using Prism.Commands;
 using Prism.Services.Dialogs;
@@ -65,15 +65,14 @@ namespace AppFramework.ViewModels
         }
 
         private async Task PasswordResetMailSentAsync()
-        {  
-            dialog.ShowMessage(Local.Localize(AppLocalizationKeys.ActivationMailSentMessage),
+        {
+            NotifyBar.Info(Local.Localize(AppLocalizationKeys.ActivationMailSentMessage),
                 Local.Localize(AppLocalizationKeys.MailSent));
 
             await Task.CompletedTask;
         }
 
         public override void OnDialogOpened(IDialogParameters parameters)
-        { 
-        }
+        { }
     }
 }

@@ -6,8 +6,8 @@
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
-    Width="380"
-    Height="280"
+    Width="450"
+    Height="200"
     mc:Ignorable="d">
     <prism:Dialog.WindowStyle>
         <Style TargetType="Window">
@@ -22,51 +22,60 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="1.5*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <Border
-            Grid.RowSpan="3"
+            Grid.RowSpan="2"
             CornerRadius="3"
             Opacity="1"
             Style="{StaticResource BorderStyle}" />
 
-        <Image
-            Width="50"
-            Height="50"
-            VerticalAlignment="Bottom"
-            Source="/Assets/Images/info.png" />
+        <Grid Margin="20" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-        <StackPanel
-            Grid.Row="1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Image
+                    Width="40"
+                    Height="40"
+                    VerticalAlignment="Bottom"
+                    Source="/Assets/Images/info.png" />
+                <TextBlock
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    d:Text="This is a warning message"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Text="{Binding Title}" />
+            </StackPanel>
+
             <TextBlock
-                HorizontalAlignment="Center"
-                FontSize="16"
-                Text="{Binding Title}" />
-            <TextBlock
-                Margin="5,10"
-                HorizontalAlignment="Center"
+                Grid.Row="1"
+                Margin="50,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                d:Text="Alert message content！"
                 Opacity="0.6"
                 Text="{Binding Message}"
                 TextWrapping="Wrap" />
-        </StackPanel>
+        </Grid>
 
         <StackPanel
-            Grid.Row="2"
-            Margin="15"
-            HorizontalAlignment="Center"
+            Grid.Row="1"
+            Margin="10"
+            HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Orientation="Horizontal">
             <Button
                 Command="{Binding SaveCommand}"
                 Content="{extensions:Translate Yes}"
                 Style="{StaticResource SimpleButton}" />
-
             <Button
-                Margin="10,0"
+                Margin="10,0,0,0"
                 Command="{Binding CancelCommand}"
                 Content="{extensions:Translate No}"
                 Style="{StaticResource SimpleButton}" />

@@ -135,6 +135,9 @@
   <data name="MessageTitle" xml:space="preserve">
     <value>AppFramework</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>取消</value>
+  </data>
   <data name="NoInternet" xml:space="preserve">
     <value>没有网络连接！ 您要启用互联网并重试吗？</value>
   </data>
@@ -146,5 +149,8 @@
   </data>
   <data name="UnhandledWebRequestException" xml:space="preserve">
     <value>发生错误。 你想再试一次吗？</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>确定</value>
   </data>
 </root>

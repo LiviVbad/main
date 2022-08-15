@@ -8,22 +8,7 @@ namespace AppFramework.Shared
     /// 会话窗口扩展服务
     /// </summary>
     public static class DialogExtensions
-    {
-        /// <summary>
-        /// 弹出消息窗口
-        /// </summary>
-        /// <param name="dialogService"></param>
-        /// <param name="title">标题</param>
-        /// <param name="message">提示消息</param>
-        public static void ShowMessage(this IDialogService dialogService, string title, string message)
-        {
-            DialogParameters parameters = new DialogParameters();
-            parameters.Add("Title", title);
-            parameters.Add("Message", message);
-
-            dialogService.ShowDialog(AppViews.MessageBox, parameters, callback => { });
-        }
-
+    { 
         /// <summary>
         /// 询问窗口
         /// </summary>
