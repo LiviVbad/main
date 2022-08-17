@@ -2,11 +2,11 @@
 using Prism.Ioc;
 using Prism.Modularity;
 using AppFramework.ApiClient;
-using AppFramework.Shared; 
+using AppFramework.Shared;
 using AppFramework.Shared.Services.Storage;
 using AppFramework.Services;
 using AppFramework.Services.Account;
-using AppFramework.Views; 
+using AppFramework.Views;
 using AppFramework.ViewModels.Shared;
 using AppFramework.Services.Notification;
 using AppFramework.ViewModels.Version;
@@ -30,7 +30,7 @@ namespace AppFramework.Admin
             services.RegisterSingleton<IAccountStorageService, AccountStorageService>();
             services.RegisterSingleton<IDataStorageService, DataStorageService>();
             services.RegisterSingleton<IPermissionService, PermissionService>();
-            services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>(); 
+            services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
             services.RegisterScoped<IPermissionTreesService, PermissionTreesService>();
             services.Register<IPermissionPorxyService, PermissionPorxyService>();
             services.RegisterScoped<IFeaturesService, FeaturesService>();

@@ -20,7 +20,7 @@
             Opacity="1"
             Style="{StaticResource BorderStyle}" />
 
-        <Grid Margin="20">
+        <Grid Margin="20" VerticalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition />

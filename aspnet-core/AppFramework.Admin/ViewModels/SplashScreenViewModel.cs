@@ -3,7 +3,8 @@ using AppFramework.Shared;
 using AppFramework.Shared.Services.Storage;
 using AppFramework.Services.Account;
 using AppFramework.ViewModels.Shared;
-using Prism.Services.Dialogs; 
+using Prism.Services.Dialogs;
+using Prism.Modularity;
 
 namespace AppFramework.ViewModels
 {

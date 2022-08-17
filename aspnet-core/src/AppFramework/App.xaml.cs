@@ -5,18 +5,19 @@ using DryIoc.Microsoft.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.DryIoc;
 using Prism.Ioc;
-using Prism.Regions; 
-using System.Windows; 
+using Prism.Regions;
+using System.Windows;
 using Prism.Modularity;
-using AppFramework.Shared; 
+using AppFramework.Shared;
 using AppFramework.Admin;
-using AppFramework.Shared.Core; 
-using AppFramework.Shared.Services.App; 
+using AppFramework.Shared.Core;
+using AppFramework.Shared.Services.App;
+using System;
 
 namespace AppFramework
 {
     public partial class App : PrismApplication
-    {  
+    {
         protected override Window CreateShell() => null;
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -33,7 +34,7 @@ namespace AppFramework
         }
 
         protected override IContainerExtension CreateContainerExtension()
-        {
+        { 
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddAutoMapper(config =>
             {
@@ -58,6 +59,6 @@ namespace AppFramework
             MainWindow = await appStart.CreateShell(this);
 
             base.OnInitialized();
-        } 
+        }
     }
 }
