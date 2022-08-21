@@ -7,13 +7,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AppFramework.Shared.Services.Permission;
 using Abp.Application.Services.Dto;
-using Prism.Services.Dialogs; 
+using Prism.Services.Dialogs;
 using Prism.Commands;
 using AppFramework.Authorization.Permissions.Dto;
 using AppFramework.Authorization.Permissions;
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
-using System.Collections.ObjectModel; 
+using System.Collections.ObjectModel;
 using Prism.Regions;
 using AppFramework.Shared.Services;
 using AppFramework.Services;
@@ -334,7 +334,7 @@ namespace AppFramework.ViewModels
                             await Task.CompletedTask;
                         });
         }
-
+         
         /// <summary>
         /// 刷新用户列表模块
         /// </summary>

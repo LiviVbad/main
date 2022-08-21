@@ -29,11 +29,11 @@ namespace AppFramework.Services
         }
 
         private ObservableCollection<object> selectedItems;
-         
+
         public ObservableCollection<object> SelectedItems
         {
             get { return selectedItems; }
-            set { selectedItems = value; }
+            set { selectedItems = value; RaisePropertyChanged(); }
         }
 
         public void CreatePermissionTrees(List<FlatPermissionDto> permissions, List<string> grantedPermissionNames)

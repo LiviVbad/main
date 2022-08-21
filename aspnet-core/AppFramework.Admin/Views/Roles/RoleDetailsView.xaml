@@ -62,7 +62,7 @@
                         Grid.Row="1"
                         Margin="0,5"
                         AutoExpandMode="AllNodes"
-                        CheckBoxMode="None"
+                        CheckBoxMode="Individual"
                         CheckedItems="{Binding treesService.SelectedItems}"
                         ChildPropertyName="Items"
                         ExpandActionTrigger="Node"
