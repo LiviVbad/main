@@ -313,6 +313,7 @@
     <Resource Include="Assets\Images\flags\zm.png" />
     <Resource Include="Assets\Images\flags\zw.png" />
     <Resource Include="Assets\Images\info.png" />
+    <Resource Include="Assets\Images\logout.ico" />
     <Resource Include="Assets\Images\menus\accounts.png" />
     <Resource Include="Assets\Images\menus\addr.png" />
     <Resource Include="Assets\Images\menus\auditlog.png" />

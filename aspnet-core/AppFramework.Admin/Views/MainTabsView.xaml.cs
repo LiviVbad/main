@@ -81,6 +81,8 @@ namespace AppFramework.Views
         {
             WindowState = ((base.WindowState != System.Windows.WindowState.Minimized) ?
                System.Windows.WindowState.Minimized : System.Windows.WindowState.Normal);
+
+            this.Hide();
         }
 
         private void SetWindowState()

@@ -2,11 +2,12 @@
 using AppFramework.Shared.Models;
 using AppFramework.Shared.Services;
 using AppFramework.Services;
-using AppFramework.Services.Notification; 
+using AppFramework.Services.Notification;
 using Prism.Commands;
 using Prism.Regions;
 using Syncfusion.UI.Xaml.TreeView;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
+using AppFramework.ApiClient;
 
 namespace AppFramework.ViewModels
 {
@@ -15,12 +16,13 @@ namespace AppFramework.ViewModels
         public MainTabsViewModel(
             NotificationService notificationService,
             NavigationService navigationService,
-            IApplicationService appService)
+            IApplicationService appService,
+            IApplicationContext applicationContext)
         {
             this.notificationService = notificationService;
             NavigationService = navigationService;
             this.appService = appService;
-
+            this.applicationContext = applicationContext;
             SettingsCommand = new DelegateCommand(notificationService.Settings);
             NavigateCommand = new DelegateCommand<ItemSelectionChangedEventArgs>(Navigate);
             SeeAllNotificationsCommand = new DelegateCommand(() =>
@@ -42,6 +44,7 @@ namespace AppFramework.ViewModels
         public DelegateCommand<string> ExecuteUserActionCommand { get; private set; }
 
         private bool notificationPanelIsOpen;
+        private readonly IApplicationContext applicationContext;
 
         public bool NotificationPanelIsOpen
         {
@@ -78,7 +81,9 @@ namespace AppFramework.ViewModels
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
         {
             await appService.GetApplicationInfo();
-            NavigationService.Navigate(AppViews.Dashboard);
+
+            if (applicationContext.Configuration.Auth.GrantedPermissions.ContainsKey(AppPermissions.HostDashboard))
+                NavigationService.Navigate(AppViews.Dashboard);
         }
     }
 }

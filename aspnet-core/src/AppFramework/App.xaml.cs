@@ -13,11 +13,13 @@ using AppFramework.Admin;
 using AppFramework.Shared.Core;
 using AppFramework.Shared.Services.App;
 using System;
+using Hardcodet.Wpf.TaskbarNotification;
 
 namespace AppFramework
 {
     public partial class App : PrismApplication
     {
+        private TaskbarIcon taskBar;
         protected override Window CreateShell() => null;
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -53,6 +55,8 @@ namespace AppFramework
 
         protected override async void OnInitialized()
         {
+            taskBar = (TaskbarIcon)FindResource("taskBar");
+
             AppSettings.OnInitialized();
 
             var appStart = ContainerLocator.Container.Resolve<IAppStartService>();
