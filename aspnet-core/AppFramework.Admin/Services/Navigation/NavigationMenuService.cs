@@ -13,14 +13,14 @@ namespace AppFramework.Services
             {
                new NavigationItem("home","Administration","",AppPermissions.Administration,new ObservableCollection<NavigationItem>()
                {
-                      new NavigationItem("dashboard","Dashboard", AppViews.Dashboard, AppPermissions.Administration),
+                      new NavigationItem("dashboard","Dashboard", AppViews.Dashboard, AppPermissions.HostDashboard),
                       new NavigationItem("organization","OrganizationUnits",AppViews.Organization,AppPermissions.OrganizationUnits),
                       new NavigationItem("role","Roles",AppViews.Role,AppPermissions.Roles),
                       new NavigationItem("user","Users",AppViews.User,AppPermissions.Users),
                       new NavigationItem("auditlog","AuditLogs",AppViews.AuditLog,AppPermissions.AuditLogs),
                       new NavigationItem("property","DynamicProperties",AppViews.DynamicProperty,AppPermissions.DynamicProperties),
                       new NavigationItem("language","Languages",AppViews.Language,AppPermissions.Languages),
-                      new NavigationItem("version", "VersionManager", AppViews.Version, AppPermissions.Administration),
+                      new NavigationItem("version", "VersionManager", AppViews.Version, AppPermissions.Versions),
                       new NavigationItem("edition","Editions",AppViews.Edition,AppPermissions.Editions),
                }),
 
@@ -38,24 +38,45 @@ namespace AppFramework.Services
         /// <returns></returns>
         public ObservableCollection<NavigationItem> GetAuthMenus(Dictionary<string, string> permissions)
         {
+            var navigationItems = GetMenuItems();
             var authorizedMenuItems = new ObservableCollection<NavigationItem>();
-            foreach (var item in GetMenuItems())
+            foreach (var item in navigationItems)
             {
                 //转换特定地区语言的标题
                 item.Title = Local.Localize(item.Title);
 
-                if (string.IsNullOrWhiteSpace(item.RequiredPermissionName) ||
-                    (permissions != null && permissions.ContainsKey(item.RequiredPermissionName)))
+                if (CheckPressions(item.RequiredPermissionName))
                 {
                     if (item.Items != null)
                     {
+                        var subItems = new ObservableCollection<NavigationItem>();
+
                         foreach (var submenuItem in item.Items)
-                            submenuItem.Title = Local.Localize(submenuItem.Title);
+                        {
+                            if (CheckPressions(submenuItem.RequiredPermissionName))
+                            {
+                                submenuItem.Title = Local.Localize(submenuItem.Title);
+                                subItems.Add(submenuItem);
+                            }
+                        }
+
+                        item.Items = subItems;
                     }
+
                     authorizedMenuItems.Add(item);
                 }
             }
             return authorizedMenuItems;
+
+            bool CheckPressions(string requiredPermissionName)
+            {
+                if (string.IsNullOrWhiteSpace(requiredPermissionName) ||
+                   (permissions != null && permissions.ContainsKey(requiredPermissionName)))
+                {
+                    return true;
+                }
+                return false;
+            }
         }
     }
 }

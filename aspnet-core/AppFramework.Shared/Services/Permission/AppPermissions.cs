@@ -2,10 +2,10 @@
 {
     public class AppPermissions
     {
-        public const string Pages_AbpVersions = "Pages.AbpVersions";
-        public const string Pages_AbpVersions_Create = "Pages.AbpVersions.Create";
-        public const string Pages_AbpVersions_Edit = "Pages.AbpVersions.Edit";
-        public const string Pages_AbpVersions_Delete = "Pages.AbpVersions.Delete";
+        public const string Versions = "Pages.AbpVersions";
+        public const string VersionsCreate = "Pages.AbpVersions.Create";
+        public const string VersionsEdit = "Pages.AbpVersions.Edit";
+        public const string VersionsDelete = "Pages.AbpVersions.Delete";
 
         //COMMON PERMISSIONS (FOR BOTH OF TENANTS AND HOST) 
         public const string Pages = "Pages";
