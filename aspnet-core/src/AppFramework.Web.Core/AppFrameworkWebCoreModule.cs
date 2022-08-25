@@ -56,7 +56,7 @@ namespace AppFramework.Web
         }
 
         public override void PreInitialize()
-        {
+        { 
             //Set default connection string
             Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(
                 AppFrameworkConsts.ConnectionStringName

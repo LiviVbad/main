@@ -6,7 +6,7 @@ using System;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace AppFramework.Services.Update
+namespace AppFramework.Services
 {
     public class UpdateService : IUpdateService
     {

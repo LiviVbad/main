@@ -1,8 +1,7 @@
 ﻿using AppFramework.Shared.Services.App;
 using System;
 using System.Windows;
-using Prism.Ioc;
-using AppFramework.Services.Update; 
+using Prism.Ioc; 
 using System.Threading.Tasks;
 using AppFramework.Shared;
 using Prism.Regions;
@@ -44,10 +43,7 @@ namespace AppFramework.Admin
             var userConfigurationService = container.Resolve<UserConfigurationService>();
             userConfigurationService.OnAccessTokenRefresh = OnAccessTokenRefresh;
             userConfigurationService.OnSessionTimeOut = OnSessionTimeout;
-
-            var appVersionService = container.Resolve<IUpdateService>();
-            await appVersionService.CheckVersion();
-
+             
             if (SplashScreenInitialized())
             {
                 var shell = container.Resolve<object>(AppViews.Main);

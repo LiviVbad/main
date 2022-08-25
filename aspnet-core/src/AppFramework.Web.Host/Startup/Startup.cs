@@ -44,6 +44,7 @@ using Newtonsoft.Json.Serialization;
 using Owl.reCAPTCHA;
 using HealthChecksUISettings = HealthChecks.UI.Configuration.Settings;
 using Microsoft.AspNetCore.Server.Kestrel.Https;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace AppFramework.Web.Startup
 {
@@ -61,7 +62,7 @@ namespace AppFramework.Web.Startup
         }
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
-        {
+        { 
             //MVC
             services.AddControllersWithViews(options =>
             {
@@ -180,7 +181,7 @@ namespace AppFramework.Web.Startup
 
                 options.PlugInSources.AddFolder(Path.Combine(_hostingEnvironment.WebRootPath, "Plugins"),
                     SearchOption.AllDirectories);
-            });
+            }); 
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)

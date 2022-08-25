@@ -6,15 +6,8 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion></FileVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Assets\Images\logo.ico" />
-    <None Remove="Assets\Images\menus\home.png" />
-    <None Remove="Assets\Images\SplashScreen1.png" />
-    <None Remove="Assets\Images\SplashScreen2.png" />
-  </ItemGroup>
  
   <ItemGroup>
     <PackageReference Include="Abp" Version="7.3.0" />

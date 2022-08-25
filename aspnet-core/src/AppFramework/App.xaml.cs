@@ -14,6 +14,7 @@ using AppFramework.Shared.Core;
 using AppFramework.Shared.Services.App;
 using System;
 using Hardcodet.Wpf.TaskbarNotification;
+using Example; 
 
 namespace AppFramework
 {
@@ -26,6 +27,7 @@ namespace AppFramework
         {
             containerRegistry.RegisterSingleton<ILocaleCulture, LocaleCulture>();
             containerRegistry.RegisterSingleton<IThemeService, ThemeService>();
+            containerRegistry.RegisterSingleton<IUpdateService, UpdateService>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
@@ -36,7 +38,7 @@ namespace AppFramework
         }
 
         protected override IContainerExtension CreateContainerExtension()
-        { 
+        {
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddAutoMapper(config =>
             {
@@ -58,6 +60,9 @@ namespace AppFramework
             taskBar = (TaskbarIcon)FindResource("taskBar");
 
             AppSettings.OnInitialized();
+
+            var appVersionService = ContainerLocator.Container.Resolve<IUpdateService>();
+            await appVersionService.CheckVersion();
 
             var appStart = ContainerLocator.Container.Resolve<IAppStartService>();
             MainWindow = await appStart.CreateShell(this);

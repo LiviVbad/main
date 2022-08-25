@@ -18,7 +18,7 @@ namespace AppFramework.Authorization.Users.Profile
         }
 
         public async Task<UploadFileOutput> UploadVersionFile(Action<CapturedMultipartContent> buildContent)
-        {
+        { 
             return await ApiClient.PostMultipartAsync<UploadFileOutput>(GetEndpoint(nameof(UploadVersionFile)), buildContent);
         }
     }

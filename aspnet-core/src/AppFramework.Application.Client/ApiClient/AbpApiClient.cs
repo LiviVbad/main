@@ -76,7 +76,7 @@ namespace AppFramework.ApiClient
 
         public async Task<T> PostMultipartAsync<T>(string endpoint, Action<CapturedMultipartContent> buildContent, bool stripAjaxResponseWrapper = true)
         {
-            var httpResponse = GetClient(_accessTokenManager.GetAccessToken())
+            var httpResponse = GetClient(_accessTokenManager.GetAccessToken()) 
                 .Request(endpoint)
                 .PostMultipartAsync(buildContent);
 

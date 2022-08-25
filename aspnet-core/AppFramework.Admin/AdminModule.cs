@@ -9,8 +9,7 @@ using AppFramework.Services.Account;
 using AppFramework.Views;
 using AppFramework.ViewModels.Shared;
 using AppFramework.Services.Notification;
-using AppFramework.ViewModels.Version;
-using AppFramework.Services.Update;
+using AppFramework.ViewModels.Version; 
 using AppFramework.Shared.Services.App;
 using Validations;
 
@@ -38,8 +37,7 @@ namespace AppFramework.Admin
             services.RegisterSingleton<IApplicationService, ApplicationService>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
             services.RegisterSingleton<NavigationService>();
-            services.RegisterSingleton<NotificationService>();
-            services.RegisterSingleton<IUpdateService, UpdateService>();
+            services.RegisterSingleton<NotificationService>(); 
 
             services.RegisterDialog<SplashScreenView, SplashScreenViewModel>(AppViews.SplashScreen);
             services.RegisterDialog<LoginView, LoginViewModel>(AppViews.Login);

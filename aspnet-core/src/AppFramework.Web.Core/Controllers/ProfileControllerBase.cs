@@ -48,6 +48,8 @@ namespace AppFramework.Web.Controllers
             _profileAppService = profileAppService;
         }
 
+        [RequestFormLimits(MultipartBodyLengthLimit = 1024000000)]
+        [RequestSizeLimit(1024000000)]
         public async Task<ActionResult> UploadVersionFile(CreateOrEditAbpVersionDto input)
         {
             var file = Request.Form.Files.FirstOrDefault();
