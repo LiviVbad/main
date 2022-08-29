@@ -1,5 +1,6 @@
 ﻿using Prism.Ioc;
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Markup;
 
@@ -19,6 +20,13 @@ namespace AppFramework.Shared
         /// <returns>是否符合权限: 显示/隐藏</returns>
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
+            if (serviceProvider.GetService(typeof(IProvideValueTarget)) is IProvideValueTarget target
+               && target.TargetObject is FrameworkElement element
+               && DesignerProperties.GetIsInDesignMode(element))
+            {
+                return Visibility.Visible;
+            }
+
             if (string.IsNullOrWhiteSpace(Text))
                 return Visibility.Collapsed;
 

@@ -70,7 +70,7 @@ namespace AppFramework.ViewModels
         protected override async void Save()
         {
             Input.User = Model.User;
-            Input.AssignedRoleNames = Model.Roles.Where(x => !x.IsAssigned).Select(x => x.RoleName).ToArray();
+            Input.AssignedRoleNames = Model.Roles.Where(x => x.IsAssigned).Select(x => x.RoleName).ToArray();
             Input.OrganizationUnits = Model.OrganizationUnits.Where(x => x.IsAssigned).Select(x => x.Id).ToList();
 
             if (!Verify(Input).IsValid) return;

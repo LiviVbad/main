@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Windows;
 using System.Windows.Markup;
 
 namespace AppFramework.Shared
@@ -25,6 +27,13 @@ namespace AppFramework.Shared
         /// <returns></returns>
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
+            if (serviceProvider.GetService(typeof(IProvideValueTarget)) is IProvideValueTarget target
+                && target.TargetObject is FrameworkElement element
+                && DesignerProperties.GetIsInDesignMode(element))
+            {
+                return Text;
+            }
+
             if (string.IsNullOrWhiteSpace(Text)) return Text;
 
             return Local.Localize(Text);
