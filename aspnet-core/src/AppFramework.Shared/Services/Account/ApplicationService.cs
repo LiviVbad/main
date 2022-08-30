@@ -1,8 +1,8 @@
 ﻿using Abp.IO.Extensions;
 using Acr.UserDialogs;
-using AppFramework.Common.Models;
-using AppFramework.Common.Services;
-using AppFramework.Common.Services.Navigation;
+using AppFramework.Shared.Models;
+using AppFramework.Shared.Services;
+using AppFramework.Shared.Services.Navigation;
 using AppFramework.ApiClient;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Authorization.Users.Profile.Dto;
@@ -19,8 +19,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using AppFramework.Common.ViewModels;
-using AppFramework.Common;
+using AppFramework.Shared.ViewModels; 
 
 namespace AppFramework.Shared.Services
 {

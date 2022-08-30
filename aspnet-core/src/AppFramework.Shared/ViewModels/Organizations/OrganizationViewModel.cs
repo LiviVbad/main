@@ -9,9 +9,9 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
-    using AppFramework.Common.Models;
-    using AppFramework.Common.Core;
-    using AppFramework.Common;
+    using AppFramework.Shared.Models;
+    using AppFramework.Shared.Core;
+    using AppFramework.Shared; 
 
     public class OrganizationViewModel : RegionCurdViewModel
     {

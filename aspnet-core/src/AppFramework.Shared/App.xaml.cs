@@ -1,7 +1,7 @@
-﻿using AppFramework.Common; 
-using AppFramework.Common.Core;
-using AppFramework.Common.Services.Account;
-using AppFramework.Common.Services.Storage;
+﻿using AppFramework.Shared;
+using AppFramework.Shared.Core;
+using AppFramework.Shared.Services.Account;
+using AppFramework.Shared.Services.Storage;
 using DryIoc;
 using DryIoc.Microsoft.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
@@ -60,7 +60,7 @@ namespace AppFramework.Shared
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddAutoMapper(config =>
             {
-                config.AddProfile<AppCommonMapper>();
+                config.AddProfile<AppSharedMapper>();
             });
             return new DryIocContainerExtension(new Container(CreateContainerRules())
                 .WithDependencyInjectionAdapter(serviceCollection));

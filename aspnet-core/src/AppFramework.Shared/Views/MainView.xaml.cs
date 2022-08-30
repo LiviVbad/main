@@ -1,11 +1,10 @@
 ﻿using AppFramework.Shared.ViewModels;
 using Prism.Regions.Xaml;
 using Xamarin.Forms;
-using AppFramework.Common.Core;
-using AppFramework.Common.Models;
-using AppFramework.Common;
+using AppFramework.Shared.Core;
+using AppFramework.Shared.Models;
 using Xamarin.CommunityToolkit.Effects;
-using Xamarin.CommunityToolkit.Helpers;
+using Xamarin.CommunityToolkit.Helpers; 
 
 namespace AppFramework.Shared.Views
 {

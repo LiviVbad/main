@@ -1,5 +1,5 @@
 ﻿using Acr.UserDialogs;
-using AppFramework.Common.Services.Layer;
+using AppFramework.Shared.Services.Layer;
 
 namespace AppFramework.Shared.Services.Layer
 {

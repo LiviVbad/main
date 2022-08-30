@@ -1,14 +1,13 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFramework.Common;
-using AppFramework.Common.Core;
-using AppFramework.Common.Models;
+using AppFramework.Shared.Core;
+using AppFramework.Shared.Models;
 using AppFramework.Organizations;
 using AppFramework.Organizations.Dto;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Threading.Tasks; 
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -114,7 +113,7 @@ namespace AppFramework.Shared.ViewModels
         /// </summary>
         public async void AddUsers()
         {
-            if (!permissionService.HasPermission(Permkeys.OrganizationUnitsManageMembers))
+            if (!permissionService.HasPermission(AppPermissions.OrganizationUnitsManageMembers))
                 return;
 
             await navigationService.NavigateAsync(AppViewManager.AddUsers, GetParameter());
@@ -125,7 +124,7 @@ namespace AppFramework.Shared.ViewModels
         /// </summary>
         public async void AddRoles()
         {
-            if (!permissionService.HasPermission(Permkeys.OrganizationUnitsManageRoles))
+            if (!permissionService.HasPermission(AppPermissions.OrganizationUnitsManageRoles))
                 return;
 
             await navigationService.NavigateAsync(AppViewManager.AddRoles, GetParameter());

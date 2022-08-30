@@ -3,22 +3,11 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behaviors="clr-namespace:AppFramework.Shared.Behaviors;assembly=AppFramework.Shared"
-    xmlns:busy="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
-    xmlns:lot="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
-    xmlns:manager="clr-namespace:AppFramework.Common;assembly=AppFramework.Common"
+    xmlns:manager="clr-namespace:AppFramework.Shared"
     xmlns:prism="http://prismlibrary.com"
     BackgroundColor="{DynamicResource GrayShadowBackgroundColor}">
     <ContentPage.Content>
         <Grid>
-            <!--<lot:AnimationView
-                x:Name="animationView"
-                Animation="hello.json"
-                AutoPlay="True"
-                HorizontalOptions="FillAndExpand"
-                RepeatCount="10"
-                RepeatMode="Restart"
-                VerticalOptions="FillAndExpand" />-->
-
             <ContentView prism:RegionManager.RegionName="{x:Static manager:AppRegionManager.Index}" />
         </Grid>
     </ContentPage.Content>

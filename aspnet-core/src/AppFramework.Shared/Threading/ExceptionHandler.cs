@@ -1,7 +1,7 @@
 ﻿using Abp.Web.Models;
 using Acr.UserDialogs;
 using AppFramework.ApiClient;
-using AppFramework.Common;
+using AppFramework.Shared;
 using AppFramework.Extensions; 
 using Castle.Core.Internal;
 using Flurl.Http;

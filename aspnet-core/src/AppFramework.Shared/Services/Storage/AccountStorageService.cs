@@ -2,9 +2,8 @@
 using AppFramework.ApiClient.Models;
 using AppFramework.Sessions.Dto;
 using AutoMapper;
-using System.Threading.Tasks;
-using AppFramework.Common.Services.Storage;
-using AppFramework.Common.Models;
+using System.Threading.Tasks; 
+using AppFramework.Shared.Models;
 
 namespace AppFramework.Shared.Services.Storage
 {

@@ -1,9 +1,8 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.Runtime.Security;
 using Acr.UserDialogs;
-using AppFramework.Common.Core;
-using AppFramework.Common.Models;
-using AppFramework.Common;
+using AppFramework.Shared.Core;
+using AppFramework.Shared.Models;
 using AppFramework.Editions.Dto;
 using AppFramework.MultiTenancy;
 using AppFramework.MultiTenancy.Dto;
@@ -12,6 +11,7 @@ using Prism.Commands;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AppFramework.Common; 
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -87,7 +87,7 @@ namespace AppFramework.Shared.ViewModels
             set
             {
                 isNewTenant = value;
-                IsDeleteButtonVisible = !isNewTenant && permissionService.HasPermission(Permkeys.TenantDelete);
+                IsDeleteButtonVisible = !isNewTenant && permissionService.HasPermission(AppPermissions.TenantDelete);
                 PageTitle = isNewTenant ? Local.Localize(AppLocalizationKeys.CreatingNewTenant) : Local.Localize(AppLocalizationKeys.EditTenant);
                 RaisePropertyChanged();
             }

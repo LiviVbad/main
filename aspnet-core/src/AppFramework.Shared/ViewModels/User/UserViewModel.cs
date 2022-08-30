@@ -4,9 +4,8 @@ using AppFramework.Authorization.Users.Dto;
 using AppFramework.Authorization.Users.Profile;
 using Prism.Navigation;
 using System.Threading.Tasks;
-using AppFramework.Common.Models;
-using AppFramework.Common.Core;
-using AppFramework.Common;
+using AppFramework.Shared.Models;
+using AppFramework.Shared.Core; 
 
 namespace AppFramework.Shared.ViewModels
 {

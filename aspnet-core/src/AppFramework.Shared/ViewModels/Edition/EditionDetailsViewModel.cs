@@ -1,5 +1,4 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFramework.Common;
 using AppFramework.Editions;
 using AppFramework.Editions.Dto;
 using Prism.Commands;
@@ -9,8 +8,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using AppFramework.Common.Models;
-using AppFramework.Common.Core;
+using AppFramework.Shared.Models;
+using AppFramework.Shared.Core;
+using AppFramework.Common; 
 
 namespace AppFramework.Shared.ViewModels
 {

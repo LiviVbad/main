@@ -2,8 +2,7 @@
 using AppFramework.DynamicEntityProperties;
 using AppFramework.DynamicEntityProperties.Dto;
 using System.Threading.Tasks;
-using AppFramework.Common.Core;
-using AppFramework.Common;
+using AppFramework.Shared.Core; 
 
 namespace AppFramework.Shared.ViewModels
 {

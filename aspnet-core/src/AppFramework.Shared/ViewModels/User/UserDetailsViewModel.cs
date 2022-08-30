@@ -1,15 +1,14 @@
 ﻿using Abp.Application.Services.Dto;
 using Acr.UserDialogs;
-using AppFramework.Common.Core;
-using AppFramework.Common.Models;
+using AppFramework.Shared.Core;
+using AppFramework.Shared.Models;
 using AppFramework.Authorization.Users;
 using AppFramework.Authorization.Users.Dto;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using AppFramework.Common;
+using System.Threading.Tasks; 
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -75,7 +74,7 @@ namespace AppFramework.Shared.ViewModels
             set
             {
                 isNewUser = value;
-                IsUnlockButtonVisible = !isNewUser && permissionService.HasPermission(Permkeys.UserEdit);
+                IsUnlockButtonVisible = !isNewUser && permissionService.HasPermission(AppPermissions.UserEdit);
                 PageTitle = isNewUser ? Local.Localize(AppLocalizationKeys.CreatingNewUser) : Local.Localize(AppLocalizationKeys.EditUser);
                 RaisePropertyChanged();
             }

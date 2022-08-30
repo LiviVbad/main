@@ -1,5 +1,4 @@
-﻿using Acr.UserDialogs;
-using AppFramework.Common;
+﻿using Acr.UserDialogs; 
 using AppFramework.Shared.Localization;
 
 namespace AppFramework.Shared

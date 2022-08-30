@@ -1,5 +1,4 @@
 ﻿using AppFramework.ApiClient;
-using AppFramework.Common;
 using AppFramework.Configuration;
 using AppFramework.MultiTenancy;
 using AppFramework.Shared.Localization.Resources;
@@ -9,7 +8,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Xamarin.Forms;
+using Xamarin.Forms; 
 
 namespace AppFramework.Shared.Services.Account
 {

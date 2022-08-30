@@ -1,8 +1,6 @@
 ﻿using Acr.UserDialogs;
-using AppFramework.Common.Core;
-using AppFramework.Common.Services;
-using AppFramework.Common.Services.Account;
-using AppFramework.Common.Services.Storage;
+using AppFramework.Shared.Core;
+using AppFramework.Shared.Services.Storage;
 using AppFramework.ApiClient;
 using AppFramework.ApiClient.Models;
 using AppFramework.Authorization.Users.Profile;
@@ -11,8 +9,7 @@ using AppFramework.Sessions.Dto;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System.Threading.Tasks;
-using AppFramework.Common;
-using AppFramework.Common.Models;
+using AppFramework.Shared.Models; 
 
 namespace AppFramework.Shared.Services.Account
 {

@@ -1,20 +1,15 @@
-﻿using Prism.Ioc; 
+﻿using Prism.Ioc;
 
 #region ApplicationServices
 
 using AppFramework.Shared.ViewModels;
 using AppFramework.Shared.Views;
-using AppFramework.Shared.Services.Account; 
+using AppFramework.Shared.Services.Account;
 using AppFramework.Shared.Services.Storage;
 using AppFramework.Shared.Services.Layer;
-using AppFramework.Shared.Services; 
-using AppFramework.Common; 
-using AppFramework.Common.Validations; 
-using AppFramework.Common.Services; 
-using AppFramework.Common.Services.Account;
-using AppFramework.Common.Services.Layer;
-using AppFramework.Common.Services.Storage;
-using AppFramework.Common.Services.Navigation;
+using AppFramework.Shared.Services;
+using AppFramework.Shared.Validations; 
+using AppFramework.Shared.Services.Navigation; 
 
 #endregion ApplicationServices
 

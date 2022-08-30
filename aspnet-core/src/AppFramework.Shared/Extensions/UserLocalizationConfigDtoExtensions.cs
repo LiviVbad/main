@@ -1,6 +1,5 @@
 ﻿using Abp.Collections.Extensions;
-using Abp.Web.Models.AbpUserConfiguration;
-using AppFramework;
+using Abp.Web.Models.AbpUserConfiguration; 
 using System;
 
 namespace AppFramework.Shared

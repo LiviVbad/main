@@ -1,6 +1,6 @@
 ﻿using AppFramework.ApiClient; 
 using Prism.Services.Dialogs; 
-using AppFramework.Common.Models;
+using AppFramework.Shared.Models;
 
 namespace AppFramework.Shared.ViewModels
 {

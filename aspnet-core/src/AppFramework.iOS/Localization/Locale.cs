@@ -1,5 +1,5 @@
-﻿using AppFramework.Common;
-using AppFramework.Localization;
+﻿using AppFramework.Localization;
+using AppFramework.Shared;
 using Foundation;
 using System;
 using System.Globalization;

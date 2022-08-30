@@ -3,9 +3,8 @@ using AppFramework.DynamicEntityProperties.Dto;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Threading.Tasks;
-using AppFramework.Common.Core;
-using AppFramework.Common.Models;
-using AppFramework.Common;
+using AppFramework.Shared.Core;
+using AppFramework.Shared.Models; 
 
 namespace AppFramework.Shared.ViewModels
 {

@@ -1,9 +1,8 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFramework.Common;
-using AppFramework.Common.Core;
+using AppFramework.Shared.Core;
 using AppFramework.Editions;
 using AppFramework.Editions.Dto;
-using System.Threading.Tasks;
+using System.Threading.Tasks; 
 
 namespace AppFramework.Shared.ViewModels
 {

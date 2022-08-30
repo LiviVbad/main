@@ -1,4 +1,4 @@
-﻿using AppFramework.Common;
+﻿using AppFramework.Shared;
 using System.Reflection;
 using System.Resources;
 using Xamarin.Forms;

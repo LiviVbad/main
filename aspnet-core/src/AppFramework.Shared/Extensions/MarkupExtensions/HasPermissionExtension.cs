@@ -1,4 +1,4 @@
-﻿using AppFramework.Common;
+﻿using AppFramework.Shared;
 using Prism.Ioc;
 using System;
 using Xamarin.Forms;

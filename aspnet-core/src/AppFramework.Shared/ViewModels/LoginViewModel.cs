@@ -1,14 +1,13 @@
 ﻿using Abp.Localization;
 using Abp.MultiTenancy;
 using Acr.UserDialogs;
-using AppFramework.Common.Core;
-using AppFramework.Common.Services;
-using AppFramework.Common.Services.Account;
-using AppFramework.Common.Services.Storage;
+using AppFramework.Shared.Core;
+using AppFramework.Shared.Services;
+using AppFramework.Shared.Services.Account;
+using AppFramework.Shared.Services.Storage;
 using AppFramework.ApiClient;
 using AppFramework.Authorization.Accounts;
 using AppFramework.Authorization.Accounts.Dto;
-using AppFramework.Shared.Services.Account;
 using MvvmHelpers;
 using Prism.Commands;
 using Prism.Regions.Navigation;
@@ -16,8 +15,7 @@ using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
-using AppFramework.Common;
+using System.Threading.Tasks; 
 
 namespace AppFramework.Shared.ViewModels
 {

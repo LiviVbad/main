@@ -1,5 +1,4 @@
-﻿using AppFramework.Common;
-using AppFramework.Shared.Localization;
+﻿using AppFramework.Shared;
 using System;
 using System.Globalization;
 using System.Threading;

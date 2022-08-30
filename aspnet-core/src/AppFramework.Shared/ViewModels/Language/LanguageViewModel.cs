@@ -1,10 +1,8 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Localization;
-using AppFramework.Localization.Dto;
-using Prism.Regions.Navigation;
+using AppFramework.Localization.Dto; 
 using System.Threading.Tasks;
-using AppFramework.Common.Core;
-using AppFramework.Common;
+using AppFramework.Shared.Core; 
 
 namespace AppFramework.Shared.ViewModels
 {

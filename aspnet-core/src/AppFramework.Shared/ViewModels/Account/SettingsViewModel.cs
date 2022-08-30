@@ -1,5 +1,5 @@
 ﻿using Abp.Localization;
-using AppFramework.Common.Services.Account;
+using AppFramework.Shared.Services.Account;
 using AppFramework.ApiClient;
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.Authorization.Users.Profile;
@@ -8,10 +8,8 @@ using Prism.Regions.Navigation;
 using Prism.Services.Dialogs;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
-using AppFramework.Common;
-using AppFramework.Shared.Services.Account;
-using AppFramework.Common.Core;
+using System.Threading.Tasks; 
+using AppFramework.Shared.Core; 
 
 namespace AppFramework.Shared.ViewModels
 {

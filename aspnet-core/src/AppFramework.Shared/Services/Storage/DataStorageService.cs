@@ -1,5 +1,5 @@
 ﻿using Abp.Runtime.Security;
-using AppFramework.Common.Services.Storage;
+using AppFramework.Shared.Services.Storage;
 using Newtonsoft.Json;
 using Plugin.Settings;
 using System;

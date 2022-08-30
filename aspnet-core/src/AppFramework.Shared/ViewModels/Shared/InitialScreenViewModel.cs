@@ -10,15 +10,12 @@
 
 namespace AppFramework.Shared.ViewModels
 {
-    using AppFramework.Common.Core;
-    using AppFramework.Common.Services;
-    using AppFramework.Common.Services.Storage;
+    using AppFramework.Shared.Core;
+    using AppFramework.Shared.Services;
+    using AppFramework.Shared.Services.Storage;
     using AppFramework.ApiClient;
     using AppFramework.Shared.Services.Account;
-    using Prism.Commands;
-    using AppFramework.Common.ViewModels;
-    using AppFramework.Common;
-    using System.Threading.Tasks;
+    using Prism.Commands; 
 
     /// <summary>
     /// 应用启动初始化操作

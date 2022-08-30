@@ -1,11 +1,10 @@
 ﻿using AppFramework.ApiClient;
 using Prism.Commands;
 using Prism.Regions.Navigation;
-using AppFramework.Common.Services;
-using AppFramework.Common.Services.Account;
-using AppFramework.Common.Models;
-using AppFramework.Common;
-using AppFramework.Common.Core;
+using AppFramework.Shared.Services;
+using AppFramework.Shared.Services.Account;
+using AppFramework.Shared.Models;
+using AppFramework.Shared.Core; 
 
 namespace AppFramework.Shared.ViewModels
 {

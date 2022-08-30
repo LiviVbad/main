@@ -9,20 +9,7 @@
 		<DebugType>portable</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 	</PropertyGroup>
- 
-	<ItemGroup>
-	  <Compile Remove="Behaviors\EventToCommandBehavior.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="Assets\Fonts\Montserrat-Bold.ttf" />
-	  <None Remove="Assets\Fonts\Montserrat-Medium.ttf" />
-	  <None Remove="Assets\Fonts\Montserrat-Regular.ttf" />
-	  <None Remove="Assets\Fonts\Montserrat-SemiBold.ttf" />
-	  <None Remove="Assets\Fonts\UIFontIcons.ttf" />
-	  <None Remove="ViewModels\Tenants\TenantDetailsViewModel.cs~RF211acae.TMP" />
-	</ItemGroup>
-
+  
 	<ItemGroup>
 		<EmbeddedResource Include="Assets\Fonts\Montserrat-Bold.ttf" />
 		<EmbeddedResource Include="Assets\Fonts\Montserrat-Medium.ttf" />
@@ -302,29 +289,25 @@
 		<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.1" />
 		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+    <PackageReference Include="Abp" Version="7.3.0" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="DryIoc.Microsoft.DependencyInjection" Version="5.1.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
+    <PackageReference Include="Prism.Forms" Version="8.1.97" />
+    <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+    <PackageReference Include="System.Xml.XPath.XmlDocument" Version="4.3.0" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="4.0.0.190-beta" />
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.1.1.1-beta" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="4.1.0-beta" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Abp" Version="7.2.1" />
-	</ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-		<PackageReference Include="DryIoc.Microsoft.DependencyInjection" Version="5.1.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-		<PackageReference Include="Plugin.Permissions" Version="6.0.1" />
-		<PackageReference Include="Prism.Core" Version="8.1.97" />
-		<PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
-		<PackageReference Include="Prism.Forms" Version="8.1.97" />
-		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
-		<PackageReference Include="System.Xml.XPath.XmlDocument" Version="4.3.0" />
-		<PackageReference Include="Xam.Plugin.Connectivity" Version="4.0.0.190-beta" />
-		<PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
-		<PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.1.1.1-beta" />
-		<PackageReference Include="Xam.Plugins.Settings" Version="4.1.0-beta" />
-		<PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
-		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
-	</ItemGroup>
+  
 	<ItemGroup>
 	  <ProjectReference Include="..\AppFramework.Application.Client\AppFramework.Application.Client.csproj" />
 	  <ProjectReference Include="..\AppFramework.Application.Common\AppFramework.Common.csproj" />

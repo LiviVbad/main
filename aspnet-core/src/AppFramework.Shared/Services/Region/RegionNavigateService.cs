@@ -1,4 +1,4 @@
-﻿using AppFramework.Common.Services;
+﻿using AppFramework.Shared.Services;
 using Prism.Regions;
 using Prism.Regions.Navigation;
 using System;

@@ -1,5 +1,5 @@
-﻿using AppFramework.Common.Services.Layer;
-using AppFramework.Common.ViewModels;
+﻿using AppFramework.Shared.Services.Layer;
+using AppFramework.Shared.ViewModels;
 using Prism.Regions.Navigation;
 using System;
 using System.Threading.Tasks;

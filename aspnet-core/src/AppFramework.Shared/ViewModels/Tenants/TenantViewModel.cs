@@ -3,9 +3,8 @@ using AppFramework.MultiTenancy;
 using AppFramework.MultiTenancy.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AppFramework.Common.Core;
-using AppFramework.Common.Models;
-using AppFramework.Common;
+using AppFramework.Shared.Core;
+using AppFramework.Shared.Models; 
 
 namespace AppFramework.Shared.ViewModels
 {

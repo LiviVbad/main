@@ -1,6 +1,5 @@
-﻿using AppFramework.Common;
-using AppFramework.Common.Models;
-using AppFramework.Common.Services.Navigation;
+﻿using AppFramework.Shared.Models;
+using AppFramework.Shared.Services.Navigation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -12,19 +11,19 @@ namespace AppFramework.Shared.Services
         {
             return new ObservableCollection<NavigationItem>()
             {
-               new NavigationItem("\ue6c4","Dashboard", AppViewManager.Dashboard, Permkeys.Administration),
-               new NavigationItem("\uec07","Administration","",Permkeys.Administration,new ObservableCollection<NavigationItem>()
+               new NavigationItem("\ue6c4","Dashboard", AppViewManager.Dashboard, AppPermissions.Administration),
+               new NavigationItem("\uec07","Administration","",AppPermissions.Administration,new ObservableCollection<NavigationItem>()
                {
-                      new NavigationItem("\ue64e","OrganizationUnits",AppViewManager.Organization,Permkeys.OrganizationUnits),
-                      new NavigationItem("\ue787","Roles",AppViewManager.Role,Permkeys.Roles),
-                      new NavigationItem("\ue658","Users",AppViewManager.User,Permkeys.Users),
-                      new NavigationItem("\ue617","AuditLogs",AppViewManager.AuditLog,Permkeys.AuditLogs),
-                      new NavigationItem("\ue634","DynamicProperties",AppViewManager.DynamicProperty,Permkeys.DynamicProperties),
-                      new NavigationItem("\ue635","Tenants",AppViewManager.Tenant,Permkeys.Tenants),
-                      new NavigationItem("\ue657","Editions",AppViewManager.Edition,Permkeys.Editions),
+                      new NavigationItem("\ue64e","OrganizationUnits",AppViewManager.Organization,AppPermissions.OrganizationUnits),
+                      new NavigationItem("\ue787","Roles",AppViewManager.Role,AppPermissions.Roles),
+                      new NavigationItem("\ue658","Users",AppViewManager.User,AppPermissions.Users),
+                      new NavigationItem("\ue617","AuditLogs",AppViewManager.AuditLog,AppPermissions.AuditLogs),
+                      new NavigationItem("\ue634","DynamicProperties",AppViewManager.DynamicProperty,AppPermissions.DynamicProperties),
+                      new NavigationItem("\ue635","Tenants",AppViewManager.Tenant,AppPermissions.Tenants),
+                      new NavigationItem("\ue657","Editions",AppViewManager.Edition,AppPermissions.Editions),
                }),
-               new NavigationItem("\ue62e","Languages",AppViewManager.Language,Permkeys.Languages),
-               new NavigationItem("\ue600","Settings",AppViewManager.Setting,Permkeys.HostSettings),
+               new NavigationItem("\ue62e","Languages",AppViewManager.Language,AppPermissions.Languages),
+               new NavigationItem("\ue600","Settings",AppViewManager.Setting,AppPermissions.HostSettings),
             };
         }
 

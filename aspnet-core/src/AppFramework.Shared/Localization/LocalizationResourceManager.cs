@@ -1,4 +1,4 @@
-﻿using AppFramework.Common; 
+﻿using AppFramework.Shared; 
 using System.ComponentModel; 
 
 namespace AppFramework.Shared.Localization

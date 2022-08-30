@@ -1,11 +1,10 @@
 ﻿using AppFramework.MultiTenancy.HostDashboard;
-using AppFramework.MultiTenancy.HostDashboard.Dto; 
+using AppFramework.MultiTenancy.HostDashboard.Dto;
 using Prism.Regions.Navigation;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using AppFramework.Common.Models;
-using AppFramework.Common;
+using AppFramework.Shared.Models; 
 
 namespace AppFramework.Shared.ViewModels
 {

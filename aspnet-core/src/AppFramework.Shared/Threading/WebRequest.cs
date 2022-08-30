@@ -1,7 +1,7 @@
 ﻿using Abp.Runtime.Validation;
 using Abp.UI;
 using Acr.UserDialogs;
-using AppFramework.Common;
+using AppFramework.Shared;
 using AppFramework.Extensions;
 using AppFramework.Shared.Localization.Resources; 
 using Flurl.Http;
