@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Editions.Dto;
 using AppFramework.Models;
+using AppFramework.Shared.Services.Mapper;
 using AutoMapper;
 using Prism.Mvvm;
 using System;
@@ -12,9 +13,9 @@ namespace AppFramework.Services
 {
     public class FeaturesService : BindableBase, IFeaturesService
     {
-        private readonly IMapper mapper;
+        private readonly IAppMapper mapper;
 
-        public FeaturesService(IMapper mapper)
+        public FeaturesService(IAppMapper mapper)
         {
             this.mapper = mapper;
         }

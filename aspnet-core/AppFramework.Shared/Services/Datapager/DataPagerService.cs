@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
+using AppFramework.Shared.Services.Mapper;
 using AutoMapper;
 using Prism.Mvvm;
 using System;
@@ -12,9 +13,9 @@ namespace AppFramework.Shared.Services
     /// </summary>
     public class DataPagerService : BindableBase, IDataPagerService
     {
-        private readonly IMapper mapper;
+        private readonly IAppMapper mapper;
 
-        public DataPagerService(IMapper mapper)
+        public DataPagerService(IAppMapper mapper)
         {
             pageSize = AppConsts.DefaultPageSize;
             numericButtonCount = 10;

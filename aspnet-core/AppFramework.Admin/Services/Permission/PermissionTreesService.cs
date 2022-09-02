@@ -1,5 +1,6 @@
 ﻿using AppFramework.Authorization.Permissions.Dto;
 using AppFramework.Models;
+using AppFramework.Shared.Services.Mapper;
 using AppFramework.Shared.Services.Permission;
 using AutoMapper;
 using Prism.Mvvm;
@@ -13,9 +14,9 @@ namespace AppFramework.Services
 {
     public class PermissionTreesService : BindableBase, IPermissionTreesService
     {
-        private readonly IMapper mapper;
+        private readonly IAppMapper mapper;
 
-        public PermissionTreesService(IMapper mapper)
+        public PermissionTreesService(IAppMapper mapper)
         {
             this.mapper = mapper;
         }

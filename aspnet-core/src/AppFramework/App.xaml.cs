@@ -1,20 +1,17 @@
 ﻿using AppFramework.Extensions;
 using AppFramework.Services;
-using DryIoc;
-using DryIoc.Microsoft.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
+using DryIoc; 
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Regions;
 using System.Windows;
 using Prism.Modularity;
 using AppFramework.Shared;
-using AppFramework.Admin;
-using AppFramework.Shared.Core;
-using AppFramework.Shared.Services.App;
-using System;
-using Hardcodet.Wpf.TaskbarNotification;
-using Example; 
+using AppFramework.Admin; 
+using AppFramework.Shared.Services.App; 
+using Hardcodet.Wpf.TaskbarNotification; 
+using Services.Mapper;
+using AppFramework.Shared.Services.Mapper;
 
 namespace AppFramework
 {
@@ -25,6 +22,7 @@ namespace AppFramework
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<IAppMapper, AppMapper>();
             containerRegistry.RegisterSingleton<ILocaleCulture, LocaleCulture>();
             containerRegistry.RegisterSingleton<IThemeService, ThemeService>();
             containerRegistry.RegisterSingleton<IUpdateService, UpdateService>();
@@ -35,18 +33,6 @@ namespace AppFramework
             moduleCatalog.AddModule<AdminModule>();
             moduleCatalog.AddModule<SharedModule>();
             base.ConfigureModuleCatalog(moduleCatalog);
-        }
-
-        protected override IContainerExtension CreateContainerExtension()
-        {
-            var serviceCollection = new ServiceCollection();
-            serviceCollection.AddAutoMapper(config =>
-            {
-                config.AddProfile<AdminMapper>();
-                config.AddProfile<SharedMapper>();
-            });
-            return new DryIocContainerExtension(new Container(CreateContainerRules())
-                .WithDependencyInjectionAdapter(serviceCollection));
         }
 
         protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)

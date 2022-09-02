@@ -5,17 +5,18 @@ using AppFramework.Shared.Services.Storage;
 using AppFramework.Sessions.Dto;
 using AutoMapper;
 using System.Threading.Tasks;
+using AppFramework.Shared.Services.Mapper;
 
 namespace AppFramework.Services.Account
 {
     public class AccountStorageService : IAccountStorageService
     {
         private readonly IDataStorageService _dataStorageManager;
-        private readonly IMapper mapper;
+        private readonly IAppMapper mapper;
 
         public AccountStorageService(
             IDataStorageService dataStorageManager,
-            IMapper mapper)
+            IAppMapper mapper)
         {
             _dataStorageManager = dataStorageManager;
             this.mapper = mapper;

@@ -1,7 +1,7 @@
 ﻿namespace AppFramework.Shared
 {
-    using AppFramework.Shared.Validations;
-    using AutoMapper;
+    using AppFramework.Shared.Services.Mapper;
+    using AppFramework.Shared.Validations; 
     using FluentValidation.Results;
     using Prism.Ioc;
     using Prism.Mvvm;
@@ -13,12 +13,12 @@
     {
         public ViewModelBase()
         {
-            mapper = ContainerLocator.Container.Resolve<IMapper>();
+            mapper = ContainerLocator.Container.Resolve<IAppMapper>();
             validator = ContainerLocator.Container.Resolve<IGlobalValidator>();
         }
 
         private bool isBusy;
-        private readonly IMapper mapper;
+        private readonly IAppMapper mapper;
         private readonly IGlobalValidator validator;
 
         public bool IsNotBusy => !IsBusy;

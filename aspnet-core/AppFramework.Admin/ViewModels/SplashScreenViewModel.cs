@@ -1,17 +1,15 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.Shared;
 using AppFramework.Shared.Services.Storage;
-using AppFramework.Services.Account;
-using AppFramework.ViewModels.Shared;
-using Prism.Services.Dialogs;
-using Prism.Modularity;
+using AppFramework.Services.Account; 
+using Prism.Services.Dialogs; 
 
 namespace AppFramework.ViewModels
 {
     public class SplashScreenViewModel : DialogViewModel
     {
         private readonly IAccessTokenManager accessTokenManager;
-        private readonly IAccountStorageService dataStorageService;
+        private readonly IAccountStorageService dataStorageService; 
         private readonly IApplicationContext applicationContext;
 
         private string displayText;
@@ -22,11 +20,11 @@ namespace AppFramework.ViewModels
             set { displayText = value; RaisePropertyChanged(); }
         }
 
-        public SplashScreenViewModel(
+        public SplashScreenViewModel( 
            IApplicationContext applicationContext,
            IAccessTokenManager accessTokenManager,
            IAccountStorageService dataStorageService)
-        {
+        { 
             this.applicationContext = applicationContext;
             this.accessTokenManager = accessTokenManager;
             this.dataStorageService = dataStorageService;
