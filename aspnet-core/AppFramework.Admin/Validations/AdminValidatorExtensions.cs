@@ -5,15 +5,11 @@ using AppFramework.Validations;
 using FluentValidation;
 using Prism.Ioc; 
 
-namespace Validations
+namespace AppFramework.Admin
 {
     public static class AdminValidatorExtensions
-    {
-        /// <summary>
-        ///  注册FluentValidation
-        /// </summary>
-        /// <param name="services"></param>
-        public static void RegisterValidator(this IContainerRegistry services)
+    { 
+        public static void AddValidators(this IContainerRegistry services)
         { 
             services.RegisterScoped<IValidator<UserCreateOrUpdateModel>, UserCreateOrUpdateValidator>();
             services.RegisterScoped<IValidator<CreateOrganizationUnitModel>, OrganizationUnitValidator>();

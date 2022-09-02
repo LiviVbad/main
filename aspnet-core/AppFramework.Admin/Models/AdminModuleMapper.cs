@@ -13,13 +13,13 @@ using AppFramework.Organizations.Dto;
 using AppFramework.Sessions.Dto;
 using AppFramework.Shared.Models;
 using AppFramework.Version.Dtos;
-using AutoMapper; 
+using AutoMapper;
 
-namespace AppFramework.Admin
+namespace AppFramework.Admin.Models
 {
-    public class AdminMapper : Profile
+    public class AdminModuleMapper : Profile
     {
-        public AdminMapper()
+        public AdminModuleMapper()
         {
             CreateMap<GetAuditLogsFilter, GetAuditLogsInput>().ReverseMap();
             CreateMap<GetEntityChangeFilter, GetEntityChangeInput>().ReverseMap();

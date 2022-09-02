@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using AppFramework.Shared.Models.Configuration;
 using AppFramework.Configuration.Host.Dto;
-using AppFramework.Configuration.Dto; 
+using AppFramework.Configuration.Dto;
 
-namespace AppFramework.Shared.Core
+namespace AppFramework.Shared.Models
 {
-    public class SharedMapper : Profile
+    public class SharedModuleMapper : Profile
     {
-        public SharedMapper()
+        public SharedModuleMapper()
         {
             CreateMap<HostSettingsEditModel, HostSettingsEditDto>().ReverseMap();
             CreateMap<GeneralSettingsEditModel, GeneralSettingsEditDto>().ReverseMap();
