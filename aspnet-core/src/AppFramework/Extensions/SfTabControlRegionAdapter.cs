@@ -1,11 +1,8 @@
 ﻿using Prism.Regions;
 using Syncfusion.Windows.Tools.Controls;
-using System;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Windows.Controls;
+using System; 
 
-namespace AppFramework.Extensions
+namespace AppFramework
 {
     public class SfTabControlRegionAdapter : RegionAdapterBase<TabControlExt>
     {

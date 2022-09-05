@@ -2,7 +2,7 @@
 using Prism.Regions; 
 using Syncfusion.Windows.Tools.Controls; 
 
-namespace AppFramework.Extensions
+namespace AppFramework
 {
     /// <summary>
     /// 适配器扩展服务

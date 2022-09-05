@@ -44,10 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\AppFramework.Admin\AppFramework.Admin.csproj" />
-    <ProjectReference Include="..\..\AppFramework.Shared\AppFramework.Shared.csproj" />
-    <ProjectReference Include="..\AppFramework.Application.Client\AppFramework.Application.Client.csproj" />
-    <ProjectReference Include="..\AppFramework.Application.Shared\AppFramework.Application.Shared.csproj" />
+    <ProjectReference Include="..\AppFramework.Shared\AppFramework.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

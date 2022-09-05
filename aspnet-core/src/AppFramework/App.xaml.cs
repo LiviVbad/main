@@ -1,17 +1,15 @@
-﻿using AppFramework.Extensions;
-using AppFramework.Services;
-using DryIoc; 
+﻿using AppFramework.Services;
+using DryIoc;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Regions;
 using System.Windows;
 using Prism.Modularity;
 using AppFramework.Shared;
-using AppFramework.Admin; 
-using AppFramework.Shared.Services.App; 
-using Hardcodet.Wpf.TaskbarNotification; 
+using AppFramework.Shared.Services.App;
+using Hardcodet.Wpf.TaskbarNotification;
 using Services.Mapper;
-using AppFramework.Shared.Services.Mapper;
+using AppFramework.Shared.Services.Mapper; 
 
 namespace AppFramework
 {
@@ -22,17 +20,17 @@ namespace AppFramework
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.AddServices();
+
             containerRegistry.RegisterSingleton<IAppMapper, AppMapper>();
             containerRegistry.RegisterSingleton<ILocaleCulture, LocaleCulture>();
             containerRegistry.RegisterSingleton<IThemeService, ThemeService>();
             containerRegistry.RegisterSingleton<IUpdateService, UpdateService>();
         }
 
-        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+        protected override IModuleCatalog CreateModuleCatalog()
         {
-            moduleCatalog.AddModule<AdminModule>();
-            moduleCatalog.AddModule<SharedModule>();
-            base.ConfigureModuleCatalog(moduleCatalog);
+            return new DirectoryModuleCatalog() { ModulePath = @"." };
         }
 
         protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
@@ -42,7 +40,7 @@ namespace AppFramework
         }
 
         protected override async void OnInitialized()
-        {
+        {  
             taskBar = (TaskbarIcon)FindResource("taskBar");
 
             AppSettings.OnInitialized();

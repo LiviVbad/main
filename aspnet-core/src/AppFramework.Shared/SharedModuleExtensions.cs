@@ -28,26 +28,22 @@ using AppFramework.Sessions;
 using AppFramework.Tenants.Dashboard;
 using AppFramework.Version;
 using Prism.Ioc;
-using Prism.Modularity;
 using AppFramework.Shared.Services;
 using AppFramework.Services;
-using AppFramework.Services.Dialog; 
+using AppFramework.Services.Dialog;
 using AppFramework.Shared.Validations;
 
 namespace AppFramework.Shared
 {
-    public class SharedModule : IModule
+    public static class SharedModuleExtensions
     {
-        public void OnInitialized(IContainerProvider containerProvider)
-        { }
-
-        public void RegisterTypes(IContainerRegistry services)
+        public static void AddServices(this IContainerRegistry services)
         {
             services.RegisterSingleton<IGlobalValidator, GlobalValidator>();
 
             services.Register<IDataPagerService, DataPagerService>();
             services.RegisterSingleton<IHostDialogService, DialogHostService>();
-          
+
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
             services.RegisterSingleton<IMultiTenancyConfig, MultiTenancyConfig>();
             services.RegisterSingleton<IApplicationContext, ApplicationContext>();
@@ -65,7 +61,7 @@ namespace AppFramework.Shared
             services.RegisterScoped<IEditionAppService, EditionAppService>();
             services.RegisterScoped<IAuditLogAppService, AuditLogAppService>();
             services.RegisterScoped<ILanguageAppService, LanguageAppService>();
-         
+
             services.RegisterScoped<INotificationAppService, NotificationAppService>();
             services.RegisterScoped<IOrganizationUnitAppService, OrganizationUnitAppService>();
             services.RegisterScoped<IDynamicPropertyAppService, DynamicPropertyAppService>();
@@ -81,7 +77,7 @@ namespace AppFramework.Shared
             services.RegisterScoped<IHostDashboardAppService, HostDashboardAppService>();
             services.RegisterScoped<IHostSettingsAppService, HostSettingsAppService>();
             services.RegisterScoped<IPermissionAppService, PermissionAppService>();
-       
+
             services.RegisterScoped<IUserLinkAppService, UserLinkAppService>();
             services.RegisterScoped<IAbpVersionsAppService, AbpVersionsAppService>();
         }

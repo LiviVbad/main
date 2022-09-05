@@ -3,28 +3,12 @@ using AppFramework.Shared.Models.Configuration;
 using AppFramework.MultiTenancy.Dto;
 using FluentValidation;
 using FluentValidation.Validators;
-using Prism.Ioc; 
+using Prism.Ioc;
 
 namespace AppFramework.Shared.Validations
 {
     public static class ValidatorExtensions
-    {
-        /// <summary>
-        ///  注册FluentValidation
-        /// </summary>
-        /// <param name="services"></param>
-        public static void RegisterValidator(this IContainerRegistry services)
-        {
-            services.RegisterSingleton<IGlobalValidator, GlobalValidator>();
-            services.RegisterScoped<IValidator<UserCreateOrUpdateModel>, UserCreateOrUpdateValidator>();
-            services.RegisterScoped<IValidator<CreateOrganizationUnitModel>, OrganizationUnitValidator>();
-            services.RegisterScoped<IValidator<CreateTenantInput>, CreateTenantValidator>();
-            services.RegisterScoped<IValidator<TenantEditDto>, UpdateTenantValidator>();
-            services.RegisterScoped<IValidator<EditionCreateModel>, CreateEditionValidator>();
-            services.RegisterScoped<IValidator<HostSettingsEditModel>, SettingsValidator>();
-            services.RegisterScoped<IValidator<VersionListModel>, VersionValidator>();
-        }
-
+    { 
         #region 验证器扩展
 
         /// <summary>

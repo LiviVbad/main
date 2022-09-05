@@ -1,7 +1,7 @@
 ﻿using System;
-using Xamarin.Forms;
+using System.Windows.Data;
 
-namespace AppFramework.Shared.Converters
+namespace AppFramework.Converters
 {
     public class InverseBooleanConverter : IValueConverter
     {

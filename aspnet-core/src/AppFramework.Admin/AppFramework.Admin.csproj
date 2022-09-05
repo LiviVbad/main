@@ -5,15 +5,9 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF> 
+    <PostBuildEvent>xcopy "$(TargetDir)$(TargetName)*$(TargetExt)" "$(SolutionDir)\src\AppFramework\bin\Debug\net6.0-windows\" /Y /S</PostBuildEvent>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Assets\**" />
-    <EmbeddedResource Remove="Assets\**" />
-    <None Remove="Assets\**" />
-    <Page Remove="Assets\**" />
-  </ItemGroup>
-
+ 
   <ItemGroup>
     <PackageReference Include="Abp" Version="7.3.0" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
@@ -41,9 +35,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AppFramework.Application.Client\AppFramework.Application.Client.csproj" />
+    <ProjectReference Include="..\AppFramework.Application.Shared\AppFramework.Application.Shared.csproj" />
     <ProjectReference Include="..\AppFramework.Shared\AppFramework.Shared.csproj" />
-    <ProjectReference Include="..\src\AppFramework.Application.Client\AppFramework.Application.Client.csproj" />
-    <ProjectReference Include="..\src\AppFramework.Application.Shared\AppFramework.Application.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

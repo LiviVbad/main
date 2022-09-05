@@ -1,40 +1,45 @@
 ﻿using Abp.Runtime.Security;
+using AppFramework.Shared;
 using AppFramework.Shared.Services.Storage;
 using Newtonsoft.Json;
-using Plugin.Settings;
 using System;
-using System.Threading.Tasks;
 
-namespace AppFramework.Shared.Services.Storage
-{ 
+namespace AppFramework.Services
+{
     public class DataStorageService : IDataStorageService
     {
-        private static void SetValue(string key, object value)
+        private IniFileHelper iniFile;
+        private string Section = "App";
+        private string appInitPath = AppDomain.CurrentDomain.BaseDirectory + "user.ini";
+
+        public DataStorageService()
         {
-            if (value == null)
-                CrossSettings.Current.AddOrUpdateValue(key, null);
-            else
-                CrossSettings.Current.AddOrUpdateValue(key, value.ToString());
+            iniFile = new IniFileHelper(appInitPath);
         }
 
-        private static void SetJsonValue(string key, object value)
+        private void InternalSetValue(string key, object value)
         {
-            CrossSettings.Current.AddOrUpdateValue(key, JsonConvert.SerializeObject(value));
+            if (value == null)
+                iniFile.SetValue(Section, key, "");
+            else
+                iniFile.SetValue(Section, key, value.ToString());
+        }
+
+        private void SetJsonValue(string key, object value)
+        {
+            iniFile.SetValue(Section, key, JsonConvert.SerializeObject(value));
         }
 
         private T GetPrimitive<T>(string key, T defaultValue = default(T))
         {
-            if (!ContainsKey(key)) return defaultValue;
-
-            return (T)Convert.ChangeType(CrossSettings.Current.GetValueOrDefault(key, null), typeof(T));
+            return (T)Convert.ChangeType(iniFile.GetValue(Section, key), typeof(T));
         }
 
         private T RetrieveObject<T>(string key, T defaultValue = default(T))
         {
-            return !ContainsKey(key) ? defaultValue : JsonConvert.DeserializeObject<T>(Convert.ToString(CrossSettings.Current.GetValueOrDefault(key, "")));
+            var json = iniFile.GetValue(Section, key);
+            return JsonConvert.DeserializeObject<T>(json);
         }
-
-        public bool ContainsKey(string key) => CrossSettings.Current.Contains(key);
 
         public T GetValue<T>(string key, T defaultValue = default(T), bool shouldDecrpyt = false)
         {
@@ -53,9 +58,9 @@ namespace AppFramework.Shared.Services.Storage
             if (TypeHelperExtended.IsPrimitive(typeof(T), false))
             {
                 if (shouldEncrypt)
-                    SetValue(key, SimpleStringCipher.Instance.Encrypt(Convert.ToString(value)));
+                    InternalSetValue(key, value == null ? "" : SimpleStringCipher.Instance.Encrypt(Convert.ToString(value)));
                 else
-                    SetValue(key, value);
+                    InternalSetValue(key, value);
             }
             else
                 SetJsonValue(key, value);
@@ -63,7 +68,7 @@ namespace AppFramework.Shared.Services.Storage
 
         public void Remove(string key)
         {
-            if (ContainsKey(key)) CrossSettings.Current.Remove(key);
+            iniFile.RemoveValue(Section, key);
         }
     }
 }

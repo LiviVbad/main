@@ -7,5 +7,7 @@ namespace AppFramework.Shared
         CultureInfo GetCurrentCultureInfo();
          
         void SetLocale(CultureInfo ci);
+
+        string GetString(string key);
     }
 }

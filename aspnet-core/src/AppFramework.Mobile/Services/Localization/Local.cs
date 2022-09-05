@@ -41,13 +41,7 @@ namespace AppFramework.Shared
                 return text;
 
             if (appContext.Value.Configuration == null)
-            {
-                var localText = LocalTranslationHelper.Localize(text);
-                if (!string.IsNullOrWhiteSpace(localText))
-                    return localText;
-
                 return text;
-            }
 
             return appContext.Value.Configuration.Localization.Localize(text);
         }

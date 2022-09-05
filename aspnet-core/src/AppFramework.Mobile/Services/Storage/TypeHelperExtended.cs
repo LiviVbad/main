@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace AppFramework.Services
+namespace AppFramework.Shared.Services.Storage
 {
     public class TypeHelperExtended
     {
