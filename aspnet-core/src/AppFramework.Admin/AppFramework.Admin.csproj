@@ -5,7 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF> 
-    <PostBuildEvent>xcopy "$(TargetDir)$(TargetName)*$(TargetExt)" "$(SolutionDir)\src\AppFramework\bin\Debug\net6.0-windows\" /Y /S</PostBuildEvent>
+    <!--<PostBuildEvent>xcopy "$(TargetDir)$(TargetName)*$(TargetExt)" "$(SolutionDir)\src\AppFramework\bin\Debug\net6.0-windows\" /Y /S</PostBuildEvent>-->
   </PropertyGroup>
  
   <ItemGroup>

@@ -3,13 +3,13 @@ using DryIoc;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Regions;
-using System.Windows;
-using Prism.Modularity;
+using System.Windows; 
 using AppFramework.Shared;
 using AppFramework.Shared.Services.App;
 using Hardcodet.Wpf.TaskbarNotification;
 using Services.Mapper;
-using AppFramework.Shared.Services.Mapper; 
+using AppFramework.Shared.Services.Mapper;
+using AppFramework.Admin;
 
 namespace AppFramework
 {
@@ -20,19 +20,15 @@ namespace AppFramework
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.AddServices();
+            containerRegistry.AddSharedServices();
+            containerRegistry.AddAdminsServices();
 
             containerRegistry.RegisterSingleton<IAppMapper, AppMapper>();
             containerRegistry.RegisterSingleton<ILocaleCulture, LocaleCulture>();
             containerRegistry.RegisterSingleton<IThemeService, ThemeService>();
             containerRegistry.RegisterSingleton<IUpdateService, UpdateService>();
         }
-
-        protected override IModuleCatalog CreateModuleCatalog()
-        {
-            return new DirectoryModuleCatalog() { ModulePath = @"." };
-        }
-
+         
         protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
         {
             base.ConfigureRegionAdapterMappings(regionAdapterMappings);

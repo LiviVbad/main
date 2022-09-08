@@ -37,7 +37,7 @@ namespace AppFramework.Shared
 {
     public static class SharedModuleExtensions
     {
-        public static void AddServices(this IContainerRegistry services)
+        public static void AddSharedServices(this IContainerRegistry services)
         {
             services.RegisterSingleton<IGlobalValidator, GlobalValidator>();
 
