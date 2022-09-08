@@ -310,7 +310,6 @@
   
 	<ItemGroup>
 	  <ProjectReference Include="..\AppFramework.Application.Client\AppFramework.Application.Client.csproj" />
-	  <ProjectReference Include="..\AppFramework.Application.Common\AppFramework.Common.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Views\Account\SettingsView.xaml.cs">

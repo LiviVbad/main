@@ -37,7 +37,15 @@ namespace AppFramework.Shared.Services
 
         public void Navigate(string regionName, string pageName)
         {
-            regionManager.RequestNavigate(regionName, pageName);
-        } 
+            regionManager.RequestNavigate(regionName, pageName, back =>
+            {
+#if DEBUG
+                if ((bool)back.Result)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Navigate Error,ex:{back.Error.Message}");
+                }
+#endif
+            });
+        }
     }
 }
