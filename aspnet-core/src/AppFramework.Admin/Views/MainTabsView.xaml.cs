@@ -1,7 +1,7 @@
 ﻿using AppFramework.Services;
 using AppFramework.Shared;
 using AppFramework.ViewModels;
-using Syncfusion.Windows.Shared; 
+using Syncfusion.Windows.Shared;
 using System;
 using System.Windows;
 
@@ -9,14 +9,16 @@ namespace AppFramework.Views
 {
     public partial class MainTabsView : ChromelessWindow
     {
+        private readonly ILocaleCulture localeCulture;
         private readonly IHostDialogService dialog;
 
-        public MainTabsView(
+        public MainTabsView( 
             IThemeService themeService,
             IHostDialogService dialog)
         {
-            this.dialog = dialog; 
             InitializeComponent();
+            this.localeCulture = localeCulture;
+            this.dialog = dialog; 
             themeService.SetCurrentTheme(this);
             HeaderBorder.MouseDown += (s, e) =>
             {
