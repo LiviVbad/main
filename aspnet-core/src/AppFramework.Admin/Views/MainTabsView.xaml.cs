@@ -8,16 +8,14 @@ using System.Windows;
 namespace AppFramework.Views
 {
     public partial class MainTabsView : ChromelessWindow
-    {
-        private readonly ILocaleCulture localeCulture;
+    { 
         private readonly IHostDialogService dialog;
 
         public MainTabsView( 
             IThemeService themeService,
             IHostDialogService dialog)
         {
-            InitializeComponent();
-            this.localeCulture = localeCulture;
+            InitializeComponent(); 
             this.dialog = dialog; 
             themeService.SetCurrentTheme(this);
             HeaderBorder.MouseDown += (s, e) =>
