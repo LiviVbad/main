@@ -12,6 +12,8 @@
     </Style>
 
     <Style x:Key="SimpleDataGridStyle" TargetType="grid:SfDataGrid">
+        <!--  禁用默认得Ctrl+C 复制行数据,防止模板列导致得复制异常闪退,如果需要启用复制功能,请针对模板列指定MappingName  -->
+        <Setter Property="GridCopyOption" Value="None" />
         <Setter Property="HeaderLinesVisibility" Value="Horizontal" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="GridLinesVisibility" Value="Horizontal" />
