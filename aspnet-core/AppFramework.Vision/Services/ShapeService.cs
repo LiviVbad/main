@@ -11,17 +11,26 @@ namespace AppFramework.Vision.Services
     {
         public void ApplySettings(Settings settings)
         {
-            
+
         }
 
         public void FindResult()
         {
-             
+
         }
 
         public Settings QueryDefaultSettings()
         {
-            return new ShapeSettings();
+            return new ShapeSettings()
+            {
+                angleStart = -0.39f,
+                angleExtent = 0.79f,
+                angleStep = "auto",
+                optimization = "auto",
+                metric = "use_polarity",
+                contrast = "auto",
+                minContrast = "auto",
+            };
         }
     }
 }

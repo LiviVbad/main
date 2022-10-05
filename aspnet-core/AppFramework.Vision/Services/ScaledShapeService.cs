@@ -24,7 +24,15 @@ namespace AppFramework.Vision.Services
             return new ScaledShapeSettings()
             {
                 angleStart = -0.39f,
-                angleExtent = 0.79f, 
+                angleExtent = 0.79f,
+                angleStep = "auto",
+                scaleMin = 0.9f,
+                scaleMax = 1.1f,
+                scaleStep = "auto",
+                optimization = "auto",
+                metric = "use_polarity",
+                contrast = "auto",
+                mincontrast = "auto",
             };
         }
     }

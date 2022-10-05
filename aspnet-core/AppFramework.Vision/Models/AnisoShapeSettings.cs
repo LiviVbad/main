@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 namespace AppFramework.Vision.Models
 {
     public class AnisoShapeSettings : Settings
-    {
-        public string angleStep { get; set; }
-
+    {  
         public string scaleRMin { get; set; }
 
         public string scaleRMax { get; set; }
@@ -23,9 +21,7 @@ namespace AppFramework.Vision.Models
 
         public string scaleCStep { get; set; }
 
-        public string optimizatin { get; set; }
-
-        public string metric { get; set; }
+        public string optimizatin { get; set; } 
 
         public string contrast { get; set; }
 

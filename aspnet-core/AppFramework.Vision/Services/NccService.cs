@@ -21,7 +21,13 @@ namespace AppFramework.Vision.Services
 
         public Settings QueryDefaultSettings()
         {
-            return new NccSettings();
+            return new NccSettings()
+            {
+                angleStart = 0.39f,
+                angleExtent = 0.79f,
+                angleStep = "auto",
+                metric = "use_polarity"
+            };
         }
     }
 }
