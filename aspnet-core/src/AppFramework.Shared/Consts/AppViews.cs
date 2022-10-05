@@ -117,5 +117,18 @@
         public const string HostMessageBox = "HostMessageBoxView";
 
         public const string MessageBox = "MessageBoxView";
+
+        /*
+         * 机器视觉模块
+         */
+
+        public const string Shape = "ShapeView";
+
+        public const string ScaledShape = "ScaledShapeView";
+
+        public const string Ncc = "NccView";
+
+        public const string AnisoShape = "AnisoShapeView";
+
     }
 }

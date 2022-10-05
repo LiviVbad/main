@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="zh-Hans">
   <texts>
+    <text name="Vision">机器视觉</text>
+    <text name="Shape">形状匹配</text>
+    <text name="AnisoShape">各向异性匹配</text>
+    <text name="ScaledShape">缩放形状匹配</text>
+    <text name="NCC">相似性匹配</text>
+    
     <text name="HomePage">主页</text>
     <text name="AboutUs">关于我们</text>
     <text name="Administration">管理</text>

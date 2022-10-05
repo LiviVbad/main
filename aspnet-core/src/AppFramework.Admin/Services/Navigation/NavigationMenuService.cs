@@ -1,7 +1,7 @@
 ﻿using AppFramework.Shared.Models;
 using System.Collections.Generic;
-using System.Collections.ObjectModel; 
-using AppFramework.Shared;  
+using System.Collections.ObjectModel;
+using AppFramework.Shared;
 
 namespace AppFramework.Services
 {
@@ -24,10 +24,24 @@ namespace AppFramework.Services
                       new NavigationItem("edition","Editions",AppViews.Edition,AppPermissions.Editions),
                }),
 
+               /*
+                * 扩展机器视觉模块
+                * 
+                */ 
+
+               new NavigationItem("visual","Vision","",AppPermissions.Administration,new ObservableCollection<NavigationItem>()
+               {
+                      new NavigationItem("demo","Shape", AppViews.Shape, ""),
+                      new NavigationItem("demo","AnisoShape",AppViews.AnisoShape,""),
+                      new NavigationItem("demo","ScaledShape",AppViews.ScaledShape,""),
+                      new NavigationItem("demo","NCC",AppViews.Ncc,""),
+               }),
+
+               //租户、视觉、系统设置、演示UI组件
                new NavigationItem("tenant","Tenants",AppViews.Tenant,AppPermissions.Tenants),
                new NavigationItem("visual", "VisualSettings", AppViews.Visual, AppPermissions.Administration),
                new NavigationItem("setting", "Settings", AppViews.Setting, AppPermissions.HostSettings),
-               new NavigationItem("demo","DemoUiComponents",AppViews.Demo,AppPermissions.DemoUiComponents)
+               new NavigationItem("demo","DemoUiComponents",AppViews.Demo,AppPermissions.DemoUiComponents),
             };
         }
 

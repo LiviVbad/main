@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+    <text name="Vision">MachineVision</text>
+    <text name="Shape">Shape</text>
+    <text name="AnisoShape">AnisoShape</text>
+    <text name="ScaledShape">ScaledShape</text>
+    <text name="NCC">NCC</text>
+    
     <text name="Update">Update</text>
     <text name="AbpVersion">Abp version</text>
     <text name="AppFramework.Update.AbpVersion">AbpVersion</text>
