@@ -1,4 +1,5 @@
-﻿using AppFramework.Vision.ViewModels;
+﻿using AppFramework.Vision.Services;
+using AppFramework.Vision.ViewModels;
 using AppFramework.Vision.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -20,7 +21,12 @@ namespace AppFramework.Vision
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
-        {
+        { 
+            containerRegistry.Register<NccService>(); 
+            containerRegistry.Register<ShapeService>();
+            containerRegistry.Register<AnisoShapeService>();
+            containerRegistry.Register<ScaledShapeService>();
+
             containerRegistry.RegisterForNavigation<NccView, NccViewModel>();
             containerRegistry.RegisterForNavigation<ShapeView, ShapeViewModel>();
             containerRegistry.RegisterForNavigation<AnisoShapeView, AnisoShapeViewModel>();

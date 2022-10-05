@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AppFramework.Shared;
+using AppFramework.Vision.Services;
 
 namespace AppFramework.Vision.ViewModels
 {
-    internal class NccViewModel
+    public class NccViewModel: NavigationViewModel
     {
+        private readonly IVisionMatchSerivce service;
+
+        public NccViewModel(NccService service)
+        {
+            this.service = service;
+        }
     }
 }

@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AppFramework.Shared;
+using AppFramework.Vision.Services;
+using System.Runtime.CompilerServices;
 
 namespace AppFramework.Vision.ViewModels
 {
-    internal class AnisoShapeViewModel
+    public class AnisoShapeViewModel : NavigationViewModel
     {
+        private readonly IVisionMatchSerivce service;
+
+        public AnisoShapeViewModel(AnisoShapeService service)
+        {
+            this.service = service;
+        }
     }
 }
