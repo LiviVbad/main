@@ -10,6 +10,7 @@ using Hardcodet.Wpf.TaskbarNotification;
 using Services.Mapper;
 using AppFramework.Shared.Services.Mapper;
 using AppFramework.Admin;
+using AppFramework.Vision;
 
 namespace AppFramework
 {
@@ -19,9 +20,10 @@ namespace AppFramework
         protected override Window CreateShell() => null;
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {
+        { 
             containerRegistry.AddSharedServices();
             containerRegistry.AddAdminsServices();
+            containerRegistry.AddVisionServices();
 
             containerRegistry.RegisterSingleton<IAppMapper, AppMapper>();
             containerRegistry.RegisterSingleton<ILocaleCulture, LocaleCulture>();

@@ -44,8 +44,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\AppFramework.Vision\AppFramework.Vision.csproj" />
     <ProjectReference Include="..\AppFramework.Admin\AppFramework.Admin.csproj" />
     <ProjectReference Include="..\AppFramework.Shared\AppFramework.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="halcondotnet">
+      <HintPath>..\..\..\..\..\Program Files\MVTec\HALCON-20.11-Progress\bin\dotnet35\halcondotnet.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
