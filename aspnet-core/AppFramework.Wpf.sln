@@ -22,6 +22,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Admin", "src\A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework.Shared", "src\AppFramework.Shared\AppFramework.Shared.csproj", "{74D7C22B-A950-48FE-990D-278A4F313543}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppFramework.Vision", "AppFramework.Vision\AppFramework.Vision.csproj", "{F5B7F2E2-893E-4DFF-A0DB-DBEAAF10F8BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{74D7C22B-A950-48FE-990D-278A4F313543}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74D7C22B-A950-48FE-990D-278A4F313543}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74D7C22B-A950-48FE-990D-278A4F313543}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5B7F2E2-893E-4DFF-A0DB-DBEAAF10F8BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5B7F2E2-893E-4DFF-A0DB-DBEAAF10F8BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5B7F2E2-893E-4DFF-A0DB-DBEAAF10F8BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5B7F2E2-893E-4DFF-A0DB-DBEAAF10F8BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{67C10D05-BFBA-476E-B8E2-86961E1C24B7} = {AFAA0841-BD93-466F-B8F4-FB4EEC86F1FC}
 		{573187B5-ECAE-4DCA-8AE0-0934A38147AE} = {AFAA0841-BD93-466F-B8F4-FB4EEC86F1FC}
 		{74D7C22B-A950-48FE-990D-278A4F313543} = {AFAA0841-BD93-466F-B8F4-FB4EEC86F1FC}
+		{F5B7F2E2-893E-4DFF-A0DB-DBEAAF10F8BC} = {AFAA0841-BD93-466F-B8F4-FB4EEC86F1FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {23CD4D4B-B131-473D-9ECB-5DD96E739671}

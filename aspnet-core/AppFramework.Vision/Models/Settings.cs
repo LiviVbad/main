@@ -12,7 +12,7 @@ namespace AppFramework.Vision.Models
         public float angleStart { get; set; }
 
         public float angleExtent { get; set; }
-
+         
         public float scaleMin { get; set; }
 
         public float scaleMax { get; set; }

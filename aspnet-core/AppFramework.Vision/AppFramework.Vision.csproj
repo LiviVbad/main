@@ -8,12 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="Models\" />
+    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+    <ProjectReference Include="..\src\AppFramework.Shared\AppFramework.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,17 +11,21 @@ namespace AppFramework.Vision.Services
     {
         public void ApplySettings(Settings settings)
         {
-            
+
         }
 
         public void FindResult()
         {
-           
+
         }
 
         public Settings QueryDefaultSettings()
         {
-            return new Settings();
+            return new ScaledShapeSettings()
+            {
+                angleStart = -0.39f,
+                angleExtent = 0.79f, 
+            };
         }
     }
 }

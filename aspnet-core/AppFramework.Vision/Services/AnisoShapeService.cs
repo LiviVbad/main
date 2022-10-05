@@ -17,7 +17,7 @@ namespace AppFramework.Vision.Services
 
         public Settings QueryDefaultSettings()
         {
-            return new Settings()
+            return new AnisoShapeSettings()
             {
 
             };
