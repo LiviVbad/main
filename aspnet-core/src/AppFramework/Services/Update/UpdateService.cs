@@ -1,4 +1,5 @@
-﻿using AppFramework.Shared;
+﻿using AppFramework.ApiClient;
+using AppFramework.Shared;
 using AppFramework.Version;
 using AppFramework.Version.Dtos;
 using AutoUpdaterDotNET;
@@ -42,7 +43,7 @@ namespace AppFramework.Services
                 ChangelogURL = output.ChangelogURL,
                 InstalledVersion = new System.Version(CurrentVersion),
                 CurrentVersion = $"{AppSharedConsts.AppName} {output.Version}",
-                DownloadURL = output.DownloadURL,
+                DownloadURL = ApiUrlConfig.BaseUrl + output.DownloadURL,
                 Mandatory = new Mandatory
                 {
                     Value = output.IsForced,
