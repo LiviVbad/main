@@ -58,8 +58,8 @@ namespace AppFramework.Web.Controllers
                 throw new UserFriendlyException(L("RequestedFileDoesNotExists"));
 
             if (file != null)
-            {
-                var rootPath = environment.WebRootPath + "\\app\\version";
+            { 
+                var rootPath = environment.WebRootPath + @"\app\version";
 
                 if (!Directory.Exists(rootPath))
                     Directory.CreateDirectory(rootPath);
@@ -75,7 +75,7 @@ namespace AppFramework.Web.Controllers
 
                 input.AlgorithmValue = GetMd5HashFromFile(filePath);
                 input.HashingAlgorithm = "MD5";
-                input.DownloadUrl = filePath;
+                input.DownloadUrl = $"app/version/{fileName}";
             }
 
             await versionsAppService.CreateOrEdit(input);
