@@ -7,5 +7,7 @@
         public const string Index = nameof(Index);
 
         public const string Main = nameof(Main);
+
+        public const string UserPanel = nameof(UserPanel);
     }
 }

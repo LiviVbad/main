@@ -7,7 +7,7 @@ using Prism.Commands;
 using Prism.Regions;
 using Syncfusion.UI.Xaml.TreeView;
 using System.Threading.Tasks;
-using AppFramework.ApiClient;
+using AppFramework.ApiClient; 
 
 namespace AppFramework.ViewModels
 {
@@ -15,11 +15,13 @@ namespace AppFramework.ViewModels
     {
         public MainTabsViewModel(
             NotificationService notificationService,
+            IRegionManager regionManager,
             NavigationService navigationService,
             IApplicationService appService,
             IApplicationContext applicationContext)
         {
             this.notificationService = notificationService;
+            this.regionManager = regionManager;
             NavigationService = navigationService;
             this.appService = appService;
             this.applicationContext = applicationContext;
@@ -31,8 +33,7 @@ namespace AppFramework.ViewModels
                 notificationService.SeeAllNotificationsPage();
             });
             SetNotificationAsRead = new DelegateCommand(notificationService.SetNotificationAsRead);
-            SetAllNotificationsAsReadCommand = new DelegateCommand(notificationService.SetAllNotificationsAsRead);
-            ExecuteUserActionCommand = new DelegateCommand<string>(appService.ExecuteUserAction);
+            SetAllNotificationsAsReadCommand = new DelegateCommand(notificationService.SetAllNotificationsAsRead); 
         }
 
         #region 字段/属性
@@ -40,10 +41,10 @@ namespace AppFramework.ViewModels
         public NavigationService NavigationService { get; set; }
         public NotificationService notificationService { get; set; }
         public IApplicationService appService { get; init; }
-        public DelegateCommand<ItemSelectionChangedEventArgs> NavigateCommand { get; private set; }
-        public DelegateCommand<string> ExecuteUserActionCommand { get; private set; }
+        public DelegateCommand<ItemSelectionChangedEventArgs> NavigateCommand { get; private set; } 
 
         private bool notificationPanelIsOpen;
+        private readonly IRegionManager regionManager;
         private readonly IApplicationContext applicationContext;
 
         public bool NotificationPanelIsOpen
@@ -81,6 +82,8 @@ namespace AppFramework.ViewModels
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
         {
             await appService.GetApplicationInfo();
+
+            regionManager.Regions[AppRegionManager.UserPanel].RequestNavigate(AppViews.UserPanel);
 
             if (applicationContext.Configuration.Auth.GrantedPermissions.ContainsKey(AppPermissions.HostDashboard))
                 NavigationService.Navigate(AppViews.Dashboard);

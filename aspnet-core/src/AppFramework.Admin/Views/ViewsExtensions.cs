@@ -14,6 +14,7 @@ namespace AppFramework.Admin
             services.RegisterDialog<SplashScreenView, SplashScreenViewModel>(AppViews.SplashScreen);
             services.RegisterDialog<LoginView, LoginViewModel>(AppViews.Login);
 
+            services.Add<UserPanelView, UserPanelViewModel>(AppViews.UserPanel); 
             services.Add<FirstChangedPwdView, FirstChangedPwdViewModel>(AppViews.FirstChangedPwd);
             services.Add<SelectTenantView, SelectTenantViewModel>(AppViews.SelectTenant);
             services.Add<MainTabsView, MainTabsViewModel>(AppViews.Main);

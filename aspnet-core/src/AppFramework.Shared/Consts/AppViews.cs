@@ -8,6 +8,8 @@
 
         public const string Login = "LoginView";
 
+        public const string UserPanel = "UserPanelView";
+
         public const string SelectTenant = "SelectTenantView";
 
         public const string FirstChangedPwd = "FirstChangedPwdView";

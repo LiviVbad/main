@@ -47,23 +47,6 @@
     </sync:ChromelessWindow.Resources>
     <win:DialogHost Margin="-2" Identifier="{x:Static const:AppSharedConsts.RootIdentifier}">
         <Grid>
-            <Grid.Resources>
-                <Storyboard x:Key="SlideIn">
-                    <DoubleAnimation
-                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
-                        From="0"
-                        To=" -305"
-                        Duration="0:0:0.3" />
-                </Storyboard>
-                <Storyboard x:Key="SlideOut">
-                    <DoubleAnimation
-                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
-                        From="-305"
-                        To="0"
-                        Duration="0:0:0.3" />
-                </Storyboard>
-            </Grid.Resources>
-
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="leftGridColumn" Width="220" />
                 <ColumnDefinition />
@@ -351,7 +334,6 @@
                     </sync:TabControlExt.ItemTemplate>
                 </sync:TabControlExt>
 
-                <!--  用户功能面板  -->
                 <Border
                     Grid.Row="1"
                     Width="300"
@@ -360,67 +342,28 @@
                     VerticalAlignment="Stretch"
                     Background="WhiteSmoke"
                     BorderThickness="0">
+                    <Border.Resources>
+                        <Storyboard x:Key="SlideIn">
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                From="0"
+                                To=" -305"
+                                Duration="0:0:0.3" />
+                        </Storyboard>
+                        <Storyboard x:Key="SlideOut">
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                From="-305"
+                                To="0"
+                                Duration="0:0:0.3" />
+                        </Storyboard>
+                    </Border.Resources>
+
                     <Grid>
-                        <Grid.Effect>
-                            <DropShadowEffect
-                                BlurRadius="20"
-                                Direction="180"
-                                Opacity="0.2"
-                                ShadowDepth="-10"
-                                Color="#1F000000" />
-                        </Grid.Effect>
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto" />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-
-                        <Border
-                            Grid.RowSpan="2"
-                            Opacity="1"
-                            Style="{DynamicResource HeaderBorderStyle}" />
-
-                        <StackPanel Margin="15" Orientation="Horizontal">
-                            <Image
-                                Width="40"
-                                Height="40"
-                                Source="{Binding appService.Photo, Converter={StaticResource bytesToImageConverter}}" />
-                            <StackPanel Margin="10,0" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding appService.UserNameAndSurname}" />
-                                <TextBlock Margin="0,2" Text="{Binding appService.EmailAddress}" />
-                            </StackPanel>
-                        </StackPanel>
-
-                        <ListBox
-                            x:Name="ListUserMenu"
-                            Grid.Row="1"
-                            Margin="15,0"
-                            ItemContainerStyle="{StaticResource listMenuItemStyle}"
-                            ItemsSource="{Binding appService.UserMenuItems}"
-                            SelectedIndex="{Binding appService.SelectedIndex}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Margin="5" Orientation="Horizontal">
-                                        <Image
-                                            Width="20"
-                                            Height="20"
-                                            Source="{Binding Icon, Converter={StaticResource menuConverter}}" />
-                                        <TextBlock
-                                            Margin="10,0,0,0"
-                                            VerticalAlignment="Center"
-                                            FontSize="14"
-                                            Style="{x:Null}"
-                                            Text="{Binding Key}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="SelectionChanged">
-                                    <i:InvokeCommandAction Command="{Binding ExecuteUserActionCommand}" CommandParameter="{Binding ElementName=ListUserMenu, Path=SelectedItem.Key}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </ListBox>
+                        <!--  用户功能面板  -->
+                        <ContentControl prism:RegionManager.RegionName="{x:Static region:AppRegionManager.UserPanel}" />
                     </Grid>
+
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
                             <Style.Triggers>
