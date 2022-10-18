@@ -64,6 +64,6 @@ namespace AppFramework.Services
         /// 执行用户功能请求
         /// </summary>
         /// <param name="key"></param>
-        void ExecuteUserAction(string key);
+        void ExecuteUserAction(string key); 
     }
 }

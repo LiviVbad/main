@@ -10,6 +10,8 @@
 
         public const string UserPanel = "UserPanelView";
 
+        public const string Friends = "FriendsView";
+
         public const string SelectTenant = "SelectTenantView";
 
         public const string FirstChangedPwd = "FirstChangedPwdView";

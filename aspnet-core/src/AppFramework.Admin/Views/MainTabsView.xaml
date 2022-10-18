@@ -166,24 +166,25 @@
                         </StackPanel>
                     </ToggleButton>
 
-                    <Button
+                    <ToggleButton
                         Margin="5"
                         Padding="5"
                         VerticalAlignment="Center"
-                        Background="Transparent">
-                        <Button.Content>
+                        IsChecked="{Binding IsShowFriendsPanel, Mode=TwoWay}"
+                        Template="{StaticResource UserPanelButton}">
+                        <ToggleButton.Content>
                             <Image
                                 Width="20"
                                 Height="20"
                                 Source="/Assets/Images/message.png" />
-                        </Button.Content>
-                    </Button>
+                        </ToggleButton.Content>
+                    </ToggleButton>
 
                     <ToggleButton
                         x:Name="toggleShowPanel"
                         Margin="5"
                         Padding="10,5"
-                        IsChecked="{Binding appService.IsShowUserPanel, Mode=TwoWay}"
+                        IsChecked="{Binding IsShowUserPanel, Mode=TwoWay}"
                         Template="{StaticResource UserPanelButton}">
                         <StackPanel Orientation="Horizontal">
                             <Image
@@ -367,7 +368,7 @@
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding appService.IsShowUserPanel}" Value="true">
+                                <DataTrigger Binding="{Binding IsShowUserPanel}" Value="true">
                                     <DataTrigger.EnterActions>
                                         <BeginStoryboard Storyboard="{StaticResource SlideIn}" />
                                     </DataTrigger.EnterActions>

@@ -206,15 +206,7 @@ namespace AppFramework.Services.Account
             get { return selectedIndex; }
             set { selectedIndex = value; RaisePropertyChanged(); }
         }
-
-        private bool isShowUserPanel;
-
-        public bool IsShowUserPanel
-        {
-            get { return isShowUserPanel; }
-            set { isShowUserPanel = value; RaisePropertyChanged(); }
-        }
-
+         
         public async Task GetApplicationInfo()
         {
             await GetUserPhoto();
@@ -258,7 +250,6 @@ namespace AppFramework.Services.Account
         {
             if (await dialog.Question(Local.Localize("AreYouSure")))
             {
-                IsShowUserPanel = false;
                 regionManager.Regions[AppRegionManager.Main].RemoveAll();
                 await accountService.LogoutAsync(); 
             }
@@ -283,8 +274,7 @@ namespace AppFramework.Services.Account
 
         private void LoginAttempts()
         { 
-            navigationService.Navigate(AppViews.LoginAttempts);
-            IsShowUserPanel = false;
+            navigationService.Navigate(AppViews.LoginAttempts); 
         }
 
         private void MySettings()
