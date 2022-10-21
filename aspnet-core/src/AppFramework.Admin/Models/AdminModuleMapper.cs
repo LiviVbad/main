@@ -6,6 +6,7 @@ using AppFramework.Authorization.Roles.Dto;
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.DynamicEntityProperties.Dto;
 using AppFramework.Editions.Dto;
+using AppFramework.Friendships.Dto;
 using AppFramework.Localization.Dto;
 using AppFramework.Models;
 using AppFramework.MultiTenancy.Dto;
@@ -14,6 +15,7 @@ using AppFramework.Sessions.Dto;
 using AppFramework.Shared.Models;
 using AppFramework.Version.Dtos;
 using AutoMapper;
+using Models.Chat;
 
 namespace AppFramework.Admin.Models
 {
@@ -27,6 +29,7 @@ namespace AppFramework.Admin.Models
             CreateMap<FlatPermissionWithLevelDto, PermissionModel>().ReverseMap();
 
             //系统模块中实体映射关系 
+            CreateMap<FriendDto, FriendModel>().ReverseMap();
             CreateMap<UserListDto, UserListModel>().ReverseMap();
             CreateMap<UserEditDto, UserEditModel>().ReverseMap();
             CreateMap<RoleListDto, RoleListModel>().ReverseMap();

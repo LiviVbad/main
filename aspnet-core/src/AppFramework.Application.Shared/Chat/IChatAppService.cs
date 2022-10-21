@@ -7,7 +7,7 @@ namespace AppFramework.Chat
 {
     public interface IChatAppService : IApplicationService
     {
-        GetUserChatFriendsWithSettingsOutput GetUserChatFriendsWithSettings();
+        Task<GetUserChatFriendsWithSettingsOutput> GetUserChatFriendsWithSettings();
 
         Task<ListResultDto<ChatMessageDto>> GetUserChatMessages(GetUserChatMessagesInput input);
 
