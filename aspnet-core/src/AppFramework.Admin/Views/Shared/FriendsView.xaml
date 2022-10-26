@@ -9,28 +9,36 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
+        <Grid.Effect>
+            <DropShadowEffect
+                BlurRadius="20"
+                Direction="180"
+                Opacity="0.2"
+                ShadowDepth="-10"
+                Color="#1F000000" />
+        </Grid.Effect>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
 
+        <Border
+            Grid.RowSpan="3"
+            Opacity="1"
+            Style="{DynamicResource HeaderBorderStyle}" />
+
         <DockPanel Margin="10">
-            <Button
+            <Button  Command="{Binding AddUserCommand}"
                 Content="&#xe69b;"
                 DockPanel.Dock="Right"
                 Style="{StaticResource IconButtonStyle}" />
             <TextBox />
         </DockPanel>
 
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Friends}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-
-            <ItemsControl.ItemTemplate>
+        <ListBox Grid.Row="1" ItemsSource="{Binding Friends}">
+            <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,5">
                         <Grid.ColumnDefinitions>
@@ -44,12 +52,12 @@
                             Source="{Binding FriendProfilePictureId, Converter={StaticResource bytesToImageConverter}}" />
 
                         <StackPanel Grid.Column="1">
-                            <TextBlock Text="{Binding FriendUserName}" />
-                            <TextBlock Text="{Binding FriendTenancyName}" />
+                            <TextBlock Text="{Binding FriendUserName}"  FontWeight="Bold" />
+                            <TextBlock Text="{Binding FriendTenancyName}" Margin="0,3"  />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>

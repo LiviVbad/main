@@ -112,6 +112,8 @@
 
         public const string AddUsers = "AddUsersView";
 
+        public const string SelectedUser = "SelectedUserView";
+
         public const string AddRoles = "AddRolesView";
 
         public const string LanguageDetails = "LanguageDetailsView";

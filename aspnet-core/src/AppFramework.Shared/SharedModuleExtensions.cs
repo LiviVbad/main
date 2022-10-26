@@ -33,6 +33,7 @@ using AppFramework.Services;
 using AppFramework.Services.Dialog;
 using AppFramework.Shared.Validations;
 using AppFramework.Chat;
+using AppFramework.Friendships;
 
 namespace AppFramework.Shared
 {
@@ -54,6 +55,7 @@ namespace AppFramework.Shared
             services.RegisterScoped<ProxyProfileControllerService>();
             services.RegisterScoped<ProxyTokenAuthControllerService>();
 
+            services.RegisterScoped<IFriendshipAppService, FriendshipAppService>();
             services.RegisterScoped<IChatAppService, ChatAppService>();
             services.RegisterScoped<IRoleAppService, RoleAppService>();
             services.RegisterScoped<IUserAppService, ProxyUserAppService>();
