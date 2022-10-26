@@ -40,9 +40,9 @@ namespace AppFramework.Friendships
             NotifyUserConnectionStateChange(e.User, false);
         }
 
-        private void NotifyUserConnectionStateChange(UserIdentifier user, bool isConnected)
+        private async void NotifyUserConnectionStateChange(UserIdentifier user, bool isConnected)
         {
-            var cacheItem = _userFriendsCache.GetCacheItem(user);
+            var cacheItem = await _userFriendsCache.GetCacheItem(user);
 
             foreach (var friend in cacheItem.Friends)
             {

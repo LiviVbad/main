@@ -7,6 +7,7 @@ using Abp.Dependency;
 using Abp.Domain.Uow;
 using Abp.MultiTenancy;
 using AppFramework.Authorization.Users;
+using System.Threading.Tasks;
 
 namespace AppFramework.Friendships.Cache
 {
@@ -37,15 +38,16 @@ namespace AppFramework.Friendships.Cache
             _userStore = userStore;
         }
 
-        public virtual UserWithFriendsCacheItem GetCacheItem(UserIdentifier userIdentifier)
+        public virtual async Task<UserWithFriendsCacheItem> GetCacheItem(UserIdentifier userIdentifier)
         {
-            return _unitOfWorkManager.WithUnitOfWork(() =>
-            {
-                return _cacheManager
-                    .GetCache(FriendCacheItem.CacheName)
-                    .AsTyped<string, UserWithFriendsCacheItem>()
-                    .Get(userIdentifier.ToUserIdentifierString(), f => GetUserFriendsCacheItemInternal(userIdentifier));
-            });
+            return await _unitOfWorkManager.WithUnitOfWork(async () =>
+              {
+                  return await _cacheManager
+                          .GetCache(FriendCacheItem.CacheName)
+                          .AsTyped<string, UserWithFriendsCacheItem>()
+                          .GetAsync(userIdentifier.ToUserIdentifierString(),
+                          f => GetUserFriendsCacheItemInternal(userIdentifier));
+              });
         }
 
         public virtual UserWithFriendsCacheItem GetCacheItemOrNull(UserIdentifier userIdentifier)
@@ -172,9 +174,9 @@ namespace AppFramework.Friendships.Cache
             }
         }
 
-        protected virtual UserWithFriendsCacheItem GetUserFriendsCacheItemInternal(UserIdentifier userIdentifier)
+        protected virtual async Task<UserWithFriendsCacheItem> GetUserFriendsCacheItemInternal(UserIdentifier userIdentifier)
         {
-            return _unitOfWorkManager.WithUnitOfWork(() =>
+            return await _unitOfWorkManager.WithUnitOfWork(async () =>
             {
                 var tenancyName = userIdentifier.TenantId.HasValue
                     ? _tenantCache.GetOrNull(userIdentifier.TenantId.Value)?.TenancyName
@@ -201,7 +203,7 @@ namespace AppFramework.Friendships.Cache
                                 cm.Side == ChatSide.Receiver)
                         }).ToList();
 
-                    var user = _userStore.FindById(userIdentifier.UserId.ToString());
+                    var user = await _userStore.FindByIdAsync(userIdentifier.UserId.ToString());
 
                     return new UserWithFriendsCacheItem
                     {

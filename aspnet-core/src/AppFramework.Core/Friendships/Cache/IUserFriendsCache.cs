@@ -1,10 +1,11 @@
 ﻿using Abp;
+using System.Threading.Tasks;
 
 namespace AppFramework.Friendships.Cache
 {
     public interface IUserFriendsCache
     {
-        UserWithFriendsCacheItem GetCacheItem(UserIdentifier userIdentifier);
+        Task<UserWithFriendsCacheItem> GetCacheItem(UserIdentifier userIdentifier);
 
         UserWithFriendsCacheItem GetCacheItemOrNull(UserIdentifier userIdentifier);
 

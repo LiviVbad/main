@@ -33,7 +33,7 @@ namespace AppFramework.ViewModels
             await WebRequest.Execute(async () =>
              {
                  var frientsSetting = await chatAppService.GetUserChatFriendsWithSettings();
-                 if (frientsSetting.Friends != null)
+                 if (frientsSetting!=null&&frientsSetting.Friends != null)
                  {
                      Friends.Clear();
                      var friendsList = Map<List<FriendModel>>(frientsSetting.Friends);

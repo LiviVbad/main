@@ -38,7 +38,7 @@ namespace AppFramework.Chat
         }
 
         [DisableAuditing]
-        public GetUserChatFriendsWithSettingsOutput GetUserChatFriendsWithSettings()
+        public async Task<GetUserChatFriendsWithSettingsOutput> GetUserChatFriendsWithSettings()
         {
             var userIdentifier = AbpSession.ToUserIdentifier();
             if (userIdentifier == null)
@@ -46,7 +46,7 @@ namespace AppFramework.Chat
                 return new GetUserChatFriendsWithSettingsOutput();
             }
 
-            var cacheItem = _userFriendsCache.GetCacheItem(userIdentifier);
+            var cacheItem = await _userFriendsCache.GetCacheItem(userIdentifier);
             var friends = ObjectMapper.Map<List<FriendDto>>(cacheItem.Friends);
 
             foreach (var friend in friends)
