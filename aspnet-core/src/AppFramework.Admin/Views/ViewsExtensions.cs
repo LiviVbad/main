@@ -16,6 +16,7 @@ namespace AppFramework.Admin
 
             services.Add<SelectedUserView, SelectedUserViewModel>(AppViews.SelectedUser);
             services.Add<FriendsView, FriendsViewModel>(AppViews.Friends);
+            services.Add<FriendsChatView, FriendsChatViewModel>(AppViews.FriendsChat);
             services.Add<UserPanelView, UserPanelViewModel>(AppViews.UserPanel); 
             services.Add<FirstChangedPwdView, FirstChangedPwdViewModel>(AppViews.FirstChangedPwd);
             services.Add<SelectTenantView, SelectTenantViewModel>(AppViews.SelectTenant);

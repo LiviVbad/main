@@ -12,6 +12,8 @@
 
         public const string Friends = "FriendsView";
 
+        public const string FriendsChat = "FriendsChatView";
+
         public const string SelectTenant = "SelectTenantView";
 
         public const string FirstChangedPwd = "FirstChangedPwdView";

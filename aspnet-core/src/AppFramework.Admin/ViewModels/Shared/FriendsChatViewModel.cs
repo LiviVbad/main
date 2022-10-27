@@ -1,17 +1,21 @@
-﻿using AppFramework.Shared; 
-using Prism.Services.Dialogs; 
+﻿using AppFramework.Shared;
+using AppFramework.Shared.Services.Signalr;
+using Prism.Services.Dialogs;
 
 namespace AppFramework.ViewModels
 {
     public class FriendsChatViewModel : HostDialogViewModel
-    { 
-        public FriendsChatViewModel()
+    {
+        private readonly ISignalrService signalr;
+
+        public FriendsChatViewModel(ISignalrService signalr)
         {
+            this.signalr=signalr;
         }
 
-        public override void OnDialogOpened(IDialogParameters parameters)
-        { 
-
+        public override async void OnDialogOpened(IDialogParameters parameters)
+        {
+            await signalr.StartAsync();
         }
     }
 }

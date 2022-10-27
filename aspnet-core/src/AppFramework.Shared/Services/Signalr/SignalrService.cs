@@ -5,7 +5,7 @@ using AppFramework.Friendships;
 using AppFramework.Friendships.Dto;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
-using System.Threading.Tasks;
+using System.Threading.Tasks; 
 
 namespace AppFramework.Shared.Services.Signalr
 {
@@ -18,22 +18,24 @@ namespace AppFramework.Shared.Services.Signalr
         public SignalrService()
         {
             service = new HubConnectionBuilder()
-                .WithUrl(ApiUrlConfig.DefaultHostUrl)
+                .WithUrl(ApiUrlConfig.DefaultHostUrl+"signalr", option =>
+                {  
+                })
                 .Build();
-
+             
             service.Closed += async (error) =>
             {
                 await Task.Delay(new Random().Next(0, 5) * 1000);
                 await service.StartAsync();
             };
 
-            service.On<ChatMessageDto>("getChatMessage", message => { });
-            service.On<object>("getAllFriends", friends => { });
-            service.On<FriendDto, bool>("getFriendshipRequest", (friendData, isOwnRequest) => { });
-            service.On<UserIdentifier, bool>("getUserConnectNotification", (friend, isConnected) => { });
-            service.On<UserIdentifier, FriendshipState>("getUserStateChange", (friend, state) => { });
-            service.On<UserIdentifier>("getallUnreadMessagesOfUserRead", user => { });
-            service.On<UserIdentifier>("getReadStateChange", user => { });
+            service.On<ChatMessageDto>("getChatMessage", GetChatMessageHandler);
+            //service.On<FriendDto[]>("getAllFriends", GetAllFriendsHandler);
+            service.On<FriendDto, bool>("getFriendshipRequest", GetFriendshipRequestHandler);
+            service.On<UserIdentifier, bool>("getUserConnectNotification", GetUserConnectNotificationHandler);
+            service.On<UserIdentifier, FriendshipState>("getUserStateChange", GetUserStateChangeHandler);
+            service.On<UserIdentifier>("getallUnreadMessagesOfUserRead", GetallUnreadMessagesOfUserReadHandler);
+            service.On<UserIdentifier>("getReadStateChange", GetReadStateChangeHandler);
         }
 
         public async Task SendMessage(SendChatMessageInput input)
@@ -57,6 +59,40 @@ namespace AppFramework.Shared.Services.Signalr
         {
             await service.StopAsync();
             IsConnected=false;
+        }
+
+        private void GetChatMessageHandler(ChatMessageDto message)
+        {
+
+        }
+
+        private void GetAllFriendsHandler(FriendDto[] friends)
+        {
+
+        }
+
+        private void GetFriendshipRequestHandler(FriendDto friend, bool result)
+        {
+
+        }
+
+        private void GetUserConnectNotificationHandler(UserIdentifier friend, bool isConnected)
+        {
+        }
+
+        private void GetUserStateChangeHandler(UserIdentifier friend, FriendshipState state)
+        {
+
+        }
+
+        private void GetallUnreadMessagesOfUserReadHandler(UserIdentifier user)
+        {
+
+        }
+
+        private void GetReadStateChangeHandler(UserIdentifier user)
+        {
+
         }
     }
 }

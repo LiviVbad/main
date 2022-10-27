@@ -40,27 +40,30 @@ namespace AppFramework.Chat
         [DisableAuditing]
         public async Task<GetUserChatFriendsWithSettingsOutput> GetUserChatFriendsWithSettings()
         {
-            var userIdentifier = AbpSession.ToUserIdentifier();
-            if (userIdentifier == null)
-            {
-                return new GetUserChatFriendsWithSettingsOutput();
-            }
+            return await Task.Run(() =>
+             {
+                 var userIdentifier = AbpSession.ToUserIdentifier();
+                 if (userIdentifier == null)
+                 {
+                     return new GetUserChatFriendsWithSettingsOutput();
+                 }
 
-            var cacheItem = await _userFriendsCache.GetCacheItem(userIdentifier);
-            var friends = ObjectMapper.Map<List<FriendDto>>(cacheItem.Friends);
+                 var cacheItem = _userFriendsCache.GetCacheItem(userIdentifier);
+                 var friends = ObjectMapper.Map<List<FriendDto>>(cacheItem.Friends);
 
-            foreach (var friend in friends)
-            {
-                friend.IsOnline = _onlineClientManager.IsOnline(
-                    new UserIdentifier(friend.FriendTenantId, friend.FriendUserId)
-                );
-            }
+                 foreach (var friend in friends)
+                 {
+                     friend.IsOnline = _onlineClientManager.IsOnline(
+                         new UserIdentifier(friend.FriendTenantId, friend.FriendUserId)
+                     );
+                 }
 
-            return new GetUserChatFriendsWithSettingsOutput
-            {
-                Friends = friends,
-                ServerTime = Clock.Now
-            };
+                 return new GetUserChatFriendsWithSettingsOutput
+                 {
+                     Friends = friends,
+                     ServerTime = Clock.Now
+                 };
+             });
         }
 
         [DisableAuditing]

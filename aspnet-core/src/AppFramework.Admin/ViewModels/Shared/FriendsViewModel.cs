@@ -1,12 +1,14 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.Chat;
-using AppFramework.Friendships; 
+using AppFramework.Friendships;
 using AppFramework.Shared;
 using Models.Chat;
 using Prism.Commands;
-using Prism.Regions; 
+using Prism.Regions;
+using Prism.Services.Dialogs;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel; 
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -25,6 +27,7 @@ namespace AppFramework.ViewModels
         }
 
         public DelegateCommand AddUserCommand { get; private set; }
+        public DelegateCommand<FriendModel> ClickChatCommand { get; private set; }
 
         public FriendsViewModel(IChatAppService chatAppService,
             IFriendshipAppService friendshipAppService,
@@ -35,6 +38,14 @@ namespace AppFramework.ViewModels
             this.friendshipAppService=friendshipAppService;
             this.context=context;
             AddUserCommand=new DelegateCommand(AddUser);
+            ClickChatCommand=new DelegateCommand<FriendModel>(ClickChat);
+        }
+
+        private async void ClickChat(FriendModel obj)
+        {
+            DialogParameters param = new DialogParameters();
+            param.Add("Value", obj);
+            await dialog.ShowDialogAsync(AppViews.FriendsChat, param);
         }
 
         private async void AddUser()
@@ -70,13 +81,13 @@ namespace AppFramework.ViewModels
 
                     foreach (var item in friendsList)
                     {
-                        if(string.IsNullOrWhiteSpace(item.FriendTenancyName))
+                        if (string.IsNullOrWhiteSpace(item.FriendTenancyName))
                         {
                             item.FriendTenancyName="Host";
                         }
 
                         Friends.Add(item);
-                    } 
+                    }
                 }
             });
         }

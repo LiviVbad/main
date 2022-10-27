@@ -5,7 +5,7 @@ namespace AppFramework.Friendships.Cache
 {
     public interface IUserFriendsCache
     {
-        Task<UserWithFriendsCacheItem> GetCacheItem(UserIdentifier userIdentifier);
+        UserWithFriendsCacheItem GetCacheItem(UserIdentifier userIdentifier);
 
         UserWithFriendsCacheItem GetCacheItemOrNull(UserIdentifier userIdentifier);
 

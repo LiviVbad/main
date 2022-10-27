@@ -38,14 +38,14 @@ namespace AppFramework.Friendships.Cache
             _userStore = userStore;
         }
 
-        public virtual async Task<UserWithFriendsCacheItem> GetCacheItem(UserIdentifier userIdentifier)
+        public virtual UserWithFriendsCacheItem GetCacheItem(UserIdentifier userIdentifier)
         {
-            return await _unitOfWorkManager.WithUnitOfWork(async () =>
+            return _unitOfWorkManager.WithUnitOfWork(() =>
               {
-                  return await _cacheManager
+                  return _cacheManager
                           .GetCache(FriendCacheItem.CacheName)
                           .AsTyped<string, UserWithFriendsCacheItem>()
-                          .GetAsync(userIdentifier.ToUserIdentifierString(),
+                          .Get(userIdentifier.ToUserIdentifierString(),
                           f => GetUserFriendsCacheItemInternal(userIdentifier));
               });
         }
@@ -174,48 +174,48 @@ namespace AppFramework.Friendships.Cache
             }
         }
 
-        protected virtual async Task<UserWithFriendsCacheItem> GetUserFriendsCacheItemInternal(UserIdentifier userIdentifier)
+        protected virtual UserWithFriendsCacheItem GetUserFriendsCacheItemInternal(UserIdentifier userIdentifier)
         {
-            return await _unitOfWorkManager.WithUnitOfWork(async () =>
-            {
-                var tenancyName = userIdentifier.TenantId.HasValue
-                    ? _tenantCache.GetOrNull(userIdentifier.TenantId.Value)?.TenancyName
-                    : null;
+            return _unitOfWorkManager.WithUnitOfWork(() =>
+             {
+                 var tenancyName = userIdentifier.TenantId.HasValue
+                     ? _tenantCache.GetOrNull(userIdentifier.TenantId.Value)?.TenancyName
+                     : null;
 
-                using (_unitOfWorkManager.Current.SetTenantId(userIdentifier.TenantId))
-                {
-                    var friendCacheItems = _friendshipRepository.GetAll()
-                        .Where(friendship => friendship.UserId == userIdentifier.UserId)
-                        .Select(friendship => new FriendCacheItem
-                        {
-                            FriendUserId = friendship.FriendUserId,
-                            FriendTenantId = friendship.FriendTenantId,
-                            State = friendship.State,
-                            FriendUserName = friendship.FriendUserName,
-                            FriendTenancyName = friendship.FriendTenancyName,
-                            FriendProfilePictureId = friendship.FriendProfilePictureId,
-                            UnreadMessageCount = _chatMessageRepository.GetAll().Count(cm =>
-                                cm.ReadState == ChatMessageReadState.Unread &&
-                                cm.UserId == userIdentifier.UserId &&
-                                cm.TenantId == userIdentifier.TenantId &&
-                                cm.TargetUserId == friendship.FriendUserId &&
-                                cm.TargetTenantId == friendship.FriendTenantId &&
-                                cm.Side == ChatSide.Receiver)
-                        }).ToList();
+                 using (_unitOfWorkManager.Current.SetTenantId(userIdentifier.TenantId))
+                 {
+                     var friendCacheItems = _friendshipRepository.GetAll()
+                         .Where(friendship => friendship.UserId == userIdentifier.UserId)
+                         .Select(friendship => new FriendCacheItem
+                         {
+                             FriendUserId = friendship.FriendUserId,
+                             FriendTenantId = friendship.FriendTenantId,
+                             State = friendship.State,
+                             FriendUserName = friendship.FriendUserName,
+                             FriendTenancyName = friendship.FriendTenancyName,
+                             FriendProfilePictureId = friendship.FriendProfilePictureId,
+                             UnreadMessageCount = _chatMessageRepository.GetAll().Count(cm =>
+                                 cm.ReadState == ChatMessageReadState.Unread &&
+                                 cm.UserId == userIdentifier.UserId &&
+                                 cm.TenantId == userIdentifier.TenantId &&
+                                 cm.TargetUserId == friendship.FriendUserId &&
+                                 cm.TargetTenantId == friendship.FriendTenantId &&
+                                 cm.Side == ChatSide.Receiver)
+                         }).ToList();
 
-                    var user = await _userStore.FindByIdAsync(userIdentifier.UserId.ToString());
+                     var user = _userStore.FindById(userIdentifier.UserId.ToString());
 
-                    return new UserWithFriendsCacheItem
-                    {
-                        TenantId = userIdentifier.TenantId,
-                        UserId = userIdentifier.UserId,
-                        TenancyName = tenancyName,
-                        UserName = user.UserName,
-                        ProfilePictureId = user.ProfilePictureId,
-                        Friends = friendCacheItems
-                    };
-                }
-            });
+                     return new UserWithFriendsCacheItem
+                     {
+                         TenantId = userIdentifier.TenantId,
+                         UserId = userIdentifier.UserId,
+                         TenancyName = tenancyName,
+                         UserName = user.UserName,
+                         ProfilePictureId = user.ProfilePictureId,
+                         Friends = friendCacheItems
+                     };
+                 }
+             });
         }
 
         private void UpdateUserOnCache(UserIdentifier userIdentifier, UserWithFriendsCacheItem user)
