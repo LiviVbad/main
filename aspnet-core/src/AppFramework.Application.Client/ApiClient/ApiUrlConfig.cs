@@ -1,12 +1,12 @@
 ﻿using Abp.Extensions;
 using System;
+using System.Configuration;
 
 namespace AppFramework.ApiClient
 {
     public static class ApiUrlConfig
-    {
-        //说明: 仅调试设置, 发布应用时, 请更改此地址为实际WebApi服务地址
-        private const string DefaultHostUrl = "https://localhost:44301/";
+    { 
+        public static string DefaultHostUrl = ConfigurationManager.AppSettings["DefaultHostUrl"].ToString();
 
         public static string BaseUrl { get; private set; }
 

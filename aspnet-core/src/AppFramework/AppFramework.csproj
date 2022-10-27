@@ -24,7 +24,7 @@
     <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="DryIoc.Microsoft.DependencyInjection" Version="5.1.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
     <PackageReference Include="Syncfusion.Licensing" Version="20.1.0.48" />
     <PackageReference Include="Syncfusion.SfBusyIndicator.WPF" Version="20.1.0.48" />
     <PackageReference Include="Syncfusion.SfImageEditor.WPF" Version="20.1.0.48" />

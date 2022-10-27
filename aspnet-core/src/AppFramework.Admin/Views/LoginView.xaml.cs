@@ -1,4 +1,4 @@
-﻿using AppFramework.Services;
+﻿using AppFramework.Services; 
 using Prism.Services.Dialogs;
 using Syncfusion.Windows.Shared;
 using System;
@@ -8,7 +8,7 @@ namespace AppFramework.Views
     public partial class LoginView : ChromelessWindow, IDialogWindow
     {
         public LoginView(IThemeService service)
-        {
+        {  
             InitializeComponent();
             service.SetCurrentTheme(this);
             HeaderBorder.MouseMove += (s, e) =>
