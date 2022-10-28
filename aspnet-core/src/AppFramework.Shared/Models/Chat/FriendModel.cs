@@ -7,6 +7,7 @@ namespace AppFramework.Shared.Models.Chat
     public class FriendModel : BindableBase
     {
         private bool isOnline;
+        private int unreadMessageCount;
 
         public long FriendUserId { get; set; }
 
@@ -18,7 +19,11 @@ namespace AppFramework.Shared.Models.Chat
 
         public Guid? FriendProfilePictureId { get; set; }
 
-        public int UnreadMessageCount { get; set; }
+        public int UnreadMessageCount
+        {
+            get { return unreadMessageCount; }
+            set { unreadMessageCount= value; RaisePropertyChanged(); }
+        }
 
         public bool IsOnline
         {

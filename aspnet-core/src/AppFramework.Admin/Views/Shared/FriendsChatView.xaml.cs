@@ -6,7 +6,8 @@ namespace AppFramework.Views
     {
         public FriendsChatView()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            scrollViewer.ScrollToEnd();
         }
     }
 }

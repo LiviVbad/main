@@ -1,9 +1,5 @@
 ﻿using AppFramework.Chat;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System; 
 
 namespace AppFramework.Shared.Models.Chat
 {
@@ -29,6 +25,8 @@ namespace AppFramework.Shared.Models.Chat
 
         public DateTime CreationTime { get; set; }
 
-        public string SharedMessageId { get; set; } 
+        public string SharedMessageId { get; set; }
+
+        public string Color { get; set; } = "#0066FF";
     }
 }

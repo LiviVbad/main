@@ -5,8 +5,8 @@ using AppFramework.Chat;
 using AppFramework.Chat.Dto;
 using AppFramework.Friendships;
 using AppFramework.Friendships.Dto;
-using AppFramework.Shared.Models.Chat; 
-using Microsoft.AspNetCore.SignalR.Client; 
+using AppFramework.Shared.Models.Chat;
+using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,6 +27,7 @@ namespace AppFramework.Shared.Services.Signalr
             friends=new ObservableCollection<FriendModel>();
         }
 
+        public event DelegateChatMessageHandler OnChatMessageHandler;
         private HubConnection signalr;
         private HubConnection signalrChat;
         private readonly IAccessTokenManager context;
@@ -145,7 +146,16 @@ namespace AppFramework.Shared.Services.Signalr
         /// <param name="message"></param>
         private void GetChatMessageHandler(ChatMessageDto message)
         {
-
+            if (OnChatMessageHandler!=null)
+            {
+                OnChatMessageHandler.Invoke(message);
+            }
+            else
+            {
+                var friend = Friends.FirstOrDefault(t => t.FriendUserId.Equals(message.TargetUserId));
+                if (friend!=null)
+                    friend.UnreadMessageCount+=1;
+            }
         }
 
         /// <summary>

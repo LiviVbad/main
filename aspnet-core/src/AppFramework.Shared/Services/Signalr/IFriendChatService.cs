@@ -1,12 +1,17 @@
-﻿using AppFramework.Shared.Models.Chat;
+﻿using AppFramework.Chat.Dto;
+using AppFramework.Shared.Models.Chat;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace AppFramework.Shared.Services.Signalr
 {
+    public delegate void DelegateChatMessageHandler(ChatMessageDto chatMessage);
+
     public interface IFriendChatService
     {
+        event DelegateChatMessageHandler OnChatMessageHandler;
+
         bool IsConnected { get; }
 
         Task StartAsync();
