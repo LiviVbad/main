@@ -1,9 +1,10 @@
 ﻿using AppFramework.Chat;
-using System; 
+using Prism.Mvvm;
+using System;
 
 namespace AppFramework.Shared.Models.Chat
 {
-    public class ChatMessageModel
+    public class ChatMessageModel : BindableBase
     {
         public long UserId { get; set; }
 
@@ -28,5 +29,15 @@ namespace AppFramework.Shared.Models.Chat
         public string SharedMessageId { get; set; }
 
         public string Color { get; set; } = "#0066FF";
+
+        private string messageType;
+
+        public string MessageType
+        {
+            get { return messageType; }
+            set { messageType=value; RaisePropertyChanged(); }
+        }
+
+        public string DownloadUrl { get; set; }
     }
 }

@@ -54,6 +54,7 @@ namespace AppFramework.Shared
             services.RegisterSingleton<AbpApiClient>();
             services.RegisterSingleton<AbpAuthenticateModel>();
             services.RegisterSingleton<UserConfigurationService>();
+            services.RegisterScoped<ProxyChatControllerService>();
             services.RegisterScoped<ProxyProfileControllerService>();
             services.RegisterScoped<ProxyTokenAuthControllerService>();
 

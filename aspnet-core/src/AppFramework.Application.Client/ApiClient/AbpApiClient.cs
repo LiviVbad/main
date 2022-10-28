@@ -368,7 +368,7 @@ namespace AppFramework.ApiClient
 
             AjaxResponse<T> response;
             try
-            {
+            { 
                 response = await httpResponse.ReceiveJson<AjaxResponse<T>>();
             }
             catch (FlurlHttpException e)

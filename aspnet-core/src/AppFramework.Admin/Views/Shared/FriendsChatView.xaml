@@ -6,9 +6,134 @@
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
+    xmlns:temp="clr-namespace:AppFramework.Behaviors"
     Width="800"
-    Height="500"
+    Height="600"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <DataTemplate x:Key="textTemplate">
+            <Grid Margin="5,2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="10,0"
+                        VerticalAlignment="Center"
+                        Foreground="{Binding Color}"
+                        Text="{Binding UserName}" />
+                    <TextBlock Foreground="{Binding Color}" Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                </StackPanel>
+
+                <TextBlock
+                    Grid.Row="1"
+                    Margin="5,0"
+                    Padding="5"
+                    Text="{Binding Message}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="imageTemplate">
+            <Grid Margin="5,2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="10,0"
+                        VerticalAlignment="Center"
+                        Foreground="{Binding Color}"
+                        Text="{Binding UserName}" />
+                    <TextBlock Foreground="{Binding Color}" Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Image
+                        Width="150"
+                        Height="150"
+                        Margin="10,5"
+                        Source="{Binding DownloadUrl}"
+                        Stretch="Uniform" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="linkTemplate">
+            <Grid Margin="5,2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="10,0"
+                        VerticalAlignment="Center"
+                        Foreground="{Binding Color}"
+                        Text="{Binding UserName}" />
+                    <TextBlock Foreground="{Binding Color}" Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <TextBlock
+                        Grid.Row="1"
+                        Margin="5,0"
+                        Padding="5">
+                        <Hyperlink NavigateUri="{Binding Message}" RequestNavigate="Hyperlink_RequestNavigate">
+                            <Run Text="{Binding Message}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="fileTemplate">
+            <Grid Margin="5,2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="10,0"
+                        VerticalAlignment="Center"
+                        Foreground="{Binding Color}"
+                        Text="{Binding UserName}" />
+                    <TextBlock Foreground="{Binding Color}" Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                </StackPanel>
+
+                <Grid
+                    Grid.Row="1"
+                    Margin="0,5,0,0"
+                    HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <Border
+                        Grid.RowSpan="2"
+                        Margin="10,0"
+                        BorderBrush="DarkGray"
+                        BorderThickness="1"
+                        CornerRadius="3"
+                        Opacity="0.3" />
+                    <TextBlock
+                        Margin="15,0"
+                        Padding="40,5"
+                        HorizontalAlignment="Left"
+                        Text="{Binding Message}" />
+                    <Button
+                        Grid.Row="1"
+                        Margin="15,5"
+                        Padding="10,0"
+                        Content="文件另存为"
+                        Style="{StaticResource SimpleButton}" />
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -59,35 +184,19 @@
             </StackPanel>
         </Grid>
 
-        <ScrollViewer x:Name="scrollViewer"
+        <ScrollViewer
+            x:Name="scrollViewer"
             Grid.Row="1"
             Margin="0,10"
             VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding Messages}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="5,2">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock
-                                    Margin="10,0"
-                                    VerticalAlignment="Center"
-                                    Foreground="{Binding Color}"
-                                    Text="{Binding UserName}" />
-                                <TextBlock Foreground="{Binding Color}" Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
-                            </StackPanel>
-
-                            <TextBlock
-                                Grid.Row="1"
-                                Margin="5,0"
-                                Padding="5"
-                                Text="{Binding Message}" />
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemTemplateSelector>
+                    <temp:ChatDataTemplateSelector
+                        FileTemplate="{StaticResource fileTemplate}"
+                        ImageTemplate="{StaticResource imageTemplate}"
+                        LinkTemplate="{StaticResource linkTemplate}"
+                        TextTemplate="{StaticResource textTemplate}" />
+                </ItemsControl.ItemTemplateSelector>
             </ItemsControl>
         </ScrollViewer>
 
@@ -106,12 +215,14 @@
             <StackPanel Margin="5,0" Orientation="Horizontal">
                 <Button
                     Background="Transparent"
+                    Command="{Binding PickImageCommand}"
                     Content="&#xe63e;"
                     FontSize="20"
                     Style="{StaticResource IconButtonStyle}" />
                 <Button
                     Margin="5,0"
                     Background="Transparent"
+                    Command="{Binding PickFileCommand}"
                     Content="&#xe60f;"
                     FontSize="20"
                     Style="{StaticResource IconButtonStyle}" />
@@ -123,7 +234,7 @@
                 Opacity="0.3" />
 
             <sync:SfTextBoxExt
-                Grid.Row="1"
+                Grid.Row="1"  x:Name="sfInputText"
                 Margin="10,5"
                 Background="Transparent"
                 BorderThickness="0"
