@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AppFramework.Shared.Models.Chat;
+using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace AppFramework.Shared.Services.Signalr
@@ -14,6 +16,8 @@ namespace AppFramework.Shared.Services.Signalr
         Task SendMessage(SendChatMessageInput input);
 
         Task GetUserChatFriendsAsync();
+
+        ObservableCollection<FriendModel> Friends { get; set; }
     }
 
     public class SendChatMessageInput

@@ -2,6 +2,8 @@
 using AppFramework.Shared.Models.Configuration;
 using AppFramework.Configuration.Host.Dto;
 using AppFramework.Configuration.Dto;
+using AppFramework.Shared.Models.Chat;
+using AppFramework.Chat.Dto;
 
 namespace AppFramework.Shared.Models
 {
@@ -9,6 +11,7 @@ namespace AppFramework.Shared.Models
     {
         public SharedModuleMapper()
         {
+            CreateMap<ChatMessageModel, ChatMessageDto>().ReverseMap();
             CreateMap<HostSettingsEditModel, HostSettingsEditDto>().ReverseMap();
             CreateMap<GeneralSettingsEditModel, GeneralSettingsEditDto>().ReverseMap();
             CreateMap<HostUserManagementSettingsEditModel, HostUserManagementSettingsEditDto>().ReverseMap();

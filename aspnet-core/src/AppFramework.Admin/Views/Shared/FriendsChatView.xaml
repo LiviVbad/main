@@ -59,6 +59,39 @@
             </StackPanel>
         </Grid>
 
+        <ScrollViewer
+            Grid.Row="1"
+            Margin="0,10"
+            VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Messages}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="5,2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="10,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="Blue"
+                                    Text="{Binding UserName}" />
+                                <TextBlock Foreground="Blue" Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                            </StackPanel>
+
+                            <TextBlock
+                                Grid.Row="1"
+                                Margin="5,0"
+                                Padding="5"
+                                Text="{Binding Message}" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+
         <Border
             BorderBrush="DarkGray"
             BorderThickness="0,0,0,1"
