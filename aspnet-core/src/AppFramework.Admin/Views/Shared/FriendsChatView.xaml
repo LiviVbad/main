@@ -21,16 +21,43 @@
             Opacity="1"
             Style="{DynamicResource HeaderBorderStyle}" />
 
-        <StackPanel Margin="10,5" Orientation="Horizontal">
+        <Grid Margin="10,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
             <Image
                 Width="40"
                 Height="40"
                 Source="/Assets/Images/user.png" />
-            <StackPanel Margin="10,0">
+
+            <Border
+                Width="10"
+                Height="10"
+                Margin="-8,3"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                CornerRadius="10">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Friend.IsOnline}" Value="true">
+                                <Setter Property="Background" Value="#20c020" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Friend.IsOnline}" Value="false">
+                                <Setter Property="Background" Value="#ff4040" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+
+            <StackPanel Grid.Column="1" Margin="15,0">
                 <TextBlock FontWeight="Bold" Text="{Binding Friend.FriendUserName}" />
                 <TextBlock Margin="0,3" Text="{Binding Friend.FriendTenancyName}" />
             </StackPanel>
-        </StackPanel>
+        </Grid>
 
         <Border
             BorderBrush="DarkGray"
@@ -65,7 +92,7 @@
 
             <sync:SfTextBoxExt
                 Grid.Row="1"
-                Margin="10"
+                Margin="10,5"
                 Background="Transparent"
                 BorderThickness="0"
                 TextWrapping="Wrap"

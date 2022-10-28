@@ -47,7 +47,7 @@
                 <DataTemplate>
                     <Grid Margin="0,5">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
@@ -56,7 +56,28 @@
                             Height="40"
                             Source="{Binding FriendProfilePictureId, Converter={StaticResource bytesToImageConverter}}" />
 
-                        <StackPanel Grid.Column="1">
+                        <Border
+                            Width="10"
+                            Height="10"
+                            Margin="-8,3"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            CornerRadius="10">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsOnline}" Value="true">
+                                            <Setter Property="Background" Value="#20c020" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsOnline}" Value="false">
+                                            <Setter Property="Background" Value="#ff4040" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+
+                        <StackPanel Grid.Column="1" Margin="15,0">
                             <TextBlock FontWeight="Bold" Text="{Binding FriendUserName}" />
                             <TextBlock Margin="0,3" Text="{Binding FriendTenancyName}" />
                         </StackPanel>
