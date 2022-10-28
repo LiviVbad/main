@@ -1,7 +1,6 @@
 ﻿using Abp.Runtime.Security;
 using AppFramework.ApiClient;
 using AppFramework.Authorization.Users.Profile;
-using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Chat;
 using AppFramework.Chat.Dto;
 using AppFramework.Dto;
@@ -12,14 +11,12 @@ using Microsoft.Win32;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Services.Dialogs;
-using Syncfusion.Windows.Tools.Controls;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Interop;
+using MimeMapping;
 
 namespace AppFramework.ViewModels
 {
@@ -86,43 +83,13 @@ namespace AppFramework.ViewModels
 
         #endregion
 
-        private void ChatService_OnChatMessageHandler(ChatMessageDto chatMessage)
-        {
-            var msg = Map<ChatMessageModel>(chatMessage);
-            UpdateMessageInfo(msg);
-            Messages.Add(msg);
-        }
+        #region 消息处理
 
-        protected override void Cancel()
-        {
-            chatService.OnChatMessageHandler-=ChatService_OnChatMessageHandler;
-            base.Cancel();
-        }
-
-        public async void Send()
-        {
-            if (string.IsNullOrWhiteSpace(Message)) return;
-
-            await chatService.SendMessage(new SendChatMessageInput()
-            {
-                UserId= Friend.FriendUserId,
-                Message=Message,
-                UserName=context.LoginInfo.User.Name
-            });
-
-            Message=string.Empty; //发完消息就清除输入内容
-        }
-
-        public override async void OnDialogOpened(IDialogParameters parameters)
-        {
-            if (parameters.ContainsKey("Value"))
-            {
-                Friend= parameters.GetValue<FriendModel>("Value");
-
-                await GetUserChatMessagesByUser(Friend.FriendUserId);
-            }
-        }
-
+        /// <summary>
+        /// 加载用户的聊天记录
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         private async Task GetUserChatMessagesByUser(long userId)
         {
             await WebRequest.Execute(() =>
@@ -147,6 +114,10 @@ namespace AppFramework.ViewModels
                 });
         }
 
+        /// <summary>
+        /// 更新消息格式
+        /// </summary>
+        /// <param name="model"></param>
         private void UpdateMessageInfo(ChatMessageModel model)
         {
             if (model.Side== ChatSide.Sender)
@@ -166,7 +137,7 @@ namespace AppFramework.ViewModels
 
                 var msg = model.Message.Replace("[image]", "");
                 var output = JsonConvert.DeserializeObject<ChatUploadFileOutput>(msg);
-                model.Message=output.Name; 
+                model.Message=output.Name;
                 model.DownloadUrl=ApiUrlConfig.DefaultHostUrl+$"Chat/GetUploadedObject?fileId={output.Id}" +
                     $"&fileName={output.Name}" +
                     $"&contentType={output.ContentType}" +
@@ -199,7 +170,51 @@ namespace AppFramework.ViewModels
             }
         }
 
-        private void PickFile() { }
+        /// <summary>
+        /// 接受消息
+        /// </summary>
+        /// <param name="chatMessage"></param>
+        private void ChatService_OnChatMessageHandler(ChatMessageDto chatMessage)
+        {
+            var msg = Map<ChatMessageModel>(chatMessage);
+            UpdateMessageInfo(msg);
+            Messages.Add(msg);
+        }
+
+        #endregion
+         
+        #region 发送图片/文件
+
+        private async void PickFile()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "所有文件(*.*)|*.*";
+            var dialogResult = fileDialog.ShowDialog();
+            if ((bool)dialogResult)
+            {
+                string fileName = fileDialog.SafeFileName;
+                string contentType = MimeUtility.GetMimeMapping(fileName);
+                var photoAsBytes = File.ReadAllBytes(fileDialog.FileName);
+
+                await SetBusyAsync(async () =>
+                {
+                    await WebRequest.Execute(() => UploadFile(photoAsBytes, fileName, contentType),
+                        async output =>
+                        {
+                            string message = $"[file]{{\"id\":\"{output.Id}\", " +
+                                             $"\"name\":\"{output.Name}\", " +
+                                             $"\"contentType\":\"{output.ContentType}\"}}";
+
+                            await chatService.SendMessage(new SendChatMessageInput()
+                            {
+                                UserId= Friend.FriendUserId,
+                                Message=message,
+                                UserName=context.LoginInfo.User.Name
+                            });
+                        });
+                });
+            }
+        }
 
         private async void PickImage()
         {
@@ -209,41 +224,77 @@ namespace AppFramework.ViewModels
             if ((bool)dialogResult)
             {
                 string fileName = fileDialog.SafeFileName;
-                string contentType = Path.GetExtension(fileName).Replace(".", "");
+                string contentType = MimeUtility.GetMimeMapping(fileName);
                 var photoAsBytes = File.ReadAllBytes(fileDialog.FileName);
 
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() => UpdateProfilePhoto(photoAsBytes, fileName, $"images/{contentType}"),
-                        UpdateProfileSuccessed);
+                    await WebRequest.Execute(() => UploadFile(photoAsBytes, fileName, contentType),
+                        async output =>
+                        {
+                            string message = $"[image]{{\"id\":\"{output.Id}\", " +
+                                             $"\"name\":\"{output.Name}\", " +
+                                             $"\"contentType\":\"{output.ContentType}\"}}";
+
+                            await chatService.SendMessage(new SendChatMessageInput()
+                            {
+                                UserId= Friend.FriendUserId,
+                                Message=message,
+                                UserName=context.LoginInfo.User.Name
+                            });
+                        });
                 });
             }
         }
 
-        private async Task<ChatUploadFileOutput> UpdateProfilePhoto(byte[] photoAsBytes, string fileName, string contentType)
+        private async Task<ChatUploadFileOutput> UploadFile(byte[] photoAsBytes, string fileName, string contentType)
         {
             using (Stream photoStream = new MemoryStream(photoAsBytes))
             {
                 return await profileControllerService.UploadFile(content =>
-                 { 
-                     content.AddFile("file", photoStream, fileName, contentType); 
-                     content.AddString(nameof(FileDto.FileName), fileName); 
+                 {
+                     content.AddFile("file", photoStream, fileName, contentType);
+                     content.AddString(nameof(FileDto.FileName), fileName);
                  });
             }
         }
 
-        private async Task UpdateProfileSuccessed(ChatUploadFileOutput output)
+        #endregion
+
+        /// <summary>
+        /// 关闭窗口
+        /// </summary>
+        protected override void Cancel()
         {
-            string message = $"[image]{{\"id\":\"{output.Id}\", " +
-                $"\"name\":\"{output.Name}\", " +
-                $"\"contentType\":\"{output.ContentType}\"}}";
+            chatService.OnChatMessageHandler-=ChatService_OnChatMessageHandler;
+            base.Cancel();
+        }
+
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        public async void Send()
+        {
+            if (string.IsNullOrWhiteSpace(Message)) return;
 
             await chatService.SendMessage(new SendChatMessageInput()
             {
                 UserId= Friend.FriendUserId,
-                Message=message,
+                Message=Message,
                 UserName=context.LoginInfo.User.Name
             });
+
+            Message=string.Empty; //发完消息就清除输入内容
+        }
+
+        public override async void OnDialogOpened(IDialogParameters parameters)
+        {
+            if (parameters.ContainsKey("Value"))
+            {
+                Friend= parameters.GetValue<FriendModel>("Value");
+
+                await GetUserChatMessagesByUser(Friend.FriendUserId);
+            }
         }
     }
 }
