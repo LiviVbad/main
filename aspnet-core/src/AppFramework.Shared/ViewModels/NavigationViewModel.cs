@@ -26,7 +26,6 @@
 
         public DelegateCommand RefreshCommand { get; private set; }
 
-
         #region INavigationAware
 
         /// <summary>

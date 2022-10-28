@@ -23,7 +23,7 @@ namespace AppFramework.Web.Startup
         public static void Configure(IServiceCollection services, IConfiguration configuration)
         {
             var authenticationBuilder = services.AddAuthentication();
-            
+
             if (bool.Parse(configuration["Authentication:JwtBearer:IsEnabled"]))
             {
                 authenticationBuilder.AddAbpAsyncJwtBearer(options =>
@@ -102,10 +102,10 @@ namespace AppFramework.Web.Startup
                 {
                     return Task.CompletedTask;
                 }
-                    
-                return SetToken(context, false);  
+
+                return SetToken(context, false);
             }
-            
+
             return Task.CompletedTask;
         }
 
@@ -121,6 +121,8 @@ namespace AppFramework.Web.Startup
 
                 return Task.CompletedTask;
             }
+
+            qsAuthToken=qsAuthToken.Replace(" ", "+");
 
             //Set auth token from cookie
             context.Token = SimpleStringCipher.Instance.Decrypt(qsAuthToken, AppConsts.DefaultPassPhrase);

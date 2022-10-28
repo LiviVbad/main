@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace AppFramework.Shared.Services.Signalr
 {
-    public interface ISignalrService
+    public interface IFriendChatService
     {
         bool IsConnected { get; }
 
@@ -12,6 +12,8 @@ namespace AppFramework.Shared.Services.Signalr
         Task StopAsync();
 
         Task SendMessage(SendChatMessageInput input);
+
+        Task GetUserChatFriendsAsync();
     }
 
     public class SendChatMessageInput

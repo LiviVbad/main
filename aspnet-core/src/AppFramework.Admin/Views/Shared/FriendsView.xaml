@@ -42,7 +42,7 @@
         <ListBox
             x:Name="ListFriends"
             Grid.Row="1"
-            ItemsSource="{Binding Friends}">
+            ItemsSource="{Binding chatService.Friends}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,5">

@@ -13,9 +13,9 @@ using AppFramework.MultiTenancy.Dto;
 using AppFramework.Organizations.Dto;
 using AppFramework.Sessions.Dto;
 using AppFramework.Shared.Models;
+using AppFramework.Shared.Models.Chat;
 using AppFramework.Version.Dtos;
-using AutoMapper;
-using Models.Chat;
+using AutoMapper; 
 
 namespace AppFramework.Admin.Models
 {

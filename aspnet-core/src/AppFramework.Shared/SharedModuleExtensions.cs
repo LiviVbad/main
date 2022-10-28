@@ -46,7 +46,7 @@ namespace AppFramework.Shared
 
             services.Register<IDataPagerService, DataPagerService>();
             services.RegisterSingleton<IHostDialogService, DialogHostService>();
-            services.RegisterSingleton<ISignalrService, SignalrService>();
+            services.RegisterSingleton<IFriendChatService, FriendChatService>();
 
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
             services.RegisterSingleton<IMultiTenancyConfig, MultiTenancyConfig>();

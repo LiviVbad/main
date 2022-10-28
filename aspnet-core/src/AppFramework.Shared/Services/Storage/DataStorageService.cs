@@ -49,7 +49,7 @@ namespace AppFramework.Services
 
             if (!shouldDecrpyt) return value;
 
-            var decrypted = SimpleStringCipher.Instance.Decrypt(Convert.ToString(value));
+            var decrypted = SimpleStringCipher.Instance.Decrypt(Convert.ToString(value), AppConsts.DefaultPassPhrase);
             return (T)Convert.ChangeType(decrypted, typeof(T));
         }
 
@@ -58,7 +58,7 @@ namespace AppFramework.Services
             if (TypeHelperExtended.IsPrimitive(typeof(T), false))
             {
                 if (shouldEncrypt)
-                    InternalSetValue(key, value == null ? "" : SimpleStringCipher.Instance.Encrypt(Convert.ToString(value)));
+                    InternalSetValue(key, value == null ? "" : SimpleStringCipher.Instance.Encrypt(Convert.ToString(value), AppConsts.DefaultPassPhrase));
                 else
                     InternalSetValue(key, value);
             }

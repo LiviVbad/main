@@ -1,11 +1,13 @@
 ﻿using AppFramework.Friendships;
 using Prism.Mvvm;
-using System; 
+using System;
 
-namespace Models.Chat
+namespace AppFramework.Shared.Models.Chat
 {
     public class FriendModel : BindableBase
     {
+        private bool isOnline;
+
         public long FriendUserId { get; set; }
 
         public int? FriendTenantId { get; set; }
@@ -18,7 +20,11 @@ namespace Models.Chat
 
         public int UnreadMessageCount { get; set; }
 
-        public bool IsOnline { get; set; }
+        public bool IsOnline
+        {
+            get { return isOnline; }
+            set { isOnline= value; RaisePropertyChanged(); }
+        }
 
         public FriendshipState State { get; set; }
     }

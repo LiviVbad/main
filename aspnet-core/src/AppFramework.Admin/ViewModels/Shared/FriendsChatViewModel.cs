@@ -1,21 +1,43 @@
 ﻿using AppFramework.Shared;
+using AppFramework.Shared.Models.Chat;
 using AppFramework.Shared.Services.Signalr;
+using Prism.Commands;
 using Prism.Services.Dialogs;
 
 namespace AppFramework.ViewModels
 {
     public class FriendsChatViewModel : HostDialogViewModel
     {
-        private readonly ISignalrService signalr;
+        private readonly IFriendChatService chatService;
 
-        public FriendsChatViewModel(ISignalrService signalr)
+        private FriendModel friend;
+
+        public FriendModel Friend
         {
-            this.signalr=signalr;
+            get { return friend; }
+            set { friend = value; RaisePropertyChanged(); }
         }
 
-        public override async void OnDialogOpened(IDialogParameters parameters)
+        public DelegateCommand SendCommand { get; private set; }
+
+        public FriendsChatViewModel(IFriendChatService chatService)
         {
-            await signalr.StartAsync();
+            this.chatService=chatService;
+            SendCommand=new DelegateCommand(Send);
+        }
+
+        private void Send()
+        {
+            chatService.SendMessage(new SendChatMessageInput()
+            {
+                UserId= Friend.FriendUserId,
+            });
+        }
+
+        public override void OnDialogOpened(IDialogParameters parameters)
+        {
+            if (parameters.ContainsKey("Value"))
+                Friend= parameters.GetValue<FriendModel>("Value");
         }
     }
 }

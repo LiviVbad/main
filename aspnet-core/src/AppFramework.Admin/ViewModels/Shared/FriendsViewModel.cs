@@ -1,41 +1,28 @@
 ﻿using AppFramework.ApiClient;
-using AppFramework.Chat;
 using AppFramework.Friendships;
 using AppFramework.Shared;
-using Models.Chat;
+using AppFramework.Shared.Models.Chat;
+using AppFramework.Shared.Services.Signalr;
 using Prism.Commands;
 using Prism.Regions;
 using Prism.Services.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
     public class FriendsViewModel : NavigationViewModel
     {
-        private readonly IChatAppService chatAppService;
         private readonly IFriendshipAppService friendshipAppService;
+        public IFriendChatService chatService { get; private set; }
         private readonly IApplicationContext context;
-        private ObservableCollection<FriendModel> friends;
-
-        public ObservableCollection<FriendModel> Friends
-        {
-            get { return friends; }
-            set { friends = value; RaisePropertyChanged(); }
-        }
 
         public DelegateCommand AddUserCommand { get; private set; }
         public DelegateCommand<FriendModel> ClickChatCommand { get; private set; }
 
-        public FriendsViewModel(IChatAppService chatAppService,
-            IFriendshipAppService friendshipAppService,
-            IApplicationContext context)
+        public FriendsViewModel(IApplicationContext context,
+            IFriendChatService chatService)
         {
-            friends = new ObservableCollection<FriendModel>();
-            this.chatAppService = chatAppService;
-            this.friendshipAppService=friendshipAppService;
+            this.chatService=chatService;
             this.context=context;
             AddUserCommand=new DelegateCommand(AddUser);
             ClickChatCommand=new DelegateCommand<FriendModel>(ClickChat);
@@ -62,39 +49,21 @@ namespace AppFramework.ViewModels
                         TenantId=context.CurrentTenant?.TenantId
                     }), async result =>
                     {
-                        await GetUserChatFriendsWithSettings();
+                        await chatService.GetUserChatFriendsAsync();
                     })
                 ;
             }
         }
 
-
-        private async Task GetUserChatFriendsWithSettings()
+        public override bool IsNavigationTarget(NavigationContext navigationContext)
         {
-            await WebRequest.Execute(async () =>
-            {
-                var frientsSetting = await chatAppService.GetUserChatFriendsWithSettings();
-                if (frientsSetting!=null&&frientsSetting.Friends != null)
-                {
-                    Friends.Clear();
-                    var friendsList = Map<List<FriendModel>>(frientsSetting.Friends);
-
-                    foreach (var item in friendsList)
-                    {
-                        if (string.IsNullOrWhiteSpace(item.FriendTenancyName))
-                        {
-                            item.FriendTenancyName="Host";
-                        }
-
-                        Friends.Add(item);
-                    }
-                }
-            });
+            return true;
         }
 
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {
-            await GetUserChatFriendsWithSettings();
+            await chatService.GetUserChatFriendsAsync();
+            await chatService.StartAsync();
         }
     }
 }
