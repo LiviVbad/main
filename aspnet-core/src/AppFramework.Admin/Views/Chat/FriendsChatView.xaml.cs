@@ -1,9 +1,9 @@
 ﻿using AppFramework.Admin.Events;
+using AppFramework.Admin.ViewModels.Chat;
 using AppFramework.Shared;
-using AppFramework.ViewModels;
 using Prism.Events;
 using System.Diagnostics;
-using System.Windows.Controls; 
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace AppFramework.Views

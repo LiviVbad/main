@@ -18,10 +18,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using MimeMapping;
 using Prism.Events;
-using AppFramework.Admin.Events;
-using Abp;
+using AppFramework.Admin.Events; 
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels.Chat
 {
     public class FriendsChatViewModel : HostDialogViewModel
     {
@@ -33,20 +32,20 @@ namespace AppFramework.ViewModels
            IEventAggregator aggregator,
            ProxyChatControllerService proxyChat)
         {
-            this.context=context;
-            this.chatApp=chatApp;
-            this.chatService=chatService;
-            this.profileAppService=profileAppService;
-            this.tokenManager=tokenManager;
-            this.aggregator=aggregator;
-            this.proxyChat=proxyChat;
-            chatService.OnChatMessageHandler+=ChatService_OnChatMessageHandler;
-            messages =new ObservableCollection<ChatMessageModel>();
-            SendCommand =new DelegateCommand(Send);
+            this.context = context;
+            this.chatApp = chatApp;
+            this.chatService = chatService;
+            this.profileAppService = profileAppService;
+            this.tokenManager = tokenManager;
+            this.aggregator = aggregator;
+            this.proxyChat = proxyChat;
+            chatService.OnChatMessageHandler += ChatService_OnChatMessageHandler;
+            messages = new ObservableCollection<ChatMessageModel>();
+            SendCommand = new DelegateCommand(Send);
 
-            PickFileCommand=new DelegateCommand(PickFile);
-            PickImageCommand =new DelegateCommand(PickImage);
-            DownloadFileCommand=new DelegateCommand<ChatMessageModel>(DownloadFile);
+            PickFileCommand = new DelegateCommand(PickFile);
+            PickImageCommand = new DelegateCommand(PickImage);
+            DownloadFileCommand = new DelegateCommand<ChatMessageModel>(DownloadFile);
         }
 
         #region 字段/属性
@@ -98,9 +97,9 @@ namespace AppFramework.ViewModels
         private async Task GetUserChatMessagesByUser(long userId)
         {
             await WebRequest.Execute(() =>
-                chatApp.GetUserChatMessages(new Chat.Dto.GetUserChatMessagesInput()
+                chatApp.GetUserChatMessages(new GetUserChatMessagesInput()
                 {
-                    UserId=userId
+                    UserId = userId
                 }), async result =>
                 {
                     if (!result.Items.Any()) return;
@@ -114,7 +113,7 @@ namespace AppFramework.ViewModels
                         UpdateMessageInfo(item);
                         Messages.Add(item);
                     }
-                      
+
                     aggregator.GetEvent<ScrollEvent>().Publish(true);
                     await MarkAllUnreadMessages();
                 });
@@ -126,53 +125,53 @@ namespace AppFramework.ViewModels
         /// <param name="model"></param>
         private void UpdateMessageInfo(ChatMessageModel model)
         {
-            if (model.Side== ChatSide.Sender)
+            if (model.Side == ChatSide.Sender)
             {
-                model.Color="#009933";
-                model.UserName=context.LoginInfo.User.Name;
+                model.Color = "#009933";
+                model.UserName = context.LoginInfo.User.Name;
             }
             else
-                model.UserName=userName;
+                model.UserName = userName;
 
             if (model.Message.StartsWith("[image]"))
             {
-                model.MessageType="image";
+                model.MessageType = "image";
 
                 var accessToken = tokenManager.GetAccessToken();
                 var code = SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase);
 
                 var msg = model.Message.Replace("[image]", "");
                 var output = JsonConvert.DeserializeObject<ChatUploadFileOutput>(msg);
-                model.Message=output.Name;
-                model.DownloadUrl=ApiUrlConfig.DefaultHostUrl+$"Chat/GetUploadedObject?fileId={output.Id}" +
+                model.Message = output.Name;
+                model.DownloadUrl = ApiUrlConfig.DefaultHostUrl + $"Chat/GetUploadedObject?fileId={output.Id}" +
                     $"&fileName={output.Name}" +
                     $"&contentType={output.ContentType}" +
                     $"&enc_auth_token={code}";
             }
             else if (model.Message.StartsWith("[file]"))
             {
-                model.MessageType="file";
+                model.MessageType = "file";
 
                 var accessToken = tokenManager.GetAccessToken();
                 var code = SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase);
 
                 var msg = model.Message.Replace("[file]", "");
                 var output = JsonConvert.DeserializeObject<ChatUploadFileOutput>(msg);
-                model.Message=output.Name; //显示文件名
-                model.DownloadUrl=ApiUrlConfig.DefaultHostUrl+$"Chat/GetUploadedObject?fileId={output.Id}" +
+                model.Message = output.Name; //显示文件名
+                model.DownloadUrl = ApiUrlConfig.DefaultHostUrl + $"Chat/GetUploadedObject?fileId={output.Id}" +
                    $"&fileName={output.Name}" +
                    $"&contentType={output.ContentType}" +
                    $"&enc_auth_token={code}";
             }
             else if (model.Message.StartsWith("[link]"))
             {
-                model.MessageType="link";
+                model.MessageType = "link";
                 var msg = model.Message.Replace("[link]", "");
                 model.Message = JsonConvert.DeserializeObject<dynamic>(msg).message;
             }
             else
             {
-                model.MessageType="text";
+                model.MessageType = "text";
             }
         }
 
@@ -199,7 +198,7 @@ namespace AppFramework.ViewModels
             {
                 await chatApp.MarkAllUnreadMessagesOfUserAsRead(new MarkAllUnreadMessagesOfUserAsReadInput()
                 {
-                    UserId= Friend.FriendUserId
+                    UserId = Friend.FriendUserId
                 });
             });
         }
@@ -210,13 +209,13 @@ namespace AppFramework.ViewModels
 
         private async void DownloadFile(ChatMessageModel msg)
         {
-            if (msg==null) return;
+            if (msg == null) return;
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.FileName=msg.Message;
-            saveFileDialog.Filter= "所有文件(*.*)|*.*";
+            saveFileDialog.FileName = msg.Message;
+            saveFileDialog.Filter = "所有文件(*.*)|*.*";
             var dialogResult = saveFileDialog.ShowDialog();
-            if (dialogResult!=null&&(bool)dialogResult)
+            if (dialogResult != null && (bool)dialogResult)
             {
                 var localFolderPath = saveFileDialog.FileName.Replace(saveFileDialog.SafeFileName, "");
                 await proxyChat.DownloadAsync(msg.DownloadUrl, localFolderPath, saveFileDialog.SafeFileName);
@@ -245,9 +244,9 @@ namespace AppFramework.ViewModels
 
                             await chatService.SendMessage(new SendChatMessageInput()
                             {
-                                UserId= Friend.FriendUserId,
-                                Message=message,
-                                UserName=context.LoginInfo.User.Name
+                                UserId = Friend.FriendUserId,
+                                Message = message,
+                                UserName = context.LoginInfo.User.Name
                             });
                         });
                 });
@@ -276,9 +275,9 @@ namespace AppFramework.ViewModels
 
                             await chatService.SendMessage(new SendChatMessageInput()
                             {
-                                UserId= Friend.FriendUserId,
-                                Message=message,
-                                UserName=context.LoginInfo.User.Name
+                                UserId = Friend.FriendUserId,
+                                Message = message,
+                                UserName = context.LoginInfo.User.Name
                             });
                         });
                 });
@@ -304,7 +303,7 @@ namespace AppFramework.ViewModels
         /// </summary>
         public override void Cancel()
         {
-            chatService.OnChatMessageHandler-=ChatService_OnChatMessageHandler;
+            chatService.OnChatMessageHandler -= ChatService_OnChatMessageHandler;
             base.Cancel();
         }
 
@@ -317,19 +316,19 @@ namespace AppFramework.ViewModels
 
             await chatService.SendMessage(new SendChatMessageInput()
             {
-                UserId= Friend.FriendUserId,
-                Message=Message,
-                UserName=context.LoginInfo.User.Name
+                UserId = Friend.FriendUserId,
+                Message = Message,
+                UserName = context.LoginInfo.User.Name
             });
 
-            Message=string.Empty; //发完消息就清除输入内容
+            Message = string.Empty; //发完消息就清除输入内容
         }
 
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
             if (parameters.ContainsKey("Value"))
             {
-                Friend= parameters.GetValue<FriendModel>("Value");
+                Friend = parameters.GetValue<FriendModel>("Value");
 
                 await GetUserChatMessagesByUser(Friend.FriendUserId);
             }

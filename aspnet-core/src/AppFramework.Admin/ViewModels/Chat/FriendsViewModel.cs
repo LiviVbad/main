@@ -8,7 +8,7 @@ using Prism.Regions;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels.Chat
 {
     public class FriendsViewModel : NavigationViewModel
     {
@@ -22,10 +22,10 @@ namespace AppFramework.ViewModels
         public FriendsViewModel(IApplicationContext context,
             IFriendChatService chatService)
         {
-            this.chatService=chatService;
-            this.context=context;
-            AddUserCommand=new DelegateCommand(AddUser);
-            ClickChatCommand=new DelegateCommand<FriendModel>(ClickChat);
+            this.chatService = chatService;
+            this.context = context;
+            AddUserCommand = new DelegateCommand(AddUser);
+            ClickChatCommand = new DelegateCommand<FriendModel>(ClickChat);
         }
 
         private async void ClickChat(FriendModel obj)
@@ -33,21 +33,21 @@ namespace AppFramework.ViewModels
             DialogParameters param = new DialogParameters();
             param.Add("Value", obj);
             await dialog.ShowDialogAsync(AppViews.FriendsChat, param);
-            obj.UnreadMessageCount=0;
+            obj.UnreadMessageCount = 0;
         }
 
         private async void AddUser()
         {
             var result = await dialog.ShowDialogAsync(AppViews.SelectedUser);
-            if (result.Result== Prism.Services.Dialogs.ButtonResult.OK)
+            if (result.Result == ButtonResult.OK)
             {
                 var userId = result.Parameters.GetValue<int>("Value");
 
                 await WebRequest.Execute(() => friendshipAppService.CreateFriendshipRequest(
                     new Friendships.Dto.CreateFriendshipRequestInput()
                     {
-                        UserId=userId,
-                        TenantId=context.CurrentTenant?.TenantId
+                        UserId = userId,
+                        TenantId = context.CurrentTenant?.TenantId
                     }), async result =>
                     {
                         await chatService.GetUserChatFriendsAsync();

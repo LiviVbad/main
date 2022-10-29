@@ -1,9 +1,10 @@
-﻿using Prism.Ioc; 
+﻿using Prism.Ioc;
 using AppFramework.Shared;
 using AppFramework.Views;
 using AppFramework.ViewModels.Shared;
 using AppFramework.ViewModels.Version;
 using AppFramework.ViewModels;
+using AppFramework.Admin.ViewModels.Chat;
 
 namespace AppFramework.Admin
 {
