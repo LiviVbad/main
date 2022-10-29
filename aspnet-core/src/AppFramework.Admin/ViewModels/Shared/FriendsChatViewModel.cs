@@ -17,6 +17,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using MimeMapping;
+using Prism.Events;
+using AppFramework.Admin.Events;
+using Abp;
 
 namespace AppFramework.ViewModels
 {
@@ -27,6 +30,7 @@ namespace AppFramework.ViewModels
            IFriendChatService chatService,
            IProfileAppService profileAppService,
            IAccessTokenManager tokenManager,
+           IEventAggregator aggregator,
            ProxyChatControllerService proxyChat)
         {
             this.context=context;
@@ -34,6 +38,7 @@ namespace AppFramework.ViewModels
             this.chatService=chatService;
             this.profileAppService=profileAppService;
             this.tokenManager=tokenManager;
+            this.aggregator=aggregator;
             this.proxyChat=proxyChat;
             chatService.OnChatMessageHandler+=ChatService_OnChatMessageHandler;
             messages =new ObservableCollection<ChatMessageModel>();
@@ -54,6 +59,7 @@ namespace AppFramework.ViewModels
         private readonly IFriendChatService chatService;
         private readonly IProfileAppService profileAppService;
         private readonly IAccessTokenManager tokenManager;
+        private readonly IEventAggregator aggregator;
         private readonly ProxyChatControllerService proxyChat;
         private ObservableCollection<ChatMessageModel> messages;
 
@@ -62,7 +68,7 @@ namespace AppFramework.ViewModels
             get { return message; }
             set { message = value; RaisePropertyChanged(); }
         }
-          
+
         public FriendModel Friend
         {
             get { return friend; }
@@ -74,7 +80,7 @@ namespace AppFramework.ViewModels
             get { return messages; }
             set { messages = value; RaisePropertyChanged(); }
         }
-         
+
         public DelegateCommand SendCommand { get; private set; }
         public DelegateCommand PickImageCommand { get; private set; }
         public DelegateCommand PickFileCommand { get; private set; }
@@ -108,8 +114,9 @@ namespace AppFramework.ViewModels
                         UpdateMessageInfo(item);
                         Messages.Add(item);
                     }
-
-                    await Task.CompletedTask;
+                      
+                    aggregator.GetEvent<ScrollEvent>().Publish(true);
+                    await MarkAllUnreadMessages();
                 });
         }
 
@@ -173,11 +180,28 @@ namespace AppFramework.ViewModels
         /// 接受消息
         /// </summary>
         /// <param name="chatMessage"></param>
-        private void ChatService_OnChatMessageHandler(ChatMessageDto chatMessage)
+        private async void ChatService_OnChatMessageHandler(ChatMessageDto chatMessage)
         {
             var msg = Map<ChatMessageModel>(chatMessage);
             UpdateMessageInfo(msg);
             Messages.Add(msg);
+
+            await MarkAllUnreadMessages();
+        }
+
+        /// <summary>
+        /// 标记消息已读
+        /// </summary>
+        /// <returns></returns>
+        private async Task MarkAllUnreadMessages()
+        {
+            await WebRequest.Execute(async () =>
+            {
+                await chatApp.MarkAllUnreadMessagesOfUserAsRead(new MarkAllUnreadMessagesOfUserAsReadInput()
+                {
+                    UserId= Friend.FriendUserId
+                });
+            });
         }
 
         #endregion

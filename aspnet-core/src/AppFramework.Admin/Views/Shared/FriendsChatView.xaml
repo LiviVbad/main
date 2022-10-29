@@ -26,10 +26,11 @@
                     <TextBlock Foreground="{Binding Color}" Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
                 </StackPanel>
 
-                <TextBlock
+                <TextBox
                     Grid.Row="1"
-                    Margin="5,0"
-                    Padding="5"
+                    Margin="10,3"
+                    BorderThickness="0"
+                    IsReadOnly="True"
                     Text="{Binding Message}" />
             </Grid>
         </DataTemplate>

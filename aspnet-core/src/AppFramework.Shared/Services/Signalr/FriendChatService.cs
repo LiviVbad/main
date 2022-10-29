@@ -201,14 +201,10 @@ namespace AppFramework.Shared.Services.Signalr
         {
 
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="user"></param>
+         
         private void GetReadStateChangeHandler(UserIdentifier user)
         {
-
+           //如果要处理消息得已读状态,可以订阅这里
         }
 
         #endregion

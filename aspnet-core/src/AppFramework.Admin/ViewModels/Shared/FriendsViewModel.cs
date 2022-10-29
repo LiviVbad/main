@@ -33,6 +33,7 @@ namespace AppFramework.ViewModels
             DialogParameters param = new DialogParameters();
             param.Add("Value", obj);
             await dialog.ShowDialogAsync(AppViews.FriendsChat, param);
+            obj.UnreadMessageCount=0;
         }
 
         private async void AddUser()
