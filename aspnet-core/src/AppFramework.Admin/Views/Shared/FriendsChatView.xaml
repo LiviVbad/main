@@ -128,6 +128,8 @@
                         Grid.Row="1"
                         Margin="15,5"
                         Padding="10,0"
+                        Command="{Binding DataContext.DownloadFileCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+                        CommandParameter="{Binding}"
                         Content="文件另存为"
                         Style="{StaticResource SimpleButton}" />
                 </Grid>
@@ -234,7 +236,8 @@
                 Opacity="0.3" />
 
             <sync:SfTextBoxExt
-                Grid.Row="1"  x:Name="sfInputText"
+                x:Name="sfInputText"
+                Grid.Row="1"
                 Margin="10,5"
                 Background="Transparent"
                 BorderThickness="0"

@@ -34,7 +34,7 @@ namespace AppFramework.ViewModels
         /// <summary>
         /// 保存
         /// </summary>
-        protected override async void Save()
+        public override async void Save()
         {
             await SetBusyAsync(async () =>
             {

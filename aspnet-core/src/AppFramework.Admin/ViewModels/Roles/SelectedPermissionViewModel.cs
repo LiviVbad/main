@@ -17,7 +17,7 @@ namespace AppFramework.ViewModels
             this.treesService = treesService;
         }
 
-        protected override void Save()
+        public override void Save()
             {
             base.Save(treesService.GetSelectedItems());
         }

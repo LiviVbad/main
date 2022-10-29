@@ -92,7 +92,7 @@ namespace AppFramework.ViewModels
             Editions = new ObservableCollection<SubscribableEditionComboboxItemDto>();
         }
 
-        protected override async void Save()
+        public override async void Save()
         {
             //刷新界面设置的选项内容值
             RefreshInputInformation();

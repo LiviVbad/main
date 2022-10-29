@@ -43,7 +43,7 @@ namespace AppFramework.ViewModels
             }
         }
 
-        protected override async void Save()
+        public override async void Save()
         {
             if (!string.IsNullOrEmpty(IamgeFilePath))
             {

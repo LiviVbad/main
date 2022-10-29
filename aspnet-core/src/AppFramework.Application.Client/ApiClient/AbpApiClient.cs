@@ -76,7 +76,7 @@ namespace AppFramework.ApiClient
 
         public async Task<T> PostMultipartAsync<T>(string endpoint, Action<CapturedMultipartContent> buildContent, bool stripAjaxResponseWrapper = true)
         {
-            var httpResponse = GetClient(_accessTokenManager.GetAccessToken()) 
+            var httpResponse = GetClient(_accessTokenManager.GetAccessToken())
                 .Request(endpoint)
                 .PostMultipartAsync(buildContent);
 
@@ -310,6 +310,17 @@ namespace AppFramework.ApiClient
 
         #endregion PutAsync
 
+        #region Download
+
+        public async Task<string> DownloadAsync(string endpoint, string localFolderPath, string localFileName = null)
+        {
+            return await GetClient(_accessTokenManager.GetAccessToken())
+                  .Request(endpoint)
+                  .DownloadFileAsync(localFolderPath, localFileName);
+        }
+
+        #endregion
+
         public FlurlClient GetClient(string accessToken)
         {
             if (_client == null)
@@ -368,7 +379,7 @@ namespace AppFramework.ApiClient
 
             AjaxResponse<T> response;
             try
-            { 
+            {
                 response = await httpResponse.ReceiveJson<AjaxResponse<T>>();
             }
             catch (FlurlHttpException e)

@@ -21,7 +21,7 @@ namespace AppFramework.ViewModels
             this.tenantAppService = tenantAppService;
         }
 
-        protected override async void Save()
+        public override async void Save()
         {
             await SetBusyAsync(async () =>
             {

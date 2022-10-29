@@ -25,7 +25,7 @@ namespace AppFramework.ViewModels.Shared
             }
         }
 
-        protected override void Save()
+        public override void Save()
         {
             base.Save(IsLoginForTenants ? TenancyName : "");
         }

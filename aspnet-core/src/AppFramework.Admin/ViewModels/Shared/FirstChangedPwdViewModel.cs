@@ -57,7 +57,7 @@ namespace AppFramework.ViewModels.Shared
 
         private AbpAuthenticateResultModel model;
 
-        protected override async void Save()
+        public override async void Save()
         {
             if (ValidationPassWord())
             {

@@ -37,7 +37,7 @@ namespace AppFramework.ViewModels
             set { password = value; RaisePropertyChanged(); }
         }
 
-        protected override async void Save()
+        public override async void Save()
         {
             await WebRequest.Execute(() => appService.LinkToUser(new Authorization.Users.Dto.LinkToUserInput()
             {

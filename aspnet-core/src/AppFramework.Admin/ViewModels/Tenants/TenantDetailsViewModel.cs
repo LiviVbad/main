@@ -286,7 +286,7 @@ namespace AppFramework.ViewModels
 
         #endregion 内部方法
 
-        protected override async void Save()
+        public override async void Save()
         {
             if (IsNewTenant)
             {

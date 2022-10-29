@@ -56,7 +56,7 @@ namespace AppFramework.ViewModels
              });
         }
 
-        protected override async void Save()
+        public override async void Save()
         {
             var userIds = dataPager.GridModelList
                 .Where(t => t is ChooseItem q && q.IsSelected)

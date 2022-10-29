@@ -22,7 +22,7 @@ namespace AppFramework.ViewModels
             set { endDate = value; RaisePropertyChanged(); }
         }
 
-        protected override void Save()
+        public override void Save()
         {
             if (StartDate == null || EndDate == null) return;
 

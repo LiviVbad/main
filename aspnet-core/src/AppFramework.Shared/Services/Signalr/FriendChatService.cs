@@ -46,22 +46,25 @@ namespace AppFramework.Shared.Services.Signalr
 
         public async Task GetUserChatFriendsAsync()
         {
-            await WebRequest.Execute(async () =>
-            {
-                var frientsSetting = await chatAppService.GetUserChatFriendsWithSettings();
-                if (frientsSetting!=null&&frientsSetting.Friends != null)
+            await SetBusyAsync(async () =>
+            { 
+                await WebRequest.Execute(async () =>
                 {
-                    Friends.Clear();
-                    var friendsList = Map<List<FriendModel>>(frientsSetting.Friends);
-
-                    foreach (var item in friendsList)
+                    var frientsSetting = await chatAppService.GetUserChatFriendsWithSettings();
+                    if (frientsSetting!=null&&frientsSetting.Friends != null)
                     {
-                        if (string.IsNullOrWhiteSpace(item.FriendTenancyName))
-                            item.FriendTenancyName="Host";
+                        Friends.Clear();
+                        var friendsList = Map<List<FriendModel>>(frientsSetting.Friends);
 
-                        Friends.Add(item);
+                        foreach (var item in friendsList)
+                        {
+                            if (string.IsNullOrWhiteSpace(item.FriendTenancyName))
+                                item.FriendTenancyName="Host";
+
+                            Friends.Add(item);
+                        }
                     }
-                }
+                });
             });
         }
 

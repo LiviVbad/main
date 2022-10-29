@@ -29,7 +29,7 @@ namespace AppFramework.ViewModels
 
         #endregion
 
-        protected override async void Save()
+        public override async void Save()
         {
             await SetBusyAsync(async () =>
              {

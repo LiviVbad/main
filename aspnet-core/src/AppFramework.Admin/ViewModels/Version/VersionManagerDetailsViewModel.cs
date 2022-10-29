@@ -53,7 +53,7 @@ namespace AppFramework.ViewModels.Version
             }
         }
 
-        protected override async void Save()
+        public override async void Save()
         {
             if (Model.Id == 0 && string.IsNullOrWhiteSpace(FilePath)) return;
 

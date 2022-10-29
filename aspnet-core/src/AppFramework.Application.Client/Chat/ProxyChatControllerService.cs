@@ -17,5 +17,10 @@ namespace AppFramework.Authorization.Users.Profile
         {
             return await ApiClient.PostMultipartAsync<ChatUploadFileOutput>(GetEndpoint(nameof(UploadFile)), buildContent);
         }
+
+        public async Task<string> DownloadAsync(string endpoint, string localFolderPath, string localFileName = null)
+        {
+            return await ApiClient.DownloadAsync(endpoint, localFolderPath, localFileName);
+        }
     }
 }

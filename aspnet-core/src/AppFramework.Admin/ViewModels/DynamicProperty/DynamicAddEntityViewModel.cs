@@ -31,7 +31,7 @@ namespace AppFramework.ViewModels
             set { selectedItem = value; RaisePropertyChanged(); }
         }
 
-        protected override void Save()
+        public override void Save()
         {
             if (string.IsNullOrWhiteSpace(SelectedItem))
                 return;

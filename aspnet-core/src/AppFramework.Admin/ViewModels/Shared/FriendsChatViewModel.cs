@@ -27,59 +27,58 @@ namespace AppFramework.ViewModels
            IFriendChatService chatService,
            IProfileAppService profileAppService,
            IAccessTokenManager tokenManager,
-           ProxyChatControllerService profileControllerService)
+           ProxyChatControllerService proxyChat)
         {
             this.context=context;
             this.chatApp=chatApp;
             this.chatService=chatService;
             this.profileAppService=profileAppService;
             this.tokenManager=tokenManager;
-            this.profileControllerService=profileControllerService;
+            this.proxyChat=proxyChat;
             chatService.OnChatMessageHandler+=ChatService_OnChatMessageHandler;
             messages =new ObservableCollection<ChatMessageModel>();
             SendCommand =new DelegateCommand(Send);
 
             PickFileCommand=new DelegateCommand(PickFile);
             PickImageCommand =new DelegateCommand(PickImage);
+            DownloadFileCommand=new DelegateCommand<ChatMessageModel>(DownloadFile);
         }
 
         #region 字段/属性
 
+        private string userName;
+        private string message;
+        private FriendModel friend;
         private readonly IApplicationContext context;
         private readonly IChatAppService chatApp;
         private readonly IFriendChatService chatService;
         private readonly IProfileAppService profileAppService;
         private readonly IAccessTokenManager tokenManager;
-        private readonly ProxyChatControllerService profileControllerService;
-        private string userName;
-
-        private FriendModel friend;
-
-        public FriendModel Friend
-        {
-            get { return friend; }
-            set { friend = value; RaisePropertyChanged(); }
-        }
-
+        private readonly ProxyChatControllerService proxyChat;
         private ObservableCollection<ChatMessageModel> messages;
-
-        public ObservableCollection<ChatMessageModel> Messages
-        {
-            get { return messages; }
-            set { messages = value; RaisePropertyChanged(); }
-        }
-
-        private string message;
 
         public string Message
         {
             get { return message; }
             set { message = value; RaisePropertyChanged(); }
         }
+          
+        public FriendModel Friend
+        {
+            get { return friend; }
+            set { friend = value; RaisePropertyChanged(); }
+        }
 
+        public ObservableCollection<ChatMessageModel> Messages
+        {
+            get { return messages; }
+            set { messages = value; RaisePropertyChanged(); }
+        }
+         
         public DelegateCommand SendCommand { get; private set; }
         public DelegateCommand PickImageCommand { get; private set; }
         public DelegateCommand PickFileCommand { get; private set; }
+        public DelegateCommand<ChatMessageModel> DownloadFileCommand { get; private set; }
 
         #endregion
 
@@ -182,8 +181,23 @@ namespace AppFramework.ViewModels
         }
 
         #endregion
-         
+
         #region 发送图片/文件
+
+        private async void DownloadFile(ChatMessageModel msg)
+        {
+            if (msg==null) return;
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName=msg.Message;
+            saveFileDialog.Filter= "所有文件(*.*)|*.*";
+            var dialogResult = saveFileDialog.ShowDialog();
+            if (dialogResult!=null&&(bool)dialogResult)
+            {
+                var localFolderPath = saveFileDialog.FileName.Replace(saveFileDialog.SafeFileName, "");
+                await proxyChat.DownloadAsync(msg.DownloadUrl, localFolderPath, saveFileDialog.SafeFileName);
+            }
+        }
 
         private async void PickFile()
         {
@@ -251,7 +265,7 @@ namespace AppFramework.ViewModels
         {
             using (Stream photoStream = new MemoryStream(photoAsBytes))
             {
-                return await profileControllerService.UploadFile(content =>
+                return await proxyChat.UploadFile(content =>
                  {
                      content.AddFile("file", photoStream, fileName, contentType);
                      content.AddString(nameof(FileDto.FileName), fileName);
@@ -264,7 +278,7 @@ namespace AppFramework.ViewModels
         /// <summary>
         /// 关闭窗口
         /// </summary>
-        protected override void Cancel()
+        public override void Cancel()
         {
             chatService.OnChatMessageHandler-=ChatService_OnChatMessageHandler;
             base.Cancel();

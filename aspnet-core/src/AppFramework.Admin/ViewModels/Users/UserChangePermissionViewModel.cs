@@ -20,7 +20,7 @@ namespace AppFramework.ViewModels
         private readonly IUserAppService userAppService;
         public IPermissionTreesService treesService { get; set; }
 
-        protected override async void Save()
+        public override async void Save()
         {
             await SetBusyAsync(async () =>
             {

@@ -67,7 +67,7 @@ namespace AppFramework.ViewModels
         /// <summary>
         /// 保存用户
         /// </summary>
-        protected override async void Save()
+        public override async void Save()
         {
             Input.User = Model.User;
             Input.AssignedRoleNames = Model.Roles.Where(x => x.IsAssigned).Select(x => x.RoleName).ToArray();

@@ -11,9 +11,9 @@ namespace AppFramework.Shared
 
         public string IdentifierName { get; set; }
 
-        public DelegateCommand SaveCommand { get; }
+        public DelegateCommand SaveCommand { get; private set; }
 
-        public DelegateCommand CancelCommand { get; }
+        public DelegateCommand CancelCommand { get; private set; }
 
         public HostDialogViewModel()
         {
@@ -21,12 +21,12 @@ namespace AppFramework.Shared
             CancelCommand = new DelegateCommand(Cancel);
         }
 
-        protected virtual void Cancel()
+        public virtual void Cancel()
         {
             DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.No));
         }
 
-        protected virtual void Save()
+        public virtual void Save()
         {
             DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.OK));
         }

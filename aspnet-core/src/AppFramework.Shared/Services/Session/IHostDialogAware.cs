@@ -23,11 +23,11 @@ namespace AppFramework.Services
         /// <summary>
         /// 确认
         /// </summary>
-        DelegateCommand SaveCommand { get; }
+        void Save();
 
         /// <summary>
         /// 取消
         /// </summary>
-        DelegateCommand CancelCommand { get; }
+        void Cancel();
     }
 }

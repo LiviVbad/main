@@ -55,7 +55,7 @@ namespace AppFramework.ViewModels
             this.appService = appService;
         }
 
-        protected override async void Save()
+        public override async void Save()
         {
             await SetBusyAsync(async () =>
             {
