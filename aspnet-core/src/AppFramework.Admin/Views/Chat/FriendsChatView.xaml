@@ -12,12 +12,8 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <DataTemplate x:Key="textTemplate">
-            <Grid Margin="5,2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                     <TextBlock
                         Margin="10,0"
                         VerticalAlignment="Center"
@@ -27,21 +23,16 @@
                 </StackPanel>
 
                 <TextBox
-                    Grid.Row="1"
                     Margin="10,3"
                     BorderThickness="0"
                     IsReadOnly="True"
                     Text="{Binding Message}" />
-            </Grid>
+            </DockPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="imageTemplate">
-            <Grid Margin="5,2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                     <TextBlock
                         Margin="10,0"
                         VerticalAlignment="Center"
@@ -50,24 +41,19 @@
                     <TextBlock Foreground="{Binding Color}" Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" Orientation="Horizontal">
-                    <Image
-                        Width="150"
-                        Height="150"
-                        Margin="10,5"
-                        Source="{Binding DownloadUrl}"
-                        Stretch="Uniform" />
-                </StackPanel>
-            </Grid>
+                <Image
+                    Width="150"
+                    Height="150"
+                    Margin="10,5"
+                    HorizontalAlignment="Left"
+                    Source="{Binding DownloadUrl}"
+                    Stretch="Uniform" />
+            </DockPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="linkTemplate">
-            <Grid Margin="5,2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                     <TextBlock
                         Margin="10,0"
                         VerticalAlignment="Center"
@@ -76,26 +62,19 @@
                     <TextBlock Foreground="{Binding Color}" Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" Orientation="Horizontal">
-                    <TextBlock
-                        Grid.Row="1"
-                        Margin="5,0"
-                        Padding="5">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="5,0" Padding="5">
                         <Hyperlink NavigateUri="{Binding Message}" RequestNavigate="Hyperlink_RequestNavigate">
                             <Run Text="{Binding Message}" />
                         </Hyperlink>
                     </TextBlock>
                 </StackPanel>
-            </Grid>
+            </DockPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="fileTemplate">
-            <Grid Margin="5,2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                     <TextBlock
                         Margin="10,0"
                         VerticalAlignment="Center"
@@ -104,10 +83,7 @@
                     <TextBlock Foreground="{Binding Color}" Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
                 </StackPanel>
 
-                <Grid
-                    Grid.Row="1"
-                    Margin="0,5,0,0"
-                    HorizontalAlignment="Left">
+                <Grid Margin="0,5,0,0" HorizontalAlignment="Left">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition Height="auto" />
@@ -134,7 +110,7 @@
                         Content="文件另存为"
                         Style="{StaticResource SimpleButton}" />
                 </Grid>
-            </Grid>
+            </DockPanel>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
