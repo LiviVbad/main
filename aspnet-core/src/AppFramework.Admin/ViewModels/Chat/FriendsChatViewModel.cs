@@ -18,7 +18,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using MimeMapping;
 using Prism.Events;
-using AppFramework.Admin.Events; 
+using AppFramework.Admin.Events;
+using System;
 
 namespace AppFramework.Admin.ViewModels.Chat
 {
@@ -45,7 +46,7 @@ namespace AppFramework.Admin.ViewModels.Chat
 
             PickFileCommand = new DelegateCommand(PickFile);
             PickImageCommand = new DelegateCommand(PickImage);
-            DownloadFileCommand = new DelegateCommand<ChatMessageModel>(DownloadFile);
+            OpenFolderCommand = new DelegateCommand<ChatMessageModel>(OpenFolder);
         }
 
         #region 字段/属性
@@ -83,7 +84,7 @@ namespace AppFramework.Admin.ViewModels.Chat
         public DelegateCommand SendCommand { get; private set; }
         public DelegateCommand PickImageCommand { get; private set; }
         public DelegateCommand PickFileCommand { get; private set; }
-        public DelegateCommand<ChatMessageModel> DownloadFileCommand { get; private set; }
+        public DelegateCommand<ChatMessageModel> OpenFolderCommand { get; private set; }
 
         #endregion
 
@@ -110,7 +111,7 @@ namespace AppFramework.Admin.ViewModels.Chat
 
                     foreach (var item in list)
                     {
-                        UpdateMessageInfo(item);
+                        await UpdateMessageInfo(item);
                         Messages.Add(item);
                     }
 
@@ -123,7 +124,7 @@ namespace AppFramework.Admin.ViewModels.Chat
         /// 更新消息格式
         /// </summary>
         /// <param name="model"></param>
-        private void UpdateMessageInfo(ChatMessageModel model)
+        private async Task UpdateMessageInfo(ChatMessageModel model)
         {
             if (model.Side == ChatSide.Sender)
             {
@@ -142,11 +143,14 @@ namespace AppFramework.Admin.ViewModels.Chat
 
                 var msg = model.Message.Replace("[image]", "");
                 var output = JsonConvert.DeserializeObject<ChatUploadFileOutput>(msg);
-                model.Message = output.Name;
-                model.DownloadUrl = ApiUrlConfig.DefaultHostUrl + $"Chat/GetUploadedObject?fileId={output.Id}" +
+                model.Message = output.Name; //显示文件名
+
+                var downloadUrl = ApiUrlConfig.DefaultHostUrl + $"Chat/GetUploadedObject?fileId={output.Id}" +
                     $"&fileName={output.Name}" +
                     $"&contentType={output.ContentType}" +
                     $"&enc_auth_token={code}";
+
+                await DownloadAsync(downloadUrl, AppConsts.DocumentPath, output.Name);
             }
             else if (model.Message.StartsWith("[file]"))
             {
@@ -158,10 +162,13 @@ namespace AppFramework.Admin.ViewModels.Chat
                 var msg = model.Message.Replace("[file]", "");
                 var output = JsonConvert.DeserializeObject<ChatUploadFileOutput>(msg);
                 model.Message = output.Name; //显示文件名
-                model.DownloadUrl = ApiUrlConfig.DefaultHostUrl + $"Chat/GetUploadedObject?fileId={output.Id}" +
+
+                var downloadUrl = ApiUrlConfig.DefaultHostUrl + $"Chat/GetUploadedObject?fileId={output.Id}" +
                    $"&fileName={output.Name}" +
                    $"&contentType={output.ContentType}" +
                    $"&enc_auth_token={code}";
+
+                await DownloadAsync(downloadUrl, AppConsts.DocumentPath, output.Name);
             }
             else if (model.Message.StartsWith("[link]"))
             {
@@ -182,7 +189,7 @@ namespace AppFramework.Admin.ViewModels.Chat
         private async void ChatService_OnChatMessageHandler(ChatMessageDto chatMessage)
         {
             var msg = Map<ChatMessageModel>(chatMessage);
-            UpdateMessageInfo(msg);
+            await UpdateMessageInfo(msg);
             Messages.Add(msg);
 
             await MarkAllUnreadMessages();
@@ -207,19 +214,22 @@ namespace AppFramework.Admin.ViewModels.Chat
 
         #region 发送图片/文件
 
-        private async void DownloadFile(ChatMessageModel msg)
+        private async Task DownloadAsync(string url, string localFolderPath, string fileName)
         {
-            if (msg == null) return;
-
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.FileName = msg.Message;
-            saveFileDialog.Filter = "所有文件(*.*)|*.*";
-            var dialogResult = saveFileDialog.ShowDialog();
-            if (dialogResult != null && (bool)dialogResult)
+            if (File.Exists($"{localFolderPath}{fileName}"))
             {
-                var localFolderPath = saveFileDialog.FileName.Replace(saveFileDialog.SafeFileName, "");
-                await proxyChat.DownloadAsync(msg.DownloadUrl, localFolderPath, saveFileDialog.SafeFileName);
+                await Task.CompletedTask;
             }
+            else
+            {
+                await proxyChat.DownloadAsync(url, localFolderPath, fileName);
+            }
+        }
+
+        private void OpenFolder(ChatMessageModel msg)
+        {
+            if (Directory.Exists(AppConsts.DocumentPath))
+                System.Diagnostics.Process.Start("explorer.exe", AppConsts.DocumentPath);
         }
 
         private async void PickFile()
@@ -227,7 +237,7 @@ namespace AppFramework.Admin.ViewModels.Chat
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "所有文件(*.*)|*.*";
             var dialogResult = fileDialog.ShowDialog();
-            if ((bool)dialogResult)
+            if (dialogResult!=null&&(bool)dialogResult)
             {
                 string fileName = fileDialog.SafeFileName;
                 string contentType = MimeUtility.GetMimeMapping(fileName);

@@ -10,6 +10,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <converter:ImageConverter x:Key="imageConvert" />
+    <converter:UrlToImageConverter x:Key="urlImageConverter" />
     <converter:MenuImageConverter x:Key="menuConverter" />
     <converter:MenuTitleConverter x:Key="menuTitleConverter" />
     <converter:ByteToImageConverter x:Key="bytesToImageConverter" />

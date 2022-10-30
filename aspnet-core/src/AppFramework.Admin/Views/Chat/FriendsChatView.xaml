@@ -33,7 +33,7 @@
                     Height="150"
                     Margin="10,5"
                     HorizontalAlignment="Left"
-                    Source="{Binding DownloadUrl}"
+                    Source="{Binding Message, Converter={StaticResource urlImageConverter}}"
                     Stretch="Uniform" />
             </DockPanel>
         </DataTemplate>
@@ -80,7 +80,7 @@
                         Padding="10,0"
                         Command="{Binding DataContext.DownloadFileCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
                         CommandParameter="{Binding}"
-                        Content="文件另存为"
+                        Content="打开文件夹"
                         Style="{StaticResource SimpleButton}" />
                 </Grid>
             </DockPanel>

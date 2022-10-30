@@ -8,6 +8,11 @@ namespace AppFramework
     public class AppConsts
     {
         /// <summary>
+        /// 默认的文件路径
+        /// </summary>
+        public static string DocumentPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+$"\\{AppFrameworkConsts.LocalizationSourceName}\\files\\";
+
+        /// <summary>
         /// Default page size for paged requests.
         /// </summary>
         public const int DefaultPageSize = 10;

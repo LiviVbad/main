@@ -37,7 +37,5 @@ namespace AppFramework.Shared.Models.Chat
             get { return messageType; }
             set { messageType=value; RaisePropertyChanged(); }
         }
-
-        public string DownloadUrl { get; set; }
     }
 }
