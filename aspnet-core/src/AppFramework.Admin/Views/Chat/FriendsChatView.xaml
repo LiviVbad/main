@@ -7,20 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     xmlns:temp="clr-namespace:AppFramework.Behaviors"
+    xmlns:views="clr-namespace:AppFramework.Views"
     Width="800"
     Height="600"
     mc:Ignorable="d">
     <UserControl.Resources>
         <DataTemplate x:Key="textTemplate">
             <DockPanel>
-                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                    <TextBlock
-                        Margin="10,0"
-                        VerticalAlignment="Center"
-                        Foreground="{Binding Color}"
-                        Text="{Binding UserName}" />
-                    <TextBlock Foreground="{Binding Color}" Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
-                </StackPanel>
+                <views:UserCard DockPanel.Dock="Top" />
 
                 <TextBox
                     Margin="10,3"
@@ -32,14 +26,7 @@
 
         <DataTemplate x:Key="imageTemplate">
             <DockPanel>
-                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                    <TextBlock
-                        Margin="10,0"
-                        VerticalAlignment="Center"
-                        Foreground="{Binding Color}"
-                        Text="{Binding UserName}" />
-                    <TextBlock Foreground="{Binding Color}" Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
-                </StackPanel>
+                <views:UserCard DockPanel.Dock="Top" />
 
                 <Image
                     Width="150"
@@ -53,14 +40,7 @@
 
         <DataTemplate x:Key="linkTemplate">
             <DockPanel>
-                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                    <TextBlock
-                        Margin="10,0"
-                        VerticalAlignment="Center"
-                        Foreground="{Binding Color}"
-                        Text="{Binding UserName}" />
-                    <TextBlock Foreground="{Binding Color}" Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
-                </StackPanel>
+                <views:UserCard DockPanel.Dock="Top" />
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="5,0" Padding="5">
@@ -74,14 +54,7 @@
 
         <DataTemplate x:Key="fileTemplate">
             <DockPanel>
-                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                    <TextBlock
-                        Margin="10,0"
-                        VerticalAlignment="Center"
-                        Foreground="{Binding Color}"
-                        Text="{Binding UserName}" />
-                    <TextBlock Foreground="{Binding Color}" Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
-                </StackPanel>
+                <views:UserCard DockPanel.Dock="Top" />
 
                 <Grid Margin="0,5,0,0" HorizontalAlignment="Left">
                     <Grid.RowDefinitions>
