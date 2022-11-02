@@ -10,7 +10,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AppFramework.Shared.Models;
 using AppFramework.Shared.Core;
-using AppFramework.Common; 
+using AppFramework.Common;
+using AppFramework.Shared.Services.Messenger;
+using AppFramework.Shared.Extensions;
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -112,7 +114,7 @@ namespace AppFramework.Shared.ViewModels
                         await appService.CreateEdition(new CreateEditionDto() { Edition = Map<EditionCreateDto>(Model), FeatureValues = featureValues, });
                 }, async () => await GoBackAsync());
 
-            }, AppLocalizationKeys.SavingWithThreeDot);
+            }, LocalizationKeys.SavingWithThreeDot);
         }
 
         private void RefreshInputInformation()
@@ -236,7 +238,7 @@ namespace AppFramework.Shared.ViewModels
         private void AddNotAssignedItem()
         {
             Editions.Add(new SubscribableEditionComboboxItemDto(NotAssignedValue,
-                string.Format("- {0} -", Local.Localize(AppLocalizationKeys.NotAssigned)), null));
+                string.Format("- {0} -", Local.Localize(LocalizationKeys.NotAssigned)), null));
         }
 
         private void SetSelectedEdition(int? editionId)

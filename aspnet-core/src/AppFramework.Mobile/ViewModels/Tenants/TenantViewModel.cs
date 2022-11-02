@@ -1,19 +1,21 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.MultiTenancy;
-using AppFramework.MultiTenancy.Dto;
-using System.Collections.Generic;
+using AppFramework.MultiTenancy.Dto; 
 using System.Threading.Tasks;
 using AppFramework.Shared.Core;
-using AppFramework.Shared.Models; 
+using AppFramework.Shared.Services.Permission;
+using AppFramework.Shared.Models;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class TenantViewModel : RegionCurdViewModel
+    public class TenantViewModel : NavigationCurdViewModel
     {
         private readonly ITenantAppService appService;
         private GetTenantsInput filter;
 
-        public TenantViewModel(ITenantAppService appService, IMessenger messenger)
+        public TenantListModel SelectedItem => Map<TenantListModel>(dataPager.SelectedItem);
+
+        public TenantViewModel(ITenantAppService appService)
         {
             filter = new GetTenantsInput()
             {
@@ -21,7 +23,6 @@ namespace AppFramework.Shared.ViewModels
                 MaxResultCount = 10,
                 SkipCount = 0,
             };
-            messenger.Sub(AppMessengerKeys.Tenant, async () => await RefreshAsync());
             this.appService = appService;
         }
 
@@ -29,32 +30,32 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetTenants(filter), RefreshSuccessed);
+                await WebRequest.Execute(() => appService.GetTenants(filter), async result =>
+                {
+                    dataPager.SetList(result);
+                    await Task.CompletedTask;
+                });
             });
         }
 
-        public override async void Delete(object selectedItem)
+        public async void Delete()
         {
-            if (selectedItem is TenantListDto item)
+            if (!await dialogService.DeleteConfirm()) return;
+
+            await appService.DeleteTenant(new EntityDto()
             {
-                if (!await dialogService.DeleteConfirm()) return;
-
-                await appService.DeleteTenant(new EntityDto()
-                {
-                    Id = item.Id
-                });
-                await RefreshAsync();
-            }
+                 Id= SelectedItem.Id
+            });
+            await RefreshAsync();
         }
-
-        private async Task RefreshSuccessed(PagedResultDto<TenantListDto> result)
+          
+        protected override PermissionItem[] CreatePermissionItems()
         {
-            GridModelList.Clear();
-
-            foreach (var item in result.Items)
-                GridModelList.Add(item);
-
-            await Task.CompletedTask;
+            return new PermissionItem[]
+            { 
+                new PermissionItem(AppPermissions.TenantEdit, Local.Localize("Change"),Edit), 
+                new PermissionItem(AppPermissions.TenantDelete, Local.Localize("Delete"),Delete), 
+            };
         }
     }
 }

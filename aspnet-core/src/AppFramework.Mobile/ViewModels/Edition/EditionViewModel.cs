@@ -1,51 +1,56 @@
-﻿using Abp.Application.Services.Dto;
-using AppFramework.Shared.Core;
+﻿using Abp.Application.Services.Dto; 
 using AppFramework.Editions;
 using AppFramework.Editions.Dto;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
+using AppFramework.Shared.Services.Permission;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class EditionViewModel : RegionCurdViewModel
+    public class EditionViewModel : NavigationCurdViewModel
     {
         private readonly IEditionAppService appService;
 
-        public EditionViewModel(IEditionAppService appService, IMessenger messenger)
+        public EditionListDto SelectedItem => Map<EditionListDto>(dataPager.SelectedItem);
+
+        public EditionViewModel(IEditionAppService appService)
         {
             this.appService = appService;
-            messenger.Sub(AppMessengerKeys.Edition, async () => await RefreshAsync());
         }
 
         public override async Task RefreshAsync()
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetEditions(), RefreshSuccessed);
+                await WebRequest.Execute(() => appService.GetEditions(), async result =>
+                {
+                    dataPager.SetList(new PagedResultDto<EditionListDto>()
+                    {
+                        Items = result.Items
+                    });
+
+                    await Task.CompletedTask;
+                });
             });
         }
 
-        public override async void Delete(object selectedItem)
+        public async void Delete()
         {
-            if (selectedItem is EditionListDto item)
-            {
-                if (!await dialogService.DeleteConfirm()) return;
+            if (!await dialogService.DeleteConfirm()) return;
 
-                await appService.DeleteEdition(new EntityDto()
-                {
-                    Id = item.Id
-                });
-                await RefreshAsync();
-            }
+            await appService.DeleteEdition(new EntityDto()
+            {
+                 Id= SelectedItem.Id
+            });
+            await RefreshAsync();
         }
 
-        private async Task RefreshSuccessed(ListResultDto<EditionListDto> result)
+        protected override PermissionItem[] CreatePermissionItems()
         {
-            GridModelList.Clear();
-
-            foreach (var item in result.Items)
-                GridModelList.Add(item);
-
-            await Task.CompletedTask;
+            return new PermissionItem[]
+            {
+                new PermissionItem(AppPermissions.EditionEdit, Local.Localize("EditEdition"),Edit),
+                new PermissionItem(AppPermissions.EditionDelete, Local.Localize("Delete"),Delete),
+            };
         }
     }
 }

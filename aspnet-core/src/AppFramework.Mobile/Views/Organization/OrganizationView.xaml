@@ -17,7 +17,8 @@
                     FocusBorderThickness="0"
                     FullRowSelect="True"
                     ItemHeight="55"
-                    ItemsSource="{Binding GridModelList}"
+                    ItemsSource="{Binding dataPager.GridModelList}"
+                    SelectedItem="{Binding dataPager.SelectedItem}"
                     SelectionBackgroundColor="Transparent">
                     <tree:SfTreeView.ItemTemplate>
                         <DataTemplate>

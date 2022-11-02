@@ -1,6 +1,8 @@
 ﻿using Acr.UserDialogs;
 using AppFramework.Authorization.Users.Profile;
-using AppFramework.Authorization.Users.Profile.Dto; 
+using AppFramework.Authorization.Users.Profile.Dto;
+using AppFramework.Shared.Extensions;
+using AppFramework.Shared.Views;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Threading.Tasks;
@@ -83,7 +85,7 @@ namespace AppFramework.Shared.ViewModels
         {
             if (NewPassword != NewPasswordRepeat)
             {
-                await UserDialogs.Instance.AlertAsync(Local.Localize(AppLocalizationKeys.PasswordsDontMatch));
+                await UserDialogs.Instance.AlertAsync(Local.Localize(LocalizationKeys.PasswordsDontMatch));
             }
             else
             {
@@ -104,10 +106,10 @@ namespace AppFramework.Shared.ViewModels
 
         private async Task PasswordChangedAsync()
         {
-            await UserDialogs.Instance.AlertAsync(Local.Localize(AppLocalizationKeys.YourPasswordHasChangedSuccessfully), 
-                Local.Localize(AppLocalizationKeys.ChangePassword), Local.Localize(AppLocalizationKeys.Ok));
+            await UserDialogs.Instance.AlertAsync(Local.Localize(LocalizationKeys.YourPasswordHasChangedSuccessfully), 
+                Local.Localize(LocalizationKeys.ChangePassword), Local.Localize(LocalizationKeys.Ok));
 
-            await navigationService.NavigateAsync(AppViewManager.Main);
+            await navigationService.NavigateAsync(AppViews.Main);
         }
     }
 }

@@ -6,15 +6,16 @@
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:perm="clr-namespace:AppFramework.Common;assembly=AppFramework.Common"
+    xmlns:perm="clr-namespace:AppFramework.Shared"
     xmlns:refresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms">
     <Grid>
         <refresh:SfPullToRefresh IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}">
             <refresh:SfPullToRefresh.PullableContent>
                 <listView:SfListView
                     x:Name="SfListView"
-                    ItemsSource="{Binding GridModelList}"
+                    ItemsSource="{Binding dataPager.GridModelList}"
                     RowSpacing="4"
+                    SelectedItem="{Binding dataPager.SelectedItem}"
                     Style="{StaticResource DefaultListViewStyle}">
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
@@ -24,14 +25,14 @@
                                         <SwipeItems>
                                             <SwipeItem
                                                 BackgroundColor="{DynamicResource Red}"
-                                                Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference SfListView}}"
-                                                CommandParameter="{Binding}"
+                                                Command="{Binding Path=BindingContext.proxyCommand, Source={x:Reference SfListView}}"
+                                                CommandParameter="{x:Static perm:AppPermissions.DynamicEntityPropertiesDelete}"
                                                 IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.DynamicEntityPropertiesDelete}}"
                                                 Text="{extensions:Translate Remove}" />
                                             <SwipeItem
                                                 BackgroundColor="{DynamicResource PrimaryColor}"
-                                                Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfListView}}"
-                                                CommandParameter="{Binding}"
+                                                Command="{Binding Path=BindingContext.proxyCommand, Source={x:Reference SfListView}}"
+                                                CommandParameter="{x:Static perm:AppPermissions.DynamicEntityPropertiesEdit}"
                                                 IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.DynamicEntityPropertiesEdit}}"
                                                 Text="{extensions:Translate Edit}" />
                                         </SwipeItems>

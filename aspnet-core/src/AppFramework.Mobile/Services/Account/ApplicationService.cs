@@ -20,6 +20,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using AppFramework.Shared.ViewModels; 
+using AppFramework.Shared.Views;
 
 namespace AppFramework.Shared.Services
 {
@@ -95,7 +96,7 @@ namespace AppFramework.Shared.Services
 
         public async Task ShowMyProfile()
         {
-            dialogService.ShowDialog(AppViewManager.MyProfile);
+            dialogService.ShowDialog(AppViews.MyProfile);
 
             await Task.CompletedTask;
         }
@@ -129,7 +130,7 @@ namespace AppFramework.Shared.Services
             if (!CrossMedia.Current.IsCameraAvailable ||
                 !CrossMedia.Current.IsTakePhotoSupported)
             {
-                AppDialogHelper.Warn("NoCamera");
+                DialogHelper.Warn("NoCamera");
                 return;
             }
 
@@ -165,7 +166,7 @@ namespace AppFramework.Shared.Services
 
                 NavigationParameters param = new NavigationParameters();
                 param.Add("Value", Photo);
-                await navigationService.NavigateAsync(AppViewManager.ProfilePicture, param);
+                await navigationService.NavigateAsync(AppViews.ProfilePicture, param);
             }
             else
             {
@@ -253,7 +254,7 @@ namespace AppFramework.Shared.Services
 
         public async Task ShowProfilePhoto()
         {
-            await navigationService.NavigateAsync(AppViewManager.ProfilePicture);
+            await navigationService.NavigateAsync(AppViews.ProfilePicture);
         }
 
         public async Task GetApplicationInfo()

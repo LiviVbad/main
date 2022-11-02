@@ -4,7 +4,10 @@ using Prism.Regions.Navigation;
 using AppFramework.Shared.Services;
 using AppFramework.Shared.Services.Account;
 using AppFramework.Shared.Models;
-using AppFramework.Shared.Core; 
+using AppFramework.Shared.Core;
+using AppFramework.Shared.Services.Navigation;
+using AppFramework.Shared.Services.Messenger;
+using AppFramework.Shared.Views;
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -63,12 +66,12 @@ namespace AppFramework.Shared.ViewModels
 
         public void Navigate(NavigationItem item)
         {
-            regionService.Navigate(AppRegionManager.Main, item.PageViewName);
+            regionService.Navigate(AppRegions.Main, item.PageViewName);
         }
 
         private void SetDefaultPage()
         {
-            regionService.Navigate(AppRegionManager.Main, AppViewManager.Dashboard);
+            regionService.Navigate(AppRegions.Main, AppViews.Dashboard);
         }
 
         #endregion

@@ -8,7 +8,7 @@
     BackgroundColor="{DynamicResource GrayShadowBackgroundColor}">
     <ContentPage.Content>
         <Grid>
-            <ContentView prism:RegionManager.RegionName="{x:Static manager:AppRegionManager.Index}" />
+            <ContentView prism:RegionManager.RegionName="{x:Static manager:AppRegions.Index}" />
         </Grid>
     </ContentPage.Content>
 

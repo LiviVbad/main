@@ -1,6 +1,6 @@
-﻿namespace AppFramework.Shared
+﻿namespace AppFramework.Shared.Views
 {
-    public class AppViewManager
+    public class AppViews
     {
         public const string InitialScreen = "InitialScreenView";
 

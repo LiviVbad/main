@@ -8,7 +8,9 @@ using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
+using AppFramework.Shared.Services.Messenger;
+using AppFramework.Shared.Extensions;
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -75,14 +77,14 @@ namespace AppFramework.Shared.ViewModels
             {
                 isNewUser = value;
                 IsUnlockButtonVisible = !isNewUser && permissionService.HasPermission(AppPermissions.UserEdit);
-                PageTitle = isNewUser ? Local.Localize(AppLocalizationKeys.CreatingNewUser) : Local.Localize(AppLocalizationKeys.EditUser);
+                PageTitle = isNewUser ? Local.Localize(LocalizationKeys.CreatingNewUser) : Local.Localize(LocalizationKeys.EditUser);
                 RaisePropertyChanged();
             }
         }
 
         #endregion 字段/属性
 
-        public UserDetailsViewModel(
+        public UserDetailsViewModel( 
             IUserAppService userAppService,
             IPermissionService permissionService,
             IMessenger messenger)
@@ -110,7 +112,7 @@ namespace AppFramework.Shared.ViewModels
                 await WebRequest.Execute(() =>
                     userAppService.CreateOrUpdateUser(input),
                     GoBackAsync);
-            }, AppLocalizationKeys.SavingWithThreeDot);
+            }, LocalizationKeys.SavingWithThreeDot);
         }
 
         private async void UnlockUser()
@@ -128,10 +130,10 @@ namespace AppFramework.Shared.ViewModels
         private async void DeleteUser()
         {
             var accepted = await UserDialogs.Instance.ConfirmAsync(
-                Local.Localize(AppLocalizationKeys.UserDeleteWarningMessage, Model.User.UserName),
-                Local.Localize(AppLocalizationKeys.AreYouSure),
-                Local.Localize(AppLocalizationKeys.Ok),
-                Local.Localize(AppLocalizationKeys.Cancel));
+                Local.Localize(LocalizationKeys.UserDeleteWarningMessage, Model.User.UserName),
+                Local.Localize(LocalizationKeys.AreYouSure),
+                Local.Localize(LocalizationKeys.Ok),
+                Local.Localize(LocalizationKeys.Cancel));
 
             if (!accepted)
                 return;

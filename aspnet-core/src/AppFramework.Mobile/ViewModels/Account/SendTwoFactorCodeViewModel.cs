@@ -6,7 +6,8 @@ using AppFramework.Shared.Localization.Resources;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System.Collections.Generic;
-using System.Linq; 
+using System.Linq;
+using AppFramework.Shared.Extensions;
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -74,12 +75,12 @@ namespace AppFramework.Shared.ViewModels
 
             var promptResult = await UserDialogs.Instance.PromptAsync(new PromptConfig
             {
-                Message = Local.Localize(AppLocalizationKeys.VerifySecurityCode_Information),
+                Message = Local.Localize(LocalizationKeys.VerifySecurityCode_Information),
                 Text = "",
-                OkText = Local.Localize(AppLocalizationKeys.Ok),
-                CancelText = Local.Localize(AppLocalizationKeys.Cancel),
-                Title = Local.Localize(AppLocalizationKeys.VerifySecurityCode),
-                Placeholder = Local.LocalizeWithThreeDots(AppLocalizationKeys.Code)
+                OkText = Local.Localize(LocalizationKeys.Ok),
+                CancelText = Local.Localize(LocalizationKeys.Cancel),
+                Title = Local.Localize(LocalizationKeys.VerifySecurityCode),
+                Placeholder = Local.LocalizeWithThreeDots(LocalizationKeys.Code)
             });
 
             if (!promptResult.Ok)

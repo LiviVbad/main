@@ -1,9 +1,9 @@
-﻿using Acr.UserDialogs; 
+﻿using Acr.UserDialogs;
 using AppFramework.Shared.Localization;
 
 namespace AppFramework.Shared
 {
-    public static class AppDialogHelper
+    public static class DialogHelper
     {
         public static void Warn(string localizationKeyOrMessage,
             LocalizationSource localizationSource = LocalizationSource.RemoteTranslation)

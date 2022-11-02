@@ -1,7 +1,7 @@
-﻿using AppFramework.Shared;
-using AppFramework.Shared.Core;
+﻿using AppFramework.Shared.Models;
 using AppFramework.Shared.Services.Account;
 using AppFramework.Shared.Services.Storage;
+using AppFramework.Shared.Views;
 using DryIoc;
 using DryIoc.Microsoft.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,7 +42,7 @@ namespace AppFramework.Shared
 
             AppSettings.OnInitialized();
 
-            await NavigationService.NavigateAsync(AppViewManager.InitialScreen);
+            await NavigationService.NavigateAsync(AppViews.InitialScreen);
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -60,7 +60,7 @@ namespace AppFramework.Shared
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddAutoMapper(config =>
             {
-                config.AddProfile<AppSharedMapper>();
+                config.AddProfile<SharedMapper>();
             });
             return new DryIocContainerExtension(new Container(CreateContainerRules())
                 .WithDependencyInjectionAdapter(serviceCollection));

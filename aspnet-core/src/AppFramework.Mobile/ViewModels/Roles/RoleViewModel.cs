@@ -1,20 +1,22 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using AppFramework.Shared.Core;
+using AppFramework.Shared.Services.Permission;
 using AppFramework.Shared.Models;
-using AppFramework.Shared.Core; 
+using ImTools;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class RoleViewModel : RegionCurdViewModel
+    public class RoleViewModel : NavigationCurdViewModel
     {
         private readonly IRoleAppService appService;
 
-        public RoleViewModel(IRoleAppService appService, IMessenger messenger)
+        public RoleListModel SelectedItem => Map<RoleListModel>(dataPager.SelectedItem);
+
+        public RoleViewModel(IRoleAppService appService)
         {
-            messenger.Sub(AppMessengerKeys.Role, async () => await RefreshAsync());
             this.appService = appService;
         }
 
@@ -22,32 +24,35 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetRoles(new GetRolesInput()), RefreshSuccessed);
+                await WebRequest.Execute(() => appService.GetRoles(new GetRolesInput()), async result =>
+                {
+                    dataPager.SetList(new PagedResultDto<RoleListDto>
+                    {
+                        Items = result.Items
+                    }); 
+                    await Task.CompletedTask;
+                });
             });
         }
 
-        public override async void Delete(object selectedItem)
+        public async void Delete()
         {
-            if (selectedItem is RoleListDto item)
-            {
-                if (!await dialogService.DeleteConfirm()) return;
+            if (!await dialogService.DeleteConfirm()) return;
 
-                await appService.DeleteRole(new EntityDto()
-                {
-                    Id = item.Id
-                });
-                await RefreshAsync();
-            }
+            await appService.DeleteRole(new EntityDto()
+            {
+                Id= SelectedItem.Id
+            });
+            await RefreshAsync();
         }
 
-        private async Task RefreshSuccessed(ListResultDto<RoleListDto> result)
+        protected override PermissionItem[] CreatePermissionItems()
         {
-            GridModelList.Clear();
-
-            foreach (var item in result.Items)
-                GridModelList.Add(item);
-
-            await Task.CompletedTask;
+            return new PermissionItem[]
+            {
+                new PermissionItem(AppPermissions.RoleEdit, Local.Localize("Change"),Edit),
+                new PermissionItem(AppPermissions.RoleDelete, Local.Localize("Delete"),Delete)
+            };
         }
     }
 }

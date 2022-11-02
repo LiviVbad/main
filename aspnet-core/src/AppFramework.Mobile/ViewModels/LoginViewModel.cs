@@ -1,8 +1,6 @@
 ﻿using Abp.Localization;
 using Abp.MultiTenancy;
 using Acr.UserDialogs;
-using AppFramework.Shared.Core;
-using AppFramework.Shared.Services;
 using AppFramework.Shared.Services.Account;
 using AppFramework.Shared.Services.Storage;
 using AppFramework.ApiClient;
@@ -15,30 +13,23 @@ using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
+using AppFramework.Shared.Extensions;
+using AppFramework.Shared.Views;
 
 namespace AppFramework.Shared.ViewModels
 {
     public class LoginViewModel : RegionViewModel
     {
-        public LoginViewModel(
-            IAccountStorageService dataStorageService,
+        public LoginViewModel(IAccountStorageService dataStorageService,
             IAccountService accountService,
-            IAccountAppService accountAppService,
-            IAccessTokenManager accessTokenManager,
-            IApplicationContext appContext,
-            IMessenger messenger,
-            IDialogService dialogService,
-            IRegionNavigateService regionNavigateService)
+            IAccountAppService accountAppService, 
+            IApplicationContext appContext)
         {
-            this.appContext = appContext;
-            this.messenger = messenger;
-            this.dialogService = dialogService;
-            this.regionNavigateService = regionNavigateService;
+            this.appContext = appContext;  
             this.accountService = accountService;
             this.dataStorageService = dataStorageService;
-            this.accountAppService = accountAppService;
-            this.accessTokenManager = accessTokenManager;
+            this.accountAppService = accountAppService; 
 
             ExecuteCommand = new DelegateCommand<string>(Execute);
         }
@@ -47,12 +38,8 @@ namespace AppFramework.Shared.ViewModels
 
         private readonly IAccountService accountService;
         private readonly IAccountAppService accountAppService;
-        private readonly IAccountStorageService dataStorageService;
-        private readonly IAccessTokenManager accessTokenManager;
-        private readonly IApplicationContext appContext;
-        private readonly IMessenger messenger;
-        private readonly IDialogService dialogService;
-        private readonly IRegionNavigateService regionNavigateService;
+        private readonly IAccountStorageService dataStorageService; 
+        private readonly IApplicationContext appContext;  
         private LanguageInfo selectedLanguage;
         private ObservableCollection<LanguageInfo> languages;
         private string tenancyName;
@@ -178,12 +165,12 @@ namespace AppFramework.Shared.ViewModels
         {
             var promptResult = await UserDialogs.Instance.PromptAsync(new PromptConfig
             {
-                Message = Local.Localize(AppLocalizationKeys.LeaveEmptyToSwitchToHost),
+                Message = Local.Localize(LocalizationKeys.LeaveEmptyToSwitchToHost),
                 Text = appContext.CurrentTenant?.TenancyName ?? "",
-                OkText = Local.Localize(AppLocalizationKeys.Ok),
-                CancelText = Local.Localize(AppLocalizationKeys.Cancel),
-                Title = Local.Localize(AppLocalizationKeys.ChangeTenant),
-                Placeholder = Local.LocalizeWithThreeDots(AppLocalizationKeys.TenancyName),
+                OkText = Local.Localize(LocalizationKeys.Ok),
+                CancelText = Local.Localize(LocalizationKeys.Cancel),
+                Title = Local.Localize(LocalizationKeys.ChangeTenant),
+                Placeholder = Local.LocalizeWithThreeDots(LocalizationKeys.TenancyName),
                 MaxLength = AbpTenantBase.MaxTenancyNameLength
             });
 
@@ -232,12 +219,12 @@ namespace AppFramework.Shared.ViewModels
 
                 case TenantAvailabilityState.InActive:
                     UserDialogs.Instance.HideLoading();
-                    await UserDialogs.Instance.AlertAsync(Local.Localize(AppLocalizationKeys.TenantIsNotActive, tenancyName));
+                    await UserDialogs.Instance.AlertAsync(Local.Localize(LocalizationKeys.TenantIsNotActive, tenancyName));
                     break;
 
                 case TenantAvailabilityState.NotFound:
                     UserDialogs.Instance.HideLoading();
-                    await UserDialogs.Instance.AlertAsync(Local.Localize(AppLocalizationKeys.ThereIsNoTenantDefinedWithName, tenancyName));
+                    await UserDialogs.Instance.AlertAsync(Local.Localize(LocalizationKeys.ThereIsNoTenantDefinedWithName, tenancyName));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -252,12 +239,12 @@ namespace AppFramework.Shared.ViewModels
 
         private void ForgotPassword()
         {
-            dialogService.ShowDialog(AppViewManager.ForgotPassword);
+            dialogService.ShowDialog(AppViews.ForgotPassword);
         }
 
         private void EmailActivation()
         {
-            dialogService.ShowDialog(AppViewManager.EmailActivation);
+            dialogService.ShowDialog(AppViews.EmailActivation);
         }
 
         #endregion 忘记密码/发送邮件
@@ -307,7 +294,7 @@ namespace AppFramework.Shared.ViewModels
             }
             else
             {
-                CurrentTenancyNameOrDefault = Local.Localize(AppLocalizationKeys.NotSelected);
+                CurrentTenancyNameOrDefault = Local.Localize(LocalizationKeys.NotSelected);
             }
         }
     }

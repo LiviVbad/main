@@ -5,7 +5,8 @@ using Prism.Commands;
 using Prism.Navigation;
 using System.Threading.Tasks;
 using AppFramework.Shared.Core;
-using AppFramework.Shared.Models; 
+using AppFramework.Shared.Models;
+using AppFramework.Shared.Services.Messenger;
 
 namespace AppFramework.Shared.ViewModels
 {

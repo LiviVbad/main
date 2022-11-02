@@ -9,10 +9,11 @@
         <refresh:SfPullToRefresh IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}">
             <refresh:SfPullToRefresh.PullableContent>
                 <listView:SfListView
-                    ItemsSource="{Binding GridModelList}"
+                    ItemsSource="{Binding dataPager.GridModelList}"
                     LoadMoreCommand="{Binding LoadMoreCommand}"
                     LoadMoreOption="AutoOnScroll"
                     RowSpacing="4"
+                    SelectedItem="{Binding dataPager.SelectedItem}"
                     Style="{StaticResource DefaultListViewStyle}">
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>

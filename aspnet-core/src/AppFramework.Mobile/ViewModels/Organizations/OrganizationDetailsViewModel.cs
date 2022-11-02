@@ -7,7 +7,9 @@ using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
+using AppFramework.Shared.Services.Messenger;
+using AppFramework.Shared.Views;
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -116,7 +118,7 @@ namespace AppFramework.Shared.ViewModels
             if (!permissionService.HasPermission(AppPermissions.OrganizationUnitsManageMembers))
                 return;
 
-            await navigationService.NavigateAsync(AppViewManager.AddUsers, GetParameter());
+            await navigationService.NavigateAsync(AppViews.AddUsers, GetParameter());
         }
 
         /// <summary>
@@ -127,7 +129,7 @@ namespace AppFramework.Shared.ViewModels
             if (!permissionService.HasPermission(AppPermissions.OrganizationUnitsManageRoles))
                 return;
 
-            await navigationService.NavigateAsync(AppViewManager.AddRoles, GetParameter());
+            await navigationService.NavigateAsync(AppViews.AddRoles, GetParameter());
         }
 
         /// <summary>

@@ -1,9 +1,8 @@
 ﻿using Acr.UserDialogs;
-using AppFramework.Shared.Services.Layer;
 
-namespace AppFramework.Shared.Services.Layer
+namespace AppFramework.Shared
 {
-    public class ApplayerService : IApplayerService
+    public class UserDialogService : IUserDialogService
     { 
         /// <summary>
         /// 显示等待窗口

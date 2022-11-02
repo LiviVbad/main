@@ -11,11 +11,13 @@
 namespace AppFramework.Shared.ViewModels
 {
     using AppFramework.Shared.Core;
-    using AppFramework.Shared.Services;
     using AppFramework.Shared.Services.Storage;
     using AppFramework.ApiClient;
     using AppFramework.Shared.Services.Account;
-    using Prism.Commands; 
+    using Prism.Commands;
+    using AppFramework.Shared.Services.Navigation;
+    using AppFramework.Shared.Services.Messenger;
+    using AppFramework.Shared.Views;
 
     /// <summary>
     /// 应用启动初始化操作
@@ -75,9 +77,9 @@ namespace AppFramework.Shared.ViewModels
             IsDisplayLayer = false;
 
             if (accessTokenManager.IsUserLoggedIn)
-                regionNavigateService.Navigate(AppRegionManager.Index, AppViewManager.Main);
+                regionNavigateService.Navigate(AppRegions.Index, AppViews.Main);
             else
-                regionNavigateService.Navigate(AppRegionManager.Index, AppViewManager.Login);
+                regionNavigateService.Navigate(AppRegions.Index, AppViews.Login);
 
             initialize = true;
         }

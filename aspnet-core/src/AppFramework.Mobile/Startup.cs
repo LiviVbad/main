@@ -6,10 +6,41 @@ using AppFramework.Shared.ViewModels;
 using AppFramework.Shared.Views;
 using AppFramework.Shared.Services.Account;
 using AppFramework.Shared.Services.Storage;
-using AppFramework.Shared.Services.Layer;
 using AppFramework.Shared.Services;
-using AppFramework.Shared.Validations; 
-using AppFramework.Shared.Services.Navigation; 
+using AppFramework.Shared.Validations;
+using AppFramework.Shared.Services.Navigation;
+
+using AppFramework.Authorization.Roles;
+using AppFramework.Authorization.Users;
+using AppFramework.MultiTenancy;
+using AppFramework.Editions;
+using AppFramework.Auditing;
+using AppFramework.DynamicEntityProperties;
+using AppFramework.ApiClient;
+using AppFramework.ApiClient.Models;
+using AppFramework.Configuration;
+using AppFramework.Authorization.Users.Profile;
+using AppFramework.Authorization.Accounts;
+using AppFramework.Localization;
+using AppFramework.Sessions;
+using AppFramework.MultiTenancy.HostDashboard;
+using AppFramework.Caching;
+using AppFramework.Tenants.Dashboard;
+using AppFramework.Organizations;
+using AppFramework.Application;
+using AppFramework.Application.Client;
+using AppFramework.Application.MultiTenancy.HostDashboard;
+using AppFramework.Application.Organizations;
+using AppFramework.Application.MultiTenancy;
+using AppFramework.Shared.Core;
+using Abp.Configuration.Startup;
+using AppFramework.Authorization.Permissions;
+using AppFramework.Configuration.Host;
+using AppFramework.Notifications;
+using AppFramework.Authorization.Users.Delegation;
+using AppFramework.Version;
+using AppFramework.Common;
+using AppFramework.Shared.Services.Datapager;
 
 #endregion ApplicationServices
 
@@ -24,11 +55,51 @@ namespace AppFramework.Shared
         public static void ConfigureSerivces(this IContainerRegistry services)
         {
             //注册应用程序依赖服务
-            services.RegisterCommonServices();
+
+            services.RegisterSingleton<IMessenger, Messenger>(); 
+            services.RegisterScoped<IRoleAppService, RoleAppService>();
+            services.RegisterScoped<IUserAppService, ProxyUserAppService>();
+            services.RegisterScoped<IUserLoginAppService, UserLoginAppService>();
+            services.RegisterScoped<IUserDelegationAppService, UserDelegationAppService>();
+            services.RegisterScoped<ITenantAppService, ProxyTenantAppService>();
+            services.RegisterScoped<IEditionAppService, EditionAppService>();
+            services.RegisterScoped<IAuditLogAppService, AuditLogAppService>();
+            services.RegisterScoped<ILanguageAppService, LanguageAppService>();
+            services.RegisterScoped<IPermissionTreesService, PermissionTreesService>();
+            services.RegisterScoped<INotificationAppService, NotificationAppService>();
+            services.RegisterScoped<IOrganizationUnitAppService, OrganizationUnitAppService>();
+            services.RegisterScoped<IDynamicPropertyAppService, DynamicPropertyAppService>();
+            services.RegisterScoped<ICachingAppService, CachingAppService>();
+            services.RegisterScoped<ITenantDashboardAppService, TenantDashboardAppService>();
+            services.RegisterScoped<IDynamicEntityPropertyAppService, DynamicEntityPropertyAppService>();
+            services.RegisterScoped<IDynamicEntityPropertyDefinitionAppService, DynamicEntityPropertyDefinitionAppService>();
+            services.RegisterScoped<IDynamicPropertyValueAppService, DynamicPropertyValueAppService>();
+            services.RegisterScoped<ICommonLookupAppService, ProxyCommonLookupAppService>();
+            services.RegisterScoped<IAccountAppService, ProxyAccountAppService>();
+            services.RegisterScoped<IProfileAppService, ProxyProfileAppService>();
+            services.RegisterScoped<ISessionAppService, ProxySessionAppService>();
+            services.RegisterScoped<IHostDashboardAppService, HostDashboardAppService>();
+            services.RegisterScoped<IHostSettingsAppService, HostSettingsAppService>();
+            services.RegisterScoped<IPermissionAppService, PermissionAppService>();
+            services.RegisterScoped<IPorxyCommandService, PorxyCommandService>();
+            services.RegisterScoped<IFeaturesService, FeaturesService>();
+            services.RegisterScoped<IUserLinkAppService, UserLinkAppService>();
+            services.RegisterScoped<IAbpVersionsAppService, AbpVersionsAppService>();
              
+            services.RegisterScoped<IDataPagerService, DataPagerService>();
+            services.RegisterSingleton<IPermissionService, PermissionService>();
+            services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
+            services.RegisterSingleton<IMultiTenancyConfig, MultiTenancyConfig>();
+            services.RegisterSingleton<IApplicationContext, ApplicationContext>();
+            services.RegisterSingleton<AbpApiClient>();
+            services.RegisterSingleton<AbpAuthenticateModel>();
+            services.RegisterScoped<UserConfigurationService>();
+            services.RegisterScoped<ProxyProfileControllerService>();
+            services.RegisterScoped<ProxyTokenAuthControllerService>();
+
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
             services.RegisterSingleton<IRegionNavigateService, RegionNavigateService>();
-            services.RegisterSingleton<IApplayerService, ApplayerService>();
+            services.RegisterSingleton<IUserDialogService, UserDialogService>();
             services.RegisterSingleton<IApplicationService, ApplicationService>();
             services.RegisterSingleton<IAccountService, AccountService>();
             services.RegisterSingleton<IAccountStorageService, AccountStorageService>();
@@ -38,37 +109,23 @@ namespace AppFramework.Shared
             services.RegisterValidator();
 
             /*
-             *  注册应用程序模块 (Prism区域导航 ContenView)
-             *  
-             *  包含如下:登录页、系统首页、 统计面板、用户视图、
-             *          角色视图、语言视图 租户视图、版本视图、
-             *          审计日志视图、动态属性视图、
-             *          组织机构视图、设置视图。
+             *  注册应用程序模块 (Prism区域导航 ContenView) 
              */
-            services.RegisterForRegionNavigation<LoginView, LoginViewModel>(AppViewManager.Login);
-            services.RegisterForRegionNavigation<MainView, MainViewModel>(AppViewManager.Main);
-            services.RegisterForRegionNavigation<DashboardView, DashboardViewModel>(AppViewManager.Dashboard);
-            services.RegisterForRegionNavigation<UserView, UserViewModel>(AppViewManager.User);
-            services.RegisterForRegionNavigation<RoleView, RoleViewModel>(AppViewManager.Role);
-            services.RegisterForRegionNavigation<LanguageView, LanguageViewModel>(AppViewManager.Language);
-            services.RegisterForRegionNavigation<TenantView, TenantViewModel>(AppViewManager.Tenant);
-            services.RegisterForRegionNavigation<EditionView, EditionViewModel>(AppViewManager.Edition);
-            services.RegisterForRegionNavigation<AuditLogView, AuditLogViewModel>(AppViewManager.AuditLog);
-            services.RegisterForRegionNavigation<DynamicPropertyView, DynamicPropertyViewModel>(AppViewManager.DynamicProperty);
-            services.RegisterForRegionNavigation<OrganizationView, OrganizationViewModel>(AppViewManager.Organization);
-            services.RegisterForRegionNavigation<SettingsView, SettingsViewModel>(AppViewManager.Setting);
+            services.RegisterForRegionNavigation<LoginView, LoginViewModel>(AppViews.Login);
+            services.RegisterForRegionNavigation<MainView, MainViewModel>(AppViews.Main);
+            services.RegisterForRegionNavigation<DashboardView, DashboardViewModel>(AppViews.Dashboard);
+            services.RegisterForRegionNavigation<UserView, UserViewModel>(AppViews.User);
+            services.RegisterForRegionNavigation<RoleView, RoleViewModel>(AppViews.Role);
+            services.RegisterForRegionNavigation<LanguageView, LanguageViewModel>(AppViews.Language);
+            services.RegisterForRegionNavigation<TenantView, TenantViewModel>(AppViews.Tenant);
+            services.RegisterForRegionNavigation<EditionView, EditionViewModel>(AppViews.Edition);
+            services.RegisterForRegionNavigation<AuditLogView, AuditLogViewModel>(AppViews.AuditLog);
+            services.RegisterForRegionNavigation<DynamicPropertyView, DynamicPropertyViewModel>(AppViews.DynamicProperty);
+            services.RegisterForRegionNavigation<OrganizationView, OrganizationViewModel>(AppViews.Organization);
+            services.RegisterForRegionNavigation<SettingsView, SettingsViewModel>(AppViews.Setting);
 
             /*
-             *  注册应用程序页面 (导航页 ContentPage)
-             * 
-             *  包含如下: 初始化页、 用户详情页、
-             *           角色详情页、租户详情页、
-             *           版本详情页、语言详情页、
-             *           新增角色页、新增用户页、
-             *           组织机构详情页、动态熟悉详情页、
-             *           个人设置页、忘记密码页、
-             *           修改密码页、邮件激活页
-             *           头像详情页、双重验证页
+             *  注册应用程序页面 (导航页 ContentPage) 
              */
 
             services.RegisterDialog<MyProfileView, MyProfileViewModel>();

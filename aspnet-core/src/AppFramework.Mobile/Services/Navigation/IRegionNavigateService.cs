@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AppFramework.Shared.Services
+namespace AppFramework.Shared.Services.Navigation
 {
     /// <summary>
     /// 区域导航服务接口
@@ -14,7 +14,7 @@ namespace AppFramework.Shared.Services
         /// <param name="regionName">区域名称</param>
         /// <param name="pageName">页面名称</param>
         void Navigate(string regionName, string pageName);
-         
+
         /// <summary>
         /// 清空
         /// </summary>

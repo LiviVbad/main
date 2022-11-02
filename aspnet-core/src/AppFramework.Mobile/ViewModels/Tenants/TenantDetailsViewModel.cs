@@ -11,7 +11,9 @@ using Prism.Commands;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using AppFramework.Common; 
+using AppFramework.Common;
+using AppFramework.Shared.Services.Messenger;
+using AppFramework.Shared.Extensions;
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -88,7 +90,7 @@ namespace AppFramework.Shared.ViewModels
             {
                 isNewTenant = value;
                 IsDeleteButtonVisible = !isNewTenant && permissionService.HasPermission(AppPermissions.TenantDelete);
-                PageTitle = isNewTenant ? Local.Localize(AppLocalizationKeys.CreatingNewTenant) : Local.Localize(AppLocalizationKeys.EditTenant);
+                PageTitle = isNewTenant ? Local.Localize(LocalizationKeys.CreatingNewTenant) : Local.Localize(LocalizationKeys.EditTenant);
                 RaisePropertyChanged();
             }
         }
@@ -250,7 +252,7 @@ namespace AppFramework.Shared.ViewModels
                 await WebRequest.Execute(() =>
                     tenantAppService.UpdateTenant(input),
                     GoBackAsync);
-            }, AppLocalizationKeys.SavingWithThreeDot);
+            }, LocalizationKeys.SavingWithThreeDot);
         }
 
         private async Task CreateTenantAsync(CreateTenantInput input)
@@ -260,16 +262,16 @@ namespace AppFramework.Shared.ViewModels
                 await WebRequest.Execute(() =>
                     tenantAppService.CreateTenant(input),
                     GoBackAsync);
-            }, AppLocalizationKeys.SavingWithThreeDot);
+            }, LocalizationKeys.SavingWithThreeDot);
         }
 
         private async void DeleteTenantAsync()
         {
             var accepted = await UserDialogs.Instance.ConfirmAsync(
-                Local.Localize(AppLocalizationKeys.TenantDeleteWarningMessage, Model.TenancyName),
-                Local.Localize(AppLocalizationKeys.AreYouSure),
-                Local.Localize(AppLocalizationKeys.Ok),
-                Local.Localize(AppLocalizationKeys.Cancel));
+                Local.Localize(LocalizationKeys.TenantDeleteWarningMessage, Model.TenancyName),
+                Local.Localize(LocalizationKeys.AreYouSure),
+                Local.Localize(LocalizationKeys.Ok),
+                Local.Localize(LocalizationKeys.Cancel));
 
             if (!accepted) return;
 
@@ -377,7 +379,7 @@ namespace AppFramework.Shared.ViewModels
         private void AddNotAssignedItem()
         {
             Editions.Insert(0, new SubscribableEditionComboboxItemDto(NotAssignedValue,
-                string.Format("- {0} -", Local.Localize(AppLocalizationKeys.NotAssigned)), null));
+                string.Format("- {0} -", Local.Localize(LocalizationKeys.NotAssigned)), null));
         }
 
         private void SetSelectedEdition(int? editionId)

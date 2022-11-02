@@ -4,7 +4,8 @@ using Prism.Regions.Navigation;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using AppFramework.Shared.Models; 
+using AppFramework.Shared.Models;
+using AppFramework.Shared.Extensions;
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -167,31 +168,31 @@ namespace AppFramework.Shared.ViewModels
                 {
                     new TopStatusItem()
                     {
-                        Title=Local.Localize(AppLocalizationKeys.NewSubscriptionAmount),
-                        Logo=$"{AppLocalizationKeys.NewSubscriptionAmount}.png",
+                        Title=Local.Localize(LocalizationKeys.NewSubscriptionAmount),
+                        Logo=$"{LocalizationKeys.NewSubscriptionAmount}.png",
                         Amount=topStatsData.NewSubscriptionAmount,
                         BackgroundGradientStart = "#f59083",
                         BackgroundGradientEnd = "#fae188",
                     },
                     new TopStatusItem()
                     {
-                        Title=Local.Localize(AppLocalizationKeys.NewTenants),
-                        Logo=$"{AppLocalizationKeys.NewTenants}.png",
+                        Title=Local.Localize(LocalizationKeys.NewTenants),
+                        Logo=$"{LocalizationKeys.NewTenants}.png",
                         Amount=topStatsData.NewTenantsCount,
                         BackgroundGradientStart = "#ff7272",
                         BackgroundGradientEnd = "#f650c5",
                     },
                     new TopStatusItem()
                     {
-                        Title=Local.Localize(AppLocalizationKeys.DashboardSampleStatistics),
-                        Logo=$"{AppLocalizationKeys.DashboardSampleStatistics}.png",
+                        Title=Local.Localize(LocalizationKeys.DashboardSampleStatistics),
+                        Logo=$"{LocalizationKeys.DashboardSampleStatistics}.png",
                         Amount=topStatsData.DashboardPlaceholder1,
                         BackgroundGradientStart = "#5e7cea",
                         BackgroundGradientEnd = "#1dcce3",
                     },
                     new TopStatusItem()
                     {
-                        Title=Local.Localize(AppLocalizationKeys.DashboardSampleStatistics),
+                        Title=Local.Localize(LocalizationKeys.DashboardSampleStatistics),
                         Logo="DashboardSampleStatistics2.png",
                         Amount=topStatsData.DashboardPlaceholder2,
                         BackgroundGradientStart = "#255ea6",

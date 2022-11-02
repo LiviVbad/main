@@ -9,23 +9,25 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
-    using AppFramework.Shared.Models;
-    using AppFramework.Shared.Core;
+    using AppFramework.Shared.Models; 
     using AppFramework.Shared; 
 
-    public class OrganizationViewModel : RegionCurdViewModel
+    public class OrganizationViewModel : NavigationCurdViewModel
     {
         private readonly IOrganizationUnitAppService appService;
-
+         
         public DelegateCommand<OrganizationListModel> AddRoleCommand { get; private set; }
         public DelegateCommand<OrganizationListModel> AddUserCommand { get; private set; }
         public DelegateCommand<OrganizationListModel> AddSubUnitCommand { get; private set; }
+        public DelegateCommand<OrganizationListModel> DeleteCommand { get; private set; }
+        public DelegateCommand<OrganizationListModel> EditCommand { get; private set; }
 
-        public OrganizationViewModel(IOrganizationUnitAppService appService, IMessenger messenger)
+        public OrganizationViewModel(IOrganizationUnitAppService appService)
         {
             this.appService = appService;
-            messenger.Sub(AppMessengerKeys.Organization, async () => await RefreshAsync());
-            AddSubUnitCommand = new DelegateCommand<OrganizationListModel>(AddSubUnit);
+            AddSubUnitCommand = new DelegateCommand<OrganizationListModel>(AddSubUnit); 
+            EditCommand = new DelegateCommand<OrganizationListModel>(t => Edit());
+            DeleteCommand = new DelegateCommand<OrganizationListModel>(Delete);
         }
 
         private async void AddSubUnit(OrganizationListModel obj)
@@ -36,18 +38,15 @@
             await navigationService.NavigateAsync(GetPageName("Details"), param);
         }
 
-        public override async void Delete(object selectedItem)
+        public async void Delete(OrganizationListModel organizationList)
         {
-            if (selectedItem is OrganizationListModel item)
-            {
-                if (!await dialogService.DeleteConfirm()) return;
+            if (!await dialogService.DeleteConfirm()) return;
 
-                await appService.DeleteOrganizationUnit(new EntityDto<long>()
-                {
-                    Id = item.Id
-                });
-                await RefreshAsync();
-            }
+            await appService.DeleteOrganizationUnit(new EntityDto<long>()
+            {
+                Id = organizationList.Id
+            });
+            await RefreshAsync();
         }
 
         public override async Task RefreshAsync()
@@ -70,7 +69,7 @@
                 MemberCount = t.MemberCount,
             }).ToList();
 
-            GridModelList = BuildOrganizationTree(organizationUnits);
+             dataPager.GridModelList = BuildOrganizationTree(organizationUnits);
 
             await Task.CompletedTask;
         }

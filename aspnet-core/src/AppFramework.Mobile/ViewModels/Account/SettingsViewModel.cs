@@ -8,8 +8,10 @@ using Prism.Regions.Navigation;
 using Prism.Services.Dialogs;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks; 
-using AppFramework.Shared.Core; 
+using System.Threading.Tasks;
+using AppFramework.Shared.Core;
+using AppFramework.Shared.Services.Messenger;
+using AppFramework.Shared.Views;
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -20,7 +22,6 @@ namespace AppFramework.Shared.ViewModels
 
         private readonly IAccountService accountService;
         private readonly IMessenger messenger;
-        private readonly IDialogService dialogService;
         private readonly IApplicationContext applicationContext;
         private readonly IProfileAppService profileAppService;
 
@@ -29,7 +30,7 @@ namespace AppFramework.Shared.ViewModels
 
         private bool isInitialized;
 
-        public SettingsViewModel(IDialogService dialogService,
+        public SettingsViewModel(
             IApplicationContext applicationContext,
             IProfileAppService profileAppService,
             IAccountService accountService,
@@ -37,7 +38,6 @@ namespace AppFramework.Shared.ViewModels
         {
             LogoutCommand = new DelegateCommand(() => accountService.LogoutAsync());
             ChangePasswordCommand = new DelegateCommand(() => AsyncRunner.Run(ChangePasswordAsync()));
-            this.dialogService = dialogService;
             this.applicationContext = applicationContext;
             this.profileAppService = profileAppService;
             this.accountService = accountService;
@@ -85,7 +85,7 @@ namespace AppFramework.Shared.ViewModels
 
         private async Task ChangePasswordAsync()
         {
-            await dialogService.ShowDialogAsync(AppViewManager.ChangePassword);
+            await dialogService.ShowDialogAsync(AppViews.ChangePassword);
         }
 
         public override void OnNavigatedTo(INavigationContext navigationContext)

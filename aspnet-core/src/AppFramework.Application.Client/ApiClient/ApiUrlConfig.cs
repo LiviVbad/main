@@ -5,9 +5,9 @@ using System.Configuration;
 namespace AppFramework.ApiClient
 {
     public static class ApiUrlConfig
-    { 
-        public static string DefaultHostUrl = ConfigurationManager.AppSettings["DefaultHostUrl"].ToString();
-
+    {
+        public static string DefaultHostUrl => "https://localhost:44301/";
+             
         public static string BaseUrl { get; private set; }
 
         static ApiUrlConfig()

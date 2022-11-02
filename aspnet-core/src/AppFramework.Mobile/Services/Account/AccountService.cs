@@ -9,7 +9,10 @@ using AppFramework.Sessions.Dto;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System.Threading.Tasks;
-using AppFramework.Shared.Models; 
+using AppFramework.Shared.Models;
+using AppFramework.Shared.Services.Navigation;
+using AppFramework.Shared.Services.Messenger;
+using AppFramework.Shared.Views;
 
 namespace AppFramework.Shared.Services.Account
 {
@@ -104,7 +107,7 @@ namespace AppFramework.Shared.Services.Account
             {
                 NavigationParameters param = new NavigationParameters();
                 param.Add("Value", AuthenticateResultModel);
-                await navigationService.NavigateAsync(AppViewManager.SendTwoFactorCode, param);
+                await navigationService.NavigateAsync(AppViews.SendTwoFactorCode, param);
                 return true; //待更新...
             }
 
@@ -116,7 +119,7 @@ namespace AppFramework.Shared.Services.Account
             AuthenticateModel.Password = null;
             await SetCurrentUserInfoAsync();
             await AppConfigurationManager.GetAsync();
-            regionNavigateService.Navigate(AppRegionManager.Index, AppViewManager.Main);
+            regionNavigateService.Navigate(AppRegions.Index, AppViews.Main);
 
             return true;
         }

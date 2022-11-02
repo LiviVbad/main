@@ -1,9 +1,8 @@
-﻿using AppFramework.Shared.Services;
-using Prism.Regions;
+﻿using Prism.Regions;
 using Prism.Regions.Navigation;
 using System;
 
-namespace AppFramework.Shared.Services
+namespace AppFramework.Shared.Services.Navigation
 {
     /// <summary>
     /// 区域导航服务
@@ -40,7 +39,7 @@ namespace AppFramework.Shared.Services
             regionManager.RequestNavigate(regionName, pageName, back =>
             {
 #if DEBUG
-                if ((bool)back.Result)
+                if (!(bool)back.Result)
                 {
                     System.Diagnostics.Debug.WriteLine($"Navigate Error,ex:{back.Error.Message}");
                 }

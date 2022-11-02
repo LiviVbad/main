@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using AppFramework.Authorization.Accounts;
-using AppFramework.Authorization.Accounts.Dto; 
+using AppFramework.Authorization.Accounts.Dto;
+using AppFramework.Shared.Extensions;
 using Prism.Commands;
 using System.Threading.Tasks;
 
@@ -62,8 +63,8 @@ namespace AppFramework.Shared.ViewModels
 
         private async Task PasswordResetMailSentAsync()
         {
-            await UserDialogs.Instance.AlertAsync(Local.Localize(AppLocalizationKeys.ActivationMailSentMessage), 
-                Local.Localize(AppLocalizationKeys.MailSent), Local.Localize(AppLocalizationKeys.Ok));
+            await UserDialogs.Instance.AlertAsync(Local.Localize(LocalizationKeys.ActivationMailSentMessage), 
+                Local.Localize(LocalizationKeys.MailSent), Local.Localize(LocalizationKeys.Ok));
 
             base.OnSave();
         }

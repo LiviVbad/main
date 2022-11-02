@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System; 
 using System.Text;
 
 namespace AppFramework.Shared.Core
@@ -11,7 +10,7 @@ namespace AppFramework.Shared.Core
         /// </summary>
         /// <param name="subscriber">订阅者</param>
         /// <param name="token">令牌</param>
-        void Send(string subscriber, string token);
+        void Send(string token);
 
         /// <summary>
         /// 根据订阅者的令牌发送带参数的消息
@@ -20,7 +19,7 @@ namespace AppFramework.Shared.Core
         /// <param name="subscriber">订阅者</param>
         /// <param name="token">令牌</param>
         /// <param name="message">消息内容</param>
-        void Send<T>(string subscriber, string token, T message);
+        void Send<T>(string token, T message);
 
         /// <summary>
         /// 根据命令发送消息
@@ -39,25 +38,22 @@ namespace AppFramework.Shared.Core
         /// <summary>
         /// 订阅消息
         /// </summary>
-        /// <param name="subscriber">订阅者</param>
         /// <param name="token">令牌</param>
         /// <param name="action">委托</param>
-        void Subscribe(string subscriber, string token, Action action);
+        void Subscribe(string token, Action action);
 
         /// <summary>
         /// 订阅消息
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="subscriber">订阅者</param>
         /// <param name="token">令牌</param>
         /// <param name="action">带参数的委托</param>
-        void Subscribe<T>(string subscriber, string token, Action<T> action);
+        void Subscribe<T>(string token, Action<T> action);
 
         /// <summary>
         /// 取消订阅消息
         /// </summary>
-        /// <param name="subscriber">订阅者</param>
         /// <param name="token">令牌</param>
-        void Unsubscribe(string subscriber, string token);
+        void Unsubscribe(string token);
     }
 }

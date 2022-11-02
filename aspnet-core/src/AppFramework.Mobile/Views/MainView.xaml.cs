@@ -4,7 +4,9 @@ using Xamarin.Forms;
 using AppFramework.Shared.Core;
 using AppFramework.Shared.Models;
 using Xamarin.CommunityToolkit.Effects;
-using Xamarin.CommunityToolkit.Helpers; 
+using Xamarin.CommunityToolkit.Helpers;
+using AppFramework.Shared.Services.Messenger;
+using AppFramework.Shared.Services.Navigation;
 
 namespace AppFramework.Shared.Views
 {
@@ -60,7 +62,7 @@ namespace AppFramework.Shared.Views
         /// </summary>
         private void RemoveAll()
         {
-            RegionManager.GetRegionManager(DisplayView).Regions.Remove(AppRegionManager.Main);
+            RegionManager.GetRegionManager(DisplayView).Regions.Remove(AppRegions.Main);
         }
     }
 }

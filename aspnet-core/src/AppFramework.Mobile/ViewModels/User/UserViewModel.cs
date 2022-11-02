@@ -5,20 +5,21 @@ using AppFramework.Authorization.Users.Profile;
 using Prism.Navigation;
 using System.Threading.Tasks;
 using AppFramework.Shared.Models;
-using AppFramework.Shared.Core; 
+using AppFramework.Shared.Services.Permission;
+using AppFramework.Shared.Views;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class UserViewModel : RegionCurdViewModel
+    public class UserViewModel : NavigationCurdViewModel
     {
         #region 字段/属性
 
         private readonly IUserAppService appService;
         private readonly IProfileAppService profileService;
-
-        private int currentPage;
-        private int totalUsersCount;
+         
         public GetUsersInput input { get; set; }
+
+        public UserListModel SelectedItem = null;
 
         public string FilterText
         {
@@ -33,10 +34,7 @@ namespace AppFramework.Shared.ViewModels
 
         #endregion 字段/属性
 
-        public UserViewModel(
-            IUserAppService appService,
-            IProfileAppService profileService,
-            IMessenger messenger)
+        public UserViewModel(IUserAppService appService, IProfileAppService profileService)
         {
             input = new GetUsersInput
             {
@@ -44,7 +42,6 @@ namespace AppFramework.Shared.ViewModels
                 MaxResultCount = AppConsts.DefaultPageSize,
                 SkipCount = 0
             };
-            messenger.Sub(AppMessengerKeys.User, async () => await RefreshAsync());
             this.appService = appService;
             this.profileService = profileService;
         }
@@ -54,25 +51,22 @@ namespace AppFramework.Shared.ViewModels
             await GotoUserDetailsAsync(null);
         }
 
-        public override async void Delete(object selectedItem)
+        public async void Delete()
         {
-            if (selectedItem is UserListDto item)
-            {
-                if (!await dialogService.DeleteConfirm()) return;
+            if (!await dialogService.DeleteConfirm()) return;
 
-                await appService.DeleteUser(new EntityDto<long>()
-                {
-                    Id = item.Id
-                });
-                await RefreshAsync();
-            }
+            await appService.DeleteUser(new EntityDto<long>()
+            {
+                Id= SelectedItem.Id
+            });
+            await RefreshAsync();
         }
 
         private async Task GotoUserDetailsAsync(UserListModel user)
         {
             NavigationParameters param = new NavigationParameters();
             param.Add("Value", user);
-            await navigationService.NavigateAsync(AppViewManager.UserDetails, param);
+            await navigationService.NavigateAsync(AppViews.UserDetails, param);
         }
 
         private async Task SearchWithDelayAsync(string filterText)
@@ -84,9 +78,8 @@ namespace AppFramework.Shared.ViewModels
                 if (filterText != input.Filter)
                     return;
             }
-
-            currentPage = 0;
-            input.SkipCount = 0;
+             
+            dataPager.SkipCount = 0;
 
             await RefreshAsync();
         }
@@ -95,18 +88,21 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetUsers(input), RefreshSuccessed);
+                await WebRequest.Execute(() => appService.GetUsers(input), async result =>
+                {
+                    dataPager.SetList(result);
+                    await Task.CompletedTask;
+                });
             });
         }
 
-        private async Task RefreshSuccessed(PagedResultDto<UserListDto> result)
+        protected override PermissionItem[] CreatePermissionItems()
         {
-            GridModelList.Clear();
-
-            foreach (var item in result.Items)
-                GridModelList.Add(item);
-
-            await Task.CompletedTask;
+            return new PermissionItem[]
+            {
+                new PermissionItem(AppPermissions.UserEdit, Local.Localize("Change"),Edit),
+                new PermissionItem(AppPermissions.UserDelete, Local.Localize("Delete"),Delete)
+            };
         }
     }
 }

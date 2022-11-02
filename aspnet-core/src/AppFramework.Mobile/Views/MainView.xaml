@@ -42,7 +42,7 @@
                 <ContentView
                     x:Name="DisplayView"
                     Grid.Row="1"
-                    prism:RegionManager.RegionName="{x:Static manager:AppRegionManager.Main}" />
+                    prism:RegionManager.RegionName="{x:Static manager:AppRegions.Main}" />
 
                 <views:SkinView x:Name="viewSetting" Grid.RowSpan="2" />
             </Grid>

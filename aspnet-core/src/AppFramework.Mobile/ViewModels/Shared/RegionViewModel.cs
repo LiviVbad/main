@@ -1,6 +1,4 @@
-﻿using AppFramework.Shared.Services.Layer;
-using AppFramework.Shared.ViewModels;
-using Prism.Regions.Navigation;
+﻿using Prism.Regions.Navigation;
 using System;
 using System.Threading.Tasks;
 using Prism.Ioc;
@@ -11,13 +9,13 @@ namespace AppFramework.Shared.ViewModels
 {
     public class RegionViewModel : ViewModelBase, IRegionAware
     {
-        private readonly IApplayerService applayer;
+        private readonly IUserDialogService applayer;
         public readonly IDialogService dialogService;
         public readonly INavigationService navigationService;
 
         public RegionViewModel()
         {
-            applayer = ContainerLocator.Container.Resolve<IApplayerService>();
+            applayer = ContainerLocator.Container.Resolve<IUserDialogService>();
             dialogService = ContainerLocator.Container.Resolve<IDialogService>();
             navigationService = ContainerLocator.Container.Resolve<INavigationService>();
         }

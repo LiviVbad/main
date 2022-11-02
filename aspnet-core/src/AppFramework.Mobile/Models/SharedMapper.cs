@@ -10,18 +10,17 @@ using AppFramework.Localization.Dto;
 using AppFramework.MultiTenancy.Dto;
 using AppFramework.Organizations.Dto;
 using AppFramework.Sessions.Dto;
-using AppFramework.Shared.Models;
 using AutoMapper;
 using AppFramework.Shared.Models.Configuration;
 using AppFramework.Configuration.Host.Dto;
 using AppFramework.Configuration.Dto;
 using AppFramework.Version.Dtos;
 
-namespace AppFramework.Shared.Core
+namespace AppFramework.Shared.Models
 {
-    public class AppSharedMapper : Profile
+    public class SharedMapper : Profile
     {
-        public AppSharedMapper()
+        public SharedMapper()
         {
             //系统模块中实体映射关系 
             CreateMap<UserListDto, UserListModel>().ReverseMap();

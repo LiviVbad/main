@@ -3,7 +3,8 @@ using AppFramework.Shared.Models.Configuration;
 using AppFramework.MultiTenancy.Dto;
 using FluentValidation;
 using FluentValidation.Validators;
-using Prism.Ioc; 
+using Prism.Ioc;
+using AppFramework.Shared.Extensions;
 
 namespace AppFramework.Shared.Validations
 {
@@ -37,7 +38,7 @@ namespace AppFramework.Shared.Validations
         /// <returns></returns>
         public static IRuleBuilderOptions<T, TProperty> IsRequired<T, TProperty>(
             this IRuleBuilder<T, TProperty> ruleBuilder,
-            string errorMessage = AppLocalizationKeys.RequiredField)
+            string errorMessage = LocalizationKeys.RequiredField)
         {
             return ruleBuilder.SetValidator(new NotEmptyValidator<T, TProperty>()).WithMessage(errorMessage);
         }
@@ -53,7 +54,7 @@ namespace AppFramework.Shared.Validations
         public static IRuleBuilderOptions<T, string> MaxLength<T>(
             this IRuleBuilder<T, string> ruleBuilder,
             int maximumLength,
-            string errorMessage = AppLocalizationKeys.MoreThanMaxStringLength)
+            string errorMessage = LocalizationKeys.MoreThanMaxStringLength)
         {
             return ruleBuilder.SetValidator(new MaximumLengthValidator<T>(maximumLength)).WithMessage(errorMessage);
         }
@@ -68,7 +69,7 @@ namespace AppFramework.Shared.Validations
         /// <returns></returns>
         public static IRuleBuilderOptions<T, string> MinLength<T>(this IRuleBuilder<T, string> ruleBuilder,
             int minimumLength,
-            string errorMessage = AppLocalizationKeys.LessThanMinStringLength)
+            string errorMessage = LocalizationKeys.LessThanMinStringLength)
         {
             return ruleBuilder.SetValidator(new MinimumLengthValidator<T>(minimumLength)).WithMessage(errorMessage);
         }
@@ -84,7 +85,7 @@ namespace AppFramework.Shared.Validations
         public static IRuleBuilderOptions<T, string> Email<T>(
            this IRuleBuilder<T, string> ruleBuilder,
            EmailValidationMode mode = EmailValidationMode.AspNetCoreCompatible,
-           string errorMessage = AppLocalizationKeys.InvalidEmailAddress)
+           string errorMessage = LocalizationKeys.InvalidEmailAddress)
         {
 #pragma warning disable 618
             var validator = mode == EmailValidationMode.AspNetCoreCompatible ?
@@ -104,7 +105,7 @@ namespace AppFramework.Shared.Validations
         /// <returns></returns>
         public static IRuleBuilderOptions<T, string> Regular<T>(this IRuleBuilder<T, string> ruleBuilder,
             string expression,
-            string errorMessage = AppLocalizationKeys.InvalidRegularExpression)
+            string errorMessage = LocalizationKeys.InvalidRegularExpression)
         {
             return ruleBuilder.SetValidator(new RegularExpressionValidator<T>(expression)).WithMessage(errorMessage);
         }

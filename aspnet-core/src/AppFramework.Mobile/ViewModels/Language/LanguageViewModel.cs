@@ -1,51 +1,56 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Localization;
-using AppFramework.Localization.Dto; 
-using System.Threading.Tasks;
-using AppFramework.Shared.Core; 
+using AppFramework.Localization.Dto;
+using System.Threading.Tasks; 
+using AppFramework.Shared.Services.Permission;
+using AppFramework.Shared.Models;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class LanguageViewModel : RegionCurdViewModel
+    public class LanguageViewModel : NavigationCurdViewModel
     {
         private readonly ILanguageAppService appService;
 
-        public LanguageViewModel(ILanguageAppService languageAppService, IMessenger messenger)
+        public LanguageListModel SelectedItem => Map<LanguageListModel>(dataPager.SelectedItem);
+
+        public LanguageViewModel(ILanguageAppService languageAppService)
         {
             this.appService = languageAppService;
-            messenger.Sub(AppMessengerKeys.Language, async () => await RefreshAsync());
         }
 
         public override async Task RefreshAsync()
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetLanguages(), RefreshSuccessed);
+                await WebRequest.Execute(() => appService.GetLanguages(), async result =>
+                {
+                    dataPager.SetList(new PagedResultDto<ApplicationLanguageListDto>()
+                    {
+                        Items = result.Items
+                    });
+                    await Task.CompletedTask;
+                });
             });
         }
 
-        public override async void Delete(object selectedItem)
+        public async void Delete()
         {
-            if (selectedItem is ApplicationLanguageListDto item)
-            {
-                if (!await dialogService.DeleteConfirm()) return;
+            if (!await dialogService.DeleteConfirm()) return;
 
-                await appService.DeleteLanguage(new EntityDto()
-                {
-                    Id = item.Id
-                });
-                await RefreshAsync();
-            }
+            await appService.DeleteLanguage(new EntityDto()
+            {
+                Id= SelectedItem.Id
+            });
+            await RefreshAsync();
         }
 
-        protected virtual async Task RefreshSuccessed(GetLanguagesOutput result)
+        protected override PermissionItem[] CreatePermissionItems()
         {
-            GridModelList.Clear();
-
-            foreach (var item in result.Items)
-                GridModelList.Add(item);
-
-            await Task.CompletedTask;
+            return new PermissionItem[]
+            {
+                new PermissionItem(AppPermissions.LanguageEdit, Local.Localize("Change"),Edit),
+                new PermissionItem(AppPermissions.LanguageDelete, Local.Localize("Delete"),Delete)
+            };
         }
     }
 }

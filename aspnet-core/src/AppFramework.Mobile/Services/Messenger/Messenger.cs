@@ -17,34 +17,34 @@ namespace AppFramework.Shared.Core
 
         public void SendByToken<T>(string token, T message)
         {
-            Send(string.Empty, token, message);
+            Send(token, message);
         }
 
-        public void Send(string subscriber, string token)
+        public void Send(string token)
         {
-            var weakMessages = GetWeakEvents(subscriber, token);
+            var weakMessages = GetWeakEvents(token);
             if (weakMessages.Length > 0)
                 weakMessages.SendMessage();
         }
 
-        public void Send<T>(string subscriber, string token, T message)
+        public void Send<T>( string token, T message)
         {
-            var weakMessages = GetWeakEvents(subscriber, token);
+            var weakMessages = GetWeakEvents(token);
             if (weakMessages.Length > 0)
                 weakMessages.SendMessage(message);
         }
 
-        public void Subscribe(string subscriber, string token, Action action)
+        public void Subscribe(string token, Action action)
         {
-            var weakEventCollection = GetWeakEventCollection(subscriber, token);
+            var weakEventCollection = GetWeakEventCollection(token);
             weakEventCollection.Add(new WeakAction(token, action));
 
             RefreshSubscribes(_weakEvents);
         }
 
-        public void Subscribe<T>(string subscriber, string token, Action<T> action)
+        public void Subscribe<T>(string token, Action<T> action)
         {
-            var weakEventCollection = GetWeakEventCollection(subscriber, token);
+            var weakEventCollection = GetWeakEventCollection(token);
             weakEventCollection.Add(new WeakAction<T>(token, action));
 
             RefreshSubscribes(_weakEvents);
@@ -55,20 +55,19 @@ namespace AppFramework.Shared.Core
         /// </summary>
         /// <param name="subscriber">订阅者</param>
         /// <param name="token">令牌</param>
-        public void Unsubscribe(string subscriber, string token)
+        public void Unsubscribe( string token)
         {
-            if (string.IsNullOrEmpty(subscriber) ||
-               string.IsNullOrWhiteSpace(token) ||
+            if (string.IsNullOrWhiteSpace(token) ||
                _weakEvents == null ||
                _weakEvents.Count == 0 ||
-               !_weakEvents.ContainsKey(subscriber))
+               !_weakEvents.ContainsKey(token))
             {
                 return;
             }
 
-            if (_weakEvents.ContainsKey(subscriber))
+            if (_weakEvents.ContainsKey(token))
             {
-                var weakMessages = _weakEvents[subscriber];
+                var weakMessages = _weakEvents[token];
 
                 foreach (var weakMessage in weakMessages)
                 {
@@ -83,30 +82,17 @@ namespace AppFramework.Shared.Core
         /// <summary>
         /// 根据订阅者及令牌获取匹配事件数组
         /// </summary>
-        /// <param name="subscriber"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        private IWeakAction[] GetWeakEvents(string subscriber, string token)
+        private IWeakAction[] GetWeakEvents(string token)
         {
             IWeakAction[] weakMessages = new IWeakAction[0];
-            if (string.IsNullOrEmpty(subscriber))
+            foreach (var item in _weakEvents)
             {
-                foreach (var item in _weakEvents)
-                {
-                    weakMessages = weakMessages
-                        .Union(item.Value
-                        .Where(t => t.IsAlive && t.Token.Equals(token)))
-                        .ToArray();
-                }
-            }
-            else
-            {
-                if (_weakEvents.ContainsKey(subscriber))
-                {
-                    weakMessages = _weakEvents[subscriber]
-                        .Where(q => q.Token.Equals(token))
-                        .ToArray();
-                }
+                weakMessages = weakMessages
+                    .Union(item.Value
+                    .Where(t => t.IsAlive && t.Token.Equals(token)))
+                    .ToArray();
             }
             return weakMessages;
         }
@@ -114,10 +100,9 @@ namespace AppFramework.Shared.Core
         /// <summary>
         /// 根据订阅者及令牌获取事件集合源
         /// </summary>
-        /// <param name="subscriber"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        private IWeakActionCollection GetWeakEventCollection(string subscriber, string token)
+        private IWeakActionCollection GetWeakEventCollection(string token)
         {
             if (_weakEvents == null)
                 _weakEvents = new Dictionary<string, IWeakActionCollection>();
@@ -125,13 +110,13 @@ namespace AppFramework.Shared.Core
             Dictionary<string, IWeakActionCollection> temps = _weakEvents;
             IWeakActionCollection weakMessages;
 
-            if (!_weakEvents.ContainsKey(subscriber))
+            if (!_weakEvents.ContainsKey(token))
             {
                 weakMessages = new WeakEventCollection();
-                temps[subscriber] = weakMessages;
+                temps[token] = weakMessages;
             }
             else
-                weakMessages = temps[subscriber];
+                weakMessages = temps[token];
 
             return weakMessages;
         }

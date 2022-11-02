@@ -7,9 +7,9 @@ using System.Linq;
 
 namespace AppFramework.Shared
 {
-    public class PermissionPorxyService : BindableBase, IPermissionPorxyService
+    public class PorxyCommandService : BindableBase, IPorxyCommandService
     {
-        public PermissionPorxyService(IPermissionService permissionService)
+        public PorxyCommandService(IPermissionService permissionService)
         {
             permissions = new ObservableCollection<PermissionItem>();
             this.permissionService = permissionService;

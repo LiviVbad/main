@@ -324,18 +324,15 @@
 	  <Compile Update="Views\Organization\OrganizationDetailsView.xaml.cs">
 	    <DependentUpon>OrganizationDetailsView.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Organization\OrganizationView.xaml.cs">
-	    <DependentUpon>OrganizationView.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Views\Tenant\TenantView.xaml.cs">
 	    <DependentUpon>TenantView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 	<ItemGroup>
-	  <EmbeddedResource Update="Localization\Resources\LocalTranslation.resx">
+	  <EmbeddedResource Update="Extensions\Localization\Resources\LocalTranslation.resx">
 	    <Generator></Generator>
 	  </EmbeddedResource>
-	  <EmbeddedResource Update="Localization\Resources\LocalTranslation.zh-Hans.resx">
+	  <EmbeddedResource Update="Extensions\Localization\Resources\LocalTranslation.zh-Hans.resx">
 	    <Generator></Generator>
 	  </EmbeddedResource>
 	  <EmbeddedResource Update="Themes\DarkTheme.xaml">

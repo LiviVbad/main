@@ -1,6 +1,6 @@
-﻿namespace AppFramework.Shared
+﻿namespace AppFramework.Shared.Extensions
 {
-    public class AppLocalizationKeys
+    public class LocalizationKeys
     {
         public const string SavingWithThreeDot = "SavingWithThreeDot";
 

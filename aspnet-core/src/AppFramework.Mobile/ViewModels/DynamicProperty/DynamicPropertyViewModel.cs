@@ -1,48 +1,56 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.DynamicEntityProperties;
 using AppFramework.DynamicEntityProperties.Dto;
-using System.Threading.Tasks;
-using AppFramework.Shared.Core; 
+using System.Threading.Tasks; 
+using AppFramework.Shared.Services.Permission; 
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class DynamicPropertyViewModel : RegionCurdViewModel
+    public class DynamicPropertyViewModel : NavigationCurdViewModel
     {
         private readonly IDynamicPropertyAppService appService;
 
-        public DynamicPropertyViewModel(IDynamicPropertyAppService appService, IMessenger messenger)
+        public DynamicPropertyDto SelectedItem => Map<DynamicPropertyDto>(dataPager.SelectedItem);
+
+        public DynamicPropertyViewModel(IDynamicPropertyAppService appService)
         {
             this.appService = appService;
-            messenger.Sub(AppMessengerKeys.Dynamic, async () => await RefreshAsync());
         }
 
         public override async Task RefreshAsync()
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetAll(), RefreshSuccessed);
+                await WebRequest.Execute(() => appService.GetAll(), async result =>
+                {
+                    dataPager.SetList(new PagedResultDto<DynamicPropertyDto>()
+                    {
+                        Items = result.Items
+                    });
+
+                    await Task.CompletedTask;
+                });
             });
         }
 
-        public override async void Delete(object selectedItem)
+        public async void Delete()
         {
-            if (selectedItem is DynamicPropertyDto item)
-            {
-                if (!await dialogService.DeleteConfirm()) return;
+            if (!await dialogService.DeleteConfirm()) return;
 
-                await appService.Delete(new EntityDto(item.Id));
-                await RefreshAsync();
-            } 
+            await appService.Delete(new EntityDto()
+            {
+                 Id= SelectedItem.Id
+            });
+            await RefreshAsync();
         }
 
-        private async Task RefreshSuccessed(ListResultDto<DynamicPropertyDto> result)
+        protected override PermissionItem[] CreatePermissionItems()
         {
-            GridModelList.Clear();
-
-            foreach (var item in result.Items)
-                GridModelList.Add(item);
-
-            await Task.CompletedTask;
+            return new PermissionItem[]
+            {
+                new PermissionItem(AppPermissions.LanguageEdit, Local.Localize("Change"),Edit),
+                new PermissionItem(AppPermissions.LanguageDelete, Local.Localize("Delete"),Delete),
+            };
         }
     }
 }

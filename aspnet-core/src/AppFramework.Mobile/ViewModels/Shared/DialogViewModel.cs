@@ -1,26 +1,34 @@
-﻿using AppFramework.Shared.ViewModels;
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class DialogViewModel : DialogModelBase, IDialogAware
+    public class DialogViewModel : ViewModelBase, IDialogAware
     {
         public event Action<IDialogParameters> RequestClose;
+
+        public DialogViewModel()
+        {
+            SaveCommand = new DelegateCommand(OnSave);
+            CancelCommand = new DelegateCommand(Cancel);
+        }
+
+        public DelegateCommand SaveCommand { get; private set; }
+        public DelegateCommand CancelCommand { get; private set; }
 
         public virtual bool CanCloseDialog() => true;
 
         public void OnDialogClosed() { }
 
-        public override void Cancel()
+        public void Cancel()
         {
             DialogParameters param = new DialogParameters();
             param.Add("DialogResult", false);
             RequestClose(param);
         }
 
-        public override void OnSave()
+        public void OnSave()
         {
             Save(true);
         }

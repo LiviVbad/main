@@ -9,6 +9,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms; 
+using AppFramework.Shared.Extensions;
 
 namespace AppFramework.Shared.Services.Account
 {
@@ -78,7 +79,7 @@ namespace AppFramework.Shared.Services.Account
                                    AppContext.Value.Configuration.Auth.GrantedPermissions.Any();
 
             if (!hasAnyPermission)
-                AppDialogHelper.Warn(AppLocalizationKeys.NoPermission);
+                DialogHelper.Warn(LocalizationKeys.NoPermission);
         }
 
         /// <summary>

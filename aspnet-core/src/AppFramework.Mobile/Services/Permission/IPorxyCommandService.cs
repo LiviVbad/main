@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace AppFramework.Shared
 {
-    public interface IPermissionPorxyService
+    public interface IPorxyCommandService
     {
         /// <summary>
         /// 可用的权限列表
