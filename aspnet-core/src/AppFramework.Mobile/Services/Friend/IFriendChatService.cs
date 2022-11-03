@@ -4,7 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-namespace AppFramework.Shared.Services.Signalr
+namespace AppFramework.Shared.Services
 {
     public delegate void DelegateChatMessageHandler(ChatMessageDto chatMessage);
 

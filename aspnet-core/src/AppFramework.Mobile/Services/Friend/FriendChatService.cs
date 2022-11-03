@@ -14,7 +14,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AppFramework.Shared.Services.Signalr
+namespace AppFramework.Shared.Services
 {
     public class FriendChatService : 
         ViewModelBase, IFriendChatService

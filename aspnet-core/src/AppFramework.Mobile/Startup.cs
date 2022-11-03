@@ -41,6 +41,8 @@ using AppFramework.Authorization.Users.Delegation;
 using AppFramework.Version;
 using AppFramework.Common;
 using AppFramework.Shared.Services.Datapager;
+using AppFramework.Chat;
+using AppFramework.Friendships;
 
 #endregion ApplicationServices
 
@@ -55,8 +57,10 @@ namespace AppFramework.Shared
         public static void ConfigureSerivces(this IContainerRegistry services)
         {
             //注册应用程序依赖服务
-            services.RegisterSingleton<IAppMapper, AppMapper>();
-            services.RegisterSingleton<IMessenger, Messenger>(); 
+            services.RegisterSingleton<IFriendChatService, FriendChatService>();
+            services.RegisterScoped<IFriendshipAppService, FriendshipAppService>();
+            services.RegisterScoped<IChatAppService, ChatAppService>();
+             
             services.RegisterScoped<IRoleAppService, RoleAppService>();
             services.RegisterScoped<IUserAppService, ProxyUserAppService>();
             services.RegisterScoped<IUserLoginAppService, UserLoginAppService>();
@@ -97,6 +101,8 @@ namespace AppFramework.Shared
             services.RegisterScoped<ProxyProfileControllerService>();
             services.RegisterScoped<ProxyTokenAuthControllerService>();
 
+            services.RegisterSingleton<IAppMapper, AppMapper>();
+            services.RegisterSingleton<IMessenger, Messenger>();
             services.RegisterSingleton<INavigationMenuService, NavigationMenuService>();
             services.RegisterSingleton<IRegionNavigateService, RegionNavigateService>();
             services.RegisterSingleton<IUserDialogService, UserDialogService>();
