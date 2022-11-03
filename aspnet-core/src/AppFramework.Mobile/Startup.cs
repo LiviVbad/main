@@ -133,7 +133,7 @@ namespace AppFramework.Shared
             /*
              *  注册应用程序页面 (导航页 ContentPage) 
              */
-
+             
             services.RegisterDialog<MyProfileView, MyProfileViewModel>();
             services.RegisterDialog<MessageBoxView, MessageBoxViewModel>();
             services.RegisterDialog<ForgotPasswordView, ForgotPasswordViewModel>();

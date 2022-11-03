@@ -19,7 +19,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using AppFramework.Shared.ViewModels; 
+using AppFramework.Shared.ViewModels;
 using AppFramework.Shared.Views;
 
 namespace AppFramework.Shared.Services
@@ -159,27 +159,13 @@ namespace AppFramework.Shared.Services
         {
             if (photo == null) return;
 
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                var cropModalView = new CropView(photo.Path, OnCropCompleted, Local.Localize("Ok"), Local.Localize("Rotate"), Local.Localize("Cancel"));
-                //await ModalService.ShowModalAsync(cropModalView);
-
-                NavigationParameters param = new NavigationParameters();
-                param.Add("Value", Photo);
-                await navigationService.NavigateAsync(AppViews.ProfilePicture, param);
-            }
-            else
-            {
-                await OnCropCompleted(File.ReadAllBytes(photo.Path), Path.GetFileName(photo.Path));
-            }
+            await OnCropCompleted(File.ReadAllBytes(photo.Path), Path.GetFileName(photo.Path));
         }
 
         private async Task OnCropCompleted(byte[] croppedImageBytes, string fileName)
         {
             if (croppedImageBytes == null)
-            {
                 return;
-            }
 
             var jpgStream = await ResizeImageAsync(croppedImageBytes);
             await SaveProfilePhoto(jpgStream.GetAllBytes(), fileName);
@@ -203,7 +189,7 @@ namespace AppFramework.Shared.Services
             {
                 await WebRequest.Execute(async () => await UpdateProfilePhoto(photoAsBytes, fileName), () =>
                 {
-                    Photo = photoAsBytes;// ImageSource.FromStream(() => new MemoryStream(photoAsBytes));
+                    Photo = photoAsBytes;
                     CloneProfilePicture(photoAsBytes);
                     return Task.CompletedTask;
                 });

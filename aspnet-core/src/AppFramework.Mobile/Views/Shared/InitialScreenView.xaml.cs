@@ -8,8 +8,7 @@ namespace AppFramework.Shared.Views
     {
         public InitialScreenView()
         {
-            InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
+            InitializeComponent(); 
         }
     }
 }

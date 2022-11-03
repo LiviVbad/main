@@ -82,7 +82,7 @@
                     Margin="5,10"
                     HeightRequest="50"
                     HorizontalOptions="Center"
-                    Source="Profile.png"
+                    Source="{Binding appService.Photo, Converter={StaticResource ByteToImageConverter}}"
                     VerticalOptions="End"
                     WidthRequest="50">
                     <Image.GestureRecognizers>

@@ -328,10 +328,10 @@
 	  </Compile>
 	</ItemGroup>
 	<ItemGroup>
-	  <EmbeddedResource Update="Extensions\Localization\Resources\LocalTranslation.resx">
+	  <EmbeddedResource Update="Localization\Resources\LocalTranslation.resx">
 	    <Generator></Generator>
 	  </EmbeddedResource>
-	  <EmbeddedResource Update="Extensions\Localization\Resources\LocalTranslation.zh-Hans.resx">
+	  <EmbeddedResource Update="Localization\Resources\LocalTranslation.zh-Hans.resx">
 	    <Generator></Generator>
 	  </EmbeddedResource>
 	  <EmbeddedResource Update="Themes\DarkTheme.xaml">
