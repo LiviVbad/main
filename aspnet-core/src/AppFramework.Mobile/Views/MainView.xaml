@@ -78,20 +78,24 @@
         </navigationdrawer:SfNavigationDrawer.DrawerContentView>
         <navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
             <Grid BackgroundColor="{DynamicResource GrayShadowBackgroundColor}" RowDefinitions="auto,auto">
-                <Image
-                    Margin="5,10"
+
+                <Frame
+                    Margin="5,10,5,0"
+                    Padding="0"
+                    CornerRadius="50"
                     HeightRequest="50"
                     HorizontalOptions="Center"
-                    Source="{Binding appService.Photo, Converter={StaticResource ByteToImageConverter}}"
-                    VerticalOptions="End"
+                    IsClippedToBounds="True"
                     WidthRequest="50">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding ExecuteCommand}"
-                            CommandParameter="ShowProfilePhoto"
-                            NumberOfTapsRequired="1" />
-                    </Image.GestureRecognizers>
-                </Image>
+                    <Image Source="{Binding appService.Photo, Converter={StaticResource ByteToImageConverter}}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding ExecuteCommand}"
+                                CommandParameter="ShowProfilePhoto"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Frame>
 
                 <StackLayout Grid.Row="1">
                     <Label
