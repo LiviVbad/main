@@ -7,9 +7,9 @@ namespace AppFramework.Shared.Services.Datapager
 {
     public class DataPagerService : BindableBase, IDataPagerService
     {
-        private readonly IMapper mapper;
+        private readonly IAppMapper mapper;
 
-        public DataPagerService(IMapper mapper)
+        public DataPagerService(IAppMapper mapper)
         {
             gridModelList = new ObservableCollection<object>();
             this.mapper = mapper;

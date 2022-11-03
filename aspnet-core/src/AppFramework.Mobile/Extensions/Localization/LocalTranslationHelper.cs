@@ -1,5 +1,4 @@
-﻿using AppFramework.Shared;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Resources;
 using Xamarin.Forms;
 
@@ -7,7 +6,7 @@ namespace AppFramework.Shared.Localization
 {
     public static class LocalTranslationHelper
     {
-        private const string ResourceId = "AppFramework.Shared.Localization.Resources.LocalTranslation";
+        private const string ResourceId = "AppFramework.Shared.Extensions.Localization.Resources.LocalTranslation";
 
         public static string Localize(string key)
         {

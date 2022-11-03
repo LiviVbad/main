@@ -55,7 +55,7 @@ namespace AppFramework.Shared
         public static void ConfigureSerivces(this IContainerRegistry services)
         {
             //注册应用程序依赖服务
-
+            services.RegisterSingleton<IAppMapper, AppMapper>();
             services.RegisterSingleton<IMessenger, Messenger>(); 
             services.RegisterScoped<IRoleAppService, RoleAppService>();
             services.RegisterScoped<IUserAppService, ProxyUserAppService>();

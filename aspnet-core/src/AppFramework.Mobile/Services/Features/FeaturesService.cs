@@ -13,9 +13,9 @@ namespace AppFramework.Shared.Services
 {
     public class FeaturesService : BindableBase, IFeaturesService
     {
-        private readonly IMapper mapper;
+        private readonly IAppMapper mapper;
 
-        public FeaturesService(IMapper mapper)
+        public FeaturesService(IAppMapper mapper)
         {
             this.mapper = mapper;
         }

@@ -10,11 +10,11 @@ namespace AppFramework.Shared.Services.Storage
     public class AccountStorageService : IAccountStorageService
     {
         private readonly IDataStorageService _dataStorageManager;
-        private readonly IMapper mapper;
+        private readonly IAppMapper mapper;
 
         public AccountStorageService(
             IDataStorageService dataStorageManager,
-            IMapper mapper)
+            IAppMapper mapper)
         {
             _dataStorageManager = dataStorageManager;
             this.mapper = mapper;

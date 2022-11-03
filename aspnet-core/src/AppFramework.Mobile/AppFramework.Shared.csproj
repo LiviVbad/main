@@ -267,6 +267,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.10" />
 		<PackageReference Include="AutoMapper" Version="11.0.1" />
 		<PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
 		<PackageReference Include="FluentValidation" Version="10.4.0" />
@@ -292,8 +293,6 @@
     <PackageReference Include="Abp" Version="7.3.0" />
     <PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-    <PackageReference Include="DryIoc.Microsoft.DependencyInjection" Version="5.1.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
     <PackageReference Include="Prism.Core" Version="8.1.97" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />

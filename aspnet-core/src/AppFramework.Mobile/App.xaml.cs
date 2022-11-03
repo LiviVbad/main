@@ -2,9 +2,7 @@
 using AppFramework.Shared.Services.Account;
 using AppFramework.Shared.Services.Storage;
 using AppFramework.Shared.Views;
-using DryIoc;
-using DryIoc.Microsoft.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
+using DryIoc; 
 using Prism.DryIoc;
 using Prism.Ioc;
 using System;
@@ -54,18 +52,7 @@ namespace AppFramework.Shared
             containerRegistry.RegisterRegionServices();
             containerRegistry.RegisterForNavigation<NavigationPage>();
         }
-
-        protected override IContainerExtension CreateContainerExtension()
-        {
-            var serviceCollection = new ServiceCollection();
-            serviceCollection.AddAutoMapper(config =>
-            {
-                config.AddProfile<SharedMapper>();
-            });
-            return new DryIocContainerExtension(new Container(CreateContainerRules())
-                .WithDependencyInjectionAdapter(serviceCollection));
-        }
-
+         
         public bool OnBackPressedHandler()
         {
             //当导航堆栈中存在模块,则允许返回
