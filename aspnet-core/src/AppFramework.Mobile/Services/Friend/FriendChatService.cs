@@ -103,9 +103,9 @@ namespace AppFramework.Shared.Services
         {
             var accessToken = context.GetAccessToken();
             var code = SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase);
-            var token = $"/?enc_auth_token={code}";
+            var url = ApiUrlConfig.DefaultHostUrl + "signalr" + $"/?enc_auth_token={code}";
             signalr = new HubConnectionBuilder()
-                   .WithUrl(ApiUrlConfig.DefaultHostUrl+"signalr"+token, Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets)
+                   .WithUrl(url, Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets)
                    .Build();
 
             signalr.Closed += async (error) =>
@@ -121,9 +121,9 @@ namespace AppFramework.Shared.Services
         {
             var accessToken = context.GetAccessToken();
             var code = SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase);
-            var token = $"/?enc_auth_token={code}";
+            var url = ApiUrlConfig.DefaultHostUrl + "signalr-chat" + $"/?enc_auth_token={code}";
             signalrChat = new HubConnectionBuilder()
-                   .WithUrl(ApiUrlConfig.DefaultHostUrl+"signalr-chat"+token, Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets)
+                   .WithUrl(url, Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets)
                    .Build();
 
             signalrChat.Closed += async (error) =>

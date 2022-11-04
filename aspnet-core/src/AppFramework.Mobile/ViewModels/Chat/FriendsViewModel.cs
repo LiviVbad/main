@@ -4,10 +4,11 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class FriendsViewModel : NavigationViewModel
+    public class FriendsViewModel : RegionViewModel
     {
         private readonly IApplicationContext context;
         public IFriendChatService chatService { get; private set; }
@@ -19,11 +20,9 @@ namespace AppFramework.Shared.ViewModels
             this.chatService = chatService;
         }
 
-
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task RefreshAsync()
         {
-            await chatService.GetUserChatFriendsAsync();
-            await chatService.StartAsync();
-        }
+            await chatService.GetUserChatFriendsAsync(); 
+        } 
     }
 }

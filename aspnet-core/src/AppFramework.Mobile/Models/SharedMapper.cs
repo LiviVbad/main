@@ -15,6 +15,8 @@ using AppFramework.Shared.Models.Configuration;
 using AppFramework.Configuration.Host.Dto;
 using AppFramework.Configuration.Dto;
 using AppFramework.Version.Dtos;
+using AppFramework.Shared.Models.Chat;
+using AppFramework.Friendships.Dto;
 
 namespace AppFramework.Shared.Models
 {
@@ -51,6 +53,7 @@ namespace AppFramework.Shared.Models
             CreateMap<GetCurrentLoginInformationsOutput, CurrentLoginInformationPersistanceModel>().ReverseMap();
             CreateMap<TenantListModel, CreateTenantInput>().ReverseMap();
             CreateMap<AbpVersionDto, VersionListModel>().ReverseMap();
+            CreateMap<FriendDto, FriendModel>().ReverseMap();
 
             #region 系统设置
 
