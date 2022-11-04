@@ -22,7 +22,8 @@ namespace AppFramework.Shared.ViewModels
 
         public override async Task RefreshAsync()
         {
-            await chatService.GetUserChatFriendsAsync(); 
+            await chatService.GetUserChatFriendsAsync();
+            //await chatService.StartAsync();
         } 
     }
 }

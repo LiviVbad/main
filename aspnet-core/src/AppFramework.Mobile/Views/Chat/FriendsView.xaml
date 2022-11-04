@@ -7,7 +7,7 @@
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:refresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms">
     <Grid>
-        <refresh:SfPullToRefresh IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}">
+        <refresh:SfPullToRefresh>
             <refresh:SfPullToRefresh.PullableContent>
                 <listView:SfListView
                     x:Name="SfListView"
@@ -44,9 +44,9 @@
             </refresh:SfPullToRefresh.PullableContent>
         </refresh:SfPullToRefresh>
 
-        <buttons:SfButton
+        <!--<buttons:SfButton
             Margin="0,0,10,10"
             Command="{Binding AddCommand}"
-            Style="{StaticResource AddButtonStyle}" />
+            Style="{StaticResource AddButtonStyle}" />-->
     </Grid>
 </ContentView>
