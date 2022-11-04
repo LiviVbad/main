@@ -2,7 +2,8 @@
 using AppFramework.Shared;
 using AppFramework.Shared.Services.Storage;
 using AppFramework.Services.Account; 
-using Prism.Services.Dialogs; 
+using Prism.Services.Dialogs;
+using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
@@ -33,7 +34,9 @@ namespace AppFramework.ViewModels
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
             await SetBusyAsync(async () =>
-            { 
+            {
+                await Task.Delay(200);
+
                 //加载本地的缓存信息
                 DisplayText = LocalTranslationHelper.Localize("Initializing");
                 accessTokenManager.AuthenticateResult = dataStorageService.RetrieveAuthenticateResult();
