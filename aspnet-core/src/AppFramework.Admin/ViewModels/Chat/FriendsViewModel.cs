@@ -20,10 +20,12 @@ namespace AppFramework.Admin.ViewModels.Chat
         public DelegateCommand<FriendModel> ClickChatCommand { get; private set; }
 
         public FriendsViewModel(IApplicationContext context,
+            IFriendshipAppService friendshipAppService, 
             IFriendChatService chatService)
         {
-            this.chatService = chatService;
             this.context = context;
+            this.chatService = chatService;
+            this.friendshipAppService = friendshipAppService; 
             AddUserCommand = new DelegateCommand(AddUser);
             ClickChatCommand = new DelegateCommand<FriendModel>(ClickChat);
         }

@@ -33,11 +33,17 @@
                     TextColor="White"
                     VerticalOptions="Center" />
 
-                <buttons:SfButton
-                    Clicked="btnSettingsClick"
-                    HorizontalOptions="End"
-                    Style="{StaticResource IconButtonStyle}"
-                    Text="{StaticResource Settings}" />
+                <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                    <buttons:SfButton
+                        Command="{Binding GoChatCommand}"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Message}" />
+
+                    <buttons:SfButton
+                        Clicked="btnSettingsClick"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Settings}" />
+                </StackLayout>
 
                 <ContentView
                     x:Name="DisplayView"

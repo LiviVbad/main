@@ -129,11 +129,12 @@ namespace AppFramework.Shared
             services.RegisterForRegionNavigation<DynamicPropertyView, DynamicPropertyViewModel>(AppViews.DynamicProperty);
             services.RegisterForRegionNavigation<OrganizationView, OrganizationViewModel>(AppViews.Organization);
             services.RegisterForRegionNavigation<SettingsView, SettingsViewModel>(AppViews.Setting);
+            services.RegisterForRegionNavigation<FriendsView, FriendsViewModel>(AppViews.Friends);
 
             /*
              *  注册应用程序页面 (导航页 ContentPage) 
              */
-             
+
             services.RegisterDialog<MyProfileView, MyProfileViewModel>();
             services.RegisterDialog<MessageBoxView, MessageBoxViewModel>();
             services.RegisterDialog<ForgotPasswordView, ForgotPasswordViewModel>();
@@ -151,6 +152,7 @@ namespace AppFramework.Shared
             services.RegisterForNavigation<OrganizationDetailsView, OrganizationDetailsViewModel>();
             services.RegisterForNavigation<DynamicPropertyDetailsView, DynamicPropertyDetailsViewModel>(); 
             services.RegisterForNavigation<ProfilePictureView, ProfilePictureViewModel>();
+            services.RegisterForNavigation<FriendsChatView, FriendsChatViewModel>(AppViews.FriendsChat);
         } 
     }
 }

@@ -84,6 +84,10 @@
 
         public const string Demo = "DemoUiView";
 
+        public const string Friends = "FriendsView";
+
+        public const string FriendsChat = "FriendsChatView"; 
+
         /*
          * 详细页 
          */
@@ -116,6 +120,6 @@
 
         public const string HostMessageBox = "HostMessageBoxView";
 
-        public const string MessageBox = "MessageBoxView";
+        public const string MessageBox = "MessageBoxView"; 
     }
 }

@@ -1,0 +1,60 @@
+﻿<ContentView
+    x:Class="AppFramework.Shared.Views.FriendsView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:refresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms">
+    <Grid>
+        <refresh:SfPullToRefresh IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}">
+            <refresh:SfPullToRefresh.PullableContent>
+                <listView:SfListView
+                    x:Name="SfListView"
+                    ItemsSource="{Binding chatService.Friends}"
+                    RowSpacing="4"
+                    Style="{StaticResource DefaultListViewStyle}">
+                    <listView:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <border:SfBorder Style="{StaticResource SimpleBorderStyle}">
+                                <Grid
+                                    Padding="10"
+                                    BackgroundColor="{DynamicResource Gray-Bg}"
+                                    RowDefinitions="auto,auto,auto"
+                                    RowSpacing="2">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image
+                                            HeightRequest="30"
+                                            HorizontalOptions="Start"
+                                            Source="{Binding FriendProfilePictureId, Converter={StaticResource ByteToImageConverter}}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="30" />
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="1" Margin="15,0">
+                                        <Label FontAttributes="Bold" Text="{Binding FriendUserName}" />
+                                        <Label Margin="0,3" Text="{Binding FriendTenancyName}" />
+                                    </StackLayout>
+
+                                    <border:SfBorder
+                                        Grid.Row="2"
+                                        Margin="5"
+                                        Background="#ff4040"
+                                        CornerRadius="30"
+                                        HorizontalOptions="End">
+                                        <Label Padding="5" Text="{Binding UnreadMessageCount}" />
+                                    </border:SfBorder>
+                                </Grid>
+                            </border:SfBorder>
+                        </DataTemplate>
+                    </listView:SfListView.ItemTemplate>
+                </listView:SfListView>
+            </refresh:SfPullToRefresh.PullableContent>
+        </refresh:SfPullToRefresh>
+
+        <buttons:SfButton
+            Margin="0,0,10,10"
+            Command="{Binding AddCommand}"
+            Style="{StaticResource AddButtonStyle}" />
+    </Grid>
+</ContentView>

@@ -77,7 +77,7 @@ namespace AppFramework.ViewModels
         {
             if (dataPager.SelectedItem is IEntityDto<long> item)
             {
-                GetUserPermissionsForEditOutput output = null;
+                GetUserPermissionsForEditOutput? output = null;
                 await SetBusyAsync(async () =>
                 {
                     await WebRequest.Execute(() =>
@@ -334,7 +334,7 @@ namespace AppFramework.ViewModels
                             await Task.CompletedTask;
                         });
         }
-         
+
         /// <summary>
         /// 刷新用户列表模块
         /// </summary>

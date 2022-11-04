@@ -13,18 +13,19 @@ namespace AppFramework.Shared.ViewModels
 {
     public class MainViewModel : RegionViewModel
     {
-        public MainViewModel(
-            IRegionNavigateService regionService,
-            IAccountService accountService,
+        public MainViewModel(IRegionNavigateService regionService, 
             IApplicationContext applicationContext,
             IApplicationService appService,
             IMessenger messenger)
         {
-            this.regionService = regionService;
-            this.accountService = accountService;
+            this.regionService = regionService; 
             this.applicationContext = applicationContext;
-            this.appService = appService;
-            this.messenger = messenger;
+            this.appService = appService; 
+
+            GoChatCommand = new DelegateCommand(() =>
+            {
+                regionService.Navigate(AppRegions.Main, AppViews.Friends);
+            });
             ExecuteCommand = new DelegateCommand<string>(Execute);
 
             messenger.Sub(AppMessengerKeys.LanguageRefresh, appService.RefreshAuthMenus);
@@ -32,13 +33,12 @@ namespace AppFramework.Shared.ViewModels
 
         #region 字段/属性
 
-        private readonly IRegionNavigateService regionService;
-        private readonly IAccountService accountService;
-        private readonly IApplicationContext applicationContext;
-        private readonly IMessenger messenger;
+        private readonly IRegionNavigateService regionService; 
+        private readonly IApplicationContext applicationContext; 
 
         public IApplicationService appService { get; }
 
+        public DelegateCommand GoChatCommand { get; private set; }
         public DelegateCommand<string> ExecuteCommand { get; private set; }
 
         #endregion 字段/属性
