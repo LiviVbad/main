@@ -156,11 +156,7 @@ namespace AppFramework.Shared.Services
         {
             var accessToken = context.GetAccessToken();
             options.Headers.Add("enc_auth_token", SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase));
-
-            //options.WebSocketConfiguration = conf =>
-            //{
-            //    conf.RemoteCertificateValidationCallback = (message, cert, chain, errors) => { return true; };
-            //};
+             
             options.HttpMessageHandlerFactory = factory => new HttpClientHandler
             {
                 ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; }
