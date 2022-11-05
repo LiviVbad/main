@@ -17,6 +17,7 @@
             <converters:StringToBadgeIconConverter x:Key="BadgeConverter" />
             <converters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
             <converters:StringFormatConverter x:Key="StringFormatConverter" />
+            <converters:UrlToImageConverter x:Key="UrlToImageConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

@@ -10,7 +10,6 @@
     <x:String x:Key="IP">&#xe6d0;</x:String>
     <x:String x:Key="Add">&#xe607;</x:String>
     <x:String x:Key="Reduce">&#xe729;</x:String>
-    <x:String x:Key="Tel">&#xe601;</x:String>
     <x:String x:Key="Remove">&#xe65c;</x:String>
     <x:String x:Key="Position">&#xe62f;</x:String>
     <x:String x:Key="Edit">&#xe651;</x:String>
@@ -24,12 +23,8 @@
     <x:String x:Key="Print">&#xe9bd;</x:String>
     <x:String x:Key="Excel">&#xe83b;</x:String>
     <x:String x:Key="Search">&#xe633;</x:String>
-    <x:String x:Key="Sms">&#xe737;</x:String>
     <x:String x:Key="Cloud">&#xe6ab;</x:String>
-    <x:String x:Key="Book">&#xe623;</x:String>
-    <x:String x:Key="Github">&#xe811;</x:String>
-    <x:String x:Key="Video">&#xe626;</x:String>
-    <x:String x:Key="Post">&#xe612;</x:String>
+    <x:String x:Key="Video">&#xe610;</x:String>
     <x:String x:Key="Module">&#xec07;</x:String>
     <x:String x:Key="Message">&#xe73c;</x:String>
     <x:String x:Key="Notice">&#xe67f;</x:String>
@@ -49,4 +44,8 @@
     <x:String x:Key="ChangeLanguage">&#xe62e;</x:String>
     <x:String x:Key="Logout">&#xe652;</x:String>
     <x:String x:Key="ChangePassword">&#xe609;</x:String>
+    <x:String x:Key="Picture">&#xe63e;</x:String>
+    <x:String x:Key="Send">&#xe64a;</x:String>
+    <x:String x:Key="Link">&#xe756;</x:String>
+    <x:String x:Key="Tel">&#xe953;</x:String>
 </ResourceDictionary>

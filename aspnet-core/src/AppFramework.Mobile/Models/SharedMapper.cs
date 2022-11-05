@@ -17,6 +17,7 @@ using AppFramework.Configuration.Dto;
 using AppFramework.Version.Dtos;
 using AppFramework.Shared.Models.Chat;
 using AppFramework.Friendships.Dto;
+using AppFramework.Chat.Dto;
 
 namespace AppFramework.Shared.Models
 {
@@ -54,6 +55,7 @@ namespace AppFramework.Shared.Models
             CreateMap<TenantListModel, CreateTenantInput>().ReverseMap();
             CreateMap<AbpVersionDto, VersionListModel>().ReverseMap();
             CreateMap<FriendDto, FriendModel>().ReverseMap();
+            CreateMap<ChatMessageModel, ChatMessageDto>().ReverseMap();
 
             #region 系统设置
 

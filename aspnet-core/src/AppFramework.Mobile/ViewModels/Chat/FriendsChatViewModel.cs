@@ -1,18 +1,21 @@
-﻿using Abp.Runtime.Security;
+﻿using Abp.Runtime.Caching;
+using Abp.Runtime.Security;
 using AppFramework.ApiClient;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Chat;
 using AppFramework.Chat.Dto;
 using AppFramework.Shared.Models.Chat;
-using AppFramework.Shared.Services; 
+using AppFramework.Shared.Services;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Navigation; 
+using Prism.Navigation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq; 
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -24,7 +27,7 @@ namespace AppFramework.Shared.ViewModels
            IProfileAppService profileAppService,
            IAccessTokenManager tokenManager,
            IEventAggregator aggregator,
-           ProxyChatControllerService proxyChat)
+           ProxyChatControllerService proxyChatService)
         {
             this.context = context;
             this.chatApp = chatApp;
@@ -32,7 +35,7 @@ namespace AppFramework.Shared.ViewModels
             this.profileAppService = profileAppService;
             this.tokenManager = tokenManager;
             this.aggregator = aggregator;
-            this.proxyChat = proxyChat;
+            this.proxyChatService = proxyChatService;
 
             chatService.OnChatMessageHandler += ChatService_OnChatMessageHandler;
             messages = new ObservableCollection<ChatMessageModel>();
@@ -54,7 +57,7 @@ namespace AppFramework.Shared.ViewModels
         private readonly IProfileAppService profileAppService;
         private readonly IAccessTokenManager tokenManager;
         private readonly IEventAggregator aggregator;
-        private readonly ProxyChatControllerService proxyChat;
+        private readonly ProxyChatControllerService proxyChatService;
         private ObservableCollection<ChatMessageModel> messages;
 
         public string Message
@@ -131,38 +134,12 @@ namespace AppFramework.Shared.ViewModels
             if (model.Message.StartsWith("[image]"))
             {
                 model.MessageType = "image";
-
-                var accessToken = tokenManager.GetAccessToken();
-                var code = SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase);
-
-                var msg = model.Message.Replace("[image]", "");
-                var output = JsonConvert.DeserializeObject<ChatUploadFileOutput>(msg);
-                model.Message = output.Name; //显示文件名
-
-                var downloadUrl = ApiUrlConfig.DefaultHostUrl + $"Chat/GetUploadedObject?fileId={output.Id}" +
-                    $"&fileName={output.Name}" +
-                    $"&contentType={output.ContentType}" +
-                    $"&enc_auth_token={code}";
-
-                //await DownloadAsync(downloadUrl, AppConsts.DocumentPath, output.Name);
+                await SaveCacheFile(model, model.Message.Replace("[image]", ""));
             }
             else if (model.Message.StartsWith("[file]"))
             {
                 model.MessageType = "file";
-
-                var accessToken = tokenManager.GetAccessToken();
-                var code = SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase);
-
-                var msg = model.Message.Replace("[file]", "");
-                var output = JsonConvert.DeserializeObject<ChatUploadFileOutput>(msg);
-                model.Message = output.Name; //显示文件名
-
-                var downloadUrl = ApiUrlConfig.DefaultHostUrl + $"Chat/GetUploadedObject?fileId={output.Id}" +
-                   $"&fileName={output.Name}" +
-                   $"&contentType={output.ContentType}" +
-                   $"&enc_auth_token={code}";
-
-                //await DownloadAsync(downloadUrl, AppConsts.DocumentPath, output.Name);
+                await SaveCacheFile(model, model.Message.Replace("[file]", ""));
             }
             else if (model.Message.StartsWith("[link]"))
             {
@@ -205,6 +182,34 @@ namespace AppFramework.Shared.ViewModels
         }
 
         #endregion
+
+        private async Task SaveCacheFile(ChatMessageModel model, string msg)
+        {
+            var accessToken = tokenManager.GetAccessToken();
+            var code = SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase);
+
+            var output = JsonConvert.DeserializeObject<ChatUploadFileOutput>(msg);
+            model.Message = output.Name; //显示文件名
+
+            var downloadUrl = ApiUrlConfig.BaseUrl + $"Chat/GetUploadedObject?fileId={output.Id}" +
+               $"&fileName={output.Name}" +
+               $"&contentType={output.ContentType}" +
+               $"&enc_auth_token={code}";
+
+            await DownloadAsync(downloadUrl, SharedConsts.DocumentPath, output.Name);
+        }
+
+        private async Task DownloadAsync(string url, string localFolderPath, string fileName)
+        {
+            if (File.Exists($"{localFolderPath}/{fileName}"))
+            {
+                await Task.CompletedTask;
+            }
+            else
+            {
+                await proxyChatService.DownloadAsync(url, localFolderPath, fileName);
+            }
+        }
 
         public override Task GoBackAsync()
         {

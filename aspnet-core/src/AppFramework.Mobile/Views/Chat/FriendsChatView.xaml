@@ -4,7 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms">
+    xmlns:controls="clr-namespace:AppFramework.Shared.Controls"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:temp="clr-namespace:AppFramework.Shared.Views.Selectors">
+    <ContentPage.Resources>
+        <temp:MessageDataTemplateSelector x:Key="MessageDataTemplateSelector" />
+    </ContentPage.Resources>
     <Grid>
         <Image
             Aspect="AspectFill"
@@ -39,15 +44,18 @@
                                 VerticalOptions="Fill">
 
                                 <!--  Back Button  -->
-                                <buttons:SfButton Command="{Binding GoBackCommand}" Text="Back" />
+                                <buttons:SfButton
+                                    Command="{Binding GoBackCommand}"
+                                    Style="{StaticResource IconButtonStyle}"
+                                    Text="&#xe625;"
+                                    TextColor="{DynamicResource Gray-700}" />
 
                                 <!--  Rounded Profile Image  -->
-                                <border:SfBorder Margin="8,0" BackgroundColor="{DynamicResource Gray-200}">
-                                    <Image
-                                        HeightRequest="35"
-                                        Source="Profile.png"
-                                        WidthRequest="35" />
-                                </border:SfBorder>
+                                <Image
+                                    Margin="8,0"
+                                    HeightRequest="35"
+                                    Source="Profile.png"
+                                    WidthRequest="35" />
 
                                 <Label
                                     HorizontalOptions="FillAndExpand"
@@ -86,37 +94,39 @@
                                     ColumnSpacing="0"
                                     RowDefinitions="Auto">
 
-                                    <!--  Extendable editor  -->
-                                    <Entry
+                                    <controls:BorderlessEntry
                                         Margin="5,0"
-                                        Placeholder="Type here"
+                                        Placeholder="在这里输入消息..."
+                                        Style="{StaticResource BorderlessEntryStyle}"
                                         Text="{Binding Message}" />
 
-                                    <!--  Camera Button  -->
                                     <buttons:SfButton
                                         Grid.Column="1"
                                         Command="{Binding PickImageCommand}"
-                                        Text="Image"
+                                        Style="{StaticResource IconButtonStyle}"
+                                        Text="&#xe63e;"
+                                        TextColor="{DynamicResource Gray-700}"
                                         VerticalOptions="End" />
 
-                                    <!--  Attachment Button  -->
                                     <buttons:SfButton
                                         Grid.Column="2"
                                         Command="{Binding PickFileCommand}"
-                                        Text="File"
+                                        Style="{StaticResource IconButtonStyle}"
+                                        Text="&#xe756;"
+                                        TextColor="{DynamicResource Gray-700}"
                                         VerticalOptions="End" />
 
                                 </Grid>
                             </border:SfBorder>
 
-                            <!--  Send Button  -->
                             <buttons:SfButton
                                 Grid.Column="1"
                                 Padding="0,2,2,0"
                                 BackgroundColor="{DynamicResource PrimaryColor}"
                                 Command="{Binding SendCommand}"
                                 HorizontalOptions="End"
-                                Text="Send"
+                                Style="{StaticResource IconButtonStyle}"
+                                Text="&#xe64a;"
                                 TextColor="{DynamicResource Gray-White}"
                                 VerticalOptions="End" />
                         </Grid>

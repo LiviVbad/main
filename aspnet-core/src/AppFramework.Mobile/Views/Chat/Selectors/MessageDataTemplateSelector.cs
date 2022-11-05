@@ -1,8 +1,8 @@
 ﻿using AppFramework.Shared.Models.Chat;
-using Xamarin.Forms; 
+using Xamarin.Forms;
 
 namespace AppFramework.Shared.Views.Selectors
-{ 
+{
     public class MessageDataTemplateSelector : DataTemplateSelector
     {
         #region Constructor
@@ -18,19 +18,19 @@ namespace AppFramework.Shared.Views.Selectors
         #endregion
 
         #region Properties
-         
+
         public DataTemplate ReceiverImageTemplate { get; set; }
-         
+
         public DataTemplate ReceiverTextTemplate { get; set; }
-         
+
         public DataTemplate SenderImageTemplate { get; set; }
-         
+
         public DataTemplate SenderTextTemplate { get; set; }
 
         #endregion
 
         #region Methods
-         
+
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
             if (item != null && item is ChatMessageModel chatModel)
@@ -39,20 +39,20 @@ namespace AppFramework.Shared.Views.Selectors
                 {
                     switch (chatModel.MessageType)
                     {
-                        case "image": return null;
-                        case "file": return null;
-                        case "link": return null;
-                        case "text": return null;
+                        case "image": return SenderImageTemplate;
+                        case "file": return SenderTextTemplate;
+                        case "link": return SenderTextTemplate;
+                        case "text": return SenderTextTemplate;
                     }
                 }
                 else
                 {
                     switch (chatModel.MessageType)
                     {
-                        case "image": return null;
-                        case "file": return null;
-                        case "link": return null;
-                        case "text": return null;
+                        case "image": return ReceiverImageTemplate;
+                        case "file": return ReceiverTextTemplate;
+                        case "link": return ReceiverTextTemplate;
+                        case "text": return ReceiverTextTemplate;
                     }
                 }
             }
