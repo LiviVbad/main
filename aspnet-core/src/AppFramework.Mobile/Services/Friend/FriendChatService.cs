@@ -8,11 +8,13 @@ using AppFramework.Friendships.Dto;
 using AppFramework.Shared.Models.Chat;
 using AppFramework.Shared.ViewModels;
 using Microsoft.AspNetCore.Http.Connections;
+using Microsoft.AspNetCore.Http.Connections.Client;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace AppFramework.Shared.Services
@@ -107,11 +109,7 @@ namespace AppFramework.Shared.Services
                 var url = ApiUrlConfig.BaseUrl + "signalr";
 
                 chatAuthService = new HubConnectionBuilder()
-                       .WithUrl(url, HttpTransportType.WebSockets, option =>
-                       {
-                           var accessToken = context.GetAccessToken();
-                           option.Headers.Add("enc_auth_token", SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase));
-                       }).Build();
+                       .WithUrl(url, ConfigureHttpConnection).Build();
 
                 chatAuthService.Closed += async (error) =>
                 {
@@ -132,11 +130,7 @@ namespace AppFramework.Shared.Services
         {
             var url = ApiUrlConfig.BaseUrl + "signalr-chat";
             friendService = new HubConnectionBuilder()
-                      .WithUrl(url, HttpTransportType.WebSockets, option =>
-                      {
-                          var accessToken = context.GetAccessToken();
-                          option.Headers.Add("enc_auth_token", SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase));
-                      }).Build();
+                      .WithUrl(url, ConfigureHttpConnection).Build();
 
             friendService.Closed += async (error) =>
             {
@@ -152,6 +146,25 @@ namespace AppFramework.Shared.Services
             friendService.On<UserIdentifier>("getReadStateChange", GetReadStateChangeHandler);
 
             await friendService.StartAsync();
+        }
+
+        /// <summary>
+        /// 配置HTTP连接配置
+        /// </summary>
+        /// <param name="options"></param>
+        private void ConfigureHttpConnection(HttpConnectionOptions options)
+        {
+            var accessToken = context.GetAccessToken();
+            options.Headers.Add("enc_auth_token", SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase));
+
+            //options.WebSocketConfiguration = conf =>
+            //{
+            //    conf.RemoteCertificateValidationCallback = (message, cert, chain, errors) => { return true; };
+            //};
+            options.HttpMessageHandlerFactory = factory => new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; }
+            };
         }
 
         #endregion
