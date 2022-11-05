@@ -10,16 +10,11 @@ namespace AppFramework.Shared.Core
         /// 发送事件消息不带参数
         /// </summary>
         /// <param name="weakMessages"></param>
-        internal static void SendMessage(this IWeakAction[] weakMessages)
+        internal static void SendMessage(this IWeakAction weakMessage)
         {
-            if (weakMessages == null) return;
-
-            foreach (var weakMessage in weakMessages)
+            if (weakMessage != null && weakMessage.Type.Equals(string.Empty))
             {
-                if (weakMessage != null && weakMessage.Type.Equals(string.Empty))
-                {
-                    weakMessage.Execute(null);
-                } 
+                weakMessage.Execute(null);
             }
         }
 
@@ -29,16 +24,11 @@ namespace AppFramework.Shared.Core
         /// <typeparam name="T"></typeparam>
         /// <param name="weakMessages"></param>
         /// <param name="message"></param>
-        internal static void SendMessage<T>(this IWeakAction[] weakMessages, T message)
+        internal static void SendMessage<T>(this IWeakAction weakMessage, T message)
         {
-            if (weakMessages == null) return;
-
-            foreach (var weakMessage in weakMessages)
+            if (weakMessage != null && weakMessage.Type.Equals(typeof(T).FullName))
             {
-                if (weakMessage != null && weakMessage.Type.Equals(typeof(T).FullName))
-                {
-                    weakMessage.Execute(message);
-                }
+                weakMessage.Execute(message);
             }
         }
     }

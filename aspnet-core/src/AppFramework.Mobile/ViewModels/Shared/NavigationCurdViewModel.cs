@@ -6,6 +6,7 @@
     using AppFramework.Shared.Services.Permission;
     using AppFramework.Shared.Services.Datapager;
     using AppFramework.Shared.Core;
+    using Prism.Regions.Navigation;
 
     public class NavigationCurdViewModel : RegionViewModel
     {
@@ -16,18 +17,21 @@
             RefreshCommand = new DelegateCommand(async () => await RefreshAsync());
 
             dataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
-            proxyCommand = ContainerLocator.Container.Resolve<IPorxyCommandService>();
-            proxyCommand.Generate(CreatePermissionItems());
+            proxy = ContainerLocator.Container.Resolve<IPorxyCommandService>();
+            proxy.Generate(CreatePermissionItems());
 
-            var messenger = ContainerLocator.Container.Resolve<IMessenger>();
+            ExecuteCommand = new DelegateCommand<string>(proxy.Execute);
+            messenger = ContainerLocator.Container.Resolve<IMessenger>();
             messenger.Sub(this.GetType().Name, async () => await RefreshAsync());
         }
 
-        public IDataPagerService dataPager { get; private set; }
-        public IPorxyCommandService proxyCommand { get; private set; }
+        private IMessenger messenger;
+        private IPorxyCommandService proxy { get; }
+        public IDataPagerService dataPager { get; private set; }  
         public DelegateCommand AddCommand { get; private set; }
         public DelegateCommand RefreshCommand { get; private set; }
         public DelegateCommand LoadMoreCommand { get; private set; }
+        public DelegateCommand<string> ExecuteCommand { get; private set; }
 
         public virtual async void Add() => await navigationService.NavigateAsync(GetPageName("Details"));
 
@@ -48,5 +52,11 @@
         /// </summary>
         /// <returns></returns>
         protected virtual PermissionItem[] CreatePermissionItems() => new PermissionItem[0];
+
+        public override void OnNavigatedFrom(INavigationContext navigationContext)
+        {
+            messenger.UnSub(this.GetType().Name);
+            base.OnNavigatedFrom(navigationContext);
+        }
     }
 }

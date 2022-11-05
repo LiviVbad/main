@@ -7,7 +7,7 @@
     xmlns:refresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
     xmlns:tree="clr-namespace:Syncfusion.XForms.TreeView;assembly=Syncfusion.SfTreeView.XForms">
     <Grid>
-        <refresh:SfPullToRefresh IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}">
+        <refresh:SfPullToRefresh>
             <refresh:SfPullToRefresh.PullableContent>
                 <tree:SfTreeView
                     x:Name="SfTreeView"
@@ -18,7 +18,6 @@
                     FullRowSelect="True"
                     ItemHeight="55"
                     ItemsSource="{Binding dataPager.GridModelList}"
-                    SelectedItem="{Binding dataPager.SelectedItem}"
                     SelectionBackgroundColor="Transparent">
                     <tree:SfTreeView.ItemTemplate>
                         <DataTemplate>

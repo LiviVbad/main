@@ -25,13 +25,13 @@
                                         <SwipeItems>
                                             <SwipeItem
                                                 BackgroundColor="{DynamicResource Red}"
-                                                Command="{Binding Path=BindingContext.proxyCommand, Source={x:Reference SfListView}}"
+                                                Command="{Binding Path=BindingContext.ExecuteCommand, Source={x:Reference SfListView}}"
                                                 CommandParameter="{x:Static perm:AppPermissions.LanguageDelete}"
                                                 IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.LanguageDelete}}"
                                                 Text="{extensions:Translate Remove}" />
                                             <SwipeItem
                                                 BackgroundColor="{DynamicResource PrimaryColor}"
-                                                Command="{Binding Path=BindingContext.proxyCommand, Source={x:Reference SfListView}}"
+                                                Command="{Binding Path=BindingContext.ExecuteCommand, Source={x:Reference SfListView}}"
                                                 CommandParameter="{x:Static perm:AppPermissions.LanguageEdit}"
                                                 IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.LanguageEdit}}"
                                                 Text="{extensions:Translate Edit}" />

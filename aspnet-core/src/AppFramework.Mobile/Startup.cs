@@ -90,7 +90,7 @@ namespace AppFramework.Shared
             services.RegisterScoped<IUserLinkAppService, UserLinkAppService>();
             services.RegisterScoped<IAbpVersionsAppService, AbpVersionsAppService>();
              
-            services.RegisterScoped<IDataPagerService, DataPagerService>();
+            services.Register<IDataPagerService, DataPagerService>();
             services.RegisterSingleton<IPermissionService, PermissionService>();
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
             services.RegisterSingleton<IMultiTenancyConfig, MultiTenancyConfig>();
