@@ -1,9 +1,5 @@
 ﻿using AppFramework.ApiClient;
-using AppFramework.Shared.Services;
-using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using AppFramework.Shared.Services; 
 using System.Threading.Tasks;
 
 namespace AppFramework.Shared.ViewModels
@@ -22,8 +18,7 @@ namespace AppFramework.Shared.ViewModels
 
         public override async Task RefreshAsync()
         {
-            await chatService.GetUserChatFriendsAsync();
-            //await chatService.StartAsync();
+            await chatService.GetUserChatFriendsAsync(); 
         } 
     }
 }

@@ -7,7 +7,7 @@ using AppFramework.Shared;
 using AppFramework.Shared.Core.Behaviors;
 using AppFramework.ApiClient;
 using Flurl.Http;
-using Xamarin.Forms.Platform.Android;
+using Xamarin.Forms.Platform.Android; 
 
 namespace AppFramework.Droid
 {
@@ -23,7 +23,7 @@ namespace AppFramework.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            ConfigureServices();
+            ConfigureServices(); 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             App application = new App();

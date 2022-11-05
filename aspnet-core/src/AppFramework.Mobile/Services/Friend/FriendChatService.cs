@@ -7,6 +7,7 @@ using AppFramework.Friendships;
 using AppFramework.Friendships.Dto;
 using AppFramework.Shared.Models.Chat;
 using AppFramework.Shared.ViewModels;
+using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
@@ -16,22 +17,22 @@ using System.Threading.Tasks;
 
 namespace AppFramework.Shared.Services
 {
-    public class FriendChatService : 
+    public class FriendChatService :
         ViewModelBase, IFriendChatService
     {
         public FriendChatService(IAccessTokenManager context,
             IFriendshipAppService friendshipAppService,
             IChatAppService chatAppService)
         {
-            this.context=context;
-            this.friendshipAppService=friendshipAppService;
-            this.chatAppService=chatAppService;
-            friends=new ObservableCollection<FriendModel>();
+            this.context = context;
+            this.friendshipAppService = friendshipAppService;
+            this.chatAppService = chatAppService;
+            friends = new ObservableCollection<FriendModel>();
         }
 
         public event DelegateChatMessageHandler OnChatMessageHandler;
-        private HubConnection signalr;
-        private HubConnection signalrChat;
+        private HubConnection chatAuthService;
+        private HubConnection friendService;
         private readonly IAccessTokenManager context;
         private readonly IFriendshipAppService friendshipAppService;
         private readonly IChatAppService chatAppService;
@@ -49,11 +50,11 @@ namespace AppFramework.Shared.Services
         public async Task GetUserChatFriendsAsync()
         {
             await SetBusyAsync(async () =>
-            { 
+            {
                 await WebRequest.Execute(async () =>
                 {
                     var frientsSetting = await chatAppService.GetUserChatFriendsWithSettings();
-                    if (frientsSetting!=null&&frientsSetting.Friends != null)
+                    if (frientsSetting != null && frientsSetting.Friends != null)
                     {
                         Friends.Clear();
                         var friendsList = Map<List<FriendModel>>(frientsSetting.Friends);
@@ -61,12 +62,12 @@ namespace AppFramework.Shared.Services
                         foreach (var item in friendsList)
                         {
                             if (string.IsNullOrWhiteSpace(item.FriendTenancyName))
-                                item.FriendTenancyName="Host";
+                                item.FriendTenancyName = "Host";
 
                             Friends.Add(item);
                         }
                     }
-                });
+                }, StartAsync);
             });
         }
 
@@ -77,68 +78,80 @@ namespace AppFramework.Shared.Services
             if (!IsConnected)
                 throw new Exception("Please try again after connecting to the server!");
 
-            if (input==null)
+            if (input == null)
                 throw new ArgumentNullException(nameof(input));
 
-            await signalrChat.InvokeAsync("sendMessage", input);
+            await friendService.InvokeAsync("sendMessage", input);
         }
 
         public async Task StartAsync()
         {
             if (IsConnected) return;
 
-            await SignalrConnect();
-            await SignalrChatConnect();
-            IsConnected =true;
+            await ChatServerConnect();
+
+            IsConnected = true;
         }
 
         public async Task StopAsync()
         {
-            await signalr.StopAsync();
-            await signalrChat.StopAsync();
-            IsConnected=false;
+            await chatAuthService.StopAsync();
+            await friendService.StopAsync();
+            IsConnected = false;
         }
 
-        private async Task SignalrConnect()
+        private async Task ChatServerConnect()
         {
-            var accessToken = context.GetAccessToken();
-            var code = SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase);
-            var url = ApiUrlConfig.BaseUrl + "signalr" + $"/?enc_auth_token={code}";
-            signalr = new HubConnectionBuilder()
-                   .WithUrl(url, Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets)
-                   .Build();
-
-            signalr.Closed += async (error) =>
+            try
             {
-                await Task.Delay(new Random().Next(0, 5) * 1000);
-                await signalr.StartAsync();
-            };
+                var url = ApiUrlConfig.BaseUrl + "signalr";
 
-            await signalr.StartAsync();
+                chatAuthService = new HubConnectionBuilder()
+                       .WithUrl(url, HttpTransportType.WebSockets, option =>
+                       {
+                           var accessToken = context.GetAccessToken();
+                           option.Headers.Add("enc_auth_token", SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase));
+                       }).Build();
+
+                chatAuthService.Closed += async (error) =>
+                {
+                    await Task.Delay(new Random().Next(0, 5) * 1000);
+                    await chatAuthService.StartAsync();
+                };
+
+                await chatAuthService.StartAsync();
+                await SignalrChatConnect();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private async Task SignalrChatConnect()
         {
-            var accessToken = context.GetAccessToken();
-            var code = SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase);
-            var url = ApiUrlConfig.BaseUrl + "signalr-chat" + $"/?enc_auth_token={code}";
-            signalrChat = new HubConnectionBuilder()
-                   .WithUrl(url, Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets)
-                   .Build();
+            var url = ApiUrlConfig.BaseUrl + "signalr-chat";
+            friendService = new HubConnectionBuilder()
+                      .WithUrl(url, HttpTransportType.WebSockets, option =>
+                      {
+                          var accessToken = context.GetAccessToken();
+                          option.Headers.Add("enc_auth_token", SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase));
+                      }).Build();
 
-            signalrChat.Closed += async (error) =>
+            friendService.Closed += async (error) =>
             {
                 await Task.Delay(new Random().Next(0, 5) * 1000);
-                await signalrChat.StartAsync();
+                await friendService.StartAsync();
             };
 
-            signalrChat.On<ChatMessageDto>("getChatMessage", GetChatMessageHandler);
-            signalrChat.On<FriendDto, bool>("getFriendshipRequest", GetFriendshipRequestHandler);
-            signalrChat.On<UserIdentifier, bool>("getUserConnectNotification", GetUserConnectNotificationHandler);
-            signalrChat.On<UserIdentifier, FriendshipState>("getUserStateChange", GetUserStateChangeHandler);
-            signalrChat.On<UserIdentifier>("getallUnreadMessagesOfUserRead", GetallUnreadMessagesOfUserReadHandler);
-            signalrChat.On<UserIdentifier>("getReadStateChange", GetReadStateChangeHandler);
-            await signalrChat.StartAsync();
+            friendService.On<ChatMessageDto>("getChatMessage", GetChatMessageHandler);
+            friendService.On<FriendDto, bool>("getFriendshipRequest", GetFriendshipRequestHandler);
+            friendService.On<UserIdentifier, bool>("getUserConnectNotification", GetUserConnectNotificationHandler);
+            friendService.On<UserIdentifier, FriendshipState>("getUserStateChange", GetUserStateChangeHandler);
+            friendService.On<UserIdentifier>("getallUnreadMessagesOfUserRead", GetallUnreadMessagesOfUserReadHandler);
+            friendService.On<UserIdentifier>("getReadStateChange", GetReadStateChangeHandler);
+
+            await friendService.StartAsync();
         }
 
         #endregion
@@ -151,15 +164,15 @@ namespace AppFramework.Shared.Services
         /// <param name="message"></param>
         private void GetChatMessageHandler(ChatMessageDto message)
         {
-            if (OnChatMessageHandler!=null)
+            if (OnChatMessageHandler != null)
             {
                 OnChatMessageHandler.Invoke(message);
             }
             else
             {
                 var friend = Friends.FirstOrDefault(t => t.FriendUserId.Equals(message.TargetUserId));
-                if (friend!=null)
-                    friend.UnreadMessageCount+=1;
+                if (friend != null)
+                    friend.UnreadMessageCount += 1;
             }
         }
 
@@ -181,8 +194,8 @@ namespace AppFramework.Shared.Services
         private void GetUserConnectNotificationHandler(UserIdentifier friend, bool isConnected)
         {
             var friendUser = Friends.FirstOrDefault(t => t.FriendUserId.Equals(friend.UserId));
-            if (friendUser!=null)
-                friendUser.IsOnline=isConnected;
+            if (friendUser != null)
+                friendUser.IsOnline = isConnected;
         }
 
         /// <summary>
@@ -203,10 +216,10 @@ namespace AppFramework.Shared.Services
         {
 
         }
-         
+
         private void GetReadStateChangeHandler(UserIdentifier user)
         {
-           //如果要处理消息得已读状态,可以订阅这里
+            //如果要处理消息得已读状态,可以订阅这里
         }
 
         #endregion
