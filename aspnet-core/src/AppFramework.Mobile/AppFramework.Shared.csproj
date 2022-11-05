@@ -318,6 +318,18 @@
 	  <Compile Update="Views\Auditlog\AuditLogView.xaml.cs">
 	    <DependentUpon>AuditLogView.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\Chat\Templates\ReceiverTextTemplate.xaml.cs">
+	    <DependentUpon>ReceiverTextTemplate.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Chat\Templates\ReceiverImageTemplate.xaml.cs">
+	    <DependentUpon>ReceiverImageTemplate.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Chat\Templates\SenderTextTemplate.xaml.cs">
+	    <DependentUpon>SenderTextTemplate.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Chat\Templates\SenderImageTemplate.xaml.cs">
+	    <DependentUpon>SenderImageTemplate.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\Shared\SkinView.xaml.cs">
 	    <DependentUpon>SkinView.xaml</DependentUpon>
 	  </Compile>
