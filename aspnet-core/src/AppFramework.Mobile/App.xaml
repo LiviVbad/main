@@ -11,9 +11,12 @@
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <converters:BoolToYesNoConverter x:Key="BoolToYesNoConverter" />
             <converters:ImageSourceConverter x:Key="ImageSourceConverter" />
-            <converters:ByteToImageConverter x:Key="ByteToImageConverter"/>
+            <converters:ByteToImageConverter x:Key="ByteToImageConverter" />
             <converters:BackgroundColorConverter x:Key="BackgroundColorConverter" />
             <converters:IndentConverter x:Key="IndentConverter" />
+            <converters:StringToBadgeIconConverter x:Key="BadgeConverter" />
+            <converters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
+            <converters:StringFormatConverter x:Key="StringFormatConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

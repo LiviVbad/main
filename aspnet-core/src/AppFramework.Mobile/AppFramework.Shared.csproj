@@ -275,6 +275,7 @@
 		<PackageReference Include="Syncfusion.Licensing" Version="20.1.0.47" />
 		<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="20.1.0.47" />
 		<PackageReference Include="Syncfusion.Xamarin.Core" Version="20.1.0.47" />
+		<PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="20.1.0.47" />
 		<PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="20.1.0.47" />
 		<PackageReference Include="Syncfusion.Xamarin.SfChart" Version="20.1.0.47" />
 		<PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="20.1.0.47" />
