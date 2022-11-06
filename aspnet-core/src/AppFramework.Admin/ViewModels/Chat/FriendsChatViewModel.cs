@@ -237,11 +237,11 @@ namespace AppFramework.Admin.ViewModels.Chat
             {
                 string fileName = fileDialog.SafeFileName;
                 string contentType = MimeUtility.GetMimeMapping(fileName);
-                var photoAsBytes = File.ReadAllBytes(fileDialog.FileName);
+                var fileAsBytes = File.ReadAllBytes(fileDialog.FileName);
 
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() => UploadFile(photoAsBytes, fileName, contentType),
+                    await WebRequest.Execute(() => UploadFile(fileAsBytes, fileName, contentType),
                         async output =>
                         {
                             string message = $"[file]{{\"id\":\"{output.Id}\", " +

@@ -1,13 +1,11 @@
 ﻿using Abp.IO.Extensions;
 using Acr.UserDialogs;
-using AppFramework.Shared.Models;
-using AppFramework.Shared.Services;
+using AppFramework.Shared.Models; 
 using AppFramework.Shared.Services.Navigation;
 using AppFramework.ApiClient;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Authorization.Users.Profile.Dto;
-using AppFramework.Dto;
-using AppFramework.Shared.Controls;
+using AppFramework.Dto; 
 using FFImageLoading;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -17,8 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+using System.Threading.Tasks; 
 using AppFramework.Shared.ViewModels;
 using AppFramework.Shared.Views;
 
@@ -119,10 +116,17 @@ namespace AppFramework.Shared.Services
             if (!CrossMedia.Current.IsPickPhotoSupported)
                 return;
 
-            using (var photo = await CrossMedia.Current.PickPhotoAsync())
+            try
             {
-                await picturePicked(photo);
+                using (var photo = await CrossMedia.Current.PickPhotoAsync())
+                {
+                    await picturePicked(photo);
+                }
             }
+            catch(Exception ex)
+            {
+
+            } 
         }
 
         private async Task TakeProfilePhotoAsync(Func<MediaFile, Task> photoTaken)

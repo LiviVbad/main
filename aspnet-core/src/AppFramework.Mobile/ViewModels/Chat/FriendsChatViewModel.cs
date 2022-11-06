@@ -1,5 +1,5 @@
-﻿using Abp.Runtime.Caching;
-using Abp.Runtime.Security;
+﻿using Abp.Runtime.Security;
+using Acr.UserDialogs;
 using AppFramework.ApiClient;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Chat;
@@ -7,15 +7,22 @@ using AppFramework.Chat.Dto;
 using AppFramework.Shared.Models.Chat;
 using AppFramework.Shared.Services;
 using Newtonsoft.Json;
+using Plugin.Media.Abstractions;
+using Plugin.Media;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Xamarin.CommunityToolkit.ObjectModel;
+using FFImageLoading;
+using Abp.IO.Extensions;
+using AppFramework.Dto;
+using MimeMapping;
+using Xamarin.Essentials;
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -39,11 +46,10 @@ namespace AppFramework.Shared.ViewModels
 
             chatService.OnChatMessageHandler += ChatService_OnChatMessageHandler;
             messages = new ObservableCollection<ChatMessageModel>();
-            SendCommand = new DelegateCommand(() => { });
+            SendCommand = new DelegateCommand(Send);
 
-            PickFileCommand = new DelegateCommand(() => { });
-            PickImageCommand = new DelegateCommand(() => { });
-            OpenFolderCommand = new DelegateCommand<ChatMessageModel>(arg => { });
+            PickFileCommand = new DelegateCommand(PickFile);
+            PickImageCommand = new DelegateCommand(PickImage);
         }
 
         #region 字段/属性
@@ -112,7 +118,6 @@ namespace AppFramework.Shared.ViewModels
                         Messages.Add(item);
                     }
 
-                    //aggregator.GetEvent<ScrollEvent>().Publish(true);
                     await MarkAllUnreadMessages();
                 });
         }
@@ -159,11 +164,14 @@ namespace AppFramework.Shared.ViewModels
         /// <param name="chatMessage"></param>
         private async void ChatService_OnChatMessageHandler(ChatMessageDto chatMessage)
         {
-            var msg = Map<ChatMessageModel>(chatMessage);
-            await UpdateMessageInfo(msg);
-            Messages.Add(msg);
-
-            await MarkAllUnreadMessages();
+            var message = Messages.FirstOrDefault(t => t.Id.Equals(chatMessage.Id));
+            if (message==null)
+            {
+                var msg = Map<ChatMessageModel>(chatMessage);
+                await UpdateMessageInfo(msg);
+                Messages.Add(msg);
+                await MarkAllUnreadMessages();
+            }
         }
 
         /// <summary>
@@ -182,6 +190,8 @@ namespace AppFramework.Shared.ViewModels
         }
 
         #endregion
+
+        #region 缓存文件
 
         private async Task SaveCacheFile(ChatMessageModel model, string msg)
         {
@@ -210,6 +220,152 @@ namespace AppFramework.Shared.ViewModels
                 await proxyChatService.DownloadAsync(url, localFolderPath, fileName);
             }
         }
+
+        #endregion
+
+        #region 选择图片
+
+        private static async Task PickProfilePictureAsync(Func<MediaFile, Task> picturePicked)
+        {
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+                return;
+
+            using (var photo = await CrossMedia.Current.PickPhotoAsync())
+            {
+                await picturePicked(photo);
+            }
+        }
+
+        private async Task OnCompleted(MediaFile photo)
+        {
+            if (photo == null)
+                return;
+
+            var croppedImageBytes = File.ReadAllBytes(photo.Path);
+            var fileName = Path.GetFileName(photo.Path);
+
+            var jpgStream = await ResizeImageAsync(croppedImageBytes);
+            string contentType = MimeUtility.GetMimeMapping(fileName);
+
+            await WebRequest.Execute(() => UploadFile(jpgStream.GetAllBytes(), fileName, contentType),
+                async output =>
+                {
+                    string message = $"[image]{{\"id\":\"{output.Id}\", " +
+                                             $"\"name\":\"{output.Name}\", " +
+                                             $"\"contentType\":\"{output.ContentType}\"}}";
+
+                    await chatService.SendMessage(new SendChatMessageInput()
+                    {
+                        UserId = Friend.FriendUserId,
+                        Message = message,
+                        UserName = context.LoginInfo.User.Name
+                    });
+                });
+        }
+
+        private static async Task<Stream> ResizeImageAsync(byte[] imageBytes, int width = 256, int height = 256)
+        {
+            var result = ImageService.Instance.LoadStream(token =>
+            {
+                var tcs = new TaskCompletionSource<Stream>();
+                tcs.TrySetResult(new MemoryStream(imageBytes));
+                return tcs.Task;
+            }).DownSample(width, height);
+
+            return await result.AsJPGStreamAsync();
+        }
+
+        private async Task<ChatUploadFileOutput> UploadFile(byte[] photoAsBytes, string fileName, string contentType)
+        {
+            using (Stream photoStream = new MemoryStream(photoAsBytes))
+            {
+                return await proxyChatService.UploadFile(content =>
+                {
+                    content.AddFile("file", photoStream, fileName, contentType);
+                    content.AddString(nameof(FileDto.FileName), fileName);
+                });
+            }
+        }
+
+        #endregion
+
+        #region 选择文件
+
+        private static async Task PickfileAsync(Func<FileResult, Task> filePicked)
+        {
+            var file = await FilePicker.PickAsync();
+
+            if (file!=null) await filePicked(file);
+        }
+
+        private async Task PickFileOnCompleted(FileResult fileResult)
+        {
+            if (fileResult == null) return;
+
+            var fileAsBytes = File.ReadAllBytes(fileResult.FullPath);
+            var fileName = fileResult.FileName.Replace(" ", "");
+            string contentType = MimeUtility.GetMimeMapping(fileName);
+
+            await WebRequest.Execute(() => UploadFile(fileAsBytes, fileName, contentType),
+                async output =>
+                {
+                    string message = $"[file]{{\"id\":\"{output.Id}\", " +
+                                              $"\"name\":\"{output.Name}\", " +
+                                              $"\"contentType\":\"{output.ContentType}\"}}";
+
+                    await chatService.SendMessage(new SendChatMessageInput()
+                    {
+                        UserId = Friend.FriendUserId,
+                        Message = message,
+                        UserName = context.LoginInfo.User.Name
+                    });
+                });
+        }
+
+        #endregion
+
+        #region 发送消息
+
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        public async void Send()
+        {
+            if (string.IsNullOrWhiteSpace(Message)) return;
+
+            await WebRequest.Execute(() =>
+              chatService.SendMessage(new SendChatMessageInput()
+              {
+                  UserId = Friend.FriendUserId,
+                  Message = Message,
+                  UserName = context.LoginInfo.User.Name
+              }));
+
+            Message = string.Empty; //发完消息就清除输入内容
+        }
+
+        /// <summary>
+        /// 选择文件
+        /// </summary>
+        private async void PickFile()
+        {
+            await PickfileAsync(PickFileOnCompleted);
+        }
+
+        /// <summary>
+        /// 选择图片
+        /// </summary>
+        private void PickImage()
+        {
+            UserDialogs.Instance.ActionSheet(new ActionSheetConfig
+            {
+                Options = new List<ActionSheetOption>  {
+                    new ActionSheetOption(Local.Localize("PickFromGallery"),  async () => await PickProfilePictureAsync(OnCompleted)),
+                }
+            });
+        }
+
+        #endregion
 
         public override Task GoBackAsync()
         {
