@@ -5,7 +5,6 @@ using Android.OS;
 using Android.Runtime; 
 using AppFramework.Shared;
 using AppFramework.Shared.Core.Behaviors;
-using AppFramework.ApiClient;
 using Flurl.Http;
 using Xamarin.Forms.Platform.Android; 
 
@@ -23,7 +22,7 @@ namespace AppFramework.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            ConfigureServices(); 
+            UserDialogs.Init(this);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             App application = new App();
@@ -42,26 +41,6 @@ namespace AppFramework.Droid
         {
             var result = OnBackPressedEventHandler?.Invoke();
             if ((bool)result) base.OnBackPressed();
-        }
-
-        private void ConfigureServices()
-        {
-            UserDialogs.Init(this);
-
-            /*
-             * 调试模式下设置本地Web服务地址
-             */
-            DebugServerIpAddresses.Current = "172.21.176.1";
-
-            //配置Http的会话超时及刷新Token
-            FlurlHttp.Configure(c =>
-            {
-                c.HttpClientFactory = new ModernHttpClientFactory
-                {
-                    OnSessionTimeOut =App.OnSessionTimeout,
-                    OnAccessTokenRefresh = App.OnAccessTokenRefresh
-                };
-            });
-        }
+        } 
     }
 }

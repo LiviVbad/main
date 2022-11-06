@@ -6,7 +6,8 @@
 
     <ViewCell.View>
         <controls:CustomShadowFrame
-            Padding="0" Margin="22, 12, 38, 4"
+            Margin="22,12,38,4"
+            Padding="0"
             BackgroundColor="{DynamicResource GrayShadowColor}"
             BorderWidth="0"
             CornerRadius="4"
@@ -22,7 +23,7 @@
                         HorizontalOptions="End"
                         LineHeight="1.25"
                         Text="{Binding Message}"
-                        TextColor="{DynamicResource Gray-Black}"
+                        TextColor="{DynamicResource Gray-700}"
                         VerticalOptions="Center" />
 
                     <!--  Time  -->
@@ -32,7 +33,7 @@
                         HorizontalOptions="End"
                         LineHeight="1.25"
                         Text="{Binding CreationTime, StringFormat='{0:h:mm tt}'}"
-                        TextColor="{DynamicResource Gray-Black}"
+                        TextColor="{DynamicResource Gray-700}"
                         VerticalOptions="Center" />
                 </StackLayout>
             </controls:CustomShadowFrame.Content>

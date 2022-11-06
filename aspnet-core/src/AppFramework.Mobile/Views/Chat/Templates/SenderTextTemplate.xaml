@@ -5,7 +5,8 @@
     xmlns:controls="clr-namespace:AppFramework.Shared.Controls">
     <ViewCell.View>
         <controls:CustomShadowFrame
-            Padding="0" Margin="38, 12, 22, 4"
+            Margin="38,12,22,4"
+            Padding="0"
             BackgroundColor="{DynamicResource PrimaryLight}"
             BorderWidth="0"
             CornerRadius="4"
@@ -20,7 +21,7 @@
                         HorizontalOptions="Start"
                         LineHeight="1.25"
                         Text="{Binding Message}"
-                        TextColor="{DynamicResource Gray-900}"
+                        TextColor="{DynamicResource Gray-Black}"
                         VerticalOptions="Fill" />
 
                     <!--  Time  -->
@@ -30,7 +31,7 @@
                         HorizontalOptions="End"
                         LineHeight="1.25"
                         Text="{Binding CreationTime, StringFormat='{0:h:mm tt}'}"
-                        TextColor="{DynamicResource Gray-700}"
+                        TextColor="{DynamicResource Gray-Black}"
                         VerticalOptions="Fill" />
                 </StackLayout>
 

@@ -7,7 +7,8 @@
 
     <ViewCell.View>
         <controls:CustomShadowFrame
-            Padding="0" Margin="38, 12, 22, 4"
+            Margin="38,12,22,4"
+            Padding="0"
             BackgroundColor="{DynamicResource PrimaryLight}"
             BorderWidth="0"
             CornerRadius="4"
@@ -33,7 +34,7 @@
                         FontSize="12"
                         HorizontalOptions="End"
                         Text="{Binding CreationTime, StringFormat='{0:h:mm tt}'}"
-                        TextColor="{DynamicResource Gray-700}"
+                        TextColor="{DynamicResource Gray-White}"
                         VerticalOptions="End" />
                 </Grid>
             </controls:CustomShadowFrame.Content>

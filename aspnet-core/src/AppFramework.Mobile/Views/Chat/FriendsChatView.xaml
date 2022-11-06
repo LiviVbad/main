@@ -6,7 +6,9 @@
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:AppFramework.Shared.Controls"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:temp="clr-namespace:AppFramework.Shared.Views.Selectors">
+    xmlns:temp="clr-namespace:AppFramework.Shared.Views.Selectors"
+    BackgroundColor="{DynamicResource Gray-100}"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <temp:MessageDataTemplateSelector x:Key="MessageDataTemplateSelector" />
     </ContentPage.Resources>
@@ -61,6 +63,7 @@
                                     HorizontalOptions="FillAndExpand"
                                     HorizontalTextAlignment="Start"
                                     Text="{Binding Friend.FriendUserName}"
+                                    TextColor="{DynamicResource Gray-700}"
                                     VerticalOptions="Center"
                                     VerticalTextAlignment="Center" />
                             </StackLayout>
@@ -86,9 +89,8 @@
                                 Padding="5,0"
                                 BorderColor="{DynamicResource Gray-Bg}"
                                 BorderWidth="0"
-                                CornerRadius="25"
+                                CornerRadius="5"
                                 HasShadow="True">
-
                                 <Grid
                                     ColumnDefinitions="*, Auto, Auto"
                                     ColumnSpacing="0"
@@ -128,7 +130,7 @@
                                 Style="{StaticResource IconButtonStyle}"
                                 Text="&#xe64a;"
                                 TextColor="{DynamicResource Gray-White}"
-                                VerticalOptions="End" />
+                                VerticalOptions="Center" />
                         </Grid>
                     </DataTemplate>
                 </listView:SfListView.FooterTemplate>

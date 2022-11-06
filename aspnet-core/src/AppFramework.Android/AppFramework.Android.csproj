@@ -85,6 +85,8 @@
   <ItemGroup>
     <Compile Include="Localization\Locale.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Renderers\BorderlessEditorRenderer.cs" />
+    <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -112,10 +114,6 @@
     <AndroidResource Include="Resources\drawable\Menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppFramework.Application.Client\AppFramework.Application.Client.csproj">
-      <Project>{572932c8-fc7f-472c-b466-0cc07f29fe7a}</Project>
-      <Name>AppFramework.Application.Client</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AppFramework.Mobile\AppFramework.Shared.csproj">
       <Project>{ce474f44-b837-46a1-9154-0483d417d0f4}</Project>
       <Name>AppFramework.Shared</Name>

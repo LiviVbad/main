@@ -1,4 +1,6 @@
-﻿using Syncfusion.Licensing;
+﻿using AppFramework.ApiClient;
+using Flurl.Http;
+using Syncfusion.Licensing;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -114,11 +116,26 @@ namespace AppFramework.Shared
 
         public static void OnInitialized()
         {
+            /*
+             * 调试模式下设置本地Web服务地址
+             */
+            DebugServerIpAddresses.Current = "192.168.18.6";
+
+            //配置Http的会话超时及刷新Token
+            FlurlHttp.Configure(c =>
+            {
+                c.HttpClientFactory = new ModernHttpClientFactory
+                {
+                    OnSessionTimeOut =App.OnSessionTimeout,
+                    OnAccessTokenRefresh = App.OnAccessTokenRefresh
+                };
+            });
+
             //设置Syncfusion授权
             SyncfusionLicenseProvider.RegisterLicense("NjA2NDIxQDMyMzAyZTMxMmUzMElKRzlKOWdTRmJyekdQYzFOY0RzZURSdnVPbWllR0RDWDBCbEZUYjBQNE09");
 
             //设置系统主题
-            ApplyThemes();
+            ApplyThemes(); 
         }
 
         private static void ApplyThemes()
