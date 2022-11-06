@@ -188,11 +188,14 @@ namespace AppFramework.Admin.ViewModels.Chat
         /// <param name="chatMessage"></param>
         private async void ChatService_OnChatMessageHandler(ChatMessageDto chatMessage)
         {
-            var msg = Map<ChatMessageModel>(chatMessage);
-            await UpdateMessageInfo(msg);
-            Messages.Add(msg);
-
-            await MarkAllUnreadMessages();
+            var message = Messages.FirstOrDefault(t => t.Id.Equals(chatMessage.Id));
+            if (message==null)
+            {
+                var msg = Map<ChatMessageModel>(chatMessage);
+                await UpdateMessageInfo(msg);
+                Messages.Add(msg);
+                await MarkAllUnreadMessages();
+            }
         }
 
         /// <summary>

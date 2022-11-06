@@ -6,6 +6,8 @@ namespace AppFramework.Shared.Models.Chat
 {
     public class ChatMessageModel : BindableBase
     {
+        public int Id { get; set; }
+
         public long UserId { get; set; }
 
         public string UserName { get; set; }
