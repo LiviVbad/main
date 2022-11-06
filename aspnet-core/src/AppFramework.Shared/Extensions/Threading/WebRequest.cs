@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Prism.Ioc;
 using AppFramework.Extensions;
 using Prism.Services.Dialogs;
-using AppFramework.Shared; 
+using AppFramework.Shared;
 
 namespace AppFramework
 {
@@ -142,9 +142,9 @@ namespace AppFramework
            Func<Exception, Task> failCallback)
         {
             if (string.IsNullOrEmpty(userFriendlyException.Details))
-                NotifyBar.Error(Local.Localize("Error"), userFriendlyException.Message); 
+                NotifyBar.Error(Local.Localize("Error"), userFriendlyException.Message);
             else
-                NotifyBar.Error(userFriendlyException.Message, userFriendlyException.Details); 
+                NotifyBar.Error(userFriendlyException.Message, userFriendlyException.Details);
 
             await failCallback(userFriendlyException);
         }
@@ -184,7 +184,7 @@ namespace AppFramework
             Func<Task> func,
             Func<Task> successCallback,
             Func<System.Exception, Task> failCallback)
-        { 
+        {
             var httpExceptionMessage = LocalTranslationHelper.Localize("HttpException");
 #if DEBUG 
             System.Diagnostics.Debug.WriteLine(httpExceptionMessage + httpException.Message);
@@ -204,7 +204,7 @@ namespace AppFramework
             Func<Task<TResult>> func,
             Func<TResult, Task> successCallback,
             Func<System.Exception, Task> failCallback)
-        { 
+        {
             var httpExceptionMessage = LocalTranslationHelper.Localize("HttpException");
 #if DEBUG 
             System.Diagnostics.Debug.WriteLine(httpExceptionMessage + httpException.Message);
@@ -224,7 +224,7 @@ namespace AppFramework
             Func<System.Exception, Task> failCallback)
         {
             NotifyBar.Warning(LocalTranslationHelper.Localize("MessageTitle"),
-               abpValidationException.GetConsolidatedMessage()); 
+               abpValidationException.GetConsolidatedMessage());
 
             await failCallback(abpValidationException);
         }
@@ -234,9 +234,16 @@ namespace AppFramework
             Func<Task> successCallback,
             Func<System.Exception, Task> failCallback)
         {
-            var accepted = dialogService.Question(
-                LocalTranslationHelper.Localize("MessageTitle"),
-                LocalTranslationHelper.Localize("UnhandledWebRequestException"));
+            string message;
+            var key = exception.Message;
+
+            if (string.IsNullOrWhiteSpace(key))
+                message=LocalTranslationHelper.Localize("UnhandledWebRequestException");
+            else
+                message=LocalTranslationHelper.Localize(key);
+
+            var accepted = dialogService.Question(LocalTranslationHelper.Localize("MessageTitle"),
+                message);
 
             if (accepted)
                 await Execute(func, successCallback, failCallback);

@@ -19,7 +19,6 @@ using System.Threading.Tasks;
 using MimeMapping;
 using Prism.Events;
 using AppFramework.Admin.Events;
-using System;
 
 namespace AppFramework.Admin.ViewModels.Chat
 {
@@ -31,7 +30,7 @@ namespace AppFramework.Admin.ViewModels.Chat
            IProfileAppService profileAppService,
            IAccessTokenManager tokenManager,
            IEventAggregator aggregator,
-           ProxyChatControllerService proxyChat)
+           ProxyChatControllerService proxyChatService)
         {
             this.context = context;
             this.chatApp = chatApp;
@@ -39,7 +38,8 @@ namespace AppFramework.Admin.ViewModels.Chat
             this.profileAppService = profileAppService;
             this.tokenManager = tokenManager;
             this.aggregator = aggregator;
-            this.proxyChat = proxyChat;
+            this.proxyChatService = proxyChatService;
+
             chatService.OnChatMessageHandler += ChatService_OnChatMessageHandler;
             messages = new ObservableCollection<ChatMessageModel>();
             SendCommand = new DelegateCommand(Send);
@@ -60,7 +60,7 @@ namespace AppFramework.Admin.ViewModels.Chat
         private readonly IProfileAppService profileAppService;
         private readonly IAccessTokenManager tokenManager;
         private readonly IEventAggregator aggregator;
-        private readonly ProxyChatControllerService proxyChat;
+        private readonly ProxyChatControllerService proxyChatService;
         private ObservableCollection<ChatMessageModel> messages;
 
         public string Message
@@ -106,8 +106,11 @@ namespace AppFramework.Admin.ViewModels.Chat
                     if (!result.Items.Any()) return;
 
                     var list = Map<List<ChatMessageModel>>(result.Items);
+                    var userId = list.First().TargetUserId;
+                     
                     userName = chatService.Friends
-                    .FirstOrDefault(t => t.FriendUserId.Equals(list.First().TargetUserId)).FriendUserName;
+                    .FirstOrDefault(t => t.FriendUserId.Equals(userId))
+                    .FriendUserName; 
 
                     foreach (var item in list)
                     {
@@ -137,38 +140,12 @@ namespace AppFramework.Admin.ViewModels.Chat
             if (model.Message.StartsWith("[image]"))
             {
                 model.MessageType = "image";
-
-                var accessToken = tokenManager.GetAccessToken();
-                var code = SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase);
-
-                var msg = model.Message.Replace("[image]", "");
-                var output = JsonConvert.DeserializeObject<ChatUploadFileOutput>(msg);
-                model.Message = output.Name; //显示文件名
-
-                var downloadUrl = ApiUrlConfig.DefaultHostUrl + $"Chat/GetUploadedObject?fileId={output.Id}" +
-                    $"&fileName={output.Name}" +
-                    $"&contentType={output.ContentType}" +
-                    $"&enc_auth_token={code}";
-
-                await DownloadAsync(downloadUrl, AppConsts.DocumentPath, output.Name);
+                await SaveCacheFile(model, model.Message.Replace("[image]", ""));
             }
             else if (model.Message.StartsWith("[file]"))
             {
                 model.MessageType = "file";
-
-                var accessToken = tokenManager.GetAccessToken();
-                var code = SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase);
-
-                var msg = model.Message.Replace("[file]", "");
-                var output = JsonConvert.DeserializeObject<ChatUploadFileOutput>(msg);
-                model.Message = output.Name; //显示文件名
-
-                var downloadUrl = ApiUrlConfig.DefaultHostUrl + $"Chat/GetUploadedObject?fileId={output.Id}" +
-                   $"&fileName={output.Name}" +
-                   $"&contentType={output.ContentType}" +
-                   $"&enc_auth_token={code}";
-
-                await DownloadAsync(downloadUrl, AppConsts.DocumentPath, output.Name);
+                await SaveCacheFile(model, model.Message.Replace("[file]", ""));
             }
             else if (model.Message.StartsWith("[link]"))
             {
@@ -217,6 +194,22 @@ namespace AppFramework.Admin.ViewModels.Chat
 
         #region 发送图片/文件
 
+        private async Task SaveCacheFile(ChatMessageModel model, string msg)
+        {
+            var accessToken = tokenManager.GetAccessToken();
+            var code = SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase);
+
+            var output = JsonConvert.DeserializeObject<ChatUploadFileOutput>(msg);
+            model.Message = output.Name; //显示文件名
+
+            var downloadUrl = ApiUrlConfig.BaseUrl + $"Chat/GetUploadedObject?fileId={output.Id}" +
+               $"&fileName={output.Name}" +
+               $"&contentType={output.ContentType}" +
+               $"&enc_auth_token={code}";
+
+            await DownloadAsync(downloadUrl, AppConsts.DocumentPath, output.Name);
+        }
+
         private async Task DownloadAsync(string url, string localFolderPath, string fileName)
         {
             if (File.Exists($"{localFolderPath}{fileName}"))
@@ -225,7 +218,7 @@ namespace AppFramework.Admin.ViewModels.Chat
             }
             else
             {
-                await proxyChat.DownloadAsync(url, localFolderPath, fileName);
+                await proxyChatService.DownloadAsync(url, localFolderPath, fileName);
             }
         }
 
@@ -301,7 +294,7 @@ namespace AppFramework.Admin.ViewModels.Chat
         {
             using (Stream photoStream = new MemoryStream(photoAsBytes))
             {
-                return await proxyChat.UploadFile(content =>
+                return await proxyChatService.UploadFile(content =>
                  {
                      content.AddFile("file", photoStream, fileName, contentType);
                      content.AddString(nameof(FileDto.FileName), fileName);
@@ -327,12 +320,13 @@ namespace AppFramework.Admin.ViewModels.Chat
         {
             if (string.IsNullOrWhiteSpace(Message)) return;
 
-            await chatService.SendMessage(new SendChatMessageInput()
-            {
-                UserId = Friend.FriendUserId,
-                Message = Message,
-                UserName = context.LoginInfo.User.Name
-            });
+            await WebRequest.Execute(() =>
+              chatService.SendMessage(new SendChatMessageInput()
+              {
+                  UserId = Friend.FriendUserId,
+                  Message = Message,
+                  UserName = context.LoginInfo.User.Name
+              }));
 
             Message = string.Empty; //发完消息就清除输入内容
         }

@@ -147,6 +147,9 @@
   <data name="RequestTimedOut" xml:space="preserve">
     <value>Request timed out. Do you want to try again?</value>
   </data>
+  <data name="ServerTimeOut" xml:space="preserve">
+    <value>The server is not connected, do you want to resend?</value>
+  </data>
   <data name="UnhandledWebRequestException" xml:space="preserve">
     <value>An error occurred. Do you want to try again?</value>
   </data>

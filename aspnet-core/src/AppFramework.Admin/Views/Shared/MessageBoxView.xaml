@@ -27,6 +27,8 @@
 
         <Border
             Grid.RowSpan="2"
+            BorderBrush="#D1D1D1"
+            BorderThickness="1"
             CornerRadius="3"
             Opacity="1"
             Style="{StaticResource BorderStyle}" />

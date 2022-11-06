@@ -73,7 +73,7 @@ namespace AppFramework.Shared.Services.Signalr
         public async Task SendMessage(SendChatMessageInput input)
         {
             if (!IsConnected)
-                throw new Exception("Please try again after connecting to the server!");
+                throw new Exception("ServerTimeOut");
 
             if (input==null)
                 throw new ArgumentNullException(nameof(input));
