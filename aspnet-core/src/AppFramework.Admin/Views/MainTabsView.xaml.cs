@@ -1,5 +1,6 @@
 ﻿using AppFramework.Services;
 using AppFramework.Shared;
+using AppFramework.Shared.Services.App;
 using AppFramework.ViewModels;
 using Syncfusion.Windows.Shared;
 using System;
@@ -8,15 +9,16 @@ using System.Windows;
 namespace AppFramework.Views
 {
     public partial class MainTabsView : ChromelessWindow
-    { 
+    {
         private readonly IHostDialogService dialog;
+        private readonly IAppStartService appStartService;
 
-        public MainTabsView( 
-            IThemeService themeService,
-            IHostDialogService dialog)
+        public MainTabsView(IThemeService themeService,
+            IHostDialogService dialog, IAppStartService appStartService)
         {
-            InitializeComponent(); 
-            this.dialog = dialog; 
+            InitializeComponent();
+            this.dialog = dialog;
+            this.appStartService=appStartService;
             themeService.SetCurrentTheme(this);
             HeaderBorder.MouseDown += (s, e) =>
             {
@@ -32,7 +34,6 @@ namespace AppFramework.Views
             BtnMax.Click += BtnMax_Click;
             BtnClose.Click += BtnClose_Click;
             BtnDoubleLeft.Click += BtnDoubleLeft_Click;
-
             treeViewItems.NodeExpanded += TreeViewItems_NodeExpanded;
         }
 
@@ -69,7 +70,10 @@ namespace AppFramework.Views
         private async void BtnClose_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (await dialog.Question(Local.Localize("AreYouSure")))
-                Environment.Exit(0);
+            {
+                (System.Windows.Application.Current as IAppTaskBar)?.Dispose();
+                appStartService.Exit();
+            }
         }
 
         private void BtnMax_Click(object sender, System.Windows.RoutedEventArgs e)

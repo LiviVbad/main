@@ -3,7 +3,7 @@ using DryIoc;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Regions;
-using System.Windows; 
+using System.Windows;
 using AppFramework.Shared;
 using AppFramework.Shared.Services.App;
 using Hardcodet.Wpf.TaskbarNotification;
@@ -13,10 +13,11 @@ using AppFramework.Admin;
 
 namespace AppFramework
 {
-    public partial class App : PrismApplication
+    public partial class App : PrismApplication, IAppTaskBar
     {
-        private TaskbarIcon taskBar;
-        protected override Window CreateShell() => null;
+        private TaskbarIcon? taskBar;
+
+        protected override Window? CreateShell() => null;
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
@@ -28,7 +29,7 @@ namespace AppFramework
             containerRegistry.RegisterSingleton<IThemeService, ThemeService>();
             containerRegistry.RegisterSingleton<IUpdateService, UpdateService>();
         }
-         
+
         protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
         {
             base.ConfigureRegionAdapterMappings(regionAdapterMappings);
@@ -36,18 +37,24 @@ namespace AppFramework
         }
 
         protected override async void OnInitialized()
-        {  
-            taskBar = (TaskbarIcon)FindResource("taskBar");
-
+        {
             AppSettings.OnInitialized();
 
             var appVersionService = ContainerLocator.Container.Resolve<IUpdateService>();
             await appVersionService.CheckVersion();
 
             var appStart = ContainerLocator.Container.Resolve<IAppStartService>();
-            MainWindow = await appStart.CreateShell(this);
+            MainWindow =  appStart.CreateShell(this);
 
             base.OnInitialized();
+            Initialization();
         }
+
+        public void Initialization()
+        {
+            taskBar = (TaskbarIcon)FindResource("taskBar");
+        }
+
+        public void Dispose() => taskBar?.Dispose();
     }
 }

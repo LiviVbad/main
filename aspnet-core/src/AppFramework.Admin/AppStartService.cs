@@ -1,7 +1,7 @@
 ﻿using AppFramework.Shared.Services.App;
 using System;
 using System.Windows;
-using Prism.Ioc; 
+using Prism.Ioc;
 using System.Threading.Tasks;
 using AppFramework.Shared;
 using Prism.Regions;
@@ -17,10 +17,7 @@ namespace AppFramework.Admin
     {
         private System.Windows.Application app;
 
-        public void Exit()
-        {
-            Environment.Exit(0);
-        }
+        public void Exit() => Environment.Exit(0);
 
         public void Logout()
         {
@@ -31,11 +28,10 @@ namespace AppFramework.Admin
                 app.MainWindow.Show();
                 (app.MainWindow.DataContext as INavigationAware)?.OnNavigatedTo(null);
             }
-            else
-                Environment.Exit(0);
+            else Exit();
         }
 
-        public async Task<Window> CreateShell(System.Windows.Application app)
+        public Window CreateShell(System.Windows.Application app)
         {
             this.app = app;
             var container = ContainerLocator.Container;
@@ -43,7 +39,7 @@ namespace AppFramework.Admin
             var userConfigurationService = container.Resolve<UserConfigurationService>();
             userConfigurationService.OnAccessTokenRefresh = OnAccessTokenRefresh;
             userConfigurationService.OnSessionTimeOut = OnSessionTimeout;
-             
+
             if (SplashScreenInitialized())
             {
                 var shell = container.Resolve<object>(AppViews.Main);
@@ -60,24 +56,23 @@ namespace AppFramework.Admin
                     }
                 }
             }
-
             return null;
         }
 
-        private static bool SplashScreenInitialized()
+        private bool SplashScreenInitialized()
         {
             var dialogService = ContainerLocator.Container.Resolve<IHostDialogService>();
             var result = dialogService.ShowWindow(AppViews.SplashScreen).Result;
             if (result == ButtonResult.No)
             {
-                if (!Authorization()) ExitApplication();
+                if (!Authorization()) Exit();
             }
-            else if (result == ButtonResult.None) ExitApplication();
+            else if (result == ButtonResult.None) Exit();
 
             return true;
         }
 
-        private static bool Authorization()
+        private bool Authorization()
         {
             var validationResult = Validation();
             if (validationResult == ButtonResult.Retry)
@@ -91,8 +86,6 @@ namespace AppFramework.Admin
                 return dialogService.ShowWindow(AppViews.Login).Result;
             }
         }
-
-        public static void ExitApplication() => Environment.Exit(0);
 
         public static async Task OnSessionTimeout()
         {
