@@ -2,6 +2,7 @@
 using AppFramework.WindowHost;
 using Prism.Commands;
 using Prism.Services.Dialogs;
+using System.Threading.Tasks;
 
 namespace AppFramework.Shared
 {
@@ -17,7 +18,7 @@ namespace AppFramework.Shared
 
         public HostDialogViewModel()
         {
-            SaveCommand = new DelegateCommand(Save);
+            SaveCommand = new DelegateCommand(async () => await Save());
             CancelCommand = new DelegateCommand(Cancel);
         }
 
@@ -26,9 +27,11 @@ namespace AppFramework.Shared
             DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.No));
         }
 
-        public virtual void Save()
+        public virtual async Task Save()
         {
             DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.OK));
+
+            await Task.CompletedTask;
         }
 
         protected virtual void Save(object value)

@@ -4,8 +4,8 @@ using AppFramework.Shared;
 using AppFramework.Shared.Services;
 using AppFramework.ViewModels.Shared;
 using Prism.Commands;
-using Prism.Regions; 
-using System; 
+using Prism.Regions;
+using System;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -76,13 +76,7 @@ namespace AppFramework.ViewModels
 
         private async Task GetUserLogins(GetLoginAttemptsInput filter)
         {
-            await WebRequest.Execute(() => appService.GetUserLoginAttempts(filter),
-                        async result =>
-                        {
-                            dataPager.SetList(result);
-
-                            await Task.CompletedTask;
-                        });
+            await WebRequest.Execute(() => appService.GetUserLoginAttempts(filter), dataPager.SetList);
         }
 
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)

@@ -12,8 +12,8 @@ namespace AppFramework.ViewModels
     public class SendTwoFactorCodeViewModel : HostDialogViewModel
     {
         private readonly IHostDialogService dialog;
-        private readonly ProxyTokenAuthControllerService _proxyTokenAuthControllerService;
-        private readonly IAccountService _accountService;
+        private readonly ProxyTokenAuthControllerService proxyTokenAuthControllerService;
+        private readonly IAccountService accountService;
 
         public DelegateCommand SendSecurityCodeCommand { get; private set; }
 
@@ -22,8 +22,8 @@ namespace AppFramework.ViewModels
             IAccountService accountService)
         {
             this.dialog = dialog;
-            _proxyTokenAuthControllerService = proxyTokenAuthControllerService;
-            _accountService = accountService;
+            this.proxyTokenAuthControllerService = proxyTokenAuthControllerService;
+            this.accountService = accountService;
             _twoFactorAuthProviders = new List<string>();
 
             SendSecurityCodeCommand = new DelegateCommand(SendSecurityCodeAsync);
@@ -55,10 +55,10 @@ namespace AppFramework.ViewModels
 
         public override void OnDialogOpened(IDialogParameters parameters)
         {
-            _accountService.AuthenticateResultModel = parameters
+            accountService.AuthenticateResultModel = parameters
               .GetValue<AbpAuthenticateResultModel>("Value");
 
-            TwoFactorAuthProviders = _accountService
+            TwoFactorAuthProviders = accountService
                 .AuthenticateResultModel.TwoFactorAuthProviders.ToList();
             SelectedProvider = TwoFactorAuthProviders.FirstOrDefault();
         }
@@ -67,8 +67,8 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await _proxyTokenAuthControllerService.SendTwoFactorAuthCode(
-                    _accountService.AuthenticateResultModel.UserId,
+                await proxyTokenAuthControllerService.SendTwoFactorAuthCode(
+                    accountService.AuthenticateResultModel.UserId,
                     _selectedProvider
                 );
             });
@@ -81,11 +81,11 @@ namespace AppFramework.ViewModels
 
                 if (!string.IsNullOrEmpty(twoFactorVerificationCode))
                 {
-                    _accountService.AuthenticateModel.TwoFactorVerificationCode = twoFactorVerificationCode;
-                    _accountService.AuthenticateModel.RememberClient = true;
+                    accountService.AuthenticateModel.TwoFactorVerificationCode = twoFactorVerificationCode;
+                    accountService.AuthenticateModel.RememberClient = true;
                     await SetBusyAsync(async () =>
                     {
-                        await _accountService.LoginUserAsync();
+                        await accountService.LoginUserAsync();
                     });
                 }
             }

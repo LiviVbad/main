@@ -1,6 +1,6 @@
-﻿using Abp.Application.Services.Dto;  
+﻿using Abp.Application.Services.Dto;
 using AppFramework.Organizations;
-using AppFramework.Organizations.Dto; 
+using AppFramework.Organizations.Dto;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
@@ -53,7 +53,7 @@ namespace AppFramework.ViewModels
             });
         }
 
-        public override async void Save()
+        public override async Task Save()
         {
             var roleIds = dataPager.GridModelList
                .Where(t => t is ChooseItem q && q.IsSelected)
@@ -66,11 +66,7 @@ namespace AppFramework.ViewModels
                     {
                         OrganizationUnitId = input.OrganizationUnitId,
                         RoleIds = roleIds
-                    }), () =>
-                    {
-                        base.Save();
-                        return Task.CompletedTask;
-                    });
+                    }), base.Save);
             });
         }
 
@@ -79,11 +75,10 @@ namespace AppFramework.ViewModels
             await WebRequest.Execute(() => appService.FindRoles(input),
                 async result =>
                    {
-                       dataPager.SetList(new PagedResultDto<ChooseItem>()
+                       await dataPager.SetList(new PagedResultDto<ChooseItem>()
                        {
                            Items = result.Items.Select(t => new ChooseItem(t)).ToList()
                        });
-                       await Task.CompletedTask;
                    });
         }
 

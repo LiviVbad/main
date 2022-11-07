@@ -24,7 +24,7 @@ namespace AppFramework.ViewModels
             this.appService = appService;
         }
 
-        public override async void Save()
+        public override async Task Save()
         {
             await SetBusyAsync(async () =>
             {
@@ -36,11 +36,7 @@ namespace AppFramework.ViewModels
                         await appService.Update(input);
                     else
                         await appService.Add(input);
-                }, async () =>
-                {
-                    base.Save();
-                    await Task.CompletedTask;
-                });
+                }, base.Save);
             });
         }
 

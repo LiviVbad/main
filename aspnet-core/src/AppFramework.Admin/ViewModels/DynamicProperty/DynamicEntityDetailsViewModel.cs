@@ -8,8 +8,8 @@ using Abp.Application.Services.Dto;
 using AppFramework.ApiClient;
 using AppFramework.Services;
 using System.Collections.ObjectModel;
-using System.Linq; 
-using AppFramework.Shared.Services; 
+using System.Linq;
+using AppFramework.Shared.Services;
 
 namespace AppFramework.ViewModels
 {
@@ -165,15 +165,7 @@ namespace AppFramework.ViewModels
                         appService.GetAllPropertiesOfAnEntity(new DynamicEntityPropertyGetAllInput()
                         {
                             EntityFullName = EntityFullName,
-                        })
-                        , async result =>
-                        {
-                            dataPager.SetList(new PagedResultDto<DynamicEntityPropertyDto>()
-                            {
-                                Items = result.Items
-                            });
-                            await Task.CompletedTask;
-                        });
+                        }), dataPager.SetList);
             });
         }
 

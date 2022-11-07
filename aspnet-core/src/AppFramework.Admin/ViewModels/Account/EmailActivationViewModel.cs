@@ -12,15 +12,12 @@ namespace AppFramework.ViewModels
     {
         public DelegateCommand SendEmailActivationCommand { get; private set; }
 
-        private readonly IAccountAppService _accountAppService;
-        private readonly IDialogService dialog;
+        private readonly IAccountAppService accountAppService;
         private bool _isEmailActivationEnabled;
 
-        public EmailActivationViewModel(IAccountAppService accountAppService,
-            IDialogService dialog)
+        public EmailActivationViewModel(IAccountAppService accountAppService)
         {
-            _accountAppService = accountAppService;
-            this.dialog = dialog;
+            this.accountAppService = accountAppService;
             SendEmailActivationCommand = new DelegateCommand(SendEmailActivationAsync);
         }
 
@@ -58,7 +55,7 @@ namespace AppFramework.ViewModels
             {
                 await WebRequest.Execute(
                     async () =>
-                    await _accountAppService.SendEmailActivationLink(new SendEmailActivationLinkInput { EmailAddress = EmailAddress }),
+                    await accountAppService.SendEmailActivationLink(new SendEmailActivationLinkInput { EmailAddress = EmailAddress }),
                     PasswordResetMailSentAsync
                 );
             });

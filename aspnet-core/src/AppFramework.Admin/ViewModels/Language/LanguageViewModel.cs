@@ -4,23 +4,23 @@ using AppFramework.Models;
 using AppFramework.Shared.Services.Permission;
 using AppFramework.Localization;
 using AppFramework.Localization.Dto;
-using AppFramework.Services; 
+using AppFramework.Services;
 using Prism.Regions;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
     public class LanguageViewModel : NavigationCurdViewModel
     {
         private readonly ILanguageAppService appService;
-        private readonly NavigationService navigationService; 
+        private readonly NavigationService navigationService;
         public LanguageListModel SelectedItem => Map<LanguageListModel>(dataPager.SelectedItem);
 
-        public LanguageViewModel(ILanguageAppService languageAppService, NavigationService  navigationService)
+        public LanguageViewModel(ILanguageAppService languageAppService, NavigationService navigationService)
         {
             Title = Local.Localize("Languages");
             this.appService = languageAppService;
-            this.navigationService = navigationService; 
+            this.navigationService = navigationService;
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace AppFramework.ViewModels
                 {
                     await WebRequest.Execute(() => appService.DeleteLanguage(
                         new EntityDto(SelectedItem.Id)),
-                        async()=> await OnNavigatedToAsync());
+                        async () => await OnNavigatedToAsync());
                 });
             }
         }
@@ -71,15 +71,7 @@ namespace AppFramework.ViewModels
         /// <returns></returns>
         private async Task GetLanguages()
         {
-            await WebRequest.Execute(() => appService.GetLanguages(),
-                      async result =>
-                      {
-                          dataPager.SetList(new PagedResultDto<ApplicationLanguageListDto>()
-                          {
-                              Items = result.Items
-                          });
-                          await Task.CompletedTask;
-                      });
+            await WebRequest.Execute(() => appService.GetLanguages(), dataPager.SetList);
         }
 
         /// <summary>
@@ -88,7 +80,7 @@ namespace AppFramework.ViewModels
         /// <returns></returns>
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {
-            await SetBusyAsync(GetLanguages); 
+            await SetBusyAsync(GetLanguages);
         }
 
         public override PermissionItem[] CreatePermissionItems()

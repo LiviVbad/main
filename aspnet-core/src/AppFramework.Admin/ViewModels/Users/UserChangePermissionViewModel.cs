@@ -20,7 +20,7 @@ namespace AppFramework.ViewModels
         private readonly IUserAppService userAppService;
         public IPermissionTreesService treesService { get; set; }
 
-        public override async void Save()
+        public override async Task Save()
         {
             await SetBusyAsync(async () =>
             {
@@ -31,11 +31,7 @@ namespace AppFramework.ViewModels
                         Id = Id,
                         GrantedPermissionNames = treesService.GetSelectedItems()
                     });
-                }, async () =>
-                {
-                    base.Save();
-                    await Task.CompletedTask;
-                });
+                }, base.Save);
             });
         }
 

@@ -9,7 +9,7 @@ using Prism.Services.Dialogs;
 using System;
 using System.Threading.Tasks;
 using AppFramework.Common;
-using AppFramework.Shared.Services; 
+using AppFramework.Shared.Services;
 
 namespace AppFramework.ViewModels
 {
@@ -82,11 +82,7 @@ namespace AppFramework.ViewModels
                     TargetUserId = Convert.ToInt64(obj.Value),
                     StartTime = startDate.GetFirstDate(),
                     EndTime = endDate.GetLastDate()
-                }), async () =>
-                {
-                    base.Save();
-                    await Task.CompletedTask;
-                });
+                }), base.Save);
             }
         }
 
@@ -100,12 +96,7 @@ namespace AppFramework.ViewModels
 
         private async Task FindUsers(FindUsersInput input)
         {
-            await WebRequest.Execute(() => lookupAppService.FindUsers(input),
-                async result =>
-                {
-                    dataPager.SetList(result);
-                    await Task.CompletedTask;
-                });
+            await WebRequest.Execute(() => lookupAppService.FindUsers(input), dataPager.SetList);
         }
     }
 }

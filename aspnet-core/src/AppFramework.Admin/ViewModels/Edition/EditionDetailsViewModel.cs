@@ -92,7 +92,7 @@ namespace AppFramework.ViewModels
             Editions = new ObservableCollection<SubscribableEditionComboboxItemDto>();
         }
 
-        public override async void Save()
+        public override async Task Save()
         {
             //刷新界面设置的选项内容值
             RefreshInputInformation();
@@ -115,11 +115,7 @@ namespace AppFramework.ViewModels
                         await appService.UpdateEdition(new UpdateEditionDto() { Edition = Map<EditionEditDto>(Model), FeatureValues = vals, });
                     else
                         await appService.CreateEdition(new CreateEditionDto() { Edition = Map<EditionCreateDto>(Model), FeatureValues = vals, });
-                }, async () =>
-                {
-                    base.Save();
-                    await Task.CompletedTask;
-                });
+                }, base.Save);
             });
         }
 

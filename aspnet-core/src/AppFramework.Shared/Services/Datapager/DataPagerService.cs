@@ -1,10 +1,12 @@
 ﻿using Abp.Application.Services.Dto;
+using AppFramework.DynamicEntityProperties.Dto;
 using AppFramework.Shared.Services.Mapper;
 using AutoMapper;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace AppFramework.Shared.Services
 {
@@ -83,7 +85,7 @@ namespace AppFramework.Shared.Services
             set { gridModelList = value; RaisePropertyChanged(); }
         }
 
-        public void SetList<T>(IPagedResult<T> pagedResult)
+        public async Task SetList<T>(IPagedResult<T> pagedResult)
         {
             GridModelList.Clear();
 
@@ -94,6 +96,16 @@ namespace AppFramework.Shared.Services
                 PageCount = 1;
             else
                 PageCount = (int)Math.Ceiling(pagedResult.TotalCount / (double)PageSize);
+
+            await Task.CompletedTask;
+        }
+
+        public async Task SetList<T>(IListResult<T> listResult)
+        {
+            await SetList<T>(new PagedResultDto<T>()
+            {
+                Items=listResult.Items
+            });
         }
     }
 }

@@ -57,7 +57,7 @@ namespace AppFramework.ViewModels.Shared
 
         private AbpAuthenticateResultModel model;
 
-        public override async void Save()
+        public override async Task Save()
         {
             if (ValidationPassWord())
             {
@@ -80,11 +80,7 @@ namespace AppFramework.ViewModels.Shared
             if (output.CanLogin)
             {
                 authenticateModel.Password = PassWord;
-                await WebRequest.Execute(() => accessTokenManager.LoginAsync(), async result =>
-                {
-                    base.Save();
-                    await Task.CompletedTask;
-                });
+                await WebRequest.Execute(() => accessTokenManager.LoginAsync(), base.Save);
             }
             else
                 base.Cancel();

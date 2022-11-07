@@ -3,9 +3,9 @@ using AppFramework.Authorization.Permissions;
 using AppFramework.Authorization.Permissions.Dto;
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
-using AppFramework.Shared; 
+using AppFramework.Shared;
 using AppFramework.Shared.Services;
-using AppFramework.Shared.Services.Permission; 
+using AppFramework.Shared.Services.Permission;
 using Prism.Commands;
 using Prism.Regions;
 using Prism.Services.Dialogs;
@@ -98,7 +98,7 @@ namespace AppFramework.ViewModels
                     {
                         await WebRequest.Execute(() => appService.DeleteRole(
                             new EntityDto(item.Id)),
-                            async()=>await OnNavigatedToAsync());
+                            async () => await OnNavigatedToAsync());
                     });
                 }
             }
@@ -112,14 +112,7 @@ namespace AppFramework.ViewModels
         private async Task GetRoles(GetRolesInput filter)
         {
             await WebRequest.Execute(() => appService.GetRoles(filter),
-                       async result =>
-                       {
-                           dataPager.SetList(new PagedResultDto<RoleListDto>
-                           {
-                               Items = result.Items
-                           });
-                           await Task.CompletedTask;
-                       });
+                       dataPager.SetList);
         }
 
         /// <summary>

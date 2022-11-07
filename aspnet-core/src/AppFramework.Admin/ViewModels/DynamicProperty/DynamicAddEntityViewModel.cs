@@ -31,12 +31,14 @@ namespace AppFramework.ViewModels
             set { selectedItem = value; RaisePropertyChanged(); }
         }
 
-        public override void Save()
+        public override async Task Save()
         {
             if (string.IsNullOrWhiteSpace(SelectedItem))
                 return;
 
             base.Save(SelectedItem);
+
+            await Task.CompletedTask;
         }
 
         private async Task GetAllEntities()

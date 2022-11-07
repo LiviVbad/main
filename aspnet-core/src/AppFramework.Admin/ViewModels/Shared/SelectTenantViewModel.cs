@@ -1,5 +1,6 @@
 ﻿using AppFramework.Shared;
-using Prism.Services.Dialogs; 
+using Prism.Services.Dialogs;
+using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels.Shared
 {
@@ -25,9 +26,11 @@ namespace AppFramework.ViewModels.Shared
             }
         }
 
-        public override void Save()
+        public override async Task Save()
         {
             base.Save(IsLoginForTenants ? TenancyName : "");
+
+            await Task.CompletedTask;
         }
 
         public override void OnDialogOpened(IDialogParameters parameters)

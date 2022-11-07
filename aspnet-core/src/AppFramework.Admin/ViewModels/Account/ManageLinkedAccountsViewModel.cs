@@ -77,12 +77,7 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetLinkedUsers(filter), async result =>
-                {
-                    dataPager.SetList(result);
-
-                    await Task.CompletedTask;
-                });
+                await WebRequest.Execute(() => appService.GetLinkedUsers(filter), dataPager.SetList);
             });
         }
 

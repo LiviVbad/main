@@ -1,5 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFramework.Shared; 
+using AppFramework.Shared;
 using AppFramework.Shared.Services.Permission;
 using AppFramework.Editions;
 using AppFramework.Models;
@@ -12,7 +12,7 @@ using System.Collections.ObjectModel;
 using Prism.Services.Dialogs;
 using AppFramework.ViewModels.Shared;
 using Prism.Regions;
-using AppFramework.Shared.Services; 
+using AppFramework.Shared.Services;
 
 namespace AppFramework.ViewModels
 {
@@ -129,12 +129,7 @@ namespace AppFramework.ViewModels
         private async Task GetTenants()
         {
             var input = Map<GetTenantsInput>(filter);
-            await WebRequest.Execute(() => appService.GetTenants(input),
-                  async result =>
-                  {
-                      dataPager.SetList(result);
-                      await Task.CompletedTask;
-                  });
+            await WebRequest.Execute(() => appService.GetTenants(input), dataPager.SetList);
         }
 
         /// <summary>

@@ -3,6 +3,7 @@ using AppFramework.Models;
 using AppFramework.Localization;
 using AppFramework.Localization.Dto; 
 using Prism.Services.Dialogs;
+using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
@@ -55,7 +56,7 @@ namespace AppFramework.ViewModels
             this.appService = appService;
         }
 
-        public override async void Save()
+        public override async Task Save()
         {
             await SetBusyAsync(async () =>
             {
@@ -65,11 +66,7 @@ namespace AppFramework.ViewModels
                     LanguageName = BaseLanguage.Name,
                     SourceName = SourceName,
                     Value = TargetValue
-                }), async () =>
-                {
-                    base.Save();
-                    await System.Threading.Tasks.Task.CompletedTask;
-                });
+                }), base.Save);
             });
         }
 

@@ -1,22 +1,19 @@
-﻿using AppFramework.Authorization.Users.Profile; 
+﻿using AppFramework.Authorization.Users.Profile;
 using AppFramework.Shared;
 using AppFramework.Models; 
-using AppFramework.Version;
-using AppFramework.Version.Dtos; 
+using AppFramework.Version.Dtos;
 using Microsoft.Win32;
 using Prism.Commands;
-using Prism.Services.Dialogs; 
-using System.IO; 
+using Prism.Services.Dialogs;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels.Version
 {
     public class VersionManagerDetailsViewModel : HostDialogViewModel
     {
-        public VersionManagerDetailsViewModel(IAbpVersionsAppService appService,
-            ProxyProfileControllerService profileControllerService)
+        public VersionManagerDetailsViewModel(ProxyProfileControllerService profileControllerService)
         {
-            this.appService = appService;
             this.profileControllerService = profileControllerService;
 
             SelectedFileCommand = new DelegateCommand(SelectedFile);
@@ -31,7 +28,6 @@ namespace AppFramework.ViewModels.Version
         }
 
         private string filePath;
-        private readonly IAbpVersionsAppService appService;
         private readonly ProxyProfileControllerService profileControllerService;
 
         public string FilePath
@@ -46,14 +42,12 @@ namespace AppFramework.ViewModels.Version
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "压缩文件(*.zip)|*.zip";
-            var dialogResult = (bool)fileDialog.ShowDialog();
-            if (dialogResult)
-            {
+            var dialogResult = fileDialog.ShowDialog();
+            if (dialogResult!=null&&(bool)dialogResult)
                 FilePath = fileDialog.FileName;
-            }
         }
 
-        public override async void Save()
+        public override async Task Save()
         {
             if (Model.Id == 0 && string.IsNullOrWhiteSpace(FilePath)) return;
 
@@ -61,7 +55,7 @@ namespace AppFramework.ViewModels.Version
 
             await SetBusyAsync(async () =>
             {
-                MemoryStream stream = null;
+                MemoryStream? stream = null;
                 if (!string.IsNullOrWhiteSpace(FilePath))
                 {
                     var fileBytes = File.ReadAllBytes(FilePath);
@@ -85,8 +79,7 @@ namespace AppFramework.ViewModels.Version
                 {
                     stream?.Dispose();
                     stream?.Close();
-                    base.Save();
-                    await Task.CompletedTask;
+                    await base.Save();
                 });
             });
         }

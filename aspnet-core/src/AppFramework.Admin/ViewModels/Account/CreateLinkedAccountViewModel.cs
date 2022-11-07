@@ -1,6 +1,6 @@
-﻿using AppFramework.Authorization.Users; 
-using AppFramework.Shared; 
-using Prism.Services.Dialogs; 
+﻿using AppFramework.Authorization.Users;
+using AppFramework.Shared;
+using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
@@ -37,19 +37,14 @@ namespace AppFramework.ViewModels
             set { password = value; RaisePropertyChanged(); }
         }
 
-        public override async void Save()
+        public override async Task Save()
         {
             await WebRequest.Execute(() => appService.LinkToUser(new Authorization.Users.Dto.LinkToUserInput()
             {
                 TenancyName = TenancyName,
                 UsernameOrEmailAddress = UserName,
                 Password = Password
-            }), async () =>
-            {
-                base.Save();
-
-                await Task.CompletedTask;
-            });
+            }), base.Save);
         }
 
         public override void OnDialogOpened(IDialogParameters parameters) { }

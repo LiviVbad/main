@@ -2,14 +2,14 @@
 using AppFramework.Shared;
 using AppFramework.Models;
 using AppFramework.Localization;
-using AppFramework.Localization.Dto; 
+using AppFramework.Localization.Dto;
 using Prism.Commands;
 using Prism.Regions;
 using Prism.Services.Dialogs;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using AppFramework.Shared.Services; 
+using AppFramework.Shared.Services;
 
 namespace AppFramework.ViewModels
 {
@@ -157,16 +157,11 @@ namespace AppFramework.ViewModels
 
         private async Task GetLanguageTexts(GetLanguageTextsInput filter)
         {
-            await WebRequest.Execute(() => appService.GetLanguageTexts(filter),
-                     async result =>
-                     {
-                         dataPager.SetList(result);
-                         await Task.CompletedTask;
-                     });
+            await WebRequest.Execute(() => appService.GetLanguageTexts(filter), dataPager.SetList);
         }
 
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
-        { 
+        {
             foreach (var item in context.Configuration.Localization.Sources)
             {
                 Sources.Add(item.Name);
@@ -194,6 +189,6 @@ namespace AppFramework.ViewModels
             }
 
             await SetBusyAsync(async () => await GetLanguageTexts(input));
-        } 
+        }
     }
 }

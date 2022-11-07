@@ -85,8 +85,7 @@
                                                         Background="Transparent"
                                                         Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
                                                         CommandParameter="{Binding Key}"
-                                                        Content="{Binding Name}"
-                                                        Foreground="White" />
+                                                        Content="{Binding Name}" />
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>

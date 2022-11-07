@@ -1,13 +1,13 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.Shared;
 using AppFramework.Configuration;
-using AppFramework.MultiTenancy; 
+using AppFramework.MultiTenancy;
 using Prism.Ioc;
 using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Abp.Web.Models.AbpUserConfiguration; 
+using Abp.Web.Models.AbpUserConfiguration;
 using AppFramework.Authorization.Users.Profile;
 
 namespace AppFramework.Services.Account
@@ -32,8 +32,8 @@ namespace AppFramework.Services.Account
         public static async Task GetAsync()
         {
             var userConfigurationService = ContainerLocator.Container.Resolve<UserConfigurationService>();
-            
-            await WebRequest.Execute(async () => await userConfigurationService.GetAsync(AccessTokenManager.IsUserLoggedIn),
+
+            await WebRequest.Execute(() => userConfigurationService.GetAsync(AccessTokenManager.IsUserLoggedIn),
                 GetConfigurationSuccessed);
         }
 
@@ -91,7 +91,7 @@ namespace AppFramework.Services.Account
             var locale = ContainerLocator.Container.Resolve<ILocaleCulture>();
             var userCulture = GetUserCulture(locale);
 
-            locale.SetLocale(userCulture); 
+            locale.SetLocale(userCulture);
         }
 
         /// <summary>

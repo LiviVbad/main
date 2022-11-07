@@ -1,6 +1,6 @@
 ﻿using AppFramework.Authorization.Users.Profile;
 using AppFramework.Authorization.Users.Profile.Dto;
-using AppFramework.Shared;  
+using AppFramework.Shared;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
@@ -11,15 +11,12 @@ namespace AppFramework.ViewModels
     {
         public DelegateCommand SendChangePasswordCommand { get; private set; }
 
-        private readonly IProfileAppService _profileAppService;
-        private readonly IDialogService dialog;
+        private readonly IProfileAppService profileAppService;
         private bool _isChangePasswordEnabled;
 
-        public ChangePasswordViewModel(IProfileAppService profileAppService,
-            IDialogService dialog)
+        public ChangePasswordViewModel(IProfileAppService profileAppService)
         {
-            _profileAppService = profileAppService;
-            this.dialog = dialog;
+            this.profileAppService = profileAppService;
             SendChangePasswordCommand = new DelegateCommand(SendChangePasswordAsync);
         }
 
@@ -82,22 +79,18 @@ namespace AppFramework.ViewModels
         private async void SendChangePasswordAsync()
         {
             if (NewPassword != NewPasswordRepeat)
-            { 
+            {
                 NotifyBar.Info("", Local.Localize(AppLocalizationKeys.PasswordsDontMatch));
             }
             else
             {
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(
-                        async () =>
-                            await _profileAppService.ChangePassword(new ChangePasswordInput
-                            {
-                                CurrentPassword = CurrentPassword,
-                                NewPassword = NewPassword
-                            }),
-                        PasswordChangedAsync
-                    );
+                    await WebRequest.Execute(() => profileAppService.ChangePassword(new ChangePasswordInput
+                    {
+                        CurrentPassword = CurrentPassword,
+                        NewPassword = NewPassword
+                    }), PasswordChangedAsync);
                 });
             }
         }
@@ -105,7 +98,7 @@ namespace AppFramework.ViewModels
         private async Task PasswordChangedAsync()
         {
             NotifyBar.Info(Local.Localize(AppLocalizationKeys.YourPasswordHasChangedSuccessfully),
-                Local.Localize(AppLocalizationKeys.ChangePassword)); 
+                Local.Localize(AppLocalizationKeys.ChangePassword));
 
             await Task.CompletedTask;
         }

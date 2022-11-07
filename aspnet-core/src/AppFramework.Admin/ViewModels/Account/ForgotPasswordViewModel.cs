@@ -1,6 +1,6 @@
 ﻿using AppFramework.Authorization.Accounts;
 using AppFramework.Authorization.Accounts.Dto;
-using AppFramework.Shared; 
+using AppFramework.Shared;
 using AppFramework.ViewModels.Shared;
 using Prism.Commands;
 using Prism.Services.Dialogs;
@@ -12,15 +12,12 @@ namespace AppFramework.ViewModels
     {
         public DelegateCommand SendForgotPasswordCommand { get; private set; }
 
-        private readonly IAccountAppService _accountAppService;
-        private readonly IDialogService dialog;
+        private readonly IAccountAppService accountAppService;
         private bool _isForgotPasswordEnabled;
 
-        public ForgotPasswordViewModel(IAccountAppService accountAppService,
-            IDialogService dialog)
+        public ForgotPasswordViewModel(IAccountAppService accountAppService)
         {
-            _accountAppService = accountAppService;
-            this.dialog = dialog;
+            this.accountAppService = accountAppService;
             SendForgotPasswordCommand = new DelegateCommand(SendForgotPasswordAsync);
         }
 
@@ -56,22 +53,17 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(
-                    async () =>
-                    await _accountAppService.SendPasswordResetCode(new SendPasswordResetCodeInput { EmailAddress = EmailAddress }),
-                    PasswordResetMailSentAsync
-                );
+                await WebRequest.Execute(() => accountAppService.SendPasswordResetCode(new SendPasswordResetCodeInput { EmailAddress = EmailAddress }),
+                    PasswordResetMailSentAsync);
             });
         }
 
         private async Task PasswordResetMailSentAsync()
-        {  
+        {
             NotifyBar.Info(Local.Localize(AppLocalizationKeys.PasswordResetMailSentMessage),
                Local.Localize(AppLocalizationKeys.MailSent));
 
-            base.Save();
-
-            await Task.CompletedTask;
+            await base.Save(); 
         }
 
         public override void OnDialogOpened(IDialogParameters parameters)

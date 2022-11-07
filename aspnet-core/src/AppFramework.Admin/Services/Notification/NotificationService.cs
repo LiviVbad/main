@@ -2,9 +2,9 @@
 using AppFramework.Shared;
 using AppFramework.Notifications;
 using AppFramework.Notifications.Dto;
-using Prism.Mvvm; 
+using Prism.Mvvm;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
 namespace AppFramework.Services.Notification
 {
@@ -47,11 +47,10 @@ namespace AppFramework.Services.Notification
         {
             UpdateDisplayContent();
 
-            await WebRequest.Execute(async () => await appService.GetUserNotifications(input),
+            await WebRequest.Execute(() => appService.GetUserNotifications(input),
                 async output =>
                 {
                     Items.Clear();
-
                     IsUnRead = output.UnreadCount > 0 ? true : false;
 
                     foreach (var item in output.Items)

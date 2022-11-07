@@ -1,14 +1,14 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFramework.Shared; 
+using AppFramework.Shared;
 using AppFramework.Shared.Services.Permission;
 using AppFramework.DynamicEntityProperties;
 using AppFramework.DynamicEntityProperties.Dto;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 using Prism.Ioc;
-using Prism.Commands; 
+using Prism.Commands;
 using Prism.Regions;
-using AppFramework.Shared.Services; 
+using AppFramework.Shared.Services;
 
 namespace AppFramework.ViewModels
 {
@@ -71,9 +71,8 @@ namespace AppFramework.ViewModels
                 {
                     await SetBusyAsync(async () =>
                     {
-                        await WebRequest.Execute(() => appService.Delete(
-                            new EntityDto(item.Id)),
-                            async ()=>await OnNavigatedToAsync());
+                        await WebRequest.Execute(() => appService.Delete(new EntityDto(item.Id)),
+                            async () => await OnNavigatedToAsync());
                     });
                 }
             }
@@ -96,15 +95,7 @@ namespace AppFramework.ViewModels
         /// <returns></returns>
         private async Task GetDynamicPropertyAll()
         {
-            await WebRequest.Execute(() => appService.GetAll(),
-                       async result =>
-                       {
-                           dataPager.SetList(new PagedResultDto<DynamicPropertyDto>()
-                           {
-                               Items = result.Items
-                           });
-                           await Task.CompletedTask;
-                       });
+            await WebRequest.Execute(() => appService.GetAll(), dataPager.SetList);
         }
 
         /// <summary>
@@ -114,14 +105,7 @@ namespace AppFramework.ViewModels
         private async Task GetAllEntitiesHasDynamicProperty()
         {
             await WebRequest.Execute(() => entityPropertyAppService.GetAllEntitiesHasDynamicProperty(),
-                       async result =>
-                       {
-                           entitydataPager.SetList(new PagedResultDto<GetAllEntitiesHasDynamicPropertyOutput>()
-                           {
-                               Items = result.Items
-                           });
-                           await Task.CompletedTask;
-                       });
+                       entitydataPager.SetList);
         }
 
 

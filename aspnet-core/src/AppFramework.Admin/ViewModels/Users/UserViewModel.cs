@@ -25,7 +25,6 @@ namespace AppFramework.ViewModels
         private readonly IUserAppService appService;
         private readonly IRoleAppService roleAppService;
         private readonly IAccountService accountService;
-        private readonly IProfileAppService profileAppService;
         private readonly IPermissionAppService permissionAppService;
 
         public UserListModel SelectedItem => Map<UserListModel>(dataPager.SelectedItem);
@@ -33,7 +32,6 @@ namespace AppFramework.ViewModels
         public UserViewModel(IUserAppService appService,
             IRoleAppService roleAppService,
             IAccountService accountService,
-            IProfileAppService profileAppService,
             IPermissionAppService permissionAppService)
         {
             Title = Local.Localize("UserManagement");
@@ -48,7 +46,6 @@ namespace AppFramework.ViewModels
             this.appService = appService;
             this.roleAppService = roleAppService;
             this.accountService = accountService;
-            this.profileAppService = profileAppService;
             this.permissionAppService = permissionAppService;
 
             AdvancedCommand = new DelegateCommand(() => { IsAdvancedFilter = !IsAdvancedFilter; });
@@ -326,13 +323,7 @@ namespace AppFramework.ViewModels
         /// <returns></returns>
         private async Task GetUsers(GetUsersInput filter)
         {
-            await WebRequest.Execute(() => appService.GetUsers(filter),
-                        async result =>
-                        {
-                            dataPager.SetList(result);
-
-                            await Task.CompletedTask;
-                        });
+            await WebRequest.Execute(() => appService.GetUsers(filter), dataPager.SetList);
         }
 
         /// <summary>

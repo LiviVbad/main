@@ -1,10 +1,10 @@
 ﻿using AppFramework.Localization;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
-using Abp.Application.Services.Dto; 
+using Abp.Application.Services.Dto;
 using AppFramework.Localization.Dto;
 using System.Collections.ObjectModel;
-using System.Linq; 
+using System.Linq;
 using AppFramework.Shared;
 
 namespace AppFramework.ViewModels
@@ -89,17 +89,13 @@ namespace AppFramework.ViewModels
             this.appService = appService;
         }
 
-        public override async void Save()
+        public override async Task Save()
         {
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(() =>
                 appService.CreateOrUpdateLanguage(new CreateOrUpdateLanguageInput() { Language = language }),
-                async () =>
-                {
-                    base.Save();
-                    await Task.CompletedTask;
-                });
+                base.Save);
             });
         }
 

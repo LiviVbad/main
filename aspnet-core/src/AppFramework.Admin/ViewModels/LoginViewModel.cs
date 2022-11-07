@@ -2,16 +2,16 @@
 using AppFramework.ApiClient;
 using AppFramework.Authorization.Accounts;
 using AppFramework.Authorization.Accounts.Dto;
-using AppFramework.Shared; 
-using AppFramework.Shared.Services.Storage; 
+using AppFramework.Shared;
+using AppFramework.Shared.Services.Storage;
 using AppFramework.Services;
-using AppFramework.Services.Account; 
+using AppFramework.Services.Account;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
@@ -117,7 +117,7 @@ namespace AppFramework.ViewModels
             IAccountService accountService,
             IAccountAppService accountAppService,
             IApplicationContext applicationContext,
-            IAccountStorageService dataStorageService, 
+            IAccountStorageService dataStorageService,
             IDataStorageService storageService)
         {
             this.dialogService = dialogService;
@@ -163,7 +163,7 @@ namespace AppFramework.ViewModels
             applicationContext.CurrentLanguage = languageInfo;
 
             await SetBusyAsync(async () =>
-             { 
+             {
                  await WebRequest.Execute(() => UserConfigurationManager.GetAsync(),
                   async () =>
                   {
@@ -212,8 +212,7 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(
-                    async () => await accountAppService.IsTenantAvailable(
+                await WebRequest.Execute(() => accountAppService.IsTenantAvailable(
                         new IsTenantAvailableInput { TenancyName = tenancyName }),
                     result => IsTenantAvailableExecuted(result, tenancyName)
                 );

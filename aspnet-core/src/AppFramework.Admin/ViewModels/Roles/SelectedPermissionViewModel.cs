@@ -1,10 +1,12 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Authorization.Permissions.Dto;
-using AppFramework.Shared; 
-using Prism.Services.Dialogs; 
+using AppFramework.Shared;
+using Prism.Services.Dialogs;
 using System.Collections.Generic;
-using System.Linq; 
+using System.Linq;
 using AppFramework.Services;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
@@ -17,9 +19,10 @@ namespace AppFramework.ViewModels
             this.treesService = treesService;
         }
 
-        public override void Save()
-            {
+        public override async Task Save()
+        {
             base.Save(treesService.GetSelectedItems());
+            await Task.CompletedTask;
         }
 
         public override void OnDialogOpened(IDialogParameters parameters)

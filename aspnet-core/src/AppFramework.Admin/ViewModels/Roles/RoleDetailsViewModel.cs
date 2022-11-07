@@ -5,6 +5,7 @@ using AppFramework.Shared;
 using AppFramework.Models; 
 using Prism.Services.Dialogs;
 using AppFramework.Services;
+using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
@@ -30,11 +31,8 @@ namespace AppFramework.ViewModels
             this.appService = appService;
             this.treesService = treesService;
         }
-
-        /// <summary>
-        /// 保存
-        /// </summary>
-        public override async void Save()
+         
+        public override async Task Save()
         {
             await SetBusyAsync(async () =>
             {
@@ -45,8 +43,7 @@ namespace AppFramework.ViewModels
                         Role = Map<RoleEditDto>(Role),
                         GrantedPermissionNames = treesService.GetSelectedItems()
                     });
-                });
-                base.Save();
+                }, base.Save); 
             });
         }
 

@@ -6,8 +6,8 @@ using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using AppFramework.ApiClient;
-using AppFramework.Services; 
-using AppFramework.Shared.Services; 
+using AppFramework.Services;
+using AppFramework.Shared.Services;
 
 namespace AppFramework.ViewModels
 {
@@ -72,8 +72,7 @@ namespace AppFramework.ViewModels
             {
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() =>
-                            appService.Delete(obj.Id),
+                    await WebRequest.Execute(() => appService.Delete(obj.Id),
                             GetAllValuesOfDynamicProperty);
                 });
             }
@@ -126,14 +125,7 @@ namespace AppFramework.ViewModels
 
             await WebRequest.Execute(() =>
                            appService.GetAllValuesOfDynamicProperty(new EntityDto(Id))
-                           , async result =>
-                           {
-                               dataPager.SetList(new PagedResultDto<DynamicPropertyValueDto>()
-                               {
-                                   Items = result.Items
-                               });
-                               await Task.CompletedTask;
-                           });
+                           , dataPager.SetList);
         }
 
         public override async void OnDialogOpened(IDialogParameters parameters)

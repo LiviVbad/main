@@ -1,7 +1,7 @@
 ﻿using AppFramework.Authorization.Users.Profile;
-using AppFramework.Authorization.Users.Profile.Dto; 
+using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Dto;
-using AppFramework.Shared; 
+using AppFramework.Shared;
 using Microsoft.Win32;
 using Prism.Commands;
 using Prism.Services.Dialogs;
@@ -43,7 +43,7 @@ namespace AppFramework.ViewModels
             }
         }
 
-        public override async void Save()
+        public override async Task Save()
         {
             if (!string.IsNullOrEmpty(IamgeFilePath))
             {
@@ -52,7 +52,7 @@ namespace AppFramework.ViewModels
 
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(async () => await UpdateProfilePhoto(photoAsBytes, fileName),
+                    await WebRequest.Execute(() => UpdateProfilePhoto(photoAsBytes, fileName),
                         () =>
                         {
                             base.Save(photoAsBytes);

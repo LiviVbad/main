@@ -6,19 +6,19 @@ namespace AppFramework.Shared
 {
     public class DialogViewModel : ViewModelBase, IDialogAware
     {
-        public string Title { get; set; }
-
-        public event Action<IDialogResult> RequestClose;
-
-        public DelegateCommand SaveCommand { get; private set; }
-        public DelegateCommand CancelCommand { get; private set; }
-
         public DialogViewModel()
         {
             SaveCommand = new DelegateCommand(Save);
             CancelCommand = new DelegateCommand(Cancel);
         }
 
+        public string Title { get; set; }
+
+        public event Action<IDialogResult> RequestClose;
+
+        public DelegateCommand SaveCommand { get; private set; }
+        public DelegateCommand CancelCommand { get; private set; }
+         
         public virtual void Cancel() => OnDialogClosed(ButtonResult.Cancel);
 
         public virtual void Save() => OnDialogClosed(ButtonResult.OK);

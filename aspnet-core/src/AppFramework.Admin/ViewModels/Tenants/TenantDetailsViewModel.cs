@@ -3,13 +3,13 @@ using AppFramework.Shared;
 using AppFramework.Models;
 using AppFramework.Editions.Dto;
 using AppFramework.MultiTenancy;
-using AppFramework.MultiTenancy.Dto; 
+using AppFramework.MultiTenancy.Dto;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using AppFramework.Common; 
+using AppFramework.Common;
 
 namespace AppFramework.ViewModels
 {
@@ -286,7 +286,7 @@ namespace AppFramework.ViewModels
 
         #endregion 内部方法
 
-        public override async void Save()
+        public override async Task Save()
         {
             if (IsNewTenant)
             {
@@ -311,13 +311,7 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() =>
-                    tenantAppService.UpdateTenant(input),
-                    async () =>
-                    {
-                        base.Save();
-                        await Task.CompletedTask;
-                    });
+                await WebRequest.Execute(() => tenantAppService.UpdateTenant(input), base.Save);
             });
         }
 
@@ -325,13 +319,7 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() =>
-                    tenantAppService.CreateTenant(input),
-                    async () =>
-                    {
-                        base.Save();
-                        await Task.CompletedTask;
-                    });
+                await WebRequest.Execute(() => tenantAppService.CreateTenant(input), base.Save);
             });
         }
 

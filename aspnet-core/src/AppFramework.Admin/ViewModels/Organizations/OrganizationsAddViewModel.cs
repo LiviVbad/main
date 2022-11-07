@@ -4,6 +4,7 @@ using AppFramework.Organizations;
 using AppFramework.Organizations.Dto;
 using AppFramework.ViewModels.Shared;
 using Prism.Services.Dialogs;
+using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
@@ -29,7 +30,7 @@ namespace AppFramework.ViewModels
 
         #endregion
 
-        public override async void Save()
+        public override async Task Save()
         {
             await SetBusyAsync(async () =>
              {
@@ -52,7 +53,7 @@ namespace AppFramework.ViewModels
                          }));
                  }
              });
-            base.Save();
+            await base.Save();
         }
 
         public override void OnDialogOpened(IDialogParameters parameters)

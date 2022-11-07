@@ -74,7 +74,7 @@ namespace AppFramework.Services.Account
         }
 
         private async Task GoToLoginPageAsync()
-        { 
+        {
             appStart.Logout();
 
             await Task.CompletedTask;
@@ -115,8 +115,8 @@ namespace AppFramework.Services.Account
 
         public async Task SetCurrentUserInfoAsync()
         {
-            await WebRequest.Execute(async () =>
-                await sessionAppService.GetCurrentLoginInformations(), GetCurrentUserInfoExecuted);
+            await WebRequest.Execute(() => sessionAppService.GetCurrentLoginInformations(), 
+                GetCurrentUserInfoExecuted);
         }
 
         public async Task GetCurrentUserInfoExecuted(GetCurrentLoginInformationsOutput result)

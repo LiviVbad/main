@@ -7,7 +7,7 @@ using AppFramework.ViewModels.Shared;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
-using AppFramework.Shared.Services; 
+using AppFramework.Shared.Services;
 
 namespace AppFramework.ViewModels
 {
@@ -61,22 +61,13 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() =>
-                        appService.GetDelegatedUsers(input),
-                        GetDelegatedUsersSuccessed);
+                await WebRequest.Execute(() => appService.GetDelegatedUsers(input), dataPager.SetList);
             });
         }
 
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
             await GetDelegatedUsers();
-        }
-
-        private async Task GetDelegatedUsersSuccessed(PagedResultDto<UserDelegationDto> output)
-        {
-            dataPager.SetList(output);
-
-            await Task.CompletedTask;
         }
     }
 }

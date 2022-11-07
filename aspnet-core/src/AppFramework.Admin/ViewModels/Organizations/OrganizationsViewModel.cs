@@ -264,7 +264,7 @@ namespace AppFramework.ViewModels
               {
                   var pagedResult = await appService.GetOrganizationUnitRoles(input);
                   if (pagedResult != null)
-                      roledataPager.SetList(pagedResult);
+                     await roledataPager.SetList(pagedResult);
 
                   UpdateOrganizationUnit(input.Id);
               });
@@ -333,7 +333,7 @@ namespace AppFramework.ViewModels
             {
                 var pagedResult = await appService.GetOrganizationUnitUsers(input);
                 if (pagedResult != null)
-                    memberdataPager.SetList(pagedResult);
+                   await memberdataPager.SetList(pagedResult);
 
                 UpdateOrganizationUnit(input.Id);
             });

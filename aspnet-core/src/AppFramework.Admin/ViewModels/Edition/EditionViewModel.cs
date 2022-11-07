@@ -1,4 +1,4 @@
-﻿using Abp.Application.Services.Dto; 
+﻿using Abp.Application.Services.Dto;
 using AppFramework.Editions;
 using AppFramework.Editions.Dto;
 using AppFramework.Shared;
@@ -30,8 +30,7 @@ namespace AppFramework.ViewModels
                 {
                     await SetBusyAsync(async () =>
                     {
-                        await WebRequest.Execute(() =>
-                                appService.DeleteEdition(new EntityDto(item.Id)),
+                        await WebRequest.Execute(() => appService.DeleteEdition(new EntityDto(item.Id)),
                             async () => await OnNavigatedToAsync());
                     });
                 }
@@ -47,14 +46,7 @@ namespace AppFramework.ViewModels
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(() => appService.GetEditions(),
-                        async result =>
-                        {
-                            dataPager.SetList(new PagedResultDto<EditionListDto>()
-                            {
-                                Items = result.Items
-                            });
-                            await Task.CompletedTask;
-                        });
+                        dataPager.SetList);
             });
         }
 

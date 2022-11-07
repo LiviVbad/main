@@ -21,7 +21,7 @@ namespace AppFramework.ViewModels
             this.tenantAppService = tenantAppService;
         }
 
-        public override async void Save()
+        public override async Task Save()
         {
             await SetBusyAsync(async () =>
             {
@@ -29,11 +29,7 @@ namespace AppFramework.ViewModels
                 {
                     Id = Id,
                     FeatureValues = featuresService.GetSelectedItems()
-                }), async () =>
-                 {
-                     base.Save();
-                     await Task.CompletedTask;
-                 });
+                }), base.Save);
             });
         }
 

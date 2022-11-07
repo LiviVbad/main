@@ -1,6 +1,7 @@
-﻿using AppFramework.Shared; 
+﻿using AppFramework.Shared;
 using Prism.Services.Dialogs;
-using System; 
+using System;
+using System.Threading.Tasks;
 
 namespace AppFramework.ViewModels
 {
@@ -22,7 +23,7 @@ namespace AppFramework.ViewModels
             set { endDate = value; RaisePropertyChanged(); }
         }
 
-        public override void Save()
+        public override async Task Save()
         {
             if (StartDate == null || EndDate == null) return;
 
@@ -30,6 +31,8 @@ namespace AppFramework.ViewModels
             param.Add("StartDate", StartDate);
             param.Add("EndDate", EndDate);
             base.Save(param);
+
+            await Task.CompletedTask;
         }
 
         public override void OnDialogOpened(IDialogParameters parameters) { }

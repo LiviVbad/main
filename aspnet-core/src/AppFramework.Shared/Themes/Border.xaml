@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:skinManager="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF">
     <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
-        <Setter Property="Opacity" Value="0.2" />
+        <Setter Property="Opacity" Value="0.4" />
         <Setter Property="CornerRadius" Value="5" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=(skinManager:SfSkinManager.Theme).ThemeName, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=Self}}" Value="Default">

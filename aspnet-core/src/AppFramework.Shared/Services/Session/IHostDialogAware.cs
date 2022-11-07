@@ -1,5 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Services.Dialogs;
+using System.Threading.Tasks;
 
 namespace AppFramework.Services
 {
@@ -23,7 +24,7 @@ namespace AppFramework.Services
         /// <summary>
         /// 确认
         /// </summary>
-        void Save();
+        Task Save();
 
         /// <summary>
         /// 取消

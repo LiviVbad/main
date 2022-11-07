@@ -160,11 +160,7 @@ namespace AppFramework.ViewModels
         private async Task GetAuditLogs(GetAuditLogsFilter input)
         {
             await WebRequest.Execute(() => appService.GetAuditLogs(Map<GetAuditLogsInput>(input)),
-                         async result =>
-                         {
-                             dataPager.SetList(result);
-                             await Task.CompletedTask;
-                         });
+                         dataPager.SetList);
         }
 
         private async void AuditLogsOnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
@@ -193,11 +189,7 @@ namespace AppFramework.ViewModels
         private async Task GetEntityChanges(GetEntityChangeFilter input)
         {
             await WebRequest.Execute(() => appService.GetEntityChanges(Map<GetEntityChangeInput>(input)),
-                           async result =>
-                           {
-                               logsdataPager.SetList(result);
-                               await Task.CompletedTask;
-                           });
+                           logsdataPager.SetList);
         }
 
         /// <summary>

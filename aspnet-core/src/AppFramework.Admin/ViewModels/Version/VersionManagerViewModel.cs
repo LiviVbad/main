@@ -1,10 +1,10 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Shared;
 using AppFramework.Models;
-using AppFramework.Shared.Services.Permission; 
+using AppFramework.Shared.Services.Permission;
 using AppFramework.Version;
-using AppFramework.Version.Dtos; 
-using Prism.Regions; 
+using AppFramework.Version.Dtos;
+using Prism.Regions;
 using System.Threading.Tasks;
 using AppFramework.Shared.Services;
 
@@ -51,12 +51,7 @@ namespace AppFramework.ViewModels
 
         private async Task GetVersions(GetAllAbpVersionsInput filter)
         {
-            await WebRequest.Execute(() => appService.GetAll(filter),
-                         async result =>
-                         {
-                             dataPager.SetList(result);
-                             await Task.CompletedTask;
-                         });
+            await WebRequest.Execute(() => appService.GetAll(filter), dataPager.SetList);
         }
 
         private async void Delete()

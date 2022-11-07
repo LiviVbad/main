@@ -2,8 +2,8 @@
 using AppFramework.Authorization.Users;
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.Authorization.Users.Profile.Dto;
-using AppFramework.Shared; 
-using AppFramework.Models; 
+using AppFramework.Shared;
+using AppFramework.Models;
 using Prism.Services.Dialogs;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -67,7 +67,7 @@ namespace AppFramework.ViewModels
         /// <summary>
         /// 保存用户
         /// </summary>
-        public override async void Save()
+        public override async Task Save()
         {
             Input.User = Model.User;
             Input.AssignedRoleNames = Model.Roles.Where(x => x.IsAssigned).Select(x => x.RoleName).ToArray();
@@ -78,13 +78,7 @@ namespace AppFramework.ViewModels
             await SetBusyAsync(async () =>
             {
                 var input = Map<CreateOrUpdateUserInput>(Input);
-                await WebRequest.Execute(async () =>
-                    await userAppService.CreateOrUpdateUser(input),
-                    async () =>
-                    {
-                        base.Save();
-                        await Task.CompletedTask;
-                    });
+                await WebRequest.Execute(() => userAppService.CreateOrUpdateUser(input), base.Save);
             }, AppLocalizationKeys.SavingWithThreeDot);
         }
 
@@ -96,7 +90,7 @@ namespace AppFramework.ViewModels
         {
             await SetBusyAsync(async () =>
               {
-                  UserListDto user = null;
+                  UserListDto? user = null;
                   if (parameters.ContainsKey("Value"))
                       user = parameters.GetValue<UserListDto>("Value");
 
