@@ -2,17 +2,16 @@
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Shared.Models;
-using AppFramework.Shared.Services.Permission; 
+using AppFramework.Shared.Services.Permission;
 using AppFramework.Dto;
 using AppFramework.Services.Notification;
 using Prism.Regions;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using AppFramework.Shared; 
+using AppFramework.Shared;
 
 namespace AppFramework.Services.Account
 {
@@ -27,8 +26,7 @@ namespace AppFramework.Services.Account
             IProfileAppService profileAppService,
             IApplicationContext applicationContext,
             NavigationService navigationService,
-            NotificationService notificationService,
-            ProxyProfileControllerService profileControllerService)
+            NotificationService notificationService)
         {
             this.dialog = dialog;
             this.accountService = accountService;
@@ -39,7 +37,6 @@ namespace AppFramework.Services.Account
             this.navigationItemService = navigationItemService;
             this.regionManager = regionManager;
             this.profileAppService = profileAppService;
-            this.profileControllerService = profileControllerService;
 
             navigationItems = new ObservableCollection<NavigationItem>();
         }
@@ -55,7 +52,6 @@ namespace AppFramework.Services.Account
         private readonly IRegionManager regionManager;
         private readonly IAccountService accountService;
         private readonly IProfileAppService profileAppService;
-        private readonly ProxyProfileControllerService profileControllerService;
 
         private byte[] photo;
         private byte[] profilePictureBytes;
@@ -127,63 +123,16 @@ namespace AppFramework.Services.Account
 
         protected async Task GetUserPhoto()
         {
-            await WebRequest.Execute(async () =>
-             await profileAppService.GetProfilePictureByUser(applicationContext.LoginInfo.User.Id),
-                 async result => await GetProfilePictureByUserSuccessed(result));
+            await WebRequest.Execute(() => profileAppService.GetProfilePictureByUser(applicationContext.LoginInfo.User.Id),
+                 GetProfilePictureByUserSuccessed);
         }
 
         private async Task GetProfilePictureByUserSuccessed(GetProfilePictureOutput output)
         {
             Photo = Convert.FromBase64String(output.ProfilePicture);
-
             await Task.CompletedTask;
         }
-
-        private async Task SaveProfilePhoto(byte[] photoAsBytes, string fileName)
-        {
-            await SetBusyAsync(async () =>
-            {
-                await WebRequest.Execute(async () => await UpdateProfilePhoto(photoAsBytes, fileName), () =>
-                {
-                    Photo = photoAsBytes;
-                    CloneProfilePicture(photoAsBytes);
-                    return Task.CompletedTask;
-                });
-            });
-        }
-
-        private void CloneProfilePicture(byte[] photoAsBytes)
-        {
-            profilePictureBytes = new byte[photoAsBytes.Length];
-            photoAsBytes.CopyTo(profilePictureBytes, 0);
-        }
-
-        private async Task UpdateProfilePhoto(byte[] photoAsBytes, string fileName)
-        {
-            var fileToken = Guid.NewGuid().ToString();
-
-            using (Stream photoStream = new MemoryStream(photoAsBytes))
-            {
-                await profileControllerService.UploadProfilePicture(content =>
-                {
-                    content.AddFile("file", photoStream, fileName);
-                    content.AddString(nameof(FileDto.FileToken), fileToken);
-                    content.AddString(nameof(FileDto.FileName), fileName);
-                }).ContinueWith(uploadResult =>
-                {
-                    if (uploadResult == null)
-                        return;
-
-                    profileAppService.UpdateProfilePicture(new UpdateProfilePictureInput
-                    {
-                        FileToken = fileToken
-                    });
-                });
-            }
-        }
-
-        public void ChangeProfilePhoto() { }
-
+            
         public async Task ShowProfilePhoto()
         {
             if (profilePictureBytes == null) return;
@@ -206,7 +155,7 @@ namespace AppFramework.Services.Account
             get { return selectedIndex; }
             set { selectedIndex = value; RaisePropertyChanged(); }
         }
-         
+
         public async Task GetApplicationInfo()
         {
             await GetUserPhoto();
@@ -251,7 +200,7 @@ namespace AppFramework.Services.Account
             if (await dialog.Question(Local.Localize("AreYouSure")))
             {
                 regionManager.Regions[AppRegionManager.Main].RemoveAll();
-                await accountService.LogoutAsync(); 
+                await accountService.LogoutAsync();
             }
 
             await ResetClickIndex();
@@ -273,8 +222,8 @@ namespace AppFramework.Services.Account
         }
 
         private void LoginAttempts()
-        { 
-            navigationService.Navigate(AppViews.LoginAttempts); 
+        {
+            navigationService.Navigate(AppViews.LoginAttempts);
         }
 
         private void MySettings()

@@ -1,6 +1,5 @@
 ﻿using AppFramework.Shared;
-using AppFramework.Shared.Models;
-using AppFramework.Shared.Services;
+using AppFramework.Shared.Models; 
 using AppFramework.Services;
 using AppFramework.Services.Notification;
 using Prism.Commands;

@@ -33,11 +33,6 @@ namespace AppFramework.Services
         string ApplicationName { get; set; }
 
         /// <summary>
-        /// 更改个人资料照片
-        /// </summary>
-        void ChangeProfilePhoto();
-
-        /// <summary>
         /// 显示个人资料照片
         /// </summary>
         /// <returns></returns>
