@@ -1,7 +1,5 @@
-﻿using AppFramework.Admin.Events;
-using AppFramework.Admin.ViewModels.Chat;
+﻿using AppFramework.Admin.ViewModels.Chat;
 using AppFramework.Shared;
-using Prism.Events;
 using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,18 +8,15 @@ namespace AppFramework.Views
 {
     public partial class FriendsChatView : UserControl
     {
-        public FriendsChatView(IEventAggregator aggregator)
+        public FriendsChatView()
         {
             InitializeComponent();
             sfInputText.KeyDown+=SfInputText_KeyDown;
             this.KeyDown+=(s, e) =>
             {
                 if (e.KeyStates== Keyboard.GetKeyStates(Key.C)&&Keyboard.Modifiers==ModifierKeys.Alt)
-                {
                     (this.DataContext as HostDialogViewModel)?.Cancel();
-                }
             };
-            aggregator.GetEvent<ScrollEvent>().Subscribe(result => scrollViewer.ScrollToEnd());
         }
 
 
@@ -30,7 +25,6 @@ namespace AppFramework.Views
             if (e.Key== System.Windows.Input.Key.Enter)
             {
                 (this.DataContext as FriendsChatViewModel)?.Send();
-                scrollViewer.ScrollToEnd();
             }
         }
 

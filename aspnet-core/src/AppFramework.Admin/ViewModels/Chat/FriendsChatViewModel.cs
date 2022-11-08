@@ -16,9 +16,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using MimeMapping;
-using Prism.Events;
-using AppFramework.Admin.Events;
+using MimeMapping; 
 
 namespace AppFramework.Admin.ViewModels.Chat
 {
@@ -29,7 +27,6 @@ namespace AppFramework.Admin.ViewModels.Chat
            IFriendChatService chatService,
            IProfileAppService profileAppService,
            IAccessTokenManager tokenManager,
-           IEventAggregator aggregator,
            ProxyChatControllerService proxyChatService)
         {
             this.context = context;
@@ -37,7 +34,6 @@ namespace AppFramework.Admin.ViewModels.Chat
             this.chatService = chatService;
             this.profileAppService = profileAppService;
             this.tokenManager = tokenManager;
-            this.aggregator = aggregator;
             this.proxyChatService = proxyChatService;
 
             chatService.OnChatMessageHandler += ChatService_OnChatMessageHandler;
@@ -59,7 +55,6 @@ namespace AppFramework.Admin.ViewModels.Chat
         private readonly IFriendChatService chatService;
         private readonly IProfileAppService profileAppService;
         private readonly IAccessTokenManager tokenManager;
-        private readonly IEventAggregator aggregator;
         private readonly ProxyChatControllerService proxyChatService;
         private ObservableCollection<ChatMessageModel> messages;
 
@@ -118,7 +113,6 @@ namespace AppFramework.Admin.ViewModels.Chat
                         Messages.Add(item);
                     }
 
-                    aggregator.GetEvent<ScrollEvent>().Publish(true);
                     await MarkAllUnreadMessages();
                 });
         }
@@ -149,7 +143,7 @@ namespace AppFramework.Admin.ViewModels.Chat
             }
             else if (model.Message.StartsWith("[link]"))
             {
-                model.MessageType = "link";
+                model.MessageType = "text";
                 var msg = model.Message.Replace("[link]", "");
                 model.Message = JsonConvert.DeserializeObject<dynamic>(msg).message;
             }

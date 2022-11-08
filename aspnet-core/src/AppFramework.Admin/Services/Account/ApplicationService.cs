@@ -243,7 +243,7 @@ namespace AppFramework.Services.Account
             {
                 await notificationService.GetNotifications();
                 await ResetClickIndex();
-                NotifyBar.Info(Local.Localize("Notifications"),
+                DialogHelper.Info(Local.Localize("Notifications"),
                    Local.Localize("GdprDataPreparedNotificationMessage"));
             });
         }

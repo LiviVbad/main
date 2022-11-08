@@ -2,7 +2,7 @@
 
 namespace AppFramework.Shared
 {
-    public static class NotifyBar
+    public static class DialogHelper
     {
         public static void Info(string title, string message)
         {

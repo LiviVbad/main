@@ -80,7 +80,7 @@ namespace AppFramework.ViewModels
         {
             if (NewPassword != NewPasswordRepeat)
             {
-                NotifyBar.Info("", Local.Localize(AppLocalizationKeys.PasswordsDontMatch));
+                DialogHelper.Info("", Local.Localize(AppLocalizationKeys.PasswordsDontMatch));
             }
             else
             {
@@ -97,7 +97,7 @@ namespace AppFramework.ViewModels
 
         private async Task PasswordChangedAsync()
         {
-            NotifyBar.Info(Local.Localize(AppLocalizationKeys.YourPasswordHasChangedSuccessfully),
+            DialogHelper.Info(Local.Localize(AppLocalizationKeys.YourPasswordHasChangedSuccessfully),
                 Local.Localize(AppLocalizationKeys.ChangePassword));
 
             await Task.CompletedTask;

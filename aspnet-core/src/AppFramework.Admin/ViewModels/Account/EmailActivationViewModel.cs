@@ -63,7 +63,7 @@ namespace AppFramework.ViewModels
 
         private async Task PasswordResetMailSentAsync()
         {
-            NotifyBar.Info(Local.Localize(AppLocalizationKeys.ActivationMailSentMessage),
+            DialogHelper.Info(Local.Localize(AppLocalizationKeys.ActivationMailSentMessage),
                 Local.Localize(AppLocalizationKeys.MailSent));
 
             await Task.CompletedTask;

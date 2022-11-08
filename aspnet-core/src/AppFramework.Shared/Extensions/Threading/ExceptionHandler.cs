@@ -27,9 +27,9 @@ namespace AppFramework.Shared
                 return true;
              
             if (string.IsNullOrEmpty(ajaxResponse.Error.Details))
-                NotifyBar.Error(Local.Localize("Error"), ajaxResponse.Error.GetConsolidatedMessage());
+                DialogHelper.Error(Local.Localize("Error"), ajaxResponse.Error.GetConsolidatedMessage());
             else
-                NotifyBar.Error(ajaxResponse.Error.GetConsolidatedMessage(), ajaxResponse.Error.Details);
+                DialogHelper.Error(ajaxResponse.Error.GetConsolidatedMessage(), ajaxResponse.Error.Details);
 
             return true;
         }
