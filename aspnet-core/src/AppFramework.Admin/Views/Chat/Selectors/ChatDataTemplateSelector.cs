@@ -17,17 +17,17 @@ namespace AppFramework.Behaviors
             SenderTextTemplate=FinResource("SenderTextTemplate");
         }
 
-        public DataTemplate ReceiverImageTemplate { get; set; }
+        public DataTemplate ReceiverImageTemplate { get; private set; }
 
         public DataTemplate ReceiverFileTemplate { get; private set; }
 
-        public DataTemplate ReceiverTextTemplate { get; set; }
+        public DataTemplate ReceiverTextTemplate { get; private set; }
 
-        public DataTemplate SenderImageTemplate { get; set; }
+        public DataTemplate SenderImageTemplate { get; private set; }
 
         public DataTemplate SenderFileTemplate { get; private set; }
 
-        public DataTemplate SenderTextTemplate { get; set; }
+        public DataTemplate SenderTextTemplate { get; private set; }
            
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
