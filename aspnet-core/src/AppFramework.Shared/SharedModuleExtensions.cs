@@ -34,7 +34,6 @@ using AppFramework.Services.Dialog;
 using AppFramework.Shared.Validations;
 using AppFramework.Chat;
 using AppFramework.Friendships;
-using AppFramework.Shared.Services.Signalr;
 
 namespace AppFramework.Shared
 {
@@ -46,7 +45,7 @@ namespace AppFramework.Shared
 
             services.Register<IDataPagerService, DataPagerService>();
             services.RegisterSingleton<IHostDialogService, DialogHostService>();
-            services.RegisterSingleton<IFriendChatService, FriendChatService>();
+            services.RegisterSingleton<IChatService, ChatService>();
 
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();
             services.RegisterSingleton<IMultiTenancyConfig, MultiTenancyConfig>();

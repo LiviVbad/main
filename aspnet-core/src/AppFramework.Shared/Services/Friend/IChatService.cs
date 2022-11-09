@@ -4,19 +4,19 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-namespace AppFramework.Shared.Services.Signalr
+namespace AppFramework.Shared.Services
 {
     public delegate void DelegateChatMessageHandler(ChatMessageDto chatMessage);
 
-    public interface IFriendChatService
+    public interface IChatService
     {
         event DelegateChatMessageHandler OnChatMessageHandler;
 
         bool IsConnected { get; }
 
-        Task StartAsync();
+        Task ConnectAsync();
 
-        Task StopAsync();
+        Task CloseAsync();
 
         Task SendMessage(SendChatMessageInput input);
 

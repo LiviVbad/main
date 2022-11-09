@@ -3,7 +3,7 @@ using AppFramework.Shared;
 using AppFramework.Shared.Services.Storage;
 using AppFramework.Services.Account; 
 using Prism.Services.Dialogs;
-using System.Threading.Tasks;
+using System.Threading.Tasks; 
 
 namespace AppFramework.ViewModels
 {
@@ -21,7 +21,7 @@ namespace AppFramework.ViewModels
             set { displayText = value; RaisePropertyChanged(); }
         }
 
-        public SplashScreenViewModel( 
+        public SplashScreenViewModel(
            IApplicationContext applicationContext,
            IAccessTokenManager accessTokenManager,
            IAccountStorageService dataStorageService)

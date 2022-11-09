@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using AppFramework.Shared;
 using AppFramework.Shared.Services.App;
 using AppFramework.Models;
+using AppFramework.Shared.Services;
 
 namespace AppFramework.Services.Account
 {
@@ -16,6 +17,7 @@ namespace AppFramework.Services.Account
     {
         private readonly IHostDialogService dialog;
         private readonly IAppStartService appStart;
+        private readonly IChatService chatService;
         public readonly IAccountStorageService dataStorageService;
         public readonly IApplicationContext applicationContext;
         public readonly ISessionAppService sessionAppService;
@@ -24,6 +26,7 @@ namespace AppFramework.Services.Account
         public AccountService(
             IHostDialogService dialog,
             IAppStartService appStart,
+            IChatService chatService,
             IApplicationContext applicationContext,
             ISessionAppService sessionAppService,
             IAccessTokenManager accessTokenManager,
@@ -32,6 +35,7 @@ namespace AppFramework.Services.Account
         {
             this.dialog = dialog;
             this.appStart = appStart;
+            this.chatService=chatService;
             this.applicationContext = applicationContext;
             this.sessionAppService = sessionAppService;
             this.accessTokenManager = accessTokenManager;
@@ -75,9 +79,8 @@ namespace AppFramework.Services.Account
 
         private async Task GoToLoginPageAsync()
         {
-            appStart.Logout();
-
-            await Task.CompletedTask;
+            await chatService.CloseAsync();
+            appStart.Logout(); 
         }
 
         private async Task<bool> AuthenticateSucceed(AbpAuthenticateResultModel result)
@@ -108,14 +111,14 @@ namespace AppFramework.Services.Account
             }
 
             await SetCurrentUserInfoAsync();
-            await UserConfigurationManager.GetAsync();
+            await UserConfigurationManager.GetAsync(); 
 
             return true;
         }
 
         public async Task SetCurrentUserInfoAsync()
         {
-            await WebRequest.Execute(() => sessionAppService.GetCurrentLoginInformations(), 
+            await WebRequest.Execute(() => sessionAppService.GetCurrentLoginInformations(),
                 GetCurrentUserInfoExecuted);
         }
 

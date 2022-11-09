@@ -6,7 +6,6 @@ using AppFramework.Chat.Dto;
 using AppFramework.Dto;
 using AppFramework.Shared;
 using AppFramework.Shared.Models.Chat;
-using AppFramework.Shared.Services.Signalr;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using Prism.Commands;
@@ -18,6 +17,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MimeMapping;
 using Abp.Application.Services.Dto;
+using AppFramework.Shared.Services;
 
 namespace AppFramework.Admin.ViewModels.Chat
 {
@@ -25,7 +25,7 @@ namespace AppFramework.Admin.ViewModels.Chat
     {
         public FriendsChatViewModel(IApplicationContext context,
            IChatAppService chatApp,
-           IFriendChatService chatService,
+           IChatService chatService,
            IProfileAppService profileAppService,
            IAccessTokenManager tokenManager,
            ProxyChatControllerService proxyChatService)
@@ -53,7 +53,7 @@ namespace AppFramework.Admin.ViewModels.Chat
         private FriendModel friend;
         private readonly IApplicationContext context;
         private readonly IChatAppService chatApp;
-        private readonly IFriendChatService chatService;
+        private readonly IChatService chatService;
         private readonly IProfileAppService profileAppService;
         private readonly IAccessTokenManager tokenManager;
         private readonly ProxyChatControllerService proxyChatService;

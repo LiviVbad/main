@@ -111,8 +111,8 @@
             </ListBox.GroupStyle>
 
             <i:Interaction.Behaviors>
-                <behavior:ChatMessageListViewBehavior />
-                <behavior:ChatMessageListViewGroupBehavior />
+                <behavior:ChatMessageListBoxBehavior />
+                <behavior:ChatMessageListBoxGroupBehavior />
             </i:Interaction.Behaviors>
 
             <ListBox.ItemTemplateSelector>
