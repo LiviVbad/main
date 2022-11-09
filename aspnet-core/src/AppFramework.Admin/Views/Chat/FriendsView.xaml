@@ -59,12 +59,13 @@
                             <Image
                                 Width="40"
                                 Height="40"
-                                Source="{Binding FriendProfilePictureId, Converter={StaticResource bytesToImageConverter}}" />
+                                Margin="10,0"
+                                Source="{Binding Photo, Converter={StaticResource bytesToImageConverter}}" />
 
                             <Border
                                 Width="10"
                                 Height="10"
-                                Margin="-8,3"
+                                Margin="5,0"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Bottom"
                                 CornerRadius="10">
@@ -82,26 +83,21 @@
                                 </Border.Style>
                             </Border>
 
-                            <StackPanel Grid.Column="1" Margin="15,0">
+                            <StackPanel Grid.Column="1">
                                 <TextBlock FontWeight="Bold" Text="{Binding FriendUserName}" />
                                 <TextBlock Margin="0,3" Text="{Binding FriendTenancyName}" />
                             </StackPanel>
 
                             <Border
                                 Grid.Column="1"
-                                MinWidth="30"
-                                Margin="5"
+                                Width="10"
+                                Height="10"
+                                Margin="10,5"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Center"
                                 Background="#ff4040"
                                 CornerRadius="30"
-                                Visibility="{Binding UnreadMessageCount, Converter={StaticResource msgVisibilityConverter}}">
-                                <TextBlock
-                                    Padding="5"
-                                    HorizontalAlignment="Center"
-                                    Foreground="White"
-                                    Text="{Binding UnreadMessageCount}" />
-                            </Border>
+                                Visibility="{Binding UnreadMessageCount, Converter={StaticResource msgVisibilityConverter}}" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

@@ -32,5 +32,7 @@ namespace AppFramework.Shared.Models.Chat
         }
 
         public FriendshipState State { get; set; }
+
+        public byte[] Photo { get; set; }
     }
 }

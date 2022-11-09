@@ -5,52 +5,32 @@
     <converter:UrlToImageConverter x:Key="urlImageConverter" />
 
     <DataTemplate x:Key="ReceiverImageTemplate">
-        <Border
-            HorizontalAlignment="Left"
-            Background="#0060c0"
-            CornerRadius="5">
-            <Grid>
+        <StackPanel HorizontalAlignment="Left">
+            <Border
+                Padding="3"
+                Background="WhiteSmoke"
+                CornerRadius="5">
                 <Image
                     Width="150"
                     Height="150"
-                    Margin="5"
-                    HorizontalAlignment="Right"
                     Source="{Binding Message, Converter={StaticResource urlImageConverter}}"
-                    Stretch="Uniform" />
-
-                <TextBlock
-                    Margin="5"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    FontSize="14"
-                    Foreground="White"
-                    Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
-            </Grid>
-        </Border>
+                    Stretch="UniformToFill" />
+            </Border>
+        </StackPanel>
     </DataTemplate>
 
     <DataTemplate x:Key="SenderImageTemplate">
-        <Border
-            Margin="5,0"
-            HorizontalAlignment="Right"
-            Background="#0060c0"
-            CornerRadius="5">
-            <Grid>
+        <StackPanel Margin="5,0" HorizontalAlignment="Right">
+            <Border
+                Padding="3"
+                Background="WhiteSmoke"
+                CornerRadius="5">
                 <Image
                     Width="150"
                     Height="150"
-                    Margin="3"
                     Source="{Binding Message, Converter={StaticResource urlImageConverter}}"
                     Stretch="UniformToFill" />
-
-                <TextBlock
-                    Margin="5"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    FontSize="14"
-                    Foreground="White"
-                    Text="{Binding CreationTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
-            </Grid>
-        </Border>
+            </Border>
+        </StackPanel>
     </DataTemplate>
 </ResourceDictionary>

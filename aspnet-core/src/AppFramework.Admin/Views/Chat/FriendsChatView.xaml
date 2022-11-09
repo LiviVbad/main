@@ -41,21 +41,20 @@
             Opacity="1"
             Style="{DynamicResource HeaderBorderStyle}" />
 
-        <Grid Margin="10,5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-
+        <StackPanel
+            Grid.Column="1"
+            Margin="10"
+            HorizontalAlignment="Left"
+            Orientation="Horizontal">
             <Image
                 Width="40"
                 Height="40"
-                Source="/Assets/Images/user.png" />
+                VerticalAlignment="Center"
+                Source="{Binding Friend.Photo, Converter={StaticResource bytesToImageConverter}}" />
 
             <Border
                 Width="10"
                 Height="10"
-                Margin="-8,3"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 CornerRadius="10">
@@ -73,11 +72,11 @@
                 </Border.Style>
             </Border>
 
-            <StackPanel Grid.Column="1" Margin="15,0">
+            <StackPanel Margin="5,0" VerticalAlignment="Center">
                 <TextBlock FontWeight="Bold" Text="{Binding Friend.FriendUserName}" />
                 <TextBlock Margin="0,3" Text="{Binding Friend.FriendTenancyName}" />
             </StackPanel>
-        </Grid>
+        </StackPanel>
 
         <ListBox
             Grid.Row="1"
