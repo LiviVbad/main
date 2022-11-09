@@ -16,7 +16,8 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using MimeMapping; 
+using MimeMapping;
+using Abp.Application.Services.Dto;
 
 namespace AppFramework.Admin.ViewModels.Chat
 {
@@ -92,29 +93,41 @@ namespace AppFramework.Admin.ViewModels.Chat
         /// <returns></returns>
         private async Task GetUserChatMessagesByUser(long userId)
         {
-            await WebRequest.Execute(() =>
-                chatApp.GetUserChatMessages(new GetUserChatMessagesInput()
+            await WebRequest.Execute(() => chatApp.GetUserChatMessages(new GetUserChatMessagesInput() { UserId = userId }),
+                GetUserChatMessagesSuccessed);
+        }
+
+        /// <summary>
+        /// 处理消息数据格式
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        private async Task GetUserChatMessagesSuccessed(ListResultDto<ChatMessageDto> result)
+        {
+            if (!result.Items.Any()) return;
+
+            var list = Map<List<ChatMessageModel>>(result.Items);
+            var userId = list.First().TargetUserId;
+
+            userName = chatService.Friends.First(t => t.FriendUserId.Equals(userId)).FriendUserName;
+
+            foreach (var item in list)
+            {
+                await UpdateMessageInfo(item);
+
+                //小于10分钟以内的消息归一组
+                var lastMessage = Messages.LastOrDefault();
+                if (lastMessage != null)
                 {
-                    UserId = userId
-                }), async result =>
-                {
-                    if (!result.Items.Any()) return;
+                    var timeSpan = item.CreationTime - lastMessage.CreationTime;
+                    if (timeSpan.TotalMinutes < 10)
+                        item.CreationTime = lastMessage.CreationTime;
+                }
 
-                    var list = Map<List<ChatMessageModel>>(result.Items);
-                    var userId = list.First().TargetUserId;
-                     
-                    userName = chatService.Friends
-                    .FirstOrDefault(t => t.FriendUserId.Equals(userId))
-                    .FriendUserName; 
+                Messages.Add(item);
+            }
 
-                    foreach (var item in list)
-                    {
-                        await UpdateMessageInfo(item);
-                        Messages.Add(item);
-                    }
-
-                    await MarkAllUnreadMessages();
-                });
+            await MarkAllUnreadMessages();
         }
 
         /// <summary>
@@ -160,7 +173,7 @@ namespace AppFramework.Admin.ViewModels.Chat
         private async void ChatService_OnChatMessageHandler(ChatMessageDto chatMessage)
         {
             var message = Messages.FirstOrDefault(t => t.Id.Equals(chatMessage.Id));
-            if (message==null)
+            if (message == null)
             {
                 var msg = Map<ChatMessageModel>(chatMessage);
                 await UpdateMessageInfo(msg);
@@ -227,7 +240,7 @@ namespace AppFramework.Admin.ViewModels.Chat
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "所有文件(*.*)|*.*";
             var dialogResult = fileDialog.ShowDialog();
-            if (dialogResult!=null&&(bool)dialogResult)
+            if (dialogResult != null && (bool)dialogResult)
             {
                 string fileName = fileDialog.SafeFileName;
                 string contentType = MimeUtility.GetMimeMapping(fileName);

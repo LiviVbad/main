@@ -1,4 +1,5 @@
-﻿using System; 
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO; 
 using System.Windows.Data;
@@ -7,7 +8,7 @@ using System.Windows.Media.Imaging;
 namespace AppFramework.Converters
 {
     public class ByteToImageConverter : IValueConverter
-    {
+    { 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null && value is byte[] photoBytes)
@@ -18,7 +19,7 @@ namespace AppFramework.Converters
                     bmp = new BitmapImage();
                     bmp.BeginInit();
                     bmp.StreamSource = new MemoryStream(photoBytes);
-                    bmp.EndInit();
+                    bmp.EndInit(); 
                     return bmp;
                 }
                 catch { }
