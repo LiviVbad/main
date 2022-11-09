@@ -19,13 +19,11 @@ namespace AppFramework.Shared.Services
 {
     public class ChatService : ViewModelBase, IChatService
     {
-        public ChatService(IAccessTokenManager context,
-            IFriendshipAppService friendshipAppService,
+        public ChatService(IAccessTokenManager context, 
             IProfileAppService profileAppService,
             IChatAppService chatAppService)
         {
-            this.context = context;
-            this.friendshipAppService = friendshipAppService;
+            this.context = context; 
             this.profileAppService = profileAppService;
             this.chatAppService = chatAppService;
             friends = new ObservableCollection<FriendModel>();
@@ -34,8 +32,7 @@ namespace AppFramework.Shared.Services
         public event DelegateChatMessageHandler OnChatMessageHandler;
         private HubConnection chatAuthService;
         private HubConnection friendService;
-        private readonly IAccessTokenManager context;
-        private readonly IFriendshipAppService friendshipAppService;
+        private readonly IAccessTokenManager context; 
         private readonly IProfileAppService profileAppService;
         private readonly IChatAppService chatAppService;
 
@@ -104,18 +101,17 @@ namespace AppFramework.Shared.Services
 
         public async Task CloseAsync()
         {
-            chatAuthService.Closed-=ChatServiceClosed;
-            friendService.Closed-=FriendServiceClosed;
+            chatAuthService.Closed -= ChatServiceClosed;
+            friendService.Closed -= FriendServiceClosed;
             await chatAuthService.StopAsync();
             await friendService.StopAsync();
-            IsConnected = false;
+            IsConnected = false; 
         }
 
         private async Task ChatServerConnect()
         {
             chatAuthService = new HubConnectionBuilder()
                    .WithUrl(ApiUrlConfig.DefaultHostUrl + "signalr",
-                   Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets,
                    ConfigureHttpConnection).Build();
             chatAuthService.Closed += ChatServiceClosed;
 
@@ -123,7 +119,6 @@ namespace AppFramework.Shared.Services
 
             friendService = new HubConnectionBuilder()
                    .WithUrl(ApiUrlConfig.DefaultHostUrl + "signalr-chat",
-                   Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets,
                    ConfigureHttpConnection).Build();
             friendService.Closed += FriendServiceClosed;
 
