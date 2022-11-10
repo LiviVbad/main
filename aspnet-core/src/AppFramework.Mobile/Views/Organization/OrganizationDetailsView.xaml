@@ -15,7 +15,15 @@
 
         <StackLayout>
             <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate OrganizationUnits}" />
-            <controls:BorderlessEntry Style="{StaticResource BorderlessEntryStyle}" Text="{Binding OrganizationUnit.DisplayName, Mode=TwoWay}" />
+
+            <border:SfBorder
+                Padding="8"
+                BorderColor="{DynamicResource Gray-Bg}"
+                BorderWidth="0"
+                CornerRadius="5"
+                HasShadow="True">
+                <controls:BorderlessEntry Style="{StaticResource BorderlessEntryStyle}" Text="{Binding OrganizationUnit.DisplayName, Mode=TwoWay}" />
+            </border:SfBorder>
         </StackLayout>
 
         <tab:SfTabView

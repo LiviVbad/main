@@ -43,14 +43,14 @@
                                                 BackgroundColor="{DynamicResource Red}"
                                                 Command="{Binding Path=BindingContext.ExecuteCommand, Source={x:Reference SfListView}}"
                                                 CommandParameter="{x:Static perm:AppPermissions.UserDelete}"
-                                                IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.UserDelete}}">
+                                                IsVisible="{extensions:HasPermission Text={x:Static perm:AppPermissions.UserDelete}}">
                                                 <Label Text="{extensions:Translate Remove}" />
                                             </SwipeItemView>
                                             <SwipeItemView
                                                 BackgroundColor="{DynamicResource PrimaryColor}"
                                                 Command="{Binding Path=BindingContext.ExecuteCommand, Source={x:Reference SfListView}}"
                                                 CommandParameter="{x:Static perm:AppPermissions.UserEdit}"
-                                                IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.UserEdit}}">
+                                                IsVisible="{extensions:HasPermission Text={x:Static perm:AppPermissions.UserEdit}}">
                                                 <Label Text="{extensions:Translate Edit}" />
                                             </SwipeItemView>
                                         </SwipeItems>
@@ -105,7 +105,7 @@
             Grid.Row="1"
             Margin="0,0,10,10"
             Command="{Binding AddCommand}"
-            IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.UserCreate}}"
+            IsVisible="{extensions:HasPermission Text={x:Static perm:AppPermissions.UserCreate}}"
             Style="{StaticResource AddButtonStyle}" />
     </Grid>
 </ContentView>

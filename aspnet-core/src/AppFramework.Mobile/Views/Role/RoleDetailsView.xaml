@@ -46,7 +46,7 @@
                                 VerticalOptions="Center" />
                             <Label
                                 Style="{StaticResource SimpleLabelStyle}"
-                                Text="{Binding DisplayName}"
+                                Text="{Binding Content.DisplayName}"
                                 VerticalOptions="Center" />
                         </StackLayout>
                     </DataTemplate>

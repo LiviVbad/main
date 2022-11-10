@@ -27,13 +27,13 @@
                                                 BackgroundColor="{DynamicResource Red}"
                                                 Command="{Binding Path=BindingContext.ExecuteCommand, Source={x:Reference SfListView}}"
                                                 CommandParameter="{x:Static perm:AppPermissions.DynamicEntityPropertiesDelete}"
-                                                IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.DynamicEntityPropertiesDelete}}"
+                                                IsVisible="{extensions:HasPermission Text={x:Static perm:AppPermissions.DynamicEntityPropertiesDelete}}"
                                                 Text="{extensions:Translate Remove}" />
                                             <SwipeItem
                                                 BackgroundColor="{DynamicResource PrimaryColor}"
                                                 Command="{Binding Path=BindingContext.ExecuteCommand, Source={x:Reference SfListView}}"
                                                 CommandParameter="{x:Static perm:AppPermissions.DynamicEntityPropertiesEdit}"
-                                                IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.DynamicEntityPropertiesEdit}}"
+                                                IsVisible="{extensions:HasPermission Text={x:Static perm:AppPermissions.DynamicEntityPropertiesEdit}}"
                                                 Text="{extensions:Translate Edit}" />
                                         </SwipeItems>
                                     </SwipeView.RightItems>
@@ -69,7 +69,7 @@
         <buttons:SfButton
             Margin="0,0,10,10"
             Command="{Binding AddCommand}"
-            IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.DynamicEntityPropertiesCreate}}"
+            IsVisible="{extensions:HasPermission Text={x:Static perm:AppPermissions.DynamicEntityPropertiesCreate}}"
             Style="{StaticResource AddButtonStyle}" />
     </Grid>
 </ContentView>
