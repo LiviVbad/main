@@ -2,8 +2,7 @@
 using AppFramework.ApiClient.Models;
 using AppFramework.Shared.Models;
 using AppFramework.Shared.Services.Storage;
-using AppFramework.Sessions.Dto;
-using AutoMapper;
+using AppFramework.Sessions.Dto; 
 using System.Threading.Tasks;
 using AppFramework.Shared.Services.Mapper;
 

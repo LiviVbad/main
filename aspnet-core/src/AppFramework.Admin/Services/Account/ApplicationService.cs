@@ -2,8 +2,7 @@
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Shared.Models;
-using AppFramework.Shared.Services.Permission;
-using AppFramework.Dto;
+using AppFramework.Shared.Services.Permission; 
 using AppFramework.Services.Notification;
 using Prism.Regions;
 using Prism.Services.Dialogs;
