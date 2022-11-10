@@ -2,10 +2,11 @@
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace AppFramework.Behaviors
 {
-    public class ChatMessageListViewGroupBehavior : Behavior<ListBox>
+    public class ChatMessageListBoxGroupBehavior : Behavior<ListBox>
     {
         protected override void OnAttached()
         {
@@ -21,7 +22,7 @@ namespace AppFramework.Behaviors
     }
 
 
-    public class ChatMessageListViewBehavior : Behavior<ListBox>
+    public class ChatMessageListBoxBehavior : Behavior<ListBox>
     {
         protected override void OnAttached()
         {
@@ -33,7 +34,7 @@ namespace AppFramework.Behaviors
         private void ChatMessageListViewBehavior_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (AssociatedObject.HasItems)
-                AssociatedObject.ScrollIntoView(AssociatedObject.Items[AssociatedObject.Items.Count - 1]);
+                AssociatedObject.ScrollIntoView(e.NewItems[e.NewItems.Count-1]);
         }
 
         protected override void OnDetaching()

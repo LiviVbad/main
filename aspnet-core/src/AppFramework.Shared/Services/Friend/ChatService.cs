@@ -15,17 +15,15 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AppFramework.Shared.Services.Signalr
+namespace AppFramework.Shared.Services
 {
-    public class FriendChatService : ViewModelBase, IFriendChatService
+    public class ChatService : ViewModelBase, IChatService
     {
-        public FriendChatService(IAccessTokenManager context,
-            IFriendshipAppService friendshipAppService,
+        public ChatService(IAccessTokenManager context, 
             IProfileAppService profileAppService,
             IChatAppService chatAppService)
         {
-            this.context = context;
-            this.friendshipAppService = friendshipAppService;
+            this.context = context; 
             this.profileAppService = profileAppService;
             this.chatAppService = chatAppService;
             friends = new ObservableCollection<FriendModel>();
@@ -34,8 +32,7 @@ namespace AppFramework.Shared.Services.Signalr
         public event DelegateChatMessageHandler OnChatMessageHandler;
         private HubConnection chatAuthService;
         private HubConnection friendService;
-        private readonly IAccessTokenManager context;
-        private readonly IFriendshipAppService friendshipAppService;
+        private readonly IAccessTokenManager context; 
         private readonly IProfileAppService profileAppService;
         private readonly IChatAppService chatAppService;
 
@@ -93,51 +90,37 @@ namespace AppFramework.Shared.Services.Signalr
             await friendService.InvokeAsync("sendMessage", input);
         }
 
-        public async Task StartAsync()
+        public async Task ConnectAsync()
         {
             if (IsConnected) return;
 
-            await SignalrConnect();
-            await SignalrChatConnect();
+            await ChatServerConnect();
+
             IsConnected = true;
         }
 
-        public async Task StopAsync()
+        public async Task CloseAsync()
         {
+            chatAuthService.Closed -= ChatServiceClosed;
+            friendService.Closed -= FriendServiceClosed;
             await chatAuthService.StopAsync();
             await friendService.StopAsync();
-            IsConnected = false;
+            IsConnected = false; 
         }
 
-        private async Task SignalrConnect()
+        private async Task ChatServerConnect()
         {
             chatAuthService = new HubConnectionBuilder()
                    .WithUrl(ApiUrlConfig.DefaultHostUrl + "signalr",
-                   Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets,
                    ConfigureHttpConnection).Build();
-
-            chatAuthService.Closed += async (error) =>
-            {
-                await Task.Delay(new Random().Next(0, 5) * 1000);
-                await chatAuthService.StartAsync();
-            };
+            chatAuthService.Closed += ChatServiceClosed;
 
             await chatAuthService.StartAsync();
-            await SignalrChatConnect();
-        }
 
-        private async Task SignalrChatConnect()
-        {
             friendService = new HubConnectionBuilder()
                    .WithUrl(ApiUrlConfig.DefaultHostUrl + "signalr-chat",
-                   Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets,
                    ConfigureHttpConnection).Build();
-
-            friendService.Closed += async (error) =>
-            {
-                await Task.Delay(new Random().Next(0, 5) * 1000);
-                await friendService.StartAsync();
-            };
+            friendService.Closed += FriendServiceClosed;
 
             friendService.On<ChatMessageDto>("getChatMessage", GetChatMessageHandler);
             friendService.On<FriendDto, bool>("getFriendshipRequest", GetFriendshipRequestHandler);
@@ -145,6 +128,18 @@ namespace AppFramework.Shared.Services.Signalr
             friendService.On<UserIdentifier, FriendshipState>("getUserStateChange", GetUserStateChangeHandler);
             friendService.On<UserIdentifier>("getallUnreadMessagesOfUserRead", GetallUnreadMessagesOfUserReadHandler);
             friendService.On<UserIdentifier>("getReadStateChange", GetReadStateChangeHandler);
+            await friendService.StartAsync();
+        }
+
+        private async Task ChatServiceClosed(Exception? error)
+        {
+            await Task.Delay(new Random().Next(0, 5) * 1000);
+            await chatAuthService.StartAsync();
+        }
+
+        private async Task FriendServiceClosed(Exception? error)
+        {
+            await Task.Delay(new Random().Next(0, 5) * 1000);
             await friendService.StartAsync();
         }
 

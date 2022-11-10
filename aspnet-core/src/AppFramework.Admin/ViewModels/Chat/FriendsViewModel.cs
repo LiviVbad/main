@@ -2,7 +2,7 @@
 using AppFramework.Friendships;
 using AppFramework.Shared;
 using AppFramework.Shared.Models.Chat;
-using AppFramework.Shared.Services.Signalr;
+using AppFramework.Shared.Services; 
 using Prism.Commands;
 using Prism.Regions;
 using Prism.Services.Dialogs;
@@ -13,7 +13,7 @@ namespace AppFramework.Admin.ViewModels.Chat
     public class FriendsViewModel : NavigationViewModel
     {
         private readonly IFriendshipAppService friendshipAppService;
-        public IFriendChatService chatService { get; private set; }
+        public IChatService chatService { get; private set; }
         private readonly IApplicationContext context;
 
         public DelegateCommand AddUserCommand { get; private set; }
@@ -21,7 +21,7 @@ namespace AppFramework.Admin.ViewModels.Chat
 
         public FriendsViewModel(IApplicationContext context,
             IFriendshipAppService friendshipAppService, 
-            IFriendChatService chatService)
+            IChatService chatService)
         {
             this.context = context;
             this.chatService = chatService;
@@ -65,8 +65,7 @@ namespace AppFramework.Admin.ViewModels.Chat
 
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {
-            await chatService.GetUserChatFriendsAsync();
-            await chatService.StartAsync();
+            await chatService.GetUserChatFriendsAsync(); 
         }
     }
 }
