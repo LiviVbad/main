@@ -139,7 +139,7 @@ namespace AppFramework.Services.Account
 
             NavigationParameters param = new NavigationParameters();
             param.Add("Value", profilePictureBytes);
-            regionManager.Regions[AppRegionManager.Main].RequestNavigate(AppViews.ProfilePicture, param);
+            regionManager.Regions[AppRegions.Main].RequestNavigate(AppViews.ProfilePicture, param);
 
             await Task.CompletedTask;
         }
@@ -199,7 +199,7 @@ namespace AppFramework.Services.Account
         {
             if (await dialog.Question(Local.Localize("AreYouSure")))
             {
-                regionManager.Regions[AppRegionManager.Main].RemoveAll();
+                regionManager.Regions[AppRegions.Main].RemoveAll();
                 await accountService.LogoutAsync();
             }
 

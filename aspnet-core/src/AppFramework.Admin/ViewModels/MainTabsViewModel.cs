@@ -70,7 +70,7 @@ namespace AppFramework.ViewModels
             {
                 if (value && !isShowUserPanel)
                 {
-                    regionManager.Regions[AppRegionManager.UserPanel].RequestNavigate(AppViews.UserPanel);
+                    regionManager.Regions[AppRegions.UserPanel].RequestNavigate(AppViews.UserPanel);
                 }
                 isShowUserPanel = value;
                 RaisePropertyChanged();
@@ -84,7 +84,7 @@ namespace AppFramework.ViewModels
             {
                 if (value && !isShowFriendsPanel)
                 {
-                    regionManager.Regions[AppRegionManager.UserPanel].RequestNavigate(AppViews.Friends);
+                    regionManager.Regions[AppRegions.UserPanel].RequestNavigate(AppViews.Friends);
                 }
 
                 isShowUserPanel = isShowFriendsPanel = value;

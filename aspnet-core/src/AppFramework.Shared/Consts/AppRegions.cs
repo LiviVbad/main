@@ -1,6 +1,6 @@
 ﻿namespace AppFramework.Shared
 {
-    public class AppRegionManager
+    public class AppRegions
     {
         public const string Home = nameof(Home);
 

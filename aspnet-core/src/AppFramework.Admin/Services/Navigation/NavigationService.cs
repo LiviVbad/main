@@ -10,7 +10,7 @@ namespace AppFramework.Services
     public class NavigationService : BindableBase
     {
         private readonly IRegionManager regionManager;
-        private IRegion NavigationRegion => regionManager.Regions[AppRegionManager.Main];
+        private IRegion NavigationRegion => regionManager.Regions[AppRegions.Main];
 
         private int selectedIndex;
 
@@ -47,7 +47,11 @@ namespace AppFramework.Services
         private void NavigateionCallBack(NavigationResult navigationResult)
         {
             if (navigationResult.Result != null && !(bool)navigationResult.Result)
-            { }
+            {
+#if DEBUG
+                System.Diagnostics.Debug.WriteLine(navigationResult.Error.Message);
+#endif
+            }
         }
     }
 }

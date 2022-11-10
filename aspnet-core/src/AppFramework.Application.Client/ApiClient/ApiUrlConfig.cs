@@ -1,6 +1,5 @@
 ﻿using Abp.Extensions;
 using System;
-using System.Configuration;
 
 namespace AppFramework.ApiClient
 {
