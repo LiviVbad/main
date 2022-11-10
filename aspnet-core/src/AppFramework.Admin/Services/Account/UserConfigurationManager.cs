@@ -8,7 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Abp.Web.Models.AbpUserConfiguration;
-using AppFramework.Authorization.Users.Profile; 
+using AppFramework.Authorization.Users.Profile;
 using AppFramework.Shared.Services;
 using System.Diagnostics;
 
@@ -49,11 +49,11 @@ namespace AppFramework.Services.Account
 
             if (AccessTokenManager.IsUserLoggedIn)
             {
-                //Stopwatch stopWatch = new Stopwatch();
-                //stopWatch.Start();
+                Stopwatch stopWatch = new Stopwatch();
+                stopWatch.Start();
                 var chatService = ContainerLocator.Container.Resolve<IChatService>();
                 await chatService.ConnectAsync();
-                //stopWatch.Stop();
+                stopWatch.Stop();
             }
 
             var profileAppService = ContainerLocator.Container.Resolve<IProfileAppService>();

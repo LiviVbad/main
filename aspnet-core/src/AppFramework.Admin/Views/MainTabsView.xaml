@@ -318,7 +318,7 @@
                 <!--  选项卡  -->
                 <sync:TabControlExt
                     Grid.Row="1"
-                    prism:RegionManager.RegionName="{x:Static region:AppRegionManager.Main}"
+                    prism:RegionManager.RegionName="{x:Static region:AppRegions.Main}"
                     AllowDragDrop="False"
                     BorderThickness="0"
                     CloseButtonType="Individual"
@@ -362,7 +362,7 @@
 
                     <Grid>
                         <!--  用户功能面板  -->
-                        <ContentControl prism:RegionManager.RegionName="{x:Static region:AppRegionManager.UserPanel}" />
+                        <ContentControl prism:RegionManager.RegionName="{x:Static region:AppRegions.UserPanel}" />
                     </Grid>
 
                     <Border.Style>
