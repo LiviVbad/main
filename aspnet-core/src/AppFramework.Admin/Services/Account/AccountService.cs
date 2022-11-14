@@ -46,17 +46,9 @@ namespace AppFramework.Services.Account
         public AbpAuthenticateModel AuthenticateModel { get; set; }
         public AbpAuthenticateResultModel AuthenticateResultModel { get; set; }
 
-        public async Task<bool> LoginUserAsync()
+        public async Task LoginUserAsync()
         {
-            bool loginResult = false;
-
-            await WebRequest.Execute(() => accessTokenManager.LoginAsync(),
-                  async result =>
-                  {
-                      loginResult = await AuthenticateSucceed(result);
-                  });
-
-            return loginResult;
+            await WebRequest.Execute(() => accessTokenManager.LoginAsync(), AuthenticateSucceed);
         }
 
         public async Task LoginCurrentUserAsync(UserListModel user)
@@ -80,7 +72,7 @@ namespace AppFramework.Services.Account
         private async Task GoToLoginPageAsync()
         {
             await chatService.CloseAsync();
-            appStart.Logout(); 
+            appStart.Logout();
         }
 
         private async Task<bool> AuthenticateSucceed(AbpAuthenticateResultModel result)
@@ -111,7 +103,7 @@ namespace AppFramework.Services.Account
             }
 
             await SetCurrentUserInfoAsync();
-            await UserConfigurationManager.GetAsync(); 
+            await UserConfigurationManager.GetAsync();
 
             return true;
         }

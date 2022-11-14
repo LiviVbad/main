@@ -70,10 +70,7 @@ namespace AppFramework.Views
         private async void BtnClose_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (await dialog.Question(Local.Localize("AreYouSure")))
-            {
-                (System.Windows.Application.Current as IAppTaskBar)?.Dispose();
                 appStartService.Exit();
-            }
         }
 
         private void BtnMax_Click(object sender, System.Windows.RoutedEventArgs e)

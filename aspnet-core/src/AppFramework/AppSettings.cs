@@ -1,6 +1,4 @@
-﻿using Syncfusion.Licensing;
-
-namespace AppFramework
+﻿namespace AppFramework
 {
     /// <summary>
     /// 应用程序配置文件

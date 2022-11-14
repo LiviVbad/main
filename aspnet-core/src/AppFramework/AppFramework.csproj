@@ -8,11 +8,6 @@
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Assets\Images\menus\home.png" />
-    <None Remove="Assets\Images\user.png" />
-  </ItemGroup>
  
   <ItemGroup>
     <PackageReference Include="Abp" Version="7.3.0" />

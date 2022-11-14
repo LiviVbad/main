@@ -2,22 +2,25 @@
 using AppFramework.Shared;
 using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Ioc;
-using System;
+using Prism.Ioc; 
+using AppFramework.Shared.Services.App;
 
 namespace AppFramework
 {
     public class TaskBarViewModel : BindableBase
     {
-        public DelegateCommand ShowViewCommand { get; private set; }
-        public DelegateCommand ExitCommand { get; set; }
         private readonly IHostDialogService dialog;
+        private readonly IAppStartService appStartService;
+        public DelegateCommand ExitCommand { get; set; }
+        public DelegateCommand ShowViewCommand { get; private set; }
 
         public TaskBarViewModel()
         {
             dialog = ContainerLocator.Container.Resolve<IHostDialogService>();
-            ShowViewCommand = new DelegateCommand(ShowView);
+            appStartService= ContainerLocator.Container.Resolve<IAppStartService>();
+
             ExitCommand = new DelegateCommand(Exit);
+            ShowViewCommand = new DelegateCommand(ShowView);
         }
 
         private async void Exit()
@@ -25,9 +28,7 @@ namespace AppFramework
             ShowView();
 
             if (await dialog.Question(Local.Localize("AreYouSure")))
-            {
-                Environment.Exit(0);
-            }
+                appStartService.Exit();
         }
 
         private void ShowView()

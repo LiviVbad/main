@@ -1,6 +1,6 @@
 ﻿using AppFramework.ApiClient.Models;
-using AppFramework.Authorization.Accounts; 
-using AppFramework.Services; 
+using AppFramework.Authorization.Accounts;
+using AppFramework.Services;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System.Collections.Generic;
@@ -24,31 +24,31 @@ namespace AppFramework.ViewModels
             this.dialog = dialog;
             this.proxyTokenAuthControllerService = proxyTokenAuthControllerService;
             this.accountService = accountService;
-            _twoFactorAuthProviders = new List<string>();
+            twoFactorAuthProviders = new List<string>();
 
             SendSecurityCodeCommand = new DelegateCommand(SendSecurityCodeAsync);
         }
 
-        private List<string> _twoFactorAuthProviders;
+        private List<string> twoFactorAuthProviders;
 
         public List<string> TwoFactorAuthProviders
         {
-            get => _twoFactorAuthProviders;
+            get => twoFactorAuthProviders;
             set
             {
-                _twoFactorAuthProviders = value;
+                twoFactorAuthProviders = value;
                 RaisePropertyChanged();
             }
         }
 
-        private string _selectedProvider;
+        private string selectedProvider;
 
         public string SelectedProvider
         {
-            get => _selectedProvider;
+            get => selectedProvider;
             set
             {
-                _selectedProvider = value;
+                selectedProvider = value;
                 RaisePropertyChanged();
             }
         }
@@ -60,7 +60,7 @@ namespace AppFramework.ViewModels
 
             TwoFactorAuthProviders = accountService
                 .AuthenticateResultModel.TwoFactorAuthProviders.ToList();
-            SelectedProvider = TwoFactorAuthProviders.FirstOrDefault();
+            SelectedProvider = TwoFactorAuthProviders.FirstOrDefault()??"";
         }
 
         private async void SendSecurityCodeAsync()
@@ -69,7 +69,7 @@ namespace AppFramework.ViewModels
             {
                 await proxyTokenAuthControllerService.SendTwoFactorAuthCode(
                     accountService.AuthenticateResultModel.UserId,
-                    _selectedProvider
+                    selectedProvider
                 );
             });
 

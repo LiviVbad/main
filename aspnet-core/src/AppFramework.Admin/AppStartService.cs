@@ -17,7 +17,11 @@ namespace AppFramework.Admin
     {
         private System.Windows.Application app;
 
-        public void Exit() => Environment.Exit(0);
+        public void Exit()
+        {
+            (System.Windows.Application.Current as IAppTaskBar)?.Dispose();
+            Environment.Exit(0);
+        }
 
         public void Logout()
         {

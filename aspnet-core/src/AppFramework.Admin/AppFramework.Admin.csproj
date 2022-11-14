@@ -5,15 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF> 
-    <!--<PostBuildEvent>xcopy "$(TargetDir)$(TargetName)*$(TargetExt)" "$(SolutionDir)\src\AppFramework\bin\Debug\net6.0-windows\" /Y /S</PostBuildEvent>-->
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Assets\**" />
-    <EmbeddedResource Remove="Assets\**" />
-    <None Remove="Assets\**" />
-    <Page Remove="Assets\**" />
-  </ItemGroup>
  
   <ItemGroup>
     <PackageReference Include="Abp" Version="7.3.0" />
