@@ -108,28 +108,17 @@ namespace AppFramework.Admin.ViewModels.Chat
 
             var list = Map<List<ChatMessageModel>>(result.Items);
             var userId = list.First().TargetUserId;
-
             userName = chatService.Friends.First(t => t.FriendUserId.Equals(userId)).FriendUserName;
 
             foreach (var item in list)
             {
                 await UpdateMessageInfo(item);
-
-                //小于10分钟以内的消息归一组
-                var lastMessage = Messages.LastOrDefault();
-                if (lastMessage != null)
-                {
-                    var timeSpan = item.CreationTime - lastMessage.CreationTime;
-                    if (timeSpan.TotalMinutes < 10)
-                        item.CreationTime = lastMessage.CreationTime;
-                }
-
+                UpdateMessageGroup(item);
                 Messages.Add(item);
             }
-
             await MarkAllUnreadMessages();
         }
-
+         
         /// <summary>
         /// 更新消息格式
         /// </summary>
@@ -167,6 +156,22 @@ namespace AppFramework.Admin.ViewModels.Chat
         }
 
         /// <summary>
+        /// 更新消息分组
+        /// 小于10分钟以内的消息归一组
+        /// </summary>
+        /// <param name="model"></param>
+        private void UpdateMessageGroup(ChatMessageModel chatMessage)
+        { 
+            var lastMessage = Messages.LastOrDefault();
+            if (lastMessage != null)
+            {
+                var timeSpan = chatMessage.CreationTime - lastMessage.CreationTime;
+                if (timeSpan.TotalMinutes < 10)
+                    chatMessage.CreationTime = lastMessage.CreationTime;
+            }
+        }
+
+        /// <summary>
         /// 接受消息
         /// </summary>
         /// <param name="chatMessage"></param>
@@ -177,6 +182,7 @@ namespace AppFramework.Admin.ViewModels.Chat
             {
                 var msg = Map<ChatMessageModel>(chatMessage);
                 await UpdateMessageInfo(msg);
+                UpdateMessageGroup(msg);
                 Messages.Add(msg);
                 await MarkAllUnreadMessages();
             }

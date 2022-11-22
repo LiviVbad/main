@@ -4,6 +4,7 @@ using Prism.Regions;
 using Syncfusion.Data.Extensions;
 using System;
 using System.Linq;
+using System.Windows.Controls;
 
 namespace AppFramework.Services
 {
@@ -41,7 +42,15 @@ namespace AppFramework.Services
         public void RemoveView(object view)
         {
             if (NavigationRegion.Views.Contains(view))
+            {
+                /*
+                 * 关闭Tab后调用OnNavigatedFrom，如需手动释放资源请在 OnNavigatedFrom 中处理
+                 */
+                if (view is UserControl viewControl && viewControl.DataContext is INavigationAware navigationAware)
+                    navigationAware.OnNavigatedFrom(null);
+
                 NavigationRegion.Remove(view);
+            }
         }
 
         private void NavigateionCallBack(NavigationResult navigationResult)

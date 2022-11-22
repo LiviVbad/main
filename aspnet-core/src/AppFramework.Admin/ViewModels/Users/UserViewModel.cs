@@ -56,7 +56,7 @@ namespace AppFramework.ViewModels
 
             dataPager.OnPageIndexChangedEventhandler += UsersOnPageIndexChangedEventhandler;
         }
-
+         
         private async void UsersOnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
         {
             input.SkipCount = e.SkipCount;
