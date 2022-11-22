@@ -1,9 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.MultiTenancy;
 using AppFramework.MultiTenancy.Dto; 
-using System.Threading.Tasks;
-using AppFramework.Shared.Core;
-using AppFramework.Shared.Services.Permission;
+using System.Threading.Tasks; 
 using AppFramework.Shared.Models;
 
 namespace AppFramework.Shared.ViewModels

@@ -1,8 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Authorization.Users;
 using AppFramework.Authorization.Users.Dto;
-using System.Threading.Tasks;
-using AppFramework.Shared.Models;
+using System.Threading.Tasks; 
 
 namespace AppFramework.Shared.ViewModels
 {

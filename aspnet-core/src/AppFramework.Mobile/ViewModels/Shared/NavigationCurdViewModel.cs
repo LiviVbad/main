@@ -46,7 +46,7 @@
 
         public virtual void LoadMore() { }
 
-        public string GetPageName(string methodName) => this.GetType().Name.Replace("ViewModel", $"{methodName}View");
+        protected string GetPageName(string methodName) => this.GetType().Name.Replace("ViewModel", $"{methodName}View");
 
         public override void OnNavigatedFrom(INavigationContext navigationContext)
         {
