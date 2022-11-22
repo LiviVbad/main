@@ -1,6 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Localization;
-using AppFramework.Localization.Dto;
 using System.Threading.Tasks; 
 using AppFramework.Shared.Services.Permission;
 using AppFramework.Shared.Models;
@@ -22,14 +21,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetLanguages(), async result =>
-                {
-                    dataPager.SetList(new PagedResultDto<ApplicationLanguageListDto>()
-                    {
-                        Items = result.Items
-                    });
-                    await Task.CompletedTask;
-                });
+                await WebRequest.Execute(() => appService.GetLanguages(), dataPager.SetList);
             });
         }
 
@@ -42,15 +34,6 @@ namespace AppFramework.Shared.ViewModels
                 Id= SelectedItem.Id
             });
             await RefreshAsync();
-        }
-
-        protected override PermissionItem[] CreatePermissionItems()
-        {
-            return new PermissionItem[]
-            {
-                new PermissionItem(AppPermissions.LanguageEdit, Local.Localize("Change"),Edit),
-                new PermissionItem(AppPermissions.LanguageDelete, Local.Localize("Delete"),Delete)
-            };
-        }
+        } 
     }
 }

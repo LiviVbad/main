@@ -48,14 +48,12 @@ namespace AppFramework.Shared.ViewModels
                            async result =>
                            {
                                if (!isAppend)
-                                   dataPager.SetList(result);
+                                   await dataPager.SetList(result);
                                else
                                {
                                    foreach (var item in result.Items)
                                        dataPager.GridModelList.Add(item);
                                }
-
-                               await Task.CompletedTask;
                            });
             });
         }

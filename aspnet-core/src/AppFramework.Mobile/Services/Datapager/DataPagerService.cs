@@ -3,6 +3,8 @@ using AutoMapper;
 using Prism.Mvvm;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+
 namespace AppFramework.Shared.Services.Datapager
 {
     public class DataPagerService : BindableBase, IDataPagerService
@@ -36,12 +38,22 @@ namespace AppFramework.Shared.Services.Datapager
             set { gridModelList = value; RaisePropertyChanged(); }
         }
 
-        public void SetList<T>(IPagedResult<T> pagedResult)
+        public async Task SetList<T>(IPagedResult<T> pagedResult)
         {
             GridModelList.Clear();
 
             foreach (var item in mapper.Map<List<T>>(pagedResult.Items))
                 GridModelList.Add(item);
+
+            await Task.CompletedTask;
+        }
+
+        public async Task SetList<T>(IListResult<T> listResult)
+        {
+            await SetList<T>(new PagedResultDto<T>()
+            {
+                Items=listResult.Items
+            });
         }
     }
 }

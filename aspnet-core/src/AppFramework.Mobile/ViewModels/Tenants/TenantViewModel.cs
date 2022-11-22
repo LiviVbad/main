@@ -30,11 +30,7 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetTenants(filter), async result =>
-                {
-                    dataPager.SetList(result);
-                    await Task.CompletedTask;
-                });
+                await WebRequest.Execute(() => appService.GetTenants(filter), dataPager.SetList);
             });
         }
 
@@ -47,15 +43,6 @@ namespace AppFramework.Shared.ViewModels
                  Id= SelectedItem.Id
             });
             await RefreshAsync();
-        }
-          
-        protected override PermissionItem[] CreatePermissionItems()
-        {
-            return new PermissionItem[]
-            { 
-                new PermissionItem(AppPermissions.TenantEdit, Local.Localize("Change"),Edit), 
-                new PermissionItem(AppPermissions.TenantDelete, Local.Localize("Delete"),Delete), 
-            };
-        }
+        } 
     }
 }

@@ -9,25 +9,21 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
-    using AppFramework.Shared.Models; 
-    using AppFramework.Shared; 
+    using AppFramework.Shared.Models;
+    using AppFramework.Shared;
 
     public class OrganizationViewModel : NavigationCurdViewModel
     {
         private readonly IOrganizationUnitAppService appService;
-         
+
         public DelegateCommand<OrganizationListModel> AddRoleCommand { get; private set; }
         public DelegateCommand<OrganizationListModel> AddUserCommand { get; private set; }
-        public DelegateCommand<OrganizationListModel> AddSubUnitCommand { get; private set; }
-        public DelegateCommand<OrganizationListModel> DeleteCommand { get; private set; }
-        public DelegateCommand<OrganizationListModel> EditCommand { get; private set; }
+        public DelegateCommand<OrganizationListModel> AddSubUnitCommand { get; private set; } 
 
         public OrganizationViewModel(IOrganizationUnitAppService appService)
         {
             this.appService = appService;
             AddSubUnitCommand = new DelegateCommand<OrganizationListModel>(AddSubUnit); 
-            EditCommand = new DelegateCommand<OrganizationListModel>(t => Edit());
-            DeleteCommand = new DelegateCommand<OrganizationListModel>(Delete);
         }
 
         private async void AddSubUnit(OrganizationListModel obj)
@@ -38,14 +34,12 @@
             await navigationService.NavigateAsync(GetPageName("Details"), param);
         }
 
-        public async void Delete(OrganizationListModel organizationList)
+        public override async void Delete(object selectedItem)
         {
+            var id = (selectedItem as OrganizationListModel).Id;
             if (!await dialogService.DeleteConfirm()) return;
 
-            await appService.DeleteOrganizationUnit(new EntityDto<long>()
-            {
-                Id = organizationList.Id
-            });
+            await appService.DeleteOrganizationUnit(new EntityDto<long>(id));
             await RefreshAsync();
         }
 
@@ -69,7 +63,7 @@
                 MemberCount = t.MemberCount,
             }).ToList();
 
-             dataPager.GridModelList = BuildOrganizationTree(organizationUnits);
+            dataPager.GridModelList = BuildOrganizationTree(organizationUnits);
 
             await Task.CompletedTask;
         }

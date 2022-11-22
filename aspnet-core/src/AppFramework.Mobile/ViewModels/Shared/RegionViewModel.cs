@@ -1,12 +1,12 @@
-﻿using Prism.Regions.Navigation;
-using System;
-using System.Threading.Tasks;
-using Prism.Ioc;
-using Prism.Services.Dialogs;
-using Prism.Navigation;
-
-namespace AppFramework.Shared.ViewModels
+﻿namespace AppFramework.Shared.ViewModels
 {
+    using Prism.Regions.Navigation;
+    using System;
+    using System.Threading.Tasks;
+    using Prism.Ioc;
+    using Prism.Services.Dialogs;
+    using Prism.Navigation;
+
     public class RegionViewModel : ViewModelBase, IRegionAware
     {
         private readonly IUserDialogService applayer;
@@ -20,18 +20,11 @@ namespace AppFramework.Shared.ViewModels
             navigationService = ContainerLocator.Container.Resolve<INavigationService>();
         }
 
-        public virtual bool IsNavigationTarget(INavigationContext navigationContext)
-        {
-            return false;
-        }
+        public virtual bool IsNavigationTarget(INavigationContext navigationContext) => false;
 
-        public virtual void OnNavigatedFrom(INavigationContext navigationContext)
-        { }
+        public virtual void OnNavigatedFrom(INavigationContext navigationContext) { }
 
-        public virtual async void OnNavigatedTo(INavigationContext navigationContext)
-        {
-            await RefreshAsync();
-        }
+        public virtual async void OnNavigatedTo(INavigationContext navigationContext) => await RefreshAsync();
 
         public virtual async Task RefreshAsync() => await Task.CompletedTask;
 

@@ -3,9 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared"
-    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:perm="clr-namespace:AppFramework.Shared"
     xmlns:refresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms">
@@ -25,14 +23,14 @@
                                         <SwipeItems>
                                             <SwipeItem
                                                 BackgroundColor="{DynamicResource Red}"
-                                                Command="{Binding Path=BindingContext.ExecuteCommand, Source={x:Reference SfListView}}"
-                                                CommandParameter="{x:Static perm:AppPermissions.LanguageDelete}"
+                                                Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference SfListView}}"
+                                                CommandParameter="{Binding}"
                                                 IsVisible="{extensions:HasPermission Text={x:Static perm:AppPermissions.LanguageDelete}}"
                                                 Text="{extensions:Translate Remove}" />
                                             <SwipeItem
                                                 BackgroundColor="{DynamicResource PrimaryColor}"
-                                                Command="{Binding Path=BindingContext.ExecuteCommand, Source={x:Reference SfListView}}"
-                                                CommandParameter="{x:Static perm:AppPermissions.LanguageEdit}"
+                                                Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfListView}}"
+                                                CommandParameter="{Binding}"
                                                 IsVisible="{extensions:HasPermission Text={x:Static perm:AppPermissions.LanguageEdit}}"
                                                 Text="{extensions:Translate Edit}" />
                                         </SwipeItems>
@@ -60,75 +58,6 @@
                             </border:SfBorder>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>
-
-                    <listView:SfListView.RightSwipeTemplate>
-                        <DataTemplate>
-                            <border:SfBorder
-                                Margin="0,8"
-                                BackgroundColor="{DynamicResource PrimaryColor}"
-                                BorderColor="{StaticResource Transparent}"
-                                BorderWidth="0"
-                                CornerRadius="30, 0, 0, 30">
-                                <Grid>
-                                    <gradient:SfGradientView Style="{StaticResource PrimaryGradientStyle}" />
-
-                                    <Grid
-                                        Padding="15,0"
-                                        ColumnDefinitions="Auto, Auto, Auto"
-                                        ColumnSpacing="14"
-                                        RowDefinitions="Auto"
-                                        VerticalOptions="Center">
-
-                                        <buttons:SfButton
-                                            BackgroundColor="{DynamicResource Gray-Bg}"
-                                            CornerRadius="16"
-                                            HeightRequest="32"
-                                            Style="{StaticResource IconButtonStyle}"
-                                            WidthRequest="32">
-                                            <buttons:SfButton.Content>
-                                                <Label
-                                                    BackgroundColor="Transparent"
-                                                    Style="{StaticResource IconLabelStyle}"
-                                                    Text="{StaticResource Edit}"
-                                                    TextColor="{DynamicResource PrimaryColor}"
-                                                    VerticalTextAlignment="Center" />
-                                            </buttons:SfButton.Content>
-                                        </buttons:SfButton>
-
-                                        <buttons:SfButton
-                                            Grid.Column="1"
-                                            BackgroundColor="{DynamicResource Gray-Bg}"
-                                            CornerRadius="16"
-                                            HeightRequest="32"
-                                            Style="{StaticResource IconButtonStyle}"
-                                            WidthRequest="32">
-                                            <Label
-                                                BackgroundColor="Transparent"
-                                                Style="{StaticResource IconLabelStyle}"
-                                                Text="{StaticResource Remove}"
-                                                TextColor="{DynamicResource PrimaryColor}"
-                                                VerticalTextAlignment="Center" />
-                                        </buttons:SfButton>
-
-                                        <buttons:SfButton
-                                            Grid.Column="2"
-                                            BackgroundColor="{DynamicResource Gray-Bg}"
-                                            CornerRadius="16"
-                                            HeightRequest="32"
-                                            Style="{StaticResource IconButtonStyle}"
-                                            WidthRequest="32">
-                                            <Label
-                                                BackgroundColor="Transparent"
-                                                Style="{StaticResource IconLabelStyle}"
-                                                Text="{StaticResource Search}"
-                                                TextColor="{DynamicResource PrimaryColor}"
-                                                VerticalTextAlignment="Center" />
-                                        </buttons:SfButton>
-                                    </Grid>
-                                </Grid>
-                            </border:SfBorder>
-                        </DataTemplate>
-                    </listView:SfListView.RightSwipeTemplate>
                 </listView:SfListView>
             </refresh:SfPullToRefresh.PullableContent>
         </refresh:SfPullToRefresh>

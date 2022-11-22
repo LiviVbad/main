@@ -3,7 +3,6 @@
     using Prism.Commands;
     using Prism.Navigation;
     using Prism.Ioc;
-    using AppFramework.Shared.Services.Permission;
     using AppFramework.Shared.Services.Datapager;
     using AppFramework.Shared.Core;
     using Prism.Regions.Navigation;
@@ -13,45 +12,41 @@
         public NavigationCurdViewModel()
         {
             AddCommand = new DelegateCommand(Add);
+            EditCommand=new DelegateCommand<object>(Edit);
+            DeleteCommand=new DelegateCommand<object>(Delete);
             LoadMoreCommand = new DelegateCommand(LoadMore);
             RefreshCommand = new DelegateCommand(async () => await RefreshAsync());
 
             dataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
-            proxy = ContainerLocator.Container.Resolve<IPorxyCommandService>();
-            proxy.Generate(CreatePermissionItems());
 
-            ExecuteCommand = new DelegateCommand<string>(proxy.Execute);
             messenger = ContainerLocator.Container.Resolve<IMessenger>();
             messenger.Sub(this.GetType().Name, async () => await RefreshAsync());
         }
 
         private IMessenger messenger;
-        private IPorxyCommandService proxy { get; }
-        public IDataPagerService dataPager { get; private set; }  
+        public IDataPagerService dataPager { get; set; }
         public DelegateCommand AddCommand { get; private set; }
         public DelegateCommand RefreshCommand { get; private set; }
         public DelegateCommand LoadMoreCommand { get; private set; }
-        public DelegateCommand<string> ExecuteCommand { get; private set; }
+
+        public DelegateCommand<object> EditCommand { get; private set; }
+        public DelegateCommand<object> DeleteCommand { get; private set; }
 
         public virtual async void Add() => await navigationService.NavigateAsync(GetPageName("Details"));
 
-        public virtual async void Edit()
+        public virtual async void Edit(object selectedItem)
         {
             NavigationParameters param = new NavigationParameters();
-            param.Add("Value", dataPager.SelectedItem);
+            param.Add("Value", selectedItem);
 
             await navigationService.NavigateAsync(GetPageName("Details"), param);
         }
 
+        public virtual void Delete(object selectedItem) { }
+
         public virtual void LoadMore() { }
 
         public string GetPageName(string methodName) => this.GetType().Name.Replace("ViewModel", $"{methodName}View");
-
-        /// <summary>
-        /// 创建模块具备的默认权限选项清单
-        /// </summary>
-        /// <returns></returns>
-        protected virtual PermissionItem[] CreatePermissionItems() => new PermissionItem[0];
 
         public override void OnNavigatedFrom(INavigationContext navigationContext)
         {

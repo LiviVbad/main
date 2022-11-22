@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace AppFramework.Shared.Services.Datapager
 {
@@ -22,6 +23,14 @@ namespace AppFramework.Shared.Services.Datapager
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="items"></param>
-        void SetList<T>(IPagedResult<T> pagedResult);
+        Task SetList<T>(IPagedResult<T> pagedResult);
+
+        /// <summary>
+        /// 设置数据源(集合)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="listResult"></param>
+        /// <returns></returns>
+        Task SetList<T>(IListResult<T> listResult);
     }
 }

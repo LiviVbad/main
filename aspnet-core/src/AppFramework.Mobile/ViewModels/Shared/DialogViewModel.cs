@@ -1,9 +1,9 @@
-﻿using Prism.Commands;
-using Prism.Services.Dialogs;
-using System;
-
-namespace AppFramework.Shared.ViewModels
+﻿namespace AppFramework.Shared.ViewModels
 {
+    using Prism.Commands;
+    using Prism.Services.Dialogs;
+    using System;
+
     public class DialogViewModel : ViewModelBase, IDialogAware
     {
         public event Action<IDialogParameters> RequestClose;
