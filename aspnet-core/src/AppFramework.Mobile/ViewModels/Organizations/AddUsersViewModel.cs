@@ -11,7 +11,7 @@ using AppFramework.Shared.Models;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class AddUsersViewModel : NavigationViewModel
+    public class AddUsersViewModel : NavigationDetailViewModel
     {
         private readonly IOrganizationUnitAppService appService;
         public DelegateCommand SaveCommand { get; private set; }

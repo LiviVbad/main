@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class UserViewModel : NavigationCurdViewModel
+    public class UserViewModel : NavigationMasterViewModel
     {
         #region 字段/属性
 

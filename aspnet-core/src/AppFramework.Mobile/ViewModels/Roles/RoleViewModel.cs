@@ -6,7 +6,7 @@ using AppFramework.Shared.Models;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class RoleViewModel : NavigationCurdViewModel
+    public class RoleViewModel : NavigationMasterViewModel
     {
         private readonly IRoleAppService appService;
 

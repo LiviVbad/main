@@ -8,9 +8,9 @@
     using Prism.Regions.Navigation;
     using Syncfusion.ListView.XForms;
 
-    public class NavigationCurdViewModel : RegionViewModel
+    public class NavigationMasterViewModel : RegionViewModel
     {
-        public NavigationCurdViewModel()
+        public NavigationMasterViewModel()
         {
             AddCommand = new DelegateCommand(Add);
             EditCommand=new DelegateCommand<ItemTappedEventArgs>(Edit);

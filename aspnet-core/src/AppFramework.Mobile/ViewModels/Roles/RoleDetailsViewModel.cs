@@ -1,7 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
-using Prism.Commands;
 using Prism.Navigation;
 using System.Threading.Tasks;
 using AppFramework.Shared.Core;
@@ -10,7 +9,7 @@ using AppFramework.Shared.Services.Messenger;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class RoleDetailsViewModel : NavigationViewModel
+    public class RoleDetailsViewModel : NavigationDetailViewModel
     {
         #region 字段/属性
 
@@ -25,24 +24,22 @@ namespace AppFramework.Shared.ViewModels
             set { role = value; RaisePropertyChanged(); }
         }
 
-        public DelegateCommand SaveCommand { get; private set; }
-        
         #endregion 字段/属性
 
-        public RoleDetailsViewModel(IRoleAppService appService,
-            IMessenger messenger,
+        public RoleDetailsViewModel(
+            IMessenger messenger, 
+            IRoleAppService appService, 
             IPermissionTreesService treesService)
         {
             this.appService = appService;
             this.messenger = messenger;
-            this.treesService = treesService;
-            SaveCommand = new DelegateCommand(Save);
+            this.treesService = treesService; 
         }
 
         /// <summary>
         /// 保存
         /// </summary>
-        private async void Save()
+        public override async void Save()
         {
             await SetBusyAsync(async () =>
             {

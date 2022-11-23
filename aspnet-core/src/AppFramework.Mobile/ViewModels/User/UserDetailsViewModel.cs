@@ -14,7 +14,7 @@ using AppFramework.Shared.Extensions;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class UserDetailsViewModel : NavigationViewModel
+    public class UserDetailsViewModel : NavigationDetailViewModel
     {
         #region 字段/属性
 
@@ -22,7 +22,7 @@ namespace AppFramework.Shared.ViewModels
         private readonly IPermissionService permissionService;
         private readonly IMessenger messenger;
 
-        public DelegateCommand<string> ExecuteCommand { get; private set; }
+        public DelegateCommand UnlockCommand { get; private set; }
 
         private UserForEditModel model;
         private UserCreateOrUpdateModel userInput;
@@ -93,7 +93,7 @@ namespace AppFramework.Shared.ViewModels
             this.permissionService = permissionService;
             this.messenger = messenger;
             UserInput = new UserCreateOrUpdateModel();
-            ExecuteCommand = new DelegateCommand<string>(Execute);
+            UnlockCommand = new DelegateCommand(UnlockUser);
         }
 
         #region 解锁/删除/保存用户
@@ -125,7 +125,7 @@ namespace AppFramework.Shared.ViewModels
             });
         }
 
-        private async void DeleteUser()
+        public override async void Delete()
         {
             var accepted = await UserDialogs.Instance.ConfirmAsync(
                 Local.Localize(LocalizationKeys.UserDeleteWarningMessage, Model.User.UserName),
@@ -154,15 +154,6 @@ namespace AppFramework.Shared.ViewModels
 
         #endregion 解锁/删除/保存用户
 
-        public void Execute(string arg)
-        {
-            switch (arg)
-            {
-                case "Save": SaveUser(); break;
-                case "Unlock": UnlockUser(); break;
-                case "Delete": DeleteUser(); break;
-            }
-        }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {

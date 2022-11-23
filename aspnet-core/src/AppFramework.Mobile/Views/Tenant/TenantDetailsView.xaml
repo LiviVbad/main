@@ -11,7 +11,7 @@
             <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate TenancyName}" />
 
             <controls:BorderlessEntry
-                IsEnabled="{Binding IsNewTenant}"
+                IsEnabled="{Binding IsNewCeate}"
                 Style="{StaticResource BorderlessEntryStyle}"
                 Text="{Binding Model.TenancyName}" />
 
@@ -20,7 +20,7 @@
             <controls:BorderlessEntry Style="{StaticResource BorderlessEntryStyle}" Text="{Binding Model.Name}" />
 
             <!--  使用主机数据库  -->
-            <StackLayout IsVisible="{Binding IsNewTenant}" Orientation="Horizontal">
+            <StackLayout IsVisible="{Binding IsNewCeate}" Orientation="Horizontal">
                 <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate UseHostDatabase}" />
                 <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding UseHostDatabase}" />
             </StackLayout>
@@ -33,7 +33,7 @@
                 <!--  连接字符串更改警告  -->
                 <StackLayout
                     HorizontalOptions="FillAndExpand"
-                    IsVisible="{Binding IsNewTenant, Converter={StaticResource InverseBooleanConverter}}"
+                    IsVisible="{Binding IsNewCeate, Converter={StaticResource InverseBooleanConverter}}"
                     Orientation="Horizontal"
                     Spacing="0">
 
@@ -52,7 +52,7 @@
                 </StackLayout>
             </StackLayout>
 
-            <StackLayout IsVisible="{Binding IsNewTenant}">
+            <StackLayout IsVisible="{Binding IsNewCeate}">
                 <!--  管理员邮箱  -->
                 <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate AdminEmailAddress}" />
                 <controls:BorderlessEntry Style="{StaticResource BorderlessEntryStyle}" Text="{Binding Model.AdminEmailAddress}" />
@@ -153,7 +153,7 @@
 
             <!--  删除按钮  -->
             <buttons:SfButton
-                Command="{Binding DeleteTenantCommand}"
+                Command="{Binding DeleteCommand}"
                 HorizontalOptions="Fill"
                 IsVisible="{Binding IsDeleteButtonVisible}"
                 Style="{StaticResource GradientButtonStyle}"
@@ -161,7 +161,7 @@
 
             <!--  保存按钮  -->
             <buttons:SfButton
-                Command="{Binding SaveTenantCommand}"
+                Command="{Binding SaveCommand}"
                 HorizontalOptions="Fill"
                 Style="{StaticResource GradientButtonStyle}"
                 Text="{extensions:Translate Save}" />

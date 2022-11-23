@@ -9,13 +9,11 @@ using AppFramework.Shared.Services.Messenger;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class DynamicPropertyDetailsViewModel : NavigationViewModel
+    public class DynamicPropertyDetailsViewModel : NavigationDetailViewModel
     {
         private readonly IMessenger messenger;
         private readonly IDynamicPropertyAppService appService;
-
-        public DelegateCommand SaveCommand { get; private set; }
-
+          
         private DynamicPropertyModel model;
 
         public DynamicPropertyModel Model
@@ -30,11 +28,10 @@ namespace AppFramework.Shared.ViewModels
             this.messenger = messenger;
             this.appService = appService;
 
-            Model = new DynamicPropertyModel();
-            SaveCommand = new DelegateCommand(Save);
+            Model = new DynamicPropertyModel(); 
         }
 
-        private async void Save()
+        public override async void Save()
         {
             await SetBusyAsync(async () =>
              {

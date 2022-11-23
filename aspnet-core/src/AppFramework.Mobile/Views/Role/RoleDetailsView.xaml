@@ -61,6 +61,14 @@
                 Style="{StaticResource GradientButtonStyle}"
                 Text="{extensions:Translate Cancel}" />
 
+            <!--  删除按钮  -->
+            <buttons:SfButton
+                Command="{Binding DeleteCommand}"
+                HorizontalOptions="Fill"
+                IsVisible="{Binding IsDeleteButtonVisible}"
+                Style="{StaticResource GradientButtonStyle}"
+                Text="{extensions:Translate Delete}" />
+
             <buttons:SfButton
                 Command="{Binding SaveCommand}"
                 CommandParameter="Save"

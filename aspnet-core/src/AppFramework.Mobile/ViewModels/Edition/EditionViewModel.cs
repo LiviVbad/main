@@ -6,7 +6,7 @@ using AppFramework.Shared.Services.Permission;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class EditionViewModel : NavigationCurdViewModel
+    public class EditionViewModel : NavigationMasterViewModel
     {
         private readonly IEditionAppService appService;
 

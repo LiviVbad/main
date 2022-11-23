@@ -16,14 +16,13 @@ using AppFramework.Shared.Extensions;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class EditionDetailsViewModel : NavigationViewModel
+    public class EditionDetailsViewModel : NavigationDetailViewModel
     {
         #region 字段/属性
 
         private readonly IMessenger messenger;
         private readonly IEditionAppService appService;
         private readonly ICommonLookupAppService commonLookupAppService;
-        public DelegateCommand SaveCommand { get; private set; }
 
         private bool isPaid, isTrialActive, isWaitingDayAfter, isAssignToAnotherEdition;
         private EditionCreateModel model;
@@ -88,13 +87,12 @@ namespace AppFramework.Shared.ViewModels
             Model = new EditionCreateModel();
             Features = new ObservableCollection<FlatFeatureModel>();
             Editions = new ObservableCollection<SubscribableEditionComboboxItemDto>();
-            SaveCommand = new DelegateCommand(Save);
         }
 
         /// <summary>
         /// 保存
         /// </summary>
-        private async void Save()
+        public override async void Save()
         {
             //刷新界面设置的选项内容值
             RefreshInputInformation();
@@ -110,9 +108,9 @@ namespace AppFramework.Shared.ViewModels
                 {
                     CreateOrUpdateEditionDto editionDto = new CreateOrUpdateEditionDto();
                     editionDto.Edition=Map<EditionCreateDto>(Model);
-                    editionDto.FeatureValues=featureValues; 
-                    await appService.CreateOrUpdateAsync(editionDto); 
-                }, async () => await GoBackAsync()); 
+                    editionDto.FeatureValues=featureValues;
+                    await appService.CreateOrUpdateAsync(editionDto);
+                }, async () => await GoBackAsync());
             }, LocalizationKeys.SavingWithThreeDot);
         }
 

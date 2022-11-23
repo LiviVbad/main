@@ -211,6 +211,13 @@
                         Text="{extensions:Translate Cancel}" />
 
                     <buttons:SfButton
+                        Command="{Binding DeleteCommand}"
+                        HorizontalOptions="Fill"
+                        IsVisible="{Binding IsUnlockButtonVisible}"
+                        Style="{StaticResource GradientButtonStyle}"
+                        Text="{extensions:Translate Unlock}" />
+
+                    <buttons:SfButton
                         Command="{Binding ExecuteCommand}"
                         CommandParameter="Unlock"
                         HorizontalOptions="Fill"
@@ -219,8 +226,7 @@
                         Text="{extensions:Translate Unlock}" />
 
                     <buttons:SfButton
-                        Command="{Binding ExecuteCommand}"
-                        CommandParameter="Save"
+                        Command="{Binding SaveCommand}"
                         HorizontalOptions="Fill"
                         Style="{StaticResource GradientButtonStyle}"
                         Text="{extensions:Translate Save}" />

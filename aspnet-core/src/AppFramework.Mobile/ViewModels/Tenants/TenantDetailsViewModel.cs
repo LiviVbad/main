@@ -17,7 +17,7 @@ using AppFramework.Shared.Extensions;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class TenantDetailsViewModel : NavigationViewModel
+    public class TenantDetailsViewModel : NavigationDetailViewModel
     {
         #region 字段/属性
 
@@ -26,18 +26,13 @@ namespace AppFramework.Shared.ViewModels
         private readonly IPermissionService permissionService;
         private readonly IMessenger messenger;
 
-        public DelegateCommand SaveTenantCommand { get; private set; }
-        public DelegateCommand DeleteTenantCommand { get; private set; }
-
         private const string NotAssignedValue = "0";
         private bool isSubscriptionFieldVisible;
         private bool isUnlimitedTimeSubscription;
         private TenantListModel model;
         private ObservableRangeCollection<SubscribableEditionComboboxItemDto> editions;
         private SubscribableEditionComboboxItemDto selectedEdition;
-        private bool isNewTenant;
-        private bool isDeleteButtonVisible;
-        private string pageTitle;
+
         private bool useHostDatabase;
         private string adminPassword;
         private string adminPasswordRepeat;
@@ -79,28 +74,6 @@ namespace AppFramework.Shared.ViewModels
                     //如果不是无限时间订阅,重置是否到期选项
                     model.IsInTrialPeriod = false;
                 }
-                RaisePropertyChanged();
-            }
-        }
-
-        public bool IsNewTenant
-        {
-            get => isNewTenant;
-            set
-            {
-                isNewTenant = value;
-                IsDeleteButtonVisible = !isNewTenant && permissionService.HasPermission(AppPermissions.TenantDelete);
-                PageTitle = isNewTenant ? Local.Localize(LocalizationKeys.CreatingNewTenant) : Local.Localize(LocalizationKeys.EditTenant);
-                RaisePropertyChanged();
-            }
-        }
-
-        public string PageTitle
-        {
-            get => pageTitle;
-            set
-            {
-                pageTitle = value;
                 RaisePropertyChanged();
             }
         }
@@ -154,16 +127,6 @@ namespace AppFramework.Shared.ViewModels
             }
         }
 
-        public bool IsDeleteButtonVisible
-        {
-            get => isDeleteButtonVisible;
-            set
-            {
-                isDeleteButtonVisible = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public bool IsSelectedEditionFree
         {
             get
@@ -211,10 +174,7 @@ namespace AppFramework.Shared.ViewModels
             ICommonLookupAppService commonLookupAppService,
             IPermissionService permissionService,
             IMessenger messenger)
-        {
-            SaveTenantCommand = new DelegateCommand(SaveTenantAsync);
-            DeleteTenantCommand = new DelegateCommand(DeleteTenantAsync);
-
+        { 
             this.tenantAppService = tenantAppService;
             this.commonLookupAppService = commonLookupAppService;
             this.permissionService = permissionService;
@@ -224,9 +184,9 @@ namespace AppFramework.Shared.ViewModels
 
         #region 保存/更新/删除/创建租户信息
 
-        public async void SaveTenantAsync()
+        public override async void Save()
         {
-            if (IsNewTenant)
+            if (IsNewCeate)
             {
                 var input = Map<CreateTenantInput>(Model);
                 input.AdminPassword = AdminPassword;
@@ -265,7 +225,7 @@ namespace AppFramework.Shared.ViewModels
             }, LocalizationKeys.SavingWithThreeDot);
         }
 
-        private async void DeleteTenantAsync()
+        public override async void Delete()
         {
             var accepted = await UserDialogs.Instance.ConfirmAsync(
                 Local.Localize(LocalizationKeys.TenantDeleteWarningMessage, Model.TenancyName),
@@ -315,7 +275,7 @@ namespace AppFramework.Shared.ViewModels
 
         private void InitializeNewTenant()
         {
-            IsNewTenant = true;
+            IsNewCeate = true;
             Model = new TenantListModel { IsActive = true };
 
             UseHostDatabase = true;
@@ -324,7 +284,7 @@ namespace AppFramework.Shared.ViewModels
 
         private void InitializeEditTenant()
         {
-            IsNewTenant = false;
+            IsNewCeate = false;
             IsSetRandomPassword = false;
             UseHostDatabase = string.IsNullOrEmpty(Model.ConnectionString);
             if (!string.IsNullOrEmpty(Model.ConnectionString))

@@ -4,7 +4,7 @@ using AppFramework.Shared.Models;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class LanguageViewModel : NavigationCurdViewModel
+    public class LanguageViewModel : NavigationMasterViewModel
     {
         private readonly ILanguageAppService appService;
 

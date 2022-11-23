@@ -12,7 +12,7 @@
     using AppFramework.Shared.Models;
     using AppFramework.Shared;
 
-    public class OrganizationViewModel : NavigationCurdViewModel
+    public class OrganizationViewModel : NavigationMasterViewModel
     {
         private readonly IOrganizationUnitAppService appService;
 

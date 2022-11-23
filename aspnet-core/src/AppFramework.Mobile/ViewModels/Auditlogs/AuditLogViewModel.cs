@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class AuditLogViewModel : NavigationCurdViewModel
+    public class AuditLogViewModel : NavigationMasterViewModel
     {
         private readonly IAuditLogAppService appService;
         public GetAuditLogsInput input;

@@ -13,7 +13,7 @@ using AppFramework.Shared.Views;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class OrganizationDetailsViewModel : NavigationViewModel
+    public class OrganizationDetailsViewModel : NavigationDetailViewModel
     {
         #region 字段/属性
 
@@ -30,7 +30,6 @@ namespace AppFramework.Shared.ViewModels
         private readonly IMessenger messenger;
         private readonly IPermissionService permissionService;
         private readonly IOrganizationUnitAppService appService;
-        public DelegateCommand SaveCommand { get; private set; }
         public DelegateCommand AddUsersCommand { get; private set; }
         public DelegateCommand AddRolesCommand { get; private set; }
         public DelegateCommand<OrganizationUnitUserListDto> DeleteUserCommand { get; private set; }
@@ -71,7 +70,6 @@ namespace AppFramework.Shared.ViewModels
             AddRolesCommand = new DelegateCommand(AddRoles);
             DeleteUserCommand = new DelegateCommand<OrganizationUnitUserListDto>(DeleteUser);
             DeleteRoleCommand = new DelegateCommand<OrganizationUnitRoleListDto>(DeleteRole);
-            SaveCommand = new DelegateCommand(Save);
             UserModelList = new ObservableCollection<OrganizationUnitUserListDto>();
             RolesModelList = new ObservableCollection<OrganizationUnitRoleListDto>();
         }
@@ -79,7 +77,7 @@ namespace AppFramework.Shared.ViewModels
         /// <summary>
         /// 保存
         /// </summary>
-        private async void Save()
+        public override async void Save()
         {
             await SetBusyAsync(async () =>
              {

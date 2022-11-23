@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class DynamicPropertyViewModel : NavigationCurdViewModel
+    public class DynamicPropertyViewModel : NavigationMasterViewModel
     {
         private readonly IDynamicPropertyAppService appService;
 

@@ -6,7 +6,7 @@ using AppFramework.Shared.Models;
 
 namespace AppFramework.Shared.ViewModels
 {
-    public class TenantViewModel : NavigationCurdViewModel
+    public class TenantViewModel : NavigationMasterViewModel
     {
         private readonly ITenantAppService appService;
         private GetTenantsInput filter;
