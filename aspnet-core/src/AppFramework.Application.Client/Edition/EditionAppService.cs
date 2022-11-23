@@ -38,9 +38,9 @@ namespace AppFramework.Application
             await ApiClient.PostAsync(GetEndpoint(nameof(MoveTenantsToAnotherEdition)), input);
         }
 
-        public async Task CreateOrUpdateAsync(CreateEditionDto input)
+        public async Task CreateOrUpdateAsync(CreateOrUpdateEditionDto input)
         {
-            await ApiClient.PostAsync(GetEndpoint("CreateEdition"), input);
+            await ApiClient.PostAsync(GetEndpoint(nameof(CreateOrUpdateAsync)), input);
         }
 
         public async Task<ListResultDto<EditionListDto>> GetEditions()
@@ -48,19 +48,19 @@ namespace AppFramework.Application
             return await ApiClient.GetAsync<ListResultDto<EditionListDto>>(GetEndpoint(nameof(GetEditions)));
         }
 
-        public async Task CreateEdition(CreateEditionDto input)
-        {
-            await ApiClient.PostAsync(GetEndpoint(nameof(CreateEdition)), input);
-        }
-
-        public async Task UpdateEdition(UpdateEditionDto input)
-        {
-            await ApiClient.PutAsync(GetEndpoint(nameof(UpdateEdition)), input);
-        }
-
         public async Task DeleteEdition(EntityDto input)
         {
             await ApiClient.DeleteAsync(GetEndpoint(nameof(DeleteEdition)), input);
         }
+
+        public async Task CreateEdition(CreateOrUpdateEditionDto input)
+        {
+            await ApiClient.PostAsync(GetEndpoint(nameof(CreateEdition)), input);
+        }
+
+        public async Task UpdateEdition(CreateOrUpdateEditionDto input)
+        {
+            await ApiClient.PutAsync(GetEndpoint(nameof(UpdateEdition)), input);
+        } 
     }
 }

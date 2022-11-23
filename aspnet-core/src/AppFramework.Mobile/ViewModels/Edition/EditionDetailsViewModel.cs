@@ -108,12 +108,11 @@ namespace AppFramework.Shared.ViewModels
 
                 await WebRequest.Execute(async () =>
                 {
-                    if (Model.Id > 0)
-                        await appService.UpdateEdition(new UpdateEditionDto() { Edition = Map<EditionEditDto>(Model), FeatureValues = featureValues, });
-                    else
-                        await appService.CreateEdition(new CreateEditionDto() { Edition = Map<EditionCreateDto>(Model), FeatureValues = featureValues, });
-                }, async () => await GoBackAsync());
-
+                    CreateOrUpdateEditionDto editionDto = new CreateOrUpdateEditionDto();
+                    editionDto.Edition=Map<EditionCreateDto>(Model);
+                    editionDto.FeatureValues=featureValues; 
+                    await appService.CreateOrUpdateAsync(editionDto); 
+                }, async () => await GoBackAsync()); 
             }, LocalizationKeys.SavingWithThreeDot);
         }
 
@@ -321,7 +320,7 @@ namespace AppFramework.Shared.ViewModels
                         flat.IsChecked = true;
                 }
 
-                UpdateSelected(flat.Items, item); 
+                UpdateSelected(flat.Items, item);
             }
         }
 

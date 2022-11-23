@@ -16,7 +16,7 @@ namespace AppFramework.Application
         {
             await ApiClient.PostAsync(GetEndpoint(nameof(CreateOrUpdateRole)), input);
         }
-
+         
         public async Task DeleteRole(EntityDto input)
         {
             await ApiClient.DeleteAsync(GetEndpoint(nameof(DeleteRole)), input);
@@ -30,6 +30,6 @@ namespace AppFramework.Application
         public async Task<ListResultDto<RoleListDto>> GetRoles(GetRolesInput input)
         {
             return await ApiClient.PostAsync<ListResultDto<RoleListDto>>(GetEndpoint(nameof(GetRoles)), input);
-        }
+        } 
     }
 }

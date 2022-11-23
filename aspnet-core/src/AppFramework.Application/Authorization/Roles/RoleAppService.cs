@@ -122,7 +122,7 @@ namespace AppFramework.Authorization.Roles
 
             await UpdateGrantedPermissionsAsync(role, input.GrantedPermissionNames);
         }
-
+          
         [AbpAuthorize(AppPermissions.Pages_Administration_Roles_Create)]
         protected virtual async Task CreateRoleAsync(CreateOrUpdateRoleInput input)
         {
@@ -136,6 +136,6 @@ namespace AppFramework.Authorization.Roles
         {
             var grantedPermissions = PermissionManager.GetPermissionsFromNamesByValidating(grantedPermissionNames);
             await _roleManager.SetGrantedPermissionsAsync(role, grantedPermissions);
-        }
+        } 
     }
 }

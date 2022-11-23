@@ -12,9 +12,11 @@ namespace AppFramework.Editions
 
         Task<GetEditionEditOutput> GetEditionForEdit(NullableIdDto input);
 
-        Task CreateEdition(CreateEditionDto input);
+        Task CreateEdition(CreateOrUpdateEditionDto input);
 
-        Task UpdateEdition(UpdateEditionDto input);
+        Task UpdateEdition(CreateOrUpdateEditionDto input);
+
+        Task CreateOrUpdateAsync(CreateOrUpdateEditionDto input);
 
         Task DeleteEdition(EntityDto input);
 

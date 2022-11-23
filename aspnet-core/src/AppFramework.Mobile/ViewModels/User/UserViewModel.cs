@@ -1,5 +1,4 @@
-﻿using Abp.Application.Services.Dto;
-using AppFramework.Authorization.Users;
+﻿using AppFramework.Authorization.Users;
 using AppFramework.Authorization.Users.Dto;
 using System.Threading.Tasks; 
 
@@ -58,14 +57,6 @@ namespace AppFramework.Shared.ViewModels
             {
                 await WebRequest.Execute(() => appService.GetUsers(input), dataPager.SetList);
             });
-        }
-
-        public override async void Delete(object selectedItem)
-        {
-            var id = (selectedItem as UserListDto).Id;
-            if (!await dialogService.DeleteConfirm()) return;
-            await appService.DeleteUser(new EntityDto<long>(id));
-            await RefreshAsync();
-        }
+        } 
     }
 }

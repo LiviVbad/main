@@ -12,9 +12,9 @@
                     ItemsSource="{Binding dataPager.GridModelList}"
                     LoadMoreCommand="{Binding LoadMoreCommand}"
                     LoadMoreOption="AutoOnScroll"
-                    RowSpacing="4"
-                    SelectedItem="{Binding dataPager.SelectedItem}"
-                    Style="{StaticResource DefaultListViewStyle}">
+                    Style="{StaticResource DefaultListViewStyle}"
+                    TapCommand="{Binding EditCommand}"
+                    TapCommandParameter="{Binding Source={x:Reference SfListView}, Path=SelectedItem}">
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
                             <border:SfBorder Style="{StaticResource SimpleBorderStyle}">

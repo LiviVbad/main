@@ -2,14 +2,14 @@
 using AppFramework.Shared;
 using AppFramework.Models;
 using AppFramework.Editions;
-using AppFramework.Editions.Dto; 
+using AppFramework.Editions.Dto;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using AppFramework.Common; 
+using AppFramework.Common;
 
 namespace AppFramework.ViewModels
 {
@@ -101,7 +101,7 @@ namespace AppFramework.ViewModels
 
             await SetBusyAsync(async () =>
             {
-                var vals = SelectedItems
+                var featureValues = SelectedItems
                     .Select(t => t as FlatFeatureModel)
                     .Select(q => new NameValueDto
                     {
@@ -109,13 +109,11 @@ namespace AppFramework.ViewModels
                         Value = bool.TryParse(q.DefaultValue, out bool result) ? result.ToString() : q.DefaultValue
                     }).ToList();
 
-                await WebRequest.Execute(async () =>
-                {
-                    if (Model.Id > 0)
-                        await appService.UpdateEdition(new UpdateEditionDto() { Edition = Map<EditionEditDto>(Model), FeatureValues = vals, });
-                    else
-                        await appService.CreateEdition(new CreateEditionDto() { Edition = Map<EditionCreateDto>(Model), FeatureValues = vals, });
-                }, base.Save);
+                CreateOrUpdateEditionDto editionDto = new CreateOrUpdateEditionDto();
+                editionDto.Edition=Map<EditionCreateDto>(Model);
+                editionDto.FeatureValues=featureValues;
+
+                await WebRequest.Execute(() => appService.CreateOrUpdateAsync(editionDto), base.Save);
             });
         }
 

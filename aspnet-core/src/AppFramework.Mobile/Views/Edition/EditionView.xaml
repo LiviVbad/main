@@ -13,72 +13,49 @@
             <refresh:SfPullToRefresh.PullableContent>
                 <listView:SfListView
                     x:Name="SfListView"
-                    AllowSwiping="True"
                     ItemsSource="{Binding dataPager.GridModelList}"
-                    RowSpacing="4"
-                    SelectedItem="{Binding dataPager.SelectedItem}"
-                    SelectionGesture="Tap"
-                    SelectionMode="Single"
                     Style="{StaticResource DefaultListViewStyle}"
-                    SwipeOffset="104">
+                    TapCommand="{Binding EditCommand}"
+                    TapCommandParameter="{Binding Source={x:Reference SfListView}, Path=SelectedItem}">
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
                             <border:SfBorder Style="{StaticResource SimpleBorderStyle}">
-                                <SwipeView BackgroundColor="{DynamicResource Gray-Bg}">
-                                    <SwipeView.RightItems>
-                                        <SwipeItems>
-                                            <SwipeItem
-                                                BackgroundColor="{DynamicResource Red}"
-                                                Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference SfListView}}"
-                                                CommandParameter="{Binding}"
-                                                IsVisible="{extensions:HasPermission Text={x:Static perm:AppPermissions.EditionDelete}}"
-                                                Text="{extensions:Translate Remove}" />
-                                            <SwipeItem
-                                                BackgroundColor="{DynamicResource PrimaryColor}"
-                                                Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfListView}}"
-                                                CommandParameter="{Binding}"
-                                                IsVisible="{extensions:HasPermission Text={x:Static perm:AppPermissions.EditionEdit}}"
-                                                Text="{extensions:Translate Edit}" />
-                                        </SwipeItems>
-                                    </SwipeView.RightItems>
+                                <Grid
+                                    Padding="5"
+                                    ColumnDefinitions="auto,0.8*"
+                                    HorizontalOptions="FillAndExpand"
+                                    RowDefinitions="0.3*,0.3*,0.3*"
+                                    RowSpacing="2"
+                                    VerticalOptions="FillAndExpand">
+                                    <Label Text="{extensions:Translate EditionName}" TextColor="{DynamicResource Gray-900}" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Text="{Binding DisplayName}"
+                                        TextColor="{DynamicResource Gray-700}" />
 
-                                    <Grid
-                                        Padding="5"
-                                        ColumnDefinitions="auto,0.8*"
-                                        HorizontalOptions="FillAndExpand"
-                                        RowDefinitions="0.3*,0.3*,0.3*"
-                                        RowSpacing="2"
-                                        VerticalOptions="FillAndExpand">
-                                        <Label Text="{extensions:Translate EditionName}" TextColor="{DynamicResource Gray-900}" />
-                                        <Label
-                                            Grid.Row="0"
-                                            Grid.Column="1"
-                                            Text="{Binding DisplayName}"
-                                            TextColor="{DynamicResource Gray-700}" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Text="{extensions:Translate Price}"
+                                        TextColor="{DynamicResource Gray-900}" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Text="{Binding DailyPrice}"
+                                        TextColor="{DynamicResource Gray-700}" />
 
-                                        <Label
-                                            Grid.Row="1"
-                                            Grid.Column="0"
-                                            Text="{extensions:Translate Price}"
-                                            TextColor="{DynamicResource Gray-900}" />
-                                        <Label
-                                            Grid.Row="1"
-                                            Grid.Column="1"
-                                            Text="{Binding DailyPrice}"
-                                            TextColor="{DynamicResource Gray-700}" />
-
-                                        <Label
-                                            Grid.Row="2"
-                                            Grid.Column="0"
-                                            Text="{extensions:Translate IsTrialActive}"
-                                            TextColor="{DynamicResource Gray-900}" />
-                                        <Label
-                                            Grid.Row="2"
-                                            Grid.Column="1"
-                                            Text="{Binding TrialDayCount}"
-                                            TextColor="{DynamicResource Gray-700}" />
-                                    </Grid>
-                                </SwipeView>
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        Text="{extensions:Translate IsTrialActive}"
+                                        TextColor="{DynamicResource Gray-900}" />
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Text="{Binding TrialDayCount}"
+                                        TextColor="{DynamicResource Gray-700}" />
+                                </Grid>
                             </border:SfBorder>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>

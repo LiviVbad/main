@@ -94,17 +94,25 @@ namespace AppFramework.Editions
         }
 
         [AbpAuthorize(AppPermissions.Pages_Editions_Create)]
-        public async Task CreateEdition(CreateEditionDto input)
+        public async Task CreateEdition(CreateOrUpdateEditionDto input)
         {
             await CreateEditionAsync(input);
         }
 
         [AbpAuthorize(AppPermissions.Pages_Editions_Edit)]
-        public async Task UpdateEdition(UpdateEditionDto input)
+        public async Task UpdateEdition(CreateOrUpdateEditionDto input)
         {
             await UpdateEditionAsync(input);
         }
-
+         
+        public async Task CreateOrUpdateAsync(CreateOrUpdateEditionDto input)
+        {
+            if (input.Edition.Id.HasValue)
+                await UpdateEditionAsync(input);
+            else
+                await CreateEditionAsync(input);
+        }
+         
         [AbpAuthorize(AppPermissions.Pages_Editions_Delete)]
         public async Task DeleteEdition(EntityDto input)
         {
@@ -129,7 +137,7 @@ namespace AppFramework.Editions
             });
         }
 
-        [AbpAuthorize(AppPermissions.Pages_Editions,AppPermissions.Pages_Tenants)]
+        [AbpAuthorize(AppPermissions.Pages_Editions, AppPermissions.Pages_Tenants)]
         public async Task<List<SubscribableEditionComboboxItemDto>> GetEditionComboboxItems(int? selectedEditionId = null, bool addAllItem = false, bool onlyFreeItems = false)
         {
             var editions = await _editionManager.Editions.ToListAsync();
@@ -171,7 +179,7 @@ namespace AppFramework.Editions
         }
 
         [AbpAuthorize(AppPermissions.Pages_Editions_Create)]
-        protected virtual async Task CreateEditionAsync(CreateEditionDto input)
+        protected virtual async Task CreateEditionAsync(CreateOrUpdateEditionDto input)
         {
             var edition = ObjectMapper.Map<SubscribableEdition>(input.Edition);
 
@@ -191,7 +199,7 @@ namespace AppFramework.Editions
         }
 
         [AbpAuthorize(AppPermissions.Pages_Editions_Edit)]
-        protected virtual async Task UpdateEditionAsync(UpdateEditionDto input)
+        protected virtual async Task UpdateEditionAsync(CreateOrUpdateEditionDto input)
         {
             if (input.Edition.Id != null)
             {

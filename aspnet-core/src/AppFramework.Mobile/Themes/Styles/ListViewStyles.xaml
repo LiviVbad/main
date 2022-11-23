@@ -31,6 +31,7 @@
         <Setter Property="AutoFitMode" Value="Height" />
         <Setter Property="IsScrollBarVisible" Value="False" />
         <Setter Property="SwipeOffset" Value="156" />
+        <Setter Property="RowSpacing" Value="4" />
         <Setter Property="LayoutManager">
             <Setter.Value>
                 <listView:GridLayout SpanCount="1" />

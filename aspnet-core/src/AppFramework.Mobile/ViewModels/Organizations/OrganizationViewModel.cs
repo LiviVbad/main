@@ -33,16 +33,7 @@
 
             await navigationService.NavigateAsync(GetPageName("Details"), param);
         }
-
-        public override async void Delete(object selectedItem)
-        {
-            var id = (selectedItem as OrganizationListModel).Id;
-            if (!await dialogService.DeleteConfirm()) return;
-
-            await appService.DeleteOrganizationUnit(new EntityDto<long>(id));
-            await RefreshAsync();
-        }
-
+         
         public override async Task RefreshAsync()
         {
             await SetBusyAsync(async () =>

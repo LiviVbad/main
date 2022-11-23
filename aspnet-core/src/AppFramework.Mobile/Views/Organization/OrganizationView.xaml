@@ -26,11 +26,6 @@
                                     <SwipeView.RightItems>
                                         <SwipeItems>
                                             <SwipeItem
-                                                BackgroundColor="{DynamicResource Red}"
-                                                Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference SfTreeView}}"
-                                                CommandParameter="{Binding}"
-                                                Text="{extensions:Translate Remove}" />
-                                            <SwipeItem
                                                 BackgroundColor="{DynamicResource PrimaryColor}"
                                                 Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfTreeView}}"
                                                 CommandParameter="{Binding}"

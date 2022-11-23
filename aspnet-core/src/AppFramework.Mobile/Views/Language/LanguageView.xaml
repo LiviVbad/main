@@ -13,48 +13,30 @@
                 <listView:SfListView
                     x:Name="SfListView"
                     ItemsSource="{Binding dataPager.GridModelList}"
-                    RowSpacing="4"
-                    Style="{StaticResource DefaultListViewStyle}">
+                    Style="{StaticResource DefaultListViewStyle}"
+                    TapCommand="{Binding EditCommand}"
+                    TapCommandParameter="{Binding Source={x:Reference SfListView}, Path=SelectedItem}">
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
                             <border:SfBorder Style="{StaticResource SimpleBorderStyle}">
-                                <SwipeView BackgroundColor="{DynamicResource Gray-Bg}">
-                                    <SwipeView.RightItems>
-                                        <SwipeItems>
-                                            <SwipeItem
-                                                BackgroundColor="{DynamicResource Red}"
-                                                Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference SfListView}}"
-                                                CommandParameter="{Binding}"
-                                                IsVisible="{extensions:HasPermission Text={x:Static perm:AppPermissions.LanguageDelete}}"
-                                                Text="{extensions:Translate Remove}" />
-                                            <SwipeItem
-                                                BackgroundColor="{DynamicResource PrimaryColor}"
-                                                Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfListView}}"
-                                                CommandParameter="{Binding}"
-                                                IsVisible="{extensions:HasPermission Text={x:Static perm:AppPermissions.LanguageEdit}}"
-                                                Text="{extensions:Translate Edit}" />
-                                        </SwipeItems>
-                                    </SwipeView.RightItems>
+                                <Grid
+                                    Padding="10"
+                                    BackgroundColor="{DynamicResource Gray-Bg}"
+                                    RowSpacing="2">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image
+                                            HeightRequest="20"
+                                            HorizontalOptions="Center"
+                                            Source="{Binding Icon, Converter={StaticResource ImageSourceConverter}}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="20" />
 
-                                    <Grid
-                                        Padding="10"
-                                        BackgroundColor="{DynamicResource Gray-Bg}"
-                                        RowSpacing="2">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Image
-                                                HeightRequest="20"
-                                                HorizontalOptions="Center"
-                                                Source="{Binding Icon, Converter={StaticResource ImageSourceConverter}}"
-                                                VerticalOptions="Center"
-                                                WidthRequest="20" />
-
-                                            <StackLayout Margin="5,0" HorizontalOptions="Start">
-                                                <Label Text="{Binding DisplayName}" TextColor="{DynamicResource Gray-700}" />
-                                                <Label Text="{Binding Name}" TextColor="{DynamicResource Gray-700}" />
-                                            </StackLayout>
+                                        <StackLayout Margin="5,0" HorizontalOptions="Start">
+                                            <Label Text="{Binding DisplayName}" TextColor="{DynamicResource Gray-700}" />
+                                            <Label Text="{Binding Name}" TextColor="{DynamicResource Gray-700}" />
                                         </StackLayout>
-                                    </Grid>
-                                </SwipeView>
+                                    </StackLayout>
+                                </Grid>
                             </border:SfBorder>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>

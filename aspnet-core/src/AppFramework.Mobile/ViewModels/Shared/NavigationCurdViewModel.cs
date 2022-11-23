@@ -6,14 +6,14 @@
     using AppFramework.Shared.Services.Datapager;
     using AppFramework.Shared.Core;
     using Prism.Regions.Navigation;
+    using Syncfusion.ListView.XForms;
 
     public class NavigationCurdViewModel : RegionViewModel
     {
         public NavigationCurdViewModel()
         {
             AddCommand = new DelegateCommand(Add);
-            EditCommand=new DelegateCommand<object>(Edit);
-            DeleteCommand=new DelegateCommand<object>(Delete);
+            EditCommand=new DelegateCommand<ItemTappedEventArgs>(Edit);
             LoadMoreCommand = new DelegateCommand(LoadMore);
             RefreshCommand = new DelegateCommand(async () => await RefreshAsync());
 
@@ -29,20 +29,17 @@
         public DelegateCommand RefreshCommand { get; private set; }
         public DelegateCommand LoadMoreCommand { get; private set; }
 
-        public DelegateCommand<object> EditCommand { get; private set; }
-        public DelegateCommand<object> DeleteCommand { get; private set; }
+        public DelegateCommand<ItemTappedEventArgs> EditCommand { get; private set; }
 
         public virtual async void Add() => await navigationService.NavigateAsync(GetPageName("Details"));
 
-        public virtual async void Edit(object selectedItem)
+        public virtual async void Edit(ItemTappedEventArgs args)
         {
             NavigationParameters param = new NavigationParameters();
-            param.Add("Value", selectedItem);
+            param.Add("Value", args.ItemData);
 
             await navigationService.NavigateAsync(GetPageName("Details"), param);
         }
-
-        public virtual void Delete(object selectedItem) { }
 
         public virtual void LoadMore() { }
 

@@ -84,7 +84,7 @@ namespace AppFramework.Shared.ViewModels
 
         #endregion 字段/属性
 
-        public UserDetailsViewModel( 
+        public UserDetailsViewModel(
             IUserAppService userAppService,
             IPermissionService permissionService,
             IMessenger messenger)
@@ -109,9 +109,7 @@ namespace AppFramework.Shared.ViewModels
             await SetBusyAsync(async () =>
             {
                 var input = Map<CreateOrUpdateUserInput>(UserInput);
-                await WebRequest.Execute(() =>
-                    userAppService.CreateOrUpdateUser(input),
-                    GoBackAsync);
+                await WebRequest.Execute(() => userAppService.CreateOrUpdateUser(input), GoBackAsync);
             }, LocalizationKeys.SavingWithThreeDot);
         }
 

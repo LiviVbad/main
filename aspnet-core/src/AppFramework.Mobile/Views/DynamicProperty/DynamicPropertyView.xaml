@@ -14,51 +14,32 @@
                 <listView:SfListView
                     x:Name="SfListView"
                     ItemsSource="{Binding dataPager.GridModelList}"
-                    RowSpacing="4"
-                    SelectedItem="{Binding dataPager.SelectedItem}"
-                    Style="{StaticResource DefaultListViewStyle}">
+                    Style="{StaticResource DefaultListViewStyle}"
+                    TapCommand="{Binding EditCommand}"
+                    TapCommandParameter="{Binding Source={x:Reference SfListView}, Path=SelectedItem}">
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
                             <border:SfBorder Style="{StaticResource SimpleBorderStyle}">
-                                <SwipeView BackgroundColor="{DynamicResource Gray-Bg}">
-                                    <SwipeView.RightItems>
-                                        <SwipeItems>
-                                            <SwipeItem
-                                                BackgroundColor="{DynamicResource Red}"
-                                                Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference SfListView}}"
-                                                CommandParameter="{Binding}"
-                                                IsVisible="{extensions:HasPermission Text={x:Static perm:AppPermissions.DynamicEntityPropertiesDelete}}"
-                                                Text="{extensions:Translate Remove}" />
-                                            <SwipeItem
-                                                BackgroundColor="{DynamicResource PrimaryColor}"
-                                                Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfListView}}"
-                                                CommandParameter="{Binding}"
-                                                IsVisible="{extensions:HasPermission Text={x:Static perm:AppPermissions.DynamicEntityPropertiesEdit}}"
-                                                Text="{extensions:Translate Edit}" />
-                                        </SwipeItems>
-                                    </SwipeView.RightItems>
-
-                                    <Grid
-                                        Padding="10"
-                                        BackgroundColor="{DynamicResource Gray-Bg}"
-                                        RowDefinitions="auto,auto"
-                                        RowSpacing="2">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{extensions:Translate DisplayName}" TextColor="{DynamicResource Gray-700}" />
-                                            <Label
-                                                Text="{Binding DisplayName}"
-                                                TextColor="{DynamicResource Gray-900}"
-                                                VerticalOptions="Center" />
-                                        </StackLayout>
-                                        <StackLayout
-                                            Grid.Row="1"
-                                            Margin="0,5,0,0"
-                                            Orientation="Horizontal">
-                                            <Label Text="{extensions:Translate PropertyName}" TextColor="{DynamicResource Gray-700}" />
-                                            <Label Text="{Binding PropertyName}" TextColor="{DynamicResource Gray-900}" />
-                                        </StackLayout>
-                                    </Grid>
-                                </SwipeView>
+                                <Grid
+                                    Padding="10"
+                                    BackgroundColor="{DynamicResource Gray-Bg}"
+                                    RowDefinitions="auto,auto"
+                                    RowSpacing="2">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{extensions:Translate DisplayName}" TextColor="{DynamicResource Gray-700}" />
+                                        <Label
+                                            Text="{Binding DisplayName}"
+                                            TextColor="{DynamicResource Gray-900}"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
+                                    <StackLayout
+                                        Grid.Row="1"
+                                        Margin="0,5,0,0"
+                                        Orientation="Horizontal">
+                                        <Label Text="{extensions:Translate PropertyName}" TextColor="{DynamicResource Gray-700}" />
+                                        <Label Text="{Binding PropertyName}" TextColor="{DynamicResource Gray-900}" />
+                                    </StackLayout>
+                                </Grid>
                             </border:SfBorder>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>

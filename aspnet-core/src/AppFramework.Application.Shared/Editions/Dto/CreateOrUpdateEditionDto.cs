@@ -4,7 +4,7 @@ using Abp.Application.Services.Dto;
 
 namespace AppFramework.Editions.Dto
 {
-    public class CreateEditionDto
+    public class CreateOrUpdateEditionDto
     {
         [Required]
         public EditionCreateDto Edition { get; set; }
