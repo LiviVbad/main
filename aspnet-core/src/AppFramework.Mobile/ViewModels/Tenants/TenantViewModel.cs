@@ -30,17 +30,6 @@ namespace AppFramework.Shared.ViewModels
             {
                 await WebRequest.Execute(() => appService.GetTenants(filter), dataPager.SetList);
             });
-        }
-
-        public async void Delete()
-        {
-            if (!await dialogService.DeleteConfirm()) return;
-
-            await appService.DeleteTenant(new EntityDto()
-            {
-                 Id= SelectedItem.Id
-            });
-            await RefreshAsync();
         } 
     }
 }

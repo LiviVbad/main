@@ -1,7 +1,5 @@
-﻿using Abp.Application.Services.Dto;
-using AppFramework.Localization;
+﻿using AppFramework.Localization;
 using System.Threading.Tasks; 
-using AppFramework.Shared.Services.Permission;
 using AppFramework.Shared.Models;
 
 namespace AppFramework.Shared.ViewModels
@@ -23,17 +21,6 @@ namespace AppFramework.Shared.ViewModels
             {
                 await WebRequest.Execute(() => appService.GetLanguages(), dataPager.SetList);
             });
-        }
-
-        public async void Delete()
-        {
-            if (!await dialogService.DeleteConfirm()) return;
-
-            await appService.DeleteLanguage(new EntityDto()
-            {
-                Id= SelectedItem.Id
-            });
-            await RefreshAsync();
         } 
     }
 }

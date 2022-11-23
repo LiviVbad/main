@@ -23,17 +23,6 @@ namespace AppFramework.Shared.ViewModels
             {
                 await WebRequest.Execute(() => appService.GetEditions(), dataPager.SetList);
             });
-        }
-
-        public async void Delete()
-        {
-            if (!await dialogService.DeleteConfirm()) return;
-
-            await appService.DeleteEdition(new EntityDto()
-            {
-                 Id= SelectedItem.Id
-            });
-            await RefreshAsync();
         } 
     }
 }
