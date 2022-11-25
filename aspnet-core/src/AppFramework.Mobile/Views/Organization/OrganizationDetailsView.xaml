@@ -26,10 +26,7 @@
             </border:SfBorder>
         </StackLayout>
 
-        <tab:SfTabView
-            Grid.Row="1"
-            EnableSwiping="False"
-            IsEnabled="{Binding NewOrganizationIsVisible}">
+        <tab:SfTabView Grid.Row="1" EnableSwiping="False">
             <tab:SfTabItem Title="{extensions:Translate AddMember}">
                 <tab:SfTabItem.Content>
                     <listView:SfListView
@@ -114,13 +111,11 @@
             <buttons:SfButton
                 Command="{Binding AddUsersCommand}"
                 HorizontalOptions="Fill"
-                IsVisible="{Binding NewOrganizationIsVisible}"
                 Style="{StaticResource GradientButtonStyle}"
                 Text="{extensions:Translate AddMember}" />
             <buttons:SfButton
                 Command="{Binding AddRolesCommand}"
                 HorizontalOptions="Fill"
-                IsVisible="{Binding NewOrganizationIsVisible}"
                 Style="{StaticResource GradientButtonStyle}"
                 Text="{extensions:Translate AddRole}" />
             <buttons:SfButton

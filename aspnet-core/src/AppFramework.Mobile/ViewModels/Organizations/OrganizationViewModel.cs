@@ -11,6 +11,7 @@
     using System.Threading.Tasks;
     using AppFramework.Shared.Models;
     using AppFramework.Shared;
+    using Abp.Organizations;
 
     public class OrganizationViewModel : NavigationMasterViewModel
     {
@@ -18,13 +19,50 @@
 
         public DelegateCommand<OrganizationListModel> AddRoleCommand { get; private set; }
         public DelegateCommand<OrganizationListModel> AddUserCommand { get; private set; }
-        public DelegateCommand<OrganizationListModel> AddSubUnitCommand { get; private set; } 
+        public DelegateCommand<OrganizationListModel> AddSubUnitCommand { get; private set; }
+
+        public DelegateCommand SaveCommand { get; private set; }
 
         public OrganizationViewModel(IOrganizationUnitAppService appService)
         {
             this.appService = appService;
-            AddSubUnitCommand = new DelegateCommand<OrganizationListModel>(AddSubUnit); 
+
+            SaveCommand=new DelegateCommand(Save);
+            AddSubUnitCommand = new DelegateCommand<OrganizationListModel>(AddSubUnit);
         }
+
+        #region 新增组织/子组织
+
+        private long? ParentId;
+
+        private string organizationName;
+
+        public string OrganizationName
+        {
+            get { return organizationName; }
+            set { organizationName = value; RaisePropertyChanged(); }
+        }
+
+        public override void Add()
+        {
+            OrganizationName=string.Empty;
+            messenger.Send("OrganizationViewIsVisible", true);
+        }
+
+        private async void Save()
+        {
+            await SetBusyAsync(async () =>
+            {
+                await WebRequest.Execute(() =>
+                      appService.CreateOrganizationUnit(new CreateOrganizationUnitInput()
+                      {
+                          DisplayName = OrganizationName
+                      }), RefreshAsync);
+            });
+            messenger.Send("OrganizationViewIsVisible", false);
+        }
+
+        #endregion
 
         private async void AddSubUnit(OrganizationListModel obj)
         {
@@ -33,7 +71,7 @@
 
             await navigationService.NavigateAsync(GetPageName("Details"), param);
         }
-         
+
         public override async Task RefreshAsync()
         {
             await SetBusyAsync(async () =>

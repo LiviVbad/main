@@ -6,7 +6,7 @@ namespace AppFramework.Shared.Views
     {
         public OrganizationView()
         {
-            InitializeComponent();
-        }
+            InitializeComponent(); 
+        } 
     }
 }

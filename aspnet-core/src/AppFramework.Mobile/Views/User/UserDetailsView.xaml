@@ -215,7 +215,7 @@
                         HorizontalOptions="Fill"
                         IsVisible="{Binding IsUnlockButtonVisible}"
                         Style="{StaticResource GradientButtonStyle}"
-                        Text="{extensions:Translate Unlock}" />
+                        Text="{extensions:Translate Delete}" />
 
                     <buttons:SfButton
                         Command="{Binding ExecuteCommand}"

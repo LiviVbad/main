@@ -16,17 +16,7 @@ namespace AppFramework.Shared.ViewModels
     public class OrganizationDetailsViewModel : NavigationDetailViewModel
     {
         #region 字段/属性
-
-        private bool newOrganizationIsVisible = true;
-
-        public bool NewOrganizationIsVisible
-        {
-            get { return newOrganizationIsVisible; }
-            set { newOrganizationIsVisible = value; RaisePropertyChanged(); }
-        }
-
-        private bool IsNewOrganization;
-        private long? ParentId;
+          
         private readonly IMessenger messenger;
         private readonly IPermissionService permissionService;
         private readonly IOrganizationUnitAppService appService;
@@ -70,6 +60,8 @@ namespace AppFramework.Shared.ViewModels
             AddRolesCommand = new DelegateCommand(AddRoles);
             DeleteUserCommand = new DelegateCommand<OrganizationUnitUserListDto>(DeleteUser);
             DeleteRoleCommand = new DelegateCommand<OrganizationUnitRoleListDto>(DeleteRole);
+
+            OrganizationUnit=new OrganizationListModel();
             UserModelList = new ObservableCollection<OrganizationUnitUserListDto>();
             RolesModelList = new ObservableCollection<OrganizationUnitRoleListDto>();
         }
@@ -85,13 +77,12 @@ namespace AppFramework.Shared.ViewModels
                  {
                      OrganizationUnitDto organizationUnit = null;
 
-                     if (IsNewOrganization)
+                     if (IsNewCeate)
                      {
                          if (OrganizationUnit.Id > 0) return organizationUnit;
 
                          organizationUnit = await appService.CreateOrganizationUnit(new CreateOrganizationUnitInput()
-                         {
-                             ParentId = ParentId,
+                         { 
                              DisplayName = OrganizationUnit.DisplayName
                          });
                      }
@@ -138,18 +129,18 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(async () =>
-                 await appService.RemoveUserFromOrganizationUnit(new UserToOrganizationUnitInput()
-                 {
-                     OrganizationUnitId = OrganizationUnit.Id,
-                     UserId = organizationUnit.Id
-                 }), async () =>
-                 {
-                     var user = UserModelList.FirstOrDefault(t => t.Id.Equals(organizationUnit.Id));
-                     if (user != null) UserModelList.Remove(user);
+                await WebRequest.Execute(() =>
+                  appService.RemoveUserFromOrganizationUnit(new UserToOrganizationUnitInput()
+                  {
+                      OrganizationUnitId = OrganizationUnit.Id,
+                      UserId = organizationUnit.Id
+                  }), async () =>
+                  {
+                      var user = UserModelList.FirstOrDefault(t => t.Id.Equals(organizationUnit.Id));
+                      if (user != null) UserModelList.Remove(user);
 
-                     await Task.CompletedTask;
-                 });
+                      await Task.CompletedTask;
+                  });
             });
         }
 
@@ -161,14 +152,12 @@ namespace AppFramework.Shared.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(async () =>
-                {
-                    await appService.RemoveRoleFromOrganizationUnit(new RoleToOrganizationUnitInput()
-                    {
-                        OrganizationUnitId = OrganizationUnit.Id,
-                        RoleId = (int)unitRoleListDto.Id
-                    });
-                }, async () =>
+                await WebRequest.Execute(() =>
+                     appService.RemoveRoleFromOrganizationUnit(new RoleToOrganizationUnitInput()
+                     {
+                         OrganizationUnitId = OrganizationUnit.Id,
+                         RoleId = (int)unitRoleListDto.Id
+                     }), async () =>
                 {
                     var role = RolesModelList.FirstOrDefault(t => t.Id.Equals(unitRoleListDto.Id));
                     if (role != null) RolesModelList.Remove(role);
@@ -193,28 +182,11 @@ namespace AppFramework.Shared.ViewModels
                      await GetOrganizationUnitRolesAndUsers(OrganizationUnit.Id);
                  }
                  else if (parameters.ContainsKey("Value"))
-                 {
+                 { 
                      //编辑组织,获取组织对应的用户以及角色列表 
                      OrganizationUnit = parameters.GetValue<OrganizationListModel>("Value");
                      await GetOrganizationUnitRolesAndUsers(OrganizationUnit.Id);
-                 }
-                 else
-                 {
-                     if (parameters.ContainsKey("Id"))
-                     {
-                         //新建子组织时, 记录父组织ID, 用于记录子组织所在级别
-                         ParentId = parameters.GetValue<long>("Id");
-                     }
-
-                     IsNewOrganization = true;
-
-                     /*
-                      * 如果是属于新增组织,禁用 用户角色\添加角色\用户按钮, 因为这两个功能需要确保组织已经被新建成功
-                      * 这样方便与添加对应的角色和用户记录对应的ID
-                      */
-                     NewOrganizationIsVisible = false;
-                     OrganizationUnit = new OrganizationListModel();
-                 }
+                 } 
              });
         }
 
@@ -239,19 +211,11 @@ namespace AppFramework.Shared.ViewModels
         /// <returns></returns>
         private async Task GetOrganizationUnitRolesAndUsers(long id)
         {
-            await WebRequest.Execute(async () =>
-            {
-                return await appService.GetOrganizationUnitRoles(new
-                    GetOrganizationUnitRolesInput()
-                { Id = id });
-            }, result => GetOrganizationUnitRolesSuccessed(result));
+            await WebRequest.Execute(() => appService.GetOrganizationUnitRoles(new GetOrganizationUnitRolesInput() { Id = id }),
+                GetOrganizationUnitRolesSuccessed);
 
-            await WebRequest.Execute(async () =>
-            {
-                return await appService.GetOrganizationUnitUsers(new
-                    GetOrganizationUnitUsersInput()
-                { Id = id });
-            }, result => GetOrganizationUnitUsersSuccessed(result));
+            await WebRequest.Execute(() => appService.GetOrganizationUnitUsers(new GetOrganizationUnitUsersInput() { Id = id }),
+                GetOrganizationUnitUsersSuccessed);
         }
 
         /// <summary>
@@ -268,10 +232,7 @@ namespace AppFramework.Shared.ViewModels
             }
 
             //当组织新增完成之后,允许为该组织添加用户及角色
-            OrganizationUnit.Id = organizationUnit.Id;
-            OrganizationUnit.ParentId = ParentId;
-            //显示角色和用户面板及相应操作按钮。
-            NewOrganizationIsVisible = true;
+            OrganizationUnit.Id = organizationUnit.Id; 
         }
 
         /// <summary>

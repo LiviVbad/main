@@ -5,7 +5,8 @@
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared"
     xmlns:refresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
-    xmlns:tree="clr-namespace:Syncfusion.XForms.TreeView;assembly=Syncfusion.SfTreeView.XForms">
+    xmlns:tree="clr-namespace:Syncfusion.XForms.TreeView;assembly=Syncfusion.SfTreeView.XForms"
+    xmlns:views="clr-namespace:AppFramework.Shared.Views">
     <Grid>
         <refresh:SfPullToRefresh>
             <refresh:SfPullToRefresh.PullableContent>
@@ -22,49 +23,26 @@
                     <tree:SfTreeView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <SwipeView BackgroundColor="Transparent">
-                                    <SwipeView.RightItems>
-                                        <SwipeItems>
-                                            <SwipeItem
-                                                BackgroundColor="{DynamicResource PrimaryColor}"
-                                                Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfTreeView}}"
-                                                CommandParameter="{Binding}"
-                                                Text="{extensions:Translate Edit}" />
-                                            <SwipeItem
-                                                BackgroundColor="{DynamicResource PrimaryColor}"
-                                                Command="{Binding Path=BindingContext.AddSubUnitCommand, Source={x:Reference SfTreeView}}"
-                                                CommandParameter="{Binding}"
-                                                Text="{extensions:Translate AddSubUnit}" />
-                                        </SwipeItems>
-                                    </SwipeView.RightItems>
-
-                                    <StackLayout Padding="5,10" Orientation="Horizontal">
-                                        <Label
-                                            Style="{StaticResource IconLabelStyle}"
-                                            Text="&#xe66e;"
-                                            VerticalOptions="Center" />
-                                        <Label
-                                            Margin="5,0,0,0"
-                                            Style="{StaticResource SimpleLabelStyle}"
-                                            Text="{Binding DisplayName}" />
-
-                                        <buttons:SfButton
-                                            Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfTreeView}}"
-                                            CommandParameter="{Binding}"
-                                            Style="{StaticResource TransparentButtonStyle}"
-                                            Text="{Binding MemberCount}"
-                                            TextColor="{DynamicResource PrimaryColor}" />
-                                        <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Members}" />
-
-                                        <buttons:SfButton
-                                            Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfTreeView}}"
-                                            CommandParameter="{Binding}"
-                                            Style="{StaticResource TransparentButtonStyle}"
-                                            Text="{Binding RoleCount}"
-                                            TextColor="{DynamicResource PrimaryColor}" />
-                                        <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Roles}" />
-                                    </StackLayout>
-                                </SwipeView>
+                                <StackLayout Padding="5,10" Orientation="Horizontal">
+                                    <Label
+                                        Style="{StaticResource IconLabelStyle}"
+                                        Text="&#xe66e;"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Margin="5,0,0,0"
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        Text="{Binding DisplayName}" />
+                                    <Label
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        Text="{Binding MemberCount}"
+                                        TextColor="{DynamicResource PrimaryColor}" />
+                                    <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Members}" />
+                                    <Label
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        Text="{Binding RoleCount}"
+                                        TextColor="{DynamicResource PrimaryColor}" />
+                                    <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Roles}" />
+                                </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </tree:SfTreeView.ItemTemplate>
@@ -72,9 +50,12 @@
             </refresh:SfPullToRefresh.PullableContent>
         </refresh:SfPullToRefresh>
 
+        <views:CreateOrganizationView x:Name="viewCreateOrganization" />
+
         <buttons:SfButton
             Margin="0,0,10,10"
             Command="{Binding AddCommand}"
+            IsVisible="{Binding Source={x:Reference viewCreateOrganization}, Path=IsVisible, Converter={StaticResource InverseBoolToVisibilityConverter}}"
             Style="{StaticResource AddButtonStyle}"
             VerticalOptions="End" />
     </Grid>

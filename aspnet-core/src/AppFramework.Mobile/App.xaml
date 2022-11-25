@@ -15,9 +15,11 @@
             <converters:BackgroundColorConverter x:Key="BackgroundColorConverter" />
             <converters:IndentConverter x:Key="IndentConverter" />
             <converters:StringToBadgeIconConverter x:Key="BadgeConverter" />
-            <converters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
             <converters:StringFormatConverter x:Key="StringFormatConverter" />
             <converters:UrlToImageConverter x:Key="UrlToImageConverter" />
+            <converters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <converters:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

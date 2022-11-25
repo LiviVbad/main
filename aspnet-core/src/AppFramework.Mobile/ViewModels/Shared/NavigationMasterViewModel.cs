@@ -23,7 +23,7 @@
             messenger.Sub(this.GetType().Name, async () => await RefreshAsync());
         }
 
-        private IMessenger messenger;
+        public readonly IMessenger messenger;
         public IDataPagerService dataPager { get; set; }
         public DelegateCommand AddCommand { get; private set; }
         public DelegateCommand RefreshCommand { get; private set; }

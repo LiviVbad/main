@@ -1,5 +1,5 @@
-﻿using System; 
-using System.Collections.Generic; 
+﻿using System;
+using System.Collections.Generic;
 
 namespace AppFramework.Shared.Core
 {
@@ -32,12 +32,7 @@ namespace AppFramework.Shared.Core
             if (_weakEvents == null)
                 _weakEvents = new Dictionary<string, IWeakAction>();
 
-            Dictionary<string, IWeakAction> temps = _weakEvents;
-
-            if (!_weakEvents.ContainsKey(token))
-            {
-                temps[token] = new WeakAction(token, action);
-            }
+            _weakEvents[token] = new WeakAction(token, action);
 
             RefreshSubscribes(_weakEvents);
         }
@@ -47,10 +42,7 @@ namespace AppFramework.Shared.Core
             if (_weakEvents == null)
                 _weakEvents = new Dictionary<string, IWeakAction>();
 
-            Dictionary<string, IWeakAction> temps = _weakEvents;
-
-            if (!_weakEvents.ContainsKey(token))
-                temps[token] = new WeakAction<T>(token, action); 
+            _weakEvents[token] = new WeakAction<T>(token, action);
 
             RefreshSubscribes(_weakEvents);
         }
@@ -74,7 +66,7 @@ namespace AppFramework.Shared.Core
             {
                 var weakMessages = _weakEvents[token];
                 weakMessages?.Dispose();
-            } 
+            }
 
             RefreshSubscribes(_weakEvents);
         }
@@ -95,6 +87,6 @@ namespace AppFramework.Shared.Core
             {
                 subscriberCollection.Remove(key);
             }
-        } 
+        }
     }
 }
