@@ -55,24 +55,14 @@
                         Text="AppFramework"
                         TextColor="{DynamicResource Gray-700}" />
 
-                    <border:SfBorder
-                        Padding="8"
-                        BorderColor="{DynamicResource Gray-Bg}"
-                        BorderWidth="0"
-                        CornerRadius="5"
-                        HasShadow="True">
+                    <border:SfBorder Style="{StaticResource EntryBorderStyle}">
                         <controls:BorderlessEntry
                             Placeholder="{extensions:Translate UserNameOrEmail}"
                             Style="{StaticResource BorderlessEntryStyle}"
                             Text="{Binding UserName, Mode=TwoWay}" />
                     </border:SfBorder>
 
-                    <border:SfBorder
-                        Padding="8"
-                        BorderColor="{DynamicResource Gray-Bg}"
-                        BorderWidth="0"
-                        CornerRadius="5"
-                        HasShadow="True">
+                    <border:SfBorder Style="{StaticResource EntryBorderStyle}">
                         <controls:BorderlessEntry
                             IsPassword="True"
                             Placeholder="{extensions:Translate Password}"

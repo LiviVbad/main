@@ -2,12 +2,11 @@
     x:Class="AppFramework.Shared.Views.UserDetailsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:AppFramework.Shared.Controls;assembly=AppFramework.Shared"
     xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared"
-    xmlns:image="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:tab="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms">
+    xmlns:image="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
     <ContentPage.Resources>
         <Style TargetType="controls:CustomShadowFrame">
             <Setter Property="BackgroundColor" Value="{DynamicResource GrayShadowColor}" />
@@ -42,51 +41,52 @@
 
             <StackLayout Grid.Row="1">
                 <StackLayout>
-                    <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate UserNameOrEmail}" />
 
-                    <!--  用户名  -->
-                    <controls:BorderlessEntry
-                        Placeholder="Name"
-                        Style="{StaticResource BorderlessEntryStyle}"
-                        Text="{Binding Model.User.UserName, Mode=TwoWay}" />
+                    <border:SfBorder Style="{StaticResource EntryBorderStyle}">
+                        <!--  用户名  -->
+                        <controls:BorderlessEntry
+                            Placeholder="{extensions:Translate UserNameOrEmail}"
+                            Style="{StaticResource BorderlessEntryStyle}"
+                            Text="{Binding Model.User.UserName, Mode=TwoWay}" />
+                    </border:SfBorder>
 
                     <Grid ColumnDefinitions="0.5*,0.5*">
                         <StackLayout>
-                            <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Name}" />
-
-                            <!--  名字  -->
-                            <controls:BorderlessEntry
-                                Placeholder="Name"
-                                Style="{StaticResource BorderlessEntryStyle}"
-                                Text="{Binding Model.User.Name, Mode=TwoWay}" />
+                            <border:SfBorder Style="{StaticResource EntryBorderStyle}">
+                                <!--  名字  -->
+                                <controls:BorderlessEntry
+                                    Placeholder="{extensions:Translate Name}"
+                                    Style="{StaticResource BorderlessEntryStyle}"
+                                    Text="{Binding Model.User.Name, Mode=TwoWay}" />
+                            </border:SfBorder>
                         </StackLayout>
 
                         <StackLayout Grid.Column="1">
-                            <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Surname}" />
-
-                            <!--  姓氏  -->
-                            <controls:BorderlessEntry
-                                Placeholder="Surname"
-                                Style="{StaticResource BorderlessEntryStyle}"
-                                Text="{Binding Model.User.Surname, Mode=TwoWay}" />
+                            <border:SfBorder Style="{StaticResource EntryBorderStyle}">
+                                <!--  姓氏  -->
+                                <controls:BorderlessEntry
+                                    Placeholder="{extensions:Translate Surname}"
+                                    Style="{StaticResource BorderlessEntryStyle}"
+                                    Text="{Binding Model.User.Surname, Mode=TwoWay}" />
+                            </border:SfBorder>
                         </StackLayout>
                     </Grid>
 
-                    <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Email}" />
+                    <border:SfBorder Style="{StaticResource EntryBorderStyle}">
+                        <!--  邮箱地址  -->
+                        <controls:BorderlessEntry
+                            Placeholder="{extensions:Translate Email}"
+                            Style="{StaticResource BorderlessEntryStyle}"
+                            Text="{Binding Model.User.EmailAddress, Mode=TwoWay}" />
+                    </border:SfBorder>
 
-                    <!--  邮箱地址  -->
-                    <controls:BorderlessEntry
-                        Placeholder="EmailAddress"
-                        Style="{StaticResource BorderlessEntryStyle}"
-                        Text="{Binding Model.User.EmailAddress, Mode=TwoWay}" />
-
-                    <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate PhoneNumber}" />
-
-                    <!--  手机号码  -->
-                    <controls:BorderlessEntry
-                        Placeholder="PhoneNumber"
-                        Style="{StaticResource BorderlessEntryStyle}"
-                        Text="{Binding Model.User.PhoneNumber, Mode=TwoWay}" />
+                    <border:SfBorder Style="{StaticResource EntryBorderStyle}">
+                        <!--  手机号码  -->
+                        <controls:BorderlessEntry
+                            Placeholder="{extensions:Translate PhoneNumber}"
+                            Style="{StaticResource BorderlessEntryStyle}"
+                            Text="{Binding Model.User.PhoneNumber, Mode=TwoWay}" />
+                    </border:SfBorder>
 
                     <StackLayout Orientation="Horizontal">
                         <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate SetRandomPassword}" />
@@ -143,64 +143,6 @@
                         <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Model.User.IsActive}" />
                     </StackLayout>
                 </StackLayout>
-
-                <!--  角色以及组织  -->
-                <tab:SfTabView EnableSwiping="False" HeightRequest="300">
-                    <tab:SfTabItem Title="{extensions:Translate Roles}">
-                        <tab:SfTabItem.Content>
-                            <StackLayout>
-                                <listView:SfListView ItemsSource="{Binding Model.Roles}" Style="{StaticResource TransparentSelectionListView}">
-                                    <listView:SfListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Padding="5,0">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="Auto" />
-                                                </Grid.ColumnDefinitions>
-
-                                                <Label Style="{StaticResource SimpleLabelStyle}" Text="{Binding RoleDisplayName}" />
-                                                <Switch Grid.Column="1" IsToggled="{Binding IsAssigned}" />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </listView:SfListView.ItemTemplate>
-                                </listView:SfListView>
-                            </StackLayout>
-                        </tab:SfTabItem.Content>
-                    </tab:SfTabItem>
-                    <tab:SfTabItem Title="{extensions:Translate OrganizationUnits}">
-                        <tab:SfTabItem.Content>
-                            <StackLayout>
-                                <listView:SfListView ItemsSource="{Binding Model.OrganizationUnits}" Style="{StaticResource TransparentSelectionListView}">
-                                    <listView:SfListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Padding="5,0" ColumnSpacing="0">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="Auto" />
-                                                </Grid.ColumnDefinitions>
-
-                                                <Label
-                                                    Margin="0"
-                                                    FontAttributes="Bold"
-                                                    Style="{StaticResource SimpleLabelStyle}"
-                                                    Text="{Binding Code, Converter={StaticResource IndentConverter}, ConverterParameter=··}"
-                                                    TextColor="LightGray"
-                                                    VerticalOptions="Start"
-                                                    VerticalTextAlignment="Start" />
-                                                <Label
-                                                    Grid.Column="1"
-                                                    Style="{StaticResource SimpleLabelStyle}"
-                                                    Text="{Binding DisplayName}" />
-                                                <Switch Grid.Column="2" IsToggled="{Binding IsAssigned}" />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </listView:SfListView.ItemTemplate>
-                                </listView:SfListView>
-                            </StackLayout>
-                        </tab:SfTabItem.Content>
-                    </tab:SfTabItem>
-                </tab:SfTabView>
 
                 <!--  解锁、取消、保存  -->
                 <StackLayout>
