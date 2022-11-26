@@ -16,7 +16,7 @@ namespace AppFramework.Editions
 
         Task UpdateEdition(CreateOrUpdateEditionDto input);
 
-        Task CreateOrUpdateAsync(CreateOrUpdateEditionDto input);
+        Task CreateOrUpdate(CreateOrUpdateEditionDto input);
 
         Task DeleteEdition(EntityDto input);
 

@@ -113,7 +113,7 @@ namespace AppFramework.ViewModels
                 editionDto.Edition=Map<EditionCreateDto>(Model);
                 editionDto.FeatureValues=featureValues;
 
-                await WebRequest.Execute(() => appService.CreateOrUpdateAsync(editionDto), base.Save);
+                await WebRequest.Execute(() => appService.CreateOrUpdate(editionDto), base.Save);
             });
         }
 

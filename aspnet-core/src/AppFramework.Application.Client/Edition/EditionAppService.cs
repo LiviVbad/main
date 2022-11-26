@@ -38,9 +38,9 @@ namespace AppFramework.Application
             await ApiClient.PostAsync(GetEndpoint(nameof(MoveTenantsToAnotherEdition)), input);
         }
 
-        public async Task CreateOrUpdateAsync(CreateOrUpdateEditionDto input)
+        public async Task CreateOrUpdate(CreateOrUpdateEditionDto input)
         {
-            await ApiClient.PostAsync(GetEndpoint(nameof(CreateOrUpdateAsync)), input);
+            await ApiClient.PostAsync(GetEndpoint(nameof(CreateOrUpdate)), input);
         }
 
         public async Task<ListResultDto<EditionListDto>> GetEditions()

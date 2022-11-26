@@ -105,7 +105,7 @@ namespace AppFramework.Editions
             await UpdateEditionAsync(input);
         }
          
-        public async Task CreateOrUpdateAsync(CreateOrUpdateEditionDto input)
+        public async Task CreateOrUpdate(CreateOrUpdateEditionDto input)
         {
             if (input.Edition.Id.HasValue)
                 await UpdateEditionAsync(input);
