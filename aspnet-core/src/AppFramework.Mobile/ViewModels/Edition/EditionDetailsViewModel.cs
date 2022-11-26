@@ -74,6 +74,8 @@ namespace AppFramework.Shared.ViewModels
             set { features = value; RaisePropertyChanged(); }
         }
 
+        public ObservableCollection<object> SelectedItems { get; set; } = new ObservableCollection<object>();
+
         #endregion 字段/属性
 
         public EditionDetailsViewModel(IMessenger messenger,
@@ -83,7 +85,7 @@ namespace AppFramework.Shared.ViewModels
             this.messenger = messenger;
             this.appService = appService;
             this.commonLookupAppService = commonLookupAppService;
-
+             
             Model = new EditionCreateModel();
             Features = new ObservableCollection<FlatFeatureModel>();
             Editions = new ObservableCollection<SubscribableEditionComboboxItemDto>();
@@ -101,15 +103,20 @@ namespace AppFramework.Shared.ViewModels
 
             await SetBusyAsync(async () =>
             {
-                List<NameValueDto> featureValues = new List<NameValueDto>();
-                GetSelectedNodes(Features, ref featureValues);
+                var featureValues = SelectedItems
+                .Select(t => t as FlatFeatureModel)
+                .Select(q => new NameValueDto
+                {
+                    Name=q.Name,
+                    Value = bool.TryParse(q.DefaultValue, out bool result) ? result.ToString() : q.DefaultValue
+                }).ToList();
 
                 await WebRequest.Execute(async () =>
                 {
                     CreateOrUpdateEditionDto editionDto = new CreateOrUpdateEditionDto();
                     editionDto.Edition=Map<EditionCreateDto>(Model);
                     editionDto.FeatureValues=featureValues;
-                    await appService.CreateOrUpdateAsync(editionDto);
+                    await appService.CreateOrUpdate(editionDto);
                 }, async () => await GoBackAsync());
             }, LocalizationKeys.SavingWithThreeDot);
         }

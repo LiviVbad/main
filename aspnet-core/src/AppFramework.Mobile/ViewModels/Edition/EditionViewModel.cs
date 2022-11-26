@@ -9,9 +9,7 @@ namespace AppFramework.Shared.ViewModels
     public class EditionViewModel : NavigationMasterViewModel
     {
         private readonly IEditionAppService appService;
-
-        public EditionListDto SelectedItem => Map<EditionListDto>(dataPager.SelectedItem);
-
+         
         public EditionViewModel(IEditionAppService appService)
         {
             this.appService = appService;

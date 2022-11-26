@@ -2,14 +2,14 @@
     x:Class="AppFramework.Shared.Views.UserView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:control="clr-namespace:AppFramework.Shared.Controls"
+    xmlns:effect="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
     xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared"
-    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:perm="clr-namespace:AppFramework.Shared"
     xmlns:refresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
     xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit">
-    <Grid>
+    <Grid BackgroundColor="{DynamicResource Gray-100}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition />
@@ -27,56 +27,64 @@
             IsRefreshing="{Binding IsBusy}"
             RefreshCommand="{Binding RefreshCommand}">
             <refresh:SfPullToRefresh.PullableContent>
-                <listView:SfListView
-                    x:Name="SfListView"
-                    ItemsSource="{Binding dataPager.GridModelList}"
-                    Style="{StaticResource DefaultListViewStyle}"
-                    TapCommand="{Binding EditCommand}"
-                    TapCommandParameter="{Binding Source={x:Reference SfListView}, Path=SelectedItem}">
-                    <listView:SfListView.ItemTemplate>
-                        <DataTemplate>
-                            <border:SfBorder Style="{StaticResource SimpleBorderStyle}">
-                                <Grid
-                                    Padding="10"
+                <ScrollView>
+                    <StackLayout
+                        x:Name="stackLayoutList"
+                        BindableLayout.ItemsSource="{Binding dataPager.GridModelList}"
+                        Spacing="8">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <control:CustomShadowFrame
+                                    Margin="0"
+                                    Padding="0"
                                     BackgroundColor="{DynamicResource Gray-Bg}"
-                                    RowDefinitions="auto,auto,auto"
-                                    RowSpacing="2">
-                                    <StackLayout Orientation="Horizontal">
-                                        <toolkit:AvatarView
-                                            HeightRequest="30"
-                                            HorizontalOptions="Start"
-                                            Text="{Binding Converter={StaticResource UserPhotoConverter}}"
-                                            VerticalOptions="Center"
-                                            WidthRequest="30" />
-                                        <Label
-                                            FontSize="16"
-                                            Style="{StaticResource SimpleLabelStyle}"
-                                            Text="{Binding UserName}" />
-                                    </StackLayout>
+                                    BorderColor="{DynamicResource Gray-Bg}"
+                                    CornerRadius="4"
+                                    HasShadow="True"
+                                    HeightRequest="80"
+                                    Radius="4">
+                                    <effect:SfEffectsView
+                                        RippleColor="{DynamicResource Gray-300}"
+                                        TouchDownEffects="Ripple"
+                                        TouchUpCommand="{Binding Path=BindingContext.EditCommand, Source={x:Reference stackLayoutList}}"
+                                        TouchUpCommandParameter="{Binding}">
+                                        <Grid
+                                            ColumnDefinitions="Auto, *"
+                                            ColumnSpacing="0"
+                                            RowDefinitions="Auto, Auto"
+                                            RowSpacing="0"
+                                            VerticalOptions="Center">
 
-                                    <StackLayout
-                                        Grid.Row="1"
-                                        Margin="0,3"
-                                        Orientation="Horizontal">
-                                        <Label
-                                            Style="{StaticResource IconLabelStyle}"
-                                            Text="&#xe7dc;"
-                                            TextColor="{DynamicResource Gray-900}" />
-                                        <Label Style="{StaticResource SimpleLabelStyle}" Text="{Binding EmailAddress}" />
-                                    </StackLayout>
+                                            <toolkit:AvatarView
+                                                Grid.RowSpan="2"
+                                                Margin="10,0,5,0"
+                                                HeightRequest="30"
+                                                HorizontalOptions="Center"
+                                                Text="{Binding Converter={StaticResource UserPhotoConverter}}"
+                                                VerticalOptions="Center"
+                                                WidthRequest="30" />
 
-                                    <StackLayout Grid.Row="2" Orientation="Horizontal">
-                                        <Label
-                                            Style="{StaticResource IconLabelStyle}"
-                                            Text="&#xe601;"
-                                            TextColor="{DynamicResource Gray-900}" />
-                                        <Label Style="{StaticResource SimpleLabelStyle}" Text="{Binding PhoneNumber}" />
-                                    </StackLayout>
-                                </Grid>
-                            </border:SfBorder>
-                        </DataTemplate>
-                    </listView:SfListView.ItemTemplate>
-                </listView:SfListView>
+                                            <StackLayout
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                VerticalOptions="Center">
+                                                <Label
+                                                    FontFamily="Montserrat-SemiBold"
+                                                    FontSize="16"
+                                                    Style="{StaticResource SimpleLabelStyle}"
+                                                    Text="{Binding UserName}" />
+                                                <Label
+                                                    FontSize="12"
+                                                    Style="{StaticResource SimpleLabelStyle}"
+                                                    Text="{Binding EmailAddress}" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </effect:SfEffectsView>
+                                </control:CustomShadowFrame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
             </refresh:SfPullToRefresh.PullableContent>
         </refresh:SfPullToRefresh>
         <buttons:SfButton

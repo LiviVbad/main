@@ -31,7 +31,7 @@ namespace AppFramework.Shared.Models
         public ObservableCollection<FlatFeatureModel> Items
         {
             get { return items; }
-            set { items = value; }
+            set { items = value; RaisePropertyChanged(); }
         }
     }
 }

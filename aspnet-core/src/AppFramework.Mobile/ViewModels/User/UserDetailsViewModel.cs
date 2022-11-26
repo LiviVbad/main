@@ -98,7 +98,7 @@ namespace AppFramework.Shared.ViewModels
 
         #region 解锁/删除/保存用户
 
-        private async void SaveUser()
+        public override async void Save()
         {
             UserInput.User = Model.User;
             UserInput.AssignedRoleNames = Model.Roles.Where(x => !x.IsAssigned).Select(x => x.RoleName).ToArray();

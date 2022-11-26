@@ -13,7 +13,7 @@
         public NavigationMasterViewModel()
         {
             AddCommand = new DelegateCommand(Add);
-            EditCommand=new DelegateCommand<ItemTappedEventArgs>(Edit);
+            EditCommand=new DelegateCommand<object>(Edit);
             LoadMoreCommand = new DelegateCommand(LoadMore);
             RefreshCommand = new DelegateCommand(async () => await RefreshAsync());
 
@@ -29,14 +29,14 @@
         public DelegateCommand RefreshCommand { get; private set; }
         public DelegateCommand LoadMoreCommand { get; private set; }
 
-        public DelegateCommand<ItemTappedEventArgs> EditCommand { get; private set; }
+        public DelegateCommand<object> EditCommand { get; private set; }
 
         public virtual async void Add() => await navigationService.NavigateAsync(GetPageName("Details"));
 
-        public virtual async void Edit(ItemTappedEventArgs args)
+        public virtual async void Edit(object args)
         {
             NavigationParameters param = new NavigationParameters();
-            param.Add("Value", args.ItemData);
+            param.Add("Value", args);
 
             await navigationService.NavigateAsync(GetPageName("Details"), param);
         }
