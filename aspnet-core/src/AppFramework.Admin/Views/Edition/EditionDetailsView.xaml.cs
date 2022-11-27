@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls; 
+﻿using Syncfusion.UI.Xaml.TreeView;
+using System.Windows.Controls; 
 
 namespace AppFramework.Views
 { 
@@ -6,7 +7,7 @@ namespace AppFramework.Views
     {
         public EditionDetailsView()
         {
-            InitializeComponent();
-        }
+            InitializeComponent(); 
+        } 
     }
 }

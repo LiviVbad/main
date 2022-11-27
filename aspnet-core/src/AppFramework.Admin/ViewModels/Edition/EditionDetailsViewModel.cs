@@ -50,15 +50,7 @@ namespace AppFramework.ViewModels
         {
             get { return isAssignToAnotherEdition; }
             set { isAssignToAnotherEdition = value; RaisePropertyChanged(); }
-        }
-
-        private ObservableCollection<object> selectedItems;
-
-        public ObservableCollection<object> SelectedItems
-        {
-            get { return selectedItems; }
-            set { selectedItems = value; }
-        }
+        } 
 
         /// <summary>
         /// 当前新增或编辑的版本信息
@@ -77,7 +69,7 @@ namespace AppFramework.ViewModels
             get { return features; }
             set { features = value; RaisePropertyChanged(); }
         }
-
+         
         #endregion 字段/属性
 
         public EditionDetailsViewModel(
@@ -101,13 +93,8 @@ namespace AppFramework.ViewModels
 
             await SetBusyAsync(async () =>
             {
-                var featureValues = SelectedItems
-                    .Select(t => t as FlatFeatureModel)
-                    .Select(q => new NameValueDto
-                    {
-                        Name = q.Name,
-                        Value = bool.TryParse(q.DefaultValue, out bool result) ? result.ToString() : q.DefaultValue
-                    }).ToList();
+                List<NameValueDto> featureValues = new List<NameValueDto>();
+                GetSelectedNodes(Features, ref featureValues);
 
                 CreateOrUpdateEditionDto editionDto = new CreateOrUpdateEditionDto();
                 editionDto.Edition=Map<EditionCreateDto>(Model);
@@ -133,8 +120,8 @@ namespace AppFramework.ViewModels
                       //设置所包含对应的功能结点
                       var flats = Map<List<FlatFeatureModel>>(result.Features);
                       Features = CreateFeatureTrees(flats, null);
-                      //更新选中的版本功能结点信息v
-                      SelectedItems = GetSelectedItems(Features, result.FeatureValues);
+                      //更新选中的版本功能结点信息 
+                      UpdateSelectedNodes(Features, result.FeatureValues);
 
                       await PopulateEditionsCombobox(() =>
                       {
@@ -251,6 +238,24 @@ namespace AppFramework.ViewModels
         #region 功能列表
 
         /// <summary>
+        /// 获取选中的功能节点
+        /// </summary>
+        /// <param name="nodes"></param>
+        /// <param name="GrantedPermissionNames"></param>
+        private void GetSelectedNodes(ObservableCollection<FlatFeatureModel> nodes, ref List<NameValueDto> featureValues)
+        {
+            foreach (var item in nodes)
+            {
+                if (bool.TryParse(item.DefaultValue, out bool result))
+                    featureValues.Add(new NameValueDto(item.Name, item.IsChecked.ToString()));
+                else
+                    featureValues.Add(new NameValueDto(item.Name, item.DefaultValue));
+
+                GetSelectedNodes(item.Items, ref featureValues);
+            }
+        }
+         
+        /// <summary>
         /// 创建功能结点目录树
         /// </summary>
         /// <param name="flats"></param>
@@ -270,37 +275,38 @@ namespace AppFramework.ViewModels
         }
 
         /// <summary>
-        /// 更新选中权限节点
+        /// 更新选中功能节点
         /// </summary>
         /// <param name="GrantedPermissionNames"></param>
-        public static ObservableCollection<object> GetSelectedItems(ObservableCollection<FlatFeatureModel> Flats, List<NameValueDto> GrantedPermissionNames)
+        private void UpdateSelectedNodes(ObservableCollection<FlatFeatureModel> flatFeatureModels, List<NameValueDto> nameValues)
         {
-            var permItems = new ObservableCollection<object>();
-
-            foreach (var item in GrantedPermissionNames)
+            nameValues.ForEach(item =>
             {
-                var permItem = GetSelectedItems(Flats, item.Name);
-                if (permItem != null) permItems.Add(permItem);
-            }
+                UpdateSelected(flatFeatureModels, item);
+            });
+        }
 
-            return permItems;
-
-            FlatFeatureModel GetSelectedItems(ObservableCollection<FlatFeatureModel> nodes, string key)
+        /// <summary>
+        /// 设置选中功能节点
+        /// </summary>
+        /// <param name="nodes"></param>
+        /// <param name="nodeName"></param>
+        private void UpdateSelected(ObservableCollection<FlatFeatureModel> flats, NameValueDto item)
+        {
+            foreach (var flat in flats)
             {
-                FlatFeatureModel model = null;
-
-                foreach (var flat in nodes)
+                if (flat.Name.Equals(item.Name))
                 {
-                    if (flat.Name.Equals(key) && flat.Items.Count == 0)
+                    if (bool.TryParse(item.Value, out bool result))
                     {
-                        model = flat;
-                        break;
+                        flat.IsChecked = result;
+                        return;
                     }
-                    model = GetSelectedItems(flat.Items, key);
-
-                    if (model != null) break;
+                    else
+                        flat.IsChecked = true;
                 }
-                return model;
+
+                UpdateSelected(flat.Items, item);
             }
         }
 

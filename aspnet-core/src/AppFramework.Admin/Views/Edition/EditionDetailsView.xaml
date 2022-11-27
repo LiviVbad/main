@@ -53,7 +53,7 @@
                         IsChecked="{Binding IsPaid}" />
                 </StackPanel>
 
-                <StackPanel Visibility="{Binding IsPaid, Converter={StaticResource boolToVisibility}}">
+                <StackPanel Visibility="{Binding IsPaid, Converter={StaticResource inverseBoolToVisibility}}">
 
                     <!--  每天定价  -->
                     <TextBlock Text="{extensions:Translate DailyPrice}" />
@@ -113,23 +113,18 @@
                 <!--  功能列表  -->
                 <TextBlock Text="{extensions:Translate Features}" />
                 <sync:SfTreeView
+                    x:Name="sfTreeView"
                     Margin="0,5"
-                    AutoExpandMode="AllNodes"
                     BorderThickness="0"
-                    CheckBoxMode="Recursive"
-                    CheckedItems="{Binding SelectedItems}"
                     ChildPropertyName="Items"
-                    ExpandActionTrigger="Node"
-                    IsAnimationEnabled="True"
-                    ItemTemplateDataContextType="Node"
-                    ItemsSource="{Binding Features}"
-                    NodePopulationMode="Instant"
-                    SelectionBackgroundColor="Transparent">
+                    ItemsSource="{Binding Features}">
                     <sync:SfTreeView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <CheckBox VerticalAlignment="Center" IsChecked="{Binding IsChecked, Mode=TwoWay}" />
-                                <TextBlock VerticalAlignment="Center" Text="{Binding Content.DisplayName}" />
+                                <CheckBox
+                                    VerticalAlignment="Center"
+                                    Content="{Binding DisplayName}"
+                                    IsChecked="{Binding IsChecked}" />
                             </StackPanel>
                         </DataTemplate>
                     </sync:SfTreeView.ItemTemplate>

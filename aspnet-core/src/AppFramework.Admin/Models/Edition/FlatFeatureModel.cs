@@ -11,7 +11,11 @@ namespace AppFramework.Models
         public bool IsChecked
         {
             get { return isChecked; }
-            set { isChecked = value; RaisePropertyChanged(); }
+            set
+            {
+                isChecked = value; 
+                RaisePropertyChanged();
+            }
         }
 
         public string ParentName { get; set; }
@@ -31,7 +35,7 @@ namespace AppFramework.Models
         public ObservableCollection<FlatFeatureModel> Items
         {
             get { return items; }
-            set { items = value; }
+            set { items = value; RaisePropertyChanged(); }
         }
     }
 }
