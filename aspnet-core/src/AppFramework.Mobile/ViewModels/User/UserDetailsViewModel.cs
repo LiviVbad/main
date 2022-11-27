@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AppFramework.Shared.Services.Messenger;
-using AppFramework.Shared.Extensions;
+using AppFramework.Shared.Extensions; 
 
 namespace AppFramework.Shared.ViewModels
 {
@@ -23,10 +23,10 @@ namespace AppFramework.Shared.ViewModels
         private readonly IMessenger messenger;
 
         public DelegateCommand UnlockCommand { get; private set; }
+        public DelegateCommand AddUserOrRoleCommand { get; private set; }
 
         private UserForEditModel model;
-        private UserCreateOrUpdateModel userInput;
-        private string pageTitle;
+        private UserCreateOrUpdateModel userInput; 
         private bool isNewUser;
         private bool isUnlockButtonVisible;
 
@@ -49,17 +49,7 @@ namespace AppFramework.Shared.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-        public string PageTitle
-        {
-            get => pageTitle;
-            set
-            {
-                pageTitle = value;
-                RaisePropertyChanged();
-            }
-        }
-
+         
         public bool IsUnlockButtonVisible
         {
             get => isUnlockButtonVisible;
@@ -94,6 +84,12 @@ namespace AppFramework.Shared.ViewModels
             this.messenger = messenger;
             UserInput = new UserCreateOrUpdateModel();
             UnlockCommand = new DelegateCommand(UnlockUser);
+            AddUserOrRoleCommand=new DelegateCommand(AddUserOrRole);
+        }
+
+        private void AddUserOrRole()
+        {
+            messenger.Send("SelectionUserOrRoleViewIsVisible", true);
         }
 
         #region 解锁/删除/保存用户
@@ -101,7 +97,7 @@ namespace AppFramework.Shared.ViewModels
         public override async void Save()
         {
             UserInput.User = Model.User;
-            UserInput.AssignedRoleNames = Model.Roles.Where(x => !x.IsAssigned).Select(x => x.RoleName).ToArray();
+            UserInput.AssignedRoleNames = Model.Roles.Where(x => x.IsAssigned).Select(x => x.RoleName).ToArray();
             UserInput.OrganizationUnits = Model.OrganizationUnits.Where(x => x.IsAssigned).Select(x => x.Id).ToList();
 
             if (!Verify(UserInput).IsValid) return;

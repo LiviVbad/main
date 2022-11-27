@@ -6,6 +6,7 @@
     <text name="Administration">管理</text>
     <text name="Roles">角色</text>
     <text name="Users">用户</text>
+	<text name="AddUserOrRole">添加用户或角色</text>
     <text name="InvalidFormMessage">部分输入信息不符合要求，请检查并改正.</text>
     <text name="InvalidUserNameOrPassword">用户名或密码无效</text>
     <text name="ThereIsNoTenantDefinedWithName{0}">租户 {0}不存在</text>

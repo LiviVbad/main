@@ -1,7 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Editions;
 using AppFramework.Editions.Dto;
-using Prism.Commands;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
@@ -73,9 +72,7 @@ namespace AppFramework.Shared.ViewModels
             get { return features; }
             set { features = value; RaisePropertyChanged(); }
         }
-
-        public ObservableCollection<object> SelectedItems { get; set; } = new ObservableCollection<object>();
-
+         
         #endregion 字段/属性
 
         public EditionDetailsViewModel(IMessenger messenger,
@@ -85,7 +82,7 @@ namespace AppFramework.Shared.ViewModels
             this.messenger = messenger;
             this.appService = appService;
             this.commonLookupAppService = commonLookupAppService;
-             
+
             Model = new EditionCreateModel();
             Features = new ObservableCollection<FlatFeatureModel>();
             Editions = new ObservableCollection<SubscribableEditionComboboxItemDto>();
@@ -102,17 +99,12 @@ namespace AppFramework.Shared.ViewModels
             if (!Verify(Model).IsValid) return;
 
             await SetBusyAsync(async () =>
-            {
-                var featureValues = SelectedItems
-                .Select(t => t as FlatFeatureModel)
-                .Select(q => new NameValueDto
-                {
-                    Name=q.Name,
-                    Value = bool.TryParse(q.DefaultValue, out bool result) ? result.ToString() : q.DefaultValue
-                }).ToList();
-
+            { 
                 await WebRequest.Execute(async () =>
                 {
+                    List<NameValueDto> featureValues = new List<NameValueDto>();
+                    GetSelectedNodes(Features, ref featureValues);
+
                     CreateOrUpdateEditionDto editionDto = new CreateOrUpdateEditionDto();
                     editionDto.Edition=Map<EditionCreateDto>(Model);
                     editionDto.FeatureValues=featureValues;
@@ -165,11 +157,14 @@ namespace AppFramework.Shared.ViewModels
                   {
                       //设置编辑版本信息对应的内容
                       Model = Map<EditionCreateModel>(result.Edition);
+
                       //设置所包含对应的功能结点
                       var flats = Map<List<FlatFeatureModel>>(result.Features);
                       Features = CreateFeatureTrees(flats, null);
-                      //更新选中的版本功能结点信息
+
+                      //更新选中的版本功能结点信息 
                       UpdateSelectedNodes(Features, result.FeatureValues);
+
                       await PopulateEditionsCombobox(() =>
                       {
                           SetSelectedEdition(Model.Id);
@@ -257,24 +252,6 @@ namespace AppFramework.Shared.ViewModels
         #region 功能列表
 
         /// <summary>
-        /// 获取选中的功能节点
-        /// </summary>
-        /// <param name="nodes"></param>
-        /// <param name="GrantedPermissionNames"></param>
-        private void GetSelectedNodes(ObservableCollection<FlatFeatureModel> nodes, ref List<NameValueDto> featureValues)
-        {
-            foreach (var item in nodes)
-            {
-                if (bool.TryParse(item.DefaultValue, out bool result))
-                    featureValues.Add(new NameValueDto(item.Name, item.IsChecked.ToString()));
-                else
-                    featureValues.Add(new NameValueDto(item.Name, item.DefaultValue));
-
-                GetSelectedNodes(item.Items, ref featureValues);
-            }
-        }
-
-        /// <summary>
         /// 创建功能结点目录树
         /// </summary>
         /// <param name="flats"></param>
@@ -291,6 +268,24 @@ namespace AppFramework.Shared.ViewModels
                 trees.Add(node);
             }
             return trees;
+        }
+
+        /// <summary>
+        /// 获取选中的功能节点
+        /// </summary>
+        /// <param name="nodes"></param>
+        /// <param name="GrantedPermissionNames"></param>
+        private void GetSelectedNodes(ObservableCollection<FlatFeatureModel> nodes, ref List<NameValueDto> featureValues)
+        {
+            foreach (var item in nodes)
+            {
+                if (bool.TryParse(item.DefaultValue, out bool result))
+                    featureValues.Add(new NameValueDto(item.Name, item.IsChecked.ToString()));
+                else
+                    featureValues.Add(new NameValueDto(item.Name, item.DefaultValue));
+
+                GetSelectedNodes(item.Items, ref featureValues);
+            }
         }
 
         /// <summary>

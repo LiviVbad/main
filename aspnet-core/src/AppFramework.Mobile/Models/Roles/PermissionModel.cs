@@ -28,7 +28,7 @@ namespace AppFramework.Shared.Models
         public ObservableCollection<PermissionModel> Items
         {
             get { return items; }
-            set { items = value; }
+            set { items = value; RaisePropertyChanged(); }
         }
     }
 }

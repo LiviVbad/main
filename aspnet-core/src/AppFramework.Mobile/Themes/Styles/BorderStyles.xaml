@@ -48,9 +48,8 @@
 
     <Style x:Key="EntryBorderStyle" TargetType="border:SfBorder">
         <Setter Property="Padding" Value="8" />
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-Bg}" />
-        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-300}" />
         <Setter Property="CornerRadius" Value="5" />
-        <Setter Property="HasShadow" Value="True" />
+        <Setter Property="HasShadow" Value="False" />
     </Style>
 </ResourceDictionary>

@@ -100,23 +100,22 @@
                 <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Features}" />
                 <treeview:SfTreeView
                     CheckBoxMode="Recursive"
-                    CheckedItems="{Binding SelectedItems}"
                     ChildPropertyName="Items"
-                    ItemTemplateContextType="Node"
                     ItemsSource="{Binding Features}"
                     SelectionBackgroundColor="Transparent">
                     <treeview:SfTreeView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Orientation="Horizontal">
-                                <buttons:SfCheckBox
-                                    IsChecked="{Binding IsChecked, Mode=TwoWay}"
-                                    Style="{StaticResource CheckBoxStyle}"
-                                    VerticalOptions="Center" />
-                                <Label
-                                    Style="{StaticResource SimpleLabelStyle}"
-                                    Text="{Binding Content.DisplayName}"
-                                    VerticalOptions="Center" />
-                            </StackLayout>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Orientation="Horizontal">
+                                        <buttons:SfCheckBox
+                                            IsChecked="{Binding IsChecked}"
+                                            Style="{StaticResource CheckBoxStyle}"
+                                            Text="{Binding DisplayName}"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
                         </DataTemplate>
                     </treeview:SfTreeView.ItemTemplate>
                 </treeview:SfTreeView>

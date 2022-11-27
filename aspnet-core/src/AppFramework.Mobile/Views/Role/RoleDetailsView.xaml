@@ -2,6 +2,7 @@
     x:Class="AppFramework.Shared.Views.RoleDetailsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:AppFramework.Shared.Controls;assembly=AppFramework.Shared"
     xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared"
@@ -11,37 +12,37 @@
         BackgroundColor="{DynamicResource GrayShadowColor}"
         RowDefinitions="auto,*,auto">
         <StackLayout>
-            <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate RoleName}" />
-
-            <controls:BorderlessEntry Style="{StaticResource BorderlessEntryStyle}" Text="{Binding Role.DisplayName, Mode=TwoWay}" />
+            <border:SfBorder Style="{StaticResource EntryBorderStyle}">
+                <controls:BorderlessEntry
+                    Placeholder="{extensions:Translate RoleName}"
+                    Style="{StaticResource BorderlessEntryStyle}"
+                    Text="{Binding Role.DisplayName, Mode=TwoWay}" />
+            </border:SfBorder>
 
             <StackLayout Orientation="Horizontal">
                 <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Default}" />
                 <Switch IsToggled="{Binding Role.IsDefault, Mode=TwoWay}" />
+                <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate DefaultRole_Description}" />
             </StackLayout>
-
-            <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate DefaultRole_Description}" />
         </StackLayout>
 
         <StackLayout Grid.Row="1">
             <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Permission}" />
 
             <treeview:SfTreeView
-                AutoExpandMode="AllNodesExpanded"
+                x:Name="sfTreeView"
                 CheckBoxMode="Recursive"
                 CheckedItems="{Binding treesService.SelectedItems}"
                 ChildPropertyName="Items"
-                ExpandActionTarget="Node"
-                IsAnimationEnabled="True"
                 ItemTemplateContextType="Node"
                 ItemsSource="{Binding treesService.Permissions}"
-                NodePopulationMode="Instant"
-                SelectionBackgroundColor="Transparent">
+                SelectionBackgroundColor="Transparent"
+                SelectionMode="Multiple">
                 <treeview:SfTreeView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal">
                             <buttons:SfCheckBox
-                                IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                                IsChecked="{Binding IsChecked}"
                                 Style="{StaticResource CheckBoxStyle}"
                                 VerticalOptions="Center" />
                             <Label

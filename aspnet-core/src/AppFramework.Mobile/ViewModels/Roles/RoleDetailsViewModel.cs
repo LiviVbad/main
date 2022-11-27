@@ -27,13 +27,13 @@ namespace AppFramework.Shared.ViewModels
         #endregion 字段/属性
 
         public RoleDetailsViewModel(
-            IMessenger messenger, 
-            IRoleAppService appService, 
+            IMessenger messenger,
+            IRoleAppService appService,
             IPermissionTreesService treesService)
         {
             this.appService = appService;
             this.messenger = messenger;
-            this.treesService = treesService; 
+            this.treesService = treesService;
         }
 
         /// <summary>
@@ -50,8 +50,7 @@ namespace AppFramework.Shared.ViewModels
                         Role = Map<RoleEditDto>(Role),
                         GrantedPermissionNames = treesService.GetSelectedItems()
                     });
-                },
-                async () => await GoBackAsync());
+                }, GoBackAsync);
             });
         }
 

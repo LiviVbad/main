@@ -1,14 +1,12 @@
 ﻿using AppFramework.Authorization.Permissions.Dto;
 using AppFramework.Shared.Models;
 using AppFramework.Shared.Services;
-using AppFramework.Shared.Services.Permission;
-using AutoMapper;
+using AppFramework.Shared.Services.Permission; 
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+using System.Linq; 
 
 namespace AppFramework.Shared
 {
@@ -30,11 +28,11 @@ namespace AppFramework.Shared
         }
 
         private ObservableCollection<object> selectedItems;
-         
+
         public ObservableCollection<object> SelectedItems
         {
             get { return selectedItems; }
-            set { selectedItems = value; }
+            set { selectedItems = value; RaisePropertyChanged(); }
         }
 
         public void CreatePermissionTrees(List<FlatPermissionDto> permissions, List<string> grantedPermissionNames)
