@@ -9,7 +9,7 @@
     xmlns:image="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
     xmlns:views="clr-namespace:AppFramework.Shared.Views">
     <ScrollView>
-        <Grid>
+        <Grid BackgroundColor="{DynamicResource GrayShadowColor}">
             <StackLayout Margin="10,0">
                 <StackLayout>
                     <!--  用户头像、姓名、邮箱地址  -->

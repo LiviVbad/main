@@ -238,24 +238,6 @@ namespace AppFramework.ViewModels
         #region 功能列表
 
         /// <summary>
-        /// 获取选中的功能节点
-        /// </summary>
-        /// <param name="nodes"></param>
-        /// <param name="GrantedPermissionNames"></param>
-        private void GetSelectedNodes(ObservableCollection<FlatFeatureModel> nodes, ref List<NameValueDto> featureValues)
-        {
-            foreach (var item in nodes)
-            {
-                if (bool.TryParse(item.DefaultValue, out bool result))
-                    featureValues.Add(new NameValueDto(item.Name, item.IsChecked.ToString()));
-                else
-                    featureValues.Add(new NameValueDto(item.Name, item.DefaultValue));
-
-                GetSelectedNodes(item.Items, ref featureValues);
-            }
-        }
-         
-        /// <summary>
         /// 创建功能结点目录树
         /// </summary>
         /// <param name="flats"></param>
@@ -274,6 +256,24 @@ namespace AppFramework.ViewModels
             return trees;
         }
 
+        /// <summary>
+        /// 获取选中的功能节点
+        /// </summary>
+        /// <param name="nodes"></param>
+        /// <param name="GrantedPermissionNames"></param>
+        private void GetSelectedNodes(ObservableCollection<FlatFeatureModel> nodes, ref List<NameValueDto> featureValues)
+        {
+            foreach (var item in nodes)
+            {
+                if (bool.TryParse(item.DefaultValue, out bool result))
+                    featureValues.Add(new NameValueDto(item.Name, item.IsChecked.ToString()));
+                else
+                    featureValues.Add(new NameValueDto(item.Name, item.DefaultValue));
+
+                GetSelectedNodes(item.Items, ref featureValues);
+            }
+        }
+          
         /// <summary>
         /// 更新选中功能节点
         /// </summary>
