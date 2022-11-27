@@ -2,6 +2,7 @@
     x:Class="AppFramework.Shared.Views.EditionDetailsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:AppFramework.Shared.Controls;assembly=AppFramework.Shared"
     xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared"
@@ -16,8 +17,12 @@
         <ScrollView>
             <StackLayout>
                 <!--  版本名称  -->
-                <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate EditionName}" />
-                <controls:BorderlessEntry Style="{StaticResource BorderlessEntryStyle}" Text="{Binding Model.DisplayName, Mode=TwoWay}" />
+                <border:SfBorder Style="{StaticResource EntryBorderStyle}">
+                    <controls:BorderlessEntry
+                        Placeholder="{extensions:Translate EditionName}"
+                        Style="{StaticResource BorderlessEntryStyle}"
+                        Text="{Binding Model.DisplayName, Mode=TwoWay}" />
+                </border:SfBorder>
 
                 <!--  是否付费  -->
                 <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate SubscriptionPrice}" />
@@ -29,42 +34,43 @@
                 <StackLayout IsVisible="{Binding IsPaid}">
 
                     <!--  每天定价  -->
-                    <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate DailyPrice}" />
-                    <mask:SfMaskedEdit
-                        Mask="\$ 0000"
-                        MaskType="Text"
-                        Watermark="$5"
-                        Value="{Binding Model.DailyPrice, Mode=TwoWay}" />
+                    <border:SfBorder Style="{StaticResource EntryBorderStyle}">
+                        <controls:BorderlessEntry
+                            Placeholder="{extensions:Translate DailyPrice}"
+                            Style="{StaticResource BorderlessEntryStyle}"
+                            Text="{Binding Model.DailyPrice, Mode=TwoWay}" />
+                    </border:SfBorder>
 
                     <!--  每周定价  -->
-                    <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate WeeklyPrice}" />
-                    <mask:SfMaskedEdit
-                        Mask="\$ 0000"
-                        MaskType="Text"
-                        Watermark="$30"
-                        Value="{Binding Model.WeeklyPrice, Mode=TwoWay}" />
+                    <border:SfBorder Style="{StaticResource EntryBorderStyle}">
+                        <controls:BorderlessEntry
+                            Placeholder="{extensions:Translate WeeklyPrice}"
+                            Style="{StaticResource BorderlessEntryStyle}"
+                            Text="{Binding Model.WeeklyPrice, Mode=TwoWay}" />
+                    </border:SfBorder>
 
                     <!--  每月定价  -->
-                    <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate MonthlyPrice}" />
-                    <mask:SfMaskedEdit
-                        Mask="\$ 0000"
-                        MaskType="Text"
-                        Watermark="$100"
-                        Value="{Binding Model.MonthlyPrice, Mode=TwoWay}" />
+                    <border:SfBorder Style="{StaticResource EntryBorderStyle}">
+                        <controls:BorderlessEntry
+                            Placeholder="{extensions:Translate MonthlyPrice}"
+                            Style="{StaticResource BorderlessEntryStyle}"
+                            Text="{Binding Model.MonthlyPrice, Mode=TwoWay}" />
+                    </border:SfBorder>
 
                     <!--  每年定价  -->
-                    <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate AnnualPrice}" />
-                    <mask:SfMaskedEdit
-                        Mask="\$ 0000"
-                        MaskType="Text"
-                        Watermark="$999"
-                        Value="{Binding Model.AnnualPrice, Mode=TwoWay}" />
+                    <border:SfBorder Style="{StaticResource EntryBorderStyle}">
+                        <controls:BorderlessEntry
+                            Placeholder="{extensions:Translate AnnualPrice}"
+                            Style="{StaticResource BorderlessEntryStyle}"
+                            Text="{Binding Model.AnnualPrice, Mode=TwoWay}" />
+                    </border:SfBorder>
 
                     <!--  是否试用  -->
                     <buttons:SfCheckBox IsChecked="{Binding IsTrialActive}" Text="{extensions:Translate IsTrialActive}" />
                     <StackLayout IsVisible="{Binding IsTrialActive}">
                         <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate TrialDayCount}" />
                         <number:SfNumericUpDown
+                            MaximumDecimalDigits="0"
                             Minimum="0"
                             StepValue="1"
                             Value="{Binding Model.TrialDayCount}" />
@@ -75,6 +81,7 @@
                     <StackLayout IsVisible="{Binding IsWaitingDayAfter}">
                         <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate WaitingDayAfterExpire}" />
                         <number:SfNumericUpDown
+                            MaximumDecimalDigits="0"
                             Minimum="0"
                             StepValue="1"
                             Value="{Binding Model.WaitingDayAfterExpire}" />
