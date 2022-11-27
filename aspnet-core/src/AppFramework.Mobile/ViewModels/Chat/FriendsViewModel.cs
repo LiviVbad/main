@@ -11,15 +11,12 @@ namespace AppFramework.Shared.ViewModels
 {
     public class FriendsViewModel : RegionViewModel
     {
-        private readonly IApplicationContext context;
         public IFriendChatService chatService { get; private set; }
 
         public DelegateCommand<ItemTappedEventArgs> ClickChatCommand { get; private set; }
 
-        public FriendsViewModel(IApplicationContext context,
-            IFriendChatService chatService)
+        public FriendsViewModel(IFriendChatService chatService)
         {
-            this.context = context;
             this.chatService = chatService;
 
             ClickChatCommand = new DelegateCommand<ItemTappedEventArgs>(async arg =>

@@ -52,12 +52,7 @@
             <StackLayout Grid.Row="2" Margin="16,0">
                 <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate OrganizationUnits}" />
 
-                <border:SfBorder
-                    Padding="8"
-                    BorderColor="{DynamicResource Gray-Bg}"
-                    BorderWidth="0"
-                    CornerRadius="5"
-                    HasShadow="True">
+                <border:SfBorder Style="{StaticResource EntryBorderStyle}">
                     <controls:BorderlessEntry Style="{StaticResource BorderlessEntryStyle}" Text="{Binding OrganizationName}" />
                 </border:SfBorder>
 

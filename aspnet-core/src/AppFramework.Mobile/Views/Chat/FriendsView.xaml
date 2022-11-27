@@ -18,7 +18,6 @@
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
                             <Grid Padding="16,12" ColumnDefinitions="Auto, *, Auto">
-
                                 <badge:SfBadgeView x:Name="BadgeView" VerticalOptions="Center">
                                     <badge:SfBadgeView.Content>
                                         <border:SfBorder
@@ -55,7 +54,7 @@
 
                                     <Label
                                         Style="{StaticResource SimpleLabelStyle}"
-                                        Text="https://github.com"
+                                        Text="{Binding FriendTenancyName}"
                                         TextColor="{DynamicResource Gray-800}" />
                                 </StackLayout>
 

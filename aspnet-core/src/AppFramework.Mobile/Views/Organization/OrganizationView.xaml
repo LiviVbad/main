@@ -3,16 +3,15 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:extensions="clr-namespace:AppFramework.Shared.Extensions.MarkupExtensions;assembly=AppFramework.Shared"
+    xmlns:effect="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
     xmlns:refresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
     xmlns:tree="clr-namespace:Syncfusion.XForms.TreeView;assembly=Syncfusion.SfTreeView.XForms"
     xmlns:views="clr-namespace:AppFramework.Shared.Views">
-    <Grid>
+    <Grid BackgroundColor="{DynamicResource GrayShadowColor}">
         <refresh:SfPullToRefresh>
             <refresh:SfPullToRefresh.PullableContent>
                 <tree:SfTreeView
                     x:Name="SfTreeView"
-                    BackgroundColor="{DynamicResource GrayShadowColor}"
                     ChildPropertyName="Items"
                     ExpandActionTarget="Node"
                     FocusBorderThickness="0"
@@ -22,7 +21,11 @@
                     SelectionBackgroundColor="Transparent">
                     <tree:SfTreeView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
+                            <effect:SfEffectsView
+                                RippleColor="{DynamicResource Gray-300}"
+                                TouchDownEffects="Ripple"
+                                TouchUpCommand="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfTreeView}}"
+                                TouchUpCommandParameter="{Binding}">
                                 <StackLayout Padding="5,10" Orientation="Horizontal">
                                     <Label
                                         Style="{StaticResource IconLabelStyle}"
@@ -32,18 +35,8 @@
                                         Margin="5,0,0,0"
                                         Style="{StaticResource SimpleLabelStyle}"
                                         Text="{Binding DisplayName}" />
-                                    <Label
-                                        Style="{StaticResource SimpleLabelStyle}"
-                                        Text="{Binding MemberCount}"
-                                        TextColor="{DynamicResource PrimaryColor}" />
-                                    <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Members}" />
-                                    <Label
-                                        Style="{StaticResource SimpleLabelStyle}"
-                                        Text="{Binding RoleCount}"
-                                        TextColor="{DynamicResource PrimaryColor}" />
-                                    <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Roles}" />
                                 </StackLayout>
-                            </ViewCell>
+                            </effect:SfEffectsView>
                         </DataTemplate>
                     </tree:SfTreeView.ItemTemplate>
                 </tree:SfTreeView>
