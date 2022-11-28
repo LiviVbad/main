@@ -1,5 +1,6 @@
 ﻿using AppFramework.Auditing;
 using AppFramework.Auditing.Dto;
+using Prism.Commands;
 using System;
 using System.Threading.Tasks;
 
@@ -12,6 +13,16 @@ namespace AppFramework.Shared.ViewModels
         private int CurrentPage;
         private int TotalCount;
 
+        private AuditLogListDto auditLog;
+
+        public AuditLogListDto AuditLog
+        {
+            get { return auditLog; }
+            set { auditLog = value; RaisePropertyChanged(); }
+        }
+
+        public DelegateCommand<AuditLogListDto> DetailsCommand { get; private set; }
+
         public AuditLogViewModel(IAuditLogAppService appService)
         {
             input = new GetAuditLogsInput()
@@ -21,6 +32,14 @@ namespace AppFramework.Shared.ViewModels
                 MaxResultCount = AppConsts.DefaultPageSize,
             };
             this.appService = appService;
+
+            DetailsCommand=new DelegateCommand<AuditLogListDto>(ShowDetails);
+        }
+
+        private void ShowDetails(AuditLogListDto auditLog)
+        {
+            AuditLog=auditLog;
+            messenger.Send("AuditLogDetailsViewIsVisible", true);
         }
 
         public override async Task RefreshAsync()

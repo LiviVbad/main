@@ -3,11 +3,11 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:control="clr-namespace:AppFramework.Shared.Controls"
     xmlns:effect="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:refresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms">
-    <Grid BackgroundColor="{DynamicResource Gray-100}">
+    xmlns:refresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+    xmlns:views="clr-namespace:AppFramework.Shared.Views">
+    <Grid BackgroundColor="{DynamicResource GrayShadowColor}">
         <refresh:SfPullToRefresh IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}">
             <refresh:SfPullToRefresh.PullableContent>
                 <listView:SfListView
@@ -22,7 +22,7 @@
                                 <effect:SfEffectsView
                                     RippleColor="{DynamicResource Gray-300}"
                                     TouchDownEffects="Ripple"
-                                    TouchUpCommand="{Binding Path=BindingContext.EditCommand, Source={x:Reference sfListView}}"
+                                    TouchUpCommand="{Binding Path=BindingContext.DetailsCommand, Source={x:Reference sfListView}}"
                                     TouchUpCommandParameter="{Binding}">
                                     <Grid
                                         Padding="10"
@@ -37,15 +37,17 @@
 
                                             <!--<Label Style="{StaticResource SimpleLabelStyle}" Text="{Binding ServiceName}" />-->
                                             <Label Style="{StaticResource SimpleLabelStyle}" Text="{Binding MethodName}" />
-                                            <border:SfBorder
-                                                Padding="5,2"
-                                                BackgroundColor="{DynamicResource PrimaryColor}"
-                                                BorderWidth="0"
-                                                CornerRadius="30"
-                                                HorizontalOptions="End">
-                                                <Label Text="{Binding ExecutionDuration, StringFormat='{0}ms'}" TextColor="{DynamicResource Gray-White}" />
-                                            </border:SfBorder>
                                         </StackLayout>
+
+                                        <border:SfBorder
+                                            Grid.Row="2"
+                                            Padding="5,2"
+                                            BackgroundColor="{DynamicResource PrimaryColor}"
+                                            BorderWidth="0"
+                                            CornerRadius="30"
+                                            HorizontalOptions="End">
+                                            <Label Text="{Binding ExecutionDuration, StringFormat='{0}ms'}" TextColor="{DynamicResource Gray-White}" />
+                                        </border:SfBorder>
 
                                         <StackLayout Grid.Row="1" Orientation="Horizontal">
                                             <Label
@@ -75,5 +77,7 @@
                 </listView:SfListView>
             </refresh:SfPullToRefresh.PullableContent>
         </refresh:SfPullToRefresh>
+
+        <views:AuditLogDetailsView />
     </Grid>
 </ContentView>
