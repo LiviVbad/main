@@ -2,7 +2,7 @@
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.Authorization.Users.Profile;
 using AppFramework.Shared;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AppFramework.Shared.Services.Permission;
@@ -16,9 +16,9 @@ using AppFramework.Authorization.Roles.Dto;
 using System.Collections.ObjectModel;
 using Prism.Regions;
 using AppFramework.Shared.Services;
-using AppFramework.Services;
+using AppFramework.Admin.Services;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class UserViewModel : NavigationCurdViewModel
     {

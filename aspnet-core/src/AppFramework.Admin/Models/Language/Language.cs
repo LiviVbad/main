@@ -1,4 +1,4 @@
-﻿namespace AppFramework.Models
+﻿namespace AppFramework.Admin.Models
 {
     public struct LanguageStruct
     {

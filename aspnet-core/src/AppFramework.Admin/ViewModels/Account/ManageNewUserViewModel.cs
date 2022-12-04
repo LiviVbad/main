@@ -1,9 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Authorization.Users.Delegation;
 using AppFramework.Shared;
-using AppFramework.Common.Dto;
-using AppFramework.Services;
-using AppFramework.ViewModels.Shared;
+using AppFramework.Common.Dto; 
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
@@ -11,7 +9,7 @@ using System.Threading.Tasks;
 using AppFramework.Common;
 using AppFramework.Shared.Services;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class ManageNewUserViewModel : HostDialogViewModel
     {

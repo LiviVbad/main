@@ -1,11 +1,11 @@
 ﻿using AppFramework.Shared;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using AppFramework.Localization;
 using AppFramework.Localization.Dto; 
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class LanguageTextDetailsViewModel : HostDialogViewModel
     {

@@ -19,7 +19,7 @@ using MimeMapping;
 using Abp.Application.Services.Dto;
 using AppFramework.Shared.Services;
 
-namespace AppFramework.Admin.ViewModels.Chat
+namespace AppFramework.Admin.ViewModels
 {
     public class FriendsChatViewModel : HostDialogViewModel
     {

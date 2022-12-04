@@ -1,12 +1,12 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.ApiClient.Models;
 using AppFramework.Shared.Models;
-using AppFramework.Shared.Services.Storage;
+using AppFramework.Shared.Services;
 using AppFramework.Sessions.Dto; 
 using System.Threading.Tasks;
 using AppFramework.Shared.Services.Mapper;
 
-namespace AppFramework.Services.Account
+namespace AppFramework.Admin.Services.Account
 {
     public class AccountStorageService : IAccountStorageService
     {

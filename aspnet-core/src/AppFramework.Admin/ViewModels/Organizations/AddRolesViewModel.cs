@@ -8,9 +8,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AppFramework.Shared.Services;
 using AppFramework.Shared;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class AddRolesViewModel : HostDialogViewModel
     {

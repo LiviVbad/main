@@ -5,11 +5,10 @@ using Prism.Commands;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
-using AppFramework.ApiClient;
-using AppFramework.Services;
+using AppFramework.ApiClient; 
 using AppFramework.Shared.Services;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     /// <summary>
     /// 编辑值视图模型

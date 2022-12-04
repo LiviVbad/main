@@ -2,7 +2,7 @@
 using AppFramework.Shared; 
 using Prism.Services.Dialogs;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class AuditLogsDetailsViewModel : HostDialogViewModel
     {

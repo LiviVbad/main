@@ -1,15 +1,13 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Authorization.Users.Delegation;
 using AppFramework.Authorization.Users.Delegation.Dto;
-using AppFramework.Shared;
-using AppFramework.Services;
-using AppFramework.ViewModels.Shared;
+using AppFramework.Shared; 
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 using AppFramework.Shared.Services;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class ManageUserDelegationsViewModel : HostDialogViewModel
     {

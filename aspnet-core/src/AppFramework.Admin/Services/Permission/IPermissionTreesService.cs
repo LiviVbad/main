@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace AppFramework.Services
+namespace AppFramework.Admin.Services
 {
     /// <summary>
     /// 权限树生成接口

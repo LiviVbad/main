@@ -3,7 +3,7 @@ using AppFramework.Shared.Models;
 using System;
 using System.Collections.Generic;
 
-namespace AppFramework.Models
+namespace AppFramework.Admin.Models
 {
     public class UserListModel : EntityObject
     {

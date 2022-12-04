@@ -2,7 +2,7 @@
 using AppFramework.Editions.Dto; 
 using System.Collections.Generic; 
 
-namespace AppFramework.Services
+namespace AppFramework.Admin.Services
 {
     public interface IFeaturesService
     {

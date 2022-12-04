@@ -1,14 +1,14 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Shared;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using AppFramework.Shared.Services.Permission;
 using AppFramework.Localization;
 using AppFramework.Localization.Dto;
-using AppFramework.Services;
+using AppFramework.Admin.Services;
 using Prism.Regions;
 using System.Threading.Tasks;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class LanguageViewModel : NavigationCurdViewModel
     {

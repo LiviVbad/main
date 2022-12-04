@@ -1,19 +1,17 @@
-﻿using Prism.Ioc;
-using AppFramework.Shared.Services.App;
-using AppFramework.Shared.Services.Storage;
-using AppFramework.Services;
-using AppFramework.Services.Account;
-using AppFramework.Services.Notification;
+﻿using Prism.Ioc; 
+using AppFramework.Admin.Services;
+using AppFramework.Admin.Services.Account;
+using AppFramework.Admin.Services.Notification;
 using AppFramework.ApiClient; 
 using AppFramework.Shared;
+using AppFramework.Shared.Services;
 
 namespace AppFramework.Admin
 { 
     public static class ServiceExtensions
     { 
         public static void AddServices(this IContainerRegistry services)
-        {
-            services.RegisterSingleton<IAppStartService, AppStartService>();
+        { 
             services.RegisterSingleton<IAccountService, AccountService>();
             services.RegisterSingleton<IAccountStorageService, AccountStorageService>();
             services.RegisterSingleton<IDataStorageService, DataStorageService>();

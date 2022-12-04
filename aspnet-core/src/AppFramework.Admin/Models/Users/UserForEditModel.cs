@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AppFramework.Models
+namespace AppFramework.Admin.Models
 {
     public class UserForEditModel : BindableBase
     {

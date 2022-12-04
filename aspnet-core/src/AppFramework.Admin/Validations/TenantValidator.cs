@@ -5,7 +5,7 @@ using AppFramework.MultiTenancy.Dto;
 using AppFramework.Shared.Validations;
 using FluentValidation;
 
-namespace AppFramework.Validations
+namespace AppFramework.Admin.Validations
 {
     public class CreateTenantValidator : AbstractValidator<CreateTenantInput>
     {

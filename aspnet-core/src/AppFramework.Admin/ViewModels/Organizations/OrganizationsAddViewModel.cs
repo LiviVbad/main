@@ -1,12 +1,12 @@
 ﻿using AppFramework.Shared;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using AppFramework.Organizations;
 using AppFramework.Organizations.Dto;
-using AppFramework.ViewModels.Shared;
+using AppFramework.Admin.ViewModels.Shared;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class OrganizationsAddViewModel : HostDialogViewModel
     {

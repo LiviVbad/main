@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel; 
 using AppFramework.Shared;  
 
-namespace AppFramework.Services
+namespace AppFramework.Admin.Services
 {
     public class NavigationMenuService : INavigationMenuService
     {

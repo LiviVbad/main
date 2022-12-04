@@ -1,6 +1,6 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.Shared;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using AppFramework.Localization;
 using AppFramework.Localization.Dto;
 using Prism.Commands;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AppFramework.Shared.Services;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class LanguageTextViewModel : NavigationCurdViewModel
     {

@@ -3,8 +3,8 @@
     using Prism.Commands;
     using Prism.Regions;
     using Prism.Ioc;
-    using System.Threading.Tasks;
-    using AppFramework.Services;
+    using System.Threading.Tasks; 
+    using AppFramework.Shared.Services;
 
     public class NavigationViewModel : ViewModelBase, INavigationAware
     {

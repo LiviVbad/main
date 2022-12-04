@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppFramework.Models
+namespace AppFramework.Admin.Models
 {
     public class PagedAndSortedFilter : PagedFilter
     {

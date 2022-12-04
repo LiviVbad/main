@@ -6,12 +6,12 @@ using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using AppFramework.ApiClient;
-using AppFramework.Services;
+using AppFramework.Admin.Services;
 using System.Collections.ObjectModel;
 using System.Linq;
 using AppFramework.Shared.Services;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     /// <summary>
     /// 动态实体属性详情

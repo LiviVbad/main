@@ -5,7 +5,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace AppFramework.Services
+namespace AppFramework.Admin.Services
 {
     public class PermissionPorxyService : BindableBase, IPermissionPorxyService
     {

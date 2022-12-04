@@ -1,8 +1,8 @@
-﻿using AppFramework.Models;
+﻿using AppFramework.Admin.Models;
 using AppFramework.Shared.Validations;
 using FluentValidation; 
 
-namespace AppFramework.Validations
+namespace AppFramework.Admin.Validations
 {
     public class VersionValidator : AbstractValidator<VersionListModel>
     {

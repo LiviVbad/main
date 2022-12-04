@@ -1,7 +1,7 @@
-﻿using AppFramework.Models;
+﻿using AppFramework.Admin.Models;
 using AppFramework.MultiTenancy.Dto;
 using AppFramework.Shared.Models.Configuration;
-using AppFramework.Validations;
+using AppFramework.Admin.Validations;
 using FluentValidation;
 using Prism.Ioc; 
 

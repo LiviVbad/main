@@ -1,10 +1,10 @@
 ﻿using Abp.Authorization.Users;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using AppFramework.Authorization.Users; 
 using FluentValidation;
 using AppFramework.Shared.Validations;
 
-namespace AppFramework.Validations
+namespace AppFramework.Admin.Validations
 {
     public class UserCreateOrUpdateValidator : AbstractValidator<UserCreateOrUpdateModel>
     {

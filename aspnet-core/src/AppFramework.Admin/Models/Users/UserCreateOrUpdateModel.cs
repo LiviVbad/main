@@ -1,7 +1,7 @@
 ﻿using Prism.Mvvm;
 using System.Collections.Generic;
 
-namespace AppFramework.Models
+namespace AppFramework.Admin.Models
 {
     public class UserCreateOrUpdateModel : BindableBase
     {

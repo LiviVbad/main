@@ -1,4 +1,4 @@
-﻿using AppFramework.Services;
+﻿using AppFramework.Shared.Services;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks; 
 

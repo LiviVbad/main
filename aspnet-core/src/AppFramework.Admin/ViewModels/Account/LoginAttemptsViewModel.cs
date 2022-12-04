@@ -2,13 +2,13 @@
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.Shared;
 using AppFramework.Shared.Services;
-using AppFramework.ViewModels.Shared;
+using AppFramework.Admin.ViewModels.Shared;
 using Prism.Commands;
 using Prism.Regions;
 using System;
 using System.Threading.Tasks;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class LoginAttemptsViewModel : NavigationCurdViewModel
     {

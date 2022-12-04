@@ -1,13 +1,14 @@
 ﻿using AppFramework.ApiClient.Models;
 using AppFramework.Authorization.Accounts;
-using AppFramework.Services;
+using AppFramework.Admin.Services;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System.Collections.Generic;
 using System.Linq;
 using AppFramework.Shared;
+using AppFramework.Shared.Services;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class SendTwoFactorCodeViewModel : HostDialogViewModel
     {

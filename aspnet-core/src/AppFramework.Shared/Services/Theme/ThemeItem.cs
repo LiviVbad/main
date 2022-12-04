@@ -1,4 +1,4 @@
-﻿namespace AppFramework.Models
+﻿namespace AppFramework.Shared.Services
 {
     public class ThemeItem
     {

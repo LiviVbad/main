@@ -1,11 +1,11 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.Shared;
-using AppFramework.Shared.Services.Storage;
-using AppFramework.Services.Account; 
+using AppFramework.Shared.Services;
+using AppFramework.Admin.Services.Account; 
 using Prism.Services.Dialogs;
 using System.Threading.Tasks; 
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class SplashScreenViewModel : DialogViewModel
     {

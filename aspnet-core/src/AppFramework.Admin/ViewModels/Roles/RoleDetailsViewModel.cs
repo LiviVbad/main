@@ -2,12 +2,12 @@
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
 using AppFramework.Shared;
-using AppFramework.Models; 
+using AppFramework.Admin.Models; 
 using Prism.Services.Dialogs;
-using AppFramework.Services;
+using AppFramework.Admin.Services;
 using System.Threading.Tasks;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class RoleDetailsViewModel : HostDialogViewModel
     {

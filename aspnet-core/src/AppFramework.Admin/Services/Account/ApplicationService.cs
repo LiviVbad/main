@@ -3,7 +3,7 @@ using AppFramework.Authorization.Users.Profile;
 using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Shared.Models;
 using AppFramework.Shared.Services.Permission; 
-using AppFramework.Services.Notification;
+using AppFramework.Admin.Services.Notification;
 using Prism.Regions;
 using Prism.Services.Dialogs;
 using System;
@@ -11,8 +11,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AppFramework.Shared;
+using AppFramework.Shared.Services;
 
-namespace AppFramework.Services.Account
+namespace AppFramework.Admin.Services.Account
 {
     public class ApplicationService : ViewModelBase, IApplicationService
     {

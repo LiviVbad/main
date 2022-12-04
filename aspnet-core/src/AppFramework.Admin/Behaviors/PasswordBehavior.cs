@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace AppFramework.Behaviors
+namespace AppFramework.Admin.Behaviors
 {
     public class PasswordBehavior : Behavior<PasswordBox>
     {

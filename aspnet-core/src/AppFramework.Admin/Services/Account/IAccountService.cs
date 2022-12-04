@@ -1,8 +1,8 @@
 ﻿using AppFramework.ApiClient.Models;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using System.Threading.Tasks;
 
-namespace AppFramework.Services
+namespace AppFramework.Admin.Services
 {
     public interface IAccountService
     {

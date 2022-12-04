@@ -1,10 +1,8 @@
-﻿using Abp.Runtime.Security;
-using AppFramework.Shared;
-using AppFramework.Shared.Services.Storage;
+﻿using Abp.Runtime.Security;  
 using Newtonsoft.Json;
 using System;
 
-namespace AppFramework.Services
+namespace AppFramework.Shared.Services
 {
     public class DataStorageService : IDataStorageService
     {

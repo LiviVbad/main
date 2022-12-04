@@ -6,7 +6,7 @@ using Prism.Mvvm;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-namespace AppFramework.Services.Notification
+namespace AppFramework.Admin.Services.Notification
 {
     public class NotificationService : BindableBase
     {

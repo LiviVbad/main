@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using Prism.Ioc; 
 using Prism.Regions;
 using AppFramework.Shared.Services;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class AuditLogsViewModel : NavigationCurdViewModel
     {

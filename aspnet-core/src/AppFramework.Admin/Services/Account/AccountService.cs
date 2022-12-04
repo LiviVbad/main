@@ -1,6 +1,6 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.ApiClient.Models;
-using AppFramework.Shared.Services.Storage;
+using AppFramework.Shared.Services;
 using AppFramework.Sessions;
 using AppFramework.Sessions.Dto;
 using Prism.Mvvm;
@@ -8,10 +8,9 @@ using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 using AppFramework.Shared;
 using AppFramework.Shared.Services.App;
-using AppFramework.Models;
-using AppFramework.Shared.Services;
+using AppFramework.Admin.Models;
 
-namespace AppFramework.Services.Account
+namespace AppFramework.Admin.Services.Account
 {
     public class AccountService : BindableBase, IAccountService
     {

@@ -3,7 +3,7 @@ using Prism.Services.Dialogs;
 using System;
 using System.Threading.Tasks;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class SelectDateRangeViewModel : HostDialogViewModel
     {

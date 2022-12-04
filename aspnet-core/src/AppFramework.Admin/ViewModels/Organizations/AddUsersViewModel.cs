@@ -1,5 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using AppFramework.Organizations;
 using AppFramework.Organizations.Dto;
 using Prism.Commands;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using AppFramework.Shared.Services;
 using AppFramework.Shared;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class AddUsersViewModel : HostDialogViewModel
     {

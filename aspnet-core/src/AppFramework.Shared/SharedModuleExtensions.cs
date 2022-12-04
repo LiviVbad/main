@@ -28,9 +28,7 @@ using AppFramework.Sessions;
 using AppFramework.Tenants.Dashboard;
 using AppFramework.Version;
 using Prism.Ioc;
-using AppFramework.Shared.Services;
-using AppFramework.Services;
-using AppFramework.Services.Dialog;
+using AppFramework.Shared.Services; 
 using AppFramework.Shared.Validations;
 using AppFramework.Chat;
 using AppFramework.Friendships;
@@ -43,8 +41,7 @@ namespace AppFramework.Shared
         {
             services.RegisterSingleton<IGlobalValidator, GlobalValidator>();
 
-            services.Register<IDataPagerService, DataPagerService>();
-            services.RegisterSingleton<IHostDialogService, DialogHostService>();
+            services.Register<IDataPagerService, DataPagerService>(); 
             services.RegisterSingleton<IChatService, ChatService>();
 
             services.RegisterSingleton<IAccessTokenManager, AccessTokenManager>();

@@ -1,10 +1,9 @@
 ﻿using Microsoft.Xaml.Behaviors;
 using System.ComponentModel;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Media;
+using System.Windows.Data; 
 
-namespace AppFramework.Behaviors
+namespace AppFramework.Admin.Behaviors
 {
     public class ChatMessageListBoxGroupBehavior : Behavior<ListBox>
     {

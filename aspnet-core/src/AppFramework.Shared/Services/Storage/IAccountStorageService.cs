@@ -3,7 +3,7 @@ using AppFramework.ApiClient.Models;
 using AppFramework.Sessions.Dto;
 using System.Threading.Tasks;
 
-namespace AppFramework.Shared.Services.Storage
+namespace AppFramework.Shared.Services
 {
     public interface IAccountStorageService
     { 

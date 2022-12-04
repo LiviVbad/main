@@ -12,7 +12,7 @@ using AppFramework.Authorization.Users.Profile;
 using AppFramework.Shared.Services;
 using System.Diagnostics;
 
-namespace AppFramework.Services.Account
+namespace AppFramework.Admin.Services.Account
 {
     public class UserConfigurationManager
     {

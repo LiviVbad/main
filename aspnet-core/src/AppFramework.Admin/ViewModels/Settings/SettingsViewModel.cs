@@ -3,7 +3,7 @@ using AppFramework.Shared.Models.Configuration;
 using AppFramework.Configuration.Host;
 using AppFramework.Configuration.Host.Dto;
 using AppFramework.Editions.Dto;
-using AppFramework.ViewModels.Shared;
+using AppFramework.Admin.ViewModels.Shared;
 using Prism.Commands;
 using Prism.Regions;
 using System;
@@ -11,7 +11,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using AppFramework.Common;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class SettingsViewModel : NavigationViewModel
     {

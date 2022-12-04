@@ -8,7 +8,6 @@ namespace AppFramework.Admin
         {
             services.AddValidators();
             services.AddServices();
-            services.AddViews();
         }
     }
 }

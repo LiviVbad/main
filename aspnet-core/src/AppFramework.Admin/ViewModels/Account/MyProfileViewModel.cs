@@ -1,10 +1,10 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.Shared;
-using AppFramework.Models;
-using AppFramework.ViewModels.Shared;
+using AppFramework.Admin.Models;
+using AppFramework.Admin.ViewModels.Shared;
 using Prism.Services.Dialogs; 
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class MyProfileViewModel : HostDialogViewModel
     {

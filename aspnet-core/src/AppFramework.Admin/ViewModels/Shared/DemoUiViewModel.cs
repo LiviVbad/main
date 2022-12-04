@@ -1,6 +1,6 @@
 ﻿using AppFramework.Shared;
 
-namespace AppFramework.ViewModels.Shared
+namespace AppFramework.Admin.ViewModels.Shared
 {
     public class DemoUiViewModel : NavigationViewModel
     {

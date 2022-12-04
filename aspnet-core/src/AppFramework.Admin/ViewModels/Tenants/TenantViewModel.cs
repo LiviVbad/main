@@ -2,7 +2,7 @@
 using AppFramework.Shared;
 using AppFramework.Shared.Services.Permission;
 using AppFramework.Editions;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using AppFramework.MultiTenancy;
 using AppFramework.MultiTenancy.Dto;
 using Prism.Commands;
@@ -10,11 +10,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Prism.Services.Dialogs;
-using AppFramework.ViewModels.Shared;
+using AppFramework.Admin.ViewModels.Shared;
 using Prism.Regions;
 using AppFramework.Shared.Services;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class TenantViewModel : NavigationCurdViewModel
     {

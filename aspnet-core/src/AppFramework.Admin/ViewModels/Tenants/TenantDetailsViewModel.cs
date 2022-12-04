@@ -1,6 +1,6 @@
 ﻿using Abp.Runtime.Security;
 using AppFramework.Shared;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using AppFramework.Editions.Dto;
 using AppFramework.MultiTenancy;
 using AppFramework.MultiTenancy.Dto;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AppFramework.Common;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class TenantDetailsViewModel : HostDialogViewModel
     {

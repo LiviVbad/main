@@ -1,9 +1,8 @@
 ﻿using AppFramework.Shared;
-using AppFramework.Models;
-using AppFramework.Services;
+using AppFramework.Shared.Services;
 using Prism.Commands;
 
-namespace AppFramework.ViewModels.Shared
+namespace AppFramework.Admin.ViewModels.Shared
 {
     public class VisualViewModel : NavigationViewModel
     {

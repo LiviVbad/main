@@ -4,7 +4,7 @@ using Prism.Services.Dialogs;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class DynamicAddEntityViewModel : HostDialogViewModel
     {

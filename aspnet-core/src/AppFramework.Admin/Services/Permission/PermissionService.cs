@@ -2,7 +2,7 @@
 using AppFramework.Shared;
 using System;
 
-namespace AppFramework.Services
+namespace AppFramework.Admin.Services
 {
     public class PermissionService : IPermissionService
     {

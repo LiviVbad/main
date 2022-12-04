@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Editions.Dto;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using AppFramework.Shared.Services.Mapper;
 using AutoMapper;
 using Prism.Mvvm;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq; 
 
-namespace AppFramework.Services
+namespace AppFramework.Admin.Services
 {
     public class FeaturesService : BindableBase, IFeaturesService
     {

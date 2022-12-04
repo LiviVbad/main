@@ -1,13 +1,13 @@
 ﻿using AppFramework.Authorization.Users;
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.Shared;
-using AppFramework.Services; 
+using AppFramework.Admin.Services; 
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 using AppFramework.Shared.Services; 
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class ManageLinkedAccountsViewModel : HostDialogViewModel
     {

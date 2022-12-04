@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Shared;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using AppFramework.Shared.Services.Permission;
 using AppFramework.Version;
 using AppFramework.Version.Dtos;
@@ -8,7 +8,7 @@ using Prism.Regions;
 using System.Threading.Tasks;
 using AppFramework.Shared.Services;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class VersionManagerViewModel : NavigationCurdViewModel
     {

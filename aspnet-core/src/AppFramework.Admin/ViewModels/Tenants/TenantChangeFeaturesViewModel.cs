@@ -3,9 +3,9 @@ using AppFramework.MultiTenancy;
 using AppFramework.MultiTenancy.Dto; 
 using Prism.Services.Dialogs; 
 using System.Threading.Tasks;
-using AppFramework.Services;
+using AppFramework.Admin.Services;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class TenantChangeFeaturesViewModel : HostDialogViewModel
     {

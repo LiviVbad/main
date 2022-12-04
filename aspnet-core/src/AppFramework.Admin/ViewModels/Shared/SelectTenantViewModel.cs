@@ -2,7 +2,7 @@
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 
-namespace AppFramework.ViewModels.Shared
+namespace AppFramework.Admin.ViewModels.Shared
 {
     public class SelectTenantViewModel : HostDialogViewModel
     {

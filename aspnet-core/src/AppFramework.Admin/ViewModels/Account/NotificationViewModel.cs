@@ -2,15 +2,15 @@
 using AppFramework.Shared;
 using AppFramework.Notifications;
 using AppFramework.Notifications.Dto;
-using AppFramework.Services.Notification;
-using AppFramework.ViewModels.Shared;
+using AppFramework.Admin.Services.Notification;
+using AppFramework.Admin.ViewModels.Shared;
 using Prism.Commands;
 using Prism.Regions;
 using System;
 using System.Threading.Tasks;
 using AppFramework.Shared.Services;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class NotificationViewModel : NavigationCurdViewModel
     {

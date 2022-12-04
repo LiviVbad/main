@@ -1,8 +1,9 @@
 ﻿using AppFramework.Services;
-using AppFramework.WindowHost;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
+using Prism.Ioc; 
+using AppFramework.Shared.Services;
 
 namespace AppFramework.Shared
 {
@@ -16,21 +17,24 @@ namespace AppFramework.Shared
 
         public DelegateCommand CancelCommand { get; private set; }
 
+        private IHostDialogService dialogService;
+
         public HostDialogViewModel()
         {
             SaveCommand = new DelegateCommand(async () => await Save());
             CancelCommand = new DelegateCommand(Cancel);
+
+            dialogService=ContainerLocator.Container.Resolve<IHostDialogService>();
         }
 
         public virtual void Cancel()
         {
-            DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.No));
+            dialogService.Close(IdentifierName, new DialogResult(ButtonResult.No));
         }
 
         public virtual async Task Save()
         {
-            DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.OK));
-
+            dialogService.Close(IdentifierName, new DialogResult(ButtonResult.OK));
             await Task.CompletedTask;
         }
 
@@ -39,12 +43,12 @@ namespace AppFramework.Shared
             DialogParameters param = new DialogParameters();
             param.Add("Value", value);
 
-            DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.OK, param));
+            //DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.OK, param));
         }
 
         protected virtual void Save(DialogParameters param)
         {
-            DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.OK, param));
+            //DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.OK, param));
         }
 
         public abstract void OnDialogOpened(IDialogParameters parameters);

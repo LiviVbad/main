@@ -3,9 +3,9 @@ using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 using AppFramework.Authorization.Users;   
 using AppFramework.Shared;
-using AppFramework.Services;
+using AppFramework.Admin.Services;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class UserChangePermissionViewModel : HostDialogViewModel
     {

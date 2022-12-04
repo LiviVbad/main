@@ -1,6 +1,6 @@
 ﻿using AppFramework.Shared.Models;
 
-namespace AppFramework.Models
+namespace AppFramework.Admin.Models
 {
     public class DynamicPropertyModel : EntityObject
     {

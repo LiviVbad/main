@@ -1,14 +1,13 @@
 ﻿using AppFramework.Shared;
 using AppFramework.Shared.Models; 
-using AppFramework.Services;
-using AppFramework.Services.Notification;
+using AppFramework.Admin.Services;
+using AppFramework.Admin.Services.Notification;
 using Prism.Commands;
-using Prism.Regions;
-using Syncfusion.UI.Xaml.TreeView;
+using Prism.Regions; 
 using System.Threading.Tasks;
 using AppFramework.ApiClient;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class MainTabsViewModel : NavigationViewModel
     {
@@ -25,7 +24,7 @@ namespace AppFramework.ViewModels
             this.appService = appService;
             this.applicationContext = applicationContext;
             SettingsCommand = new DelegateCommand(notificationService.Settings);
-            NavigateCommand = new DelegateCommand<ItemSelectionChangedEventArgs>(Navigate);
+            NavigateCommand = new DelegateCommand<NavigationItem>(Navigate);
             SeeAllNotificationsCommand = new DelegateCommand(() =>
             {
                 NotificationPanelIsOpen = false;
@@ -40,7 +39,7 @@ namespace AppFramework.ViewModels
         public NavigationService NavigationService { get; set; }
         public NotificationService notificationService { get; set; }
         public IApplicationService appService { get; init; }
-        public DelegateCommand<ItemSelectionChangedEventArgs> NavigateCommand { get; private set; }
+        public DelegateCommand<NavigationItem> NavigateCommand { get; private set; }
 
         private bool notificationPanelIsOpen;
         private bool isShowFriendsPanel;
@@ -101,19 +100,15 @@ namespace AppFramework.ViewModels
 
         #endregion
 
-        public void Navigate(ItemSelectionChangedEventArgs args)
+        public void Navigate(NavigationItem item)
         {
-            if (args != null && args.AddedItems != null)
-            {
-                if (args.AddedItems[0] is NavigationItem item)
-                {
-                    NavigationService.Navigate(item.PageViewName);
-                }
-            }
+            NavigationService.Navigate(item.PageViewName);
         }
 
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
         {
+            IsShowUserPanel=false;
+
             await appService.GetApplicationInfo();
 
             if (applicationContext.Configuration.Auth.GrantedPermissions.ContainsKey(AppPermissions.HostDashboard))

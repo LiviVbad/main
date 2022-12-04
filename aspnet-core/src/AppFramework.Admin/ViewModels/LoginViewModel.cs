@@ -3,17 +3,17 @@ using AppFramework.ApiClient;
 using AppFramework.Authorization.Accounts;
 using AppFramework.Authorization.Accounts.Dto;
 using AppFramework.Shared;
-using AppFramework.Shared.Services.Storage;
-using AppFramework.Services;
-using AppFramework.Services.Account;
+using AppFramework.Admin.Services;
+using AppFramework.Admin.Services.Account;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using AppFramework.Shared.Services;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class LoginViewModel : DialogViewModel
     {

@@ -1,4 +1,4 @@
-﻿using AppFramework.Services;
+﻿using AppFramework.Admin.Services;
 using AppFramework.Shared;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Prism.Ioc;
 using Prism.Commands;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class UserPanelViewModel : NavigationViewModel
     { 

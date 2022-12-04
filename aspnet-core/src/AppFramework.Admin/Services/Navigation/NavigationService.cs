@@ -1,12 +1,11 @@
-﻿using AppFramework.Shared;
+﻿using AppFramework.Admin;
+using AppFramework.Shared;
 using Prism.Mvvm;
-using Prism.Regions;
-using Syncfusion.Data.Extensions;
-using System;
+using Prism.Regions;  
 using System.Linq;
 using System.Windows.Controls;
 
-namespace AppFramework.Services
+namespace AppFramework.Admin.Services
 {
     public class NavigationService : BindableBase
     {

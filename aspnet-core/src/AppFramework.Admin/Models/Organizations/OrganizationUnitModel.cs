@@ -1,6 +1,6 @@
 ﻿using AppFramework.Organizations.Dto;
 
-namespace AppFramework.Models
+namespace AppFramework.Admin.Models
 {
     public class OrganizationUnitModel : OrganizationUnitDto
     {

@@ -1,5 +1,5 @@
 ﻿using AppFramework.Shared;
-using AppFramework.Models; 
+using AppFramework.Admin.Models; 
 using AppFramework.MultiTenancy.HostDashboard;
 using AppFramework.MultiTenancy.HostDashboard.Dto; 
 using Prism.Regions;
@@ -7,7 +7,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks; 
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class DashboardViewModel : NavigationViewModel
     {

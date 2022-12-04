@@ -1,7 +1,7 @@
 ﻿using AppFramework.Shared.Models.Configuration;
 using FluentValidation;
 
-namespace AppFramework.Validations
+namespace AppFramework.Admin.Validations
 {
     public class SettingsValidator : AbstractValidator<HostSettingsEditModel>
     {

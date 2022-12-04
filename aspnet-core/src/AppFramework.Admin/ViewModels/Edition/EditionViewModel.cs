@@ -3,11 +3,11 @@ using AppFramework.Editions;
 using AppFramework.Editions.Dto;
 using AppFramework.Shared;
 using AppFramework.Shared.Services.Permission;
-using AppFramework.ViewModels.Shared;
+using AppFramework.Admin.ViewModels.Shared;
 using Prism.Regions;
 using System.Threading.Tasks;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class EditionViewModel : NavigationCurdViewModel
     {

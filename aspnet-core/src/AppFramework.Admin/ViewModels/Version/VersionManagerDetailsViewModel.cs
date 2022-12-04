@@ -1,6 +1,6 @@
 ﻿using AppFramework.Authorization.Users.Profile;
 using AppFramework.Shared;
-using AppFramework.Models; 
+using AppFramework.Admin.Models; 
 using AppFramework.Version.Dtos;
 using Microsoft.Win32;
 using Prism.Commands;
@@ -8,7 +8,7 @@ using Prism.Services.Dialogs;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace AppFramework.ViewModels.Version
+namespace AppFramework.Admin.ViewModels.Version
 {
     public class VersionManagerDetailsViewModel : HostDialogViewModel
     {

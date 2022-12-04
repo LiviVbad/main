@@ -13,11 +13,7 @@
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="FluentValidation" Version="10.4.0" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
-    <PackageReference Include="Prism.Core" Version="8.1.97" />
-    <PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="20.1.0.48" />
-    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="20.1.0.48" />
-    <PackageReference Include="Syncfusion.Shared.WPF" Version="20.1.0.48" />
-    <PackageReference Include="Syncfusion.Tools.WPF" Version="20.1.0.48" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" /> 
   </ItemGroup>
 
   <ItemGroup>
@@ -26,19 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Themes\Border.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-    <Page Update="Themes\Button.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-    <Page Update="Themes\DataGrid.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
     <Page Update="Themes\generic.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-    <Page Update="Themes\Host\DialogHost.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
     <Page Update="Themes\Templates\FileTemplate.xaml">

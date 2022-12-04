@@ -3,7 +3,7 @@ using AppFramework.Shared;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class CreateLinkedAccountViewModel : HostDialogViewModel
     {

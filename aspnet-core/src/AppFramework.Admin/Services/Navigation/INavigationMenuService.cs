@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace AppFramework.Services
+namespace AppFramework.Admin.Services
 {
     public interface INavigationMenuService
     {

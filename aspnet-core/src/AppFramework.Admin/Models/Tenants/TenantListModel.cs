@@ -1,7 +1,7 @@
 ﻿using AppFramework.Shared.Models;
 using System;
 
-namespace AppFramework.Models
+namespace AppFramework.Admin.Models
 {
     public class TenantListModel : EntityObject
     {

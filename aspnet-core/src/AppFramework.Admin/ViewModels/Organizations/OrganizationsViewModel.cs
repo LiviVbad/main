@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Shared;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using AppFramework.Organizations;
 using AppFramework.Organizations.Dto;
 using Prism.Commands;
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using Prism.Regions;
 using AppFramework.Shared.Services; 
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class OrganizationsViewModel : NavigationCurdViewModel
     {

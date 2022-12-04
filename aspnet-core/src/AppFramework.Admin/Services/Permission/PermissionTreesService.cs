@@ -1,5 +1,5 @@
 ﻿using AppFramework.Authorization.Permissions.Dto;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using AppFramework.Shared.Services.Mapper;
 using AppFramework.Shared.Services.Permission;
 using AutoMapper;
@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
-namespace AppFramework.Services
+namespace AppFramework.Admin.Services
 {
     public class PermissionTreesService : BindableBase, IPermissionTreesService
     {

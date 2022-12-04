@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Shared;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using AppFramework.Editions;
 using AppFramework.Editions.Dto;
 using Prism.Services.Dialogs;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AppFramework.Common;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class EditionDetailsViewModel : HostDialogViewModel
     {

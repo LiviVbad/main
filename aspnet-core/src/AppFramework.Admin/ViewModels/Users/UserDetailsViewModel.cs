@@ -3,14 +3,14 @@ using AppFramework.Authorization.Users;
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.Authorization.Users.Profile.Dto;
 using AppFramework.Shared;
-using AppFramework.Models;
+using AppFramework.Admin.Models;
 using Prism.Services.Dialogs;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class UserDetailsViewModel : HostDialogViewModel
     {

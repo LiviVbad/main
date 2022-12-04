@@ -10,7 +10,7 @@ using Prism.Commands;
 using Prism.Regions;
 using AppFramework.Shared.Services;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class DynamicPropertyViewModel : NavigationCurdViewModel
     {

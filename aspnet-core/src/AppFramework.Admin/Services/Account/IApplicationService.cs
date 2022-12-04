@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace AppFramework.Services
+namespace AppFramework.Admin.Services
 {
     /// <summary>
     /// 应用程序服务

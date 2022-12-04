@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using AppFramework.Shared;
 
-namespace AppFramework.ViewModels
+namespace AppFramework.Admin.ViewModels
 {
     public class LanguageDetailsViewModel : HostDialogViewModel
     {
