@@ -1,7 +1,7 @@
 ﻿using AppFramework.Shared.Models;
 using System.Collections.Generic;
-using System.Collections.ObjectModel; 
-using AppFramework.Shared;  
+using System.Collections.ObjectModel;
+using AppFramework.Shared;
 
 namespace AppFramework.Admin.Services
 {
@@ -22,7 +22,7 @@ namespace AppFramework.Admin.Services
                       new NavigationItem("language","Languages",AppViews.Language,AppPermissions.Languages),
                       new NavigationItem("version", "VersionManager", AppViews.Version, AppPermissions.Versions),
                       new NavigationItem("edition","Editions",AppViews.Edition,AppPermissions.Editions),
-               }),
+               }), 
 
                new NavigationItem("tenant","Tenants",AppViews.Tenant,AppPermissions.Tenants),
                new NavigationItem("visual", "VisualSettings", AppViews.Visual, AppPermissions.Administration),

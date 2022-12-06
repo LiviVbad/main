@@ -1,4 +1,6 @@
-﻿using AppFramework.Shared;
+﻿using AppFramework.Admin.SyncUI.Services.Sessions;
+using AppFramework.Shared;
+using AppFramework.Shared.Services;
 using AppFramework.Shared.Services.App;
 using AppFramework.Shared.Services.Mapper;
 using Hardcodet.Wpf.TaskbarNotification;
@@ -17,9 +19,14 @@ namespace AppFramework.Admin.SyncUI
         protected override Window? CreateShell() => null;
 
         protected override void RegisterTypes(IContainerRegistry container)
-        {
+        { 
+            container.AddViews();
+            container.AddAdminsServices();
             container.AddSharedServices();
-            container.ConfigureService();
+
+            container.RegisterSingleton<IThemeService, ThemeService>();
+            container.RegisterSingleton<IHostDialogService, DialogHostService>();
+            container.RegisterSingleton<IAppStartService, SyncUIStartService>();
 
             container.RegisterSingleton<IAppMapper, AppMapper>();
             container.RegisterSingleton<ILocaleCulture, LocaleCulture>();

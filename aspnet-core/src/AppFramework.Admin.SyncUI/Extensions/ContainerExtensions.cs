@@ -1,6 +1,6 @@
 ﻿using AppFramework.Admin.ViewModels.Chat;
-using AppFramework.Shared; 
-using Prism.Ioc; 
+using AppFramework.Shared;
+using Prism.Ioc;
 using AppFramework.Shared.Services.App;
 using AppFramework.Admin.SyncUI.Services.Sessions;
 using AppFramework.Shared.Services;
@@ -12,17 +12,7 @@ namespace AppFramework.Admin.SyncUI
 {
     internal static class ContainerExtensions
     {
-        public static void ConfigureService(this IContainerRegistry container)
-        { 
-            container.AddViews(); 
-            container.AddAdminsServices();
-
-            container.RegisterSingleton<IThemeService, ThemeService>();
-            container.RegisterSingleton<IHostDialogService, DialogHostService>();
-            container.RegisterSingleton<IAppStartService, SyncUIStartService>(); 
-        }
-
-        static void AddViews(this IContainerRegistry services)
+        public static void AddViews(this IContainerRegistry services)
         {
             services.RegisterDialog<SplashScreenView, SplashScreenViewModel>(AppViews.SplashScreen);
             services.RegisterDialog<LoginView, LoginViewModel>(AppViews.Login);
