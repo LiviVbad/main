@@ -39,7 +39,7 @@ namespace AppFramework.Admin.MaterialUI
             //services.Add<TenantChangeFeaturesView, TenantChangeFeaturesViewModel>(AppViews.TenantChangeFeatures);
             //services.Add<AddRolesView, AddRolesViewModel>(AppViews.AddRoles);
             //services.Add<AddUsersView, AddUsersViewModel>(AppViews.AddUsers);
-            //services.Add<AuditLogsView, AuditLogsViewModel>(AppViews.AuditLog);
+            services.Add<AuditLogsView, AuditLogsViewModel>(AppViews.AuditLog);
             //services.Add<AuditLogsDetailsView, AuditLogsDetailsViewModel>(AppViews.AuditLogDetails);
             //services.Add<LanguageView, LanguageViewModel>(AppViews.Language);
             //services.Add<LanguageTextView, LanguageTextViewModel>(AppViews.LanguageText);

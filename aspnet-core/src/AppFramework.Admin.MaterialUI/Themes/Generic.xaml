@@ -2,6 +2,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/AppFramework.Shared;component/Themes/Generic.xaml" />
 
+        <ResourceDictionary Source="pack://application:,,,/AppFramework.Admin.MaterialUI;component/Themes/DataPager.xaml" />
         <ResourceDictionary Source="pack://application:,,,/AppFramework.Admin.MaterialUI;component/Themes/Button.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
