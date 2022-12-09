@@ -5,18 +5,16 @@ using Prism.Ioc;
 using System.Threading.Tasks;
 using AppFramework.Shared;
 using Prism.Regions;
-using Syncfusion.Windows.Shared; 
+using Syncfusion.Windows.Shared;
 using Prism.Services.Dialogs;
 using AppFramework.Shared.Services;
-using AppFramework.Configuration; 
-using AppFramework.Admin.Services; 
+using AppFramework.Configuration;
+using AppFramework.Admin.Services;
 
 namespace AppFramework.Admin.SyncUI
 {
     internal class SyncUIStartService : IAppStartService
-    {  
-        private System.Windows.Application app;
-
+    {
         public void Exit()
         {
             if (System.Windows.Application.Current is IAppTaskBar appTaskBar)
@@ -27,45 +25,39 @@ namespace AppFramework.Admin.SyncUI
 
         public void Logout()
         {
-            app.MainWindow.Hide();
+            App.Current.MainWindow.Hide();
+            SplashScreenInitialized();
+            App.Current.MainWindow.Show();
 
-            if (SplashScreenInitialized())
-            {
-                app.MainWindow.Show();
-                (app.MainWindow.DataContext as INavigationAware)?.OnNavigatedTo(null);
-            }
-            else Exit();
+            if(App.Current.MainWindow.DataContext is INavigationAware navigationAware)
+                navigationAware.OnNavigatedTo(null);  
         }
 
-        public Window CreateShell(System.Windows.Application app)
-        {
-            this.app = app;
+        public void CreateShell()
+        { 
             var container = ContainerLocator.Container;
 
             var userConfigurationService = container.Resolve<UserConfigurationService>();
             userConfigurationService.OnAccessTokenRefresh = OnAccessTokenRefresh;
             userConfigurationService.OnSessionTimeOut = OnSessionTimeout;
-             
-            if (SplashScreenInitialized())
-            {
-                var shell = container.Resolve<object>(AppViews.Main);
-                if (shell is ChromelessWindow view)
-                {
-                    var regionManager = container.Resolve<IRegionManager>();
-                    RegionManager.SetRegionManager(view, regionManager);
-                    RegionManager.UpdateRegions();
 
-                    if (view.DataContext is INavigationAware navigationAware)
-                    {
-                        navigationAware.OnNavigatedTo(null);
-                        return (Window)shell;
-                    }
+            SplashScreenInitialized();
+            var shell = container.Resolve<object>(AppViews.Main);
+            if (shell is ChromelessWindow view)
+            {
+                var regionManager = container.Resolve<IRegionManager>();
+                RegionManager.SetRegionManager(view, regionManager);
+                RegionManager.UpdateRegions();
+
+                if (view.DataContext is INavigationAware navigationAware)
+                {
+                    navigationAware.OnNavigatedTo(null);
+                    App.Current.MainWindow = (Window)shell;
                 }
             }
-            return null;
         }
 
-        private bool SplashScreenInitialized()
+        private void SplashScreenInitialized()
         {
             var dialogService = ContainerLocator.Container.Resolve<IHostDialogService>();
             var result = dialogService.ShowWindow(AppViews.SplashScreen).Result;
@@ -74,8 +66,6 @@ namespace AppFramework.Admin.SyncUI
                 if (!Authorization()) Exit();
             }
             else if (result == ButtonResult.None) Exit();
-
-            return true;
         }
 
         private bool Authorization()
@@ -92,7 +82,7 @@ namespace AppFramework.Admin.SyncUI
                 return dialogService.ShowWindow(AppViews.Login).Result;
             }
         }
-         
+
         public static async Task OnSessionTimeout()
         {
             await ContainerLocator.Container.Resolve<IAccountService>().LogoutAsync();

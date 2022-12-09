@@ -44,9 +44,7 @@ namespace AppFramework.Shared.Services
         {
             get { return pageIndex; }
             set
-            {
-                if (value > 0 && pageIndex == value) return;
-
+            { 
                 //分页组件的索引被UI当中变更,触发查询事件, 记录当前需要跳过的总数,以及当前的索引变化
                 OnPageIndexChangedEventhandler?.Invoke(this, new PageIndexChangedEventArgs()
                 {
@@ -64,13 +62,31 @@ namespace AppFramework.Shared.Services
         public int PageCount
         {
             get { return pageCount; }
-            set { pageCount = value; RaisePropertyChanged(); }
+            set
+            {
+                pageCount = value;
+                RaisePropertyChanged();
+            }
         }
 
         public int PageSize
         {
             get { return pageSize; }
-            set { pageSize = value; RaisePropertyChanged(); }
+            set
+            {
+                if (pageSize == value) return;
+
+                OnPageIndexChangedEventhandler?.Invoke(this, new PageIndexChangedEventArgs()
+                {
+                    OldPageIndex = pageIndex,
+                    NewPageIndex = pageIndex,
+                    SkipCount = pageIndex * PageSize,
+                    PageSize = value,
+                });
+                pageSize = value;
+
+                RaisePropertyChanged();
+            }
         }
 
         public object SelectedItem

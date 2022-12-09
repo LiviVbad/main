@@ -4,7 +4,7 @@ namespace AppFramework.Shared.Services.App
 {
     public interface IAppStartService
     {
-        Window CreateShell(System.Windows.Application app);
+        void CreateShell();
 
         void Logout();
 

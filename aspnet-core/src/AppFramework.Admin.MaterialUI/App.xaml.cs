@@ -6,13 +6,13 @@ using AppFramework.Shared.Services.Mapper;
 using Hardcodet.Wpf.TaskbarNotification;
 using Prism.DryIoc;
 using Prism.Ioc;
-using Prism.Regions; 
+using Prism.Regions;
 using System.Windows;
 
 namespace AppFramework.Admin.MaterialUI
-{ 
+{
     public partial class App : PrismApplication, IAppTaskBar
-    { 
+    {
         private TaskbarIcon taskBar;
 
         protected override Window? CreateShell() => null;
@@ -47,14 +47,14 @@ namespace AppFramework.Admin.MaterialUI
             //await appVersionService.CheckVersion();
 
             var appStart = ContainerLocator.Container.Resolve<IAppStartService>();
-            MainWindow =  appStart.CreateShell(this);
+            appStart.CreateShell();
 
             base.OnInitialized();
         }
 
         public void Initialization()
         {
-            taskBar = (TaskbarIcon)FindResource("taskBar"); 
+            taskBar = (TaskbarIcon)FindResource("taskBar");
         }
 
         public void Dispose() => taskBar?.Dispose();

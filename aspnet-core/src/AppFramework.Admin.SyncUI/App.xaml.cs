@@ -47,7 +47,7 @@ namespace AppFramework.Admin.SyncUI
             await appVersionService.CheckVersion();
 
             var appStart = ContainerLocator.Container.Resolve<IAppStartService>();
-            MainWindow =  appStart.CreateShell(this);
+            appStart.CreateShell();
 
             base.OnInitialized();
         }

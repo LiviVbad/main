@@ -12,6 +12,7 @@
     MinHeight="768"
     prism:ViewModelLocator.AutoWireViewModel="True"
     AllowsTransparency="True"
+    FontSize="16"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
@@ -22,7 +23,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Grid Background="{StaticResource MaterialDesignDarkBackground}">
+            <Grid Background="{StaticResource MaterialDesignDarkSeparatorBackground}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition />
@@ -43,12 +44,8 @@
                             Margin="5,0"
                             VerticalAlignment="Center"
                             FontWeight="Bold"
-                            Foreground="{DynamicResource MaterialDesignDarkForeground}"
                             Text="APP" />
-                        <TextBlock
-                            VerticalAlignment="Center"
-                            Foreground="{DynamicResource MaterialDesignDarkForeground}"
-                            Text="FRAMEWORK" />
+                        <TextBlock VerticalAlignment="Center" Text="FRAMEWORK" />
                     </StackPanel>
                     <ToggleButton
                         x:Name="BtnDoubleLeft"

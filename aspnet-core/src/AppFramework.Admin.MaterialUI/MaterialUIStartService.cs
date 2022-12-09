@@ -14,37 +14,34 @@ namespace AppFramework.Admin.MaterialUI
 {
     internal class MaterialUIStartService : IAppStartService
     {
-        private System.Windows.Application app;
-
-        public Window CreateShell(System.Windows.Application app)
-        {
-            this.app = app;
+        public void CreateShell()
+        { 
             var container = ContainerLocator.Container;
 
             var userConfigurationService = container.Resolve<UserConfigurationService>();
             userConfigurationService.OnAccessTokenRefresh = OnAccessTokenRefresh;
             userConfigurationService.OnSessionTimeOut = OnSessionTimeout;
 
-            if (SplashScreenInitialized())
-            {
-                var shell = container.Resolve<object>(AppViews.Main);
-                if (shell is Window view)
-                {
-                    var regionManager = container.Resolve<IRegionManager>();
-                    RegionManager.SetRegionManager(view, regionManager);
-                    RegionManager.UpdateRegions();
+            this.SplashScreenInitialized();
 
-                    if (view.DataContext is INavigationAware navigationAware)
-                    {
-                        navigationAware.OnNavigatedTo(null);
-                        return view;
-                    }
+            var shell = container.Resolve<object>(AppViews.Main);
+            if (shell is Window view)
+            {
+                var regionManager = container.Resolve<IRegionManager>();
+                RegionManager.SetRegionManager(view, regionManager);
+                RegionManager.UpdateRegions();
+
+                if (view.DataContext is INavigationAware navigationAware)
+                {
+                    navigationAware.OnNavigatedTo(null);
+                    App.Current.MainWindow = view;
                 }
+                else
+                    throw new ArgumentNullException($"{nameof(view)} is not INavigationAware");
             }
-            return null;
         }
 
-        private bool SplashScreenInitialized()
+        private void SplashScreenInitialized()
         {
             var dialogService = ContainerLocator.Container.Resolve<IHostDialogService>();
             var result = dialogService.ShowWindow(AppViews.SplashScreen).Result;
@@ -52,9 +49,7 @@ namespace AppFramework.Admin.MaterialUI
             {
                 if (!Authorization()) Exit();
             }
-            else if (result == ButtonResult.None) Exit();
-
-            return true;
+            else if (result == ButtonResult.None) Exit(); 
         }
 
         private bool Authorization()
@@ -92,14 +87,12 @@ namespace AppFramework.Admin.MaterialUI
 
         public void Logout()
         {
-            app.MainWindow.Hide();
+            App.Current.MainWindow.Hide();
+            SplashScreenInitialized();
+            App.Current.MainWindow.Show();
 
-            if (SplashScreenInitialized())
-            {
-                app.MainWindow.Show();
-                (app.MainWindow.DataContext as INavigationAware)?.OnNavigatedTo(null);
-            }
-            else Exit();
+            if(App.Current.MainWindow.DataContext is INavigationAware navigationAware)
+                navigationAware.OnNavigatedTo(null); 
         }
 
     }
