@@ -53,7 +53,7 @@ namespace AppFramework.Admin.MaterialUI
         }
 
         public void Initialization()
-        {
+        { 
             taskBar = (TaskbarIcon)FindResource("taskBar");
         }
 

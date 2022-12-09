@@ -11,14 +11,14 @@ namespace AppFramework
         /// 默认的文件路径
         /// </summary>
         public static string DocumentPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+$"\\{AppFrameworkConsts.LocalizationSourceName}\\files\\";
-
+         
         /// <summary>
-        /// Default page size for paged requests.
+        ///默认页大小
         /// </summary>
         public const int DefaultPageSize = 10;
 
         /// <summary>
-        /// Maximum allowed page size for paged requests.
+        /// 最大页大小
         /// </summary>
         public const int MaxPageSize = 1000;
 

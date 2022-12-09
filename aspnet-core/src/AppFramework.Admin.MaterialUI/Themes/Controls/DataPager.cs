@@ -57,16 +57,9 @@ namespace AppFramework.Admin.MaterialUI.Themes.Controls
             set { SetValue(PageIndexProperty, value); }
         }
 
-        private ObservableCollection<ButtonCommandModel> buttonCollections;
-
-        public ObservableCollection<ButtonCommandModel> ButtonCollections
+        internal ObservableCollection<ButtonCommandModel> ButtonCollections
         {
-            get { return buttonCollections; }
-            set
-            {
-                buttonCollections = value;
-                OnPropertyChanged();
-            }
+            get; set;
         }
 
         public static readonly DependencyProperty NumericButtonCountProperty =
@@ -110,7 +103,7 @@ namespace AppFramework.Admin.MaterialUI.Themes.Controls
 
         void ButtonIndexClick(ButtonCommandModel arg)
         {
-            PageIndex = arg.Index; //设置当前页索引    
+            PageIndex = arg.Index-1; //设置当前页索引    
         }
 
         /// <summary>
@@ -120,7 +113,7 @@ namespace AppFramework.Admin.MaterialUI.Themes.Controls
         /// <param name="e"></param>
         void HomePage_Click(object sender, RoutedEventArgs e)
         {
-            PageIndex=1; 
+            PageIndex=0;
         }
 
         /// <summary>
@@ -130,7 +123,7 @@ namespace AppFramework.Admin.MaterialUI.Themes.Controls
         /// <param name="e"></param>
         void PreviousPage_Click(object sender, RoutedEventArgs e)
         {
-            if (PageIndex > 1) PageIndex--; 
+            if (PageIndex > 0) PageIndex-=1;
         }
 
         /// <summary>
@@ -140,7 +133,7 @@ namespace AppFramework.Admin.MaterialUI.Themes.Controls
         /// <param name="e"></param>
         void NextPage_Click(object sender, RoutedEventArgs e)
         {
-            if (PageIndex < PageCount) PageIndex++; 
+            if (PageIndex < PageCount) PageIndex+=1;
         }
 
         /// <summary>
@@ -150,10 +143,7 @@ namespace AppFramework.Admin.MaterialUI.Themes.Controls
         /// <param name="e"></param>
         void EndPage(object sender, RoutedEventArgs e)
         {
-            if (PageCount == 1) return;
-
-            if (PageIndex != PageCount)
-                PageIndex = PageCount;  //设置尾页 
+            if (PageIndex != PageCount) PageIndex = PageCount-1;  //设置尾页 
         }
 
         private Button GetTemplateButtonByName(string Name)
@@ -243,21 +233,20 @@ namespace AppFramework.Admin.MaterialUI.Themes.Controls
         }
 
         private static void PageIndexChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var dataPager = (DataPager)d; 
-            var newValue = (int)e.NewValue;
+        { 
+            var dataPager = (DataPager)d;
+            var newValue = (int)e.NewValue+1;
 
             if (newValue==1)
-            { 
-                dataPager.RefreshButtonList(newValue);
+            {
+                dataPager.RefreshButtonList(newValue); 
             }
             else
-            { 
+            {
                 var item = dataPager.ButtonCollections.FirstOrDefault(t => t.Index.Equals(newValue));
                 if (item==null)
-                    dataPager.RefreshButtonList(newValue-dataPager.NumericButtonCount+1);
+                    dataPager.RefreshButtonList(newValue-dataPager.NumericButtonCount+1); 
             }
-             
             var selectedItem = dataPager.ButtonCollections.FirstOrDefault(t => t.Index.Equals(newValue));
             if (selectedItem!=null)
                 dataPager._listBoxButtonList.SelectedItem=selectedItem;
