@@ -15,7 +15,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <DockPanel Margin="20" LastChildFill="False">
+            <DockPanel Margin="15" LastChildFill="False">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock
                         FontSize="18"
@@ -32,11 +32,10 @@
                     Command="{Binding AddCommand}"
                     Content="{extensions:Translate CreateNewLanguage}"
                     DockPanel.Dock="Right"
-                    Style="{StaticResource SimpleButton}"
                     Visibility="{extensions:HasPermission Text={x:Static extensions:AppPermissions.LanguageCreate}}" />
             </DockPanel>
 
-            <Grid Grid.Row="1" Margin="10">
+            <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition />

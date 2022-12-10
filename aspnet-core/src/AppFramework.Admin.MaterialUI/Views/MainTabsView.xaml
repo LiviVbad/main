@@ -14,7 +14,7 @@
     MinHeight="768"
     prism:ViewModelLocator.AutoWireViewModel="True"
     AllowsTransparency="True"
-    FontSize="16"
+    FontSize="14"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
@@ -24,137 +24,149 @@
     <md:DialogHost Identifier="{x:Static const:AppSharedConsts.RootIdentifier}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="leftGridColumn" Width="250" />
+                <ColumnDefinition x:Name="leftGridColumn" Width="230" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Grid Background="{StaticResource MaterialDesignDarkSeparatorBackground}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+            <md:Card
+                Margin="0,-2"
+                md:ElevationAssist.Elevation="Dp1"
+                md:ShadowAssist.ShadowEdges="Top"
+                Background="{DynamicResource MaterialDesignCardBackground}"
+                BorderBrush="{DynamicResource MaterialDesignShadowBrush}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                <!--  顶部标题  -->
-                <DockPanel
-                    Margin="15"
-                    VerticalAlignment="Center"
-                    LastChildFill="False">
-                    <StackPanel x:Name="TitltStack" Orientation="Horizontal">
-                        <Image
-                            Width="20"
-                            Height="20"
-                            VerticalAlignment="Center"
-                            Source="/Assets/Images/logo.ico" />
-                        <TextBlock
-                            Margin="5,0"
-                            VerticalAlignment="Center"
-                            FontWeight="Bold"
-                            Text="APP" />
-                        <TextBlock VerticalAlignment="Center" Text="FRAMEWORK" />
-                    </StackPanel>
-                    <ToggleButton
-                        x:Name="BtnDoubleLeft"
-                        HorizontalAlignment="Center"
+                    <!--  顶部标题  -->
+                    <DockPanel
+                        Margin="15"
                         VerticalAlignment="Center"
-                        DockPanel.Dock="Right"
-                        Style="{StaticResource MaterialDesignActionDarkToggleButton}">
-                        <TextBlock
-                            x:Name="TxtDoubleTitle"
-                            FontFamily="/Assets/Fonts/#iconfont"
-                            FontSize="22"
-                            Text="&#xe74c;" />
-                    </ToggleButton>
-                </DockPanel>
+                        LastChildFill="False">
+                        <StackPanel x:Name="TitltStack" Orientation="Horizontal">
+                            <Image
+                                Width="20"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                Source="/Assets/Images/logo.ico" />
+                            <TextBlock
+                                Margin="5,0"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="Bold"
+                                Text="APP" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Text="FRAMEWORK" />
+                        </StackPanel>
+                        <ToggleButton
+                            x:Name="BtnDoubleLeft"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            DockPanel.Dock="Right"
+                            Style="{StaticResource MaterialDesignActionDarkToggleButton}">
+                            <TextBlock
+                                x:Name="TxtDoubleTitle"
+                                FontFamily="/Assets/Fonts/#iconfont"
+                                FontSize="22"
+                                Text="&#xe74c;" />
+                        </ToggleButton>
+                    </DockPanel>
 
-                <!--  左侧系统菜单  -->
-                <ListBox
-                    x:Name="ListMenuBox"
-                    Grid.Row="1"
-                    Margin="10"
-                    ItemsSource="{Binding appService.NavigationItems}">
-                    <ListBox.ItemContainerStyle>
-                        <Style TargetType="ListBoxItem">
-                            <Setter Property="Padding" Value="10,3" />
-                            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="ListBoxItem">
-                                        <Grid>
-                                            <Border
-                                                x:Name="htborder"
-                                                HorizontalAlignment="Left"
-                                                Panel.ZIndex="1"
-                                                Background="{DynamicResource PrimaryHueMidBrush}"
-                                                CornerRadius="2"
-                                                Opacity="1" />
-                                            <Border
-                                                x:Name="hdborder"
-                                                Margin="0,2"
-                                                Background="{DynamicResource MaterialDesignDarkSeparatorBackground}"
-                                                CornerRadius="5" />
-                                            <Border
-                                                x:Name="border"
-                                                Margin="0,2"
-                                                Padding="{TemplateBinding Padding}"
-                                                CornerRadius="3">
-                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                            </Border>
-                                        </Grid>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsSelected" Value="True">
-                                                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
-                                                <Setter TargetName="hdborder" Property="Opacity" Value="1" />
-                                                <Setter TargetName="htborder" Property="Width" Value="3" />
-                                                <Trigger.EnterActions>
-                                                    <BeginStoryboard>
-                                                        <Storyboard>
-                                                            <ThicknessAnimation
-                                                                Storyboard.TargetName="htborder"
-                                                                Storyboard.TargetProperty="Margin"
-                                                                From="5"
-                                                                To="5,10"
-                                                                Duration="0:0:.2" />
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </Trigger.EnterActions>
-                                            </Trigger>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
-                                                <Setter TargetName="hdborder" Property="Opacity" Value="1" />
-                                            </Trigger>
-                                            <Trigger Property="IsSelected" Value="False">
-                                                <Setter TargetName="hdborder" Property="Opacity" Value="0" />
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </ListBox.ItemContainerStyle>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="5" Orientation="Horizontal">
-                                <Image
-                                    Width="20"
-                                    Height="20"
-                                    Margin="10,0"
-                                    Source="{Binding Icon, Converter={StaticResource menuConverter}}"
-                                    ToolTip="{Binding Title}" />
-                                <TextBlock
-                                    Margin="10,0,0,0"
-                                    VerticalAlignment="Center"
-                                    FontSize="14"
-                                    Text="{Binding Title}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="{Binding ElementName=ListMenuBox, Path=SelectedItem}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </ListBox>
-            </Grid>
+                    <!--  左侧系统菜单  -->
+                    <ListBox
+                        x:Name="ListMenuBox"
+                        Grid.Row="1"
+                        Margin="10"
+                        ItemsSource="{Binding appService.NavigationItems}">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Padding" Value="10,3" />
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListBoxItem">
+                                            <Grid>
+                                                <Border
+                                                    x:Name="htborder"
+                                                    HorizontalAlignment="Left"
+                                                    Panel.ZIndex="1"
+                                                    Background="{DynamicResource PrimaryHueMidBrush}"
+                                                    CornerRadius="2"
+                                                    Opacity="1" />
+                                                <Border
+                                                    x:Name="hdborder"
+                                                    Margin="0,2"
+                                                    Background="{DynamicResource MaterialDesignDarkSeparatorBackground}"
+                                                    CornerRadius="5" />
+                                                <Border
+                                                    x:Name="border"
+                                                    Margin="0,2"
+                                                    Padding="{TemplateBinding Padding}"
+                                                    CornerRadius="3">
+                                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                                </Border>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                                    <Setter TargetName="hdborder" Property="Opacity" Value="1" />
+                                                    <Setter TargetName="htborder" Property="Width" Value="3" />
+                                                    <Trigger.EnterActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <ThicknessAnimation
+                                                                    Storyboard.TargetName="htborder"
+                                                                    Storyboard.TargetProperty="Margin"
+                                                                    From="5"
+                                                                    To="5,10"
+                                                                    Duration="0:0:.2" />
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </Trigger.EnterActions>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                                    <Setter TargetName="hdborder" Property="Opacity" Value="1" />
+                                                </Trigger>
+                                                <Trigger Property="IsSelected" Value="False">
+                                                    <Setter TargetName="hdborder" Property="Opacity" Value="0" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="5" Orientation="Horizontal">
+                                    <Image
+                                        Width="20"
+                                        Height="20"
+                                        Margin="10,0"
+                                        Source="{Binding Icon, Converter={StaticResource menuConverter}}"
+                                        ToolTip="{Binding Title}" />
+                                    <TextBlock
+                                        Margin="10,0,0,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        Text="{Binding Title}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="{Binding ElementName=ListMenuBox, Path=SelectedItem}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListBox>
+                </Grid>
+            </md:Card>
+
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
@@ -163,8 +175,9 @@
 
                 <Border
                     x:Name="HeaderBorder"
-                    Grid.ColumnSpan="2"
-                    Background="Transparent" />
+                    Grid.RowSpan="2"
+                    Background="{DynamicResource MaterialDesignCardBackground}"
+                    BorderThickness="0" />
 
                 <!--  顶部按钮功能 主题/最小化/最大化/退出系统  -->
                 <StackPanel
@@ -324,14 +337,16 @@
                     md:ColorZoneAssist.Mode="Custom"
                     md:ElevationAssist.Elevation="Dp1"
                     prism:RegionManager.RegionName="{x:Static region:AppRegions.Main}"
-                    BorderThickness="0"
                     ItemContainerStyle="{StaticResource DefaultTabItemStyle}"
                     SelectedIndex="{Binding NavigationService.SelectedIndex}"
                     Style="{StaticResource MaterialDesignFilledTabControl}">
                     <TabControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock VerticalAlignment="Center" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabItem}, Converter={StaticResource menuTitleConverter}}" />
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                    Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabItem}, Converter={StaticResource menuTitleConverter}}" />
                                 <Button Content="&#xe63a;" Style="{StaticResource IconButtonStyle}" />
                             </StackPanel>
                         </DataTemplate>

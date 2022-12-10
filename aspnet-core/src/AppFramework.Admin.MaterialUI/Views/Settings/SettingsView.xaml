@@ -16,7 +16,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <DockPanel Margin="20,15" LastChildFill="False">
+            <DockPanel Margin="15" LastChildFill="False">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock
                         FontSize="18"
@@ -37,12 +37,12 @@
 
             <Grid Grid.Row="1">
                 <TabControl
-                    Margin="10"
                     HorizontalContentAlignment="Left"
                     md:ColorZoneAssist.Background="{DynamicResource MaterialDesignCardBackground}"
                     md:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
                     md:ColorZoneAssist.Mode="Custom"
                     md:ElevationAssist.Elevation="Dp1"
+                    ItemContainerStyle="{StaticResource DefaultTabItemStyle}"
                     Style="{StaticResource MaterialDesignFilledTabControl}">
                     <TabItem Header="{extensions:Translate TenantManagement}">
                         <StackPanel Margin="15">

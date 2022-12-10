@@ -17,7 +17,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <DockPanel Margin="20" LastChildFill="False">
+            <DockPanel Margin="15" LastChildFill="False">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock
                         FontSize="18"
@@ -30,7 +30,7 @@
                 </StackPanel>
             </DockPanel>
 
-            <Grid Grid.Row="1" Margin="10">
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="1.8*" />
@@ -38,7 +38,7 @@
 
                 <DockPanel LastChildFill="False">
                     <DockPanel
-                        Margin="10"
+                        Margin="15,10"
                         DockPanel.Dock="Top"
                         LastChildFill="False">
                         <TextBlock
@@ -142,8 +142,7 @@
                                     HorizontalAlignment="Right"
                                     Command="{Binding ExecuteItemCommand}"
                                     CommandParameter="AddMember"
-                                    Content="{extensions:Translate AddMember}"
-                                    Style="{StaticResource SimpleButton}" />
+                                    Content="{extensions:Translate AddMember}" />
 
                                 <DataGrid Grid.Row="1" ItemsSource="{Binding memberdataPager.GridModelList}">
                                     <DataGrid.Columns>

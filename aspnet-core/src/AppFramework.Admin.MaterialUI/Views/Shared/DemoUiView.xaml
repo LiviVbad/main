@@ -13,7 +13,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <DockPanel Margin="20,15" LastChildFill="False">
+        <DockPanel Margin="15" LastChildFill="False">
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                 <TextBlock
                     FontSize="18"

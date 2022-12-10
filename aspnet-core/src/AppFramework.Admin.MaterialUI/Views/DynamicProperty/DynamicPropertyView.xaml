@@ -18,7 +18,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <DockPanel Margin="20" LastChildFill="False">
+            <DockPanel Margin="15" LastChildFill="False">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock
                         FontSize="18"
@@ -34,6 +34,7 @@
                 md:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
                 md:ColorZoneAssist.Mode="Custom"
                 md:ElevationAssist.Elevation="Dp1"
+                ItemContainerStyle="{StaticResource DefaultTabItemStyle}"
                 Style="{StaticResource MaterialDesignFilledTabControl}">
                 <TabItem Header="{extensions:Translate DynamicProperty}">
                     <Grid>

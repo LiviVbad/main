@@ -26,7 +26,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel
-                Margin="20"
+                Margin="15"
                 VerticalAlignment="Center"
                 Orientation="Horizontal">
                 <TextBlock
@@ -42,6 +42,7 @@
                 md:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
                 md:ColorZoneAssist.Mode="Custom"
                 md:ElevationAssist.Elevation="Dp1"
+                ItemContainerStyle="{StaticResource DefaultTabItemStyle}"
                 Style="{StaticResource MaterialDesignFilledTabControl}">
                 <TabItem Header="{extensions:Translate OperationLogs}">
                     <Grid>
@@ -186,7 +187,6 @@
                             Padding="5"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
-                            Background="Transparent"
                             BorderThickness="0"
                             Command="{Binding AdvancedCommand}"
                             Content="{Binding FilerTitle, Mode=TwoWay}" />
