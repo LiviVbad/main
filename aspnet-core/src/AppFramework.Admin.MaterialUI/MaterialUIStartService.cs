@@ -35,9 +35,7 @@ namespace AppFramework.Admin.MaterialUI
                 {
                     navigationAware.OnNavigatedTo(null);
                     App.Current.MainWindow = view;
-                }
-                else
-                    throw new ArgumentNullException($"{nameof(view)} is not INavigationAware");
+                } 
             }
         }
 
