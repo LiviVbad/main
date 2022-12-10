@@ -8,6 +8,7 @@ using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Regions;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace AppFramework.Admin.MaterialUI
 {
@@ -36,6 +37,7 @@ namespace AppFramework.Admin.MaterialUI
 
         protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
         {
+            regionAdapterMappings.RegisterMapping<TabControl, TabControlRegionAdapter>();
             base.ConfigureRegionAdapterMappings(regionAdapterMappings);
         }
 

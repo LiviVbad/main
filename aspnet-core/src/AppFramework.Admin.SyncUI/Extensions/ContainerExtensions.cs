@@ -1,9 +1,6 @@
 ﻿using AppFramework.Admin.ViewModels.Chat;
 using AppFramework.Shared;
-using Prism.Ioc;
-using AppFramework.Shared.Services.App;
-using AppFramework.Admin.SyncUI.Services.Sessions;
-using AppFramework.Shared.Services;
+using Prism.Ioc; 
 using AppFramework.Admin.ViewModels;
 using AppFramework.Admin.ViewModels.Shared;
 using AppFramework.Admin.ViewModels.Version;
