@@ -10,7 +10,17 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <md:DialogHost IsOpen="{Binding chatService.IsBusy}">
-        <Grid>
+        <md:DialogHost.DialogContent>
+            <StackPanel Orientation="Horizontal">
+                <ProgressBar
+                    Width="30"
+                    Height="30"
+                    Margin="5"
+                    IsIndeterminate="True"
+                    Style="{StaticResource MaterialDesignCircularProgressBar}" />
+            </StackPanel>
+        </md:DialogHost.DialogContent>
+        <Grid Background="{DynamicResource MaterialDesignPaper}">
             <Grid.Effect>
                 <DropShadowEffect
                     BlurRadius="20"

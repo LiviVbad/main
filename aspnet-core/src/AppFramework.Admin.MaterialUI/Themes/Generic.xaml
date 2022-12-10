@@ -31,6 +31,7 @@
         <Setter Property="AutoGenerateColumns" Value="False" />
         <Setter Property="RowHeight" Value="38" />
         <Setter Property="Margin" Value="5,0" />
+        <Setter Property="SelectionMode" Value="Single" />
     </Style>
 
     <Style
@@ -41,6 +42,13 @@
         <Setter Property="Height" Value="30" />
         <Setter Property="MinWidth" Value="60" />
         <Setter Property="MaxWidth" Value="120" />
+    </Style>
+
+    <Style
+        x:Key="DefaultTreeViewItem"
+        BasedOn="{StaticResource MaterialDesignTreeViewItem}"
+        TargetType="{x:Type TreeViewItem}">
+        <Setter Property="Padding" Value="0" />
     </Style>
 
     <Style x:Key="listMenuItemStyle" TargetType="ListBoxItem">
@@ -54,26 +62,26 @@
                             x:Name="htborder"
                             HorizontalAlignment="Left"
                             Panel.ZIndex="1"
-                            Background="{DynamicResource PrimaryBackground}"
+                            Background="{DynamicResource PrimaryHueMidBrush}"
                             CornerRadius="2"
-                            Opacity="1"
-                            Style="{DynamicResource BorderStyle}" />
+                            Opacity="1" />
                         <Border
                             x:Name="hdborder"
                             Margin="0,2"
-                            CornerRadius="0"
-                            Opacity="0"
-                            Style="{DynamicResource BorderStyle}" />
+                            Background="{DynamicResource MaterialDesignDarkSeparatorBackground}"
+                            CornerRadius="5" />
                         <Border
                             x:Name="border"
                             Margin="0,2"
-                            Padding="{TemplateBinding Padding}">
+                            Padding="{TemplateBinding Padding}"
+                            CornerRadius="3">
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource PrimaryBackground}" />
+                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter TargetName="hdborder" Property="Opacity" Value="1" />
                             <Setter TargetName="htborder" Property="Width" Value="3" />
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
@@ -89,20 +97,8 @@
                             </Trigger.EnterActions>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource PrimaryBackground}" />
-                            <Setter TargetName="htborder" Property="Width" Value="3" />
-                            <Trigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ThicknessAnimation
-                                            Storyboard.TargetName="htborder"
-                                            Storyboard.TargetProperty="Margin"
-                                            From="5"
-                                            To="5,10"
-                                            Duration="0:0:.2" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.EnterActions>
+                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter TargetName="hdborder" Property="Opacity" Value="1" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="False">
                             <Setter TargetName="hdborder" Property="Opacity" Value="0" />

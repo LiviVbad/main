@@ -54,7 +54,6 @@
                             <!--  按钮行  -->
                             <RowDefinition Height="auto" />
                             <RowDefinition />
-                            <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
 
                         <Grid>
@@ -72,7 +71,6 @@
                                 </Grid.ColumnDefinitions>
                                 <DatePicker
                                     Padding="3"
-                                    BorderThickness="1"
                                     Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                                     Text="{Binding Filter.StartDate}" />
                                 <TextBlock
@@ -83,7 +81,6 @@
                                 <DatePicker
                                     Grid.Column="2"
                                     Padding="3"
-                                    BorderThickness="1"
                                     Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                                     Text="{Binding Filter.EndDate}" />
                             </Grid>
@@ -199,39 +196,45 @@
                             Command="{Binding SearchCommand}"
                             Content="{extensions:Translate Search}" />
 
-                        <DataGrid
-                            x:Name="DataGrid"
+                        <md:Card
                             Grid.Row="3"
-                            ItemsSource="{Binding dataPager.GridModelList}"
-                            SelectedItem="{Binding dataPager.SelectedItem}">
-                            <DataGrid.Columns>
-                                <DataGridTemplateColumn Width="80">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button
-                                                Padding="8"
-                                                Command="{Binding DataContext.ViewLogCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                                Content="&#xe633;"
-                                                Style="{StaticResource IconButtonStyle}" />
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTextColumn Binding="{Binding UserName}" Header="{extensions:Translate UserName}" />
-                                <DataGridTextColumn Binding="{Binding ServiceName}" Header="{extensions:Translate Service}" />
-                                <DataGridTextColumn Binding="{Binding MethodName}" Header="{extensions:Translate Action}" />
-                                <DataGridTextColumn Binding="{Binding BrowserInfo}" Header="{extensions:Translate Browser}" />
-                                <DataGridTextColumn Binding="{Binding ClientIpAddress}" Header="{extensions:Translate IpAddress}" />
-                                <DataGridTextColumn Binding="{Binding ClientName}" Header="{extensions:Translate Client}" />
-                            </DataGrid.Columns>
-                        </DataGrid>
+                            Margin="10,0,10,10"
+                            Background="{DynamicResource MaterialDesignPaper}">
+                            <DockPanel LastChildFill="False">
+                                <DataGrid
+                                    DockPanel.Dock="Top"
+                                    ItemsSource="{Binding dataPager.GridModelList}"
+                                    SelectedItem="{Binding dataPager.SelectedItem}">
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn Width="80">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button
+                                                        Padding="8"
+                                                        Command="{Binding DataContext.ViewLogCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                                        Content="&#xe633;"
+                                                        Style="{StaticResource IconButtonStyle}" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn Binding="{Binding UserName}" Header="{extensions:Translate UserName}" />
+                                        <DataGridTextColumn Binding="{Binding ServiceName}" Header="{extensions:Translate Service}" />
+                                        <DataGridTextColumn Binding="{Binding MethodName}" Header="{extensions:Translate Action}" />
+                                        <DataGridTextColumn Binding="{Binding BrowserInfo}" Header="{extensions:Translate Browser}" />
+                                        <DataGridTextColumn Binding="{Binding ClientIpAddress}" Header="{extensions:Translate IpAddress}" />
+                                        <DataGridTextColumn Binding="{Binding ClientName}" Header="{extensions:Translate Client}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
 
-                        <controls:DataPager
-                            Grid.Row="4"
-                            Margin="5"
-                            NumericButtonCount="{Binding dataPager.NumericButtonCount}"
-                            PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
-                            PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
-                            PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
+                                <controls:DataPager
+                                    Margin="5"
+                                    DockPanel.Dock="Bottom"
+                                    NumericButtonCount="{Binding dataPager.NumericButtonCount}"
+                                    PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
+                                    PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
+                                    PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
+                            </DockPanel>
+                        </md:Card>
                     </Grid>
                 </TabItem>
 
@@ -261,13 +264,17 @@
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
 
-                                <DatePicker BorderThickness="1" Text="{Binding EntityChangeFilter.StartDate}" />
+                                <DatePicker
+                                    Padding="3"
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                    Text="{Binding EntityChangeFilter.StartDate}" />
                                 <Border Grid.Column="1" Margin="10,0">
                                     <TextBlock VerticalAlignment="Center" Text="―" />
                                 </Border>
                                 <DatePicker
                                     Grid.Column="2"
-                                    BorderThickness="1"
+                                    Padding="3"
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                                     Text="{Binding EntityChangeFilter.EndDate}" />
                             </Grid>
 

@@ -12,21 +12,25 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <DockPanel Margin="20,15" LastChildFill="False">
-                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                    <TextBlock
-                        FontSize="18"
-                        FontWeight="Bold"
-                        Text="{Binding Title}" />
-                </StackPanel>
+            <StackPanel
+                Margin="15"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <TextBlock
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Text="{Binding Title}" />
+            </StackPanel>
 
-                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                    <Button Margin="10,0" Content="{extensions:Translate NotificationSettings}" />
-                    <Button Command="{Binding SetAllNotificationsAsReadCommand}" Content="{extensions:Translate SetAllAsRead}" />
-                </StackPanel>
-            </DockPanel>
+            <StackPanel
+                Margin="10,0"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <Button Margin="10,0" Content="{extensions:Translate NotificationSettings}" />
+                <Button Command="{Binding SetAllNotificationsAsReadCommand}" Content="{extensions:Translate SetAllAsRead}" />
+            </StackPanel>
 
-            <Grid Grid.Row="1" Margin="10">
+            <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition />
@@ -34,7 +38,7 @@
                 </Grid.RowDefinitions>
 
                 <!--  筛选  -->
-                <Grid Margin="0,5,0,0">
+                <Grid Margin="10,5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition />
@@ -48,13 +52,17 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
-                            <DatePicker BorderThickness="1" Text="{Binding StartDate, Mode=TwoWay}" />
+                            <DatePicker
+                                Padding="3"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                Text="{Binding StartDate, Mode=TwoWay}" />
                             <Border Grid.Column="1" Margin="10,0">
                                 <TextBlock VerticalAlignment="Center" Text="―" />
                             </Border>
                             <DatePicker
                                 Grid.Column="2"
-                                BorderThickness="1"
+                                Padding="3"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                                 Text="{Binding EndDate, Mode=TwoWay}" />
                         </Grid>
 
@@ -69,7 +77,7 @@
 
                     <StackPanel
                         Grid.Row="1"
-                        Margin="10"
+                        Margin="5"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
                         <Button
@@ -80,65 +88,71 @@
                     </StackPanel>
                 </Grid>
 
-                <DataGrid
+                <md:Card
                     Grid.Row="1"
-                    Margin="5,0"
-                    ItemsSource="{Binding dataPager.GridModelList}"
-                    SelectedItem="{Binding dataPager.SelectedItem}">
-                    <DataGrid.Columns>
-                        <DataGridTemplateColumn Width="120" Header="{extensions:Translate Actions}">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Orientation="Horizontal">
-                                        <Button
-                                            Margin="10,0"
-                                            VerticalAlignment="Center"
-                                            Background="Transparent"
-                                            Command="{Binding DataContext.SetNotificationAsReadCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                            CommandParameter="{Binding}"
-                                            Content="&#xe66f;"
-                                            Style="{StaticResource IconButtonStyle}"
-                                            ToolTip="{extensions:Translate SetAsRead}"
-                                            Visibility="{Binding State, Converter={StaticResource stateConverter}}" />
+                    Margin="10,0,10,10"
+                    Background="{DynamicResource MaterialDesignPaper}">
+                    <DockPanel LastChildFill="False">
+                        <DataGrid
+                            DockPanel.Dock="Top"
+                            ItemsSource="{Binding dataPager.GridModelList}"
+                            SelectedItem="{Binding dataPager.SelectedItem}">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Width="120" Header="{extensions:Translate Actions}">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <Button
+                                                    Margin="10,0"
+                                                    VerticalAlignment="Center"
+                                                    Background="Transparent"
+                                                    Command="{Binding DataContext.SetNotificationAsReadCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                                    CommandParameter="{Binding}"
+                                                    Content="&#xe66f;"
+                                                    Style="{StaticResource IconButtonStyle}"
+                                                    ToolTip="{extensions:Translate SetAsRead}"
+                                                    Visibility="{Binding State, Converter={StaticResource stateConverter}}" />
 
-                                        <Button
-                                            VerticalAlignment="Center"
-                                            Background="Transparent"
-                                            Command="{Binding DataContext.DeleteNotificationCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                            CommandParameter="{Binding}"
-                                            Content="&#xe63a;"
-                                            Style="{StaticResource IconButtonStyle}"
-                                            ToolTip="{extensions:Translate Delete}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn
-                            Width="100"
-                            Binding="{Binding Notification.Severity}"
-                            Header="{extensions:Translate Severity}" />
-                        <DataGridTemplateColumn Header="{extensions:Translate Notifications}">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock VerticalAlignment="Center" Text="{Binding Converter={StaticResource notifycationConverter}}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Binding="{Binding Path=Notification.CreationTime, StringFormat='yyyy-MM-dd hh:mm:ss'}" Header="{extensions:Translate CreationTime}" />
-                    </DataGrid.Columns>
-                </DataGrid>
+                                                <Button
+                                                    VerticalAlignment="Center"
+                                                    Background="Transparent"
+                                                    Command="{Binding DataContext.DeleteNotificationCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                                    CommandParameter="{Binding}"
+                                                    Content="&#xe63a;"
+                                                    Style="{StaticResource IconButtonStyle}"
+                                                    ToolTip="{extensions:Translate Delete}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding Notification.Severity}"
+                                    Header="{extensions:Translate Severity}" />
+                                <DataGridTemplateColumn Header="{extensions:Translate Notifications}">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Converter={StaticResource notifycationConverter}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Binding="{Binding Path=Notification.CreationTime, StringFormat='yyyy-MM-dd hh:mm:ss'}" Header="{extensions:Translate CreationTime}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
 
-                <controls:DataPager
-                    Grid.Row="2"
-                    Margin="5"
-                    HorizontalAlignment="Right"
-                    NumericButtonCount="{Binding dataPager.NumericButtonCount}"
-                    PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
-                    PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
-                    PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
+                        <controls:DataPager
+                            Margin="5"
+                            HorizontalAlignment="Right"
+                            DockPanel.Dock="Bottom"
+                            NumericButtonCount="{Binding dataPager.NumericButtonCount}"
+                            PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
+                            PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
+                            PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
+                    </DockPanel>
+                </md:Card>
             </Grid>
         </Grid>
     </md:DialogHost>

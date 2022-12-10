@@ -54,6 +54,21 @@ namespace AppFramework.Admin.Services
             }
         }
 
+        public void RemoveView(string pageName)
+        {
+            var view = NavigationRegion.Views.FirstOrDefault(q => q.GetType().Name.Equals(pageName));
+            if (view != null)
+            {
+                /*
+                 * 关闭Tab后调用OnNavigatedFrom，如需手动释放资源请在 OnNavigatedFrom 中处理
+                 */
+                if (view is UserControl viewControl && viewControl.DataContext is INavigationAware navigationAware)
+                    navigationAware.OnNavigatedFrom(null);
+
+                NavigationRegion.Remove(view);
+            }
+        }
+
         private void NavigateionCallBack(NavigationResult navigationResult)
         {
             if (navigationResult.Result != null && !(bool)navigationResult.Result)

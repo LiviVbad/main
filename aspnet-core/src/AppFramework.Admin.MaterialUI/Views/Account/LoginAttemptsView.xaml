@@ -12,7 +12,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <DockPanel Margin="20,15" LastChildFill="False">
+            <DockPanel Margin="15" LastChildFill="False">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock
                         FontSize="18"
@@ -25,15 +25,14 @@
                 </StackPanel>
             </DockPanel>
 
-            <Grid Grid.Row="1" Margin="10">
+            <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition />
-                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
                 <!--  筛选  -->
-                <Grid Margin="0,5,0,0">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
@@ -63,13 +62,17 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
-                            <DatePicker BorderThickness="1" Text="{Binding StartDate, Mode=TwoWay}" />
+                            <DatePicker
+                                Padding="3"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                Text="{Binding StartDate, Mode=TwoWay}" />
                             <Border Grid.Column="1" Margin="10,0">
                                 <TextBlock VerticalAlignment="Center" Text="―" />
                             </Border>
                             <DatePicker
                                 Grid.Column="2"
-                                BorderThickness="1"
+                                Padding="3"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                                 Text="{Binding EndDate, Mode=TwoWay}" />
                         </Grid>
                         <ComboBox Margin="3">
@@ -88,37 +91,43 @@
                     </UniformGrid>
                 </Grid>
 
-                <DataGrid
+                <md:Card
                     Grid.Row="1"
-                    Margin="5,0"
-                    ItemsSource="{Binding dataPager.GridModelList}"
-                    SelectedItem="{Binding dataPager.SelectedItem}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Width="150" Header="{extensions:Translate IpAddress}" />
-                        <DataGridTextColumn Width="100" Header="{extensions:Translate Client}" />
-                        <DataGridTextColumn Binding="{Binding BrowserInfo}" Header="{extensions:Translate Browser}" />
-                        <DataGridTextColumn Binding="{Binding Path=CreationTime, StringFormat='yyyy-MM-dd hh:mm:ss'}" Header="{extensions:Translate Time}" />
-                        <DataGridTemplateColumn Width="100" Header="{extensions:Translate Result}">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock
-                                        VerticalAlignment="Center"
-                                        Foreground="White"
-                                        Text="{Binding Result}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Binding="{Binding Path=CreationTime, StringFormat='yyyy-MM-dd hh:mm:ss'}" Header="{extensions:Translate CreationTime}" />
-                    </DataGrid.Columns>
-                </DataGrid>
+                    Margin="10,0,10,10"
+                    Background="{DynamicResource MaterialDesignPaper}">
+                    <DockPanel LastChildFill="False">
+                        <DataGrid
+                            DockPanel.Dock="Top"
+                            ItemsSource="{Binding dataPager.GridModelList}"
+                            SelectedItem="{Binding dataPager.SelectedItem}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="150" Header="{extensions:Translate IpAddress}" />
+                                <DataGridTextColumn Width="100" Header="{extensions:Translate Client}" />
+                                <DataGridTextColumn Binding="{Binding BrowserInfo}" Header="{extensions:Translate Browser}" />
+                                <DataGridTextColumn Binding="{Binding Path=CreationTime, StringFormat='yyyy-MM-dd hh:mm:ss'}" Header="{extensions:Translate Time}" />
+                                <DataGridTemplateColumn Width="100" Header="{extensions:Translate Result}">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                VerticalAlignment="Center"
+                                                Foreground="White"
+                                                Text="{Binding Result}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Binding="{Binding Path=CreationTime, StringFormat='yyyy-MM-dd hh:mm:ss'}" Header="{extensions:Translate CreationTime}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
 
-                <controls:DataPager
-                    Grid.Row="2"
-                    HorizontalAlignment="Right"
-                    NumericButtonCount="{Binding dataPager.NumericButtonCount}"
-                    PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
-                    PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
-                    PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
+                        <controls:DataPager
+                            HorizontalAlignment="Right"
+                            DockPanel.Dock="Bottom"
+                            NumericButtonCount="{Binding dataPager.NumericButtonCount}"
+                            PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
+                            PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
+                            PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
+                    </DockPanel>
+                </md:Card>
             </Grid>
         </Grid>
     </md:DialogHost>

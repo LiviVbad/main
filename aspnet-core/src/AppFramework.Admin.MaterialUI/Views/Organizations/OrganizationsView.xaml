@@ -11,6 +11,16 @@
     xmlns:models="clr-namespace:AppFramework.Admin.Models;assembly=AppFramework.Admin"
     mc:Ignorable="d">
     <md:DialogHost IsOpen="{Binding IsBusy}">
+        <md:DialogHost.DialogContent>
+            <StackPanel Orientation="Horizontal">
+                <ProgressBar
+                    Width="30"
+                    Height="30"
+                    Margin="5"
+                    IsIndeterminate="True"
+                    Style="{StaticResource MaterialDesignCircularProgressBar}" />
+            </StackPanel>
+        </md:DialogHost.DialogContent>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -36,79 +46,81 @@
                     <ColumnDefinition Width="1.8*" />
                 </Grid.ColumnDefinitions>
 
-                <DockPanel LastChildFill="False">
-                    <DockPanel
-                        Margin="15,10"
-                        DockPanel.Dock="Top"
-                        LastChildFill="False">
-                        <TextBlock
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="{extensions:Translate OrganizationTree}" />
-                        <Button
-                            Command="{Binding ExecuteItemCommand}"
-                            CommandParameter="AddOrganizationUnit"
-                            Content="{extensions:Translate AddRootUnit}"
-                            DockPanel.Dock="Right" />
+                <md:Card Margin="10" Background="{DynamicResource MaterialDesignPaper}">
+                    <DockPanel LastChildFill="False">
+                        <DockPanel
+                            Margin="15,10"
+                            DockPanel.Dock="Top"
+                            LastChildFill="False">
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="{extensions:Translate OrganizationTree}" />
+                            <Button
+                                Command="{Binding ExecuteItemCommand}"
+                                CommandParameter="AddOrganizationUnit"
+                                Content="{extensions:Translate AddRootUnit}"
+                                DockPanel.Dock="Right" />
+                        </DockPanel>
+                        <TreeView
+                            DockPanel.Dock="Top"
+                            ItemContainerStyle="{StaticResource DefaultTreeViewItem}"
+                            ItemsSource="{Binding dataPager.GridModelList}"
+                            Style="{StaticResource MaterialDesignTreeView}">
+                            <TreeView.ItemTemplate>
+                                <HierarchicalDataTemplate DataType="{x:Type models:OrganizationListModel}" ItemsSource="{Binding Items}">
+                                    <DockPanel Margin="0,5" HorizontalAlignment="Stretch">
+                                        <Image
+                                            Width="20"
+                                            Height="20"
+                                            Source="/Assets/Images/menus/organization.png" />
+                                        <TextBlock
+                                            Margin="5,0"
+                                            VerticalAlignment="Center"
+                                            Text="{Binding DisplayName}" />
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding MemberCount}" />
+                                        <TextBlock
+                                            Margin="5,0"
+                                            VerticalAlignment="Center"
+                                            Text="{extensions:Translate Members}" />
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding RoleCount}" />
+                                        <TextBlock
+                                            Margin="5,0"
+                                            VerticalAlignment="Center"
+                                            Text="{extensions:Translate Roles}" />
+
+                                        <Button
+                                            Margin="10,0,2,0"
+                                            Command="{Binding DataContext.AddRootUnitCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}}"
+                                            CommandParameter="{Binding}"
+                                            Content="&#xe607;"
+                                            Style="{StaticResource IconButtonStyle}"
+                                            ToolTip="{extensions:Translate AddRootUnit}" />
+                                        <Button
+                                            Command="{Binding DataContext.ChangeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}}"
+                                            CommandParameter="{Binding}"
+                                            Content="&#xe651;"
+                                            Style="{StaticResource IconButtonStyle}"
+                                            ToolTip="{extensions:Translate Change}" />
+                                        <Button
+                                            Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}}"
+                                            CommandParameter="{Binding}"
+                                            Content="&#xe65c;"
+                                            Style="{StaticResource IconButtonStyle}"
+                                            ToolTip="{extensions:Translate Remove}" />
+                                    </DockPanel>
+                                </HierarchicalDataTemplate>
+                            </TreeView.ItemTemplate>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectedItemChanged">
+                                    <i:InvokeCommandAction Command="{Binding SelectedCommand}" CommandParameter="{Binding ElementName=TreeViewOriganizations, Path=SelectedItem}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TreeView>
                     </DockPanel>
+                </md:Card>
 
-                    <TreeView
-                        x:Name="TreeViewOriganizations"
-                        DockPanel.Dock="Top"
-                        ItemsSource="{Binding dataPager.GridModelList}">
-                        <TreeView.ItemTemplate>
-                            <HierarchicalDataTemplate DataType="{x:Type models:OrganizationListModel}" ItemsSource="{Binding Items}">
-                                <DockPanel Margin="0,5" HorizontalAlignment="Stretch">
-                                    <Image
-                                        Width="20"
-                                        Height="20"
-                                        Source="/Assets/Images/menus/organization.png" />
-                                    <TextBlock
-                                        Margin="5,0"
-                                        VerticalAlignment="Center"
-                                        Text="{Binding DisplayName}" />
-                                    <TextBlock VerticalAlignment="Center" Text="{Binding MemberCount}" />
-                                    <TextBlock
-                                        Margin="5,0"
-                                        VerticalAlignment="Center"
-                                        Text="{extensions:Translate Members}" />
-                                    <TextBlock VerticalAlignment="Center" Text="{Binding RoleCount}" />
-                                    <TextBlock
-                                        Margin="5,0"
-                                        VerticalAlignment="Center"
-                                        Text="{extensions:Translate Roles}" />
-
-                                    <Button
-                                        Margin="10,0,2,0"
-                                        Command="{Binding DataContext.AddRootUnitCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}}"
-                                        CommandParameter="{Binding}"
-                                        Content="&#xe607;"
-                                        Style="{StaticResource IconButtonStyle}"
-                                        ToolTip="{extensions:Translate AddRootUnit}" />
-                                    <Button
-                                        Command="{Binding DataContext.ChangeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}}"
-                                        CommandParameter="{Binding}"
-                                        Content="&#xe651;"
-                                        Style="{StaticResource IconButtonStyle}"
-                                        ToolTip="{extensions:Translate Change}" />
-                                    <Button
-                                        Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}}"
-                                        CommandParameter="{Binding}"
-                                        Content="&#xe65c;"
-                                        Style="{StaticResource IconButtonStyle}"
-                                        ToolTip="{extensions:Translate Remove}" />
-                                </DockPanel>
-                            </HierarchicalDataTemplate>
-                        </TreeView.ItemTemplate>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectedItemChanged">
-                                <i:InvokeCommandAction Command="{Binding SelectedCommand}" CommandParameter="{Binding ElementName=TreeViewOriganizations, Path=SelectedItem}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </TreeView>
-                </DockPanel>
-
-                <Grid Grid.Column="1" Margin="10,0,0,0">
+                <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition />
@@ -128,98 +140,103 @@
                         md:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
                         md:ColorZoneAssist.Mode="Custom"
                         md:ElevationAssist.Elevation="Dp1"
+                        ItemContainerStyle="{StaticResource DefaultTabItemStyle}"
                         Style="{StaticResource MaterialDesignFilledTabControl}">
                         <TabItem Header="{extensions:Translate Members}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition />
-                                    <RowDefinition Height="auto" />
-                                </Grid.RowDefinitions>
+                            <md:Card Margin="0,0,10,10" Background="{DynamicResource MaterialDesignPaper}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
 
-                                <Button
-                                    Margin="5"
-                                    HorizontalAlignment="Right"
-                                    Command="{Binding ExecuteItemCommand}"
-                                    CommandParameter="AddMember"
-                                    Content="{extensions:Translate AddMember}" />
+                                    <Button
+                                        Margin="8"
+                                        HorizontalAlignment="Right"
+                                        Command="{Binding ExecuteItemCommand}"
+                                        CommandParameter="AddMember"
+                                        Content="{extensions:Translate AddMember}" />
 
-                                <DataGrid Grid.Row="1" ItemsSource="{Binding memberdataPager.GridModelList}">
-                                    <DataGrid.Columns>
-                                        <DataGridTemplateColumn Width="60">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <Button
-                                                        Padding="8"
-                                                        Command="{Binding DataContext.DeleteMemberCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                                        CommandParameter="{Binding}"
-                                                        Content="&#xe65c;"
-                                                        Style="{StaticResource IconButtonStyle}" />
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
-                                        <DataGridTextColumn Binding="{Binding Name}" Header="{extensions:Translate Name}" />
-                                        <DataGridTextColumn Binding="{Binding Surname}" Header="{extensions:Translate Surname}" />
-                                        <DataGridTextColumn Binding="{Binding UserName}" Header="{extensions:Translate UserName}" />
-                                        <DataGridTextColumn Binding="{Binding EmailAddress}" Header="{extensions:Translate EmailAddress}" />
-                                        <DataGridTextColumn Binding="{Binding Path=AddedTime, StringFormat='yyyy-MM-dd'}" Header="{extensions:Translate AddedTime}" />
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                    <DataGrid Grid.Row="1" ItemsSource="{Binding memberdataPager.GridModelList}">
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn Width="60">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Button
+                                                            Padding="8"
+                                                            Command="{Binding DataContext.DeleteMemberCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                                            CommandParameter="{Binding}"
+                                                            Content="&#xe65c;"
+                                                            Style="{StaticResource IconButtonStyle}" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTextColumn Binding="{Binding Name}" Header="{extensions:Translate Name}" />
+                                            <DataGridTextColumn Binding="{Binding Surname}" Header="{extensions:Translate Surname}" />
+                                            <DataGridTextColumn Binding="{Binding UserName}" Header="{extensions:Translate UserName}" />
+                                            <DataGridTextColumn Binding="{Binding EmailAddress}" Header="{extensions:Translate EmailAddress}" />
+                                            <DataGridTextColumn Binding="{Binding Path=AddedTime, StringFormat='yyyy-MM-dd'}" Header="{extensions:Translate AddedTime}" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
 
-                                <controls:DataPager
-                                    Grid.Row="2"
-                                    Margin="5"
-                                    HorizontalAlignment="Right"
-                                    NumericButtonCount="{Binding memberdataPager.NumericButtonCount}"
-                                    PageCount="{Binding memberdataPager.PageCount, Mode=TwoWay}"
-                                    PageSize="{Binding memberdataPager.PageSize, Mode=TwoWay}"
-                                    PageIndex="{Binding memberdataPager.PageIndex, Mode=TwoWay}" />
-                            </Grid>
+                                    <controls:DataPager
+                                        Grid.Row="2"
+                                        Margin="5"
+                                        HorizontalAlignment="Right"
+                                        NumericButtonCount="{Binding memberdataPager.NumericButtonCount}"
+                                        PageCount="{Binding memberdataPager.PageCount, Mode=TwoWay}"
+                                        PageSize="{Binding memberdataPager.PageSize, Mode=TwoWay}"
+                                        PageIndex="{Binding memberdataPager.PageIndex, Mode=TwoWay}" />
+                                </Grid>
+                            </md:Card>
                         </TabItem>
 
                         <TabItem Header="{extensions:Translate Role}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition />
-                                    <RowDefinition Height="auto" />
-                                </Grid.RowDefinitions>
+                            <md:Card Margin="0,0,10,10" Background="{DynamicResource MaterialDesignPaper}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
 
-                                <Button
-                                    Margin="5"
-                                    HorizontalAlignment="Right"
-                                    Command="{Binding ExecuteItemCommand}"
-                                    CommandParameter="AddRole"
-                                    Content="{extensions:Translate CreateNewRole}" />
+                                    <Button
+                                        Margin="8"
+                                        HorizontalAlignment="Right"
+                                        Command="{Binding ExecuteItemCommand}"
+                                        CommandParameter="AddRole"
+                                        Content="{extensions:Translate CreateNewRole}" />
 
-                                <DataGrid Grid.Row="1" ItemsSource="{Binding roledataPager.GridModelList}">
-                                    <DataGrid.Columns>
-                                        <DataGridTemplateColumn Width="60">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <Button
-                                                        Padding="8"
-                                                        Command="{Binding DataContext.DeleteRoleCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                                        CommandParameter="{Binding}"
-                                                        Content="&#xe65c;"
-                                                        Style="{StaticResource IconButtonStyle}" />
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
-                                        <DataGridTextColumn Binding="{Binding DisplayName}" Header="{extensions:Translate DisplayName}" />
-                                        <DataGridTextColumn Binding="{Binding Path=AddedTime, StringFormat='yyyy-MM-dd'}" Header="{extensions:Translate AddedTime}" />
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                    <DataGrid Grid.Row="1" ItemsSource="{Binding roledataPager.GridModelList}">
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn Width="60">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Button
+                                                            Padding="8"
+                                                            Command="{Binding DataContext.DeleteRoleCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                                            CommandParameter="{Binding}"
+                                                            Content="&#xe65c;"
+                                                            Style="{StaticResource IconButtonStyle}" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTextColumn Binding="{Binding DisplayName}" Header="{extensions:Translate DisplayName}" />
+                                            <DataGridTextColumn Binding="{Binding Path=AddedTime, StringFormat='yyyy-MM-dd'}" Header="{extensions:Translate AddedTime}" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
 
-                                <controls:DataPager
-                                    Grid.Row="2"
-                                    Margin="5"
-                                    HorizontalAlignment="Right"
-                                    NumericButtonCount="{Binding roledataPager.NumericButtonCount}"
-                                    PageCount="{Binding roledataPager.PageCount, Mode=TwoWay}"
-                                    PageSize="{Binding roledataPager.PageSize, Mode=TwoWay}"
-                                    PageIndex="{Binding roledataPager.PageIndex, Mode=TwoWay}" />
-                            </Grid>
+                                    <controls:DataPager
+                                        Grid.Row="2"
+                                        Margin="5"
+                                        HorizontalAlignment="Right"
+                                        NumericButtonCount="{Binding roledataPager.NumericButtonCount}"
+                                        PageCount="{Binding roledataPager.PageCount, Mode=TwoWay}"
+                                        PageSize="{Binding roledataPager.PageSize, Mode=TwoWay}"
+                                        PageIndex="{Binding roledataPager.PageIndex, Mode=TwoWay}" />
+                                </Grid>
+                            </md:Card>
                         </TabItem>
                     </TabControl>
                 </Grid>

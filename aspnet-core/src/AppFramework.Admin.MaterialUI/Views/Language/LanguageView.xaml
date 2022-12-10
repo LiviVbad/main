@@ -9,6 +9,16 @@
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     mc:Ignorable="d">
     <md:DialogHost IsOpen="{Binding IsBusy}">
+        <md:DialogHost.DialogContent>
+            <StackPanel Orientation="Horizontal">
+                <ProgressBar
+                    Width="30"
+                    Height="30"
+                    Margin="5"
+                    IsIndeterminate="True"
+                    Style="{StaticResource MaterialDesignCircularProgressBar}" />
+            </StackPanel>
+        </md:DialogHost.DialogContent>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -35,15 +45,12 @@
                     Visibility="{extensions:HasPermission Text={x:Static extensions:AppPermissions.LanguageCreate}}" />
             </DockPanel>
 
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
-
+            <md:Card
+                Grid.Row="1"
+                Margin="10,0,10,10"
+                Background="{DynamicResource MaterialDesignPaper}">
                 <DataGrid
-                    Grid.Row="1"
+                    DockPanel.Dock="Top"
                     ItemsSource="{Binding dataPager.GridModelList}"
                     SelectedItem="{Binding dataPager.SelectedItem}">
                     <DataGrid.Columns>
@@ -105,15 +112,7 @@
                         <DataGridTextColumn Binding="{Binding Path=CreationTime, StringFormat='yyyy-MM-dd hh:mm:ss'}" Header="{extensions:Translate CreationTime}" />
                     </DataGrid.Columns>
                 </DataGrid>
-
-                <controls:DataPager
-                    Grid.Row="2"
-                    Margin="5"
-                    NumericButtonCount="{Binding dataPager.NumericButtonCount}"
-                    PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
-                    PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
-                    PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
-            </Grid>
+            </md:Card>
         </Grid>
     </md:DialogHost>
 </UserControl>

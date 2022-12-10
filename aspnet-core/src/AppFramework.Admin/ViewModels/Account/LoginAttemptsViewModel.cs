@@ -52,6 +52,9 @@ namespace AppFramework.Admin.ViewModels
                 SkipCount = 0
             };
 
+            StartDate=DateTime.Now.AddDays(-3);
+            EndDate=DateTime.Now;
+
             SearchCommand = new DelegateCommand(Search);
             dataPager.OnPageIndexChangedEventhandler += UsersOnPageIndexChangedEventhandler;
         }

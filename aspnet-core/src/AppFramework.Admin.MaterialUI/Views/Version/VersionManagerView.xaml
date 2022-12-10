@@ -40,45 +40,52 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <DataGrid
+            <md:Card
                 Grid.Row="1"
-                ItemsSource="{Binding dataPager.GridModelList}"
-                SelectedItem="{Binding dataPager.SelectedItem}">
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Width="60" Header="{extensions:Translate Actions}">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <md:PopupBox>
-                                    <ItemsControl ItemsSource="{Binding DataContext.proxyService.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Button
-                                                    Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                                    CommandParameter="{Binding Key}"
-                                                    Content="{Binding Name}" />
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </md:PopupBox>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Binding="{Binding Name}" Header="{extensions:Translate AppName}" />
-                    <DataGridTextColumn Binding="{Binding Version}" Header="{extensions:Translate Version}" />
-                    <DataGridTextColumn Binding="{Binding MinimumVersion}" Header="{extensions:Translate MinimumVersion}" />
-                    <DataGridTextColumn Binding="{Binding IsEnable, Converter={StaticResource boolToYesNoStrConverter}}" Header="{extensions:Translate IsEnable}" />
-                    <DataGridTextColumn Binding="{Binding IsForced, Converter={StaticResource boolToYesNoStrConverter}}" Header="{extensions:Translate IsForced}" />
-                </DataGrid.Columns>
-            </DataGrid>
+                Margin="10,0,10,10"
+                Background="{DynamicResource MaterialDesignPaper}">
+                <DockPanel LastChildFill="False">
+                    <DataGrid
+                        DockPanel.Dock="Top"
+                        ItemsSource="{Binding dataPager.GridModelList}"
+                        SelectedItem="{Binding dataPager.SelectedItem}">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Width="60" Header="{extensions:Translate Actions}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <md:PopupBox>
+                                            <ItemsControl ItemsSource="{Binding DataContext.proxyService.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Button
+                                                            Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                                            CommandParameter="{Binding Key}"
+                                                            Content="{Binding Name}" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </md:PopupBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="{extensions:Translate AppName}" />
+                            <DataGridTextColumn Binding="{Binding Version}" Header="{extensions:Translate Version}" />
+                            <DataGridTextColumn Binding="{Binding MinimumVersion}" Header="{extensions:Translate MinimumVersion}" />
+                            <DataGridTextColumn Binding="{Binding IsEnable, Converter={StaticResource boolToYesNoStrConverter}}" Header="{extensions:Translate IsEnable}" />
+                            <DataGridTextColumn Binding="{Binding IsForced, Converter={StaticResource boolToYesNoStrConverter}}" Header="{extensions:Translate IsForced}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
 
-            <controls:DataPager
-                Grid.Row="2"
-                Margin="5"
-                HorizontalAlignment="Right"
-                NumericButtonCount="{Binding dataPager.NumericButtonCount}"
-                PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
-                PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
-                PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
+                    <controls:DataPager
+                        Margin="5"
+                        HorizontalAlignment="Right"
+                        DockPanel.Dock="Bottom"
+                        NumericButtonCount="{Binding dataPager.NumericButtonCount}"
+                        PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
+                        PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
+                        PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
+                </DockPanel>
+            </md:Card>
         </Grid>
     </Grid>
 </UserControl>

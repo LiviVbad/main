@@ -5,7 +5,6 @@
     xmlns:controls="clr-namespace:AppFramework.Admin.MaterialUI.Themes.Controls"
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:sync="http://schemas.syncfusion.com/wpf"
     Width="600"
     Height="350">
     <md:DialogHost Identifier="ManageLinkedAccounts">
@@ -23,20 +22,13 @@
                 FontWeight="Bold"
                 Text="{extensions:Translate SelectAUser}" />
 
-            <DataGrid
-                Grid.Row="1"
-                Margin="5,0"
-                AutoGenerateColumns="False"
-                IsReadOnly="False"
-                ItemsSource="{Binding dataPager.GridModelList}"
-                Style="{StaticResource SimpleDataGridStyle}">
+            <DataGrid Grid.Row="1" ItemsSource="{Binding dataPager.GridModelList}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Width="50" Header="{extensions:Translate Actions}">
+                    <DataGridTemplateColumn Width="80" Header="{extensions:Translate Actions}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button
                                     VerticalAlignment="Center"
-                                    Background="Transparent"
                                     Command="{Binding DataContext.SelectedUserCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                     CommandParameter="{Binding}"
                                     Content="&#xe608;"

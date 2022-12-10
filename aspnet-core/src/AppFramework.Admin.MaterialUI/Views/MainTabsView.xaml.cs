@@ -2,9 +2,11 @@
 using AppFramework.Shared;
 using System.Windows;
 using AppFramework.Shared.Services;
+using System.Windows.Controls;
+using AppFramework.Admin.ViewModels;
 
 namespace AppFramework.Admin.MaterialUI.Views
-{ 
+{
     public partial class MainTabsView : Window
     {
         private readonly IHostDialogService dialog;
@@ -54,6 +56,18 @@ namespace AppFramework.Admin.MaterialUI.Views
         private void SetWindowState()
         {
             this.WindowState = ((base.WindowState != System.Windows.WindowState.Maximized) ? System.Windows.WindowState.Maximized : System.Windows.WindowState.Normal);
+        }
+
+        private void OnCloseButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (e.Source != null&&e.Source is Button content)
+            {
+                if (content!=null&&content.CommandParameter is TabItem tabItem)
+                {
+                    if (this.DataContext is MainTabsViewModel viewModel)
+                        viewModel.NavigationService.RemoveView(tabItem.Content);
+                }
+            }
         } 
     }
 }

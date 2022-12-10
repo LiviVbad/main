@@ -57,6 +57,9 @@ namespace AppFramework.Admin.MaterialUI
 
             var eventHandler = GetDialogOpenedEventHandler(viewModel, parameters);
 
+            var isDialogOpen = DialogHost.IsDialogOpen(IdentifierName);
+            if (isDialogOpen) return new DialogResult(ButtonResult.Ignore);
+
             var dialogResult = await DialogHost.Show(dialogContent, IdentifierName, eventHandler);
 
             if (dialogResult == null)

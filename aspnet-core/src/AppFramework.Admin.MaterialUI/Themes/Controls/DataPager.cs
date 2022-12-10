@@ -132,6 +132,8 @@ namespace AppFramework.Admin.MaterialUI.Themes.Controls
         /// <param name="e"></param>
         void NextPage_Click(object sender, RoutedEventArgs e)
         {
+            if (PageIndex+1==PageCount) return;
+
             if (PageIndex < PageCount) PageIndex+=1;
         }
 

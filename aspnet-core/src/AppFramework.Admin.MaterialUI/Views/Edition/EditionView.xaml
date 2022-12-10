@@ -4,11 +4,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
-    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     mc:Ignorable="d">
     <md:DialogHost IsOpen="{Binding IsBusy}">
+        <md:DialogHost.DialogContent>
+            <StackPanel Orientation="Horizontal">
+                <ProgressBar
+                    Width="30"
+                    Height="30"
+                    Margin="5"
+                    IsIndeterminate="True"
+                    Style="{StaticResource MaterialDesignCircularProgressBar}" />
+            </StackPanel>
+        </md:DialogHost.DialogContent>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -35,13 +44,11 @@
                     Visibility="{extensions:HasPermission Text={x:Static extensions:AppPermissions.EditionCreate}}" />
             </DockPanel>
 
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
-
-                <DataGrid ItemsSource="{Binding dataPager.GridModelList}" SelectedItem="{Binding dataPager.SelectedItem}">
+            <md:Card Grid.Row="1">
+                <DataGrid
+                    Margin="10,0,10,10"
+                    ItemsSource="{Binding dataPager.GridModelList}"
+                    SelectedItem="{Binding dataPager.SelectedItem}">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Width="60" Header="{extensions:Translate Actions}">
                             <DataGridTemplateColumn.CellTemplate>
@@ -66,7 +73,7 @@
                         <DataGridTextColumn Binding="{Binding TrialDayCount}" Header="{extensions:Translate TrialDayCount}" />
                     </DataGrid.Columns>
                 </DataGrid>
-            </Grid>
+            </md:Card>
         </Grid>
     </md:DialogHost>
 </UserControl>

@@ -39,6 +39,7 @@
             md:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
             md:ColorZoneAssist.Mode="Custom"
             md:ElevationAssist.Elevation="Dp1"
+            ItemContainerStyle="{StaticResource DefaultTabItemStyle}"
             Style="{StaticResource MaterialDesignFilledTabControl}">
             <TabItem Header="{extensions:Translate UserInformations}">
                 <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
@@ -156,28 +157,16 @@
             </TabItem>
 
             <TabItem Header="{extensions:Translate OrganizationUnits}">
-                <TreeView
-                    x:Name="TreeViewOriganizations"
-                    Margin="5"
-                    DockPanel.Dock="Top"
-                    ItemsSource="{Binding Model.OrganizationUnits}">
-                    <TreeView.ItemTemplate>
+                <ListBox Margin="5" ItemsSource="{Binding Model.OrganizationUnits}">
+                    <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <DockPanel Margin="0,5">
-                                <CheckBox DockPanel.Dock="Left" IsChecked="{Binding IsAssigned}" />
-                                <Image
-                                    Width="20"
-                                    Height="20"
-                                    Margin="5,0"
-                                    Source="/Assets/Images/OrganizationUnit.png" />
-                                <TextBlock
-                                    Margin="5,0"
-                                    VerticalAlignment="Center"
-                                    Text="{Binding DisplayName}" />
-                            </DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding IsAssigned}" />
+                                <TextBlock Margin="5,0" Text="{Binding DisplayName}" />
+                            </StackPanel>
                         </DataTemplate>
-                    </TreeView.ItemTemplate>
-                </TreeView>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </TabItem>
         </TabControl>
 

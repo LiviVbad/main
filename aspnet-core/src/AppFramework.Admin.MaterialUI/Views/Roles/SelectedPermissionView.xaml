@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:AppFramework.Admin.Models;assembly=AppFramework.Admin"
     Width="800"
     Height="580"
     mc:Ignorable="d">
@@ -30,17 +31,14 @@
             </b:Interaction.Triggers>
         </TextBlock>
 
-        <TreeView
-            x:Name="sfTreeView"
-            Grid.Row="1"
-            ItemsSource="{Binding treesService.Permissions}">
+        <TreeView Grid.Row="1" ItemsSource="{Binding treesService.Permissions}">
             <TreeView.ItemTemplate>
-                <DataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type models:PermissionModel}" ItemsSource="{Binding Items}">
                     <StackPanel Orientation="Horizontal">
                         <CheckBox IsChecked="{Binding IsChecked}" />
-                        <TextBlock Margin="5,0" Text="{Binding Content.DisplayName}" />
+                        <TextBlock Margin="5,0" Text="{Binding DisplayName}" />
                     </StackPanel>
-                </DataTemplate>
+                </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
 

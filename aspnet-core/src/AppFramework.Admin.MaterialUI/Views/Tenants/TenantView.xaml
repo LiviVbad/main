@@ -12,6 +12,16 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <md:DialogHost IsOpen="{Binding IsBusy}">
+        <md:DialogHost.DialogContent>
+            <StackPanel Orientation="Horizontal">
+                <ProgressBar
+                    Width="30"
+                    Height="30"
+                    Margin="5"
+                    IsIndeterminate="True"
+                    Style="{StaticResource MaterialDesignCircularProgressBar}" />
+            </StackPanel>
+        </md:DialogHost.DialogContent>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -43,7 +53,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition />
-                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
                 <Grid Margin="10,0">
@@ -131,43 +140,50 @@
                     </UniformGrid>
                 </Grid>
 
-                <DataGrid
+                <md:Card
                     Grid.Row="1"
-                    ItemsSource="{Binding dataPager.GridModelList}"
-                    SelectedItem="{Binding dataPager.SelectedItem}">
-                    <DataGrid.Columns>
-                        <DataGridTemplateColumn Width="60" Header="{extensions:Translate Actions}">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <md:PopupBox>
-                                        <ItemsControl ItemsSource="{Binding DataContext.proxyService.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}">
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Button
-                                                        Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                                        CommandParameter="{Binding Key}"
-                                                        Content="{Binding Name}" />
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                    </md:PopupBox>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Binding="{Binding TenancyName}" Header="{extensions:Translate TenancyName}" />
-                        <DataGridTextColumn Binding="{Binding Name}" Header="{extensions:Translate Name}" />
-                        <DataGridTextColumn Binding="{Binding EditionDisplayName}" Header="{extensions:Translate DisplayName}" />
-                        <DataGridTextColumn Binding="{Binding IsActive}" Header="{extensions:Translate IsActive}" />
-                    </DataGrid.Columns>
-                </DataGrid>
+                    Margin="10,0,10,10"
+                    Background="{DynamicResource MaterialDesignPaper}">
+                    <DockPanel LastChildFill="False">
+                        <DataGrid
+                            DockPanel.Dock="Top"
+                            ItemsSource="{Binding dataPager.GridModelList}"
+                            SelectedItem="{Binding dataPager.SelectedItem}">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Width="60" Header="{extensions:Translate Actions}">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <md:PopupBox>
+                                                <ItemsControl ItemsSource="{Binding DataContext.proxyService.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Button
+                                                                Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                                                CommandParameter="{Binding Key}"
+                                                                Content="{Binding Name}" />
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </md:PopupBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Binding="{Binding TenancyName}" Header="{extensions:Translate TenancyName}" />
+                                <DataGridTextColumn Binding="{Binding Name}" Header="{extensions:Translate Name}" />
+                                <DataGridTextColumn Binding="{Binding EditionDisplayName}" Header="{extensions:Translate DisplayName}" />
+                                <DataGridTextColumn Binding="{Binding IsActive}" Header="{extensions:Translate IsActive}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
 
-                <controls:DataPager
-                    Grid.Row="2"
-                    Margin="5"
-                    NumericButtonCount="{Binding dataPager.NumericButtonCount}"
-                    PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
-                    PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
-                    PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
+                        <controls:DataPager
+                            Margin="5"
+                            DockPanel.Dock="Bottom"
+                            NumericButtonCount="{Binding dataPager.NumericButtonCount}"
+                            PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
+                            PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
+                            PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
+                    </DockPanel>
+                </md:Card>
             </Grid>
         </Grid>
     </md:DialogHost>
