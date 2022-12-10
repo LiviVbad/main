@@ -31,7 +31,9 @@ namespace AppFramework.Admin.Services
 
             var view = NavigationRegion.Views.FirstOrDefault(q => q.GetType().Name.Equals(pageName));
             if (view == null)
+            {
                 NavigationRegion.RequestNavigate(pageName, NavigateionCallBack, navigationParameters);
+            } 
             else
             {
                 SelectedIndex = NavigationRegion.Views.IndexOf(view);
@@ -59,6 +61,10 @@ namespace AppFramework.Admin.Services
 #if DEBUG
                 System.Diagnostics.Debug.WriteLine(navigationResult.Error.Message);
 #endif
+            }
+            else
+            {
+                SelectedIndex = NavigationRegion.Views.Count() - 1;
             }
         }
     }

@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Width="800"
     Height="580"
     mc:Ignorable="d">
@@ -30,10 +31,18 @@
             </b:Interaction.Triggers>
         </TextBlock>
 
-        <TabControl Grid.Row="1" Margin="10,0">
-            <TabItem Background="Transparent" Header="{extensions:Translate UserInformations}">
+        <TabControl
+            Grid.Row="1"
+            Margin="10,0"
+            HorizontalContentAlignment="Left"
+            md:ColorZoneAssist.Background="{DynamicResource MaterialDesignCardBackground}"
+            md:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
+            md:ColorZoneAssist.Mode="Custom"
+            md:ElevationAssist.Elevation="Dp1"
+            Style="{StaticResource MaterialDesignFilledTabControl}">
+            <TabItem Header="{extensions:Translate UserInformations}">
                 <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <DockPanel Margin="5" LastChildFill="False">
+                    <StackPanel Margin="5">
                         <TextBlock Text="{extensions:Translate FirstName}" />
                         <TextBox Text="{Binding Model.User.Name, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
                             <Validation.ErrorTemplate>
@@ -129,11 +138,11 @@
                         <CheckBox Content="{extensions:Translate SendActivationEmail}" IsChecked="{Binding Input.SendActivationEmail}" />
                         <CheckBox Content="{extensions:Translate Activate}" IsChecked="{Binding Model.User.IsActive}" />
                         <CheckBox Content="{extensions:Translate IsLockoutEnabled}" IsChecked="{Binding Model.User.IsLockoutEnabled}" />
-                    </DockPanel>
+                    </StackPanel>
                 </ScrollViewer>
             </TabItem>
 
-            <TabItem Background="Transparent" Header="{extensions:Translate Role}">
+            <TabItem Header="{extensions:Translate Role}">
                 <ListBox Margin="5" ItemsSource="{Binding Model.Roles}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -146,7 +155,7 @@
                 </ListBox>
             </TabItem>
 
-            <TabItem Background="Transparent" Header="{extensions:Translate OrganizationUnits}">
+            <TabItem Header="{extensions:Translate OrganizationUnits}">
                 <TreeView
                     x:Name="TreeViewOriganizations"
                     Margin="5"

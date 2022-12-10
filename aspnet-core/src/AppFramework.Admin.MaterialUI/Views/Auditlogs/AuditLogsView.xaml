@@ -41,7 +41,7 @@
                 md:ColorZoneAssist.Background="{DynamicResource MaterialDesignCardBackground}"
                 md:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
                 md:ColorZoneAssist.Mode="Custom"
-                md:ShadowAssist.ShadowDepth="Depth1"
+                md:ElevationAssist.Elevation="Dp1"
                 Style="{StaticResource MaterialDesignFilledTabControl}">
                 <TabItem Header="{extensions:Translate OperationLogs}">
                     <Grid>
@@ -202,11 +202,7 @@
                         <DataGrid
                             x:Name="DataGrid"
                             Grid.Row="3"
-                            Margin="5,0"
-                            AutoGenerateColumns="False"
-                            IsReadOnly="True"
                             ItemsSource="{Binding dataPager.GridModelList}"
-                            RowHeight="40"
                             SelectedItem="{Binding dataPager.SelectedItem}">
                             <DataGrid.Columns>
                                 <DataGridTemplateColumn Width="80">

@@ -36,8 +36,15 @@
             </DockPanel>
 
             <Grid Grid.Row="1">
-                <TabControl Margin="10">
-                    <TabItem Background="Transparent" Header="{extensions:Translate TenantManagement}">
+                <TabControl
+                    Margin="10"
+                    HorizontalContentAlignment="Left"
+                    md:ColorZoneAssist.Background="{DynamicResource MaterialDesignCardBackground}"
+                    md:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
+                    md:ColorZoneAssist.Mode="Custom"
+                    md:ElevationAssist.Elevation="Dp1"
+                    Style="{StaticResource MaterialDesignFilledTabControl}">
+                    <TabItem Header="{extensions:Translate TenantManagement}">
                         <StackPanel Margin="15">
                             <!--  允许租户注册到系统。  -->
                             <TextBlock FontWeight="Bold" Text="{extensions:Translate FormBasedRegistration}" />
@@ -75,7 +82,7 @@
                             </ComboBox>
                         </StackPanel>
                     </TabItem>
-                    <TabItem Background="Transparent" Header="{extensions:Translate UserManagement}">
+                    <TabItem Header="{extensions:Translate UserManagement}">
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <StackPanel Margin="15">
                                 <!--  必须验证邮箱地址后才能登录.  -->
@@ -156,7 +163,7 @@
                             </StackPanel>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem Background="Transparent" Header="{extensions:Translate Security}">
+                    <TabItem Header="{extensions:Translate Security}">
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <StackPanel Margin="15">
                                 <!--  密码复杂性  -->
@@ -236,7 +243,7 @@
                             </StackPanel>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem Background="Transparent" Header="{extensions:Translate EmailSmtp}">
+                    <TabItem Header="{extensions:Translate EmailSmtp}">
                         <StackPanel Margin="15">
                             <!--  默认发送邮箱地址  -->
                             <TextBlock Text="{extensions:Translate DefaultFromAddress}" />
@@ -287,7 +294,7 @@
                             </StackPanel>
                         </StackPanel>
                     </TabItem>
-                    <TabItem Background="Transparent" Header="{extensions:Translate Invoice}">
+                    <TabItem Header="{extensions:Translate Invoice}">
                         <StackPanel Margin="15">
                             <TextBlock FontWeight="Bold" Text="{extensions:Translate InvoiceInformation}" />
                             <!--  法定名称  -->
@@ -299,7 +306,7 @@
                             <TextBox Text="{Binding Setting.Billing.Address}" />
                         </StackPanel>
                     </TabItem>
-                    <TabItem Background="Transparent" Header="{extensions:Translate OtherSettings}">
+                    <TabItem Header="{extensions:Translate OtherSettings}">
                         <StackPanel Margin="15">
                             <!--  快速主题选择  -->
                             <TextBlock FontWeight="Bold" Text="{extensions:Translate QuickThemeSelection}" />

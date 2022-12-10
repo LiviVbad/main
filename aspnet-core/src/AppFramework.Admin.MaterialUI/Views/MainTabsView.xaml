@@ -2,6 +2,7 @@
     x:Class="AppFramework.Admin.MaterialUI.Views.MainTabsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:const="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:converter="clr-namespace:AppFramework.Admin.MaterialUI.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
@@ -20,7 +21,7 @@
     <Window.Resources>
         <converter:MenuTitleConverter x:Key="menuTitleConverter" />
     </Window.Resources>
-    <md:DialogHost>
+    <md:DialogHost Identifier="{x:Static const:AppSharedConsts.RootIdentifier}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="leftGridColumn" Width="250" />
@@ -321,9 +322,10 @@
                     md:ColorZoneAssist.Background="{DynamicResource MaterialDesignCardBackground}"
                     md:ColorZoneAssist.Foreground="{DynamicResource MaterialDesignDarkBackground}"
                     md:ColorZoneAssist.Mode="Custom"
-                    md:ShadowAssist.ShadowDepth="Depth1"
+                    md:ElevationAssist.Elevation="Dp1"
                     prism:RegionManager.RegionName="{x:Static region:AppRegions.Main}"
                     BorderThickness="0"
+                    ItemContainerStyle="{StaticResource DefaultTabItemStyle}"
                     SelectedIndex="{Binding NavigationService.SelectedIndex}"
                     Style="{StaticResource MaterialDesignFilledTabControl}">
                     <TabControl.ItemTemplate>

@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Width="800"
     Height="580"
     mc:Ignorable="d">
@@ -30,8 +31,16 @@
             </b:Interaction.Triggers>
         </TextBlock>
 
-        <TabControl Grid.Row="1" Margin="10,0">
-            <TabItem Background="Transparent" Header="{extensions:Translate RoleName}">
+        <TabControl
+            Grid.Row="1"
+            Margin="10,0"
+            HorizontalContentAlignment="Left"
+            md:ColorZoneAssist.Background="{DynamicResource MaterialDesignCardBackground}"
+            md:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
+            md:ColorZoneAssist.Mode="Custom"
+            md:ElevationAssist.Elevation="Dp1"
+            Style="{StaticResource MaterialDesignFilledTabControl}">
+            <TabItem Header="{extensions:Translate RoleName}">
                 <StackPanel Margin="5">
                     <TextBlock Text="{extensions:Translate RoleName}" />
                     <TextBox Margin="0,10" Text="{Binding Role.DisplayName, Mode=TwoWay}" />
@@ -42,8 +51,8 @@
                 </StackPanel>
             </TabItem>
 
-            <TabItem Background="Transparent" Header="{extensions:Translate Permissions}">
-                <Grid Grid.Row="1" Margin="5">
+            <TabItem Header="{extensions:Translate Permissions}">
+                <Grid Margin="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition />

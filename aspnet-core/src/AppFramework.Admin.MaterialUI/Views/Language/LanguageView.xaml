@@ -44,15 +44,26 @@
                 </Grid.RowDefinitions>
 
                 <DataGrid
-                    x:Name="SfDataGrid"
                     Grid.Row="1"
-                    Margin="5,0"
                     ItemsSource="{Binding dataPager.GridModelList}"
                     SelectedItem="{Binding dataPager.SelectedItem}">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Width="120" Header="{extensions:Translate Actions}">
+                        <DataGridTemplateColumn Width="60" Header="{extensions:Translate Actions}">
                             <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate />
+                                <DataTemplate>
+                                    <md:PopupBox>
+                                        <ItemsControl ItemsSource="{Binding DataContext.proxyService.Permissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Button
+                                                        Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                                        CommandParameter="{Binding Key}"
+                                                        Content="{Binding Name}" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </md:PopupBox>
+                                </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTemplateColumn Width="200" Header="{extensions:Translate DisplayName}">
