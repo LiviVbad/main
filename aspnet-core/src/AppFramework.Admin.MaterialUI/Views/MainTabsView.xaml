@@ -333,7 +333,7 @@
                     Grid.Row="1"
                     HorizontalContentAlignment="Left"
                     md:ColorZoneAssist.Background="{DynamicResource MaterialDesignCardBackground}"
-                    md:ColorZoneAssist.Foreground="{DynamicResource MaterialDesignDarkBackground}"
+                    md:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
                     md:ColorZoneAssist.Mode="Custom"
                     md:ElevationAssist.Elevation="Dp1"
                     prism:RegionManager.RegionName="{x:Static region:AppRegions.Main}"
@@ -345,7 +345,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock
                                     VerticalAlignment="Center"
-                                    Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                    Foreground="{DynamicResource MaterialDesignBody}"
                                     Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabItem}, Converter={StaticResource menuTitleConverter}}" />
                                 <Button Content="&#xe63a;" Style="{StaticResource IconButtonStyle}" />
                             </StackPanel>

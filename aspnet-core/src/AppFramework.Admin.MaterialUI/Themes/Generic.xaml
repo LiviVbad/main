@@ -22,6 +22,10 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    </Style>
+
     <Style BasedOn="{StaticResource MaterialDesignDataGrid}" TargetType="DataGrid">
         <Setter Property="IsReadOnly" Value="True" />
         <Setter Property="AutoGenerateColumns" Value="False" />

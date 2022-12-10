@@ -26,12 +26,14 @@
             <Setter Property="FontSize" Value="22" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontFamily" Value="/Assets/Fonts/#iconfont" />
+            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         </Style>
 
         <Style x:Key="headerTextBlockStyle" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -45,6 +47,7 @@
                 <TextBlock
                     FontSize="18"
                     FontWeight="Bold"
+                    Foreground="{DynamicResource MaterialDesignBody}"
                     Text="{Binding Title}" />
                 <TextBlock
                     Margin="10,0,0,0"
