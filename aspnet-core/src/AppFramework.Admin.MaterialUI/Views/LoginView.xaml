@@ -13,6 +13,7 @@
     Width="940"
     Height="550"
     AllowsTransparency="False"
+    Background="{DynamicResource MaterialDesignCardBackground}"
     Icon="/Assets/Images/logo.ico"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
@@ -39,7 +40,7 @@
                     Style="{StaticResource MaterialDesignCircularProgressBar}" />
             </StackPanel>
         </md:DialogHost.DialogContent>
-        <Grid Background="{StaticResource MaterialDesignLightBackground}">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition />

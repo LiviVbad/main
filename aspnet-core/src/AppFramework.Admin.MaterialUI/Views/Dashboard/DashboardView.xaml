@@ -119,7 +119,7 @@
 
                 <Border
                     Margin="5"
-                    Background="{DynamicResource MaterialDesignDarkSeparatorBackground}"
+                    Background="{DynamicResource MaterialDesignPaper}"
                     CornerRadius="5" />
                 <Grid Margin="5" ClipToBounds="True">
                     <Grid.RowDefinitions>
@@ -148,7 +148,7 @@
                 <Border
                     Grid.Column="1"
                     Margin="5"
-                    Background="{DynamicResource MaterialDesignDarkSeparatorBackground}"
+                    Background="{DynamicResource MaterialDesignPaper}"
                     CornerRadius="5" />
                 <Grid Grid.Column="1" Margin="5">
                     <Grid.RowDefinitions>
@@ -169,7 +169,7 @@
                 <Border
                     Grid.Row="1"
                     Margin="5"
-                    Background="{DynamicResource MaterialDesignDarkSeparatorBackground}"
+                    Background="{DynamicResource MaterialDesignPaper}"
                     CornerRadius="5" />
                 <Grid Grid.Row="1" Margin="5">
                     <Grid.RowDefinitions>
@@ -196,7 +196,7 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Margin="5"
-                    Background="{DynamicResource MaterialDesignDarkSeparatorBackground}"
+                    Background="{DynamicResource MaterialDesignPaper}"
                     CornerRadius="5" />
                 <Grid
                     Grid.Row="1"

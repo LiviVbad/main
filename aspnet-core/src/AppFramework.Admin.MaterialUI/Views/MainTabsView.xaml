@@ -30,9 +30,7 @@
 
             <md:Card
                 Margin="0,-2"
-                md:ElevationAssist.Elevation="Dp1"
-                md:ShadowAssist.ShadowEdges="Top"
-                Background="{DynamicResource MaterialDesignCardBackground}"
+                Background="{DynamicResource MaterialDesignPaper}"
                 BorderBrush="{DynamicResource MaterialDesignShadowBrush}">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -72,6 +70,7 @@
                                 x:Name="TxtDoubleTitle"
                                 FontFamily="/Assets/Fonts/#iconfont"
                                 FontSize="22"
+                                Foreground="White"
                                 Text="&#xe74c;" />
                         </ToggleButton>
                     </DockPanel>
