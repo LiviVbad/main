@@ -433,6 +433,24 @@
 	  <Page Update="Views\Settings\SettingsView.xaml">
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	  </Page>
+	  <Page Update="Views\Shared\DemoUiView.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="Views\Shared\FirstChangedPwdView.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="Views\Shared\HostMessageBoxView.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="Views\Shared\MessageBoxView.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="Views\Shared\SelectTenantView.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="Views\Shared\UserPanelView.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
 	  <Page Update="Views\Tenants\TenantChangeFeaturesView.xaml">
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	  </Page>
@@ -485,6 +503,15 @@
 	    <SubType>Code</SubType>
 	  </Compile>
 	  <Compile Update="Views\Chat\FriendsChatView.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Views\Shared\FirstChangedPwdView.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Views\Shared\HostMessageBoxView.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Views\Shared\SelectTenantView.xaml.cs">
 	    <SubType>Code</SubType>
 	  </Compile>
 	  <Compile Update="Views\Users\SelectedUserView.xaml.cs">

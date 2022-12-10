@@ -18,12 +18,12 @@ namespace AppFramework.Admin.MaterialUI
             services.Add<SelectedUserView, SelectedUserViewModel>(AppViews.SelectedUser);
             services.Add<FriendsView, FriendsViewModel>(AppViews.Friends);
             services.Add<FriendsChatView, FriendsChatViewModel>(AppViews.FriendsChat);
-            //services.Add<UserPanelView, UserPanelViewModel>(AppViews.UserPanel);
-            //services.Add<FirstChangedPwdView, FirstChangedPwdViewModel>(AppViews.FirstChangedPwd);
-            //services.Add<SelectTenantView, SelectTenantViewModel>(AppViews.SelectTenant);
+            services.Add<UserPanelView, UserPanelViewModel>(AppViews.UserPanel);
+            services.Add<FirstChangedPwdView, FirstChangedPwdViewModel>(AppViews.FirstChangedPwd);
+            services.Add<SelectTenantView, SelectTenantViewModel>(AppViews.SelectTenant);
             services.Add<MainTabsView, MainTabsViewModel>(AppViews.Main);
-            //services.Add<HostMessageBoxView, HostMessageViewModel>(AppViews.HostMessageBox);
-            //services.Add<MessageBoxView, MessageViewModel>(AppViews.MessageBox);
+            services.Add<HostMessageBoxView, HostMessageViewModel>(AppViews.HostMessageBox);
+            services.Add<MessageBoxView, MessageViewModel>(AppViews.MessageBox);
             services.Add<UserView, UserViewModel>(AppViews.User);
             services.Add<UserDetailsView, UserDetailsViewModel>(AppViews.UserDetails);
             services.Add<UserChangePermissionView, UserChangePermissionViewModel>(AppViews.UserChangePermission);
@@ -52,7 +52,7 @@ namespace AppFramework.Admin.MaterialUI
             services.Add<OrganizationsView, OrganizationsViewModel>(AppViews.Organization);
             services.Add<OrganizationsAddView, OrganizationsAddViewModel>(AppViews.OrganizationAdd);
             services.Add<SettingsView, SettingsViewModel>(AppViews.Setting);
-            //services.Add<DemoUiView, DemoUiViewModel>(AppViews.Demo); //演示组件页
+            services.Add<DemoUiView, DemoUiViewModel>(AppViews.Demo); //演示组件页
             services.Add<VisualView, VisualViewModel>(AppViews.Visual);
             services.Add<VersionManagerView, VersionManagerViewModel>(AppViews.Version);
             services.Add<VersionManagerDetailsView, VersionManagerDetailsViewModel>(AppViews.VersionDetails);

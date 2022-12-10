@@ -35,8 +35,7 @@
                 Margin="5,0"
                 AutoGenerateColumns="False"
                 IsReadOnly="False"
-                ItemsSource="{Binding dataPager.GridModelList}"
-                Style="{StaticResource SimpleDataGridStyle}">
+                ItemsSource="{Binding dataPager.GridModelList}" >
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Width="60" Header="{extensions:Translate Actions}">
                         <DataGridTemplateColumn.CellTemplate>
