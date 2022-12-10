@@ -281,7 +281,7 @@
                     SelectedIndex="{Binding NavigationService.SelectedIndex}">
                     <TabControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Background="Transparent" Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal">
                                 <TextBlock
                                     VerticalAlignment="Center"
                                     Foreground="{DynamicResource MaterialDesignBody}"
