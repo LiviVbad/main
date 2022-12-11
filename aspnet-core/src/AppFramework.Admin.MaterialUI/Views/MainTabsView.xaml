@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:const="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
+    xmlns:controls="clr-namespace:AppFramework.Admin.MaterialUI.Themes.Controls"
     xmlns:converter="clr-namespace:AppFramework.Admin.MaterialUI.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
@@ -117,8 +118,7 @@
                 <Border
                     x:Name="HeaderBorder"
                     Grid.RowSpan="2"
-                    Background="{DynamicResource MaterialDesignCardBackground}"
-                    BorderThickness="0" />
+                    Background="{DynamicResource MaterialDesignCardBackground}" />
 
                 <!--  顶部按钮功能 主题/最小化/最大化/退出系统  -->
                 <StackPanel
@@ -269,32 +269,20 @@
                 </Popup>
 
                 <!--  选项卡  -->
-                <TabControl
+                <controls:TabControl
                     Grid.Row="1"
                     HorizontalContentAlignment="Left"
-                    md:ColorZoneAssist.Background="{DynamicResource MaterialDesignCardBackground}"
-                    md:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
-                    md:ColorZoneAssist.Mode="Custom"
+                    controls:TabCloseItem.CloseClick="OnCloseButtonClick"
                     md:ElevationAssist.Elevation="Dp1"
                     prism:RegionManager.RegionName="{x:Static region:AppRegions.Main}"
-                    ItemContainerStyle="{StaticResource DefaultTabItemStyle}"
-                    SelectedIndex="{Binding NavigationService.SelectedIndex}">
+                    SelectedIndex="{Binding NavigationService.SelectedIndex}"
+                    Style="{StaticResource DefaultMaterialDesignTabControl}">
                     <TabControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    Foreground="{DynamicResource MaterialDesignBody}"
-                                    Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabItem}, Converter={StaticResource menuTitleConverter}}" />
-                                <Button
-                                    Click="OnCloseButtonClick"
-                                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabItem}}"
-                                    Content="&#xe63a;"
-                                    Style="{StaticResource IconButtonStyle}" />
-                            </StackPanel>
+                            <TextBlock Foreground="{DynamicResource MaterialDesignBody}" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:TabCloseItem}, Converter={StaticResource menuTitleConverter}}" />
                         </DataTemplate>
                     </TabControl.ItemTemplate>
-                </TabControl>
+                </controls:TabControl>
 
                 <Border
                     Grid.Row="1"

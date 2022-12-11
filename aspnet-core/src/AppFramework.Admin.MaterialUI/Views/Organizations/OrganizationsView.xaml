@@ -21,7 +21,7 @@
                     Style="{StaticResource MaterialDesignCircularProgressBar}" />
             </StackPanel>
         </md:DialogHost.DialogContent>
-        <Grid>
+        <Grid Background="{DynamicResource MaterialDesignCardBackground}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition />

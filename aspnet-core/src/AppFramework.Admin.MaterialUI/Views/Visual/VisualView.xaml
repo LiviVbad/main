@@ -7,7 +7,8 @@
     xmlns:local="clr-namespace:AppFramework.Admin.MaterialUI"
     xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf">
+    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+    Background="{DynamicResource MaterialDesignCardBackground}">
     <UserControl.Resources>
         <converter:ColorToBrushConverter x:Key="ColorToBrushConverter" />
 
@@ -33,7 +34,7 @@
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock
                         FontSize="18"
-                        FontWeight="Bold" 
+                        FontWeight="Bold"
                         Text="{Binding Title}" />
                     <TextBlock
                         Margin="10,0,0,0"

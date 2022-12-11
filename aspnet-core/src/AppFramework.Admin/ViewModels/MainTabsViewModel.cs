@@ -1,9 +1,9 @@
 ﻿using AppFramework.Shared;
-using AppFramework.Shared.Models; 
+using AppFramework.Shared.Models;
 using AppFramework.Admin.Services;
 using AppFramework.Admin.Services.Notification;
 using Prism.Commands;
-using Prism.Regions; 
+using Prism.Regions;
 using System.Threading.Tasks;
 using AppFramework.ApiClient;
 
@@ -32,8 +32,9 @@ namespace AppFramework.Admin.ViewModels
             });
             SetNotificationAsRead = new DelegateCommand(notificationService.SetNotificationAsRead);
             SetAllNotificationsAsReadCommand = new DelegateCommand(notificationService.SetAllNotificationsAsRead);
+             
         }
-
+         
         #region 字段/属性
 
         public NavigationService NavigationService { get; set; }

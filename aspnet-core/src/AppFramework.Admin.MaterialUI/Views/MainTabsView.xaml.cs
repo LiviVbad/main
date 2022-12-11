@@ -4,6 +4,7 @@ using System.Windows;
 using AppFramework.Shared.Services;
 using System.Windows.Controls;
 using AppFramework.Admin.ViewModels;
+using AppFramework.Admin.MaterialUI.Themes.Controls;
 
 namespace AppFramework.Admin.MaterialUI.Views
 {
@@ -60,13 +61,10 @@ namespace AppFramework.Admin.MaterialUI.Views
 
         private void OnCloseButtonClick(object sender, RoutedEventArgs e)
         {
-            if (e.Source != null&&e.Source is Button content)
-            {
-                if (content!=null&&content.CommandParameter is TabItem tabItem)
-                {
-                    if (this.DataContext is MainTabsViewModel viewModel)
-                        viewModel.NavigationService.RemoveView(tabItem.Content);
-                }
+            if (e.OriginalSource != null&&e.OriginalSource is TabCloseItem tabItem)
+            { 
+                if (this.DataContext is MainTabsViewModel viewModel)
+                    viewModel.NavigationService.RemoveView(tabItem.Content);
             }
         } 
     }

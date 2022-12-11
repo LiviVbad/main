@@ -4,7 +4,7 @@ using System.Windows.Controls;
 
 namespace AppFramework.Admin.MaterialUI
 {
-    public class TabControlRegionAdapter : RegionAdapterBase<TabControl>
+    internal class TabControlRegionAdapter : RegionAdapterBase<TabControl>
     {
         public TabControlRegionAdapter(IRegionBehaviorFactory regionBehaviorFactory)
             : base(regionBehaviorFactory)
