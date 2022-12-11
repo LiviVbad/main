@@ -61,11 +61,11 @@ namespace AppFramework.Admin.SyncUI
         {
             var dialogService = ContainerLocator.Container.Resolve<IHostDialogService>();
             var result = dialogService.ShowWindow(AppViews.SplashScreen).Result;
-            if (result == ButtonResult.No)
+            if (result == ButtonResult.Ignore)
             {
                 if (!Authorization()) Exit();
             }
-            else if (result == ButtonResult.None) Exit();
+            else if (result == ButtonResult.No) Exit();
         }
 
         private bool Authorization()

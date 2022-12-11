@@ -1,16 +1,16 @@
 ﻿using AppFramework.ApiClient;
 using AppFramework.Shared;
 using AppFramework.Shared.Services;
-using AppFramework.Admin.Services.Account; 
+using AppFramework.Admin.Services.Account;
 using Prism.Services.Dialogs;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
 namespace AppFramework.Admin.ViewModels
 {
     public class SplashScreenViewModel : DialogViewModel
     {
         private readonly IAccessTokenManager accessTokenManager;
-        private readonly IAccountStorageService dataStorageService; 
+        private readonly IAccountStorageService dataStorageService;
         private readonly IApplicationContext applicationContext;
 
         private string displayText;
@@ -25,7 +25,7 @@ namespace AppFramework.Admin.ViewModels
            IApplicationContext applicationContext,
            IAccessTokenManager accessTokenManager,
            IAccountStorageService dataStorageService)
-        { 
+        {
             this.applicationContext = applicationContext;
             this.accessTokenManager = accessTokenManager;
             this.dataStorageService = dataStorageService;
@@ -45,10 +45,12 @@ namespace AppFramework.Admin.ViewModels
                 //加载系统资源
                 DisplayText = LocalTranslationHelper.Localize("LoadResource");
                 await UserConfigurationManager.GetIfNeedsAsync();
-                 
+
                 //如果本地授权存在,直接进入系统首页
                 if (accessTokenManager.IsUserLoggedIn && applicationContext.Configuration != null)
                     OnDialogClosed();
+                else if (applicationContext.Configuration!=null)
+                    OnDialogClosed(ButtonResult.Ignore);
                 else
                     OnDialogClosed(ButtonResult.No);
             });

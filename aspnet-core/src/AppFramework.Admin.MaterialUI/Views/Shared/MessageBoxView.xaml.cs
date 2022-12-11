@@ -5,10 +5,9 @@ namespace AppFramework.Admin.MaterialUI
 {
     public partial class MessageBoxView : UserControl
     {
-        public MessageBoxView(IThemeService themeService)
+        public MessageBoxView()
         {
-            InitializeComponent(); 
-            themeService.SetCurrentTheme(this); 
+            InitializeComponent();  
         }
     }
 }

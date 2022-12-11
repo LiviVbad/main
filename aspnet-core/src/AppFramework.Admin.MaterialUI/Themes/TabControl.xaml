@@ -7,9 +7,9 @@
     <Style x:Key="DefaultMaterialDesignTabItem" TargetType="{x:Type control:TabCloseItem}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-        <Setter Property="Height" Value="48" />
-        <Setter Property="MinWidth" Value="90" />
-        <Setter Property="Padding" Value="16,12" />
+        <Setter Property="Padding" Value="10,0,0,0" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="MinWidth" Value="60" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type control:TabCloseItem}">
@@ -247,12 +247,7 @@
     <Style
         x:Key="DefaultMaterialDesignTabItemStyle"
         BasedOn="{StaticResource DefaultMaterialDesignTabItem}"
-        TargetType="{x:Type control:TabCloseItem}">
-        <Setter Property="Padding" Value="10,0,0,0" />
-        <Setter Property="Height" Value="30" />
-        <Setter Property="MinWidth" Value="60" />
-        <Setter Property="MaxWidth" Value="150" />
-    </Style>
+        TargetType="{x:Type control:TabCloseItem}" />
 
     <Style x:Key="DefaultMaterialDesignTabControl" TargetType="{x:Type control:TabControl}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
@@ -289,7 +284,7 @@
                                 <Grid Background="{Binding ElementName=PART_HeaderCard, Path=Background}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
@@ -303,16 +298,16 @@
                                         VerticalAlignment="Center"
                                         Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:NavigationRailAssist.FloatingContent)}"
                                         Focusable="False" />
-                                    <UniformGrid
+
+                                    <WrapPanel
                                         x:Name="HeaderPanel"
                                         Grid.Row="1"
                                         Grid.Column="0"
                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        Columns="1"
                                         Focusable="False"
                                         IsItemsHost="True"
-                                        Rows="0" />
+                                        Orientation="Horizontal" />
 
                                     <Rectangle
                                         x:Name="DividerRect"
@@ -363,10 +358,8 @@
                             <Setter TargetName="DividerRect" Property="HorizontalAlignment" Value="Stretch" />
                             <Setter TargetName="DividerRect" Property="VerticalAlignment" Value="Bottom" />
                             <Setter TargetName="DividerRect" Property="Width" Value="Auto" />
-                            <Setter TargetName="HeaderPanel" Property="Columns" Value="0" />
                             <Setter TargetName="HeaderPanel" Property="Grid.Column" Value="1" />
                             <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="0" />
-                            <Setter TargetName="HeaderPanel" Property="Rows" Value="1" />
                             <Setter TargetName="TabGrid" Property="DockPanel.Dock" Value="Top" />
                         </Trigger>
                         <Trigger Property="TabStripPlacement" Value="Bottom">
@@ -378,10 +371,8 @@
                             <Setter TargetName="DividerRect" Property="HorizontalAlignment" Value="Stretch" />
                             <Setter TargetName="DividerRect" Property="VerticalAlignment" Value="Top" />
                             <Setter TargetName="DividerRect" Property="Width" Value="Auto" />
-                            <Setter TargetName="HeaderPanel" Property="Columns" Value="0" />
                             <Setter TargetName="HeaderPanel" Property="Grid.Column" Value="1" />
                             <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="0" />
-                            <Setter TargetName="HeaderPanel" Property="Rows" Value="1" />
                             <Setter TargetName="TabGrid" Property="DockPanel.Dock" Value="Bottom" />
                         </Trigger>
                         <Trigger Property="TabStripPlacement" Value="Right">

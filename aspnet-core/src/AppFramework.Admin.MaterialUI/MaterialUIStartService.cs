@@ -5,7 +5,7 @@ using AppFramework.Shared.Services;
 using AppFramework.Shared.Services.App;
 using Prism.Regions;
 using Prism.Services.Dialogs;
-using System; 
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using Prism.Ioc;
@@ -15,7 +15,7 @@ namespace AppFramework.Admin.MaterialUI
     internal class MaterialUIStartService : IAppStartService
     {
         public void CreateShell()
-        { 
+        {
             var container = ContainerLocator.Container;
 
             var userConfigurationService = container.Resolve<UserConfigurationService>();
@@ -35,7 +35,7 @@ namespace AppFramework.Admin.MaterialUI
                 {
                     navigationAware.OnNavigatedTo(null);
                     App.Current.MainWindow = view;
-                } 
+                }
             }
         }
 
@@ -43,11 +43,11 @@ namespace AppFramework.Admin.MaterialUI
         {
             var dialogService = ContainerLocator.Container.Resolve<IHostDialogService>();
             var result = dialogService.ShowWindow(AppViews.SplashScreen).Result;
-            if (result == ButtonResult.No)
+            if (result == ButtonResult.Ignore)
             {
                 if (!Authorization()) Exit();
             }
-            else if (result == ButtonResult.None) Exit(); 
+            else if (result == ButtonResult.No) Exit();
         }
 
         private bool Authorization()
@@ -89,8 +89,8 @@ namespace AppFramework.Admin.MaterialUI
             SplashScreenInitialized();
             App.Current.MainWindow.Show();
 
-            if(App.Current.MainWindow.DataContext is INavigationAware navigationAware)
-                navigationAware.OnNavigatedTo(null); 
+            if (App.Current.MainWindow.DataContext is INavigationAware navigationAware)
+                navigationAware.OnNavigatedTo(null);
         }
 
     }

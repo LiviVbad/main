@@ -8,6 +8,7 @@
     xmlns:prism="http://prismlibrary.com/"
     Width="450"
     Height="200"
+    Background="{DynamicResource MaterialDesignCardBackground}"
     mc:Ignorable="d">
     <prism:Dialog.WindowStyle>
         <Style TargetType="Window">
