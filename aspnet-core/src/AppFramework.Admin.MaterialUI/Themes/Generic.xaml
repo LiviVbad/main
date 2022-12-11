@@ -314,7 +314,7 @@
                         <Border
                             x:Name="hdborder"
                             Margin="0,2"
-                            Background="{DynamicResource MaterialDesignDarkSeparatorBackground}"
+                            Background="{DynamicResource MaterialDesignCardBackground}"
                             CornerRadius="5" />
                         <Border
                             x:Name="border"
@@ -344,7 +344,7 @@
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
-                            <Setter TargetName="hdborder" Property="Opacity" Value="1" />
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource MaterialDesignCardBackground}" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="False">
                             <Setter TargetName="hdborder" Property="Opacity" Value="0" />

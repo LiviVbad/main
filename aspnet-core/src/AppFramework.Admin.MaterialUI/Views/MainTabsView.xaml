@@ -11,7 +11,7 @@
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:region="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
-    MinWidth="1280"
+    MinWidth="1080"
     MinHeight="768"
     prism:ViewModelLocator.AutoWireViewModel="True"
     AllowsTransparency="True"
@@ -25,7 +25,7 @@
     <md:DialogHost Identifier="{x:Static const:AppSharedConsts.RootIdentifier}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="leftGridColumn" Width="230" />
+                <ColumnDefinition x:Name="GridLeftMenu" Width="230" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
@@ -42,9 +42,10 @@
                     <!--  顶部标题  -->
                     <DockPanel
                         Margin="15"
+                        HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         LastChildFill="False">
-                        <StackPanel x:Name="TitltStack" Orientation="Horizontal">
+                        <StackPanel x:Name="StackHeader" Orientation="Horizontal">
                             <Image
                                 Width="20"
                                 Height="20"
@@ -57,23 +58,20 @@
                                 FontWeight="Bold"
                                 Text="APP" />
                             <TextBlock
+                                Margin="0,0,5,0"
                                 VerticalAlignment="Center"
                                 FontSize="14"
                                 Text="FRAMEWORK" />
                         </StackPanel>
                         <ToggleButton
-                            x:Name="BtnDoubleLeft"
-                            HorizontalAlignment="Center"
+                            x:Name="toggleMenuButton"
+                            HorizontalAlignment="Left"
                             VerticalAlignment="Center"
+                            md:ToggleButtonAssist.OnContent="{md:PackIcon Kind=ArrowRight}"
+                            Content="{md:PackIcon Kind=MenuOpen}"
                             DockPanel.Dock="Right"
-                            Style="{StaticResource MaterialDesignActionDarkToggleButton}">
-                            <TextBlock
-                                x:Name="TxtDoubleTitle"
-                                FontFamily="/Assets/Fonts/#iconfont"
-                                FontSize="22"
-                                Foreground="White"
-                                Text="&#xe74c;" />
-                        </ToggleButton>
+                            Style="{StaticResource MaterialDesignActionToggleButton}"
+                            ToolTip="MaterialDesignActionLightToggleButton" />
                     </DockPanel>
 
                     <!--  左侧系统菜单  -->
@@ -85,11 +83,13 @@
                         ItemsSource="{Binding appService.NavigationItems}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="5" Orientation="Horizontal">
+                                <StackPanel
+                                    Margin="5"
+                                    Background="Transparent"
+                                    Orientation="Horizontal">
                                     <Image
                                         Width="20"
                                         Height="20"
-                                        Margin="10,0"
                                         Source="{Binding Icon, Converter={StaticResource menuConverter}}"
                                         ToolTip="{Binding Title}" />
                                     <TextBlock

@@ -29,10 +29,32 @@ namespace AppFramework.Admin.MaterialUI.Views
                 if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
                     this.DragMove();
             };
+            this.MouseDown += (s, e) => toggleShowPanel.IsChecked = false;
 
             BtnMin.Click += BtnMin_Click;
             BtnMax.Click += BtnMax_Click;
             BtnClose.Click += BtnClose_Click;
+
+            toggleMenuButton.Click +=BtnDoubleLeft_Click; ;
+        }
+
+        private void BtnDoubleLeft_Click(object sender, RoutedEventArgs e)
+        {
+            CollapseMenu();
+        }
+
+        private void CollapseMenu()
+        {
+            if (StackHeader.Visibility== Visibility.Visible)
+            {
+                StackHeader.Visibility = Visibility.Collapsed;
+                GridLeftMenu.Width = new GridLength(70); 
+            }
+            else
+            {
+                StackHeader.Visibility = Visibility.Visible;
+                GridLeftMenu.Width = new GridLength(220); 
+            }
         }
 
         private async void BtnClose_Click(object sender, System.Windows.RoutedEventArgs e)
