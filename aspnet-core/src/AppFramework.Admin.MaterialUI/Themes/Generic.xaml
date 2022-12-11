@@ -294,7 +294,6 @@
         <Setter Property="Padding" Value="10,0,0,0" />
         <Setter Property="Height" Value="30" />
         <Setter Property="MinWidth" Value="60" />
-        <Setter Property="MaxWidth" Value="120" />
     </Style>
 
     <Style x:Key="listMenuItemStyle" TargetType="ListBoxItem">

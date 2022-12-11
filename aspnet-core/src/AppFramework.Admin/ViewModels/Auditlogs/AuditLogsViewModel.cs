@@ -159,8 +159,11 @@ namespace AppFramework.Admin.ViewModels
         /// <returns></returns>
         private async Task GetAuditLogs(GetAuditLogsFilter input)
         {
-            await WebRequest.Execute(() => appService.GetAuditLogs(Map<GetAuditLogsInput>(input)),
+            await SetBusyAsync(async () =>
+            {
+                await WebRequest.Execute(() => appService.GetAuditLogs(Map<GetAuditLogsInput>(input)),
                          dataPager.SetList);
+            }); 
         }
 
         private async void AuditLogsOnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)

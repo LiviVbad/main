@@ -103,6 +103,8 @@ namespace AppFramework.Admin.ViewModels
 
         public void Navigate(NavigationItem item)
         {
+            if (item==null) return;
+
             NavigationService.Navigate(item.PageViewName);
         }
 

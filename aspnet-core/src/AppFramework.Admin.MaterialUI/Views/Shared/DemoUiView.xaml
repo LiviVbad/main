@@ -9,6 +9,7 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    Background="{DynamicResource MaterialDesignCardBackground}"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
