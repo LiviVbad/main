@@ -43,12 +43,12 @@ namespace AppFramework.Shared
             DialogParameters param = new DialogParameters();
             param.Add("Value", value);
 
-            //DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.OK, param));
+            dialogService.Close(IdentifierName, new DialogResult(ButtonResult.OK, param));
         }
 
         protected virtual void Save(DialogParameters param)
         {
-            //DialogHost.Close(IdentifierName, new DialogResult(ButtonResult.OK, param));
+            dialogService.Close(IdentifierName, new DialogResult(ButtonResult.OK, param));
         }
 
         public abstract void OnDialogOpened(IDialogParameters parameters);

@@ -63,16 +63,18 @@
                                 DockPanel.Dock="Right" />
                         </DockPanel>
                         <TreeView
+                            x:Name="TreeViewOriganizations"
                             DockPanel.Dock="Top"
                             ItemContainerStyle="{StaticResource DefaultTreeViewItem}"
                             ItemsSource="{Binding dataPager.GridModelList}"
                             Style="{StaticResource MaterialDesignTreeView}">
                             <TreeView.ItemTemplate>
                                 <HierarchicalDataTemplate DataType="{x:Type models:OrganizationListModel}" ItemsSource="{Binding Items}">
-                                    <DockPanel Margin="0,5" HorizontalAlignment="Stretch">
+                                    <DockPanel HorizontalAlignment="Stretch">
                                         <Image
                                             Width="20"
                                             Height="20"
+                                            Margin="5,0,0,0"
                                             Source="/Assets/Images/menus/organization.png" />
                                         <TextBlock
                                             Margin="5,0"
@@ -160,7 +162,7 @@
 
                                     <DataGrid Grid.Row="1" ItemsSource="{Binding memberdataPager.GridModelList}">
                                         <DataGrid.Columns>
-                                            <DataGridTemplateColumn Width="60">
+                                            <DataGridTemplateColumn Width="80">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <Button
@@ -210,7 +212,7 @@
 
                                     <DataGrid Grid.Row="1" ItemsSource="{Binding roledataPager.GridModelList}">
                                         <DataGrid.Columns>
-                                            <DataGridTemplateColumn Width="60">
+                                            <DataGridTemplateColumn Width="80">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <Button

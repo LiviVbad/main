@@ -7,6 +7,7 @@
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:models="clr-namespace:AppFramework.Admin.Models;assembly=AppFramework.Admin"
     Width="800"
     Height="580"
     mc:Ignorable="d">
@@ -39,6 +40,7 @@
             md:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
             md:ColorZoneAssist.Mode="Custom"
             md:ElevationAssist.Elevation="Dp1"
+            ItemContainerStyle="{StaticResource DefaultTabItemStyle}"
             Style="{StaticResource MaterialDesignFilledTabControl}">
             <TabItem Header="{extensions:Translate RoleName}">
                 <StackPanel Margin="5">
@@ -57,20 +59,20 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
+
                     <TextBlock Text="{extensions:Translate Permission}" />
 
                     <TreeView
-                        x:Name="sfTreeView"
                         Grid.Row="1"
                         Margin="0,5"
                         ItemsSource="{Binding treesService.Permissions}">
                         <TreeView.ItemTemplate>
-                            <DataTemplate>
+                            <HierarchicalDataTemplate DataType="{x:Type models:PermissionModel}" ItemsSource="{Binding Items}">
                                 <StackPanel Orientation="Horizontal">
-                                    <CheckBox IsChecked="{Binding IsChecked}" />
-                                    <TextBlock Margin="5,0" Text="{Binding Content.DisplayName}" />
+                                    <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}" />
+                                    <TextBlock Margin="5,0" Text="{Binding DisplayName}" />
                                 </StackPanel>
-                            </DataTemplate>
+                            </HierarchicalDataTemplate>
                         </TreeView.ItemTemplate>
                     </TreeView>
                 </Grid>

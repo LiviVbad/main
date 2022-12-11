@@ -7,9 +7,10 @@ using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq; 
+using System.Linq;
+using AppFramework.Admin.Services;
 
-namespace AppFramework.Admin.Services
+namespace AppFramework.Admin.MaterialUI.Services
 {
     public class FeaturesService : BindableBase, IFeaturesService
     {
@@ -28,13 +29,7 @@ namespace AppFramework.Admin.Services
             set { features = value; RaisePropertyChanged(); }
         }
 
-        private ObservableCollection<object> selectedItems;
-
-        public ObservableCollection<object> SelectedItems
-        {
-            get { return selectedItems; }
-            set { selectedItems = value; RaisePropertyChanged(); }
-        }
+        public ObservableCollection<object> SelectedItems { get; set; }
 
         public void CreateFeatures(List<FlatFeatureDto> features, List<NameValueDto> featureValues)
         {
@@ -46,8 +41,8 @@ namespace AppFramework.Admin.Services
 
             var flats = mapper.Map<List<FlatFeatureModel>>(features);
 
-            Features = CreateFeatureTrees(flats, null);
-            SelectedItems = GetSelectedItems(Features, featureValues);
+            Features = CreateFeatureTrees(flats);
+            UpdateFeaturesIsCheckedState(Features, featureValues);
         }
 
         public List<NameValueDto> GetSelectedItems()
@@ -55,12 +50,6 @@ namespace AppFramework.Admin.Services
             List<NameValueDto> items = new List<NameValueDto>();
             GetFeatures(Features, ref items);
 
-            foreach (FlatFeatureModel model in SelectedItems)
-            {
-                var item = items.FirstOrDefault(t => t.Name.Equals(model.Name));
-                if (item != null)
-                    item.Value = "true";
-            } 
             return items;
         }
 
@@ -74,7 +63,9 @@ namespace AppFramework.Admin.Services
             foreach (var item in flatFeatures)
             {
                 if (bool.TryParse(item.DefaultValue, out bool result))
-                    featureValues.Add(new NameValueDto(item.Name, "false"));
+                {
+                    featureValues.Add(new NameValueDto(item.Name, item.IsChecked ? "true" : "false"));
+                }
                 else
                     featureValues.Add(new NameValueDto(item.Name, item.DefaultValue));
 
@@ -88,7 +79,7 @@ namespace AppFramework.Admin.Services
         /// <param name="flats"></param>
         /// <param name="parentName"></param>
         /// <returns></returns>
-        private ObservableCollection<FlatFeatureModel> CreateFeatureTrees(List<FlatFeatureModel> flatFeatureModels, string parentName)
+        private ObservableCollection<FlatFeatureModel> CreateFeatureTrees(List<FlatFeatureModel> flatFeatureModels, string? parentName = null)
         {
             var trees = new ObservableCollection<FlatFeatureModel>();
             var nodes = flatFeatureModels.Where(q => q.ParentName == parentName).ToArray();
@@ -101,47 +92,30 @@ namespace AppFramework.Admin.Services
             return trees;
         }
 
-        private ObservableCollection<object> GetSelectedItems(ObservableCollection<FlatFeatureModel> features, List<NameValueDto> featureValues)
+        private void UpdateFeaturesIsCheckedState(ObservableCollection<FlatFeatureModel> features, List<NameValueDto> featureValues)
         {
-            var items = new ObservableCollection<object>();
             foreach (var f in featureValues)
             {
-                var item = GetSelectedItems(features, f);
-                if (item != null)
-                {
-                    item.IsChecked=true;
-                    items.Add(item);
-                }
+                UpdateIsCheckedState(features, f);
             }
-            return items;
-        }
 
-        FlatFeatureModel GetSelectedItems(ObservableCollection<FlatFeatureModel> flatFeatures, NameValueDto nameValue)
-        {
-            FlatFeatureModel model = null;
-
-            foreach (var flat in flatFeatures)
+            void UpdateIsCheckedState(ObservableCollection<FlatFeatureModel> flatFeatures, NameValueDto nameValue)
             {
-                if (flat.Name.Equals(nameValue.Name) && flat.Items.Count == 0)
+                foreach (var flat in flatFeatures)
                 {
-                    bool isAdd = false;
-                    if (bool.TryParse(nameValue.Value, out bool result))
-                        isAdd = result;
-                    else
-                        isAdd = true;
-
-                    if (isAdd)
+                    if (flat.Name.Equals(nameValue.Name) && flat.Items.Count == 0)
                     {
-                        model = flat;
-                        break;
-                    }
-                }
-                model = GetSelectedItems(flat.Items, nameValue);
+                        bool isAdd = false;
+                        if (bool.TryParse(nameValue.Value, out bool result))
+                            isAdd = result;
+                        else
+                            isAdd = true;
 
-                if (model != null) break;
+                        if (isAdd) flat.IsChecked=true;
+                    }
+                    UpdateIsCheckedState(flat.Items, nameValue);
+                }
             }
-            return model;
         }
-    
     }
 }

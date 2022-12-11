@@ -13,15 +13,15 @@ namespace AppFramework
         /// <param name="flats"></param>
         /// <param name="parentName"></param>
         /// <returns></returns>
-        public static ObservableCollection<PermissionModel> CreateTrees(this List<PermissionModel> flats, string parentName)
+        public static ObservableCollection<PermissionModel> CreateTrees(this List<PermissionModel> flats, PermissionModel? model)
         {
             var trees = new ObservableCollection<PermissionModel>();
-
-            var nodes = flats.Where(q => q.ParentName == parentName).ToArray();
+            var nodes = flats.Where(q => q.ParentName == model?.Name).ToArray();
 
             foreach (var node in nodes)
             {
-                node.Items = CreateTrees(flats, node.Name);
+                node.Items = CreateTrees(flats, node);
+                node.Parent = model;
                 trees.Add(node);
             }
 
@@ -29,16 +29,18 @@ namespace AppFramework
         }
 
         /// <summary>
-        /// 更新选中权限节点
+        /// 获取选中节点列表
         /// </summary>
+        /// <param name="nodes"></param>
         /// <param name="GrantedPermissionNames"></param>
-        public static ObservableCollection<object> GetSelectedItems(this ObservableCollection<PermissionModel> Flats, List<string> GrantedPermissionNames)
+        /// <returns></returns>
+        public static ObservableCollection<object> GetSelectedItems(this ObservableCollection<PermissionModel> nodes, List<string> GrantedPermissionNames)
         {
             var permItems = new ObservableCollection<object>();
 
             foreach (var item in GrantedPermissionNames)
             {
-                var permItem = GetSelectedItems(Flats, item);
+                var permItem = GetSelectedItems(nodes, item);
                 if (permItem != null) permItems.Add(permItem);
             }
 
