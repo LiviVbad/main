@@ -91,7 +91,6 @@ namespace AppFramework.Admin.MaterialUI
 
             if (App.Current.MainWindow.DataContext is INavigationAware navigationAware)
                 navigationAware.OnNavigatedTo(null);
-        }
-
+        } 
     }
 }

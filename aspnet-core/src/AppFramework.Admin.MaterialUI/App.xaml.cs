@@ -17,7 +17,7 @@ namespace AppFramework.Admin.MaterialUI
 {
     public partial class App : PrismApplication, IAppTaskBar
     {
-        private TaskbarIcon taskBar;
+        private TaskbarIcon? taskBar;
 
         protected override Window? CreateShell() => null;
 
@@ -49,8 +49,8 @@ namespace AppFramework.Admin.MaterialUI
         {
             Initialization();
 
-            //var appVersionService = ContainerLocator.Container.Resolve<IUpdateService>();
-            //await appVersionService.CheckVersion();
+            var appVersionService = ContainerLocator.Container.Resolve<IUpdateService>();
+            await appVersionService.CheckVersion();
 
             var appStart = ContainerLocator.Container.Resolve<IAppStartService>();
             appStart.CreateShell();
