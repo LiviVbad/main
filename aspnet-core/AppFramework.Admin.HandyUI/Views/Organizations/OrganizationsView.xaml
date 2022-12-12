@@ -15,10 +15,10 @@
     <md:DialogHost IsOpen="{Binding IsBusy}">
         <md:DialogHost.DialogContent>
             <StackPanel Orientation="Horizontal">
-                <ProgressBar
-                    Width="30"
-                    Height="30"
-                    Margin="5"
+                <hc:CircleProgressBar
+                    Width="40"
+                    Height="40"
+                    Margin="10"
                     IsIndeterminate="True" />
             </StackPanel>
         </md:DialogHost.DialogContent>

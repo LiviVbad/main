@@ -13,10 +13,10 @@
     <md:DialogHost IsOpen="{Binding IsBusy}">
         <md:DialogHost.DialogContent>
             <StackPanel Orientation="Horizontal">
-                <ProgressBar
-                    Width="30"
-                    Height="30"
-                    Margin="5"
+                <hc:CircleProgressBar
+                    Width="40"
+                    Height="40"
+                    Margin="10"
                     IsIndeterminate="True" />
             </StackPanel>
         </md:DialogHost.DialogContent>
@@ -197,7 +197,7 @@
 
                                 <DataGrid ItemsSource="{Binding dataPager.GridModelList}" SelectedItem="{Binding dataPager.SelectedItem}">
                                     <DataGrid.Columns>
-                                        <DataGridTemplateColumn Width="80">
+                                        <DataGridTemplateColumn Width="60">
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <Button
@@ -289,8 +289,13 @@
                         </Grid>
 
                         <hc:Card Grid.Row="1" Margin="10,0,10,10">
-                            <DockPanel LastChildFill="False">
-                                <DataGrid DockPanel.Dock="Top" ItemsSource="{Binding logsdataPager.GridModelList}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <DataGrid ItemsSource="{Binding logsdataPager.GridModelList}">
                                     <DataGrid.Columns>
                                         <DataGridTemplateColumn Width="60">
                                             <DataGridTemplateColumn.CellTemplate>
@@ -310,14 +315,14 @@
                                 </DataGrid>
 
                                 <controls:DataPager
+                                    Grid.Row="1"
                                     Margin="5"
                                     HorizontalAlignment="Right"
-                                    DockPanel.Dock="Bottom"
                                     NumericButtonCount="{Binding logsdataPager.NumericButtonCount}"
                                     PageCount="{Binding logsdataPager.PageCount, Mode=TwoWay}"
                                     PageSize="{Binding logsdataPager.PageSize, Mode=TwoWay}"
                                     PageIndex="{Binding logsdataPager.PageIndex, Mode=TwoWay}" />
-                            </DockPanel>
+                            </Grid>
                         </hc:Card>
                     </Grid>
                 </TabItem>

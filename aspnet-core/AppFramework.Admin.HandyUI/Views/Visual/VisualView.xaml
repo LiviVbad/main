@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:md="clr-namespace:AppFramework.Admin.HandyUI">
-    <UserControl.Resources />
     <md:DialogHost IsOpen="{Binding IsBusy}">
         <Grid>
             <Grid.RowDefinitions>
@@ -33,7 +32,10 @@
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock VerticalAlignment="Center" Text="{extensions:Translate UiCustomization_DarkMode}" />
-                    <ToggleButton Margin="8,0,16,0" IsChecked="{Binding IsDarkTheme}" />
+                    <ToggleButton
+                        Margin="8,0"
+                        IsChecked="{Binding IsDarkTheme}"
+                        Style="{StaticResource ToggleButtonSwitch}" />
                 </StackPanel>
             </Grid>
         </Grid>

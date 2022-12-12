@@ -13,10 +13,10 @@
     <md:DialogHost IsOpen="{Binding IsBusy}">
         <md:DialogHost.DialogContent>
             <StackPanel Orientation="Horizontal">
-                <ProgressBar
-                    Width="30"
-                    Height="30"
-                    Margin="5"
+                <hc:CircleProgressBar
+                    Width="40"
+                    Height="40"
+                    Margin="10"
                     IsIndeterminate="True" />
             </StackPanel>
         </md:DialogHost.DialogContent>
@@ -134,7 +134,7 @@
                         </Grid.RowDefinitions>
                         <DataGrid ItemsSource="{Binding dataPager.GridModelList}" SelectedItem="{Binding dataPager.SelectedItem}">
                             <DataGrid.Columns>
-                                <DataGridTemplateColumn Width="80" Header="{extensions:Translate Actions}">
+                                <DataGridTemplateColumn Width="100" Header="{extensions:Translate Actions}">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <controls:PopupBox>

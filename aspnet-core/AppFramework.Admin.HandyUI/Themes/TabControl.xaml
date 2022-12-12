@@ -97,6 +97,7 @@
     <Style x:Key="DefaultMaterialDesignTabControl" TargetType="{x:Type control:TabControl}">
         <Setter Property="BorderThickness" Value="0,0,1,0" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="Background" Value="{DynamicResource RegionBrush}" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource DefaultMaterialDesignTabItemStyle}" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="TabStripPlacement" Value="Top" />
@@ -122,7 +123,7 @@
                             Grid.Column="0"
                             Margin="2,2,2,0"
                             Panel.ZIndex="1"
-                            Background="Transparent"
+                            Background="{TemplateBinding Background}"
                             IsItemsHost="true"
                             KeyboardNavigation.TabIndex="1" />
                         <Border

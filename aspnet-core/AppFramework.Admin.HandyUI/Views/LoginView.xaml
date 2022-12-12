@@ -33,11 +33,11 @@
         IsOpen="{Binding IsBusy}">
         <hd:DialogHost.DialogContent>
             <StackPanel>
-                <hc:LoadingCircle
+                <hc:CircleProgressBar
                     Width="40"
                     Height="40"
                     Margin="10"
-                    IsRunning="True" />
+                    IsIndeterminate="True" />
             </StackPanel>
         </hd:DialogHost.DialogContent>
         <Grid>

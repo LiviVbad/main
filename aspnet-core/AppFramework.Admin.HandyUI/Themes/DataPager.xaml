@@ -73,13 +73,14 @@
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="ListBoxItem">
                                                     <Grid>
-                                                        <Border x:Name="PART_Border" CornerRadius="30">
+                                                        <Border x:Name="PART_Border">
                                                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                                                         </Border>
                                                     </Grid>
                                                     <ControlTemplate.Triggers>
                                                         <Trigger Property="IsSelected" Value="True">
-                                                            <Setter TargetName="PART_Border" Property="Background" Value="DarkGray" />
+                                                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource PrimaryTextBrush}" />
+                                                            <Setter TargetName="PART_Border" Property="BorderThickness" Value="0,0,0,2" />
                                                         </Trigger>
                                                     </ControlTemplate.Triggers>
                                                 </ControlTemplate>
@@ -96,6 +97,7 @@
                                     <DataTemplate>
                                         <Button
                                             Margin="1,0"
+                                            BorderThickness="0"
                                             Command="{Binding ClickCommand}"
                                             CommandParameter="{Binding}"
                                             Content="{Binding Index}" />
