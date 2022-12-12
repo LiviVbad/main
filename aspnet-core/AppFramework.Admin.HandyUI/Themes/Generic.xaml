@@ -29,7 +29,7 @@
         <Setter Property="IsReadOnly" Value="True" />
         <Setter Property="AutoGenerateColumns" Value="False" />
         <Setter Property="RowHeight" Value="45" />
-        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Margin" Value="0" />
         <Setter Property="SelectionMode" Value="Single" />
     </Style>
 

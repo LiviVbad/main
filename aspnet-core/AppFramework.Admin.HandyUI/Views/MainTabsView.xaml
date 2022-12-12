@@ -6,7 +6,6 @@
     xmlns:controls="clr-namespace:AppFramework.Admin.HandyUI.Themes.Controls"
     xmlns:converter="clr-namespace:AppFramework.Admin.HandyUI.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:hd="clr-namespace:AppFramework.Admin.HandyUI"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -261,12 +260,16 @@
                 <controls:TabControl
                     Grid.Row="1"
                     HorizontalContentAlignment="Left"
+                    controls:TabCloseItem.CloseClick="OnCloseButtonClick"
                     prism:RegionManager.RegionName="{x:Static region:AppRegions.Main}"
                     SelectedIndex="{Binding NavigationService.SelectedIndex}"
                     Style="{StaticResource DefaultMaterialDesignTabControl}">
                     <TabControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Foreground="{DynamicResource MaterialDesignBody}" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:TabCloseItem}, Converter={StaticResource menuTitleConverter}}" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Foreground="{DynamicResource MaterialDesignBody}"
+                                Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:TabCloseItem}, Converter={StaticResource menuTitleConverter}}" />
                         </DataTemplate>
                     </TabControl.ItemTemplate>
                 </controls:TabControl>

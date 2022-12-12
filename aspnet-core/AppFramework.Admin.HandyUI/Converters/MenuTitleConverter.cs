@@ -1,4 +1,5 @@
-﻿using AppFramework.Shared; 
+﻿using AppFramework.Admin.HandyUI.Themes.Controls;
+using AppFramework.Shared; 
 using System;
 using System.Globalization;
 using System.Windows.Controls;
@@ -10,7 +11,7 @@ namespace AppFramework.Admin.HandyUI.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null && value is HandyControl.Controls.TabItem tabItem)
+            if (value != null && value is TabCloseItem tabItem)
             { 
                 var ctor = tabItem.Content as UserControl;
                 if (ctor != null && ctor.DataContext is NavigationViewModel viewModel)

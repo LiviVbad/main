@@ -1,11 +1,12 @@
 ﻿using AppFramework.Admin.ViewModels;
 using AppFramework.Shared.Services.App;
 using AppFramework.Shared.Services;
-using AppFramework.Shared; 
-using System.Windows; 
+using AppFramework.Shared;
+using System.Windows;
+using AppFramework.Admin.HandyUI.Themes.Controls;
 
 namespace AppFramework.Admin.HandyUI.Views
-{ 
+{
     public partial class MainTabsView : Window
     {
         private readonly IHostDialogService dialog;
@@ -77,6 +78,15 @@ namespace AppFramework.Admin.HandyUI.Views
         private void SetWindowState()
         {
             this.WindowState = ((base.WindowState != System.Windows.WindowState.Maximized) ? System.Windows.WindowState.Maximized : System.Windows.WindowState.Normal);
-        } 
+        }
+
+        private void OnCloseButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (e.OriginalSource != null && e.OriginalSource is TabCloseItem tabItem)
+            {
+                if (this.DataContext is MainTabsViewModel viewModel)
+                    viewModel.NavigationService.RemoveView(tabItem.Content);
+            }
+        }
     }
 }

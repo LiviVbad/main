@@ -57,7 +57,14 @@
                                 Padding="5,0"
                                 Content="&#xe77d;"
                                 FontFamily="/Assets/Fonts/#iconfont" />
-                            <ListBox x:Name="ItemsControl" SelectionMode="Single">
+                            <ListBox
+                                x:Name="ItemsControl"
+                                Margin="0"
+                                Padding="0"
+                                VerticalAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                BorderThickness="0"
+                                SelectionMode="Single">
                                 <ListBox.ItemContainerStyle>
                                     <Style TargetType="ListBoxItem">
                                         <Setter Property="Padding" Value="0" />
@@ -88,10 +95,7 @@
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Button
-                                            Width="33"
-                                            Padding="0"
-                                            BorderBrush="Transparent"
-                                            BorderThickness="0"
+                                            Margin="1,0"
                                             Command="{Binding ClickCommand}"
                                             CommandParameter="{Binding}"
                                             Content="{Binding Index}" />

@@ -284,10 +284,7 @@
                             </DockPanel>
                         </Grid>
 
-                        <DataGrid
-                            Grid.Row="1"
-                            Margin="5,0"
-                            ItemsSource="{Binding logsdataPager.GridModelList}">
+                        <DataGrid Grid.Row="1" ItemsSource="{Binding logsdataPager.GridModelList}">
                             <DataGrid.Columns>
                                 <DataGridTemplateColumn Width="60">
                                     <DataGridTemplateColumn.CellTemplate>
