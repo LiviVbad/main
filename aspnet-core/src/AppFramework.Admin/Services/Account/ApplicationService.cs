@@ -129,7 +129,7 @@ namespace AppFramework.Admin.Services.Account
 
         private async Task GetProfilePictureByUserSuccessed(GetProfilePictureOutput output)
         {
-            if (output.ProfilePicture!=null)
+            if (output!=null)
                 Photo = Convert.FromBase64String(output.ProfilePicture);
             await Task.CompletedTask;
         }
