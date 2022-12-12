@@ -6,7 +6,8 @@
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:md="clr-namespace:AppFramework.Admin.HandyUI"
     Width="600"
-    Height="350">
+    Height="350"
+    Background="{DynamicResource RegionBrush}">
     <md:DialogHost Identifier="ManageLinkedAccounts">
         <Grid>
             <Grid.RowDefinitions>

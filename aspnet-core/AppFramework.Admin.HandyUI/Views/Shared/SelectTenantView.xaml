@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     Width="500"
-    Height="250">
+    Height="250"
+    Background="{DynamicResource RegionBrush}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />

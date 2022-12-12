@@ -9,6 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="clr-namespace:AppFramework.Admin.HandyUI"
     xmlns:perm="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
+    Background="{DynamicResource SecondaryRegionBrush}"
     mc:Ignorable="d">
     <md:DialogHost IsOpen="{Binding IsBusy}">
         <md:DialogHost.DialogContent>

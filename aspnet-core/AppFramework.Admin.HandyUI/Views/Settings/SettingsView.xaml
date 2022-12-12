@@ -6,6 +6,7 @@
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="clr-namespace:AppFramework.Admin.HandyUI"
+    Background="{DynamicResource SecondaryRegionBrush}"
     mc:Ignorable="d">
     <md:DialogHost IsOpen="{Binding IsBusy}">
         <md:DialogHost.DialogContent>
@@ -43,7 +44,7 @@
             </DockPanel>
 
             <Grid Grid.Row="1">
-                <TabControl HorizontalContentAlignment="Left">
+                <TabControl HorizontalContentAlignment="Left" Background="{DynamicResource SecondaryRegionBrush}">
                     <TabItem Header="{extensions:Translate TenantManagement}">
                         <StackPanel Margin="15">
                             <!--  允许租户注册到系统。  -->

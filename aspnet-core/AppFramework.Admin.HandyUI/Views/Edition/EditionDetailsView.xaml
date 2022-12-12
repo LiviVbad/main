@@ -9,6 +9,7 @@
     xmlns:models="clr-namespace:AppFramework.Admin.Models;assembly=AppFramework.Admin"
     Width="800"
     Height="550"
+    Background="{DynamicResource SecondaryRegionBrush}"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>

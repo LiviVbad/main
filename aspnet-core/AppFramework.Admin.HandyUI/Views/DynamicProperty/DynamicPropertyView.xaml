@@ -9,6 +9,7 @@
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="clr-namespace:AppFramework.Admin.HandyUI"
+    Background="{DynamicResource SecondaryRegionBrush}"
     mc:Ignorable="d">
     <md:DialogHost IsOpen="{Binding IsBusy}">
         <md:DialogHost.DialogContent>
@@ -35,7 +36,10 @@
                 </StackPanel>
             </DockPanel>
 
-            <TabControl Grid.Row="1" HorizontalContentAlignment="Left">
+            <TabControl
+                Grid.Row="1"
+                HorizontalContentAlignment="Left"
+                Background="{DynamicResource SecondaryRegionBrush}">
                 <TabItem Header="{extensions:Translate DynamicProperty}">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -52,10 +56,7 @@
                             Content="{extensions:Translate AddNewDynamicPropertyValue}"
                             Visibility="{extensions:HasPermission Text={x:Static extensions:AppPermissions.DynamicEntityPropertiesCreate}}" />
 
-                        <hc:Card
-                            Grid.Row="1"
-                            Margin="10,0,10,10"
-                            Background="{DynamicResource MaterialDesignPaper}">
+                        <hc:Card Grid.Row="1" Margin="10,0,10,10">
                             <DockPanel LastChildFill="False">
                                 <DataGrid
                                     DockPanel.Dock="Top"
@@ -109,34 +110,33 @@
                         </Grid.RowDefinitions>
 
                         <Button
-                            Margin="0,5"
+                            Margin="8"
                             Padding="5"
                             HorizontalAlignment="Right"
                             Command="{Binding AddEntityPropertyCommand}"
                             Content="{extensions:Translate AddNewDynamicEntityProperty}" />
 
-                        <DataGrid
-                            Grid.Row="1"
-                            ItemsSource="{Binding entitydataPager.GridModelList}"
-                            SelectedItem="{Binding entitydataPager.SelectedItem}">
-                            <DataGrid.Columns>
-                                <DataGridTemplateColumn Width="60" Header="{extensions:Translate Actions}">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button
-                                                Margin="5"
-                                                Padding="3"
-                                                Background="#1E90FF"
-                                                Command="{Binding DataContext.DetailCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                                CommandParameter="{Binding}"
-                                                Content="{extensions:Translate Detail}"
-                                                Foreground="White" />
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTextColumn Binding="{Binding EntityFullName}" Header="{extensions:Translate EntityFullName}" />
-                            </DataGrid.Columns>
-                        </DataGrid>
+                        <hc:Card Grid.Row="1" Margin="10,0,10,10">
+                            <DataGrid ItemsSource="{Binding entitydataPager.GridModelList}" SelectedItem="{Binding entitydataPager.SelectedItem}">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Width="60" Header="{extensions:Translate Actions}">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button
+                                                    Margin="5"
+                                                    Padding="3"
+                                                    Background="#1E90FF"
+                                                    Command="{Binding DataContext.DetailCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                                    CommandParameter="{Binding}"
+                                                    Content="{extensions:Translate Detail}"
+                                                    Foreground="White" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Binding="{Binding EntityFullName}" Header="{extensions:Translate EntityFullName}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </hc:Card>
                     </Grid>
                 </TabItem>
             </TabControl>

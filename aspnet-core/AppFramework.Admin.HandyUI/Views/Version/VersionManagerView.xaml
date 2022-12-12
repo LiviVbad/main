@@ -7,6 +7,7 @@
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{DynamicResource SecondaryRegionBrush}"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -74,7 +75,6 @@
                             <DataGridTextColumn Binding="{Binding IsForced, Converter={StaticResource boolToYesNoStrConverter}}" Header="{extensions:Translate IsForced}" />
                         </DataGrid.Columns>
                     </DataGrid>
-
                     <controls:DataPager
                         Margin="5"
                         HorizontalAlignment="Right"

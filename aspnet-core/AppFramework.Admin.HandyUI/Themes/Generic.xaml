@@ -12,6 +12,10 @@
 
     <controls:NotConverter x:Key="NotConverter" />
 
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+    </Style>
+
     <Style x:Key="closeTextBlock" TargetType="TextBlock">
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="Margin" Value="15" />
@@ -31,6 +35,7 @@
         <Setter Property="RowHeight" Value="45" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="BorderThickness" Value="0" />
     </Style>
 
 
@@ -128,7 +133,7 @@
                             VerticalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupVerticalOffset}">
                             <controls:Card
                                 Padding="{TemplateBinding Padding}"
-                                Background="{DynamicResource DefaultBrush}"
+                                Background="{DynamicResource RegionBrush}"
                                 Content="{TemplateBinding PopupContent}"
                                 ContentTemplate="{TemplateBinding PopupContentTemplate}"
                                 Foreground="{DynamicResource MaterialDesignBody}"

@@ -6,7 +6,8 @@
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:md="clr-namespace:AppFramework.Admin.HandyUI"
     Width="800"
-    Height="450">
+    Height="450"
+    Background="{DynamicResource RegionBrush}">
     <md:DialogHost Identifier="ManageUserDelegationsView">
         <Grid>
             <Grid.RowDefinitions>

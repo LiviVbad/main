@@ -5,7 +5,8 @@
     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     Width="400"
-    Height="250">
+    Height="250"
+    Background="{DynamicResource RegionBrush}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />

@@ -10,6 +10,7 @@
     xmlns:md="clr-namespace:AppFramework.Admin.HandyUI"
     Width="700"
     Height="500"
+    Background="{DynamicResource SecondaryRegionBrush}"
     mc:Ignorable="d">
     <md:DialogHost Identifier="{x:Static const:AppSharedConsts.DialogIdentifier}">
         <Grid>

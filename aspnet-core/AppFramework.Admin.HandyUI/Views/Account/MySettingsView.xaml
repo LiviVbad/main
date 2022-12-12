@@ -6,7 +6,8 @@
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="560"
-    Height="400">
+    Height="400"
+    Background="{DynamicResource RegionBrush}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />

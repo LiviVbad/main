@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{DynamicResource SecondaryRegionBrush}"
     mc:Ignorable="d">
     <UserControl.Resources>
         <Color x:Key="SeriesThreeColor">#B146C2</Color>
@@ -24,12 +25,14 @@
             <Setter Property="FontSize" Value="22" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontFamily" Value="/Assets/Fonts/#iconfont" />
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
         </Style>
 
         <Style x:Key="headerTextBlockStyle" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -43,10 +46,12 @@
                 <TextBlock
                     FontSize="18"
                     FontWeight="Bold"
+                    Foreground="{DynamicResource PrimaryTextBrush}"
                     Text="{Binding Title}" />
                 <TextBlock
                     Margin="10,0,0,0"
                     VerticalAlignment="Center"
+                    Foreground="{DynamicResource PrimaryTextBrush}"
                     Text="{extensions:Translate DashboardHeaderInfo}" />
             </StackPanel>
         </DockPanel>
@@ -112,7 +117,10 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Border Margin="5" CornerRadius="5" />
+                <Border
+                    Margin="5"
+                    Background="{DynamicResource RegionBrush}"
+                    CornerRadius="5" />
                 <Grid Margin="5" ClipToBounds="True">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -140,6 +148,7 @@
                 <Border
                     Grid.Column="1"
                     Margin="5"
+                    Background="{DynamicResource RegionBrush}"
                     CornerRadius="5" />
                 <Grid Grid.Column="1" Margin="5">
                     <Grid.RowDefinitions>
@@ -153,6 +162,7 @@
                         <TextBlock
                             Margin="5,0"
                             VerticalAlignment="Bottom"
+                            Foreground="{DynamicResource PrimaryTextBrush}"
                             Text="{Binding TimeInterval}" />
                     </StackPanel>
                 </Grid>
@@ -160,6 +170,7 @@
                 <Border
                     Grid.Row="1"
                     Margin="5"
+                    Background="{DynamicResource RegionBrush}"
                     CornerRadius="5" />
                 <Grid Grid.Row="1" Margin="5">
                     <Grid.RowDefinitions>
@@ -186,6 +197,7 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Margin="5"
+                    Background="{DynamicResource RegionBrush}"
                     CornerRadius="5" />
                 <Grid
                     Grid.Row="1"

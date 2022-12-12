@@ -10,6 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="clr-namespace:AppFramework.Admin.HandyUI"
     xmlns:models="clr-namespace:AppFramework.Admin.Models;assembly=AppFramework.Admin"
+    Background="{DynamicResource SecondaryRegionBrush}"
     mc:Ignorable="d">
     <md:DialogHost IsOpen="{Binding IsBusy}">
         <md:DialogHost.DialogContent>
@@ -21,7 +22,7 @@
                     IsIndeterminate="True" />
             </StackPanel>
         </md:DialogHost.DialogContent>
-        <Grid Background="{DynamicResource MaterialDesignCardBackground}">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition />
@@ -64,6 +65,7 @@
                         </DockPanel>
                         <TreeView
                             x:Name="TreeViewOriganizations"
+                            BorderThickness="0"
                             DockPanel.Dock="Top"
                             ItemsSource="{Binding dataPager.GridModelList}">
                             <TreeView.ItemTemplate>
@@ -134,10 +136,11 @@
 
                     <TabControl
                         Grid.Row="1"
-                        Margin="0,5,0,0"
-                        HorizontalContentAlignment="Left">
+                        Margin="0,5,10,10"
+                        HorizontalContentAlignment="Left"
+                        BorderThickness="0">
                         <TabItem Header="{extensions:Translate Members}">
-                            <hc:Card Margin="0,0,10,10" Background="{DynamicResource MaterialDesignPaper}">
+                            <hc:Card Background="{DynamicResource MaterialDesignPaper}" BorderThickness="0">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto" />
@@ -152,7 +155,10 @@
                                         CommandParameter="AddMember"
                                         Content="{extensions:Translate AddMember}" />
 
-                                    <DataGrid Grid.Row="1" ItemsSource="{Binding memberdataPager.GridModelList}">
+                                    <DataGrid
+                                        Grid.Row="1"
+                                        Margin="5,0"
+                                        ItemsSource="{Binding memberdataPager.GridModelList}">
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn Width="80">
                                                 <DataGridTemplateColumn.CellTemplate>
@@ -187,7 +193,7 @@
                         </TabItem>
 
                         <TabItem Header="{extensions:Translate Role}">
-                            <hc:Card Margin="0,0,10,10" Background="{DynamicResource MaterialDesignPaper}">
+                            <hc:Card Background="{DynamicResource MaterialDesignPaper}" BorderThickness="0">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto" />
@@ -202,7 +208,10 @@
                                         CommandParameter="AddRole"
                                         Content="{extensions:Translate CreateNewRole}" />
 
-                                    <DataGrid Grid.Row="1" ItemsSource="{Binding roledataPager.GridModelList}">
+                                    <DataGrid
+                                        Grid.Row="1"
+                                        Margin="5,0"
+                                        ItemsSource="{Binding roledataPager.GridModelList}">
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn Width="80">
                                                 <DataGridTemplateColumn.CellTemplate>

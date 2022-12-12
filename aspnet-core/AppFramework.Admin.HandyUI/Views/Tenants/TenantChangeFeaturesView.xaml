@@ -9,6 +9,7 @@
     xmlns:models="clr-namespace:AppFramework.Admin.Models;assembly=AppFramework.Admin"
     Width="800"
     Height="580"
+    Background="{DynamicResource SecondaryRegionBrush}"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -31,7 +32,10 @@
             </b:Interaction.Triggers>
         </TextBlock>
 
-        <TreeView Grid.Row="1" ItemsSource="{Binding featuresService.Features}">
+        <TreeView
+            Grid.Row="1"
+            BorderThickness="0"
+            ItemsSource="{Binding featuresService.Features}">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type models:FlatFeatureModel}" ItemsSource="{Binding Items}">
                     <StackPanel Orientation="Horizontal">

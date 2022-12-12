@@ -10,6 +10,7 @@
     xmlns:models="clr-namespace:AppFramework.Admin.Models;assembly=AppFramework.Admin"
     Width="800"
     Height="580"
+    Background="{DynamicResource SecondaryRegionBrush}"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -59,6 +60,7 @@
                     <TreeView
                         Grid.Row="1"
                         Margin="0,5"
+                        BorderThickness="0"
                         ItemsSource="{Binding treesService.Permissions}">
                         <TreeView.ItemTemplate>
                             <HierarchicalDataTemplate DataType="{x:Type models:PermissionModel}" ItemsSource="{Binding Items}">

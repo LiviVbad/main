@@ -8,6 +8,7 @@
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="clr-namespace:AppFramework.Admin.HandyUI"
+    Background="{DynamicResource SecondaryRegionBrush}"
     mc:Ignorable="d">
     <md:DialogHost IsOpen="{Binding IsBusy}">
         <md:DialogHost.DialogContent>
@@ -46,10 +47,7 @@
             </DockPanel>
 
             <hc:Card Grid.Row="1" Margin="10,0,10,10">
-                <DataGrid
-                    DockPanel.Dock="Top"
-                    ItemsSource="{Binding dataPager.GridModelList}"
-                    SelectedItem="{Binding dataPager.SelectedItem}">
+                <DataGrid ItemsSource="{Binding dataPager.GridModelList}" SelectedItem="{Binding dataPager.SelectedItem}">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Width="80" Header="{extensions:Translate Actions}">
                             <DataGridTemplateColumn.CellTemplate>

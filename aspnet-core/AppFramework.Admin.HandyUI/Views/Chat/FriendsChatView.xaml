@@ -11,6 +11,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="800"
     Height="600"
+    Background="{DynamicResource RegionBrush}"
     mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="ChatItemStyle" TargetType="ListBoxItem">
@@ -77,9 +78,9 @@
             Grid.Row="1"
             Margin="10"
             HorizontalContentAlignment="Stretch"
+            BorderThickness="0"
             ItemContainerStyle="{StaticResource ChatItemStyle}"
             ItemsSource="{Binding Messages}">
-
             <ListBox.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.ContainerStyle>

@@ -5,9 +5,10 @@
     xmlns:controls="clr-namespace:AppFramework.Admin.HandyUI.Themes.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="clr-namespace:AppFramework.Admin.HandyUI"
-     xmlns:hc="https://handyorg.github.io/handycontrol" 
+    Background="{DynamicResource SecondaryRegionBrush}"
     mc:Ignorable="d">
     <md:DialogHost IsOpen="{Binding IsBusy}">
         <Grid>
@@ -36,7 +37,7 @@
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <Grid Margin="10,0">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
@@ -44,7 +45,7 @@
 
                     <UniformGrid Columns="4">
                         <StackPanel Margin="10,0">
-                            <TextBlock Text="{extensions:Translate BaseLanguage}" />
+                            <TextBlock Margin="3" Text="{extensions:Translate BaseLanguage}" />
                             <ComboBox ItemsSource="{Binding BaseLanguages}" SelectedItem="{Binding SelectedBaseLanguage}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -55,7 +56,7 @@
                         </StackPanel>
 
                         <StackPanel Margin="10,0">
-                            <TextBlock Text="{extensions:Translate TargetLanguage}" />
+                            <TextBlock Margin="3" Text="{extensions:Translate TargetLanguage}" />
                             <ComboBox ItemsSource="{Binding TargetLanguages}" SelectedItem="{Binding SelectedTargetLanguage}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -66,12 +67,12 @@
                         </StackPanel>
 
                         <StackPanel Margin="10,0">
-                            <TextBlock Text="{extensions:Translate Source}" />
+                            <TextBlock Margin="3" Text="{extensions:Translate Source}" />
                             <ComboBox ItemsSource="{Binding Sources}" SelectedItem="{Binding SelectedSource}" />
                         </StackPanel>
 
                         <StackPanel Margin="10,0">
-                            <TextBlock Text="{extensions:Translate TargetValue}" />
+                            <TextBlock Margin="3" Text="{extensions:Translate TargetValue}" />
                             <ComboBox SelectedIndex="{Binding TargetIndex}">
                                 <ComboBoxItem Content="{extensions:Translate All}" />
                                 <ComboBoxItem Content="{extensions:Translate EmptyOnes}" />
@@ -79,7 +80,7 @@
                         </StackPanel>
                     </UniformGrid>
 
-                    <DockPanel Grid.Row="1" Margin="10,0">
+                    <DockPanel Grid.Row="1" Margin="10">
                         <Button
                             Margin="5,0,0,0"
                             Command="{Binding SearchCommand}"

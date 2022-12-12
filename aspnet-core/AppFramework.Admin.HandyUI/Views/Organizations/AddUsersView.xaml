@@ -10,7 +10,7 @@
     xmlns:md="clr-namespace:AppFramework.Admin.HandyUI"
     Width="800"
     Height="450"
-    Background="Transparent"
+    Background="{DynamicResource SecondaryRegionBrush}"
     mc:Ignorable="d">
     <md:DialogHost IsOpen="{Binding IsBusy}">
         <Grid>
