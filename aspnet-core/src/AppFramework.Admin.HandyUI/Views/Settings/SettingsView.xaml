@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="clr-namespace:AppFramework.Admin.HandyUI"
     Background="{DynamicResource SecondaryRegionBrush}"
@@ -11,10 +12,10 @@
     <md:DialogHost IsOpen="{Binding IsBusy}">
         <md:DialogHost.DialogContent>
             <StackPanel Orientation="Horizontal">
-                <ProgressBar
-                    Width="30"
-                    Height="30"
-                    Margin="5"
+                <hc:CircleProgressBar
+                    Width="40"
+                    Height="40"
+                    Margin="10"
                     IsIndeterminate="True" />
             </StackPanel>
         </md:DialogHost.DialogContent>

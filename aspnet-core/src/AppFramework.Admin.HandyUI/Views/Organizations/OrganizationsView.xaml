@@ -70,7 +70,7 @@
                             ItemsSource="{Binding dataPager.GridModelList}">
                             <TreeView.ItemTemplate>
                                 <HierarchicalDataTemplate DataType="{x:Type models:OrganizationListModel}" ItemsSource="{Binding Items}">
-                                    <DockPanel HorizontalAlignment="Stretch">
+                                    <DockPanel HorizontalAlignment="Stretch" LastChildFill="False">
                                         <Image
                                             Width="20"
                                             Height="20"
