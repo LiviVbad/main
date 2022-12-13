@@ -47,7 +47,8 @@ namespace AppFramework.Admin.Services.Account
 
         public async Task LoginUserAsync()
         {
-            await WebRequest.Execute(() => accessTokenManager.LoginAsync(), AuthenticateSucceed);
+            var result = await accessTokenManager.LoginAsync();
+            await AuthenticateSucceed(result);
         }
 
         public async Task LoginCurrentUserAsync(UserListModel user)
@@ -74,7 +75,7 @@ namespace AppFramework.Admin.Services.Account
             appStart.Logout();
         }
 
-        private async Task<bool> AuthenticateSucceed(AbpAuthenticateResultModel result)
+        private async Task AuthenticateSucceed(AbpAuthenticateResultModel result)
         {
             AuthenticateResultModel = result;
 
@@ -86,7 +87,7 @@ namespace AppFramework.Admin.Services.Account
                     param, AppSharedConsts.LoginIdentifier);
 
                 if (pwdResult.Result != ButtonResult.OK)
-                    return false;
+                    return;
             }
 
             if (AuthenticateResultModel.RequiresTwoFactorVerification)
@@ -103,8 +104,6 @@ namespace AppFramework.Admin.Services.Account
 
             await SetCurrentUserInfoAsync();
             await UserConfigurationManager.GetAsync();
-
-            return true;
         }
 
         public async Task SetCurrentUserInfoAsync()

@@ -68,7 +68,7 @@ namespace AppFramework
             try
             {
                 await func();
-                await successCallback();
+                await successCallback(); 
             }
             catch (System.Exception ex)
             {

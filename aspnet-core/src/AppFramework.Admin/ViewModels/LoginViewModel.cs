@@ -188,7 +188,8 @@ namespace AppFramework.Admin.ViewModels
         { 
             await SetBusyAsync(async () =>
             { 
-                await WebRequest.Execute(() => accountService.LoginUserAsync(), LoginUserSuccessed);
+                await WebRequest.Execute(() => accountService.LoginUserAsync(), 
+                    LoginUserSuccessed);
             });
         }
 
