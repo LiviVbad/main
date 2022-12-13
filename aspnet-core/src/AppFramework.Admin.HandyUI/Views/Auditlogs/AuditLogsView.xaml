@@ -66,7 +66,7 @@
                                     <ColumnDefinition Width="auto" />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <DatePicker Padding="3" Text="{Binding Filter.StartDate}" />
+                                <DatePicker Padding="3" Text="{Binding Filter.StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 <TextBlock
                                     Grid.Column="1"
                                     Margin="10,0"
@@ -75,7 +75,7 @@
                                 <DatePicker
                                     Grid.Column="2"
                                     Padding="3"
-                                    Text="{Binding Filter.EndDate}" />
+                                    Text="{Binding Filter.EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </Grid>
 
                             <!--  用户名  -->

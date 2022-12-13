@@ -8,8 +8,8 @@ namespace AppFramework.Admin.Models
 {
     public class GetAuditLogsFilter : PagedAndSortedFilter
     {
-        private DateTime startTime;
-        private DateTime endTime;
+        private DateTime? startTime;
+        private DateTime? endTime;
         private string userName;
         private string serviceName;
         private string methodName;
@@ -18,13 +18,13 @@ namespace AppFramework.Admin.Models
         private int? minExecutionDuration;
         private int? maxExecutionDuration;
 
-        public DateTime StartDate
+        public DateTime? StartDate
         {
             get { return startTime; }
             set { startTime = value; RaisePropertyChanged(); }
         }
 
-        public DateTime EndDate
+        public DateTime? EndDate
         {
             get { return endTime; }
             set { endTime = value; RaisePropertyChanged(); }

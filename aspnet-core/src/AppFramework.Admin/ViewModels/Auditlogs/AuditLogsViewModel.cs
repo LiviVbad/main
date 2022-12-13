@@ -1,11 +1,11 @@
 ﻿using AppFramework.Auditing;
 using AppFramework.Auditing.Dto;
-using AppFramework.Shared; 
+using AppFramework.Shared;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
 using System.Threading.Tasks;
-using Prism.Ioc; 
+using Prism.Ioc;
 using Prism.Regions;
 using AppFramework.Shared.Services;
 using AppFramework.Admin.Models;
@@ -159,11 +159,14 @@ namespace AppFramework.Admin.ViewModels
         /// <returns></returns>
         private async Task GetAuditLogs(GetAuditLogsFilter input)
         {
+            input.StartDate=input.StartDate.GetFirstDate();
+            input.EndDate=input.EndDate.GetLastDate();
+            
             await SetBusyAsync(async () =>
             {
                 await WebRequest.Execute(() => appService.GetAuditLogs(Map<GetAuditLogsInput>(input)),
                          dataPager.SetList);
-            }); 
+            });
         }
 
         private async void AuditLogsOnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
