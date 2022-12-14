@@ -115,14 +115,12 @@
 
                 <PasswordBox
                     Margin="0,12"
-                    Padding="3"
-                    b:PasswordExtensions.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    md:HintAssist.Hint="{extensions:Translate CurrentPassword}"
+                    md:PasswordBoxAssist.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    md:TextFieldAssist.HasClearButton="True"
                     DockPanel.Dock="Top"
-                    FontSize="14">
-                    <i:Interaction.Behaviors>
-                        <b:PasswordBehavior />
-                    </i:Interaction.Behaviors>
-                </PasswordBox>
+                    FontSize="14"
+                    Style="{StaticResource MaterialDesignRevealPasswordBox}" />
 
                 <CheckBox
                     Content="{extensions:Translate RememberMe}"
