@@ -71,8 +71,8 @@
                                 </Grid.ColumnDefinitions>
                                 <DatePicker
                                     Padding="3"
-                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                                    Text="{Binding Filter.StartDate}" />
+                                    SelectedDate="{Binding Filter.StartDate}"
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                                 <TextBlock
                                     Grid.Column="1"
                                     Margin="10,0"
@@ -81,8 +81,8 @@
                                 <DatePicker
                                     Grid.Column="2"
                                     Padding="3"
-                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                                    Text="{Binding Filter.EndDate}" />
+                                    SelectedDate="{Binding Filter.EndDate}"
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                             </Grid>
 
                             <!--  用户名  -->
@@ -266,16 +266,16 @@
 
                                 <DatePicker
                                     Padding="3"
-                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                                    Text="{Binding EntityChangeFilter.StartDate}" />
+                                    SelectedDate="{Binding EntityChangeFilter.StartDate}"
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                                 <Border Grid.Column="1" Margin="10,0">
                                     <TextBlock VerticalAlignment="Center" Text="―" />
                                 </Border>
                                 <DatePicker
                                     Grid.Column="2"
                                     Padding="3"
-                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                                    Text="{Binding EntityChangeFilter.EndDate}" />
+                                    SelectedDate="{Binding EntityChangeFilter.EndDate}"
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                             </Grid>
 
                             <!--  用户名  -->

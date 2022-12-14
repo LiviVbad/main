@@ -55,16 +55,16 @@
 
                             <DatePicker
                                 Padding="3"
-                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                                Text="{Binding StartDate, Mode=TwoWay}" />
+                                SelectedDate="{Binding StartDate, Mode=TwoWay}"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                             <Border Grid.Column="1" Margin="10,0">
                                 <TextBlock VerticalAlignment="Center" Text="―" />
                             </Border>
                             <DatePicker
                                 Grid.Column="2"
                                 Padding="3"
-                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                                Text="{Binding EndDate, Mode=TwoWay}" />
+                                SelectedDate="{Binding EndDate, Mode=TwoWay}"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                         </Grid>
 
                         <ComboBox

@@ -29,10 +29,10 @@
 
         <StackPanel Grid.Row="1" Margin="20,0">
             <TextBlock Text="{extensions:Translate StartTime}" />
-            <DatePicker Margin="0,10" Text="{Binding StartDate, Mode=TwoWay}" />
+            <DatePicker Margin="0,10" SelectedDate="{Binding StartDate, Mode=TwoWay}" />
 
             <TextBlock Text="{extensions:Translate EndTime}" />
-            <DatePicker Margin="0,10" Text="{Binding EndDate, Mode=TwoWay}" />
+            <DatePicker Margin="0,10" SelectedDate="{Binding EndDate, Mode=TwoWay}" />
         </StackPanel>
 
         <StackPanel

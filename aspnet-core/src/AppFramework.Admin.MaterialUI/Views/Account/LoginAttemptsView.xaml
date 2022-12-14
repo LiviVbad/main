@@ -7,6 +7,17 @@
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Background="{DynamicResource MaterialDesignCardBackground}">
     <md:DialogHost IsOpen="{Binding IsBusy}">
+        <md:DialogHost.DialogContent>
+            <StackPanel Orientation="Horizontal">
+                <ProgressBar
+                    Width="30"
+                    Height="30"
+                    Margin="5"
+                    IsIndeterminate="True"
+                    Style="{StaticResource MaterialDesignCircularProgressBar}" />
+            </StackPanel>
+        </md:DialogHost.DialogContent>
+
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -65,16 +76,16 @@
 
                             <DatePicker
                                 Padding="3"
-                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                                Text="{Binding StartDate, Mode=TwoWay}" />
+                                SelectedDate="{Binding StartDate, Mode=TwoWay}"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                             <Border Grid.Column="1" Margin="10,0">
                                 <TextBlock VerticalAlignment="Center" Text="―" />
                             </Border>
                             <DatePicker
                                 Grid.Column="2"
                                 Padding="3"
-                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                                Text="{Binding EndDate, Mode=TwoWay}" />
+                                SelectedDate="{Binding EndDate, Mode=TwoWay}"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                         </Grid>
                         <ComboBox Margin="3">
                             <ComboBoxItem Content="{extensions:Translate All}" />

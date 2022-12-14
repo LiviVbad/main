@@ -38,8 +38,7 @@ namespace AppFramework.Admin.ViewModels
                 Search();
             }
         }
-
-
+         
         public LoginAttemptsViewModel(IUserLoginAppService appService)
         {
             this.appService = appService;
@@ -66,28 +65,25 @@ namespace AppFramework.Admin.ViewModels
 
         private async void UsersOnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
         {
-            input.StartDate = Convert.ToDateTime(Convert.ToDateTime(StartDate).ToString("D"));
-            input.EndDate = Convert.ToDateTime((Convert.ToDateTime(EndDate).AddDays(1).ToString("D"))).AddSeconds(-1);
+            input.StartDate = StartDate.GetFirstDate();
+            input.EndDate = EndDate.GetLastDate(); 
             input.SkipCount = e.SkipCount;
             input.MaxResultCount = e.PageSize;
 
-            await SetBusyAsync(async () =>
-            {
-                await GetUserLogins(input);
-            });
+            await GetUserLogins(input);
         }
 
         private async Task GetUserLogins(GetLoginAttemptsInput filter)
         {
-            await WebRequest.Execute(() => appService.GetUserLoginAttempts(filter), dataPager.SetList);
+            await SetBusyAsync(async () =>
+            {
+                await WebRequest.Execute(() => appService.GetUserLoginAttempts(filter), dataPager.SetList);
+            }); 
         }
 
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {
-            await SetBusyAsync(async () =>
-            {
-                await GetUserLogins(input);
-            });
+            await GetUserLogins(input);
         }
     }
 }
