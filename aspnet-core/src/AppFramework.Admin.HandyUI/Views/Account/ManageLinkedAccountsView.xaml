@@ -24,20 +24,15 @@
                 Text="{extensions:Translate LinkedAccounts}" />
 
             <Button
-                Margin="25"
+                Margin="10"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 Command="{Binding AddCommand}"
                 Content="{extensions:Translate LinkNewAccount}" />
 
-            <DataGrid
-                Grid.Row="1"
-                Margin="5,0"
-                AutoGenerateColumns="False"
-                IsReadOnly="False"
-                ItemsSource="{Binding dataPager.GridModelList}">
+            <DataGrid Grid.Row="1" ItemsSource="{Binding dataPager.GridModelList}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Width="60" Header="{extensions:Translate Actions}">
+                    <DataGridTemplateColumn Width="80" Header="{extensions:Translate Actions}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button
@@ -53,7 +48,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Binding="{Binding Username}" Header="{extensions:Translate UserName}" />
-                    <DataGridTemplateColumn Width="60" Header="{extensions:Translate Delete}">
+                    <DataGridTemplateColumn Header="{extensions:Translate Delete}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button

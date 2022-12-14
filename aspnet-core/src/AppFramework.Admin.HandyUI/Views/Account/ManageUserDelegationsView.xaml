@@ -23,7 +23,7 @@
                 Text="{extensions:Translate UserDelegations}" />
 
             <Button
-                Margin="25"
+                Margin="10"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 Command="{Binding AddCommand}"
@@ -35,15 +35,12 @@
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <DataGrid
-                    Margin="5,0"
-                    ItemsSource="{Binding dataPager.GridModelList}"
-                    SelectedItem="{Binding dataPager.SelectedItem}">
+                <DataGrid ItemsSource="{Binding dataPager.GridModelList}" SelectedItem="{Binding dataPager.SelectedItem}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Username}" Header="{extensions:Translate UserName}" />
                         <DataGridTextColumn Binding="{Binding Path=StartTime, StringFormat='yyyy-MM-dd hh:mm:ss'}" Header="{extensions:Translate StartTime}" />
                         <DataGridTextColumn Binding="{Binding Path=EndTime, StringFormat='yyyy-MM-dd hh:mm:ss'}" Header="{extensions:Translate EndTime}" />
-                        <DataGridTemplateColumn Width="60">
+                        <DataGridTemplateColumn Width="80">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button

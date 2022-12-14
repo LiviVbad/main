@@ -7,7 +7,7 @@
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="560"
-    Height="350"
+    Height="380"
     Background="{DynamicResource RegionBrush}"
     mc:Ignorable="d">
     <Grid>
