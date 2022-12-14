@@ -25,23 +25,19 @@
             Text="{extensions:Translate LinkNewAccount}" />
 
         <StackPanel Grid.Row="1" Margin="20,0">
-            <TextBlock Margin="0,10,0,5" Text="{extensions:Translate TenancyName}" />
-            <TextBox Text="{Binding TenancyName}" />
+            <TextBox md:HintAssist.Hint="{extensions:Translate TenancyName}" Text="{Binding TenancyName}" />
 
-            <TextBlock Margin="0,10,0,5" Text="{extensions:Translate UserName}" />
-            <TextBox Text="{Binding UserName}" />
-
-            <TextBlock Margin="0,10,0,5" Text="{extensions:Translate Password}" />
+            <TextBox
+                Margin="0,12"
+                md:HintAssist.Hint="{extensions:Translate UserName}"
+                Text="{Binding UserName}" />
 
             <PasswordBox
-                Margin="0,12"
                 md:HintAssist.Hint="{extensions:Translate CurrentPassword}"
                 md:PasswordBoxAssist.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 md:TextFieldAssist.HasClearButton="True"
-                DockPanel.Dock="Top"
                 FontSize="14"
                 Style="{StaticResource MaterialDesignRevealPasswordBox}" />
-
         </StackPanel>
 
         <StackPanel

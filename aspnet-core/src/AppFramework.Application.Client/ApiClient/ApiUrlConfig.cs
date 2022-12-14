@@ -5,7 +5,7 @@ namespace AppFramework.ApiClient
 {
     public static class ApiUrlConfig
     {
-        public static string DefaultHostUrl => "https://huanshu.shop/";//"https://localhost:44301/";
+        public static string DefaultHostUrl => "https://localhost:44301/";
              
         public static string BaseUrl { get; private set; }
 

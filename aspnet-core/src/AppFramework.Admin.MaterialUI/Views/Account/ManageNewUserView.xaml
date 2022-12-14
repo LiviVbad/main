@@ -26,21 +26,17 @@
                 FontWeight="Bold"
                 Text="{extensions:Translate SelectUsers}" />
 
-            <DockPanel Grid.Row="1" Margin="15,10">
+            <DockPanel Grid.Row="1" Margin="10">
                 <Button
                     Margin="5,0,0,0"
                     Command="{Binding QueryCommand}"
+                    Content="&#xe633;"
                     DockPanel.Dock="Right"
-                    Style="{DynamicResource SearchButtonStyle}" />
+                    Style="{DynamicResource IconButtonStyle}" />
                 <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
             </DockPanel>
 
-            <DataGrid
-                Grid.Row="2"
-                Margin="5,0"
-                AutoGenerateColumns="False"
-                IsReadOnly="False"
-                ItemsSource="{Binding dataPager.GridModelList}">
+            <DataGrid Grid.Row="2" ItemsSource="{Binding dataPager.GridModelList}">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Width="60">
                         <DataGridTemplateColumn.CellTemplate>
