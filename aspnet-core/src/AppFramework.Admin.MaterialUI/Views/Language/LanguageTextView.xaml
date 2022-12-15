@@ -102,7 +102,7 @@
                             ItemsSource="{Binding dataPager.GridModelList}"
                             SelectedItem="{Binding dataPager.SelectedItem}">
                             <DataGrid.Columns>
-                                <DataGridTemplateColumn Width="60">
+                                <DataGridTemplateColumn Width="80">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button
