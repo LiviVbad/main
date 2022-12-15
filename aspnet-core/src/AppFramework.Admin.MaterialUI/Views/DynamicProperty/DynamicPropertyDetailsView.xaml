@@ -7,7 +7,7 @@
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="600"
-    Height="480"
+    Height="400"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>

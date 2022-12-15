@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AppFramework.Common;
+using Prism.Mvvm;
 
 namespace AppFramework.Admin.ViewModels
 {
@@ -50,7 +51,7 @@ namespace AppFramework.Admin.ViewModels
         {
             get { return isAssignToAnotherEdition; }
             set { isAssignToAnotherEdition = value; RaisePropertyChanged(); }
-        } 
+        }
 
         /// <summary>
         /// 当前新增或编辑的版本信息
@@ -69,7 +70,7 @@ namespace AppFramework.Admin.ViewModels
             get { return features; }
             set { features = value; RaisePropertyChanged(); }
         }
-         
+
         #endregion 字段/属性
 
         public EditionDetailsViewModel(
@@ -159,12 +160,12 @@ namespace AppFramework.Admin.ViewModels
 
         private const string NotAssignedValue = "0";
 
-        private SubscribableEditionComboboxItemDto selectedEdition;
+        private SubscribableEditionComboboxItemDto? selectedEdition;
 
         /// <summary>
         /// 选中版本
         /// </summary>
-        public SubscribableEditionComboboxItemDto SelectedEdition
+        public SubscribableEditionComboboxItemDto? SelectedEdition
         {
             get => selectedEdition;
             set
@@ -229,8 +230,8 @@ namespace AppFramework.Admin.ViewModels
         private void SetSelectedEdition(int? editionId)
         {
             SelectedEdition = editionId.HasValue ?
-                Editions.Single(e => e.Value == editionId.Value.ToString()) :
-                Editions.Single(e => e.Value == NotAssignedValue);
+                Editions.FirstOrDefault(e => e.Value == editionId.Value.ToString()) :
+                Editions.FirstOrDefault(e => e.Value == NotAssignedValue);
         }
 
         #endregion 租户选项
@@ -273,7 +274,7 @@ namespace AppFramework.Admin.ViewModels
                 GetSelectedNodes(item.Items, ref featureValues);
             }
         }
-          
+
         /// <summary>
         /// 更新选中功能节点
         /// </summary>
@@ -311,5 +312,5 @@ namespace AppFramework.Admin.ViewModels
         }
 
         #endregion 功能列表
-    }
+    } 
 }

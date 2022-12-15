@@ -58,7 +58,6 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition />
-                        <RowDefinition Height="auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
@@ -67,26 +66,20 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Margin="5" Text="{extensions:Translate TenantNameOrTenancyCode}" />
-
-                    <DockPanel Grid.Row="1" Margin="5">
+                    <DockPanel Margin="5">
                         <Button
                             Padding="8"
                             Command="{Binding SearchCommand}"
                             Content="&#xe633;"
                             DockPanel.Dock="Right"
                             Style="{StaticResource IconButtonStyle}" />
-                        <TextBox Text="{Binding Filter.Filter}" />
+                        <TextBox md:HintAssist.Hint="{extensions:Translate TenantNameOrTenancyCode}" Text="{Binding Filter.Filter}" />
                     </DockPanel>
 
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="5"
-                        Text="{extensions:Translate Edition}" />
                     <ComboBox
-                        Grid.Row="1"
                         Grid.Column="1"
                         Margin="5"
+                        md:HintAssist.Hint="{extensions:Translate Edition}"
                         ItemsSource="{Binding Editions}"
                         SelectedItem="{Binding Edition}">
                         <ComboBox.ItemTemplate>
@@ -97,13 +90,13 @@
                     </ComboBox>
 
                     <CheckBox
-                        Grid.Row="2"
+                        Grid.Row="1"
                         Margin="5"
                         Content="{extensions:Translate SubscriptionEndDate}"
                         IsChecked="{Binding IsSubscription, Mode=TwoWay}" />
 
                     <UniformGrid
-                        Grid.Row="3"
+                        Grid.Row="2"
                         Margin="0,5"
                         Columns="2">
                         <DatePicker
@@ -117,14 +110,14 @@
                     </UniformGrid>
 
                     <CheckBox
-                        Grid.Row="2"
+                        Grid.Row="1"
                         Grid.Column="1"
                         Margin="5"
                         Content="{extensions:Translate CreationTime}"
                         IsChecked="{Binding IsCreation, Mode=TwoWay}" />
 
                     <UniformGrid
-                        Grid.Row="3"
+                        Grid.Row="2"
                         Grid.Column="1"
                         Margin="0,5"
                         Columns="2">

@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Width="800"
     Height="550"
     mc:Ignorable="d">
@@ -107,15 +108,10 @@
                     </StackPanel>
 
                     <!--  选择到期时间  -->
-                    <!--<controls:ExtendedDatePicker
-                    Format="{extensions:Translate DateFormatShort}"
-                    HasBorder="False"
-                    HorizontalOptions="FillAndExpand"
-                    IsVisible="{Binding IsUnlimitedTimeSubscription, Converter={StaticResource InverseBooleanConverter}}"
-                    MinimumDate="{Binding Today}"
-                    NullableDate="{Binding Model.SubscriptionEndDateUtc}"
-                    Placeholder="{extensions:Translate SelectDate}"
-                    XAlign="Start" />-->
+                    <DatePicker
+                        md:HintAssist.Hint="{extensions:Translate SelectDate}"
+                        IsEnabled="{Binding IsUnlimitedTimeSubscription, Converter={StaticResource InverseBooleanConverter}}"
+                        Text="{Binding Model.SubscriptionEndDateUtc}" />
 
                     <!--  试用期  -->
                     <StackPanel

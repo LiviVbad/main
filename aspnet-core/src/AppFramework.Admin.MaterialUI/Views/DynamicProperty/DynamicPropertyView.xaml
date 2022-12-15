@@ -116,7 +116,7 @@
                         </Grid.RowDefinitions>
 
                         <Button
-                            Margin="0,5"
+                            Margin="8"
                             Padding="5"
                             HorizontalAlignment="Right"
                             Command="{Binding AddEntityPropertyCommand}"
@@ -124,6 +124,7 @@
 
                         <DataGrid
                             Grid.Row="1"
+                            Margin="10,0,10,10"
                             ItemsSource="{Binding entitydataPager.GridModelList}"
                             SelectedItem="{Binding entitydataPager.SelectedItem}">
                             <DataGrid.Columns>

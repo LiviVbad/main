@@ -39,8 +39,9 @@
                 <Button
                     Margin="5,0,0,0"
                     Command="{Binding QueryCommand}"
+                    Content="&#xe633;"
                     DockPanel.Dock="Right"
-                    Style="{DynamicResource SearchButtonStyle}" />
+                    Style="{StaticResource IconButtonStyle}" />
                 <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
             </DockPanel>
 
@@ -75,11 +76,11 @@
                 Orientation="Horizontal">
                 <Button
                     Margin="0,0,10,0"
-                    Padding="5"
+                    Padding="10,5"
                     Command="{Binding CancelCommand}"
                     Content="{extensions:Translate Cancel}" />
                 <Button
-                    Padding="5"
+                    Padding="10,5"
                     Command="{Binding SaveCommand}"
                     Content="{extensions:Translate Save}" />
             </StackPanel>

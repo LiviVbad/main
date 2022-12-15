@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:models="clr-namespace:AppFramework.Admin.Models;assembly=AppFramework.Admin"
     Width="800"
     Height="550"
@@ -31,11 +32,16 @@
             </b:Interaction.Triggers>
         </TextBlock>
 
-        <ScrollViewer Grid.Row="1" Margin="15,0">
+        <ScrollViewer
+            Grid.Row="1"
+            Margin="15,0"
+            VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <!--  版本名称  -->
-                <TextBlock Text="{extensions:Translate EditionName}" />
-                <TextBox Margin="0,5" Text="{Binding Model.DisplayName, Mode=TwoWay}" />
+                <TextBox
+                    Margin="0,5"
+                    md:HintAssist.Hint="{extensions:Translate EditionName}"
+                    Text="{Binding Model.DisplayName, Mode=TwoWay}" />
 
                 <!--  是否付费  -->
                 <TextBlock Text="{extensions:Translate SubscriptionPrice}" />
@@ -50,43 +56,46 @@
                 <StackPanel Visibility="{Binding IsPaid, Converter={StaticResource inverseBoolToVisibility}}">
 
                     <!--  每天定价  -->
-                    <TextBlock Text="{extensions:Translate DailyPrice}" />
-                    <TextBox Margin="5" Text="{Binding Model.DailyPrice, Mode=TwoWay}" />
+                    <TextBox
+                        Margin="0,5"
+                        md:HintAssist.Hint="{extensions:Translate DailyPrice}"
+                        Text="{Binding Model.DailyPrice, Mode=TwoWay}" />
 
                     <!--  每周定价  -->
-                    <TextBlock Text="{extensions:Translate WeeklyPrice}" />
-                    <TextBox Margin="5" Text="{Binding Model.WeeklyPrice, Mode=TwoWay}" />
+                    <TextBox
+                        Margin="0,5"
+                        md:HintAssist.Hint="{extensions:Translate WeeklyPrice}"
+                        Text="{Binding Model.WeeklyPrice, Mode=TwoWay}" />
 
                     <!--  每月定价  -->
-                    <TextBlock Text="{extensions:Translate MonthlyPrice}" />
-                    <TextBox Margin="5" Text="{Binding Model.MonthlyPrice, Mode=TwoWay}" />
+                    <TextBox
+                        Margin="0,5"
+                        md:HintAssist.Hint="{extensions:Translate MonthlyPrice}"
+                        Text="{Binding Model.MonthlyPrice, Mode=TwoWay}" />
 
                     <!--  每年定价  -->
-                    <TextBlock Text="{extensions:Translate AnnualPrice}" />
-                    <TextBox Margin="5" Text="{Binding Model.AnnualPrice, Mode=TwoWay}" />
+                    <TextBox
+                        Margin="0,5"
+                        md:HintAssist.Hint="{extensions:Translate AnnualPrice}"
+                        Text="{Binding Model.AnnualPrice, Mode=TwoWay}" />
 
                     <!--  是否试用  -->
-                    <CheckBox Content="{extensions:Translate IsTrialActive}" IsChecked="{Binding IsTrialActive}" />
-                    <StackPanel Margin="0,5" Visibility="{Binding IsTrialActive, Converter={StaticResource boolToVisibility}}">
-                        <TextBlock Text="{extensions:Translate TrialDayCount}" />
-                        <!--<number:SfNumericUpDown
-                            Minimum="0"
-                            StepValue="1"
-                            Value="{Binding Model.TrialDayCount}" />-->
+                    <CheckBox
+                        Margin="0,5"
+                        Content="{extensions:Translate IsTrialActive}"
+                        IsChecked="{Binding IsTrialActive}" />
+                    <StackPanel Margin="0,5,0,10" Visibility="{Binding IsTrialActive, Converter={StaticResource boolToVisibility}}">
+                        <TextBox md:HintAssist.Hint="{extensions:Translate TrialDayCount}" Text="{Binding Model.TrialDayCount}" />
                     </StackPanel>
 
                     <!--  订阅到期后  -->
                     <CheckBox Content="{extensions:Translate WaitAfterSubscriptionExpireDate}" IsChecked="{Binding IsWaitingDayAfter}" />
-                    <StackPanel Margin="0,5" Visibility="{Binding IsWaitingDayAfter, Converter={StaticResource boolToVisibility}}">
-                        <TextBlock Text="{extensions:Translate WaitingDayAfterExpire}" />
-                        <!--<sync:SfNumericUpDown
-                            Minimum="0"
-                            StepValue="1"
-                            Value="{Binding Model.WaitingDayAfterExpire}" />-->
+                    <StackPanel Margin="0,10" Visibility="{Binding IsWaitingDayAfter, Converter={StaticResource boolToVisibility}}">
+                        <TextBox md:HintAssist.Hint="{extensions:Translate WaitingDayAfterExpire}" Text="{Binding Model.WaitingDayAfterExpire}" />
                     </StackPanel>
 
                     <!--  订阅到期后怎么做？  -->
-                    <TextBlock Text="{extensions:Translate WhatWillDoneAfterSubscriptionExpiry}" />
+                    <TextBlock Margin="0,5" Text="{extensions:Translate WhatWillDoneAfterSubscriptionExpiry}" />
                     <StackPanel Margin="0,5" Orientation="Horizontal">
                         <RadioButton Content="{extensions:Translate DeactiveTenant}" />
                         <RadioButton
@@ -96,20 +105,22 @@
                     </StackPanel>
 
                     <!--  指定版本  -->
-                    <!--<Picker
-                        Title="{extensions:Translate Edition}"
-                        Visibility="{Binding IsAssignToAnotherEdition}"
-                        ItemDisplayBinding="{Binding DisplayText}"
+                    <ComboBox
+                        md:HintAssist.Hint="{extensions:Translate Edition}"
                         ItemsSource="{Binding Editions}"
-                        SelectedItem="{Binding SelectedEdition}" />-->
+                        SelectedItem="{Binding SelectedEdition}"
+                        Visibility="{Binding IsAssignToAnotherEdition}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DisplayText}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </StackPanel>
 
                 <!--  功能列表  -->
-                <TextBlock Text="{extensions:Translate Features}" />
-                <TreeView
-                    Margin="0,5"
-                    BorderThickness="0"
-                    ItemsSource="{Binding Features}">
+                <TextBlock Margin="0,10,0,5" Text="{extensions:Translate Features}" />
+                <TreeView BorderThickness="0" ItemsSource="{Binding Features}">
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate DataType="{x:Type models:OrganizationListModel}" ItemsSource="{Binding Items}">
                             <StackPanel Orientation="Horizontal">

@@ -63,11 +63,8 @@
                     <UniformGrid
                         Grid.Row="1"
                         Margin="5"
-                        Columns="2"
-                        Rows="2">
-                        <TextBlock Margin="3,0" Text="{extensions:Translate DateRange}" />
-                        <TextBlock Margin="3,0" Text="{extensions:Translate Result}" />
-                        <Grid Margin="3">
+                        Columns="2">
+                        <Grid Margin="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition Width="auto" />
@@ -87,7 +84,8 @@
                                 SelectedDate="{Binding EndDate, Mode=TwoWay}"
                                 Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                         </Grid>
-                        <ComboBox Margin="3">
+
+                        <ComboBox Margin="5" md:HintAssist.Hint="{extensions:Translate Result}">
                             <ComboBoxItem Content="{extensions:Translate All}" />
                             <ComboBoxItem Content="{extensions:Translate AbpLoginResultType_Success}" />
                             <ComboBoxItem Content="{extensions:Translate AbpLoginResultType_InvalidUserNameOrEmailAddress}" />
