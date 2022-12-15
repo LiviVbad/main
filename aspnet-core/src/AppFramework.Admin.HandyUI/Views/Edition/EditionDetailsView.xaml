@@ -52,38 +52,30 @@
 
                     <!--  每天定价  -->
                     <TextBlock Text="{extensions:Translate DailyPrice}" />
-                    <TextBox Margin="5" Text="{Binding Model.DailyPrice, Mode=TwoWay}" />
+                    <TextBox Margin="0,5" Text="{Binding Model.DailyPrice, Mode=TwoWay}" />
 
                     <!--  每周定价  -->
                     <TextBlock Text="{extensions:Translate WeeklyPrice}" />
-                    <TextBox Margin="5" Text="{Binding Model.WeeklyPrice, Mode=TwoWay}" />
+                    <TextBox Margin="0,5" Text="{Binding Model.WeeklyPrice, Mode=TwoWay}" />
 
                     <!--  每月定价  -->
                     <TextBlock Text="{extensions:Translate MonthlyPrice}" />
-                    <TextBox Margin="5" Text="{Binding Model.MonthlyPrice, Mode=TwoWay}" />
+                    <TextBox Margin="0,5" Text="{Binding Model.MonthlyPrice, Mode=TwoWay}" />
 
                     <!--  每年定价  -->
                     <TextBlock Text="{extensions:Translate AnnualPrice}" />
-                    <TextBox Margin="5" Text="{Binding Model.AnnualPrice, Mode=TwoWay}" />
+                    <TextBox Margin="0,5" Text="{Binding Model.AnnualPrice, Mode=TwoWay}" />
 
                     <!--  是否试用  -->
                     <CheckBox Content="{extensions:Translate IsTrialActive}" IsChecked="{Binding IsTrialActive}" />
                     <StackPanel Margin="0,5" Visibility="{Binding IsTrialActive, Converter={StaticResource boolToVisibility}}">
-                        <TextBlock Text="{extensions:Translate TrialDayCount}" />
-                        <!--<number:SfNumericUpDown
-                            Minimum="0"
-                            StepValue="1"
-                            Value="{Binding Model.TrialDayCount}" />-->
+                        <TextBox Text="{Binding Model.TrialDayCount}" />
                     </StackPanel>
 
                     <!--  订阅到期后  -->
                     <CheckBox Content="{extensions:Translate WaitAfterSubscriptionExpireDate}" IsChecked="{Binding IsWaitingDayAfter}" />
                     <StackPanel Margin="0,5" Visibility="{Binding IsWaitingDayAfter, Converter={StaticResource boolToVisibility}}">
-                        <TextBlock Text="{extensions:Translate WaitingDayAfterExpire}" />
-                        <!--<sync:SfNumericUpDown
-                            Minimum="0"
-                            StepValue="1"
-                            Value="{Binding Model.WaitingDayAfterExpire}" />-->
+                        <TextBox Text="{Binding Model.WaitingDayAfterExpire}" />
                     </StackPanel>
 
                     <!--  订阅到期后怎么做？  -->
@@ -97,12 +89,16 @@
                     </StackPanel>
 
                     <!--  指定版本  -->
-                    <!--<Picker
-                        Title="{extensions:Translate Edition}"
-                        Visibility="{Binding IsAssignToAnotherEdition}"
-                        ItemDisplayBinding="{Binding DisplayText}"
+                    <ComboBox
                         ItemsSource="{Binding Editions}"
-                        SelectedItem="{Binding SelectedEdition}" />-->
+                        SelectedItem="{Binding SelectedEdition}"
+                        Visibility="{Binding IsAssignToAnotherEdition}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DisplayText}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </StackPanel>
 
                 <!--  功能列表  -->
