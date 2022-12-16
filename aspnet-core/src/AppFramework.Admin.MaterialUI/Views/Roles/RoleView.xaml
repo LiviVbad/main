@@ -70,7 +70,7 @@
                             ItemsSource="{Binding dataPager.GridModelList}"
                             SelectedItem="{Binding dataPager.SelectedItem}">
                             <DataGrid.Columns>
-                                <DataGridTemplateColumn Width="60" Header="{extensions:Translate Actions}">
+                                <DataGridTemplateColumn Width="80" Header="{extensions:Translate Actions}">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <md:PopupBox>
