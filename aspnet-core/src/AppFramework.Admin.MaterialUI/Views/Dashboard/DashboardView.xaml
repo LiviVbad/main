@@ -127,7 +127,7 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Margin="10" Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="&#xe656;" />
+                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="{StaticResource Analyze}" />
                         <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate IncomeStatistics}" />
                     </StackPanel>
 
@@ -156,7 +156,7 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Margin="10" Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="&#xe664;" />
+                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="{StaticResource Statistics}" />
                         <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate EditionStatistics}" />
                         <TextBlock
                             Margin="5,0"
@@ -177,7 +177,7 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Margin="10" Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="&#xe602;" />
+                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="{StaticResource Approaching}" />
                         <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate SubscriptionExpiringTenants}" />
                     </StackPanel>
 
@@ -207,7 +207,7 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Margin="10" Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="&#xe69b;" />
+                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="{StaticResource AddUser}" />
                         <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate RecentTenants}" />
                     </StackPanel>
 

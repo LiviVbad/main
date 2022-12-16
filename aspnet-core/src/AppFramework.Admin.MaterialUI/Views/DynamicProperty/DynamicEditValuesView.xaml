@@ -38,13 +38,13 @@
                     <Button
                         Padding="8"
                         Command="{Binding RefreshCommand}"
-                        Content="&#xe61b;"
+                        Content="{StaticResource Refresh}"
                         Style="{StaticResource IconButtonStyle}" />
                     <Button
                         Margin="5,0"
                         Padding="8"
                         Command="{Binding ShowAddCommand}"
-                        Content="&#xe607;"
+                        Content="{StaticResource Add}"
                         Style="{StaticResource IconButtonStyle}" />
                 </StackPanel>
                 <StackPanel Visibility="{Binding IsAdd, Converter={StaticResource inverseBoolToVisibility}}">

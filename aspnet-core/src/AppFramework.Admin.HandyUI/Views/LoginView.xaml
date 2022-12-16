@@ -64,7 +64,7 @@
                 VerticalAlignment="Top"
                 Background="Transparent"
                 BorderThickness="0"
-                Content="&#xe63a;"
+                Content="{StaticResource Close}"
                 FontSize="24"
                 Style="{DynamicResource IconButtonStyle}" />
 

@@ -100,7 +100,7 @@
                                 <Button
                                     x:Name="PART_DeleteButton"
                                     Grid.Column="1"
-                                    Content="&#xe63a;"
+                                    Content="{DynamicResource Close}"
                                     Style="{DynamicResource IconButtonStyle}"
                                     Visibility="Hidden" />
                             </Grid>

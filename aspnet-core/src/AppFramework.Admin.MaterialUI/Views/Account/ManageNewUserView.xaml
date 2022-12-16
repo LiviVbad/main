@@ -30,7 +30,7 @@
                 <Button
                     Margin="5,0,0,0"
                     Command="{Binding QueryCommand}"
-                    Content="&#xe633;"
+                    Content="{StaticResource Search}"
                     DockPanel.Dock="Right"
                     Style="{DynamicResource IconButtonStyle}" />
                 <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
@@ -47,7 +47,7 @@
                                     Background="Transparent"
                                     Command="{Binding DataContext.ChooseCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                     CommandParameter="{Binding}"
-                                    Content="&#xe607;"
+                                    Content="{StaticResource Add}"
                                     Style="{StaticResource IconButtonStyle}"
                                     ToolTip="{extensions:Translate Add}" />
                             </DataTemplate>

@@ -95,19 +95,19 @@
                                             Margin="10,0,2,0"
                                             Command="{Binding DataContext.AddRootUnitCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}}"
                                             CommandParameter="{Binding}"
-                                            Content="&#xe607;"
+                                            Content="{StaticResource Add}"
                                             Style="{StaticResource IconButtonStyle}"
                                             ToolTip="{extensions:Translate AddRootUnit}" />
                                         <Button
                                             Command="{Binding DataContext.ChangeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}}"
                                             CommandParameter="{Binding}"
-                                            Content="&#xe651;"
+                                            Content="{StaticResource Edit}"
                                             Style="{StaticResource IconButtonStyle}"
                                             ToolTip="{extensions:Translate Change}" />
                                         <Button
                                             Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}}"
                                             CommandParameter="{Binding}"
-                                            Content="&#xe65c;"
+                                            Content="{StaticResource Remove}"
                                             Style="{StaticResource IconButtonStyle}"
                                             ToolTip="{extensions:Translate Remove}" />
                                     </DockPanel>
@@ -169,7 +169,7 @@
                                                             Padding="8"
                                                             Command="{Binding DataContext.DeleteMemberCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                                             CommandParameter="{Binding}"
-                                                            Content="&#xe65c;"
+                                                            Content="{StaticResource Remove}"
                                                             Style="{StaticResource IconButtonStyle}" />
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
@@ -219,7 +219,7 @@
                                                             Padding="8"
                                                             Command="{Binding DataContext.DeleteRoleCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                                             CommandParameter="{Binding}"
-                                                            Content="&#xe65c;"
+                                                            Content="{StaticResource Remove}"
                                                             Style="{StaticResource IconButtonStyle}" />
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>

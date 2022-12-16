@@ -40,7 +40,7 @@
                 <Button
                     Margin="5,0,0,0"
                     Command="{Binding QueryCommand}"
-                    Content="&#xe633;"
+                    Content="{StaticResource Search}"
                     DockPanel.Dock="Right"
                     Style="{StaticResource IconButtonStyle}" />
                 <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />

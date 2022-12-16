@@ -112,7 +112,7 @@
                                                     Background="Transparent"
                                                     Command="{Binding DataContext.SetNotificationAsReadCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                                     CommandParameter="{Binding}"
-                                                    Content="&#xe66f;"
+                                                    Content="{StaticResource Sure}"
                                                     Style="{StaticResource IconButtonStyle}"
                                                     ToolTip="{extensions:Translate SetAsRead}"
                                                     Visibility="{Binding State, Converter={StaticResource stateConverter}}" />
@@ -122,7 +122,7 @@
                                                     Background="Transparent"
                                                     Command="{Binding DataContext.DeleteNotificationCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                                     CommandParameter="{Binding}"
-                                                    Content="&#xe63a;"
+                                                    Content="{StaticResource Close}"
                                                     Style="{StaticResource IconButtonStyle}"
                                                     ToolTip="{extensions:Translate Delete}" />
                                             </StackPanel>

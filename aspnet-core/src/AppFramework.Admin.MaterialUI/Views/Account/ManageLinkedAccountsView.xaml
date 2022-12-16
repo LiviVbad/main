@@ -46,7 +46,7 @@
                                     Background="Transparent"
                                     Command="{Binding DataContext.LoginUserCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                     CommandParameter="{Binding}"
-                                    Content="&#xe608;"
+                                    Content="{StaticResource Right}"
                                     Style="{StaticResource IconButtonStyle}"
                                     ToolTip="{extensions:Translate LogIn}" />
                             </DataTemplate>
@@ -62,7 +62,7 @@
                                     Background="Transparent"
                                     Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                     CommandParameter="{Binding}"
-                                    Content="&#xe65c;"
+                                    Content="{StaticResource Remove}"
                                     Style="{StaticResource IconButtonStyle}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

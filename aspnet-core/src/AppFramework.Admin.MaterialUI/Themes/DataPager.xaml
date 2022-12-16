@@ -50,7 +50,7 @@
                             <Button
                                 x:Name="HomePage"
                                 Padding="5,0"
-                                Content="&#xe74c;"
+                                Content="{DynamicResource HomePage}"
                                 FontFamily="/Assets/Fonts/#iconfont"
                                 FontSize="18"
                                 Style="{StaticResource MaterialDesignFlatButton}" />
@@ -58,7 +58,7 @@
                                 x:Name="PreviousPage"
                                 Margin="5,0"
                                 Padding="5,0"
-                                Content="&#xe77d;"
+                                Content="{DynamicResource PreviousPage}"
                                 FontFamily="/Assets/Fonts/#iconfont"
                                 Style="{StaticResource MaterialDesignFlatButton}" />
                             <ListBox x:Name="ItemsControl" SelectionMode="Single">
@@ -108,13 +108,13 @@
                                 x:Name="NextPage"
                                 Margin="5,0"
                                 Padding="5,0"
-                                Content="&#xe77c;"
+                                Content="{DynamicResource NextPage}"
                                 FontFamily="/Assets/Fonts/#iconfont"
                                 Style="{StaticResource MaterialDesignFlatButton}" />
                             <Button
                                 x:Name="EndPage"
                                 Padding="5,0"
-                                Content="&#xe74d;"
+                                Content="{DynamicResource EndPage}"
                                 FontFamily="/Assets/Fonts/#iconfont"
                                 FontSize="18"
                                 Style="{StaticResource MaterialDesignFlatButton}" />

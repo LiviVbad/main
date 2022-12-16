@@ -172,18 +172,18 @@
                     <Button
                         x:Name="BtnMin"
                         VerticalAlignment="Center"
-                        Content="&#xe729;"
+                        Content="{StaticResource Reduce}"
                         Style="{DynamicResource IconButtonStyle}" />
                     <Button
                         x:Name="BtnMax"
                         Margin="5,0"
                         VerticalAlignment="Center"
-                        Content="&#xe67b;"
+                        Content="{StaticResource MaxWindow}"
                         Style="{DynamicResource IconButtonStyle}" />
                     <Button
                         x:Name="BtnClose"
                         VerticalAlignment="Center"
-                        Content="&#xe63a;"
+                        Content="{StaticResource Close}"
                         Style="{DynamicResource IconButtonStyle}" />
                 </StackPanel>
 

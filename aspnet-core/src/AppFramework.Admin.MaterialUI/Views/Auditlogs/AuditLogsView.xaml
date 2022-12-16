@@ -212,7 +212,7 @@
                                                     <Button
                                                         Padding="8"
                                                         Command="{Binding DataContext.ViewLogCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                                        Content="&#xe633;"
+                                                        Content="{StaticResource Search}"
                                                         Style="{StaticResource IconButtonStyle}" />
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
@@ -312,7 +312,7 @@
                                             <Button
                                                 Padding="8"
                                                 Command="{Binding DataContext.ViewChangedLogCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                                Content="&#xe633;"
+                                                Content="{StaticResource Search}"
                                                 Style="{StaticResource IconButtonStyle}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>

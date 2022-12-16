@@ -127,14 +127,14 @@
                 <Button
                     Background="Transparent"
                     Command="{Binding PickImageCommand}"
-                    Content="&#xe63e;"
+                    Content="{StaticResource Picture}"
                     FontSize="20"
                     Style="{StaticResource IconButtonStyle}" />
                 <Button
                     Margin="5,0"
                     Background="Transparent"
                     Command="{Binding PickFileCommand}"
-                    Content="&#xe60f;"
+                    Content="{StaticResource File}"
                     FontSize="20"
                     Style="{StaticResource IconButtonStyle}" />
             </StackPanel>
