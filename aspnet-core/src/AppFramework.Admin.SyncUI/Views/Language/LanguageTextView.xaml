@@ -112,7 +112,7 @@
                                         Padding="8"
                                         Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
                                         CommandParameter="{Binding}"
-                                        Content="&#xe651;"
+                                        Content="{StaticResource Edit}"
                                         Style="{StaticResource IconButtonStyle}" />
                                 </DataTemplate>
                             </sync:GridTemplateColumn.CellTemplate>

@@ -69,7 +69,7 @@
                         <Button
                             Padding="8"
                             Command="{Binding SearchCommand}"
-                            Content="&#xe633;"
+                            Content="{StaticResource Search}"
                             DockPanel.Dock="Right"
                             Style="{StaticResource IconButtonStyle}" />
                         <TextBox Text="{Binding Filter.Filter}" />

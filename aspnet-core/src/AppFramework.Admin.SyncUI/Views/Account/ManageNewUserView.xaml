@@ -65,7 +65,7 @@
                                         Background="Transparent"
                                         Command="{Binding DataContext.ChooseCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
                                         CommandParameter="{Binding}"
-                                        Content="&#xe607;"
+                                        Content="{StaticResource Add}"
                                         Style="{StaticResource IconButtonStyle}"
                                         ToolTip="{extensions:Translate Add}" />
                                 </DataTemplate>

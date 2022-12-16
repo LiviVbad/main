@@ -46,7 +46,7 @@
                         <Button
                             Padding="8"
                             Command="{Binding SearchCommand}"
-                            Content="&#xe633;"
+                            Content="{StaticResource Search}"
                             DockPanel.Dock="Right"
                             Style="{StaticResource IconButtonStyle}" />
                         <TextBox Margin="5,0" Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=500}" />

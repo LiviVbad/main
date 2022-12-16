@@ -33,7 +33,7 @@
             <DockPanel Margin="10">
                 <Button
                     Command="{Binding AddUserCommand}"
-                    Content="&#xe69b;"
+                    Content="{StaticResource AddUser}"
                     DockPanel.Dock="Right"
                     Style="{StaticResource IconButtonStyle}" />
                 <TextBox />
