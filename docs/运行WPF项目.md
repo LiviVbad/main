@@ -105,17 +105,87 @@ public override async Task OnNavigatedToAsync(NavigationContext navigationContex
         }
 ````
 
-#### 模块系统
-
 #### 多UI框架
+
+本套框架实现了三种UI框架: Syncfusion、MaterialDesign、HandyControl。
+
+在每一种UI框架中， 各自实现了基于不通UI框架的样式资源定义、特定的主题切换功能、视图定义。
+
+启动时, 会将Admin模块中的ViewModel 与 各自UI 中的 View 进行绑定注册。
+
+**注**: Syncfusion 为商用框架，需授权使用，注册社区版本即可使用。
 
 #### MVVM
 
+该框架中，内置了几种MVVM基类，分别应用在不同的场景中使用。
+
+- DialogViewModel  弹窗模块中使用，不具备阴影遮挡效果。
+- HostDialogViewModel  弹窗模块中使用，具备阴影遮挡效果。
+- NavigationCurdViewModel  具备导航功能的单个表的基础实现、新增、编辑、分页。
+- NavigationViewModel   具备导航功能实现。
+- ViewModelBase  实现绑定通知基类、包含实体映射、验证器、等待属性定义。
+
 #### 本地化多语言
+
+多语言由 TranslateExtension 标记扩展实现，UI视图中绑定多语言转换的Key字符串，在 TranslateExtension 
+
+的 ProvideValue 中, 通过 Local.Localize(string text) 静态方法转换成特定语言的字符串。
+
+视图中定义:
+
+````C#
+<TextBox   md:HintAssist.Hint="{extensions:Translate UserName}" 
+           Text="{Binding UserName}" />
+````
+
+TranslateExtension 实现：
+
+````
+/// <summary>
+    /// 字符串多语言转换扩展
+    /// </summary>
+    public class TranslateExtension : MarkupExtension
+    {
+        public TranslateExtension(string text)
+        {
+            Text = text;
+        }
+
+        /// <summary>
+        /// 本地化字符串
+        /// </summary>
+        public string Text { get; set; }
+
+        /// <summary>
+        /// 返回当前语言的对应文本
+        /// </summary>
+        /// <param name="serviceProvider"></param>
+        /// <returns></returns>
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            if (serviceProvider.GetService(typeof(IProvideValueTarget)) is IProvideValueTarget target
+                && target.TargetObject is FrameworkElement element
+                && DesignerProperties.GetIsInDesignMode(element))
+            {
+                return Text;
+            }
+
+            if (string.IsNullOrWhiteSpace(Text)) return Text;
+
+            return Local.Localize(Text);
+        }
+    }
+````
+
+**注**:  Localize 静态方法中 通过使用 IApplicationContext 转换具体多语言字符串， 该接口中的多语言数据从后端的WebAPI中获得, 参考: UserConfigurationManager.GetAsync() 实现。
 
 #### 身份授权
 
+
+
 #### 自动更新
+
+
 
 #### 即时通讯
 
