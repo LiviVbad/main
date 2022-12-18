@@ -17,6 +17,12 @@
 
 
 
+引用关系图如下所示:
+
+<img src="C:\Github\AppFramework\docs\images\refurl.png" alt="image-20221218121609876" style="zoom:50%;" />
+
+
+
 ### AppFramework.Admdin 
 
 该项目为核心的业务模块，项目结构如下图所示;
@@ -93,3 +99,4 @@
 - **Services**  公共层服务接口定义 (分页、多语言、本地存储、聊天)
 - **Validations**  验证器接口定义
 - **ViewModels** 视图模型的基础实现定义 
+

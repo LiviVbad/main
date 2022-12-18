@@ -26,20 +26,96 @@
 
 ## 探索WPF项目
 
-- 启动流程
+#### 启动流程
 
-- 模块系统
+- RegisterTypes 注册容器服务 (包含应用程序依赖的所有服务、页面等)
 
-- 多UI框架
+- ConfigureRegionAdapterMappings 注册适配器 (Prism适配器)
 
-- MVVM
+- OnInitialized 重写初始化流程
 
-- 本地化多语言
+- 版本更新检查  
 
-- 身份授权
+位于App.xaml.cs  文件
 
-- 自动更新
+````C#
+ var appVersionService = ContainerLocator.Container.Resolve<IUpdateService>();
+ await appVersionService.CheckVersion();
+````
 
-- 即时通讯
+- 初始化屏幕 (下载服务器资源/验收授权信息)
 
-  
+位于xxxUIStartService  文件
+
+````C#
+ private void SplashScreenInitialized()
+        {
+            var dialogService = ContainerLocator.Container.Resolve<IHostDialogService>();
+            var result = dialogService.ShowWindow(AppViews.SplashScreen).Result;
+            if (result == ButtonResult.Ignore)
+            {
+                if (!Authorization()) Exit();
+            }
+            else if (result == ButtonResult.No) Exit();
+        }
+````
+
+具体实现中 SplashScreenViewModel 文件中
+
+````C#
+public override async void OnDialogOpened(IDialogParameters parameters)
+        {
+            await SetBusyAsync(async () =>
+            {
+                await Task.Delay(200);
+
+                //加载本地的缓存信息
+                DisplayText = LocalTranslationHelper.Localize("Initializing");
+                accessTokenManager.AuthenticateResult = dataStorageService.RetrieveAuthenticateResult();
+                applicationContext.Load(dataStorageService.RetrieveTenantInfo(), dataStorageService.RetrieveLoginInfo());
+
+                //加载系统资源
+                DisplayText = LocalTranslationHelper.Localize("LoadResource");
+                await UserConfigurationManager.GetIfNeedsAsync();
+
+                //如果本地授权存在,直接进入系统首页
+                if (accessTokenManager.IsUserLoggedIn && applicationContext.Configuration != null)
+                    OnDialogClosed();
+                else if (applicationContext.Configuration!=null)
+                    OnDialogClosed(ButtonResult.Ignore);
+                else
+                    OnDialogClosed(ButtonResult.No);
+            });
+        }
+````
+
+- 进入首页
+
+加载用户资料，导航面板页，位于 MainTabViewModel
+
+````C#
+public override async Task OnNavigatedToAsync(NavigationContext navigationContext)
+        {
+            IsShowUserPanel=false;
+
+            await appService.GetApplicationInfo();
+
+            if (applicationContext.Configuration.Auth.GrantedPermissions.ContainsKey(AppPermissions.HostDashboard))
+                NavigationService.Navigate(AppViews.Dashboard);
+        }
+````
+
+#### 模块系统
+
+#### 多UI框架
+
+#### MVVM
+
+#### 本地化多语言
+
+#### 身份授权
+
+#### 自动更新
+
+#### 即时通讯
+
