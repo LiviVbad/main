@@ -83,6 +83,4 @@ npm run hmr
 
 ### 登录
 
-都准备好了！现在，您可以登录到应用程序：
-
-![登录页面](https://raw.githubusercontent.com/aspnetzero/documents/master/docs/en/images/login-screen-3.png)
+都准备好了！现在，您可以登录到应用程序。
