@@ -181,11 +181,99 @@ TranslateExtension 实现：
 
 #### 身份授权
 
+客户端通过 IAccountService 接口进行身份授权，如下图所示:
 
+<img src="..\docs\images\accessTokenManager.png" alt="image-20221221091309062" style="zoom:50%;" />
+
+在 accessTokenManager 实现中, 包含授权接口地址以及刷新身份令牌的接口地址：
+
+````C#
+private const string LoginUrlSegment = "api/TokenAuth/Authenticate";
+private const string RefreshTokenUrlSegment = "api/TokenAuth/RefreshToken";
+````
+
+授权代码如下所示:
+
+````C#
+ var response = await client
+                    .Request(LoginUrlSegment)
+                    .PostJsonAsync(_authenticateModel)
+                    .ReceiveJson<AjaxResponse<AbpAuthenticateResultModel>>();
+````
+
+创建一个api客户端，然后构造请求资源地址, 通过Post传递一个JSON的授权信息，其中包含用户名、密码等参数，最终返回一个授权结果，该结果当中, 包含AccessToken 用于其它受权限的资源访问。
+
+在框架中, 封装了用于Web请求的操作类,  在 Application.Client项目中可以查看 :
+
+<img src="..\docs\images\apiClient.png" alt="image-20221221092115664" style="zoom:50%;" />
+
+AbpApiClient封装了 Get、Post、Put、Delete、文件下载等方法，其中还包含了创建API客户端的静态方法，由于构造Web服务请求的Header，如: 当前的访问资源语言、租户信息、授权令牌等设置, 如下所示:
+
+````C#
+if (_applicationContext.CurrentLanguage != null) //设置语言
+            {
+                _client.WithHeader(".AspNetCore.Culture", "c=" + _applicationContext.CurrentLanguage.Name + "|uic=" + _applicationContext.CurrentLanguage.Name);
+            }
+
+            if (_applicationContext.CurrentTenant != null) //添加租户信息
+            {
+                _client.WithHeader(_multiTenancyConfig.TenantIdResolveKey, _applicationContext.CurrentTenant.TenantId);
+            }
+
+            if (accessToken != null)  //设置授权Token
+            {
+                _client.WithOAuthBearerToken(accessToken);
+            }
+````
 
 #### 自动更新
 
+自动更新功能通过 IUpdateService 接口实现, 其中包含检查当前应用程序最新版本， 如果存在新的版本信息，将在首次登录时进行通知提示，更新过程需中断应用程序下载，完成后自动打开应用程序。
 
+> 该功能需要配合 上传应用程序的版本信息实现，首先上传最新的版本的压缩包至服务器。上传的版本号需大于当前应用程序的版本号，即可收到更新通知，自动更新功能通过开源组件: AutoUpdaterDotNET 实现。
+>
+> 参考资源: [AutoUpdater](https://github.com/ravibpatel/AutoUpdater.NET)
 
 #### 即时通讯
 
+该功能支持应用程序内的注册用户进行文字、图像、文件上传等交流，该功能主要通过ASP.NET Core Signalr实现。
+
+- Web服务实现
+
+Web服务实现在 Web.Core 项目中可以找到，如下所示：
+
+<img src="..\docs\images\signalr.png" alt="image-20221221093234120" style="zoom:50%;" />
+
+即时通讯功能需要验证用户的授权信息, 当授权信息通过后, 并且检测用户连接至Signalr服务。
+
+<img src="..\docs\images\authConfigurer.png" alt="image-20221221093605951" style="zoom:50%;" />
+
+如上图所示, 在接受到授权信息后, QueryStringTokenResolver 会检查请求的资源地址是否包含Signalr 相关信息。
+
+````C#
+  if (context.HttpContext.Request.Path.Value.StartsWith("/signalr"))
+            {
+                var env = context.HttpContext.RequestServices.GetService<IWebHostEnvironment>();
+                var config = env.GetAppConfiguration();
+                var allowAnonymousSignalRConnection = bool.Parse(config["App:AllowAnonymousSignalRConnection"]);
+
+                return SetToken(context, allowAnonymousSignalRConnection);
+            }
+....
+````
+
+- WPF客户端实现
+
+客户端中, 封装了基于身份授权的Signalr连接通讯接口，如下所示:
+
+<img src="..\docs\images\wpf.signalr.png" alt="image-20221221093942893" style="zoom:50%;" />
+
+如上图所示, 包含了 连接服务、断开服务、发送消息、以及获取好友信息等实现。
+
+具体实现可以参考ChatService ，实现库: [Microsoft.AspNetCore.SignalR.Client](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/6.0.10/ReportAbuse)
+
+参考资料: 
+
+[使用 SignalR 进行实时 ASP.NET](https://dotnet.microsoft.com/zh-cn/apps/aspnet/signalr)
+
+[SignalR Learn](https://learn.microsoft.com/zh-cn/aspnet/signalr/)
