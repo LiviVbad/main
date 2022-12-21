@@ -15,7 +15,7 @@
 
 当您打开服务器端解决方案 **（AppFramework.Web.sln）** 使用 **Visual Studio 2022**，您将看到解决方案结构如下：
 
-<img src="C:\Users\zhouh\AppData\Roaming\Typora\typora-user-images\image-20221217211345054.png" alt="image-20221217211345054" style="zoom:50%;" />
+![](..\docs\images\aspnetcore.web.sln.png)
 
 右键单击 **.Web.Host**项目，然后选择“**设置为启动项目**”。然后**生成**解决方案。在第一次生成期间可能需要更长的时间，因为将还原所有 **nuget** 包。
 
@@ -33,23 +33,23 @@
 
 在 Visual Studio 中打开**程序包管理器控制台**，设置 **EntityFrameworkCore** 作为**默认项目**，并运行 **Update-Database** 命令，如下所示：
 
-![image-20221217210301724](C:\Github\AppFramework\docs\images\update.database.png)
+![image-20221217210301724](..\docs\images\update.database.png)
 
 此命令将创建数据库。运行Web.Host 项目时将插入初始数据。可以打开 SQL Server Management Studio 以检查是否已创建数据库： 
 
-![image-20221217210522535](C:\Github\AppFramework\docs\images\mssql.png)
+![image-20221217210522535](..\docs\images\mssql.png)
 
 ### 运行WebAPI项目
 
 完成配置后，即可运行应用程序。服务器端应用程序仅包含 API。当您启动应用程序时，您将看到如下所示的登录页面：
 
-<img src="C:\Github\AppFramework\docs\images\webapi.login.png" alt="image-20221217210732691" style="zoom: 33%;" />
+<img src="..\docs\images\webapi.login.png" alt="image-20221217210732691" style="zoom: 33%;" />
 
 如果启用了多租户，你将看到当前租户和更改链接。如果是这样，请单击“**更改**”并输入**默认值**作为租户名称。如果将其留空，则以主机管理员用户身份登录。然后输入 **admin** 作为用户名，**输入 123qwe** 作为密码（请记住在生产中将其更改为更安全的密码！)
 
 当您导航 **Swagger UI** 时，您将看到以下页面：
 
-<img src="C:\Github\AppFramework\docs\images\openapi.png" alt="image-20221217211017644" style="zoom:50%;" />
+<img src="..\docs\images\openapi.png" alt="image-20221217211017644" style="zoom:50%;" />
 
 ## Angular 项目部署
 

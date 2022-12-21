@@ -2,7 +2,7 @@
 
 下图为ASP.NET Core WebAPI 解决方案的项目列表
 
-![image-20221217185110381](C:\Github\AppFramework\docs\images\aspnetcore.web.sln.png)
+![image-20221217185110381](..\docs\images\aspnetcore.web.sln.png)
 
 解决方案中有 10 个项目：
 
