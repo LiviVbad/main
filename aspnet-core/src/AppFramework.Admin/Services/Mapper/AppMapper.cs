@@ -2,7 +2,7 @@
 using AutoMapper;
 using System;
 
-namespace AppFramework.Admin.MaterialUI
+namespace AppFramework.Admin.Mapper
 {
     public class AppMapper : IAppMapper
     {

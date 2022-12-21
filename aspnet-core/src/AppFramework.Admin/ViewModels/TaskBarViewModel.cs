@@ -5,7 +5,7 @@ using Prism.Ioc;
 using AppFramework.Shared.Services.App;
 using AppFramework.Shared.Services;
 
-namespace AppFramework.Admin.MaterialUI
+namespace AppFramework.Admin.ViewModels
 {
     public class TaskBarViewModel : BindableBase
     {
@@ -32,11 +32,11 @@ namespace AppFramework.Admin.MaterialUI
         }
 
         private void ShowView()
-        {
-            if (!App.Current.MainWindow.IsVisible)
+        { 
+            if (!System.Windows.Application.Current.MainWindow.IsVisible)
             {
-                App.Current.MainWindow.Show();
-                App.Current.MainWindow.WindowState = System.Windows.WindowState.Normal;
+                System.Windows.Application.Current.MainWindow.Show();
+                System.Windows.Application.Current.MainWindow.WindowState = System.Windows.WindowState.Normal;
             }
         }
     }

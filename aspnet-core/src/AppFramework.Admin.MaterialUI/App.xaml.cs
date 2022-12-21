@@ -1,11 +1,8 @@
-﻿using AppFramework.Admin.Services;
-using AppFramework.Admin.SyncUI;
-using AppFramework.Authorization.Permissions;
+﻿using AppFramework.Admin.Services; 
 using AppFramework.Shared;
 using AppFramework.Shared.Services;
 using AppFramework.Shared.Services.App;
-using AppFramework.Shared.Services.Mapper;
-using Example;
+using AppFramework.Shared.Services.Mapper; 
 using Hardcodet.Wpf.TaskbarNotification;
 using Prism.DryIoc;
 using Prism.Ioc;
@@ -31,10 +28,8 @@ namespace AppFramework.Admin.MaterialUI
             container.RegisterSingleton<IAppStartService, MaterialUIStartService>();
             container.RegisterScoped<IPermissionTreesService, AppFramework.Admin.MaterialUI.Services.PermissionTreesService>();
             container.RegisterScoped<IFeaturesService, AppFramework.Admin.MaterialUI.Services.FeaturesService>();
-
-            container.RegisterSingleton<IAppMapper, AppMapper>();
-            container.RegisterSingleton<ILocaleCulture, LocaleCulture>();
-            container.RegisterSingleton<IUpdateService, UpdateService>();
+             
+            container.RegisterSingleton<ILocaleCulture, LocaleCulture>(); 
 
             container.RegisterSingleton<INavigationMenuService, NavigationSingleMenuService>();
         }

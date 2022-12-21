@@ -5,13 +5,20 @@ using AppFramework.Admin.Services.Notification;
 using AppFramework.ApiClient; 
 using AppFramework.Shared;
 using AppFramework.Shared.Services;
+using AppFramework.Shared.Services.Mapper;
+using AppFramework.Shared.Services.App;
+using AppFramework.Admin.Mapper;
+using AppFramework.Admin.Update;
 
 namespace AppFramework.Admin
 { 
     public static class ServiceExtensions
     { 
         public static void AddServices(this IContainerRegistry services)
-        { 
+        {
+            services.RegisterSingleton<IAppMapper, AppMapper>();
+            services.RegisterSingleton<IUpdateService, UpdateService>();
+
             services.RegisterSingleton<IAccountService, AccountService>();
             services.RegisterSingleton<IAccountStorageService, AccountStorageService>();
             services.RegisterSingleton<IDataStorageService, DataStorageService>();

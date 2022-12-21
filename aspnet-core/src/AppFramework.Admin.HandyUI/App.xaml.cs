@@ -41,11 +41,8 @@ namespace AppFramework.Admin.HandyUI
             container.RegisterSingleton<IAppStartService, HandyUIStartService>();
             container.RegisterScoped<IPermissionTreesService, AppFramework.Admin.HandyUI.Services.PermissionTreesService>();
             container.RegisterScoped<IFeaturesService, AppFramework.Admin.HandyUI.Services.FeaturesService>();
-
-            container.RegisterSingleton<IAppMapper, AppMapper>();
-            container.RegisterSingleton<ILocaleCulture, LocaleCulture>();
-            container.RegisterSingleton<IUpdateService, UpdateService>();
-
+             
+            container.RegisterSingleton<ILocaleCulture, LocaleCulture>(); 
             container.RegisterSingleton<INavigationMenuService, NavigationSingleMenuService>();
         }
 
