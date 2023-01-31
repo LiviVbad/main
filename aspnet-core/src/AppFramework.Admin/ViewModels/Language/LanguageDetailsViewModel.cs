@@ -28,7 +28,7 @@ namespace AppFramework.Admin.ViewModels
         public ObservableCollection<ComboboxItemDto> LanguageNames
         {
             get { return languageNames; }
-            set { languageNames = value; RaisePropertyChanged(); }
+            set { languageNames = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace AppFramework.Admin.ViewModels
         public ObservableCollection<ComboboxItemDto> Flags
         {
             get { return flags; }
-            set { flags = value; RaisePropertyChanged(); }
+            set { flags = value; OnPropertyChanged(); }
         }
 
         //选中语言
@@ -51,7 +51,7 @@ namespace AppFramework.Admin.ViewModels
                 {
                     language.Name = value.Value;
                 }
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -66,7 +66,7 @@ namespace AppFramework.Admin.ViewModels
                 {
                     language.Icon = value.Value;
                 }
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -77,7 +77,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 language.IsEnabled = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

@@ -15,7 +15,7 @@ namespace AppFramework.Admin.ViewModels
         public DynamicPropertyModel Model
         {
             get { return model; }
-            set { model = value; RaisePropertyChanged(); }
+            set { model = value; OnPropertyChanged(); }
         }
 
         public DynamicPropertyDetailsViewModel(IDynamicPropertyAppService appService)

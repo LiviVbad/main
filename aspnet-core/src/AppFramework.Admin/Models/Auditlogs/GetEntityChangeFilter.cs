@@ -1,40 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System; 
 
 namespace AppFramework.Admin.Models
 {
-    public class GetEntityChangeFilter : PagedAndSortedFilter
+    public partial class GetEntityChangeFilter : PagedAndSortedFilter
     {
-        private DateTime startTime;
-        private DateTime endTime;
-        private string userName;
-        private string entityTypeFullName;
+        [ObservableProperty]
+        public DateTime startDate;
 
-        public DateTime StartDate
-        {
-            get { return startTime; }
-            set { startTime = value; RaisePropertyChanged(); }
-        }
+        [ObservableProperty]
+        public DateTime endDate;
 
-        public DateTime EndDate
-        {
-            get { return endTime; }
-            set { endTime = value; RaisePropertyChanged(); }
-        }
+        [ObservableProperty]
+        public string userName;
 
-        public string UserName
-        {
-            get { return userName; }
-            set { userName = value; RaisePropertyChanged(); }
-        }
-
-        public string EntityTypeFullName
-        {
-            get { return entityTypeFullName; }
-            set { entityTypeFullName = value; RaisePropertyChanged(); }
-        }
+        [ObservableProperty]
+        public string entityTypeFullName; 
     }
 }

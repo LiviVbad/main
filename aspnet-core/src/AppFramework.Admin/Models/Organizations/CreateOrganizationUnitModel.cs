@@ -1,17 +1,14 @@
-﻿using Prism.Mvvm;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Prism.Mvvm;
 
 namespace AppFramework.Admin.Models
 {
-    public class CreateOrganizationUnitModel : BindableBase
+    [INotifyPropertyChanged]
+    public partial class CreateOrganizationUnitModel 
     {
+        [ObservableProperty]
         private string displayName;
 
-        public long? ParentId { get; set; }
-
-        public string DisplayName
-        {
-            get { return displayName; }
-            set { displayName = value; RaisePropertyChanged(); }
-        }
+        public long? ParentId { get; set; } 
     }
 }

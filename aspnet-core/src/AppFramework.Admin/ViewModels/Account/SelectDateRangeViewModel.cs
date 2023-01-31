@@ -12,7 +12,7 @@ namespace AppFramework.Admin.ViewModels
         public DateTime? StartDate
         {
             get { return startDate; }
-            set { startDate = value; RaisePropertyChanged(); }
+            set { startDate = value; OnPropertyChanged(); }
         }
 
         private DateTime? endDate;
@@ -20,7 +20,7 @@ namespace AppFramework.Admin.ViewModels
         public DateTime? EndDate
         {
             get { return endDate; }
-            set { endDate = value; RaisePropertyChanged(); }
+            set { endDate = value; OnPropertyChanged(); }
         }
 
         public override async Task Save()

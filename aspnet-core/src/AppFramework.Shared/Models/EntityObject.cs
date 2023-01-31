@@ -1,8 +1,9 @@
-﻿using Prism.Mvvm;
+﻿using CommunityToolkit.Mvvm.ComponentModel; 
 
 namespace AppFramework.Shared.Models
 {
-    public class EntityObject : BindableBase
+    [INotifyPropertyChanged]
+    public partial class EntityObject 
     {
         public int Id { get; set; }
 

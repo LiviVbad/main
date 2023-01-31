@@ -1,18 +1,17 @@
 ﻿using AppFramework.Authorization.Permissions.Dto;
 using AppFramework.Admin.Models;
-using AppFramework.Shared.Services.Mapper;
-using AppFramework.Shared.Services.Permission;
-using AutoMapper;
-using Prism.Mvvm;
+using AppFramework.Shared.Services.Mapper;  
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AppFramework.Admin.Services
 {
-    public class PermissionTreesService : BindableBase, IPermissionTreesService
+    [INotifyPropertyChanged]
+    public partial class PermissionTreesService :   IPermissionTreesService
     {
         private readonly IAppMapper mapper;
 
@@ -26,7 +25,7 @@ namespace AppFramework.Admin.Services
         public ObservableCollection<PermissionModel> Permissions
         {
             get { return permissions; }
-            set { permissions = value; RaisePropertyChanged(); }
+            set { permissions = value; OnPropertyChanged(); }
         }
 
         private ObservableCollection<object> selectedItems;
@@ -34,7 +33,7 @@ namespace AppFramework.Admin.Services
         public ObservableCollection<object> SelectedItems
         {
             get { return selectedItems; }
-            set { selectedItems = value; RaisePropertyChanged(); }
+            set { selectedItems = value; OnPropertyChanged(); }
         }
 
         public void CreatePermissionTrees(List<FlatPermissionDto> permissions, List<string> grantedPermissionNames)

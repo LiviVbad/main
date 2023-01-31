@@ -25,7 +25,7 @@ namespace AppFramework.Admin.ViewModels
         public bool IsAdd
         {
             get { return isAdd; }
-            set { isAdd = value; RaisePropertyChanged(); }
+            set { isAdd = value; OnPropertyChanged(); }
         }
 
         private string inputValue;
@@ -33,7 +33,7 @@ namespace AppFramework.Admin.ViewModels
         public string InputValue
         {
             get { return inputValue; }
-            set { inputValue = value; RaisePropertyChanged(); }
+            set { inputValue = value; OnPropertyChanged(); }
         }
 
         public DelegateCommand ShowAddCommand { get; private set; }

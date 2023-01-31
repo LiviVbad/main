@@ -137,7 +137,7 @@ namespace AppFramework.Admin.ViewModels
                 isLockUser = value;
                 //更改查询条件
                 input.OnlyLockedUsers = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -156,7 +156,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 input.Filter = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
                 Search();
             }
         }
@@ -167,7 +167,7 @@ namespace AppFramework.Admin.ViewModels
         public string FilerTitle
         {
             get { return filterTitle; }
-            set { filterTitle = value; RaisePropertyChanged(); }
+            set { filterTitle = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace AppFramework.Admin.ViewModels
                 isAdvancedFilter = value;
 
                 FilerTitle = value ? "△ " + Local.Localize("HideAdvancedFilters") : "▽ " + Local.Localize("ShowAdvancedFilters");
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -191,7 +191,7 @@ namespace AppFramework.Admin.ViewModels
         public string SelectPermissions
         {
             get { return selectPermissions; }
-            set { selectPermissions = value; RaisePropertyChanged(); }
+            set { selectPermissions = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace AppFramework.Admin.ViewModels
                 else
                     input.Role = null;
 
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -220,7 +220,7 @@ namespace AppFramework.Admin.ViewModels
         public ObservableCollection<RoleListModel> RoleList
         {
             get { return roleList; }
-            set { roleList = value; RaisePropertyChanged(); }
+            set { roleList = value; OnPropertyChanged(); }
         }
 
         #endregion

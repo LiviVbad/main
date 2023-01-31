@@ -5,10 +5,12 @@ using AppFramework.Notifications.Dto;
 using Prism.Mvvm;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AppFramework.Admin.Services.Notification
 {
-    public class NotificationService : BindableBase
+    [INotifyPropertyChanged]
+    public partial class NotificationService 
     {
         public NotificationService(INotificationAppService appService,
            NavigationService navigationService)
@@ -30,7 +32,7 @@ namespace AppFramework.Admin.Services.Notification
         public ObservableCollection<UserNotification> Items
         {
             get { return items; }
-            set { items = value; RaisePropertyChanged(); }
+            set { items = value; OnPropertyChanged(); }
         }
 
         public GetUserNotificationsInput input;
@@ -40,7 +42,7 @@ namespace AppFramework.Admin.Services.Notification
         public bool IsUnRead
         {
             get { return isunRead; }
-            set { isunRead = value; RaisePropertyChanged(); }
+            set { isunRead = value; OnPropertyChanged(); }
         }
 
         public async Task GetNotifications()
@@ -85,19 +87,19 @@ namespace AppFramework.Admin.Services.Notification
         public string Title
         {
             get { return title; }
-            set { title = value; RaisePropertyChanged(); }
+            set { title = value; OnPropertyChanged(); }
         }
 
         public string SetAllAsRead
         {
             get { return setAllAsRead; }
-            set { setAllAsRead = value; RaisePropertyChanged(); }
+            set { setAllAsRead = value; OnPropertyChanged(); }
         }
 
         public string SeeAllNotifications
         {
             get { return seeAllNotifications; }
-            set { seeAllNotifications = value; RaisePropertyChanged(); }
+            set { seeAllNotifications = value; OnPropertyChanged(); }
         }
 
 

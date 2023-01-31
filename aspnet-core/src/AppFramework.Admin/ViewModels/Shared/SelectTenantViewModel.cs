@@ -12,7 +12,7 @@ namespace AppFramework.Admin.ViewModels.Shared
         public string TenancyName
         {
             get { return tenancyName; }
-            set { tenancyName = value; RaisePropertyChanged(); }
+            set { tenancyName = value; OnPropertyChanged(); }
         }
 
         public bool IsLoginForTenants
@@ -22,7 +22,7 @@ namespace AppFramework.Admin.ViewModels.Shared
             {
                 isLoginForTenants = value;
                 if (!value) TenancyName = string.Empty;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

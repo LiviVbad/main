@@ -20,7 +20,7 @@
         public string Title
         {
             get { return title; }
-            set { title = value; RaisePropertyChanged(); }
+            set { title = value; OnPropertyChanged(); }
         }
 
         public readonly IHostDialogService dialog;

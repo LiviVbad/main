@@ -9,7 +9,7 @@ namespace AppFramework.Shared
         public string Message
         {
             get { return message; }
-            set { message = value; RaisePropertyChanged(); }
+            set { message = value; OnPropertyChanged(); }
         }
          
         public override void OnDialogOpened(IDialogParameters parameters)

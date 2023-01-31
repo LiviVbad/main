@@ -19,7 +19,7 @@ namespace AppFramework.Admin.ViewModels
         public ObservableCollection<string> Models
         {
             get { return model; }
-            set { model = value; RaisePropertyChanged(); }
+            set { model = value; OnPropertyChanged(); }
         }
 
         private string selectedItem;
@@ -28,7 +28,7 @@ namespace AppFramework.Admin.ViewModels
         public string SelectedItem
         {
             get { return selectedItem; }
-            set { selectedItem = value; RaisePropertyChanged(); }
+            set { selectedItem = value; OnPropertyChanged(); }
         }
 
         public override async Task Save()

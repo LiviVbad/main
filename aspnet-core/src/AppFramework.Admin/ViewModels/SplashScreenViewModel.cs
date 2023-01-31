@@ -18,7 +18,7 @@ namespace AppFramework.Admin.ViewModels
         public string DisplayText
         {
             get { return displayText; }
-            set { displayText = value; RaisePropertyChanged(); }
+            set { displayText = value; OnPropertyChanged(); }
         }
 
         public SplashScreenViewModel(

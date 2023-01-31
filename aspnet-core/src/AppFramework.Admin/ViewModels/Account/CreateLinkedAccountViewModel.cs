@@ -17,7 +17,7 @@ namespace AppFramework.Admin.ViewModels
         public string UserName
         {
             get { return userName; }
-            set { userName = value; RaisePropertyChanged(); }
+            set { userName = value; OnPropertyChanged(); }
         }
 
         private string tenancyName;
@@ -25,7 +25,7 @@ namespace AppFramework.Admin.ViewModels
         public string TenancyName
         {
             get { return tenancyName; }
-            set { tenancyName = value; RaisePropertyChanged(); }
+            set { tenancyName = value; OnPropertyChanged(); }
         }
 
         private string password;
@@ -34,7 +34,7 @@ namespace AppFramework.Admin.ViewModels
         public string Password
         {
             get { return password; }
-            set { password = value; RaisePropertyChanged(); }
+            set { password = value; OnPropertyChanged(); }
         }
 
         public override async Task Save()

@@ -64,7 +64,7 @@ namespace AppFramework.Admin.Services.Account
         public string ApplicationName
         {
             get { return applicationName; }
-            set { applicationName = value; RaisePropertyChanged(); }
+            set { applicationName = value; OnPropertyChanged(); }
         }
 
         public byte[] Photo
@@ -73,26 +73,26 @@ namespace AppFramework.Admin.Services.Account
             set
             {
                 photo = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         public string UserNameAndSurname
         {
             get => userNameAndSurname;
-            set { userNameAndSurname = value; RaisePropertyChanged(); }
+            set { userNameAndSurname = value; OnPropertyChanged(); }
         }
 
         public string EmailAddress
         {
             get => emailAddress;
-            set { emailAddress = value; RaisePropertyChanged(); }
+            set { emailAddress = value; OnPropertyChanged(); }
         }
 
         public string ApplicationInfo
         {
             get => applicationInfo;
-            set { applicationInfo = value; RaisePropertyChanged(); }
+            set { applicationInfo = value; OnPropertyChanged(); }
         }
 
         private ObservableCollection<NavigationItem> navigationItems;
@@ -100,7 +100,7 @@ namespace AppFramework.Admin.Services.Account
         public ObservableCollection<NavigationItem> NavigationItems
         {
             get { return navigationItems; }
-            set { navigationItems = value; RaisePropertyChanged(); }
+            set { navigationItems = value; OnPropertyChanged(); }
         }
 
         private ObservableCollection<PermissionItem> userMenuItems;
@@ -108,7 +108,7 @@ namespace AppFramework.Admin.Services.Account
         public ObservableCollection<PermissionItem> UserMenuItems
         {
             get { return userMenuItems; }
-            set { userMenuItems = value; RaisePropertyChanged(); }
+            set { userMenuItems = value; OnPropertyChanged(); }
         }
 
         #endregion
@@ -154,7 +154,7 @@ namespace AppFramework.Admin.Services.Account
         public int SelectedIndex
         {
             get { return selectedIndex; }
-            set { selectedIndex = value; RaisePropertyChanged(); }
+            set { selectedIndex = value; OnPropertyChanged(); }
         }
 
         public async Task GetApplicationInfo()

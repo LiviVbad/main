@@ -20,7 +20,7 @@ namespace AppFramework.Admin.ViewModels
         public RoleEditModel Role
         {
             get { return role; }
-            set { role = value; RaisePropertyChanged(); }
+            set { role = value; OnPropertyChanged(); }
         }
 
         #endregion 字段/属性

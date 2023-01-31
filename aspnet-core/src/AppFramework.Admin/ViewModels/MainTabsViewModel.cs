@@ -57,7 +57,7 @@ namespace AppFramework.Admin.ViewModels
                 {
                     AsyncRunner.Run(notificationService.GetNotifications());
                 }
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -73,7 +73,7 @@ namespace AppFramework.Admin.ViewModels
                     regionManager.Regions[AppRegions.UserPanel].RequestNavigate(AppViews.UserPanel);
                 }
                 isShowUserPanel = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -89,8 +89,8 @@ namespace AppFramework.Admin.ViewModels
 
                 isShowUserPanel = isShowFriendsPanel = value;
 
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(IsShowUserPanel));
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsShowUserPanel));
             }
         }
 

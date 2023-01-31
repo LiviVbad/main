@@ -30,7 +30,7 @@ namespace AppFramework.Admin.ViewModels
             {
                 _emailAddress = value;
                 SetEmailActivationButtonEnabled();
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -40,7 +40,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 _isForgotPasswordEnabled = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

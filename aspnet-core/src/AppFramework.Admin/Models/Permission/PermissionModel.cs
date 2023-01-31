@@ -1,10 +1,11 @@
-﻿using Prism.Mvvm;
+﻿using CommunityToolkit.Mvvm.ComponentModel; 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace AppFramework.Admin.Models
 {
-    public class PermissionModel : BindableBase
+    [INotifyPropertyChanged]
+    public partial class PermissionModel
     {
         public PermissionModel? Parent { get; set; }
 
@@ -18,43 +19,29 @@ namespace AppFramework.Admin.Models
 
         public bool IsGrantedByDefault { get; set; }
 
+        [ObservableProperty]
         private bool isChecked;
 
-        public bool IsChecked
-        {
-            get { return isChecked; }
-            set
-            {
-                SetIsChecked(value, true, true);
-                RaisePropertyChanged();
-            }
-        }
-
-        private ObservableCollection<PermissionModel> items;
-
-        public ObservableCollection<PermissionModel> Items
-        {
-            get { return items; }
-            set { items = value; RaisePropertyChanged(); }
-        }
+        [ObservableProperty]
+        public ObservableCollection<PermissionModel> items;
 
         private void SetIsChecked(bool value, bool checkedChildren, bool checkedParent)
         {
             if (isChecked == value) return;
             isChecked = value;
-             
+
             if (checkedChildren && Items != null)
             {
                 for (int i = 0; i < Items.Count; i++)
                     Items[i].SetIsChecked(value, true, false);
             }
-             
-            if (checkedParent && this.Parent!=null)
+
+            if (checkedParent && this.Parent != null)
                 this.Parent.CheckParentIsCheckedState();
 
-            RaisePropertyChanged(nameof(IsChecked));
+            OnPropertyChanged(nameof(IsChecked));
         }
-         
+
         private void CheckParentIsCheckedState()
         {
             List<PermissionModel> checkedItems = new List<PermissionModel>();

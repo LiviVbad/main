@@ -43,7 +43,7 @@ namespace AppFramework.Shared.Services
         public ObservableCollection<FriendModel> Friends
         {
             get { return friends; }
-            set { friends = value; RaisePropertyChanged(); }
+            set { friends = value; OnPropertyChanged(); }
         }
 
         public async Task GetUserChatFriendsAsync()

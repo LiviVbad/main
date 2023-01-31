@@ -1,15 +1,16 @@
 ﻿namespace AppFramework.Shared
 {
     using AppFramework.Shared.Services.Mapper;
-    using AppFramework.Shared.Validations; 
+    using AppFramework.Shared.Validations;
+    using CommunityToolkit.Mvvm.ComponentModel;
     using FluentValidation.Results;
-    using Prism.Ioc;
-    using Prism.Mvvm;
+    using Prism.Ioc; 
     using System;
     using System.Text;
     using System.Threading.Tasks;
 
-    public class ViewModelBase : BindableBase
+    [INotifyPropertyChanged]
+    public partial class ViewModelBase 
     {
         public ViewModelBase()
         {
@@ -29,8 +30,8 @@
             set
             {
                 isBusy = value;
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(IsNotBusy));
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsNotBusy));
             }
         }
 

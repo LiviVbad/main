@@ -1,38 +1,22 @@
 ﻿using AppFramework.Shared.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AppFramework.Admin.Models
 {
-    public class DynamicPropertyModel : EntityObject
+    public partial class DynamicPropertyModel : EntityObject
     {
+        [ObservableProperty]
         private string propertyName;
+
+        [ObservableProperty]
         private string displayName;
+
+        [ObservableProperty]
         private string inputType;
+
+        [ObservableProperty]
         private string permission;
-
-        public string PropertyName
-        {
-            get { return propertyName; }
-            set { propertyName = value; RaisePropertyChanged(); }
-        }
-
-        public string DisplayName
-        {
-            get { return displayName; }
-            set { displayName = value; RaisePropertyChanged(); }
-        }
-
-        public string InputType
-        {
-            get { return inputType; }
-            set { inputType = value; RaisePropertyChanged(); }
-        }
-
-        public string Permission
-        {
-            get { return permission; }
-            set { permission = value; RaisePropertyChanged(); }
-        }
-
+         
         public int? TenantId { get; set; }
     }
 }

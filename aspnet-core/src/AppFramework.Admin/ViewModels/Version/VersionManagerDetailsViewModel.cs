@@ -24,7 +24,7 @@ namespace AppFramework.Admin.ViewModels.Version
         public VersionListModel Model
         {
             get { return model; }
-            set { model = value; RaisePropertyChanged(); }
+            set { model = value; OnPropertyChanged(); }
         }
 
         private string filePath;
@@ -33,7 +33,7 @@ namespace AppFramework.Admin.ViewModels.Version
         public string FilePath
         {
             get { return filePath; }
-            set { filePath = value; RaisePropertyChanged(); }
+            set { filePath = value; OnPropertyChanged(); }
         }
 
         public DelegateCommand SelectedFileCommand { get; private set; }

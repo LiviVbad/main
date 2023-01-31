@@ -27,7 +27,7 @@ namespace AppFramework.Admin.ViewModels
         public HostSettingsEditModel Setting
         {
             get { return setting; }
-            set { setting = value; RaisePropertyChanged(); }
+            set { setting = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace AppFramework.Admin.ViewModels
                 selectedEdition = value;
                 if (selectedEdition != null)
                     setting.TenantManagement.DefaultEditionId = Convert.ToInt32(value.Value);
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -54,7 +54,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 editions = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

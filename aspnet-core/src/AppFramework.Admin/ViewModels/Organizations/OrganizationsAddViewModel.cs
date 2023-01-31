@@ -25,7 +25,7 @@ namespace AppFramework.Admin.ViewModels
         public OrganizationListModel Input
         {
             get { return input; }
-            set { input = value; RaisePropertyChanged(); }
+            set { input = value; OnPropertyChanged(); }
         }
 
         #endregion

@@ -20,7 +20,7 @@ namespace AppFramework.Admin.ViewModels
         public UserLoginInfoModel UserInfo
         {
             get { return userInfo; }
-            set { userInfo = value; RaisePropertyChanged(); }
+            set { userInfo = value; OnPropertyChanged(); }
         }
 
         public override void OnDialogOpened(IDialogParameters parameters)

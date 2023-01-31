@@ -1,13 +1,14 @@
 ﻿using AppFramework.Admin;
 using AppFramework.Shared;
-using Prism.Mvvm;
+using CommunityToolkit.Mvvm.ComponentModel; 
 using Prism.Regions;  
 using System.Linq;
 using System.Windows.Controls;
 
 namespace AppFramework.Admin.Services
 {
-    public class NavigationService : BindableBase
+    [INotifyPropertyChanged]
+    public partial class NavigationService 
     {
         private readonly IRegionManager regionManager;
         private IRegion NavigationRegion => regionManager.Regions[AppRegions.Main];
@@ -17,7 +18,7 @@ namespace AppFramework.Admin.Services
         public int SelectedIndex
         {
             get { return selectedIndex; }
-            set { selectedIndex = value; RaisePropertyChanged(); }
+            set { selectedIndex = value; OnPropertyChanged(); }
         }
 
         public NavigationService(IRegionManager regionManager)

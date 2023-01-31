@@ -1,26 +1,18 @@
 ﻿using AppFramework.Authorization.Users.Dto;
 using AppFramework.Shared.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 
 namespace AppFramework.Admin.Models
 {
-    public class UserListModel : EntityObject
+    public partial class UserListModel : EntityObject
     {
-        private byte[] _photo;
+        [ObservableProperty]
+        private byte[] photo;
 
         public string FullName => Name + " " + Surname;
-
-        public byte[] Photo
-        {
-            get => _photo;
-            set
-            {
-                _photo = value;
-                RaisePropertyChanged();
-            }
-        }
-
+          
         public string Name { get; set; }
 
         public string Surname { get; set; }

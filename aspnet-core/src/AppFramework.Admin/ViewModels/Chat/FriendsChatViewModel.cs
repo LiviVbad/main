@@ -62,19 +62,19 @@ namespace AppFramework.Admin.ViewModels
         public string Message
         {
             get { return message; }
-            set { message = value; RaisePropertyChanged(); }
+            set { message = value; OnPropertyChanged(); }
         }
 
         public FriendModel Friend
         {
             get { return friend; }
-            set { friend = value; RaisePropertyChanged(); }
+            set { friend = value; OnPropertyChanged(); }
         }
 
         public ObservableCollection<ChatMessageModel> Messages
         {
             get { return messages; }
-            set { messages = value; RaisePropertyChanged(); }
+            set { messages = value; OnPropertyChanged(); }
         }
 
         public DelegateCommand SendCommand { get; private set; }

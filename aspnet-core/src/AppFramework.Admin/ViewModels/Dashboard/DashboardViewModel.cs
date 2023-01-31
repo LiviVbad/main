@@ -40,7 +40,7 @@ namespace AppFramework.Admin.ViewModels
                 isDaily = value;
                 if (value)
                     AsyncRunner.Run(GetIncomeStatistics(ChartDateInterval.Daily));
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -52,7 +52,7 @@ namespace AppFramework.Admin.ViewModels
                 isWeekly = value;
                 if (value)
                     AsyncRunner.Run(GetIncomeStatistics(ChartDateInterval.Weekly));
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -64,14 +64,14 @@ namespace AppFramework.Admin.ViewModels
                 isMonthly = value;
                 if (value)
                     AsyncRunner.Run(GetIncomeStatistics(ChartDateInterval.Monthly));
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         public string TimeInterval
         {
             get { return timeInterval; }
-            set { timeInterval = value; RaisePropertyChanged(); }
+            set { timeInterval = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace AppFramework.Admin.ViewModels
         public ObservableCollection<DoughnutChartPopulations> EditionStatistics
         {
             get { return editionStatistics; }
-            set { editionStatistics = value; RaisePropertyChanged(); }
+            set { editionStatistics = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace AppFramework.Admin.ViewModels
         public ObservableCollection<AreaSeriesChart3DModel> IncomeStatistics
         {
             get { return incomeStatistics; }
-            set { incomeStatistics = value; RaisePropertyChanged(); }
+            set { incomeStatistics = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace AppFramework.Admin.ViewModels
         public ObservableCollection<TopStatusItem> TopDashBoards
         {
             get { return topDashBoards; }
-            set { topDashBoards = value; RaisePropertyChanged(); }
+            set { topDashBoards = value; OnPropertyChanged(); }
         }
 
         #endregion 字段/属性

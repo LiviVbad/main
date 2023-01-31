@@ -29,28 +29,28 @@ namespace AppFramework.Admin.ViewModels
         public bool IsPaid
         {
             get { return isPaid; }
-            set { isPaid = value; RaisePropertyChanged(); }
+            set { isPaid = value; OnPropertyChanged(); }
         }
 
         //是否试用
         public bool IsTrialActive
         {
             get { return isTrialActive; }
-            set { isTrialActive = value; RaisePropertyChanged(); }
+            set { isTrialActive = value; OnPropertyChanged(); }
         }
 
         //订阅到期后
         public bool IsWaitingDayAfter
         {
             get { return isWaitingDayAfter; }
-            set { isWaitingDayAfter = value; RaisePropertyChanged(); }
+            set { isWaitingDayAfter = value; OnPropertyChanged(); }
         }
 
         //订阅到期后是否指定版本
         public bool IsAssignToAnotherEdition
         {
             get { return isAssignToAnotherEdition; }
-            set { isAssignToAnotherEdition = value; RaisePropertyChanged(); }
+            set { isAssignToAnotherEdition = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace AppFramework.Admin.ViewModels
         public EditionCreateModel Model
         {
             get { return model; }
-            set { model = value; RaisePropertyChanged(); }
+            set { model = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace AppFramework.Admin.ViewModels
         public ObservableCollection<FlatFeatureModel> Features
         {
             get { return features; }
-            set { features = value; RaisePropertyChanged(); }
+            set { features = value; OnPropertyChanged(); }
         }
 
         #endregion 字段/属性
@@ -179,7 +179,7 @@ namespace AppFramework.Admin.ViewModels
                         model.ExpiringEditionId = result;
                     }
                 }
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -194,7 +194,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 editions = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

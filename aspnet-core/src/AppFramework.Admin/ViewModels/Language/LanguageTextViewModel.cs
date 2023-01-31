@@ -55,7 +55,7 @@ namespace AppFramework.Admin.ViewModels
         public string Filter
         {
             get { return input.FilterText; }
-            set { input.FilterText = value; RaisePropertyChanged(); }
+            set { input.FilterText = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -68,26 +68,26 @@ namespace AppFramework.Admin.ViewModels
             {
                 targetIndex = value;
                 input.TargetValueFilter = value == 0 ? "ALL" : "EMPTY";
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         public ObservableCollection<LanguageStruct> BaseLanguages
         {
             get { return baseLanguages; }
-            set { baseLanguages = value; RaisePropertyChanged(); }
+            set { baseLanguages = value; OnPropertyChanged(); }
         }
 
         public ObservableCollection<LanguageStruct> TargetLanguages
         {
             get { return targetLanguages; }
-            set { targetLanguages = value; RaisePropertyChanged(); }
+            set { targetLanguages = value; OnPropertyChanged(); }
         }
 
         public ObservableCollection<string> Sources
         {
             get { return sources; }
-            set { sources = value; RaisePropertyChanged(); }
+            set { sources = value; OnPropertyChanged(); }
         }
 
         public LanguageStruct SelectedBaseLanguage
@@ -97,7 +97,7 @@ namespace AppFramework.Admin.ViewModels
             {
                 selectedBaseLanguage = value;
                 input.BaseLanguageName = value.Name;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -108,7 +108,7 @@ namespace AppFramework.Admin.ViewModels
             {
                 selectedTargetLanguage = value;
                 input.TargetLanguageName = value.Name;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -118,7 +118,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 input.SourceName = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

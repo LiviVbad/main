@@ -1,5 +1,6 @@
 ﻿using AppFramework.Authorization.Users.Dto;
 using AppFramework.Organizations.Dto;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -7,18 +8,14 @@ using System.Linq;
 
 namespace AppFramework.Admin.Models
 {
-    public class UserForEditModel : BindableBase
+    [INotifyPropertyChanged]
+    public partial class UserForEditModel
     {
         public Guid? ProfilePictureId { get; set; }
 
+        [ObservableProperty]
         private UserEditModel user;
-
-        public UserEditModel User
-        {
-            get { return user; }
-            set { user = value; RaisePropertyChanged(); }
-        }
-
+          
         public UserRoleDto[] Roles { get; set; }
 
         public List<OrganizationUnitDto> AllOrganizationUnits { get; set; }
@@ -40,7 +37,7 @@ namespace AppFramework.Admin.Models
             set
             {
                 _photo = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -51,7 +48,7 @@ namespace AppFramework.Admin.Models
             {
                 _organizationUnits = value?.OrderBy(o => o.Code).ToList();
                 SetAsAssignedForMemberedOrganizationUnits();
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

@@ -1,80 +1,40 @@
-﻿using Prism.Mvvm;
+﻿using CommunityToolkit.Mvvm.ComponentModel; 
 
 namespace AppFramework.Admin.Models
 {
-    public class UserEditModel : BindableBase
+    [INotifyPropertyChanged]
+    public partial class UserEditModel 
     {
+        [ObservableProperty]
         private string phoneNumber;
+
+        [ObservableProperty]
         private string userName;
+
+        [ObservableProperty]
         private string passWord;
+
+        [ObservableProperty]
         private string name;
-        private string surnName;
+
+        [ObservableProperty]
+        private string surname;
+
+        [ObservableProperty]
         private string emailAddress;
+
+        [ObservableProperty] 
         private bool isActive;
+
+        [ObservableProperty]
         private bool shouldChangePasswordOnNextLogin;
+
+        [ObservableProperty]
         private bool isTwoFactorEnabled;
+
+        [ObservableProperty]
         private bool isLockoutEnabled;
 
-        public long? Id { get; set; }
-
-        public string Name
-        {
-            get { return name; }
-            set { name = value; RaisePropertyChanged(); }
-        }
-
-        public string Surname
-        {
-            get { return surnName; }
-            set { surnName = value; RaisePropertyChanged(); }
-        }
-
-        public string UserName
-        {
-            get { return userName; }
-            set { userName = value; RaisePropertyChanged(); }
-        }
-
-        public string EmailAddress
-        {
-            get { return emailAddress; }
-            set { emailAddress = value; RaisePropertyChanged(); }
-        }
-
-        public string PhoneNumber
-        {
-            get { return phoneNumber; }
-            set { phoneNumber = value; RaisePropertyChanged(); }
-        }
-
-        public string Password
-        {
-            get { return passWord; }
-            set { passWord = value; RaisePropertyChanged(); }
-        }
-
-        public bool IsActive
-        {
-            get { return isActive; }
-            set { isActive = value; RaisePropertyChanged(); }
-        }
-
-        public bool ShouldChangePasswordOnNextLogin
-        {
-            get { return shouldChangePasswordOnNextLogin; }
-            set { shouldChangePasswordOnNextLogin = value; RaisePropertyChanged(); }
-        }
-
-        public bool IsTwoFactorEnabled
-        {
-            get { return isTwoFactorEnabled; }
-            set { isTwoFactorEnabled = value; RaisePropertyChanged(); }
-        }
-
-        public bool IsLockoutEnabled
-        {
-            get { return isLockoutEnabled; }
-            set { isLockoutEnabled = value; RaisePropertyChanged(); }
-        }
+        public long? Id { get; set; } 
     }
 }

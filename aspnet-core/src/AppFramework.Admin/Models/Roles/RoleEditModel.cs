@@ -1,24 +1,16 @@
-﻿using Prism.Mvvm;
+﻿using CommunityToolkit.Mvvm.ComponentModel; 
 
 namespace AppFramework.Admin.Models
 {
-    public class RoleEditModel : BindableBase
+    [INotifyPropertyChanged]
+    public partial class RoleEditModel 
     {
+        [ObservableProperty]
         private string displayName;
+
+        [ObservableProperty]
         private bool isDefault;
 
-        public long? Id { get; set; }
-
-        public string DisplayName
-        {
-            get { return displayName; }
-            set { displayName = value; RaisePropertyChanged(); }
-        }
-
-        public bool IsDefault
-        {
-            get { return isDefault; }
-            set { isDefault = value; RaisePropertyChanged(); }
-        }
+        public long? Id { get; set; } 
     }
 }

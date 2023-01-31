@@ -31,7 +31,7 @@ namespace AppFramework.Admin.ViewModels
         public string SelectPermissions
         {
             get { return selectPermissions; }
-            set { selectPermissions = value; RaisePropertyChanged(); }
+            set { selectPermissions = value; OnPropertyChanged(); }
         }
 
         private ListResultDto<FlatPermissionWithLevelDto> flatPermission; 

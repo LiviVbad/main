@@ -3,7 +3,7 @@ using System;
 
 namespace AppFramework.Admin.Models
 {
-    public class LanguageListModel : BindableBase
+    public class LanguageListModel 
     { 
         public int Id { get; set; }
 

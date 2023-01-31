@@ -44,7 +44,7 @@ namespace AppFramework.Admin.ViewModels
                     Filter.SubscriptionEndDateStart = null;
                     Filter.SubscriptionEndDateEnd = null;
                 }
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -62,26 +62,26 @@ namespace AppFramework.Admin.ViewModels
                     Filter.CreationDateStart = null;
                     Filter.CreationDateEnd = null;
                 }
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         public GetTenantsFilter Filter
         {
             get { return filter; }
-            set { filter = value; RaisePropertyChanged(); }
+            set { filter = value; OnPropertyChanged(); }
         }
 
         public EditionListModel Edition
         {
             get { return edition; }
-            set { edition = value; RaisePropertyChanged(); }
+            set { edition = value; OnPropertyChanged(); }
         }
 
         public ObservableCollection<EditionListModel> Editions
         {
             get { return editions; }
-            set { editions = value; RaisePropertyChanged(); }
+            set { editions = value; OnPropertyChanged(); }
         }
          
         #endregion

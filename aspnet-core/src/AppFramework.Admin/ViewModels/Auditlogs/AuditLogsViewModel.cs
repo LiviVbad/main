@@ -1,7 +1,6 @@
 ﻿using AppFramework.Auditing;
 using AppFramework.Auditing.Dto;
-using AppFramework.Shared;
-using Prism.Commands;
+using AppFramework.Shared; 
 using Prism.Services.Dialogs;
 using System;
 using System.Threading.Tasks;
@@ -20,10 +19,10 @@ namespace AppFramework.Admin.ViewModels
             Title = Local.Localize("AuditLogs");
             IsAdvancedFilter = false;
             filter = new GetAuditLogsFilter()
-            {
+            {    
                 StartDate = DateTime.Now.AddDays(-30),
                 EndDate = DateTime.Now,
-                MaxResultCount = AppConsts.DefaultPageSize
+                //MaxResultCount = AppConsts.DefaultPageSize
             };
             entityChangeFilter = new GetEntityChangeFilter()
             {
@@ -68,7 +67,7 @@ namespace AppFramework.Admin.ViewModels
                     filter.HasException = false;
                 else
                     filter.HasException = true;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -78,7 +77,7 @@ namespace AppFramework.Admin.ViewModels
         public string FilerTitle
         {
             get { return filterTitle; }
-            set { filterTitle = value; RaisePropertyChanged(); }
+            set { filterTitle = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -92,7 +91,7 @@ namespace AppFramework.Admin.ViewModels
                 isAdvancedFilter = value;
 
                 FilerTitle = value ? "△ " + Local.Localize("HideAdvancedFilters") : "▽ " + Local.Localize("ShowAdvancedFilters");
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -102,7 +101,7 @@ namespace AppFramework.Admin.ViewModels
         public GetAuditLogsFilter Filter
         {
             get { return filter; }
-            set { filter = value; RaisePropertyChanged(); }
+            set { filter = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -111,7 +110,7 @@ namespace AppFramework.Admin.ViewModels
         public GetEntityChangeFilter EntityChangeFilter
         {
             get { return entityChangeFilter; }
-            set { entityChangeFilter = value; RaisePropertyChanged(); }
+            set { entityChangeFilter = value; OnPropertyChanged(); }
         }
           
         #endregion
