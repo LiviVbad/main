@@ -6,6 +6,7 @@ using AppFramework.Authorization.Roles.Dto;
 using AppFramework.Shared;
 using AppFramework.Shared.Services;
 using AppFramework.Shared.Services.Permission;
+using CommunityToolkit.Mvvm.Input;
 using Prism.Commands;
 using Prism.Regions;
 using Prism.Services.Dialogs;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace AppFramework.Admin.ViewModels
 {
-    public class RoleViewModel : NavigationCurdViewModel
+    public partial class RoleViewModel : NavigationCurdViewModel
     {
         #region 字段/属性
 
@@ -33,9 +34,7 @@ namespace AppFramework.Admin.ViewModels
             set { selectPermissions = value; RaisePropertyChanged(); }
         }
 
-        private ListResultDto<FlatPermissionWithLevelDto> flatPermission;
-
-        public DelegateCommand SelectedCommand { get; private set; }
+        private ListResultDto<FlatPermissionWithLevelDto> flatPermission; 
 
         #endregion
 
@@ -45,8 +44,7 @@ namespace AppFramework.Admin.ViewModels
             Title = Local.Localize("Roles");
             this.appService = appService;
             this.permissionAppService = permissionAppService;
-            input = new GetRolesInput();
-            SelectedCommand = new DelegateCommand(SelectedPermission);
+            input = new GetRolesInput(); 
 
             dataPager.OnPageIndexChangedEventhandler += RoleOnPageIndexChangedEventhandler;
 
@@ -70,7 +68,8 @@ namespace AppFramework.Admin.ViewModels
         /// <summary>
         /// 选择权限
         /// </summary>
-        private async void SelectedPermission()
+        [RelayCommand]
+        private async void Selected()
         {
             DialogParameters param = new DialogParameters();
             param.Add("Value", flatPermission);

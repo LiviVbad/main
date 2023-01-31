@@ -7,8 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AppFramework.Shared.Services.Permission;
 using Abp.Application.Services.Dto;
-using Prism.Services.Dialogs;
-using Prism.Commands;
+using Prism.Services.Dialogs; 
 using AppFramework.Authorization.Permissions.Dto;
 using AppFramework.Authorization.Permissions;
 using AppFramework.Authorization.Roles;
@@ -17,10 +16,11 @@ using System.Collections.ObjectModel;
 using Prism.Regions;
 using AppFramework.Shared.Services;
 using AppFramework.Admin.Services;
+using CommunityToolkit.Mvvm.Input;
 
 namespace AppFramework.Admin.ViewModels
 {
-    public class UserViewModel : NavigationCurdViewModel
+    public partial class UserViewModel : NavigationCurdViewModel
     {
         private readonly IUserAppService appService;
         private readonly IRoleAppService roleAppService;
@@ -48,15 +48,11 @@ namespace AppFramework.Admin.ViewModels
             this.accountService = accountService;
             this.permissionAppService = permissionAppService;
 
-            AdvancedCommand = new DelegateCommand(() => { IsAdvancedFilter = !IsAdvancedFilter; });
-            SelectedCommand = new DelegateCommand(SelectedPermission);
-            SearchCommand = new DelegateCommand(SearchUser);
-            ResetCommand = new DelegateCommand(Reset);
             UpdateTitle();
 
             dataPager.OnPageIndexChangedEventhandler += UsersOnPageIndexChangedEventhandler;
         }
-         
+
         private async void UsersOnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
         {
             input.SkipCount = e.SkipCount;
@@ -129,10 +125,6 @@ namespace AppFramework.Admin.ViewModels
         #region 字段/属性
 
         public GetUsersInput input { get; set; }
-        public DelegateCommand AdvancedCommand { get; private set; }
-        public DelegateCommand SelectedCommand { get; private set; }
-        public DelegateCommand SearchCommand { get; private set; }
-        public DelegateCommand ResetCommand { get; private set; }
 
         /// <summary>
         /// 仅锁定用户
@@ -165,7 +157,7 @@ namespace AppFramework.Admin.ViewModels
             {
                 input.Filter = value;
                 RaisePropertyChanged();
-                SearchUser();
+                Search();
             }
         }
 
@@ -233,9 +225,13 @@ namespace AppFramework.Admin.ViewModels
 
         #endregion
 
+        [RelayCommand]
+        private void Advanced() => IsAdvancedFilter = !IsAdvancedFilter;
+
         /// <summary>
         /// 重置筛选条件
         /// </summary>
+        [RelayCommand]
         private void Reset()
         {
             SelectedRole = null;
@@ -257,7 +253,8 @@ namespace AppFramework.Admin.ViewModels
         /// <summary>
         /// 选择权限
         /// </summary>
-        private async void SelectedPermission()
+        [RelayCommand]
+        private async void Selected()
         {
             DialogParameters param = new DialogParameters();
             param.Add("Value", flatPermission);
@@ -311,7 +308,8 @@ namespace AppFramework.Admin.ViewModels
         /// <summary>
         /// 搜索用户
         /// </summary>
-        public void SearchUser()
+        [RelayCommand]
+        public void Search()
         {
             dataPager.PageIndex = 0;
         }

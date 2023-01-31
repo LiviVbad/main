@@ -1,10 +1,11 @@
 ﻿namespace AppFramework.Shared
-{ 
+{
     using Prism.Commands;
     using Prism.Regions;
     using Prism.Ioc;
-    using System.Threading.Tasks; 
+    using System.Threading.Tasks;
     using AppFramework.Shared.Services;
+    using CommunityToolkit.Mvvm.Input;
 
     public class NavigationViewModel : ViewModelBase, INavigationAware
     {
@@ -53,7 +54,7 @@
         /// <summary>
         /// 异步刷新方法,当页面导航到达时触发该方法
         /// </summary>
-        /// <returns></returns>
+        /// <returns></returns> 
         public virtual async Task OnNavigatedToAsync(NavigationContext navigationContext = null) => await Task.CompletedTask;
 
         #endregion 

@@ -2,36 +2,32 @@
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
-using Prism.Ioc; 
+using Prism.Ioc;
 using AppFramework.Shared.Services;
+using CommunityToolkit.Mvvm.Input;
 
 namespace AppFramework.Shared
 {
-    public abstract class HostDialogViewModel : ViewModelBase, IHostDialogAware
+    public abstract partial class HostDialogViewModel : ViewModelBase, IHostDialogAware
     {
         public string Title { get; set; }
 
         public string IdentifierName { get; set; }
 
-        public DelegateCommand SaveCommand { get; private set; }
-
-        public DelegateCommand CancelCommand { get; private set; }
-
         private IHostDialogService dialogService;
 
         public HostDialogViewModel()
         {
-            SaveCommand = new DelegateCommand(async () => await Save());
-            CancelCommand = new DelegateCommand(Cancel);
-
-            dialogService=ContainerLocator.Container.Resolve<IHostDialogService>();
+            dialogService = ContainerLocator.Container.Resolve<IHostDialogService>();
         }
 
+        [RelayCommand]
         public virtual void Cancel()
         {
             dialogService.Close(IdentifierName, new DialogResult(ButtonResult.No));
         }
 
+        [RelayCommand]
         public virtual async Task Save()
         {
             dialogService.Close(IdentifierName, new DialogResult(ButtonResult.OK));

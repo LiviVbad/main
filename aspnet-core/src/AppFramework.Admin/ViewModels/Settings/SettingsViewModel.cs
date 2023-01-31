@@ -10,16 +10,16 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using AppFramework.Common;
+using CommunityToolkit.Mvvm.Input;
 
 namespace AppFramework.Admin.ViewModels
 {
-    public class SettingsViewModel : NavigationViewModel
+    public partial class SettingsViewModel : NavigationViewModel
     {
         #region 字段/属性
 
         private readonly IHostSettingsAppService appService;
         private readonly ICommonLookupAppService lookupAppService;
-        public DelegateCommand SaveCommand { get; private set; }
         private HostSettingsEditModel setting;
         private SubscribableEditionComboboxItemDto selectedEdition;
         private ObservableCollection<SubscribableEditionComboboxItemDto> editions;
@@ -64,13 +64,13 @@ namespace AppFramework.Admin.ViewModels
             ICommonLookupAppService lookupAppService)
         {
             Title = Local.Localize("Settings");
-            SaveCommand = new DelegateCommand(Save);
             this.appService = appService;
             this.lookupAppService = lookupAppService;
 
             editions = new ObservableCollection<SubscribableEditionComboboxItemDto>();
         }
 
+        [RelayCommand]
         private async void Save()
         {
             //验证输入合法性...

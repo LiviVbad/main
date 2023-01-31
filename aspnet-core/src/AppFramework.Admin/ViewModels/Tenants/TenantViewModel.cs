@@ -13,10 +13,11 @@ using Prism.Services.Dialogs;
 using AppFramework.Admin.ViewModels.Shared;
 using Prism.Regions;
 using AppFramework.Shared.Services;
+using CommunityToolkit.Mvvm.Input;
 
 namespace AppFramework.Admin.ViewModels
 {
-    public class TenantViewModel : NavigationCurdViewModel
+    public partial class TenantViewModel : NavigationCurdViewModel
     {
         #region 字段/属性
 
@@ -82,9 +83,7 @@ namespace AppFramework.Admin.ViewModels
             get { return editions; }
             set { editions = value; RaisePropertyChanged(); }
         }
-
-        public DelegateCommand SearchCommand { get; private set; }
-
+         
         #endregion
 
         public TenantListModel SelectedItem => Map<TenantListModel>(dataPager.SelectedItem);
@@ -101,8 +100,7 @@ namespace AppFramework.Admin.ViewModels
 
             this.appService = appService;
             this.editionAppService = editionAppService;
-            dataPager.OnPageIndexChangedEventhandler += TenantOnPageIndexChangedEventhandler;
-            SearchCommand = new DelegateCommand(SearchTenant);
+            dataPager.OnPageIndexChangedEventhandler += TenantOnPageIndexChangedEventhandler; 
             editions = new ObservableCollection<EditionListModel>();
         }
 
@@ -117,7 +115,8 @@ namespace AppFramework.Admin.ViewModels
         /// <summary>
         /// 搜索
         /// </summary>
-        private void SearchTenant()
+        [RelayCommand]
+        private void Search()
         {
             dataPager.PageIndex = 0;
         }

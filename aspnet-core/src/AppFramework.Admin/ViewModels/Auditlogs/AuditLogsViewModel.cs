@@ -9,10 +9,11 @@ using Prism.Ioc;
 using Prism.Regions;
 using AppFramework.Shared.Services;
 using AppFramework.Admin.Models;
+using CommunityToolkit.Mvvm.Input;
 
 namespace AppFramework.Admin.ViewModels
 {
-    public class AuditLogsViewModel : NavigationCurdViewModel
+    public partial class AuditLogsViewModel : NavigationCurdViewModel
     {
         public AuditLogsViewModel(IAuditLogAppService appService)
         {
@@ -31,12 +32,7 @@ namespace AppFramework.Admin.ViewModels
                 MaxResultCount = AppConsts.DefaultPageSize
             };
             this.appService = appService;
-
-            SearchCommand = new DelegateCommand(Search);
-            SearchChangedCommand = new DelegateCommand(SearchChanged);
-            ViewLogCommand = new DelegateCommand(ViewLog);
-            ViewChangedLogCommand = new DelegateCommand(ViewChangedLog);
-            AdvancedCommand = new DelegateCommand(() => { IsAdvancedFilter = !IsAdvancedFilter; });
+             
             logsdataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
 
             //绑定分页组件索引改变事件
@@ -117,21 +113,21 @@ namespace AppFramework.Admin.ViewModels
             get { return entityChangeFilter; }
             set { entityChangeFilter = value; RaisePropertyChanged(); }
         }
-
-        //查看日志、查看更改日志、高级筛选、搜索、搜索更改日志
-        public DelegateCommand ViewLogCommand { get; private set; }
-        public DelegateCommand ViewChangedLogCommand { get; private set; }
-        public DelegateCommand AdvancedCommand { get; private set; }
-        public DelegateCommand SearchCommand { get; private set; }
-        public DelegateCommand SearchChangedCommand { get; private set; }
-
+          
         #endregion
 
         #region 审计日期
 
+        [RelayCommand]
+        private void Advanced()
+        {
+            IsAdvancedFilter = !IsAdvancedFilter;
+        }
+
         /// <summary>
         /// 查看操作日志详情
         /// </summary>
+        [RelayCommand]
         private void ViewLog()
         {
             DialogParameters param = new DialogParameters();
@@ -142,6 +138,7 @@ namespace AppFramework.Admin.ViewModels
         /// <summary>
         /// 搜索操作日志
         /// </summary>
+        [RelayCommand]
         private void Search()
         {
             /*
@@ -183,6 +180,7 @@ namespace AppFramework.Admin.ViewModels
         /// <summary>
         /// 搜索更改日志
         /// </summary>
+        [RelayCommand]
         private void SearchChanged()
         {
             dataPager.PageIndex = 0;
@@ -201,6 +199,7 @@ namespace AppFramework.Admin.ViewModels
         /// <summary>
         /// 查看更改日志详情
         /// </summary>
+        [RelayCommand]
         private void ViewChangedLog()
         { }
 
