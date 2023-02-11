@@ -12,11 +12,14 @@ using AppFramework.MultiTenancy;
 using AppFramework.MultiTenancy.Accounting;
 using AppFramework.MultiTenancy.Payments;
 using AppFramework.Storage;
+using AppFramework.Demo;
 
 namespace AppFramework.EntityFrameworkCore
 {
     public class AppFrameworkDbContext : AbpZeroDbContext<Tenant, Role, User, AppFrameworkDbContext>, IAbpPersistedGrantDbContext
     {
+        public virtual DbSet<AbpDemo> AbpDemos { get; set; }
+
         public virtual DbSet<AbpVersion> AbpVersions { get; set; }
 
         /* Define an IDbSet for each entity of the application */

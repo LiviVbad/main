@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+    <text name="DemoManager">DemoManager</text>
+    <text name="DemoManagerInfo">DemoManagerInfo</text> 
+    <text name="DemoName">Name</text>
+    <text name="DemoSex">Sex</text>
+    <text name="DemoAddress">Address</text>
+    <text name="CreateNewAbpDemo">CreateNew Demo</text>
+    <text name="EditAbpDemo">Edit Demo</text>
+    <text name="DeleteAbpDemo">Delete Demo</text>
+  
     <text name="Update">Update</text>
     <text name="AbpVersion">Abp version</text>
     <text name="AppFramework.Update.AbpVersion">AbpVersion</text>
@@ -29,7 +38,7 @@
     <text name="Administration">Administration</text>
     <text name="Roles">Roles</text>
     <text name="Users">Users</text>
-	<text name="AddUserOrRole">Add User Or Role</text>
+    <text name="AddUserOrRole">Add User Or Role</text>
     <text name="InvalidFormMessage">Your form is invalid. Please check and correct it.</text>
     <text name="InvalidUserNameOrPassword">Invalid user name or password</text>
     <text name="ThereIsNoTenantDefinedWithName{0}">There is no tenant defined with name {0}</text>
@@ -168,7 +177,7 @@
     <text name="StaticRole_Tooltip">Static roles can not be deleted.</text>
     <text name="EmailConfirmationRequiredForLogin">Email confirmation required for login.</text>
     <text name="{0}UserCannotBeDeleted">{0} user can not be deleted.</text>
-    <text name="TenantNameCanNotBeEmpty">Tenant name can not be empty</text>    
+    <text name="TenantNameCanNotBeEmpty">Tenant name can not be empty</text>
     <text name="ChangeProfilePicture">Change profile picture</text>
     <text name="TenantName_Regex_Description">Tenant name must be at least 2 chars, starts with a letter and continue with letter, number, dash or underscore.</text>
     <text name="ProfilePicture_Change_Info">You can select a JPG/JPEG/PNG file with a maximum {0}MB size.</text>
@@ -1186,7 +1195,7 @@
     <text name="VersionManagerInfo">VersionManagerInfo</text>
     <text name="CreateVersion">CreateVersion</text>
     <text name="MinimumVersion">MinimumVersion</text>
-    <text name="AppName">AppName</text>  
+    <text name="AppName">AppName</text>
     <text name="VersionDeleteWarningMessage">Are you sure you want to delete the version {0}?</text>
     <text name="CheckSystemUpdates">CheckSystemUpdates</text>
   </texts>

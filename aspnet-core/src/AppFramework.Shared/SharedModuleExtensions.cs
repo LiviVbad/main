@@ -32,6 +32,7 @@ using AppFramework.Shared.Services;
 using AppFramework.Shared.Validations;
 using AppFramework.Chat;
 using AppFramework.Friendships;
+using AppFramework.Demo;
 
 namespace AppFramework.Shared
 {
@@ -83,6 +84,7 @@ namespace AppFramework.Shared
 
             services.RegisterScoped<IUserLinkAppService, UserLinkAppService>();
             services.RegisterScoped<IAbpVersionsAppService, AbpVersionsAppService>();
+            services.RegisterScoped<IAbpDemoAppService, AbpDemoAppService>();
         }
     }
 }

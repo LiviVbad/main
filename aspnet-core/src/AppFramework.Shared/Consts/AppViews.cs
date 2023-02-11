@@ -88,7 +88,9 @@
 
         public const string VersionDetails = "VersionManagerDetailsView";
 
-        public const string Demo = "DemoUiView";
+        public const string UiComponents = "DemoUiView";
+
+        public const string Demo = "DemoView";
 
         /*
          * 详细页 

@@ -51,7 +51,8 @@ namespace AppFramework.Admin.SyncUI
             services.Add<OrganizationsView, OrganizationsViewModel>(AppViews.Organization);
             services.Add<OrganizationsAddView, OrganizationsAddViewModel>(AppViews.OrganizationAdd);
             services.Add<SettingsView, SettingsViewModel>(AppViews.Setting);
-            services.Add<DemoUiView, DemoUiViewModel>(AppViews.Demo); //演示组件页
+            services.Add<DemoUiView, DemoUiViewModel>(AppViews.UiComponents); //演示组件页
+            services.Add<DemoView, DemoViewModel>(AppViews.Demo); //演示组件页
             services.Add<VisualView, VisualViewModel>(AppViews.Visual);
             services.Add<VersionManagerView, VersionManagerViewModel>(AppViews.Version);
             services.Add<VersionManagerDetailsView, VersionManagerDetailsViewModel>(AppViews.VersionDetails);

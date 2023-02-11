@@ -6,6 +6,11 @@
     /// </summary>
     public static class AppPermissions
     {
+        public const string Pages_AbpDemos = "Pages.AbpDemos";
+        public const string Pages_AbpDemos_Create = "Pages.AbpDemos.Create";
+        public const string Pages_AbpDemos_Edit = "Pages.AbpDemos.Edit";
+        public const string Pages_AbpDemos_Delete = "Pages.AbpDemos.Delete";
+
         public const string Pages_AbpVersions = "Pages.AbpVersions";
         public const string Pages_AbpVersions_Create = "Pages.AbpVersions.Create";
         public const string Pages_AbpVersions_Edit = "Pages.AbpVersions.Edit";
