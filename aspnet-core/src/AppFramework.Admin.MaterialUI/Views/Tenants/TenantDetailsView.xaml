@@ -110,7 +110,7 @@
                     <!--  选择到期时间  -->
                     <DatePicker
                         md:HintAssist.Hint="{extensions:Translate SelectDate}"
-                        IsEnabled="{Binding IsUnlimitedTimeSubscription, Converter={StaticResource InverseBooleanConverter}}"
+                        IsEnabled="{Binding IsUnlimitedTimeSubscription, Converter={StaticResource inverseBooleanConverter}}"
                         Text="{Binding Model.SubscriptionEndDateUtc}" />
 
                     <!--  试用期  -->
