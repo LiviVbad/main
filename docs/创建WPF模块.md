@@ -23,7 +23,6 @@
 
 - 添加对应的权限定义 (与后端的定义相同)
 
-  
 
 ## 演示
 
@@ -190,4 +189,105 @@ update-database
 <img src=".\images\openapi-demo.png" alt="image-20230212123325608" style="zoom:50%;" />
 
 #### 2.创建WPF客户端
+
+**第一步**，在 AppFramework.Application.Client 项目当中, 创建Demo文件夹，创建 AbpDemoAppService 服务，实现IAbpDemoAppService 接口，如下:
+
+````C#
+public class AbpDemoAppService : ProxyAppServiceBase, IAbpDemoAppService
+    {
+        public AbpDemoAppService(AbpApiClient apiClient) : base(apiClient)
+        { }
+
+        public async Task<PagedResultDto<AbpDemoDto>> GetAll(GetAllAbpDemoInput input)
+        {
+            return await ApiClient.GetAsync<PagedResultDto<AbpDemoDto>>(GetEndpoint(nameof(GetAll)), input);
+        }
+    }
+````
+
+> ProxyAppServiceBase 为Web服务基类, 包含用于Web请求的 ApiClient。
+
+**第二步**，在 AppFramework.Shared 项目当中, SharedModuleExtensions 当中, 注入 AbpDemoAppService 服务。
+
+````C#
+  services.RegisterScoped<IAbpDemoAppService, AbpDemoAppService>();
+````
+
+**第三步**，在 AppFramework.Admin 项目当中, 创建ViewModel层,如下:
+
+````C#
+public class DemoViewModel: NavigationCurdViewModel
+    {
+        private readonly IAbpDemoAppService appService;
+
+        public GetAllAbpDemoInput input;
+
+        public DemoViewModel(IAbpDemoAppService appService)
+        {
+            Title = Local.Localize("DemoManager");
+            this.appService = appService;
+            input = new GetAllAbpDemoInput()
+            {
+                MaxResultCount = 10
+            };
+            dataPager.OnPageIndexChangedEventhandler += DataPager_OnPageIndexChangedEventhandler;
+        }
+
+        private void DataPager_OnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
+        { }
+
+        public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
+        {
+            await SetBusyAsync(async () =>
+            {
+                await GetAbpDemos(input);
+            });
+        }
+
+        private async Task GetAbpDemos(GetAllAbpDemoInput filter)
+        {
+            await WebRequest.Execute(() => appService.GetAll(filter), dataPager.SetList);
+        } 
+    }
+````
+
+> 继承 NavigationCurdViewModel 代表该模块具备一般Curd实现, 重写 OnNavigatedToAsync 方法, 主要用于, 当前模块被导航时首先被触发的方法, 主要作用用于加载并且处理数据。
+
+在任意一种UI框架当中新建 View 视图，并且注入容器当中。
+
+````C#
+ services.Add<DemoView, DemoViewModel>(AppViews.Demo); 
+````
+
+**第四步**， 打开 AppFramework.Admin >  Services >  Navigation > NavigationMenuService.cs  文件，新增Demo菜单，如下所示:
+
+````
+     new NavigationItem("demo","Demos",AppViews.Demo,AppPermissions.AbpDemos)
+````
+
+> AppPermissions 中需要添加对应的权限定义, 这一步骤与后端一致，复制即可。
+
+````C#
+	public class AppPermissions
+    {
+        public const string AbpDemos = "Pages.AbpDemos";
+        public const string AbpDemosCreate = "Pages.AbpDemos.Create";
+        public const string AbpDemosEdit = "Pages.AbpDemos.Edit";
+        public const string AbpDemosDelete = "Pages.AbpDemos.Delete";
+     }
+````
+
+完成以上步骤后, 启动应用程序！
+
+## 常见问题
+
+- 如果请求Web服务接口404, 检查对应的名称是否一致, 首先检查后端的服务是否存在。
+
+- 请求服务500错误, 先检查后端的服务中是否正常
+
+- 登录后,发现模块并不存在, 检查当前用户是否存在该模块的权限? 后端是否进行该模块的权限定义?
+
+- 客户端调试模式启动直接报出异常, 请检查后端服务是否正常启动？客户端请求的Web服务地址是否一致？
+
+- 模块当中的多语言未生效 , 请检查后端多语言配置中是否存在对应的字符串定义?
 
