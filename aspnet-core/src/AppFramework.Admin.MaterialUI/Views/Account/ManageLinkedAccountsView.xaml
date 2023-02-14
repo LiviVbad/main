@@ -29,7 +29,6 @@
                 Command="{Binding AddCommand}"
                 Content="{extensions:Translate LinkNewAccount}" />
 
-
             <DataGrid
                 Grid.Row="1"
                 Margin="5,0"
