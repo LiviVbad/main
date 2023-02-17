@@ -30,6 +30,11 @@ namespace AppFramework.Authorization
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
 
+            var abpDemos = pages.CreateChildPermission(AppPermissions.Pages_AbpDemos, L("AbpDemos"));
+            abpDemos.CreateChildPermission(AppPermissions.Pages_AbpDemos_Create, L("CreateNewAbpDemo"));
+            abpDemos.CreateChildPermission(AppPermissions.Pages_AbpDemos_Edit, L("EditAbpDemo"));
+            abpDemos.CreateChildPermission(AppPermissions.Pages_AbpDemos_Delete, L("DeleteAbpDemo"));
+
             var abpVersions = pages.CreateChildPermission(AppPermissions.Pages_AbpVersions, L("AbpVersions"));
             abpVersions.CreateChildPermission(AppPermissions.Pages_AbpVersions_Create, L("CreateNewAbpVersion"));
             abpVersions.CreateChildPermission(AppPermissions.Pages_AbpVersions_Edit, L("EditAbpVersion"));

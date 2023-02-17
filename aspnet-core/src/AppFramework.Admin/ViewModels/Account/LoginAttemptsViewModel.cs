@@ -19,13 +19,13 @@ namespace AppFramework.Admin.ViewModels
         public DateTime? StartDate
         {
             get { return input.StartDate; }
-            set { input.StartDate = value; RaisePropertyChanged(); }
+            set { input.StartDate = value; OnPropertyChanged(); }
         }
 
         public DateTime? EndDate
         {
             get { return input.EndDate; }
-            set { input.EndDate = value; RaisePropertyChanged(); }
+            set { input.EndDate = value; OnPropertyChanged(); }
         }
 
         public string FilterText
@@ -34,7 +34,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 input.Filter = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
                 Search();
             }
         }

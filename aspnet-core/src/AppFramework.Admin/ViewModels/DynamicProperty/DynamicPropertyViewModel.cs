@@ -5,21 +5,19 @@ using AppFramework.DynamicEntityProperties;
 using AppFramework.DynamicEntityProperties.Dto;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
-using Prism.Ioc;
-using Prism.Commands;
+using Prism.Ioc; 
 using Prism.Regions;
 using AppFramework.Shared.Services;
+using CommunityToolkit.Mvvm.Input;
 
 namespace AppFramework.Admin.ViewModels
 {
-    public class DynamicPropertyViewModel : NavigationCurdViewModel
+    public partial class DynamicPropertyViewModel : NavigationCurdViewModel
     {
         public IDataPagerService entitydataPager { get; private set; }
         private readonly IDynamicPropertyAppService appService;
         private readonly IDynamicEntityPropertyAppService entityPropertyAppService;
 
-        public DelegateCommand AddEntityPropertyCommand { get; private set; }
-        public DelegateCommand<GetAllEntitiesHasDynamicPropertyOutput> DetailCommand { get; private set; }
 
         public DynamicPropertyViewModel(
             IDynamicPropertyAppService appService,
@@ -29,18 +27,16 @@ namespace AppFramework.Admin.ViewModels
             this.appService = appService;
             this.entityPropertyAppService = entityPropertyAppService;
             entitydataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
-
-            DetailCommand = new DelegateCommand<GetAllEntitiesHasDynamicPropertyOutput>(Show);
-            AddEntityPropertyCommand = new DelegateCommand(AddEntityProperty);
         }
 
+        [RelayCommand]
         private async void AddEntityProperty()
         {
             var r = await dialog.ShowDialogAsync(AppViews.DynamicAddEntity);
             if (r.Result == ButtonResult.OK)
             {
                 var EntityFullName = r.Parameters.GetValue<string>("Value");
-                Show(new GetAllEntitiesHasDynamicPropertyOutput()
+                Detail(new GetAllEntitiesHasDynamicPropertyOutput()
                 {
                     EntityFullName = EntityFullName,
                 });
@@ -51,7 +47,8 @@ namespace AppFramework.Admin.ViewModels
         /// 动态实体属性详情
         /// </summary>
         /// <param name="output"></param>
-        private async void Show(GetAllEntitiesHasDynamicPropertyOutput output)
+        [RelayCommand]
+        private async void Detail(GetAllEntitiesHasDynamicPropertyOutput output)
         {
             DialogParameters param = new DialogParameters();
             param.Add("Name", output.EntityFullName);

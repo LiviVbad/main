@@ -32,7 +32,7 @@ namespace AppFramework.Admin.ViewModels
         public UserCreateOrUpdateModel Input
         {
             get { return input; }
-            set { input = value; RaisePropertyChanged(); }
+            set { input = value; OnPropertyChanged(); }
         }
 
         private GetPasswordComplexitySettingOutput PasswordComplexitySetting;
@@ -48,7 +48,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 isNewUser = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -58,7 +58,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 model = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

@@ -1772,6 +1772,31 @@ namespace AppFramework.Migrations
                     b.ToTable("AppChatMessages");
                 });
 
+            modelBuilder.Entity("AppFramework.Demo.AbpDemo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sex")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AbpDemos");
+                });
+
             modelBuilder.Entity("AppFramework.Friendships.Friendship", b =>
                 {
                     b.Property<long>("Id")

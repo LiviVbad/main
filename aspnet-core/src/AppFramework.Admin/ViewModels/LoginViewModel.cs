@@ -39,7 +39,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 currentTenancyNameOrDefault = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
         private LanguageInfo selectedLanguage;
@@ -53,7 +53,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 selectedLanguage = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -63,7 +63,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 languages = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -73,7 +73,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 tenancyName = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -84,7 +84,7 @@ namespace AppFramework.Admin.ViewModels
             {
                 accountService.AuthenticateModel.UserNameOrEmailAddress = value;
                 SetLoginButtonEnabled();
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -95,20 +95,20 @@ namespace AppFramework.Admin.ViewModels
             {
                 accountService.AuthenticateModel.Password = value;
                 SetLoginButtonEnabled();
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         public bool IsLoginEnabled
         {
             get { return isLoginEnabled; }
-            set { isLoginEnabled = value; RaisePropertyChanged(); }
+            set { isLoginEnabled = value; OnPropertyChanged(); }
         }
 
         public bool IsRememberMe
         {
             get { return isRememberMe; }
-            set { isRememberMe = value; RaisePropertyChanged(); }
+            set { isRememberMe = value; OnPropertyChanged(); }
         }
 
         #endregion
@@ -228,7 +228,7 @@ namespace AppFramework.Admin.ViewModels
                 case TenantAvailabilityState.Available:
                     applicationContext.SetAsTenant(tenancyName, tenantAvailableResult.TenantId.Value);
                     ApiUrlConfig.ChangeBaseUrl(tenantAvailableResult.ServerRootAddress);
-                    RaisePropertyChanged(CurrentTenancyNameOrDefault);
+                    OnPropertyChanged(CurrentTenancyNameOrDefault);
                     break;
 
                 case TenantAvailabilityState.InActive:
@@ -304,7 +304,7 @@ namespace AppFramework.Admin.ViewModels
             else
                 applicationContext.SetAsTenant(TenancyName, loginInfo.Tenant.Id);
 
-            RaisePropertyChanged("CurrentTenancyNameOrDefault");
+            OnPropertyChanged("CurrentTenancyNameOrDefault");
         }
     }
 }

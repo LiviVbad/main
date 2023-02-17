@@ -15,7 +15,7 @@ namespace AppFramework.Admin.Validations
             RuleFor(x => x.User.UserName).IsRequired().MaxLength(AbpUserBase.MaxUserNameLength);
             RuleFor(x => x.User.EmailAddress).IsRequired().Email().MaxLength(AbpUserBase.MaxEmailAddressLength);
             RuleFor(x => x.User.PhoneNumber).MaxLength(UserConsts.MaxPhoneNumberLength);
-            RuleFor(x => x.User.Password).MaxLength(AbpUserBase.MaxPlainPasswordLength);
+            RuleFor(x => x.User.PassWord).MaxLength(AbpUserBase.MaxPlainPasswordLength);
         }
     }
 }

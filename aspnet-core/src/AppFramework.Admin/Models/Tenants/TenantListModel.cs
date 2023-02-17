@@ -1,78 +1,42 @@
 ﻿using AppFramework.Shared.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 
 namespace AppFramework.Admin.Models
 {
-    public class TenantListModel : EntityObject
+    public partial class TenantListModel : EntityObject
     {
+        [ObservableProperty]
         private string name;
+
+        [ObservableProperty]
         private string tenancyName;
+
+        [ObservableProperty]
         private string connectionString;
+
+        [ObservableProperty]
         private bool isActive;
+
+        [ObservableProperty]
         private DateTime? subscriptionEndDateUtc;
+
+        [ObservableProperty]
         private bool isInTrialPeriod;
+
+        [ObservableProperty]
         private string adminEmailAddress;
+
+        [ObservableProperty]
         private bool sendActivationEmail;
+
+        [ObservableProperty]
         private bool shouldChangePasswordOnNextLogin;
-
-        public string AdminEmailAddress
-        {
-            get { return adminEmailAddress; }
-            set { adminEmailAddress = value; RaisePropertyChanged(); }
-        }
-
-        public bool ShouldChangePasswordOnNextLogin
-        {
-            get { return shouldChangePasswordOnNextLogin; }
-            set { shouldChangePasswordOnNextLogin = value; RaisePropertyChanged(); }
-        }
-
-        public bool SendActivationEmail
-        {
-            get { return sendActivationEmail; }
-            set { sendActivationEmail = value; RaisePropertyChanged(); }
-        }
-
-        public string TenancyName
-        {
-            get { return tenancyName; }
-            set { tenancyName = value; RaisePropertyChanged(); }
-        }
-
-        public string Name
-        {
-            get { return name; }
-            set { name = value; RaisePropertyChanged(); }
-        }
-
+         
         public string EditionDisplayName { get; set; }
-
-        public string ConnectionString
-        {
-            get { return connectionString; }
-            set { connectionString = value; RaisePropertyChanged(); }
-        }
-
-        public bool IsActive
-        {
-            get { return isActive; }
-            set { isActive = value; RaisePropertyChanged(); }
-        }
-
-        public DateTime? SubscriptionEndDateUtc
-        {
-            get { return subscriptionEndDateUtc; }
-            set { subscriptionEndDateUtc = value; RaisePropertyChanged(); }
-        }
-
+            
         public DateTime CreationTime { get; set; }
 
-        public int? EditionId { get; set; }
-
-        public bool IsInTrialPeriod
-        {
-            get { return isInTrialPeriod; }
-            set { isInTrialPeriod = value; RaisePropertyChanged(); }
-        }
+        public int? EditionId { get; set; } 
     }
 }

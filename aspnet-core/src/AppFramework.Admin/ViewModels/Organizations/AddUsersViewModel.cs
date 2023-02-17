@@ -22,7 +22,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 input.Filter = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

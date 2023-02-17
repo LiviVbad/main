@@ -1,23 +1,15 @@
 ﻿using AppFramework.Editions.Dto;
-using Prism.Mvvm;
+using CommunityToolkit.Mvvm.ComponentModel; 
 using System.Collections.ObjectModel;
 
 namespace AppFramework.Admin.Models
 {
-    public class FlatFeatureModel : BindableBase
+    [INotifyPropertyChanged]
+    public partial class FlatFeatureModel 
     {
-        private bool isChecked;
-
-        public bool IsChecked
-        {
-            get { return isChecked; }
-            set
-            {
-                isChecked = value; 
-                RaisePropertyChanged();
-            }
-        }
-
+        [ObservableProperty]
+        public bool isChecked;
+         
         public string ParentName { get; set; }
 
         public string Name { get; set; }
@@ -30,12 +22,7 @@ namespace AppFramework.Admin.Models
 
         public FeatureInputTypeDto InputType { get; set; }
 
-        private ObservableCollection<FlatFeatureModel> items;
-
-        public ObservableCollection<FlatFeatureModel> Items
-        {
-            get { return items; }
-            set { items = value; RaisePropertyChanged(); }
-        }
+        [ObservableProperty]
+        public ObservableCollection<FlatFeatureModel> items;
     }
 }

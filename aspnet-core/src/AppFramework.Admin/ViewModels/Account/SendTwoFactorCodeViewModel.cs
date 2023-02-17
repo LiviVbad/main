@@ -38,7 +38,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 twoFactorAuthProviders = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -50,7 +50,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 selectedProvider = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

@@ -10,16 +10,16 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using AppFramework.Common;
+using CommunityToolkit.Mvvm.Input;
 
 namespace AppFramework.Admin.ViewModels
 {
-    public class SettingsViewModel : NavigationViewModel
+    public partial class SettingsViewModel : NavigationViewModel
     {
         #region 字段/属性
 
         private readonly IHostSettingsAppService appService;
         private readonly ICommonLookupAppService lookupAppService;
-        public DelegateCommand SaveCommand { get; private set; }
         private HostSettingsEditModel setting;
         private SubscribableEditionComboboxItemDto selectedEdition;
         private ObservableCollection<SubscribableEditionComboboxItemDto> editions;
@@ -27,7 +27,7 @@ namespace AppFramework.Admin.ViewModels
         public HostSettingsEditModel Setting
         {
             get { return setting; }
-            set { setting = value; RaisePropertyChanged(); }
+            set { setting = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace AppFramework.Admin.ViewModels
                 selectedEdition = value;
                 if (selectedEdition != null)
                     setting.TenantManagement.DefaultEditionId = Convert.ToInt32(value.Value);
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -54,7 +54,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 editions = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -64,13 +64,13 @@ namespace AppFramework.Admin.ViewModels
             ICommonLookupAppService lookupAppService)
         {
             Title = Local.Localize("Settings");
-            SaveCommand = new DelegateCommand(Save);
             this.appService = appService;
             this.lookupAppService = lookupAppService;
 
             editions = new ObservableCollection<SubscribableEditionComboboxItemDto>();
         }
 
+        [RelayCommand]
         private async void Save()
         {
             //验证输入合法性...

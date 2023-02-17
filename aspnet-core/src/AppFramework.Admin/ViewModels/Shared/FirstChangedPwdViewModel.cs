@@ -31,7 +31,7 @@ namespace AppFramework.Admin.ViewModels.Shared
         public string PassWord
         {
             get { return passWord; }
-            set { passWord = value; ValidationPassWord(); RaisePropertyChanged(); }
+            set { passWord = value; ValidationPassWord(); OnPropertyChanged(); }
         }
 
         public string NewPassWord
@@ -41,7 +41,7 @@ namespace AppFramework.Admin.ViewModels.Shared
             {
                 newpassWord = value;
                 ValidationPassWord();
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -51,7 +51,7 @@ namespace AppFramework.Admin.ViewModels.Shared
             set
             {
                 errorMessage = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

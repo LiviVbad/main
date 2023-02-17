@@ -43,6 +43,8 @@ using AppFramework.Notifications.Dto;
 using AppFramework.Organizations.Dto;
 using AppFramework.Sessions.Dto;
 using AppFramework.WebHooks.Dto;
+using AppFramework.Demo.Dtos;
+using AppFramework.Demo;
 
 namespace AppFramework
 {
@@ -50,6 +52,8 @@ namespace AppFramework
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<AbpDemoDto, AbpDemo>().ReverseMap();
+
             configuration.CreateMap<CreateOrEditAbpVersionDto, AbpVersion>().ReverseMap();
             configuration.CreateMap<AbpVersionDto, AbpVersion>().ReverseMap();
             //Inputs

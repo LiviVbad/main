@@ -11,24 +11,17 @@ using System.Linq;
 using Prism.Ioc;
 using System.Threading.Tasks; 
 using Prism.Regions;
-using AppFramework.Shared.Services; 
+using AppFramework.Shared.Services;
+using CommunityToolkit.Mvvm.Input;
 
 namespace AppFramework.Admin.ViewModels
 {
-    public class OrganizationsViewModel : NavigationCurdViewModel
+    public partial class OrganizationsViewModel : NavigationCurdViewModel
     {
         public OrganizationsViewModel(IOrganizationUnitAppService userAppService)
         {
             Title = Local.Localize("OrganizationUnits");
             this.appService = userAppService;
-            SelectedCommand = new DelegateCommand<OrganizationListModel>(Selected);
-
-            AddRootUnitCommand = new DelegateCommand<OrganizationListModel>(AddOrganizationUnit);
-            ChangeCommand = new DelegateCommand<OrganizationListModel>(EditOrganizationUnit);
-            RemoveCommand = new DelegateCommand<OrganizationListModel>(DeleteOrganizationUnit);
-
-            DeleteRoleCommand = new DelegateCommand<OrganizationUnitRoleListDto>(DeleteRole);
-            DeleteMemberCommand = new DelegateCommand<OrganizationUnitUserListDto>(DeleteMember);
 
             usersInput = new GetOrganizationUnitUsersInput();
             rolesInput = new GetOrganizationUnitRolesInput();
@@ -77,16 +70,7 @@ namespace AppFramework.Admin.ViewModels
         private GetOrganizationUnitRolesInput rolesInput;
 
         //选中组织、添加跟组织、修改、删除组织
-        public DelegateCommand<OrganizationListModel> SelectedCommand { get; }
-        public DelegateCommand<OrganizationListModel> AddRootUnitCommand { get; private set; }
-        public DelegateCommand<OrganizationListModel> ChangeCommand { get; private set; }
-        public DelegateCommand<OrganizationListModel> RemoveCommand { get; private set; }
-
         public DelegateCommand<string> ExecuteItemCommand { get; private set; }
-
-        //删除成员、角色
-        public DelegateCommand<OrganizationUnitUserListDto> DeleteMemberCommand { get; private set; }
-        public DelegateCommand<OrganizationUnitRoleListDto> DeleteRoleCommand { get; private set; }
 
         #endregion
 
@@ -96,6 +80,7 @@ namespace AppFramework.Admin.ViewModels
         /// 选中组织机构-更新成员和角色信息
         /// </summary>
         /// <param name="organizationUnit"></param>
+        [RelayCommand]
         private async void Selected(OrganizationListModel organizationUnit)
         {
             if (organizationUnit == null) return;
@@ -117,7 +102,7 @@ namespace AppFramework.Admin.ViewModels
         {
             switch (arg)
             {
-                case "AddOrganizationUnit": AddOrganizationUnit(); break;
+                case "AddOrganizationUnit": AddRootUnit(); break;
                 case "AddMember": await AddMember(SelectedOrganizationUnit); break;
                 case "AddRole": await AddRole(SelectedOrganizationUnit); break;
                 case "Refresh": await OnNavigatedToAsync(); break;
@@ -152,7 +137,8 @@ namespace AppFramework.Admin.ViewModels
         /// 删除组织机构
         /// </summary>
         /// <param name="organization"></param>
-        public async void DeleteOrganizationUnit(OrganizationListModel organization)
+        [RelayCommand]
+        public async void Remove(OrganizationListModel organization)
         {
             if (await dialog.Question(Local.Localize("OrganizationUnitDeleteWarningMessage", organization.DisplayName)))
             {
@@ -167,7 +153,8 @@ namespace AppFramework.Admin.ViewModels
         /// 编辑组织机构
         /// </summary>
         /// <param name="organization"></param>
-        public async void EditOrganizationUnit(OrganizationListModel organization)
+        [RelayCommand]
+        public async void Change(OrganizationListModel organization)
         {
             DialogParameters param = new DialogParameters();
             param.Add("Value", organization);
@@ -180,7 +167,8 @@ namespace AppFramework.Admin.ViewModels
         /// 新增组织机构
         /// </summary>
         /// <param name="organization"></param>
-        public async void AddOrganizationUnit(OrganizationListModel organization = null)
+        [RelayCommand]
+        public async void AddRootUnit(OrganizationListModel organization = null)
         {
             DialogParameters param = new DialogParameters();
             if (organization != null) param.Add("ParentId", organization.Id);
@@ -274,6 +262,7 @@ namespace AppFramework.Admin.ViewModels
         /// 删除角色
         /// </summary>
         /// <param name="obj"></param>
+        [RelayCommand]
         private async void DeleteRole(OrganizationUnitRoleListDto obj)
         {
             if (await dialog.Question(Local.Localize("RemoveRoleFromOuWarningMessage",
@@ -343,6 +332,7 @@ namespace AppFramework.Admin.ViewModels
         /// 删除成员
         /// </summary>
         /// <param name="obj"></param>
+        [RelayCommand]
         private async void DeleteMember(OrganizationUnitUserListDto obj)
         {
             if (await dialog.Question(Local.Localize("RemoveUserFromOuWarningMessage",

@@ -3,6 +3,7 @@ using AppFramework.Common;
 using AppFramework.Common.Dto;
 using AppFramework.Shared;
 using AppFramework.Shared.Services;
+using CommunityToolkit.Mvvm.Input;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
@@ -10,14 +11,12 @@ using System.Threading.Tasks;
 
 namespace AppFramework.Admin.ViewModels
 {
-    public class SelectedUserViewModel : HostDialogViewModel
+    public partial class SelectedUserViewModel : HostDialogViewModel
     {
         private readonly ICommonLookupAppService appService;
         public IDataPagerService dataPager { get; private set; }
         private FindUsersInput input;
-
-        public DelegateCommand<NameValueDto> SelectedUserCommand { get; private set; }
-
+         
         public SelectedUserViewModel(IDataPagerService dataPager,
             ICommonLookupAppService appService)
         {
@@ -26,11 +25,11 @@ namespace AppFramework.Admin.ViewModels
             input=new FindUsersInput()
             {
                 MaxResultCount = 10,
-            };
-            SelectedUserCommand=new DelegateCommand<NameValueDto>(SelectedUser);
+            }; 
             this.dataPager.OnPageIndexChangedEventhandler +=DataPager_OnPageIndexChangedEventhandler;
         }
 
+        [RelayCommand]
         private void SelectedUser(NameValueDto obj)
         {
             Save(Convert.ToInt32(obj.Value));

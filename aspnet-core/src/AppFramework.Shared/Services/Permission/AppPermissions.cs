@@ -2,6 +2,11 @@
 {
     public class AppPermissions
     {
+        public const string AbpDemos = "Pages.AbpDemos";
+        public const string AbpDemosCreate = "Pages.AbpDemos.Create";
+        public const string AbpDemosEdit = "Pages.AbpDemos.Edit";
+        public const string AbpDemosDelete = "Pages.AbpDemos.Delete";
+
         public const string Versions = "Pages.AbpVersions";
         public const string VersionsCreate = "Pages.AbpVersions.Create";
         public const string VersionsEdit = "Pages.AbpVersions.Edit";

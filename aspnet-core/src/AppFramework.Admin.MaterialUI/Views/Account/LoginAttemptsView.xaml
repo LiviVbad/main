@@ -105,11 +105,12 @@
                     Grid.Row="1"
                     Margin="10,0,10,10"
                     Background="{DynamicResource MaterialDesignPaper}">
-                    <DockPanel LastChildFill="False">
-                        <DataGrid
-                            DockPanel.Dock="Top"
-                            ItemsSource="{Binding dataPager.GridModelList}"
-                            SelectedItem="{Binding dataPager.SelectedItem}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <DataGrid ItemsSource="{Binding dataPager.GridModelList}" SelectedItem="{Binding dataPager.SelectedItem}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Width="150" Header="{extensions:Translate IpAddress}" />
                                 <DataGridTextColumn Width="100" Header="{extensions:Translate Client}" />
@@ -130,13 +131,13 @@
                         </DataGrid>
 
                         <controls:DataPager
+                            Grid.Row="1"
                             HorizontalAlignment="Right"
-                            DockPanel.Dock="Bottom"
                             NumericButtonCount="{Binding dataPager.NumericButtonCount}"
                             PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
                             PageSize="{Binding dataPager.PageSize, Mode=TwoWay}"
                             PageIndex="{Binding dataPager.PageIndex, Mode=TwoWay}" />
-                    </DockPanel>
+                    </Grid>
                 </md:Card>
             </Grid>
         </Grid>

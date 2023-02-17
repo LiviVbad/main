@@ -211,7 +211,7 @@ namespace AppFramework.Admin.MaterialUI
                 if (_activeScheme != value)
                 {
                     _activeScheme = value;
-                    RaisePropertyChanged();
+                    OnPropertyChanged();
                 }
             }
         }
@@ -225,7 +225,7 @@ namespace AppFramework.Admin.MaterialUI
                 if (_selectedColor != value)
                 {
                     _selectedColor = value;
-                    RaisePropertyChanged();
+                    OnPropertyChanged();
 
                     // if we are triggering a change internally its a hue change and the colors will match
                     // so we don't want to trigger a custom color change.

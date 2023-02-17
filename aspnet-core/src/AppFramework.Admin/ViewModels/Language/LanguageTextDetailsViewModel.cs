@@ -16,19 +16,19 @@ namespace AppFramework.Admin.ViewModels
         public string Key
         {
             get { return key; }
-            set { key = value; RaisePropertyChanged(); }
+            set { key = value; OnPropertyChanged(); }
         }
 
         public string BaseValue
         {
             get { return baseValue; }
-            set { baseValue = value; RaisePropertyChanged(); }
+            set { baseValue = value; OnPropertyChanged(); }
         }
 
         public string TargetValue
         {
             get { return targetValue; }
-            set { targetValue = value; RaisePropertyChanged(); }
+            set { targetValue = value; OnPropertyChanged(); }
         }
 
         private LanguageStruct baseLanguage;
@@ -38,13 +38,13 @@ namespace AppFramework.Admin.ViewModels
         public LanguageStruct BaseLanguage
         {
             get { return baseLanguage; }
-            set { baseLanguage = value; RaisePropertyChanged(); }
+            set { baseLanguage = value; OnPropertyChanged(); }
         }
 
         public LanguageStruct TargetLanguage
         {
             get { return targetLanguage; }
-            set { targetLanguage = value; RaisePropertyChanged(); }
+            set { targetLanguage = value; OnPropertyChanged(); }
         }
 
         private string SourceName;

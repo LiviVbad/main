@@ -29,7 +29,7 @@ namespace AppFramework.Admin.ViewModels
             {
                 _currentPassword = value;
                 SetChangePasswordButtonEnabled();
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -42,7 +42,7 @@ namespace AppFramework.Admin.ViewModels
             {
                 _newPassword = value;
                 SetChangePasswordButtonEnabled();
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -55,7 +55,7 @@ namespace AppFramework.Admin.ViewModels
             {
                 _newPasswordRepeat = value;
                 SetChangePasswordButtonEnabled();
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -65,7 +65,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 _isChangePasswordEnabled = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

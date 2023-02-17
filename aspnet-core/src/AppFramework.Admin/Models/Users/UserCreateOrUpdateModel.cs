@@ -1,29 +1,22 @@
-﻿using Prism.Mvvm;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Prism.Mvvm;
 using System.Collections.Generic;
 
 namespace AppFramework.Admin.Models
 {
-    public class UserCreateOrUpdateModel : BindableBase
+    [INotifyPropertyChanged]
+    public partial class UserCreateOrUpdateModel 
     {
+        [ObservableProperty]
         private bool sendActivationEmail;
+
+        [ObservableProperty]
         private bool setRandomPassword;
          
         public UserEditModel User { get; set; }
 
         public string[] AssignedRoleNames { get; set; }
-
-        public bool SendActivationEmail
-        {
-            get { return sendActivationEmail; }
-            set { sendActivationEmail = value; RaisePropertyChanged(); }
-        }
-
-        public bool SetRandomPassword
-        {
-            get { return setRandomPassword; }
-            set { setRandomPassword = value; RaisePropertyChanged(); }
-        }
-
+         
         public List<long> OrganizationUnits { get; set; }
 
         public UserCreateOrUpdateModel()

@@ -5,22 +5,20 @@
     using Prism.Commands; 
     using AppFramework.Shared.Services.Permission;
     using AppFramework.Shared.Services;
+    using CommunityToolkit.Mvvm.Input;
 
-    public class NavigationCurdViewModel : NavigationViewModel
+    public partial class NavigationCurdViewModel : NavigationViewModel
     {
         public NavigationCurdViewModel()
         { 
             //数据分页服务
             dataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
             proxyService = ContainerLocator.Container.Resolve<IPermissionPorxyService>();
-             
-            AddCommand = new DelegateCommand(Add);
+              
             ExecuteCommand = new DelegateCommand<string>(proxyService.Execute);
-
             proxyService.Generate(CreatePermissionItems());
         }
-
-        public DelegateCommand AddCommand { get; private set; }
+         
         public DelegateCommand<string> ExecuteCommand { get; private set; }
         public IDataPagerService dataPager { get; private set; }
         public IPermissionPorxyService proxyService { get; private set; }
@@ -28,6 +26,7 @@
         /// <summary>
         /// 新增
         /// </summary>
+        [RelayCommand]
         public async void Add()
         {
             var dialogResult = await dialog.ShowDialogAsync(GetPageName("Details"));

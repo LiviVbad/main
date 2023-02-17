@@ -28,9 +28,7 @@ namespace AppFramework.Admin.ViewModels
         }
 
         private void DataPager_OnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
-        {
-
-        }
+        { }
 
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {

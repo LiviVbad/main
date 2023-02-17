@@ -28,7 +28,7 @@ namespace AppFramework.Admin.ViewModels
         public string IamgeFilePath
         {
             get { return imageFilePath; }
-            set { imageFilePath = value; RaisePropertyChanged(); }
+            set { imageFilePath = value; OnPropertyChanged(); }
         }
 
 

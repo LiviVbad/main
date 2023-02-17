@@ -22,12 +22,13 @@ namespace AppFramework.Admin.Services
                       new NavigationItem("language","Languages",AppViews.Language,AppPermissions.Languages),
                       new NavigationItem("version", "VersionManager", AppViews.Version, AppPermissions.Versions),
                       new NavigationItem("edition","Editions",AppViews.Edition,AppPermissions.Editions),
-               }), 
+               }),
 
                new NavigationItem("tenant","Tenants",AppViews.Tenant,AppPermissions.Tenants),
                new NavigationItem("visual", "VisualSettings", AppViews.Visual, AppPermissions.Administration),
                new NavigationItem("setting", "Settings", AppViews.Setting, AppPermissions.HostSettings),
-               new NavigationItem("demo","DemoUiComponents",AppViews.Demo,AppPermissions.DemoUiComponents)
+               new NavigationItem("demo","Demos",AppViews.Demo,AppPermissions.AbpDemos),
+               new NavigationItem("demo","UiComponents",AppViews.UiComponents,AppPermissions.DemoUiComponents)
             };
         }
 

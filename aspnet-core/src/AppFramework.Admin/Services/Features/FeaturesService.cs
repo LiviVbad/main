@@ -2,16 +2,16 @@
 using AppFramework.Editions.Dto;
 using AppFramework.Admin.Models;
 using AppFramework.Shared.Services.Mapper;
-using AutoMapper;
-using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq; 
+using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AppFramework.Admin.Services
 {
-    public class FeaturesService : BindableBase, IFeaturesService
+    [INotifyPropertyChanged]
+    public partial class FeaturesService : IFeaturesService
     {
         private readonly IAppMapper mapper;
 
@@ -25,7 +25,7 @@ namespace AppFramework.Admin.Services
         public ObservableCollection<FlatFeatureModel> Features
         {
             get { return features; }
-            set { features = value; RaisePropertyChanged(); }
+            set { features = value; OnPropertyChanged(); }
         }
 
         private ObservableCollection<object> selectedItems;
@@ -33,7 +33,7 @@ namespace AppFramework.Admin.Services
         public ObservableCollection<object> SelectedItems
         {
             get { return selectedItems; }
-            set { selectedItems = value; RaisePropertyChanged(); }
+            set { selectedItems = value; OnPropertyChanged(); }
         }
 
         public void CreateFeatures(List<FlatFeatureDto> features, List<NameValueDto> featureValues)
@@ -60,7 +60,7 @@ namespace AppFramework.Admin.Services
                 var item = items.FirstOrDefault(t => t.Name.Equals(model.Name));
                 if (item != null)
                     item.Value = "true";
-            } 
+            }
             return items;
         }
 
@@ -109,7 +109,7 @@ namespace AppFramework.Admin.Services
                 var item = GetSelectedItems(features, f);
                 if (item != null)
                 {
-                    item.IsChecked=true;
+                    item.IsChecked = true;
                     items.Add(item);
                 }
             }
@@ -142,6 +142,6 @@ namespace AppFramework.Admin.Services
             }
             return model;
         }
-    
+
     }
 }

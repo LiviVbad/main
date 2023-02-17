@@ -50,7 +50,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 editions = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -72,7 +72,7 @@ namespace AppFramework.Admin.ViewModels
                     //如果不是无限时间订阅,重置是否到期选项
                     model.IsInTrialPeriod = false;
                 }
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -83,7 +83,7 @@ namespace AppFramework.Admin.ViewModels
             {
                 isNewTenant = value;
                 PageTitle = isNewTenant ? Local.Localize(AppLocalizationKeys.CreatingNewTenant) : Local.Localize(AppLocalizationKeys.EditTenant);
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -93,7 +93,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 pageTitle = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -104,7 +104,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 adminPassword = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -115,7 +115,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 adminPasswordRepeat = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -126,7 +126,7 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 useHostDatabase = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -142,7 +142,7 @@ namespace AppFramework.Admin.ViewModels
                     AdminPassword = null;
                     AdminPasswordRepeat = null;
                 }
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -171,8 +171,8 @@ namespace AppFramework.Admin.ViewModels
                 selectedEdition = value;
                 UpdateModel();
                 IsSubscriptionFieldVisible = SelectedEdition != null && SelectedEdition.Value != NotAssignedValue;
-                RaisePropertyChanged("IsSelectedEditionFree");
-                RaisePropertyChanged();
+                OnPropertyChanged("IsSelectedEditionFree");
+                OnPropertyChanged();
             }
         }
 
@@ -183,14 +183,14 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 isSubscriptionFieldVisible = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         public TenantListModel Model
         {
             get => model;
-            set { model = value; RaisePropertyChanged(); }
+            set { model = value; OnPropertyChanged(); }
         }
 
         #endregion

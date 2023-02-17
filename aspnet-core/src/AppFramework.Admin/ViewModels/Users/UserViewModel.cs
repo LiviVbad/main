@@ -7,8 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AppFramework.Shared.Services.Permission;
 using Abp.Application.Services.Dto;
-using Prism.Services.Dialogs;
-using Prism.Commands;
+using Prism.Services.Dialogs; 
 using AppFramework.Authorization.Permissions.Dto;
 using AppFramework.Authorization.Permissions;
 using AppFramework.Authorization.Roles;
@@ -17,10 +16,11 @@ using System.Collections.ObjectModel;
 using Prism.Regions;
 using AppFramework.Shared.Services;
 using AppFramework.Admin.Services;
+using CommunityToolkit.Mvvm.Input;
 
 namespace AppFramework.Admin.ViewModels
 {
-    public class UserViewModel : NavigationCurdViewModel
+    public partial class UserViewModel : NavigationCurdViewModel
     {
         private readonly IUserAppService appService;
         private readonly IRoleAppService roleAppService;
@@ -48,15 +48,11 @@ namespace AppFramework.Admin.ViewModels
             this.accountService = accountService;
             this.permissionAppService = permissionAppService;
 
-            AdvancedCommand = new DelegateCommand(() => { IsAdvancedFilter = !IsAdvancedFilter; });
-            SelectedCommand = new DelegateCommand(SelectedPermission);
-            SearchCommand = new DelegateCommand(SearchUser);
-            ResetCommand = new DelegateCommand(Reset);
             UpdateTitle();
 
             dataPager.OnPageIndexChangedEventhandler += UsersOnPageIndexChangedEventhandler;
         }
-         
+
         private async void UsersOnPageIndexChangedEventhandler(object sender, PageIndexChangedEventArgs e)
         {
             input.SkipCount = e.SkipCount;
@@ -129,10 +125,6 @@ namespace AppFramework.Admin.ViewModels
         #region 字段/属性
 
         public GetUsersInput input { get; set; }
-        public DelegateCommand AdvancedCommand { get; private set; }
-        public DelegateCommand SelectedCommand { get; private set; }
-        public DelegateCommand SearchCommand { get; private set; }
-        public DelegateCommand ResetCommand { get; private set; }
 
         /// <summary>
         /// 仅锁定用户
@@ -145,7 +137,7 @@ namespace AppFramework.Admin.ViewModels
                 isLockUser = value;
                 //更改查询条件
                 input.OnlyLockedUsers = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -164,8 +156,8 @@ namespace AppFramework.Admin.ViewModels
             set
             {
                 input.Filter = value;
-                RaisePropertyChanged();
-                SearchUser();
+                OnPropertyChanged();
+                Search();
             }
         }
 
@@ -175,7 +167,7 @@ namespace AppFramework.Admin.ViewModels
         public string FilerTitle
         {
             get { return filterTitle; }
-            set { filterTitle = value; RaisePropertyChanged(); }
+            set { filterTitle = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -189,7 +181,7 @@ namespace AppFramework.Admin.ViewModels
                 isAdvancedFilter = value;
 
                 FilerTitle = value ? "△ " + Local.Localize("HideAdvancedFilters") : "▽ " + Local.Localize("ShowAdvancedFilters");
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -199,7 +191,7 @@ namespace AppFramework.Admin.ViewModels
         public string SelectPermissions
         {
             get { return selectPermissions; }
-            set { selectPermissions = value; RaisePropertyChanged(); }
+            set { selectPermissions = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -218,7 +210,7 @@ namespace AppFramework.Admin.ViewModels
                 else
                     input.Role = null;
 
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -228,14 +220,18 @@ namespace AppFramework.Admin.ViewModels
         public ObservableCollection<RoleListModel> RoleList
         {
             get { return roleList; }
-            set { roleList = value; RaisePropertyChanged(); }
+            set { roleList = value; OnPropertyChanged(); }
         }
 
         #endregion
 
+        [RelayCommand]
+        private void Advanced() => IsAdvancedFilter = !IsAdvancedFilter;
+
         /// <summary>
         /// 重置筛选条件
         /// </summary>
+        [RelayCommand]
         private void Reset()
         {
             SelectedRole = null;
@@ -257,7 +253,8 @@ namespace AppFramework.Admin.ViewModels
         /// <summary>
         /// 选择权限
         /// </summary>
-        private async void SelectedPermission()
+        [RelayCommand]
+        private async void Selected()
         {
             DialogParameters param = new DialogParameters();
             param.Add("Value", flatPermission);
@@ -311,7 +308,8 @@ namespace AppFramework.Admin.ViewModels
         /// <summary>
         /// 搜索用户
         /// </summary>
-        public void SearchUser()
+        [RelayCommand]
+        public void Search()
         {
             dataPager.PageIndex = 0;
         }

@@ -1,66 +1,34 @@
-﻿using Prism.Mvvm;
+﻿using CommunityToolkit.Mvvm.ComponentModel; 
 
 namespace AppFramework.Admin.Models
 {
-    public class EditionCreateModel : BindableBase
+    [INotifyPropertyChanged]
+    public partial class EditionCreateModel 
     {
-        private string displayName;
-        private decimal? deilyPrice;
-        private decimal? weeklyPrice;
-        private decimal? monthlyPrice;
-        private decimal? annualPrice;
-        private int? trialDayCount;
-        private int? waitingDayAfterExpire;
-        private int? expiringEditionId;
+        [ObservableProperty]
+        public string displayName;
 
-        public int? Id { get; set; }
+        [ObservableProperty]
+        public decimal? dailyPrice;
 
-        public string DisplayName
-        {
-            get { return displayName; }
-            set { displayName = value; RaisePropertyChanged(); }
-        }
+        [ObservableProperty]
+        public decimal? weeklyPrice;
 
-        public decimal? DailyPrice
-        {
-            get { return deilyPrice; }
-            set { deilyPrice = value; RaisePropertyChanged(); }
-        }
+        [ObservableProperty]
+        public decimal? monthlyPrice;
 
-        public decimal? WeeklyPrice
-        {
-            get { return weeklyPrice; }
-            set { weeklyPrice = value; RaisePropertyChanged(); }
-        }
+        [ObservableProperty]
+        public decimal? annualPrice;
 
-        public decimal? MonthlyPrice
-        {
-            get { return monthlyPrice; }
-            set { monthlyPrice = value; RaisePropertyChanged(); }
-        }
+        [ObservableProperty]
+        public int? trialDayCount;
 
-        public decimal? AnnualPrice
-        {
-            get { return annualPrice; }
-            set { annualPrice = value; RaisePropertyChanged(); }
-        }
+        [ObservableProperty]
+        public int? waitingDayAfterExpire;
 
-        public int? TrialDayCount
-        {
-            get { return trialDayCount; }
-            set { trialDayCount = value; RaisePropertyChanged(); }
-        }
+        [ObservableProperty]
+        public int? expiringEditionId;
 
-        public int? WaitingDayAfterExpire
-        {
-            get { return waitingDayAfterExpire; }
-            set { waitingDayAfterExpire = value; RaisePropertyChanged(); }
-        }
-
-        public int? ExpiringEditionId
-        {
-            get { return expiringEditionId; }
-            set { expiringEditionId = value; RaisePropertyChanged(); }
-        }
+        public int? Id { get; set; } 
     }
 }

@@ -33,7 +33,7 @@ namespace AppFramework.Admin.ViewModels
         public bool IsAdd
         {
             get { return isAdd; }
-            set { isAdd = value; RaisePropertyChanged(); }
+            set { isAdd = value; OnPropertyChanged(); }
         }
 
         public DelegateCommand ShowAddCommand { get; private set; }
@@ -45,7 +45,7 @@ namespace AppFramework.Admin.ViewModels
         public ObservableCollection<DynamicPropertyDto> Items
         {
             get { return items; }
-            set { items = value; RaisePropertyChanged(); }
+            set { items = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace AppFramework.Admin.ViewModels
         public DynamicPropertyDto SelectedItem
         {
             get { return selectedItem; }
-            set { selectedItem = value; RaisePropertyChanged(); }
+            set { selectedItem = value; OnPropertyChanged(); }
         }
 
         public DynamicEntityDetailsViewModel(

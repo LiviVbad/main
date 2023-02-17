@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="zh-Hans">
 	<texts>
+    <text name="DemoManager">演示</text>
+    <text name="DemoManagerInfo">管理演示信息</text>
+    <text name="DemoName">姓名</text>
+    <text name="DemoSex">性别</text>
+    <text name="DemoAddress">地址</text>
+    <text name="CreateNewAbpDemo">创建新数据</text>
+    <text name="EditAbpDemo">编辑</text>
+    <text name="DeleteAbpDemo">删除</text>
+    
 		<text name="HomePage">主页</text>
 		<text name="AboutUs">关于我们</text>
 		<text name="Administration">管理</text>

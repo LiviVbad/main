@@ -1,16 +1,13 @@
-﻿using Prism.Mvvm; 
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Prism.Mvvm; 
 
 namespace AppFramework.Admin.Models
 {
-    public class UserRoleModel : BindableBase
+    [INotifyPropertyChanged]
+    public partial class UserRoleModel
     {
+        [ObservableProperty]
         private bool isChecked;
-
-        public bool IsChecked
-        {
-            get { return isChecked; }
-            set { isChecked = value; RaisePropertyChanged(); }
-        }
          
         public int RoleId { get; set; }
 

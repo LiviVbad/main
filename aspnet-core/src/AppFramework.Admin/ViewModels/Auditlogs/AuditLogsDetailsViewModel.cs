@@ -11,7 +11,7 @@ namespace AppFramework.Admin.ViewModels
         public AuditLogListDto AuditLog
         {
             get { return auditLog; }
-            set { auditLog = value; RaisePropertyChanged(); }
+            set { auditLog = value; OnPropertyChanged(); }
         }
 
         public override void OnDialogOpened(IDialogParameters parameters)

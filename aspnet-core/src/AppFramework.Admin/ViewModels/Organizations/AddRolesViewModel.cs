@@ -19,7 +19,7 @@ namespace AppFramework.Admin.ViewModels
         public string Filter
         {
             get { return input.Filter; }
-            set { input.Filter = value; RaisePropertyChanged(); }
+            set { input.Filter = value; OnPropertyChanged(); }
         }
 
         public IDataPagerService dataPager { get; private set; }

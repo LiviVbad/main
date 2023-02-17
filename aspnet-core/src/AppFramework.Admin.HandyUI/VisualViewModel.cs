@@ -23,7 +23,7 @@ namespace AppFramework.Admin.HandyUI
             {
                 isDarkTheme = value;
                 UpdateSkin();
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

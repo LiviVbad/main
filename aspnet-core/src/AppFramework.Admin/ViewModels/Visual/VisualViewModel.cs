@@ -1,21 +1,25 @@
 ﻿using AppFramework.Shared;
 using AppFramework.Shared.Services;
+using CommunityToolkit.Mvvm.Input;
+using DryIoc;
 using Prism.Commands;
 
 namespace AppFramework.Admin.ViewModels.Shared
 {
-    public class VisualViewModel : NavigationViewModel
+    public partial class VisualViewModel : NavigationViewModel
     {
         public VisualViewModel(IThemeService themeService)
         {
             Title = Local.Localize("VisualSettings");
-            this.themeService = themeService;
-             
-            SetThemeCommand = new DelegateCommand<ThemeItem>(arg => themeService.SetTheme(arg.DisplayName));
+            this.themeService = themeService; 
         }
-         
-        public DelegateCommand<ThemeItem> SetThemeCommand { get; } 
-
+          
         public IThemeService themeService { get; set; }
+
+        [RelayCommand]
+        private void SetTheme(ThemeItem themeItem)
+        {
+            themeService.SetTheme(themeItem.DisplayName);
+        }
     }
 }

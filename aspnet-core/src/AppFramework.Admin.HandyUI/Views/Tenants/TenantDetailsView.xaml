@@ -108,7 +108,7 @@
                     </StackPanel>
 
                     <!--  选择到期时间  -->
-                    <DatePicker IsEnabled="{Binding IsUnlimitedTimeSubscription, Converter={StaticResource InverseBooleanConverter}}" Text="{Binding Model.SubscriptionEndDateUtc}" />
+                    <DatePicker IsEnabled="{Binding IsUnlimitedTimeSubscription, Converter={StaticResource inverseBooleanConverter}}" Text="{Binding Model.SubscriptionEndDateUtc}" />
 
                     <!--  试用期  -->
                     <StackPanel

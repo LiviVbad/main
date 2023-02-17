@@ -1,38 +1,22 @@
-﻿using Prism.Mvvm; 
+﻿using CommunityToolkit.Mvvm.ComponentModel; 
 
 namespace AppFramework.Admin.Models
 {
-    public class UserLoginInfoModel : BindableBase
+    [INotifyPropertyChanged]
+    public partial class UserLoginInfoModel 
     {
+        [ObservableProperty]
         private string name;
+
+        [ObservableProperty]
         private string surname;
+
+        [ObservableProperty]
         private string userName;
+
+        [ObservableProperty]
         private string emailAddress;
-
-        public string Name
-        {
-            get { return name; }
-            set { name = value; RaisePropertyChanged(); }
-        }
-
-        public string Surname
-        {
-            get { return surname; }
-            set { surname = value; RaisePropertyChanged(); }
-        }
-
-        public string UserName
-        {
-            get { return userName; }
-            set { userName = value; RaisePropertyChanged(); }
-        }
-
-        public string EmailAddress
-        {
-            get { return emailAddress; }
-            set { emailAddress = value; RaisePropertyChanged(); }
-        }
-
+         
         public string ProfilePictureId { get; set; }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using AppFramework.Auditing;
 using AppFramework.Auditing.Dto;
-using AppFramework.Shared;
-using Prism.Commands;
+using AppFramework.Shared; 
 using Prism.Services.Dialogs;
 using System;
 using System.Threading.Tasks;
@@ -9,20 +8,21 @@ using Prism.Ioc;
 using Prism.Regions;
 using AppFramework.Shared.Services;
 using AppFramework.Admin.Models;
+using CommunityToolkit.Mvvm.Input;
 
 namespace AppFramework.Admin.ViewModels
 {
-    public class AuditLogsViewModel : NavigationCurdViewModel
+    public partial class AuditLogsViewModel : NavigationCurdViewModel
     {
         public AuditLogsViewModel(IAuditLogAppService appService)
         {
             Title = Local.Localize("AuditLogs");
             IsAdvancedFilter = false;
             filter = new GetAuditLogsFilter()
-            {
+            {    
                 StartDate = DateTime.Now.AddDays(-30),
                 EndDate = DateTime.Now,
-                MaxResultCount = AppConsts.DefaultPageSize
+                //MaxResultCount = AppConsts.DefaultPageSize
             };
             entityChangeFilter = new GetEntityChangeFilter()
             {
@@ -31,12 +31,7 @@ namespace AppFramework.Admin.ViewModels
                 MaxResultCount = AppConsts.DefaultPageSize
             };
             this.appService = appService;
-
-            SearchCommand = new DelegateCommand(Search);
-            SearchChangedCommand = new DelegateCommand(SearchChanged);
-            ViewLogCommand = new DelegateCommand(ViewLog);
-            ViewChangedLogCommand = new DelegateCommand(ViewChangedLog);
-            AdvancedCommand = new DelegateCommand(() => { IsAdvancedFilter = !IsAdvancedFilter; });
+             
             logsdataPager = ContainerLocator.Container.Resolve<IDataPagerService>();
 
             //绑定分页组件索引改变事件
@@ -72,7 +67,7 @@ namespace AppFramework.Admin.ViewModels
                     filter.HasException = false;
                 else
                     filter.HasException = true;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -82,7 +77,7 @@ namespace AppFramework.Admin.ViewModels
         public string FilerTitle
         {
             get { return filterTitle; }
-            set { filterTitle = value; RaisePropertyChanged(); }
+            set { filterTitle = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -96,7 +91,7 @@ namespace AppFramework.Admin.ViewModels
                 isAdvancedFilter = value;
 
                 FilerTitle = value ? "△ " + Local.Localize("HideAdvancedFilters") : "▽ " + Local.Localize("ShowAdvancedFilters");
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -106,7 +101,7 @@ namespace AppFramework.Admin.ViewModels
         public GetAuditLogsFilter Filter
         {
             get { return filter; }
-            set { filter = value; RaisePropertyChanged(); }
+            set { filter = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -115,23 +110,23 @@ namespace AppFramework.Admin.ViewModels
         public GetEntityChangeFilter EntityChangeFilter
         {
             get { return entityChangeFilter; }
-            set { entityChangeFilter = value; RaisePropertyChanged(); }
+            set { entityChangeFilter = value; OnPropertyChanged(); }
         }
-
-        //查看日志、查看更改日志、高级筛选、搜索、搜索更改日志
-        public DelegateCommand ViewLogCommand { get; private set; }
-        public DelegateCommand ViewChangedLogCommand { get; private set; }
-        public DelegateCommand AdvancedCommand { get; private set; }
-        public DelegateCommand SearchCommand { get; private set; }
-        public DelegateCommand SearchChangedCommand { get; private set; }
-
+          
         #endregion
 
         #region 审计日期
 
+        [RelayCommand]
+        private void Advanced()
+        {
+            IsAdvancedFilter = !IsAdvancedFilter;
+        }
+
         /// <summary>
         /// 查看操作日志详情
         /// </summary>
+        [RelayCommand]
         private void ViewLog()
         {
             DialogParameters param = new DialogParameters();
@@ -142,6 +137,7 @@ namespace AppFramework.Admin.ViewModels
         /// <summary>
         /// 搜索操作日志
         /// </summary>
+        [RelayCommand]
         private void Search()
         {
             /*
@@ -183,6 +179,7 @@ namespace AppFramework.Admin.ViewModels
         /// <summary>
         /// 搜索更改日志
         /// </summary>
+        [RelayCommand]
         private void SearchChanged()
         {
             dataPager.PageIndex = 0;
@@ -201,6 +198,7 @@ namespace AppFramework.Admin.ViewModels
         /// <summary>
         /// 查看更改日志详情
         /// </summary>
+        [RelayCommand]
         private void ViewChangedLog()
         { }
 
