@@ -39,9 +39,10 @@ namespace AppFramework
             {
                 await successCallback(await func());
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                await HandleException(exception, func, successCallback, failCallback);
+                AppLogs.Error(ex);
+                await HandleException(ex, func, successCallback, failCallback);
             }
             finally
             {
@@ -72,6 +73,7 @@ namespace AppFramework
             }
             catch (System.Exception ex)
             {
+                AppLogs.Error(ex);
                 await HandleException(ex, func, successCallback, failCallback);
             }
             finally
