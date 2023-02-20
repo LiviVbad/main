@@ -530,4 +530,10 @@
 	    <SubType>Code</SubType>
 	  </Compile>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="nlog.config">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
 </Project>

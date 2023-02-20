@@ -667,6 +667,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="nlog.config">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Page Update="Themes\Host\DialogHost.xaml">
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	  </Page>
