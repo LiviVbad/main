@@ -1,5 +1,4 @@
-﻿using AppFramework.Services;
-using Prism.Commands;
+﻿using AppFramework.Services; 
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 using Prism.Ioc;

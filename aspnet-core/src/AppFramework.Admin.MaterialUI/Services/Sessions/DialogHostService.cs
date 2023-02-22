@@ -104,7 +104,8 @@ namespace AppFramework.Admin.MaterialUI
 
         public void Close(string IdentifierName, DialogResult dialogResult)
         {
-            DialogHost.Close(IdentifierName, dialogResult);
+            if (DialogHost.IsDialogOpen(IdentifierName))
+                DialogHost.Close(IdentifierName, dialogResult);
         }
     }
 }
