@@ -8,7 +8,7 @@ using System;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace AppFramework.Admin.SyncUI
+namespace AppFramework.Admin.Update
 {
     public class UpdateService : IUpdateService
     {

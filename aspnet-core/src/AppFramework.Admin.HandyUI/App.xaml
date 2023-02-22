@@ -3,8 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:bar="http://www.hardcodet.net/taskbar"
-    xmlns:handyui="clr-namespace:AppFramework.Admin.HandyUI"
     xmlns:prism="http://prismlibrary.com/"
+    xmlns:viewmodels="clr-namespace:AppFramework.Admin.ViewModels;assembly=AppFramework.Admin"
     ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
         <ResourceDictionary>
@@ -27,7 +27,7 @@
                 DoubleClickCommand="{Binding ShowViewCommand}"
                 IconSource="/Assets/Images/logo.ico">
                 <bar:TaskbarIcon.DataContext>
-                    <handyui:TaskBarViewModel />
+                    <viewmodels:TaskBarViewModel />
                 </bar:TaskbarIcon.DataContext>
                 <bar:TaskbarIcon.ContextMenu>
                     <ContextMenu>

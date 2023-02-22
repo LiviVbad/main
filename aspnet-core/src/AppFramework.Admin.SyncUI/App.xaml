@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:bar="http://www.hardcodet.net/taskbar"
     xmlns:prism="http://prismlibrary.com/"
-    xmlns:syncui="clr-namespace:AppFramework.Admin.SyncUI"
+    xmlns:viewmodels="clr-namespace:AppFramework.Admin.ViewModels;assembly=AppFramework.Admin"
     ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
         <ResourceDictionary>
@@ -17,7 +17,7 @@
                 DoubleClickCommand="{Binding ShowViewCommand}"
                 IconSource="/Assets/Images/logo.ico">
                 <bar:TaskbarIcon.DataContext>
-                    <syncui:TaskBarViewModel />
+                    <viewmodels:TaskBarViewModel />
                 </bar:TaskbarIcon.DataContext>
                 <bar:TaskbarIcon.ContextMenu>
                     <ContextMenu>

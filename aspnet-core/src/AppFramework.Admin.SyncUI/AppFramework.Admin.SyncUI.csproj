@@ -388,6 +388,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="nlog.config">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
 		<Page Update="Themes\Border.xaml">
 			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 		</Page>

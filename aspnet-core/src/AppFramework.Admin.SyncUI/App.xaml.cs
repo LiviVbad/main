@@ -1,8 +1,7 @@
 ﻿using AppFramework.Admin.SyncUI.Services.Sessions;
 using AppFramework.Shared;
 using AppFramework.Shared.Services;
-using AppFramework.Shared.Services.App;
-using AppFramework.Shared.Services.Mapper;
+using AppFramework.Shared.Services.App; 
 using Hardcodet.Wpf.TaskbarNotification;
 using Prism.DryIoc;
 using Prism.Ioc;
@@ -27,10 +26,8 @@ namespace AppFramework.Admin.SyncUI
             container.RegisterSingleton<IThemeService, ThemeService>();
             container.RegisterSingleton<IHostDialogService, DialogHostService>();
             container.RegisterSingleton<IAppStartService, SyncUIStartService>();
-
-            container.RegisterSingleton<IAppMapper, AppMapper>();
-            container.RegisterSingleton<ILocaleCulture, LocaleCulture>();
-            container.RegisterSingleton<IUpdateService, UpdateService>();
+             
+            container.RegisterSingleton<ILocaleCulture, LocaleCulture>(); 
         }
 
         protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)

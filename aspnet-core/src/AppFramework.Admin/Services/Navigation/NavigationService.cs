@@ -77,6 +77,8 @@ namespace AppFramework.Admin.Services
 #if DEBUG
                 System.Diagnostics.Debug.WriteLine(navigationResult.Error.Message);
 #endif
+
+                AppLogs.Error(navigationResult.Error);
             }
             else
             {
