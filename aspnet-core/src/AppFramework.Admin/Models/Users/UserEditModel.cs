@@ -12,7 +12,7 @@ namespace AppFramework.Admin.Models
         private string userName;
 
         [ObservableProperty]
-        private string passWord;
+        private string password;
 
         [ObservableProperty]
         private string name;

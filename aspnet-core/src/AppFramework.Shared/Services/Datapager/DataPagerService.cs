@@ -1,7 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
-using AppFramework.DynamicEntityProperties.Dto;
 using AppFramework.Shared.Services.Mapper;
-using AutoMapper;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
