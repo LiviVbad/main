@@ -61,17 +61,17 @@
         <DockPanel Margin="30,20" LastChildFill="False">
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                 <TextBlock
+                    Text="{Binding Title}"
                     FontSize="18"
-                    FontWeight="Bold"
-                    Text="{Binding Title}" />
+                    FontWeight="Bold" />
                 <TextBlock
+                    Text="{extensions:Translate DashboardHeaderInfo}"
                     Margin="10,0,0,0"
-                    VerticalAlignment="Center"
-                    Text="{extensions:Translate DashboardHeaderInfo}" />
+                    VerticalAlignment="Center" />
             </StackPanel>
         </DockPanel>
 
-        <Grid Grid.Row="1" Margin="10">
+        <Grid Grid.Row="1" Margin="0,5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition />
@@ -98,16 +98,16 @@
 
                             <StackPanel Margin="15" VerticalAlignment="Center">
                                 <TextBlock
-                                    FontSize="14"
-                                    FontWeight="Bold"
                                     Text="{Binding Title}"
                                     TextWrapping="NoWrap"
+                                    FontSize="14"
+                                    FontWeight="Bold"
                                     ToolTip="{Binding Title}" />
                                 <TextBlock
+                                    Text="{Binding Amount}"
                                     Margin="0,10"
                                     FontSize="26"
-                                    FontWeight="Bold"
-                                    Text="{Binding Amount}" />
+                                    FontWeight="Bold" />
                             </StackPanel>
 
                             <Image
@@ -140,8 +140,8 @@
 
                     <Border Grid.RowSpan="2" Style="{StaticResource BorderStyle}" />
                     <StackPanel Margin="10" Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="{StaticResource Analyze}" />
-                        <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate IncomeStatistics}" />
+                        <TextBlock Text="{StaticResource Analyze}" Style="{StaticResource iconTextBlockStyle}" />
+                        <TextBlock Text="{extensions:Translate IncomeStatistics}" Style="{StaticResource headerTextBlockStyle}" />
                     </StackPanel>
 
                     <StackPanel
@@ -150,14 +150,13 @@
                         Orientation="Horizontal">
                         <RadioButton Content="{extensions:Translate Daily}" IsChecked="{Binding IsDaily}" />
                         <RadioButton
-                            Margin="5,0"
                             Content="{extensions:Translate Weekly}"
-                            IsChecked="{Binding IsWeekly}" />
+                            IsChecked="{Binding IsWeekly}"
+                            Margin="5,0" />
                         <RadioButton Content="{extensions:Translate Monthly}" IsChecked="{Binding IsMonthly}" />
                     </StackPanel>
 
-                    <sync:SfChart
-                        Grid.Row="1"
+                    <sync:SfChart Grid.Row="1"
                         Margin="5"
                         ColorModel="{StaticResource CustomColor}"
                         Palette="Custom"
@@ -191,20 +190,19 @@
                     <Border Grid.RowSpan="2" Style="{StaticResource BorderStyle}" />
 
                     <StackPanel Margin="10" Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="{StaticResource Statistics}" />
-                        <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate EditionStatistics}" />
+                        <TextBlock Text="{StaticResource Statistics}" Style="{StaticResource iconTextBlockStyle}" />
+                        <TextBlock Text="{extensions:Translate EditionStatistics}" Style="{StaticResource headerTextBlockStyle}" />
                         <TextBlock
+                            Text="{Binding TimeInterval}"
                             Margin="5,0"
-                            VerticalAlignment="Bottom"
-                            Text="{Binding TimeInterval}" />
+                            VerticalAlignment="Bottom" />
                     </StackPanel>
 
                     <sync:SfChart Grid.Row="1">
                         <sync:SfChart.Legend>
                             <sync:ChartLegend DockPosition="Bottom" />
                         </sync:SfChart.Legend>
-                        <sync:DoughnutSeries
-                            x:Name="doughnutSeries1"
+                        <sync:DoughnutSeries x:Name="doughnutSeries1"
                             CapStyle="BothCurve"
                             DoughnutCoefficient="10"
                             EnableAnimation="True"
@@ -232,23 +230,21 @@
                         Style="{StaticResource BorderStyle}" />
 
                     <StackPanel Margin="10" Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="{StaticResource Approaching}" />
-                        <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate SubscriptionExpiringTenants}" />
+                        <TextBlock Text="{StaticResource Approaching}" Style="{StaticResource iconTextBlockStyle}" />
+                        <TextBlock Text="{extensions:Translate SubscriptionExpiringTenants}" Style="{StaticResource headerTextBlockStyle}" />
                     </StackPanel>
 
                     <TextBlock
+                        Text="{extensions:Translate SeeAllRecords}"
                         Margin="0,0,10,0"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
-                        Foreground="#1E90FF"
-                        Text="{extensions:Translate SeeAllRecords}" />
+                        Foreground="#1E90FF" />
 
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" />
                 </Grid>
 
-                <Grid
-                    Grid.Row="1"
-                    Grid.Column="1"
+                <Grid Grid.Row="1" Grid.Column="1"
                     Margin="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -261,16 +257,16 @@
                         Style="{StaticResource BorderStyle}" />
 
                     <StackPanel Margin="10" Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource iconTextBlockStyle}" Text="{StaticResource AddUser}" />
-                        <TextBlock Style="{StaticResource headerTextBlockStyle}" Text="{extensions:Translate RecentTenants}" />
+                        <TextBlock Text="{StaticResource AddUser}" Style="{StaticResource iconTextBlockStyle}" />
+                        <TextBlock Text="{extensions:Translate RecentTenants}" Style="{StaticResource headerTextBlockStyle}" />
                     </StackPanel>
 
                     <TextBlock
+                        Text="{extensions:Translate SeeAllRecords}"
                         Margin="0,0,10,0"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
-                        Foreground="#1E90FF"
-                        Text="{extensions:Translate SeeAllRecords}" />
+                        Foreground="#1E90FF" />
 
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" />
                 </Grid>

@@ -21,15 +21,14 @@
             <DockPanel Margin="20" LastChildFill="False">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock
+                        Text="{Binding Title}"
                         FontSize="18"
-                        FontWeight="Bold"
-                        Text="{Binding Title}" />
+                        FontWeight="Bold" />
                 </StackPanel>
             </DockPanel>
 
-            <Border
-                Grid.Row="1"
-                Margin="10"
+            <Border Grid.Row="1"
+                Margin="0,5"
                 Style="{StaticResource BorderStyle}" />
 
             <TabControl Grid.Row="1" Margin="20">
@@ -58,7 +57,7 @@
                             </Grid.ColumnDefinitions>
 
                             <!--  日期范围  -->
-                            <TextBlock Margin="10,5" Text="{extensions:Translate DateRange}" />
+                            <TextBlock Text="{extensions:Translate DateRange}" Margin="10,5" />
                             <Grid Grid.Row="1" Margin="10,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
@@ -68,25 +67,21 @@
 
                                 <sync:SfDatePicker BorderThickness="1" Value="{Binding Filter.StartDate}" />
                                 <Border Grid.Column="1" Margin="10,0">
-                                    <TextBlock VerticalAlignment="Center" Text="―" />
+                                    <TextBlock Text="―" VerticalAlignment="Center" />
                                 </Border>
-                                <sync:SfDatePicker
-                                    Grid.Column="2"
+                                <sync:SfDatePicker Grid.Column="2"
                                     BorderThickness="1"
                                     Value="{Binding Filter.EndDate}" />
                             </Grid>
 
                             <!--  用户名  -->
-                            <TextBlock
-                                Grid.Column="1"
-                                Margin="10,5"
-                                Text="{extensions:Translate UserName}" />
-                            <TextBox
-                                Grid.Row="1"
-                                Grid.Column="1"
+                            <TextBlock Grid.Column="1"
+                                Text="{extensions:Translate UserName}"
+                                Margin="10,5" />
+                            <TextBox Grid.Row="1" Grid.Column="1"
+                                Text="{Binding Filter.UserName}"
                                 Margin="10,0"
-                                VerticalAlignment="Center"
-                                Text="{Binding Filter.UserName}" />
+                                VerticalAlignment="Center" />
                         </Grid>
 
                         <!--  高级筛选  -->
@@ -106,48 +101,38 @@
                             </Grid.ColumnDefinitions>
 
                             <!--  服务  -->
-                            <TextBlock Margin="10,5" Text="{extensions:Translate Service}" />
-                            <TextBox
-                                Grid.Row="1"
+                            <TextBlock Text="{extensions:Translate Service}" Margin="10,5" />
+                            <TextBox Grid.Row="1"
                                 Grid.ColumnSpan="2"
+                                Text="{Binding Filter.ServiceName}"
                                 Margin="10,0"
-                                VerticalAlignment="Center"
-                                Text="{Binding Filter.ServiceName}" />
+                                VerticalAlignment="Center" />
 
                             <!--  浏览器  -->
-                            <TextBlock
-                                Grid.Column="2"
+                            <TextBlock Grid.Column="2"
                                 Grid.ColumnSpan="2"
-                                Margin="10,5"
-                                Text="{extensions:Translate Browser}" />
-                            <TextBox
-                                Grid.Row="1"
-                                Grid.Column="2"
+                                Text="{extensions:Translate Browser}"
+                                Margin="10,5" />
+                            <TextBox Grid.Row="1" Grid.Column="2"
                                 Grid.ColumnSpan="2"
+                                Text="{Binding Filter.BrowserInfo}"
                                 Margin="10,0"
-                                VerticalAlignment="Center"
-                                Text="{Binding Filter.BrowserInfo}" />
+                                VerticalAlignment="Center" />
 
                             <!--  操作  -->
-                            <TextBlock
-                                Grid.Row="2"
-                                Margin="10,5"
-                                Text="{extensions:Translate Action}" />
-                            <TextBox
-                                Grid.Row="3"
+                            <TextBlock Grid.Row="2"
+                                Text="{extensions:Translate Action}"
+                                Margin="10,5" />
+                            <TextBox Grid.Row="3"
                                 Grid.ColumnSpan="2"
-                                Margin="10,0"
-                                Text="{Binding Filter.MethodName}" />
+                                Text="{Binding Filter.MethodName}"
+                                Margin="10,0" />
 
                             <!--  持续时间  -->
-                            <TextBlock
-                                Grid.Row="2"
-                                Grid.Column="2"
-                                Margin="10,5"
-                                Text="{extensions:Translate Duration}" />
-                            <Grid
-                                Grid.Row="3"
-                                Grid.Column="2"
+                            <TextBlock Grid.Row="2" Grid.Column="2"
+                                Text="{extensions:Translate Duration}"
+                                Margin="10,5" />
+                            <Grid Grid.Row="3" Grid.Column="2"
                                 Margin="10,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
@@ -155,21 +140,18 @@
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
                                 <TextBox Text="{Binding Filter.MinExecutionDuration}" />
-                                <Border
-                                    Grid.Column="1"
+                                <Border Grid.Column="1"
                                     Width="20"
                                     Margin="5,0">
-                                    <TextBlock VerticalAlignment="Center" Text="-" />
+                                    <TextBlock Text="-" VerticalAlignment="Center" />
                                 </Border>
                                 <TextBox Grid.Column="2" Text="{Binding Filter.MaxExecutionDuration}" />
                             </Grid>
 
                             <!--  错误状态  -->
-                            <TextBlock
-                                Grid.Row="2"
-                                Grid.Column="3"
-                                Margin="10,5"
-                                Text="{extensions:Translate ErrorState}" />
+                            <TextBlock Grid.Row="2" Grid.Column="3"
+                                Text="{extensions:Translate ErrorState}"
+                                Margin="10,5" />
                             <StackPanel Grid.Row="3" Grid.Column="3">
                                 <ComboBox
                                     Margin="10,0"
@@ -182,28 +164,24 @@
                             </StackPanel>
                         </Grid>
 
-                        <Button
-                            Grid.Row="2"
+                        <Button Grid.Row="2"
+                            Content="{Binding FilerTitle, Mode=TwoWay}"
+                            Command="{Binding AdvancedCommand}"
                             Margin="10"
                             Padding="5"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Background="Transparent"
-                            BorderThickness="0"
-                            Command="{Binding AdvancedCommand}"
-                            Content="{Binding FilerTitle, Mode=TwoWay}" />
+                            BorderThickness="0" />
 
-                        <Button
-                            Grid.Row="2"
+                        <Button Grid.Row="2"
+                            Content="{extensions:Translate Search}"
+                            Command="{Binding SearchCommand}"
                             Margin="10"
                             Padding="10,5"
-                            HorizontalAlignment="Right"
-                            Command="{Binding SearchCommand}"
-                            Content="{extensions:Translate Search}" />
+                            HorizontalAlignment="Right" />
 
-                        <sync:SfDataGrid
-                            x:Name="SfDataGrid"
-                            Grid.Row="3"
+                        <sync:SfDataGrid x:Name="SfDataGrid" Grid.Row="3"
                             Margin="15,0"
                             ItemsSource="{Binding dataPager.GridModelList}"
                             SelectedItem="{Binding dataPager.SelectedItem}"
@@ -216,9 +194,9 @@
                                     <sync:GridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button
-                                                Padding="8"
-                                                Command="{Binding DataContext.ViewLogCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
                                                 Content="{StaticResource Search}"
+                                                Command="{Binding DataContext.ViewLogCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                                Padding="8"
                                                 Style="{StaticResource IconButtonStyle}" />
                                         </DataTemplate>
                                     </sync:GridTemplateColumn.CellTemplate>
@@ -232,8 +210,7 @@
                             </sync:SfDataGrid.Columns>
                         </sync:SfDataGrid>
 
-                        <sync:SfDataPager
-                            Grid.Row="4"
+                        <sync:SfDataPager Grid.Row="4"
                             HorizontalAlignment="Right"
                             NumericButtonCount="{Binding dataPager.NumericButtonCount}"
                             PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"
@@ -265,7 +242,7 @@
                             </Grid.ColumnDefinitions>
 
                             <!--  日期范围  -->
-                            <TextBlock Margin="10,5" Text="{extensions:Translate DateRange}" />
+                            <TextBlock Text="{extensions:Translate DateRange}" Margin="10,5" />
                             <Grid Grid.Row="1" Margin="10,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
@@ -275,47 +252,40 @@
 
                                 <sync:SfDatePicker BorderThickness="1" Value="{Binding EntityChangeFilter.StartDate}" />
                                 <Border Grid.Column="1" Margin="10,0">
-                                    <TextBlock VerticalAlignment="Center" Text="―" />
+                                    <TextBlock Text="―" VerticalAlignment="Center" />
                                 </Border>
-                                <sync:SfDatePicker
-                                    Grid.Column="2"
+                                <sync:SfDatePicker Grid.Column="2"
                                     BorderThickness="1"
                                     Value="{Binding EntityChangeFilter.EndDate}" />
                             </Grid>
 
                             <!--  用户名  -->
-                            <TextBlock
-                                Grid.Column="1"
-                                Margin="10,5"
-                                Text="{extensions:Translate UserName}" />
-                            <TextBox
-                                Grid.Row="1"
-                                Grid.Column="1"
+                            <TextBlock Grid.Column="1"
+                                Text="{extensions:Translate UserName}"
+                                Margin="10,5" />
+                            <TextBox Grid.Row="1" Grid.Column="1"
+                                Text="{Binding EntityChangeFilter.UserName}"
                                 Margin="10,0"
-                                VerticalAlignment="Center"
-                                Text="{Binding EntityChangeFilter.UserName}" />
+                                VerticalAlignment="Center" />
 
                             <!--  对象  -->
-                            <TextBlock
-                                Grid.Row="2"
-                                Margin="10,10,0,0"
-                                Text="{extensions:Translate Object}" />
-                            <DockPanel
-                                Grid.Row="3"
+                            <TextBlock Grid.Row="2"
+                                Text="{extensions:Translate Object}"
+                                Margin="10,10,0,0" />
+                            <DockPanel Grid.Row="3"
                                 Grid.ColumnSpan="2"
                                 Margin="10,0">
                                 <Button
+                                    Content="{extensions:Translate Search}"
+                                    Command="{Binding SearchCommand}"
                                     Margin="10,0,0,0"
                                     Padding="10,5"
-                                    Command="{Binding SearchCommand}"
-                                    Content="{extensions:Translate Search}"
                                     DockPanel.Dock="Right" />
-                                <ComboBox VerticalAlignment="Center" Text="{Binding EntityChangeFilter.EntityTypeFullName}" />
+                                <ComboBox Text="{Binding EntityChangeFilter.EntityTypeFullName}" VerticalAlignment="Center" />
                             </DockPanel>
                         </Grid>
 
-                        <sync:SfDataGrid
-                            Grid.Row="1"
+                        <sync:SfDataGrid Grid.Row="1"
                             Margin="15,0"
                             ItemsSource="{Binding logsdataPager.GridModelList}"
                             Style="{StaticResource SimpleDataGridStyle}">
@@ -327,9 +297,9 @@
                                     <sync:GridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button
-                                                Padding="8"
-                                                Command="{Binding DataContext.ViewChangedLogCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
                                                 Content="{StaticResource Search}"
+                                                Command="{Binding DataContext.ViewChangedLogCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                                Padding="8"
                                                 Style="{StaticResource IconButtonStyle}" />
                                         </DataTemplate>
                                     </sync:GridTemplateColumn.CellTemplate>
@@ -340,8 +310,7 @@
                             </sync:SfDataGrid.Columns>
                         </sync:SfDataGrid>
 
-                        <sync:SfDataPager
-                            Grid.Row="4"
+                        <sync:SfDataPager Grid.Row="4"
                             HorizontalAlignment="Right"
                             NumericButtonCount="{Binding logsdataPager.NumericButtonCount}"
                             PageCount="{Binding logsdataPager.PageCount, Mode=TwoWay}"

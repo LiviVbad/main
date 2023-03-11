@@ -16,17 +16,17 @@
             <DockPanel Margin="20,15" LastChildFill="False">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock
+                        Text="{Binding Title}"
                         FontSize="18"
-                        FontWeight="Bold"
-                        Text="{Binding Title}" />
+                        FontWeight="Bold" />
                     <TextBlock
+                        Text="{extensions:Translate UiCustomizationHeaderInfo}"
                         Margin="10,0,0,0"
-                        VerticalAlignment="Center"
-                        Text="{extensions:Translate UiCustomizationHeaderInfo}" />
+                        VerticalAlignment="Center" />
                 </StackPanel>
             </DockPanel>
 
-            <Grid Grid.Row="1" Margin="10">
+            <Grid Grid.Row="1" Margin="0,5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
@@ -52,25 +52,23 @@
                                     Source="/Assets/Images/theme12.png"
                                     Stretch="Fill" />
 
-                                <Button
-                                    Grid.Row="1"
+                                <Button Grid.Row="1"
+                                    Content="{Binding DisplayName}"
+                                    Command="{Binding DataContext.SetThemeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"
                                     Margin="5"
                                     Padding="0,5"
                                     Background="Transparent"
-                                    BorderThickness="0"
-                                    Command="{Binding DataContext.SetThemeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
-                                    CommandParameter="{Binding}"
-                                    Content="{Binding DisplayName}" />
+                                    BorderThickness="0" />
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <CheckBox
-                    Grid.Row="1"
-                    Margin="15"
+                <CheckBox Grid.Row="1"
                     Content="{extensions:Translate UiCustomization_DarkMode}"
-                    IsChecked="{Binding themeService.IsDarkTheme}" />
+                    IsChecked="{Binding themeService.IsDarkTheme}"
+                    Margin="15" />
             </Grid>
         </Grid>
     </sync:SfBusyIndicator>

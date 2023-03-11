@@ -20,24 +20,24 @@
         <DockPanel Margin="20" LastChildFill="False">
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                 <TextBlock
+                    Text="{Binding Title}"
                     FontSize="18"
-                    FontWeight="Bold"
-                    Text="{Binding Title}" />
+                    FontWeight="Bold" />
                 <TextBlock
+                    Text="{extensions:Translate VersionManagerInfo}"
                     Margin="10,0,0,0"
-                    VerticalAlignment="Center"
-                    Text="{extensions:Translate VersionManagerInfo}" />
+                    VerticalAlignment="Center" />
             </StackPanel>
 
             <Button
-                VerticalAlignment="Center"
-                Command="{Binding AddCommand}"
                 Content="{extensions:Translate CreateVersion}"
+                Command="{Binding AddCommand}"
+                VerticalAlignment="Center"
                 DockPanel.Dock="Right"
                 Style="{StaticResource SimpleButton}" />
         </DockPanel>
 
-        <Grid Grid.Row="1" Margin="10">
+        <Grid Grid.Row="1" Margin="0,5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition />
@@ -46,9 +46,7 @@
 
             <Border Grid.RowSpan="3" Style="{StaticResource BorderStyle}" />
 
-            <sync:SfDataGrid
-                x:Name="SfDataGrid"
-                Grid.Row="1"
+            <sync:SfDataGrid x:Name="SfDataGrid" Grid.Row="1"
                 Margin="15"
                 ItemsSource="{Binding dataPager.GridModelList}"
                 SelectedItem="{Binding dataPager.SelectedItem}"
@@ -66,12 +64,12 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <Button
-                                                    Margin="5"
-                                                    Padding="3"
-                                                    Background="Transparent"
+                                                    Content="{Binding Name}"
                                                     Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
                                                     CommandParameter="{Binding Key}"
-                                                    Content="{Binding Name}" />
+                                                    Margin="5"
+                                                    Padding="3"
+                                                    Background="Transparent" />
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
@@ -93,8 +91,7 @@
                 </sync:SfDataGrid.Columns>
             </sync:SfDataGrid>
 
-            <sync:SfDataPager
-                Grid.Row="2"
+            <sync:SfDataPager Grid.Row="2"
                 HorizontalAlignment="Right"
                 NumericButtonCount="{Binding dataPager.NumericButtonCount}"
                 PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"

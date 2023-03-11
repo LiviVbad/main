@@ -22,17 +22,17 @@
             <DockPanel Margin="20" LastChildFill="False">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock
+                        Text="{extensions:Translate LanguageTexts}"
                         FontSize="18"
-                        FontWeight="Bold"
-                        Text="{extensions:Translate LanguageTexts}" />
+                        FontWeight="Bold" />
                     <TextBlock
+                        Text="{extensions:Translate LanguageTextsHeaderInfo}"
                         Margin="10,0,0,0"
-                        VerticalAlignment="Center"
-                        Text="{extensions:Translate LanguageTextsHeaderInfo}" />
+                        VerticalAlignment="Center" />
                 </StackPanel>
             </DockPanel>
 
-            <Grid Grid.Row="1" Margin="20">
+            <Grid Grid.Row="1" Margin="0,5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition />
@@ -86,17 +86,15 @@
 
                     <DockPanel Grid.Row="1" Margin="10">
                         <Button
-                            Margin="5,0,0,0"
                             Command="{Binding SearchCommand}"
+                            Margin="5,0,0,0"
                             DockPanel.Dock="Right"
                             Style="{DynamicResource SearchButtonStyle}" />
                         <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     </DockPanel>
                 </Grid>
 
-                <sync:SfDataGrid
-                    x:Name="SfDataGrid"
-                    Grid.Row="1"
+                <sync:SfDataGrid x:Name="SfDataGrid" Grid.Row="1"
                     Margin="15"
                     ItemsSource="{Binding dataPager.GridModelList}"
                     SelectedItem="{Binding dataPager.SelectedItem}"
@@ -109,10 +107,10 @@
                             <sync:GridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button
-                                        Padding="8"
+                                        Content="{StaticResource Edit}"
                                         Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
                                         CommandParameter="{Binding}"
-                                        Content="{StaticResource Edit}"
+                                        Padding="8"
                                         Style="{StaticResource IconButtonStyle}" />
                                 </DataTemplate>
                             </sync:GridTemplateColumn.CellTemplate>
@@ -123,8 +121,7 @@
                     </sync:SfDataGrid.Columns>
                 </sync:SfDataGrid>
 
-                <sync:SfDataPager
-                    Grid.Row="2"
+                <sync:SfDataPager Grid.Row="2"
                     HorizontalAlignment="Right"
                     NumericButtonCount="{Binding dataPager.NumericButtonCount}"
                     PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"

@@ -21,25 +21,25 @@
             <DockPanel Margin="20" LastChildFill="False">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock
+                        Text="{Binding Title}"
                         FontSize="18"
-                        FontWeight="Bold"
-                        Text="{Binding Title}" />
+                        FontWeight="Bold" />
                     <TextBlock
+                        Text="{extensions:Translate LanguagesHeaderInfo}"
                         Margin="10,0,0,0"
-                        VerticalAlignment="Center"
-                        Text="{extensions:Translate LanguagesHeaderInfo}" />
+                        VerticalAlignment="Center" />
                 </StackPanel>
 
                 <Button
-                    VerticalAlignment="Center"
-                    Command="{Binding AddCommand}"
                     Content="{extensions:Translate CreateNewLanguage}"
+                    Command="{Binding AddCommand}"
+                    VerticalAlignment="Center"
                     DockPanel.Dock="Right"
                     Style="{StaticResource SimpleButton}"
                     Visibility="{extensions:HasPermission Text={x:Static extensions:AppPermissions.LanguageCreate}}" />
             </DockPanel>
 
-            <Grid Grid.Row="1" Margin="10">
+            <Grid Grid.Row="1" Margin="0,5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition />
@@ -48,9 +48,7 @@
 
                 <Border Grid.RowSpan="3" Style="{StaticResource BorderStyle}" />
 
-                <sync:SfDataGrid
-                    x:Name="SfDataGrid"
-                    Grid.Row="1"
+                <sync:SfDataGrid x:Name="SfDataGrid" Grid.Row="1"
                     Margin="15"
                     ItemsSource="{Binding dataPager.GridModelList}"
                     SelectedItem="{Binding dataPager.SelectedItem}"
@@ -68,12 +66,12 @@
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
                                                     <Button
-                                                        Margin="5"
-                                                        Padding="3"
-                                                        Background="Transparent"
+                                                        Content="{Binding Name}"
                                                         Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
                                                         CommandParameter="{Binding Key}"
-                                                        Content="{Binding Name}" />
+                                                        Margin="5"
+                                                        Padding="3"
+                                                        Background="Transparent" />
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
@@ -95,7 +93,7 @@
                                             Width="18"
                                             Height="18"
                                             Source="{Binding Icon, Converter={StaticResource imageConvert}}" />
-                                        <TextBlock Margin="5,0" Text="{Binding DisplayName}" />
+                                        <TextBlock Text="{Binding DisplayName}" Margin="5,0" />
                                     </StackPanel>
                                 </DataTemplate>
                             </sync:GridTemplateColumn.CellTemplate>
@@ -117,9 +115,9 @@
                                         Background="{Binding IsDisabled, Converter={StaticResource inverseboolToBackgroundConverter}}"
                                         CornerRadius="5">
                                         <TextBlock
+                                            Text="{Binding IsDisabled, Converter={StaticResource inverseboolToYesNoStrConverter}}"
                                             Padding="5,3"
-                                            Foreground="White"
-                                            Text="{Binding IsDisabled, Converter={StaticResource inverseboolToYesNoStrConverter}}" />
+                                            Foreground="White" />
                                     </Border>
                                 </DataTemplate>
                             </sync:GridTemplateColumn.CellTemplate>
@@ -131,8 +129,7 @@
                     </sync:SfDataGrid.Columns>
                 </sync:SfDataGrid>
 
-                <sync:SfDataPager
-                    Grid.Row="2"
+                <sync:SfDataPager Grid.Row="2"
                     HorizontalAlignment="Right"
                     NumericButtonCount="{Binding dataPager.NumericButtonCount}"
                     PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"

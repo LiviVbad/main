@@ -255,9 +255,13 @@ namespace AppFramework.Admin.ViewModels
         private async Task PopulateEditionsCombobox(Action editionsPopulated)
         {
             var editions = await commonLookupAppService.GetEditionsForCombobox();
-            Editions = new ObservableCollection<SubscribableEditionComboboxItemDto>(editions.Items);
-            AddNotAssignedItem();
-            editionsPopulated();
+
+            if(editions!=null)
+            {
+                Editions = new ObservableCollection<SubscribableEditionComboboxItemDto>(editions.Items);
+                AddNotAssignedItem();
+                editionsPopulated();
+            } 
         }
 
         private void AddNotAssignedItem()

@@ -16,17 +16,17 @@
             <DockPanel Margin="20,15" LastChildFill="False">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock
+                        Text="{Binding Title}"
                         FontSize="18"
-                        FontWeight="Bold"
-                        Text="{Binding Title}" />
+                        FontWeight="Bold" />
                     <TextBlock
+                        Text="{extensions:Translate LoginAttempts}"
                         Margin="10,0,0,0"
-                        VerticalAlignment="Center"
-                        Text="{extensions:Translate LoginAttempts}" />
+                        VerticalAlignment="Center" />
                 </StackPanel>
             </DockPanel>
 
-            <Grid Grid.Row="1" Margin="10">
+            <Grid Grid.Row="1" Margin="0,5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition />
@@ -44,21 +44,20 @@
 
                     <DockPanel Margin="5">
                         <Button
-                            Padding="8"
-                            Command="{Binding SearchCommand}"
                             Content="{StaticResource Search}"
+                            Command="{Binding SearchCommand}"
+                            Padding="8"
                             DockPanel.Dock="Right"
                             Style="{StaticResource IconButtonStyle}" />
-                        <TextBox Margin="5,0" Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=500}" />
+                        <TextBox Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=500}" Margin="5,0" />
                     </DockPanel>
 
-                    <UniformGrid
-                        Grid.Row="1"
+                    <UniformGrid Grid.Row="1"
                         Margin="5"
                         Columns="2"
                         Rows="2">
-                        <TextBlock Margin="3,0" Text="{extensions:Translate DateRange}" />
-                        <TextBlock Margin="3,0" Text="{extensions:Translate Result}" />
+                        <TextBlock Text="{extensions:Translate DateRange}" Margin="3,0" />
+                        <TextBlock Text="{extensions:Translate Result}" Margin="3,0" />
                         <Grid Margin="3">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -68,10 +67,9 @@
 
                             <sync:SfDatePicker BorderThickness="1" Value="{Binding StartDate, Mode=TwoWay}" />
                             <Border Grid.Column="1" Margin="10,0">
-                                <TextBlock VerticalAlignment="Center" Text="―" />
+                                <TextBlock Text="―" VerticalAlignment="Center" />
                             </Border>
-                            <sync:SfDatePicker
-                                Grid.Column="2"
+                            <sync:SfDatePicker Grid.Column="2"
                                 BorderThickness="1"
                                 Value="{Binding EndDate, Mode=TwoWay}" />
                         </Grid>
@@ -91,8 +89,7 @@
                     </UniformGrid>
                 </Grid>
 
-                <sync:SfDataGrid
-                    Grid.Row="1"
+                <sync:SfDataGrid Grid.Row="1"
                     Margin="15,0"
                     ItemsSource="{Binding dataPager.GridModelList}"
                     SelectedItem="{Binding dataPager.SelectedItem}"
@@ -118,9 +115,9 @@
                             <sync:GridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
+                                        Text="{Binding Result}"
                                         VerticalAlignment="Center"
-                                        Foreground="White"
-                                        Text="{Binding Result}" />
+                                        Foreground="White" />
                                 </DataTemplate>
                             </sync:GridTemplateColumn.CellTemplate>
                         </sync:GridTemplateColumn>
@@ -131,8 +128,7 @@
                     </sync:SfDataGrid.Columns>
                 </sync:SfDataGrid>
 
-                <sync:SfDataPager
-                    Grid.Row="2"
+                <sync:SfDataPager Grid.Row="2"
                     HorizontalAlignment="Right"
                     NumericButtonCount="{Binding dataPager.NumericButtonCount}"
                     PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"

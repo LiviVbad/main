@@ -6,114 +6,116 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:AppFramework.Shared;assembly=AppFramework.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sync="http://schemas.syncfusion.com/wpf"
     Width="800"
     Height="550"
     mc:Ignorable="d">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
+    <sync:SfBusyIndicator IsBusy="{Binding IsBusy}" AnimationType="DoubleCircle">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
 
-        <Border
-            Grid.RowSpan="3"
-            CornerRadius="0"
-            Opacity="1"
-            Style="{StaticResource BorderStyle}" />
+            <Border
+                Grid.RowSpan="3"
+                CornerRadius="0"
+                Opacity="1"
+                Style="{StaticResource BorderStyle}" />
 
-        <TextBlock
-            Margin="15"
-            FontSize="18"
-            FontWeight="Bold"
-            Text="{extensions:Translate CreateNewTenant}" />
+            <TextBlock
+                Text="{extensions:Translate CreateNewTenant}"
+                Margin="15"
+                FontSize="18"
+                FontWeight="Bold" />
 
-        <TextBlock Style="{StaticResource closeTextBlock}" ToolTip="{extensions:Translate Close}">
-            <b:Interaction.Triggers>
-                <b:EventTrigger EventName="MouseLeftButtonDown">
-                    <b:InvokeCommandAction Command="{Binding CancelCommand}" />
-                </b:EventTrigger>
-            </b:Interaction.Triggers>
-        </TextBlock>
+            <TextBlock Style="{StaticResource closeTextBlock}" ToolTip="{extensions:Translate Close}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="MouseLeftButtonDown">
+                        <b:InvokeCommandAction Command="{Binding CancelCommand}" />
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </TextBlock>
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <StackPanel Grid.Row="1" Margin="20,10">
-                <!--  租户名称  -->
-                <TextBlock Margin="0,5" Text="{extensions:Translate TenancyName}" />
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel Grid.Row="1" Margin="20,10">
+                    <!--  租户名称  -->
+                    <TextBlock Text="{extensions:Translate TenancyCodeName}" Margin="0,5" />
 
-                <TextBox IsEnabled="{Binding IsNewTenant}" Text="{Binding Model.TenancyName}" />
+                    <TextBox Text="{Binding Model.TenancyName}" IsEnabled="{Binding IsNewTenant}" />
 
-                <!--  姓名  -->
-                <TextBlock Margin="0,5" Text="{extensions:Translate Name}" />
-                <TextBox Text="{Binding Model.Name}" />
+                    <!--  姓名  -->
+                    <TextBlock Text="{extensions:Translate TenantName}" Margin="0,5" />
+                    <TextBox Text="{Binding Model.Name}" />
 
-                <!--  使用主机数据库  -->
-                <StackPanel
-                    Margin="0,5"
-                    Orientation="Horizontal"
-                    Visibility="{Binding IsNewTenant, Converter={StaticResource inverseBoolToVisibility}}">
-                    <TextBlock Text="{extensions:Translate UseHostDatabase}" />
-                    <CheckBox Margin="5,0" IsChecked="{Binding UseHostDatabase}" />
-                </StackPanel>
-
-                <!--  连接字符串  -->
-                <StackPanel Margin="0,5" Visibility="{Binding UseHostDatabase, Converter={StaticResource inverseBoolToVisibility}}">
-                    <TextBlock Text="{extensions:Translate DatabaseConnectionString}" />
-                    <TextBox Text="{Binding Model.ConnectionString}" />
-
-                    <!--  连接字符串更改警告  -->
+                    <!--  使用主机数据库  -->
                     <StackPanel
                         Margin="0,5"
                         Orientation="Horizontal"
                         Visibility="{Binding IsNewTenant, Converter={StaticResource inverseBoolToVisibility}}">
-                        <TextBlock Text="{extensions:Translate TenantDatabaseConnectionStringChangeWarningMessage}" />
-                    </StackPanel>
-                </StackPanel>
-
-                <StackPanel Margin="0,5" Visibility="{Binding IsNewTenant, Converter={StaticResource inverseBoolToVisibility}}">
-                    <!--  管理员邮箱  -->
-                    <TextBlock Text="{extensions:Translate AdminEmailAddress}" />
-                    <TextBox Margin="0,5" Text="{Binding Model.AdminEmailAddress}" />
-
-                    <!--  设置随机密码  -->
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{extensions:Translate SetRandomPassword}" />
-                        <CheckBox Margin="5,0" IsChecked="{Binding IsSetRandomPassword}" />
+                        <TextBlock Text="{extensions:Translate UseHostDatabase}" />
+                        <CheckBox IsChecked="{Binding UseHostDatabase}" Margin="5,0" />
                     </StackPanel>
 
-                    <StackPanel
-                        Margin="0,5"
-                        Orientation="Vertical"
-                        Visibility="{Binding IsSetRandomPassword, Converter={StaticResource boolToVisibility}}">
+                    <!--  连接字符串  -->
+                    <StackPanel Margin="0,5" Visibility="{Binding UseHostDatabase, Converter={StaticResource boolToVisibility}}">
+                        <TextBlock Text="{extensions:Translate DatabaseConnectionString}" />
+                        <TextBox Text="{Binding Model.ConnectionString}" />
 
-                        <!--  管理员密码  -->
-                        <TextBlock Margin="0,5" Text="{extensions:Translate AdminPassword}" />
-                        <TextBox Text="{Binding AdminPassword}" />
-
-                        <!--  管理员密码重复  -->
-                        <TextBlock Margin="0,5" Text="{extensions:Translate AdminPasswordRepeat}" />
-                        <TextBox Text="{Binding AdminPasswordRepeat}" />
-                    </StackPanel>
-                </StackPanel>
-
-                <TextBlock Margin="0,5" Text="{extensions:Translate Edition}" />
-                <ComboBox ItemsSource="{Binding Editions}" SelectedItem="{Binding SelectedEdition}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding DisplayText}" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <StackPanel Orientation="Vertical" Visibility="{Binding IsSubscriptionFieldVisible, Converter={StaticResource inverseBoolToVisibility}}">
-
-                    <!--  无限时间订阅  -->
-                    <StackPanel Margin="0,5" Orientation="Horizontal">
-                        <TextBlock Text="{extensions:Translate UnlimitedTimeSubscription}" />
-                        <CheckBox Margin="5,0" IsChecked="{Binding IsUnlimitedTimeSubscription}" />
+                        <!--  连接字符串更改警告  -->
+                        <StackPanel
+                            Margin="0,5"
+                            Orientation="Horizontal"
+                            Visibility="{Binding IsNewTenant, Converter={StaticResource inverseBoolToVisibility}}">
+                            <TextBlock Text="{extensions:Translate TenantDatabaseConnectionStringChangeWarningMessage}" />
+                        </StackPanel>
                     </StackPanel>
 
-                    <!--  选择到期时间  -->
-                    <!--<controls:ExtendedDatePicker
+                    <StackPanel Margin="0,5" Visibility="{Binding IsNewTenant, Converter={StaticResource inverseBoolToVisibility}}">
+                        <!--  管理员邮箱  -->
+                        <TextBlock Text="{extensions:Translate AdminEmailAddress}" />
+                        <TextBox Text="{Binding Model.AdminEmailAddress}" Margin="0,5" />
+
+                        <!--  设置随机密码  -->
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{extensions:Translate SetRandomPassword}" />
+                            <CheckBox IsChecked="{Binding IsSetRandomPassword}" Margin="5,0" />
+                        </StackPanel>
+
+                        <StackPanel
+                            Margin="0,5"
+                            Orientation="Vertical"
+                            Visibility="{Binding IsSetRandomPassword, Converter={StaticResource boolToVisibility}}">
+
+                            <!--  管理员密码  -->
+                            <TextBlock Text="{extensions:Translate AdminPassword}" Margin="0,5" />
+                            <TextBox Text="{Binding AdminPassword}" />
+
+                            <!--  管理员密码重复  -->
+                            <TextBlock Text="{extensions:Translate AdminPasswordRepeat}" Margin="0,5" />
+                            <TextBox Text="{Binding AdminPasswordRepeat}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <TextBlock Text="{extensions:Translate Edition}" Margin="0,5" />
+                    <ComboBox ItemsSource="{Binding Editions}" SelectedItem="{Binding SelectedEdition}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DisplayText}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <StackPanel Orientation="Vertical" Visibility="{Binding IsSubscriptionFieldVisible, Converter={StaticResource inverseBoolToVisibility}}">
+
+                        <!--  无限时间订阅  -->
+                        <StackPanel Margin="0,5" Orientation="Horizontal">
+                            <TextBlock Text="{extensions:Translate UnlimitedTimeSubscription}" />
+                            <CheckBox IsChecked="{Binding IsUnlimitedTimeSubscription}" Margin="5,0" />
+                        </StackPanel>
+
+                        <!--  选择到期时间  -->
+                        <!--<controls:ExtendedDatePicker
                     Format="{extensions:Translate DateFormatShort}"
                     HasBorder="False"
                     HorizontalOptions="FillAndExpand"
@@ -123,58 +125,58 @@
                     Placeholder="{extensions:Translate SelectDate}"
                     XAlign="Start" />-->
 
-                    <!--  试用期  -->
-                    <StackPanel
-                        Margin="0,5"
-                        Orientation="Horizontal"
-                        Visibility="{Binding IsUnlimitedTimeSubscription, Converter={StaticResource inverseBoolToVisibility}}">
-                        <TextBlock Text="{extensions:Translate IsInTrialPeriod}" />
-                        <CheckBox Margin="5,0" IsChecked="{Binding Model.IsInTrialPeriod}" />
-                    </StackPanel>
+                        <!--  试用期  -->
+                        <StackPanel
+                            Margin="0,5"
+                            Orientation="Horizontal"
+                            Visibility="{Binding IsUnlimitedTimeSubscription, Converter={StaticResource inverseBoolToVisibility}}">
+                            <TextBlock Text="{extensions:Translate IsInTrialPeriod}" />
+                            <CheckBox IsChecked="{Binding Model.IsInTrialPeriod}" Margin="5,0" />
+                        </StackPanel>
 
-                    <StackPanel
-                        Margin="0,5"
-                        Orientation="Horizontal"
-                        Visibility="{Binding IsSelectedEditionFree, Converter={StaticResource inverseBoolToVisibility}}">
-                        <TextBlock Text="{extensions:Translate FreeEditionsCannotHaveTrialVersions}" />
-                    </StackPanel>
+                        <StackPanel
+                            Margin="0,5"
+                            Orientation="Horizontal"
+                            Visibility="{Binding IsSelectedEditionFree, Converter={StaticResource inverseBoolToVisibility}}">
+                            <TextBlock Text="{extensions:Translate FreeEditionsCannotHaveTrialVersions}" />
+                        </StackPanel>
 
-                    <!--  下一次登录修改密码？  -->
-                    <StackPanel Margin="0,5" Orientation="Horizontal">
-                        <TextBlock Text="{extensions:Translate ShouldChangePasswordOnNextLogin}" />
-                        <CheckBox Margin="5,0" IsChecked="{Binding Model.ShouldChangePasswordOnNextLogin}" />
-                    </StackPanel>
+                        <!--  下一次登录修改密码？  -->
+                        <StackPanel Margin="0,5" Orientation="Horizontal">
+                            <TextBlock Text="{extensions:Translate ShouldChangePasswordOnNextLogin}" />
+                            <CheckBox IsChecked="{Binding Model.ShouldChangePasswordOnNextLogin}" Margin="5,0" />
+                        </StackPanel>
 
-                    <!--  发送激活邮件  -->
-                    <StackPanel Margin="0,5" Orientation="Horizontal">
-                        <TextBlock Text="{extensions:Translate EmailActivation}" />
-                        <CheckBox Margin="5,0" IsChecked="{Binding Model.SendActivationEmail}" />
-                    </StackPanel>
+                        <!--  发送激活邮件  -->
+                        <StackPanel Margin="0,5" Orientation="Horizontal">
+                            <TextBlock Text="{extensions:Translate EmailActivation}" />
+                            <CheckBox IsChecked="{Binding Model.SendActivationEmail}" Margin="5,0" />
+                        </StackPanel>
 
-                    <!--  是否激活  -->
-                    <StackPanel Margin="0,5" Orientation="Horizontal">
-                        <TextBlock Text="{extensions:Translate Active}" />
-                        <CheckBox Margin="5,0" IsChecked="{Binding Model.IsActive}" />
+                        <!--  是否激活  -->
+                        <StackPanel Margin="0,5" Orientation="Horizontal">
+                            <TextBlock Text="{extensions:Translate Active}" />
+                            <CheckBox IsChecked="{Binding Model.IsActive}" Margin="5,0" />
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
+            </ScrollViewer>
+
+
+            <StackPanel Grid.Row="2"
+                Margin="0,0,15,15"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <Button
+                    Content="{extensions:Translate Cancel}"
+                    Command="{Binding CancelCommand}"
+                    Margin="0,0,10,0"
+                    Padding="10,5" />
+                <Button
+                    Content="{extensions:Translate Save}"
+                    Command="{Binding SaveCommand}"
+                    Padding="10,5" />
             </StackPanel>
-        </ScrollViewer>
-
-
-        <StackPanel
-            Grid.Row="2"
-            Margin="0,0,15,15"
-            HorizontalAlignment="Right"
-            Orientation="Horizontal">
-            <Button
-                Margin="0,0,10,0"
-                Padding="10,5"
-                Command="{Binding CancelCommand}"
-                Content="{extensions:Translate Cancel}" />
-            <Button
-                Padding="10,5"
-                Command="{Binding SaveCommand}"
-                Content="{extensions:Translate Save}" />
-        </StackPanel>
-    </Grid>
+        </Grid>
+    </sync:SfBusyIndicator>
 </UserControl>

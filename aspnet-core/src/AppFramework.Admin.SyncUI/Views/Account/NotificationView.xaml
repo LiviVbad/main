@@ -19,24 +19,24 @@
             <DockPanel Margin="20,15" LastChildFill="False">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock
+                        Text="{Binding Title}"
                         FontSize="18"
-                        FontWeight="Bold"
-                        Text="{Binding Title}" />
+                        FontWeight="Bold" />
                 </StackPanel>
 
                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
                     <Button
-                        Margin="10,0"
                         Content="{extensions:Translate NotificationSettings}"
+                        Margin="10,0"
                         Style="{StaticResource SimpleButton}" />
                     <Button
-                        Command="{Binding SetAllNotificationsAsReadCommand}"
                         Content="{extensions:Translate SetAllAsRead}"
+                        Command="{Binding SetAllNotificationsAsReadCommand}"
                         Style="{StaticResource SimpleButton}" />
                 </StackPanel>
             </DockPanel>
 
-            <Grid Grid.Row="1" Margin="10">
+            <Grid Grid.Row="1" Margin="0,5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition />
@@ -62,10 +62,9 @@
 
                             <sync:SfDatePicker BorderThickness="1" Value="{Binding StartDate, Mode=TwoWay}" />
                             <Border Grid.Column="1" Margin="10,0">
-                                <TextBlock VerticalAlignment="Center" Text="―" />
+                                <TextBlock Text="―" VerticalAlignment="Center" />
                             </Border>
-                            <sync:SfDatePicker
-                                Grid.Column="2"
+                            <sync:SfDatePicker Grid.Column="2"
                                 BorderThickness="1"
                                 Value="{Binding EndDate, Mode=TwoWay}" />
                         </Grid>
@@ -79,25 +78,23 @@
                         </ComboBox>
                     </UniformGrid>
 
-                    <StackPanel
-                        Grid.Row="1"
+                    <StackPanel Grid.Row="1"
                         Margin="10"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
                         <Button
-                            Margin="10,0"
-                            Command="{Binding DeleteAllUserNotificationsCommand}"
                             Content="{extensions:Translate DeleteListedNotifications}"
+                            Command="{Binding DeleteAllUserNotificationsCommand}"
+                            Margin="10,0"
                             Style="{StaticResource SimpleButton}" />
                         <Button
-                            Command="{Binding RefreshCommand}"
                             Content="{extensions:Translate Refresh}"
+                            Command="{Binding RefreshCommand}"
                             Style="{StaticResource SimpleButton}" />
                     </StackPanel>
                 </Grid>
 
-                <sync:SfDataGrid
-                    Grid.Row="1"
+                <sync:SfDataGrid Grid.Row="1"
                     Margin="15,0"
                     ItemsSource="{Binding dataPager.GridModelList}"
                     SelectedItem="{Binding dataPager.SelectedItem}"
@@ -114,22 +111,22 @@
                                         VerticalAlignment="Center"
                                         Orientation="Horizontal">
                                         <Button
+                                            Content="{StaticResource Sure}"
+                                            Command="{Binding DataContext.SetNotificationAsReadCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
+                                            CommandParameter="{Binding}"
                                             Margin="10,0"
                                             VerticalAlignment="Center"
                                             Background="Transparent"
-                                            Command="{Binding DataContext.SetNotificationAsReadCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
-                                            CommandParameter="{Binding}"
-                                            Content="{StaticResource Sure}"
                                             Style="{StaticResource IconButtonStyle}"
                                             ToolTip="{extensions:Translate SetAsRead}"
                                             Visibility="{Binding State, Converter={StaticResource stateConverter}}" />
 
                                         <Button
-                                            VerticalAlignment="Center"
-                                            Background="Transparent"
+                                            Content="{StaticResource Close}"
                                             Command="{Binding DataContext.DeleteNotificationCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
                                             CommandParameter="{Binding}"
-                                            Content="{StaticResource Close}"
+                                            VerticalAlignment="Center"
+                                            Background="Transparent"
                                             Style="{StaticResource IconButtonStyle}"
                                             ToolTip="{extensions:Translate Delete}" />
                                     </StackPanel>
@@ -143,7 +140,7 @@
                         <sync:GridTemplateColumn HeaderText="{extensions:Translate Notifications}" MappingName="Notification">
                             <sync:GridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock VerticalAlignment="Center" Text="{Binding Converter={StaticResource notifycationConverter}}" />
+                                    <TextBlock Text="{Binding Converter={StaticResource notifycationConverter}}" VerticalAlignment="Center" />
                                 </DataTemplate>
                             </sync:GridTemplateColumn.CellTemplate>
                         </sync:GridTemplateColumn>
@@ -154,8 +151,7 @@
                     </sync:SfDataGrid.Columns>
                 </sync:SfDataGrid>
 
-                <sync:SfDataPager
-                    Grid.Row="2"
+                <sync:SfDataPager Grid.Row="2"
                     HorizontalAlignment="Right"
                     NumericButtonCount="{Binding dataPager.NumericButtonCount}"
                     PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"

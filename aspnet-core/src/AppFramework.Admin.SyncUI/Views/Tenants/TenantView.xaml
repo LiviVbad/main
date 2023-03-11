@@ -22,26 +22,26 @@
             <DockPanel Margin="20,15" LastChildFill="False">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock
+                        Text="{Binding Title}"
                         FontSize="18"
-                        FontWeight="Bold"
-                        Text="{Binding Title}" />
+                        FontWeight="Bold" />
 
                     <TextBlock
+                        Text="{extensions:Translate TenantsHeaderInfo}"
                         Margin="10,0,0,0"
-                        VerticalAlignment="Center"
-                        Text="{extensions:Translate TenantsHeaderInfo}" />
+                        VerticalAlignment="Center" />
                 </StackPanel>
 
                 <Button
-                    VerticalAlignment="Center"
-                    Command="{Binding AddCommand}"
                     Content="{extensions:Translate CreateNewTenant}"
+                    Command="{Binding AddCommand}"
+                    VerticalAlignment="Center"
                     DockPanel.Dock="Right"
                     Style="{StaticResource SimpleButton}"
                     Visibility="{extensions:HasPermission Text={x:Static perm:AppPermissions.TenantCreate}}" />
             </DockPanel>
 
-            <Grid Grid.Row="1" Margin="10">
+            <Grid Grid.Row="1" Margin="0,5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition />
@@ -63,25 +63,22 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Margin="5" Text="{extensions:Translate TenantNameOrTenancyCode}" />
+                    <TextBlock Text="{extensions:Translate TenantNameOrTenancyCode}" Margin="5" />
 
                     <DockPanel Grid.Row="1" Margin="5">
                         <Button
-                            Padding="8"
-                            Command="{Binding SearchCommand}"
                             Content="{StaticResource Search}"
+                            Command="{Binding SearchCommand}"
+                            Padding="8"
                             DockPanel.Dock="Right"
                             Style="{StaticResource IconButtonStyle}" />
                         <TextBox Text="{Binding Filter.Filter}" />
                     </DockPanel>
 
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="5"
-                        Text="{extensions:Translate Edition}" />
-                    <ComboBox
-                        Grid.Row="1"
-                        Grid.Column="1"
+                    <TextBlock Grid.Column="1"
+                        Text="{extensions:Translate Edition}"
+                        Margin="5" />
+                    <ComboBox Grid.Row="1" Grid.Column="1"
                         Margin="5"
                         ItemsSource="{Binding Editions}"
                         SelectedItem="{Binding Edition}">
@@ -92,14 +89,12 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
 
-                    <CheckBox
-                        Grid.Row="2"
-                        Margin="5"
+                    <CheckBox Grid.Row="2"
                         Content="{extensions:Translate SubscriptionEndDate}"
-                        IsChecked="{Binding IsSubscription, Mode=TwoWay}" />
+                        IsChecked="{Binding IsSubscription, Mode=TwoWay}"
+                        Margin="5" />
 
-                    <UniformGrid
-                        Grid.Row="3"
+                    <UniformGrid Grid.Row="3"
                         Margin="0,5"
                         Columns="2">
                         <DatePicker
@@ -112,16 +107,12 @@
                             SelectedDate="{Binding Filter.SubscriptionEndDateEnd}" />
                     </UniformGrid>
 
-                    <CheckBox
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Margin="5"
+                    <CheckBox Grid.Row="2" Grid.Column="1"
                         Content="{extensions:Translate CreationTime}"
-                        IsChecked="{Binding IsCreation, Mode=TwoWay}" />
+                        IsChecked="{Binding IsCreation, Mode=TwoWay}"
+                        Margin="5" />
 
-                    <UniformGrid
-                        Grid.Row="3"
-                        Grid.Column="1"
+                    <UniformGrid Grid.Row="3" Grid.Column="1"
                         Margin="0,5"
                         Columns="2">
                         <DatePicker
@@ -135,8 +126,7 @@
                     </UniformGrid>
                 </Grid>
 
-                <sync:SfDataGrid
-                    Grid.Row="1"
+                <sync:SfDataGrid Grid.Row="1"
                     Margin="15,0"
                     ItemsSource="{Binding dataPager.GridModelList}"
                     SelectedItem="{Binding dataPager.SelectedItem}"
@@ -154,12 +144,12 @@
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
                                                     <Button
-                                                        Margin="5"
-                                                        Padding="3"
-                                                        Background="Transparent"
+                                                        Content="{Binding Name}"
                                                         Command="{Binding DataContext.ExecuteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sync:SfDataGrid}}"
                                                         CommandParameter="{Binding Key}"
-                                                        Content="{Binding Name}" />
+                                                        Margin="5"
+                                                        Padding="3"
+                                                        Background="Transparent" />
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
@@ -174,8 +164,7 @@
                     </sync:SfDataGrid.Columns>
                 </sync:SfDataGrid>
 
-                <sync:SfDataPager
-                    Grid.Row="2"
+                <sync:SfDataPager Grid.Row="2"
                     HorizontalAlignment="Right"
                     NumericButtonCount="{Binding dataPager.NumericButtonCount}"
                     PageCount="{Binding dataPager.PageCount, Mode=TwoWay}"

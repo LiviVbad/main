@@ -182,19 +182,21 @@ namespace AppFramework.Admin.ViewModels
                 CurrentTenancyNameOrDefault = dialogResult.Parameters.GetValue<string>("Value");
                 await SetTenantAsync(CurrentTenancyNameOrDefault);
             }
+            else
+                applicationContext.SetAsTenant(null, 0);
         }
 
         private async Task LoginUserAsync()
-        { 
+        {
             await SetBusyAsync(async () =>
-            { 
-                await WebRequest.Execute(() => accountService.LoginUserAsync(), 
+            {
+                await WebRequest.Execute(() => accountService.LoginUserAsync(),
                     LoginUserSuccessed);
             });
         }
 
         private async Task LoginUserSuccessed()
-        { 
+        {
             //记住密码？ 
             storageService.SetValue(nameof(UserName), IsRememberMe ? UserName : null);
             storageService.SetValue(nameof(Password), IsRememberMe ? Password : null, true);
