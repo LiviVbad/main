@@ -30,8 +30,7 @@ namespace AppFramework.Admin.ViewModels
                 {
                     await SetBusyAsync(async () =>
                     {
-                        await WebRequest.Execute(() => appService.DeleteEdition(new EntityDto(item.Id)),
-                            async () => await OnNavigatedToAsync());
+                        await appService.DeleteEdition(new EntityDto(item.Id)).WebAsync(async () => await OnNavigatedToAsync());
                     });
                 }
             }
@@ -45,8 +44,7 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetEditions(),
-                        dataPager.SetList);
+                await appService.GetEditions().WebAsync(dataPager.SetList);
             });
         }
 

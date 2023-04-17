@@ -1,7 +1,7 @@
 ﻿using AppFramework.Shared;
 using AppFramework.Admin.Models;
 using AppFramework.Localization;
-using AppFramework.Localization.Dto; 
+using AppFramework.Localization.Dto;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 
@@ -60,13 +60,14 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.UpdateLanguageText(new UpdateLanguageTextInput()
+                await appService.UpdateLanguageText(new UpdateLanguageTextInput()
                 {
                     Key = Key,
                     LanguageName = BaseLanguage.Name,
                     SourceName = SourceName,
                     Value = TargetValue
-                }), base.Save);
+                })
+                .WebAsync(base.Save);
             });
         }
 

@@ -52,12 +52,11 @@ namespace AppFramework.Admin.ViewModels
 
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() => UpdateProfilePhoto(photoAsBytes, fileName),
-                        () =>
-                        {
-                            base.Save(photoAsBytes);
-                            return Task.CompletedTask;
-                        });
+                    await UpdateProfilePhoto(photoAsBytes, fileName).WebAsync(() =>
+                    {
+                        base.Save(photoAsBytes);
+                        return Task.CompletedTask;
+                    });
                 });
             }
         }

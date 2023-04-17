@@ -1,5 +1,5 @@
 ﻿using AppFramework.DynamicEntityProperties;
-using AppFramework.Shared; 
+using AppFramework.Shared;
 using Prism.Services.Dialogs;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -43,8 +43,8 @@ namespace AppFramework.Admin.ViewModels
 
         private async Task GetAllEntities()
         {
-            await WebRequest.Execute(() => appService.GetAllEntities(),
-                async result =>
+            await appService.GetAllEntities()
+                .WebAsync(async result =>
                 {
                     foreach (var item in result)
                         Models.Add(item);

@@ -64,25 +64,13 @@ namespace AppFramework.Admin.ViewModels
 
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.AddUsersToOrganizationUnit(
-                    new UsersToOrganizationUnitInput()
-                    {
-                        OrganizationUnitId = input.OrganizationUnitId,
-                        UserIds = userIds
-                    }), base.Save);
+                await appService.AddUsersToOrganizationUnit(new UsersToOrganizationUnitInput() { OrganizationUnitId = input.OrganizationUnitId, UserIds = userIds }).WebAsync(base.Save);
             });
         }
 
         private async Task FindUsers(FindOrganizationUnitUsersInput input)
         {
-            await WebRequest.Execute(() => appService.FindUsers(input),
-                async result =>
-                {
-                    await dataPager.SetList(new PagedResultDto<ChooseItem>()
-                    {
-                        Items = result.Items.Select(t => new ChooseItem(t)).ToList()
-                    });
-                });
+            await appService.FindUsers(input).WebAsync(async result => { await dataPager.SetList(new PagedResultDto<ChooseItem>() { Items = result.Items.Select(t => new ChooseItem(t)).ToList() }); });
         }
 
         private void Query()

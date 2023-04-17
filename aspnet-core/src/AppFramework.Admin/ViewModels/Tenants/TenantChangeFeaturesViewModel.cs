@@ -25,11 +25,7 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => tenantAppService.UpdateTenantFeatures(new UpdateTenantFeaturesInput()
-                {
-                    Id = Id,
-                    FeatureValues = featuresService.GetSelectedItems()
-                }), base.Save);
+                await tenantAppService.UpdateTenantFeatures(new UpdateTenantFeaturesInput() { Id = Id, FeatureValues = featuresService.GetSelectedItems() }).WebAsync(base.Save);
             });
         }
 

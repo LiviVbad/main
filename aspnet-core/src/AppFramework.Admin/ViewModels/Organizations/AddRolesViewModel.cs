@@ -61,25 +61,13 @@ namespace AppFramework.Admin.ViewModels
 
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.AddRolesToOrganizationUnit(
-                    new RolesToOrganizationUnitInput()
-                    {
-                        OrganizationUnitId = input.OrganizationUnitId,
-                        RoleIds = roleIds
-                    }), base.Save);
+                await appService.AddRolesToOrganizationUnit(new RolesToOrganizationUnitInput() { OrganizationUnitId = input.OrganizationUnitId, RoleIds = roleIds }).WebAsync(base.Save);
             });
         }
 
         private async Task FindRoles(FindOrganizationUnitRolesInput input)
         {
-            await WebRequest.Execute(() => appService.FindRoles(input),
-                async result =>
-                   {
-                       await dataPager.SetList(new PagedResultDto<ChooseItem>()
-                       {
-                           Items = result.Items.Select(t => new ChooseItem(t)).ToList()
-                       });
-                   });
+            await appService.FindRoles(input).WebAsync(async result => { await dataPager.SetList(new PagedResultDto<ChooseItem>() { Items = result.Items.Select(t => new ChooseItem(t)).ToList() }); });
         }
 
         private void Query()

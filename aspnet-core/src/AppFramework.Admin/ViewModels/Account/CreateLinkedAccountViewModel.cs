@@ -39,12 +39,12 @@ namespace AppFramework.Admin.ViewModels
 
         public override async Task Save()
         {
-            await WebRequest.Execute(() => appService.LinkToUser(new Authorization.Users.Dto.LinkToUserInput()
+            await appService.LinkToUser(new Authorization.Users.Dto.LinkToUserInput()
             {
                 TenancyName = TenancyName,
                 UsernameOrEmailAddress = UserName,
                 Password = Password
-            }), base.Save);
+            }).WebAsync(base.Save);
         }
 
         public override void OnDialogOpened(IDialogParameters parameters) { }

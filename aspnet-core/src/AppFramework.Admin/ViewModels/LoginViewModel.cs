@@ -164,8 +164,7 @@ namespace AppFramework.Admin.ViewModels
 
             await SetBusyAsync(async () =>
              {
-                 await WebRequest.Execute(() => UserConfigurationManager.GetAsync(),
-                  async () =>
+                 await UserConfigurationManager.GetAsync().WebAsync(async () =>
                   {
                       OnDialogClosed(ButtonResult.Retry);
                       await Task.CompletedTask;
@@ -190,8 +189,7 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => accountService.LoginUserAsync(),
-                    LoginUserSuccessed);
+                await accountService.LoginUserAsync().WebAsync(LoginUserSuccessed);
             });
         }
 

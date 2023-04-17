@@ -10,7 +10,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 namespace AppFramework.Admin.Services.Notification
 {
     [INotifyPropertyChanged]
-    public partial class NotificationService 
+    public partial class NotificationService
     {
         public NotificationService(INotificationAppService appService,
            NavigationService navigationService)
@@ -72,7 +72,7 @@ namespace AppFramework.Admin.Services.Notification
 
         public async void SetAllNotificationsAsRead()
         {
-            await WebRequest.Execute(async () => await appService.SetAllNotificationsAsRead(), GetNotifications);
+            await appService.SetAllNotificationsAsRead().WebAsync(GetNotifications);
         }
 
         public void SetNotificationAsRead()

@@ -160,8 +160,7 @@ namespace AppFramework.Admin.ViewModels
             
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetAuditLogs(Map<GetAuditLogsInput>(input)),
-                         dataPager.SetList);
+                await appService.GetAuditLogs(Map<GetAuditLogsInput>(input)).WebAsync(dataPager.SetList); 
             });
         }
 
@@ -191,8 +190,7 @@ namespace AppFramework.Admin.ViewModels
         /// <returns></returns>
         private async Task GetEntityChanges(GetEntityChangeFilter input)
         {
-            await WebRequest.Execute(() => appService.GetEntityChanges(Map<GetEntityChangeInput>(input)),
-                           logsdataPager.SetList);
+            await appService.GetEntityChanges(Map<GetEntityChangeInput>(input)).WebAsync(logsdataPager.SetList);
         }
 
         /// <summary>

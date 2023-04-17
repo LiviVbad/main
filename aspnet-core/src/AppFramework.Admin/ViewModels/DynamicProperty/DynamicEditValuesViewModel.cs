@@ -5,7 +5,7 @@ using Prism.Commands;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
-using AppFramework.ApiClient; 
+using AppFramework.ApiClient;
 using AppFramework.Shared.Services;
 
 namespace AppFramework.Admin.ViewModels
@@ -71,8 +71,7 @@ namespace AppFramework.Admin.ViewModels
             {
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() => appService.Delete(obj.Id),
-                            GetAllValuesOfDynamicProperty);
+                    await appService.Delete(obj.Id).WebAsync(GetAllValuesOfDynamicProperty);
                 });
             }
         }
@@ -103,13 +102,12 @@ namespace AppFramework.Admin.ViewModels
 
             await SetBusyAsync(async () =>
              {
-                 await WebRequest.Execute(() =>
-                         appService.Add(new DynamicPropertyValueDto()
-                         {
-                             DynamicPropertyId = Id,
-                             TenantId = context.CurrentTenant?.TenantId,
-                             Value = InputValue,
-                         }), GetAllValuesOfDynamicProperty);
+                 await appService.Add(new DynamicPropertyValueDto()
+                 {
+                     DynamicPropertyId = Id,
+                     TenantId = context.CurrentTenant?.TenantId,
+                     Value = InputValue
+                 }).WebAsync(GetAllValuesOfDynamicProperty);
              });
         }
 
@@ -122,9 +120,7 @@ namespace AppFramework.Admin.ViewModels
             IsAdd = false;
             InputValue = string.Empty;
 
-            await WebRequest.Execute(() =>
-                           appService.GetAllValuesOfDynamicProperty(new EntityDto(Id))
-                           , dataPager.SetList);
+            await appService.GetAllValuesOfDynamicProperty(new EntityDto(Id)).WebAsync(dataPager.SetList);
         }
 
         public override async void OnDialogOpened(IDialogParameters parameters)

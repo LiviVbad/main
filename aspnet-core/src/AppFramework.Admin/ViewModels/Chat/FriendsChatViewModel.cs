@@ -93,8 +93,8 @@ namespace AppFramework.Admin.ViewModels
         /// <returns></returns>
         private async Task GetUserChatMessagesByUser(long userId)
         {
-            await WebRequest.Execute(() => chatApp.GetUserChatMessages(new GetUserChatMessagesInput() { UserId = userId }),
-                GetUserChatMessagesSuccessed);
+            await chatApp.GetUserChatMessages(new GetUserChatMessagesInput() { UserId = userId })
+                         .WebAsync(GetUserChatMessagesSuccessed); 
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace AppFramework.Admin.ViewModels
             }
             await MarkAllUnreadMessages();
         }
-         
+
         /// <summary>
         /// 更新消息格式
         /// </summary>
@@ -161,7 +161,7 @@ namespace AppFramework.Admin.ViewModels
         /// </summary>
         /// <param name="model"></param>
         private void UpdateMessageGroup(ChatMessageModel chatMessage)
-        { 
+        {
             var lastMessage = Messages.LastOrDefault();
             if (lastMessage != null)
             {
@@ -194,13 +194,10 @@ namespace AppFramework.Admin.ViewModels
         /// <returns></returns>
         private async Task MarkAllUnreadMessages()
         {
-            await WebRequest.Execute(async () =>
+            await chatApp.MarkAllUnreadMessagesOfUserAsRead(new MarkAllUnreadMessagesOfUserAsReadInput()
             {
-                await chatApp.MarkAllUnreadMessagesOfUserAsRead(new MarkAllUnreadMessagesOfUserAsReadInput()
-                {
-                    UserId = Friend.FriendUserId
-                });
-            });
+                UserId = Friend.FriendUserId
+            }).WebAsync(); 
         }
 
         #endregion
@@ -254,20 +251,19 @@ namespace AppFramework.Admin.ViewModels
 
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() => UploadFile(fileAsBytes, fileName, contentType),
-                        async output =>
-                        {
-                            string message = $"[file]{{\"id\":\"{output.Id}\", " +
-                                             $"\"name\":\"{output.Name}\", " +
-                                             $"\"contentType\":\"{output.ContentType}\"}}";
+                    await UploadFile(fileAsBytes, fileName, contentType).WebAsync(async output =>
+                    {
+                        string message = $"[file]{{\"id\":\"{output.Id}\", " +
+                                         $"\"name\":\"{output.Name}\", " +
+                                         $"\"contentType\":\"{output.ContentType}\"}}";
 
-                            await chatService.SendMessage(new SendChatMessageInput()
-                            {
-                                UserId = Friend.FriendUserId,
-                                Message = message,
-                                UserName = context.LoginInfo.User.Name
-                            });
+                        await chatService.SendMessage(new SendChatMessageInput()
+                        {
+                            UserId = Friend.FriendUserId,
+                            Message = message,
+                            UserName = context.LoginInfo.User.Name
                         });
+                    }); 
                 });
             }
         }
@@ -285,20 +281,19 @@ namespace AppFramework.Admin.ViewModels
 
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() => UploadFile(photoAsBytes, fileName, contentType),
-                        async output =>
-                        {
-                            string message = $"[image]{{\"id\":\"{output.Id}\", " +
-                                             $"\"name\":\"{output.Name}\", " +
-                                             $"\"contentType\":\"{output.ContentType}\"}}";
+                    await UploadFile(photoAsBytes, fileName, contentType).WebAsync(async output =>
+                    {
+                        string message = $"[image]{{\"id\":\"{output.Id}\", " +
+                                         $"\"name\":\"{output.Name}\", " +
+                                         $"\"contentType\":\"{output.ContentType}\"}}";
 
-                            await chatService.SendMessage(new SendChatMessageInput()
-                            {
-                                UserId = Friend.FriendUserId,
-                                Message = message,
-                                UserName = context.LoginInfo.User.Name
-                            });
+                        await chatService.SendMessage(new SendChatMessageInput()
+                        {
+                            UserId = Friend.FriendUserId,
+                            Message = message,
+                            UserName = context.LoginInfo.User.Name
                         });
+                    }); 
                 });
             }
         }
@@ -333,13 +328,12 @@ namespace AppFramework.Admin.ViewModels
         {
             if (string.IsNullOrWhiteSpace(Message)) return;
 
-            await WebRequest.Execute(() =>
-              chatService.SendMessage(new SendChatMessageInput()
-              {
-                  UserId = Friend.FriendUserId,
-                  Message = Message,
-                  UserName = context.LoginInfo.User.Name
-              }));
+            await chatService.SendMessage(new SendChatMessageInput()
+            {
+                UserId = Friend.FriendUserId,
+                Message = Message,
+                UserName = context.LoginInfo.User.Name
+            }).WebAsync();
 
             Message = string.Empty; //发完消息就清除输入内容
         }

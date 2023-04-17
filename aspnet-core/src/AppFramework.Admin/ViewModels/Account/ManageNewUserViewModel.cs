@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using AppFramework.Authorization.Users.Delegation;
 using AppFramework.Shared;
-using AppFramework.Common.Dto; 
+using AppFramework.Common.Dto;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
@@ -75,12 +75,12 @@ namespace AppFramework.Admin.ViewModels
                 var startDate = dialogResult.Parameters.GetValue<DateTime?>("StartDate");
                 var endDate = dialogResult.Parameters.GetValue<DateTime?>("EndDate");
 
-                await WebRequest.Execute(() => appService.DelegateNewUser(new Authorization.Users.Delegation.Dto.CreateUserDelegationDto()
+                await appService.DelegateNewUser(new Authorization.Users.Delegation.Dto.CreateUserDelegationDto()
                 {
                     TargetUserId = Convert.ToInt64(obj.Value),
                     StartTime = startDate.GetFirstDate(),
                     EndTime = endDate.GetLastDate()
-                }), base.Save);
+                }).WebAsync(base.Save);
             }
         }
 
@@ -94,7 +94,7 @@ namespace AppFramework.Admin.ViewModels
 
         private async Task FindUsers(FindUsersInput input)
         {
-            await WebRequest.Execute(() => lookupAppService.FindUsers(input), dataPager.SetList);
+            await lookupAppService.FindUsers(input).WebAsync(dataPager.SetList);
         }
     }
 }

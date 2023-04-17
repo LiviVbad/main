@@ -157,7 +157,7 @@ namespace AppFramework.Admin.ViewModels
 
         private async Task GetLanguageTexts(GetLanguageTextsInput filter)
         {
-            await WebRequest.Execute(() => appService.GetLanguageTexts(filter), dataPager.SetList);
+            await appService.GetLanguageTexts(filter).WebAsync(dataPager.SetList);
         }
 
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)

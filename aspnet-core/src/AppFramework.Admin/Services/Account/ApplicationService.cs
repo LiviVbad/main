@@ -129,7 +129,7 @@ namespace AppFramework.Admin.Services.Account
 
         private async Task GetProfilePictureByUserSuccessed(GetProfilePictureOutput output)
         {
-            if (output!=null)
+            if (output != null)
                 Photo = Convert.FromBase64String(output.ProfilePicture);
             await Task.CompletedTask;
         }
@@ -240,7 +240,7 @@ namespace AppFramework.Admin.Services.Account
 
         private async void Download()
         {
-            await WebRequest.Execute(() => profileAppService.PrepareCollectedData(), async () =>
+            await profileAppService.PrepareCollectedData().WebAsync(async () =>
             {
                 await notificationService.GetNotifications();
                 await ResetClickIndex();

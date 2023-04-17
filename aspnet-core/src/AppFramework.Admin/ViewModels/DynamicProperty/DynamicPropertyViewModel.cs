@@ -68,8 +68,7 @@ namespace AppFramework.Admin.ViewModels
                 {
                     await SetBusyAsync(async () =>
                     {
-                        await WebRequest.Execute(() => appService.Delete(new EntityDto(item.Id)),
-                            async () => await OnNavigatedToAsync());
+                        await appService.Delete(new EntityDto(item.Id)).WebAsync(async () => await OnNavigatedToAsync());
                     });
                 }
             }
@@ -92,7 +91,7 @@ namespace AppFramework.Admin.ViewModels
         /// <returns></returns>
         private async Task GetDynamicPropertyAll()
         {
-            await WebRequest.Execute(() => appService.GetAll(), dataPager.SetList);
+            await appService.GetAll().WebAsync(dataPager.SetList);
         }
 
         /// <summary>
@@ -101,8 +100,7 @@ namespace AppFramework.Admin.ViewModels
         /// <returns></returns>
         private async Task GetAllEntitiesHasDynamicProperty()
         {
-            await WebRequest.Execute(() => entityPropertyAppService.GetAllEntitiesHasDynamicProperty(),
-                       entitydataPager.SetList);
+            await entityPropertyAppService.GetAllEntitiesHasDynamicProperty().WebAsync(entitydataPager.SetList);
         }
 
 

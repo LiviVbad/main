@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AppFramework.Shared.Services.Permission;
 using Abp.Application.Services.Dto;
-using Prism.Services.Dialogs; 
+using Prism.Services.Dialogs;
 using AppFramework.Authorization.Permissions.Dto;
 using AppFramework.Authorization.Permissions;
 using AppFramework.Authorization.Roles;
@@ -73,13 +73,11 @@ namespace AppFramework.Admin.ViewModels
                 GetUserPermissionsForEditOutput? output = null;
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() =>
-                    appService.GetUserPermissionsForEdit(new EntityDto<long>(item.Id)),
-                    async result =>
-                    {
-                        output = result;
-                        await Task.CompletedTask;
-                    });
+                    await appService.GetUserPermissionsForEdit(new EntityDto<long>(item.Id)).WebAsync(async result =>
+                     {
+                         output = result;
+                         await Task.CompletedTask;
+                     });
                 });
 
                 if (output == null) return;
@@ -95,8 +93,7 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.UnlockUser(
-                    new EntityDto<long>(SelectedItem.Id)));
+                await appService.UnlockUser(new EntityDto<long>(SelectedItem.Id)).WebAsync();
             });
         }
 
@@ -111,9 +108,8 @@ namespace AppFramework.Admin.ViewModels
             {
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() => appService.DeleteUser(
-                        new EntityDto<long>(SelectedItem.Id)),
-                        async () => await OnNavigatedToAsync());
+                    await appService.DeleteUser(new EntityDto<long>(SelectedItem.Id))
+                     .WebAsync(async () => await OnNavigatedToAsync()); 
                 });
             }
         }
@@ -277,12 +273,11 @@ namespace AppFramework.Admin.ViewModels
         {
             if (flatPermission != null) return;
 
-            await WebRequest.Execute(() => permissionAppService.GetAllPermissions(),
-                        result =>
-                        {
-                            flatPermission = result;
-                            return Task.CompletedTask;
-                        });
+            await permissionAppService.GetAllPermissions().WebAsync(async result =>
+             {
+                 flatPermission = result;
+                 await Task.CompletedTask;
+             });
         }
 
         /// <summary>
@@ -293,14 +288,13 @@ namespace AppFramework.Admin.ViewModels
         {
             if (RoleList.Count > 0) return;
 
-            await WebRequest.Execute(() => roleAppService.GetRoles(new GetRolesInput()),
-                          result =>
-                          {
-                              foreach (var item in Map<List<RoleListModel>>(result.Items))
-                                  RoleList.Add(item);
+            await roleAppService.GetRoles(new GetRolesInput()).WebAsync(async result =>
+             {
+                 foreach (var item in Map<List<RoleListModel>>(result.Items))
+                     RoleList.Add(item);
 
-                              return Task.CompletedTask;
-                          });
+                 await Task.CompletedTask;
+             });
         }
 
         #endregion
@@ -321,7 +315,7 @@ namespace AppFramework.Admin.ViewModels
         /// <returns></returns>
         private async Task GetUsers(GetUsersInput filter)
         {
-            await WebRequest.Execute(() => appService.GetUsers(filter), dataPager.SetList);
+            await appService.GetUsers(filter).WebAsync(dataPager.SetList);
         }
 
         /// <summary>

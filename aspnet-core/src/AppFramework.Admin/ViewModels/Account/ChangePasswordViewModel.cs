@@ -86,11 +86,12 @@ namespace AppFramework.Admin.ViewModels
             {
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() => profileAppService.ChangePassword(new ChangePasswordInput
+                    await profileAppService.ChangePassword(new ChangePasswordInput
                     {
                         CurrentPassword = CurrentPassword,
                         NewPassword = NewPassword
-                    }), PasswordChangedAsync);
+                    })
+                    .WebAsync(PasswordChangedAsync);
                 });
             }
         }

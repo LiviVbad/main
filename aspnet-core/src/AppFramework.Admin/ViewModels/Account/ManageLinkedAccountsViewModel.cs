@@ -1,11 +1,11 @@
 ﻿using AppFramework.Authorization.Users;
 using AppFramework.Authorization.Users.Dto;
 using AppFramework.Shared;
-using AppFramework.Admin.Services; 
+using AppFramework.Admin.Services;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
-using AppFramework.Shared.Services; 
+using AppFramework.Shared.Services;
 
 namespace AppFramework.Admin.ViewModels
 {
@@ -47,11 +47,8 @@ namespace AppFramework.Admin.ViewModels
             if (await dialog.Question(
                 Local.Localize("LinkedUserDeleteWarningMessage", obj.Username), "ManageLinkedAccounts"))
             {
-                await WebRequest.Execute(() => appService.UnlinkUser(new UnlinkUserInput()
-                {
-                    TenantId = obj.TenantId,
-                    UserId = obj.Id
-                }), async () => await GetRecentlyUsedLinkedUsers(input));
+                await appService.UnlinkUser(new UnlinkUserInput() { TenantId = obj.TenantId, UserId = obj.Id })
+                    .WebAsync(async () => await GetRecentlyUsedLinkedUsers(input));
             }
         }
 
@@ -77,7 +74,7 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetLinkedUsers(filter), dataPager.SetList);
+                await appService.GetLinkedUsers(filter).WebAsync(dataPager.SetList);
             });
         }
 

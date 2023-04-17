@@ -41,8 +41,7 @@ namespace AppFramework.Admin.ViewModels
         {
             if (await dialog.Question(Local.Localize("UserDelegationDeleteWarningMessage", obj.Username), "ManageUserDelegationsView"))
             {
-                await WebRequest.Execute(() => appService.RemoveDelegation(new EntityDto<long>
-                    (obj.Id)), GetDelegatedUsers);
+                await appService.RemoveDelegation(new EntityDto<long>(obj.Id)).WebAsync(GetDelegatedUsers);
             }
         }
 
@@ -59,7 +58,7 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetDelegatedUsers(input), dataPager.SetList);
+                await appService.GetDelegatedUsers(input).WebAsync(dataPager.SetList);
             });
         }
 

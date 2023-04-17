@@ -49,7 +49,7 @@ namespace AppFramework.Admin.ViewModels
 
         private async Task GetVersions(GetAllAbpVersionsInput filter)
         {
-            await WebRequest.Execute(() => appService.GetAll(filter), dataPager.SetList);
+            await appService.GetAll(filter).WebAsync(dataPager.SetList);
         }
 
         private async void Delete()
@@ -59,8 +59,7 @@ namespace AppFramework.Admin.ViewModels
             {
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() => appService.Delete(
-                        new EntityDto(SelectedItem.Id)), async () => await OnNavigatedToAsync());
+                    await appService.Delete(new EntityDto(SelectedItem.Id)).WebAsync(async () => await OnNavigatedToAsync());
                 });
             }
         }

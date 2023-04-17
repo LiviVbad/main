@@ -78,7 +78,7 @@ namespace AppFramework.Admin.ViewModels
             await SetBusyAsync(async () =>
             {
                 var input = Map<CreateOrUpdateUserInput>(Input);
-                await WebRequest.Execute(() => userAppService.CreateOrUpdateUser(input), base.Save);
+                await userAppService.CreateOrUpdateUser(input).WebAsync(base.Save);
             }, AppLocalizationKeys.SavingWithThreeDot);
         }
 
@@ -98,9 +98,7 @@ namespace AppFramework.Admin.ViewModels
                   Input.SetRandomPassword = IsNewUser;
                   Input.SendActivationEmail = IsNewUser;
 
-                  await WebRequest.Execute(() =>
-                          userAppService.GetUserForEdit(new NullableIdDto<long>(user?.Id)),
-                          GetUserForEditSuccessed);
+                  await userAppService.GetUserForEdit(new NullableIdDto<long>(user?.Id)).WebAsync(GetUserForEditSuccessed);
               });
 
             if (parameters.ContainsKey("Config"))

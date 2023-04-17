@@ -93,9 +93,8 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() =>
-                appService.CreateOrUpdateLanguage(new CreateOrUpdateLanguageInput() { Language = language }),
-                base.Save);
+                await appService.CreateOrUpdateLanguage(new CreateOrUpdateLanguageInput() { Language = language })
+                .WebAsync(base.Save);
             });
         }
 
@@ -107,9 +106,7 @@ namespace AppFramework.Admin.ViewModels
                 if (parameters.ContainsKey("Value"))
                     id = parameters.GetValue<ApplicationLanguageListDto>("Value").Id;
 
-                await WebRequest.Execute(() =>
-                        appService.GetLanguageForEdit(new NullableIdDto(id)),
-                        GetLanguageForEditSuccessed);
+                await appService.GetLanguageForEdit(new NullableIdDto(id)).WebAsync(GetLanguageForEditSuccessed);
             });
         }
 

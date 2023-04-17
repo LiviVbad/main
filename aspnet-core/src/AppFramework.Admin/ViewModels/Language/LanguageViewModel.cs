@@ -41,11 +41,10 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() =>
-                appService.SetDefaultLanguage(new Localization.Dto.SetDefaultLanguageInput()
+                await appService.SetDefaultLanguage(new Localization.Dto.SetDefaultLanguageInput()
                 {
                     Name = SelectedItem.Name
-                }));
+                }).WebAsync();
             });
         }
 
@@ -58,9 +57,8 @@ namespace AppFramework.Admin.ViewModels
             {
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() => appService.DeleteLanguage(
-                        new EntityDto(SelectedItem.Id)),
-                        async () => await OnNavigatedToAsync());
+                    await appService.DeleteLanguage(new EntityDto(SelectedItem.Id))
+                                    .WebAsync(async () => await OnNavigatedToAsync());
                 });
             }
         }
@@ -71,7 +69,7 @@ namespace AppFramework.Admin.ViewModels
         /// <returns></returns>
         private async Task GetLanguages()
         {
-            await WebRequest.Execute(() => appService.GetLanguages(), dataPager.SetList);
+            await appService.GetLanguages().WebAsync(dataPager.SetList);
         }
 
         /// <summary>

@@ -3,7 +3,7 @@ using AppFramework.ApiClient.Models;
 using AppFramework.Authorization.Accounts;
 using AppFramework.Authorization.Accounts.Dto;
 using AppFramework.Shared;
-using Prism.Services.Dialogs; 
+using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 
 namespace AppFramework.Admin.ViewModels.Shared
@@ -80,7 +80,7 @@ namespace AppFramework.Admin.ViewModels.Shared
             if (output.CanLogin)
             {
                 authenticateModel.Password = PassWord;
-                await WebRequest.Execute(() => accessTokenManager.LoginAsync(), base.Save);
+                await accessTokenManager.LoginAsync().WebAsync(base.Save);
             }
             else
                 base.Cancel();

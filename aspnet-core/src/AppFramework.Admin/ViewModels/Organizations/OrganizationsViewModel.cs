@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Prism.Ioc;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 using Prism.Regions;
 using AppFramework.Shared.Services;
 using CommunityToolkit.Mvvm.Input;
@@ -117,12 +117,9 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
              {
-                 await WebRequest.Execute(
-                      () => appService.GetOrganizationUnits(),
-                      async result =>
+                 await appService.GetOrganizationUnits().WebAsync(async result =>
                       {
                           dataPager.GridModelList.Clear();
-
                           var items = BuildOrganizationTree(Map<List<OrganizationListModel>>(result.Items));
 
                           foreach (var item in items)
@@ -142,10 +139,8 @@ namespace AppFramework.Admin.ViewModels
         {
             if (await dialog.Question(Local.Localize("OrganizationUnitDeleteWarningMessage", organization.DisplayName)))
             {
-                await WebRequest.Execute(() => appService.DeleteOrganizationUnit(new EntityDto<long>()
-                {
-                    Id = organization.Id
-                }), async () => await OnNavigatedToAsync());
+                await appService.DeleteOrganizationUnit(new EntityDto<long>() { Id = organization.Id })
+                    .WebAsync(async () => await OnNavigatedToAsync());
             }
         }
 
@@ -224,21 +219,18 @@ namespace AppFramework.Admin.ViewModels
 
             long Id = organizationUnit.Id;
 
-            await WebRequest.Execute(() => appService.FindRoles(new FindOrganizationUnitRolesInput()
-            {
-                OrganizationUnitId = Id
-            }), async result =>
-            {
-                DialogParameters param = new DialogParameters();
-                param.Add("Id", Id);
-                param.Add("Value", result);
-                var dialogResult = await dialog.ShowDialogAsync(AppViews.AddRoles, param);
-                if (dialogResult.Result == ButtonResult.OK)
+            await appService.FindRoles(new FindOrganizationUnitRolesInput() { OrganizationUnitId = Id })
+                .WebAsync(async result =>
                 {
-                    rolesInput.Id = Id;
-                    await GetOrganizationUnitRoles(rolesInput);
-                }
-            });
+                    DialogParameters param = new DialogParameters();
+                    param.Add("Id", Id);
+                    param.Add("Value", result);
+                    var dialogResult = await dialog.ShowDialogAsync(AppViews.AddRoles, param); if (dialogResult.Result == ButtonResult.OK)
+                    {
+                        rolesInput.Id = Id;
+                        await GetOrganizationUnitRoles(rolesInput);
+                    }
+                });
         }
 
         /// <summary>
@@ -252,7 +244,7 @@ namespace AppFramework.Admin.ViewModels
               {
                   var pagedResult = await appService.GetOrganizationUnitRoles(input);
                   if (pagedResult != null)
-                     await roledataPager.SetList(pagedResult);
+                      await roledataPager.SetList(pagedResult);
 
                   UpdateOrganizationUnit(input.Id);
               });
@@ -270,12 +262,9 @@ namespace AppFramework.Admin.ViewModels
             {
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() =>
-                    appService.RemoveRoleFromOrganizationUnit(new RoleToOrganizationUnitInput()
-                    {
-                        RoleId = (int)obj.Id,
-                        OrganizationUnitId = SelectedOrganizationUnit.Id,
-                    }), async () =>
+                    await appService.RemoveRoleFromOrganizationUnit(new RoleToOrganizationUnitInput()
+                    { RoleId = (int)obj.Id, OrganizationUnitId = SelectedOrganizationUnit.Id })
+                    .WebAsync(async () =>
                     {
                         rolesInput.Id = SelectedOrganizationUnit.Id;
                         await GetOrganizationUnitRoles(rolesInput);
@@ -299,8 +288,7 @@ namespace AppFramework.Admin.ViewModels
 
             long Id = organizationUnit.Id;
 
-            await WebRequest.Execute(() => appService.FindUsers(new FindOrganizationUnitUsersInput() { OrganizationUnitId = Id }),
-            async result =>
+            await appService.FindUsers(new FindOrganizationUnitUsersInput() { OrganizationUnitId = Id }).WebAsync(async result =>
             {
                 DialogParameters param = new DialogParameters();
                 param.Add("Id", Id);
@@ -322,7 +310,7 @@ namespace AppFramework.Admin.ViewModels
             {
                 var pagedResult = await appService.GetOrganizationUnitUsers(input);
                 if (pagedResult != null)
-                   await memberdataPager.SetList(pagedResult);
+                    await memberdataPager.SetList(pagedResult);
 
                 UpdateOrganizationUnit(input.Id);
             });
@@ -340,12 +328,11 @@ namespace AppFramework.Admin.ViewModels
             {
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() =>
-                    appService.RemoveUserFromOrganizationUnit(new UserToOrganizationUnitInput()
+                    await appService.RemoveUserFromOrganizationUnit(new UserToOrganizationUnitInput()
                     {
                         OrganizationUnitId = SelectedOrganizationUnit.Id,
                         UserId = obj.Id
-                    }), async () =>
+                    }).WebAsync(async () =>
                     {
                         await GetOrganizationUnitUsers(usersInput);
                     });

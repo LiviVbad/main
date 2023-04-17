@@ -53,11 +53,7 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(
-                    async () =>
-                    await accountAppService.SendEmailActivationLink(new SendEmailActivationLinkInput { EmailAddress = EmailAddress }),
-                    PasswordResetMailSentAsync
-                );
+                await accountAppService.SendEmailActivationLink(new SendEmailActivationLinkInput { EmailAddress = EmailAddress }).WebAsync(PasswordResetMailSentAsync);
             });
         }
 

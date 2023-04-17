@@ -1,8 +1,7 @@
 ﻿using AppFramework.Shared;
 using AppFramework.Admin.Models;
 using AppFramework.Organizations;
-using AppFramework.Organizations.Dto;
-using AppFramework.Admin.ViewModels.Shared;
+using AppFramework.Organizations.Dto; 
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 
@@ -36,21 +35,21 @@ namespace AppFramework.Admin.ViewModels
              {
                  if (IsNewOrganization)
                  {
-                     await WebRequest.Execute(() => appService.CreateOrganizationUnit(
-                        new CreateOrganizationUnitInput()
-                        {
-                            DisplayName = input.DisplayName,
-                            ParentId = ParentId
-                        }));
+                     await appService.CreateOrganizationUnit(
+                          new CreateOrganizationUnitInput()
+                          {
+                              DisplayName = input.DisplayName,
+                              ParentId = ParentId
+                          }).WebAsync();
                  }
                  else
                  {
-                     await WebRequest.Execute(() => appService.UpdateOrganizationUnit(
+                     await appService.UpdateOrganizationUnit(
                          new UpdateOrganizationUnitInput()
                          {
                              Id = input.Id,
                              DisplayName = input.DisplayName
-                         }));
+                         }).WebAsync();
                  }
              });
             await base.Save();

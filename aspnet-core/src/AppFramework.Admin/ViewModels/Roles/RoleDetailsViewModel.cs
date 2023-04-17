@@ -2,7 +2,7 @@
 using AppFramework.Authorization.Roles;
 using AppFramework.Authorization.Roles.Dto;
 using AppFramework.Shared;
-using AppFramework.Admin.Models; 
+using AppFramework.Admin.Models;
 using Prism.Services.Dialogs;
 using AppFramework.Admin.Services;
 using System.Threading.Tasks;
@@ -31,19 +31,16 @@ namespace AppFramework.Admin.ViewModels
             this.appService = appService;
             this.treesService = treesService;
         }
-         
+
         public override async Task Save()
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(async () =>
+                await appService.CreateOrUpdateRole(new CreateOrUpdateRoleInput()
                 {
-                    await appService.CreateOrUpdateRole(new CreateOrUpdateRoleInput()
-                    {
-                        Role = Map<RoleEditDto>(Role),
-                        GrantedPermissionNames = treesService.GetSelectedItems()
-                    });
-                }, base.Save); 
+                    Role = Map<RoleEditDto>(Role),
+                    GrantedPermissionNames = treesService.GetSelectedItems()
+                }).WebAsync(base.Save);
             });
         }
 

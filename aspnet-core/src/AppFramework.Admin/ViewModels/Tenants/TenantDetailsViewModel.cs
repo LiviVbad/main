@@ -315,7 +315,7 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => tenantAppService.UpdateTenant(input), base.Save);
+                await tenantAppService.UpdateTenant(input).WebAsync(base.Save);
             });
         }
 
@@ -323,7 +323,7 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => tenantAppService.CreateTenant(input), base.Save);
+                await tenantAppService.CreateTenant(input).WebAsync(base.Save);
             });
         }
 

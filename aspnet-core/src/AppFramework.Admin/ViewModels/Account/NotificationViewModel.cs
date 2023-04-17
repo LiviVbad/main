@@ -76,31 +76,27 @@ namespace AppFramework.Admin.ViewModels
         {
             if (await dialog.Question(Local.Localize("DeleteListedNotificationsWarningMessage")))
             {
-                await WebRequest.Execute(() => appService.DeleteAllUserNotifications(new DeleteAllUserNotificationsInput()
+                await appService.DeleteAllUserNotifications(new DeleteAllUserNotificationsInput()
                 {
                     StartDate = input.StartDate,
                     EndDate = input.EndDate,
                     State = input.State
-                }), async () => await OnNavigatedToAsync());
+                }).WebAsync(async () => await OnNavigatedToAsync());
             }
         }
 
         private async void SetNotificationAsRead(UserNotification obj)
         {
-            await WebRequest.Execute(() => appService.SetNotificationAsRead(new Abp.Application.Services.Dto.EntityDto<Guid>()
-            {
-                Id = obj.Id
-            }), async () => await OnNavigatedToAsync());
+            await appService.SetNotificationAsRead(new Abp.Application.Services.Dto.EntityDto<Guid>() { Id = obj.Id })
+                            .WebAsync(async () => await OnNavigatedToAsync());
         }
 
         private async void DeleteNotification(UserNotification obj)
         {
             if (await dialog.Question(Local.Localize("NotificationDeleteWarningMessage")))
             {
-                await WebRequest.Execute(() => appService.DeleteNotification(new Abp.Application.Services.Dto.EntityDto<Guid>()
-                {
-                    Id = obj.Id
-                }), async () => await OnNavigatedToAsync());
+                await appService.DeleteNotification(new Abp.Application.Services.Dto.EntityDto<Guid>() { Id = obj.Id })
+                                .WebAsync(async () => await OnNavigatedToAsync());
             }
         }
 
@@ -119,12 +115,12 @@ namespace AppFramework.Admin.ViewModels
 
         private async Task GetUserNotifications(GetUserNotificationsInput filter)
         {
-            await WebRequest.Execute(() => appService.GetUserNotifications(filter), dataPager.SetList);
+            await appService.GetUserNotifications(filter).WebAsync(dataPager.SetList); 
         }
 
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext = null)
         {
-            dataPager.PageIndex = 0; 
+            dataPager.PageIndex = 0;
             await Task.CompletedTask;
         }
     }

@@ -16,17 +16,17 @@ namespace AppFramework.Admin.ViewModels
         private readonly ICommonLookupAppService appService;
         public IDataPagerService dataPager { get; private set; }
         private FindUsersInput input;
-         
+
         public SelectedUserViewModel(IDataPagerService dataPager,
             ICommonLookupAppService appService)
         {
-            this.dataPager= dataPager;
-            this.appService=appService;
-            input=new FindUsersInput()
+            this.dataPager = dataPager;
+            this.appService = appService;
+            input = new FindUsersInput()
             {
                 MaxResultCount = 10,
-            }; 
-            this.dataPager.OnPageIndexChangedEventhandler +=DataPager_OnPageIndexChangedEventhandler;
+            };
+            this.dataPager.OnPageIndexChangedEventhandler += DataPager_OnPageIndexChangedEventhandler;
         }
 
         [RelayCommand]
@@ -47,7 +47,7 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.FindUsers(input), dataPager.SetList);
+                await appService.FindUsers(input).WebAsync(dataPager.SetList);
             });
         }
 

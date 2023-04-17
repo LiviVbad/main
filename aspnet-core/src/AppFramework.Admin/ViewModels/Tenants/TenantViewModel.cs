@@ -83,7 +83,7 @@ namespace AppFramework.Admin.ViewModels
             get { return editions; }
             set { editions = value; OnPropertyChanged(); }
         }
-         
+
         #endregion
 
         public TenantListModel SelectedItem => Map<TenantListModel>(dataPager.SelectedItem);
@@ -100,7 +100,7 @@ namespace AppFramework.Admin.ViewModels
 
             this.appService = appService;
             this.editionAppService = editionAppService;
-            dataPager.OnPageIndexChangedEventhandler += TenantOnPageIndexChangedEventhandler; 
+            dataPager.OnPageIndexChangedEventhandler += TenantOnPageIndexChangedEventhandler;
             editions = new ObservableCollection<EditionListModel>();
         }
 
@@ -128,7 +128,7 @@ namespace AppFramework.Admin.ViewModels
         private async Task GetTenants()
         {
             var input = Map<GetTenantsInput>(filter);
-            await WebRequest.Execute(() => appService.GetTenants(input), dataPager.SetList);
+            await appService.GetTenants(input).WebAsync(dataPager.SetList);
         }
 
         /// <summary>
@@ -139,15 +139,14 @@ namespace AppFramework.Admin.ViewModels
         {
             if (Editions.Count > 0) return;
 
-            await WebRequest.Execute(() => editionAppService.GetEditions(),
-                         async result =>
-                         {
-                             Editions.Clear();
-                             foreach (var item in Map<List<EditionListModel>>(result.Items))
-                                 Editions.Add(item);
+            await editionAppService.GetEditions().WebAsync(async result =>
+             {
+                 Editions.Clear();
+                 foreach (var item in Map<List<EditionListModel>>(result.Items))
+                     Editions.Add(item);
 
-                             await Task.CompletedTask;
-                         });
+                 await Task.CompletedTask;
+             });
         }
 
         #region 修改租户/使用当前租户登录/解锁/删除
@@ -161,13 +160,11 @@ namespace AppFramework.Admin.ViewModels
             GetTenantFeaturesEditOutput output = null;
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetTenantFeaturesForEdit(new EntityDto(SelectedItem.Id)),
-                      async result =>
-                      {
-                          output = result;
-                          await Task.CompletedTask;
-                      });
-
+                await appService.GetTenantFeaturesForEdit(new EntityDto(SelectedItem.Id)).WebAsync(async result =>
+                {
+                    output = result;
+                    await Task.CompletedTask;
+                });
             });
 
             if (output == null) return;
@@ -194,8 +191,8 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.UnlockTenantAdmin(
-                    new EntityDto(SelectedItem.Id)), async () => await OnNavigatedToAsync());
+                await appService.UnlockTenantAdmin(new EntityDto(SelectedItem.Id))
+                                .WebAsync(async () => await OnNavigatedToAsync());
             });
         }
 
@@ -209,8 +206,8 @@ namespace AppFramework.Admin.ViewModels
             {
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() => appService.DeleteTenant(
-                        new EntityDto(SelectedItem.Id)), async () => await OnNavigatedToAsync());
+                    await appService.DeleteTenant(new EntityDto(SelectedItem.Id))
+                                    .WebAsync(async () => await OnNavigatedToAsync());
                 });
             }
         }

@@ -77,7 +77,7 @@ namespace AppFramework.Admin.ViewModels
         {
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => appService.GetUserLoginAttempts(filter), dataPager.SetList);
+                await appService.GetUserLoginAttempts(filter).WebAsync(dataPager.SetList);
             }); 
         }
 

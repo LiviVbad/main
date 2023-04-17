@@ -34,7 +34,7 @@ namespace AppFramework.Admin.ViewModels
             set { selectPermissions = value; OnPropertyChanged(); }
         }
 
-        private ListResultDto<FlatPermissionWithLevelDto> flatPermission; 
+        private ListResultDto<FlatPermissionWithLevelDto> flatPermission;
 
         #endregion
 
@@ -44,7 +44,7 @@ namespace AppFramework.Admin.ViewModels
             Title = Local.Localize("Roles");
             this.appService = appService;
             this.permissionAppService = permissionAppService;
-            input = new GetRolesInput(); 
+            input = new GetRolesInput();
 
             dataPager.OnPageIndexChangedEventhandler += RoleOnPageIndexChangedEventhandler;
 
@@ -95,9 +95,8 @@ namespace AppFramework.Admin.ViewModels
                 {
                     await SetBusyAsync(async () =>
                     {
-                        await WebRequest.Execute(() => appService.DeleteRole(
-                            new EntityDto(item.Id)),
-                            async () => await OnNavigatedToAsync());
+                        await appService.DeleteRole(new EntityDto(item.Id))
+                                        .WebAsync(async () => await OnNavigatedToAsync());
                     });
                 }
             }
@@ -110,8 +109,7 @@ namespace AppFramework.Admin.ViewModels
         /// <returns></returns>
         private async Task GetRoles(GetRolesInput filter)
         {
-            await WebRequest.Execute(() => appService.GetRoles(filter),
-                       dataPager.SetList);
+            await appService.GetRoles(filter).WebAsync(dataPager.SetList);
         }
 
         /// <summary>
@@ -124,11 +122,11 @@ namespace AppFramework.Admin.ViewModels
             {
                 if (flatPermission == null)
                 {
-                    await WebRequest.Execute(() => permissionAppService.GetAllPermissions(), result =>
-                       {
-                           flatPermission = result;
-                           return Task.CompletedTask;
-                       });
+                    await permissionAppService.GetAllPermissions().WebAsync(result =>
+                    {
+                        flatPermission = result;
+                        return Task.CompletedTask;
+                    });
                 }
 
                 await GetRoles(input);

@@ -124,11 +124,11 @@ namespace AppFramework.Admin.ViewModels
         /// <returns></returns>
         private async Task GetTopStatsData()
         {
-            await WebRequest.Execute(() => appService.GetTopStatsData(new GetTopStatsInput()
+            await appService.GetTopStatsData(new GetTopStatsInput()
             {
                 StartDate = startDate,
                 EndDate = endDate
-            }), result => GetTopStatsDataSuccessed(result));
+            }).WebAsync(GetTopStatsDataSuccessed); 
         }
 
         /// <summary>
@@ -137,12 +137,11 @@ namespace AppFramework.Admin.ViewModels
         /// <returns></returns>
         private async Task GetEditionTenantStatistics()
         {
-            await WebRequest.Execute(() =>
-                appService.GetEditionTenantStatistics(new GetEditionTenantStatisticsInput()
-                {
-                    StartDate = startDate,
-                    EndDate = endDate
-                }), result => GetEditionTenantStatisticsSuccessed(result));
+            await appService.GetEditionTenantStatistics(new GetEditionTenantStatisticsInput()
+            {
+                StartDate = startDate,
+                EndDate = endDate
+            }).WebAsync(GetEditionTenantStatisticsSuccessed); 
         }
 
         /// <summary>
@@ -153,12 +152,12 @@ namespace AppFramework.Admin.ViewModels
         /// <param name="interval"></param>
         private async Task GetIncomeStatistics(ChartDateInterval interval)
         {
-            await WebRequest.Execute(() => appService.GetIncomeStatistics(new GetIncomeStatisticsDataInput()
+            await appService.GetIncomeStatistics(new GetIncomeStatisticsDataInput()
             {
                 IncomeStatisticsDateInterval = interval,
                 StartDate = startDate,
                 EndDate = endDate
-            }), result => GetIncomeStatisticsSuccessed(result));
+            }).WebAsync(GetIncomeStatisticsSuccessed); 
         }
 
         private async Task GetTopStatsDataSuccessed(TopStatsData topStatsData)

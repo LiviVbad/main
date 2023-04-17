@@ -87,27 +87,23 @@ namespace AppFramework.Admin.ViewModels
 
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() => propertyAppService.GetAll(),
-                    async result =>
+                await propertyAppService.GetAll().WebAsync(async result =>
+                {
+                    Items.Clear();
+                    foreach (var item in result.Items)
+                        Items.Add(item);
+
+                    foreach (var item in dataPager.GridModelList)
                     {
-                        Items.Clear();
-
-                        foreach (var item in result.Items)
-                            Items.Add(item);
-
-                        //移除下拉的可选项
-                        foreach (var item in dataPager.GridModelList)
+                        var dynamicEntity = item as DynamicEntityPropertyDto;
+                        if (dynamicEntity != null)
                         {
-                            var dynamicEntity = item as DynamicEntityPropertyDto;
-                            if (dynamicEntity != null)
-                            {
-                                var t = Items.FirstOrDefault(t => t.Id.Equals(dynamicEntity.DynamicPropertyId));
-                                if (t != null) Items.Remove(t);
-                            }
+                            var t = Items.FirstOrDefault(t => t.Id.Equals(dynamicEntity.DynamicPropertyId));
+                            if (t != null) Items.Remove(t);
                         }
-
-                        await Task.CompletedTask;
-                    });
+                    }
+                    await Task.CompletedTask;
+                });
             });
         }
 
@@ -121,9 +117,7 @@ namespace AppFramework.Admin.ViewModels
             {
                 await SetBusyAsync(async () =>
                 {
-                    await WebRequest.Execute(() =>
-                            appService.Delete(obj.Id),
-                            GetAllPropertiesOfAnEntity);
+                    await appService.Delete(obj.Id).WebAsync(GetAllPropertiesOfAnEntity);
                 });
             }
         }
@@ -145,13 +139,13 @@ namespace AppFramework.Admin.ViewModels
 
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() =>
-                        appService.Add(new DynamicEntityPropertyDto()
-                        {
-                            TenantId = context.CurrentTenant?.TenantId,
-                            EntityFullName = EntityFullName,
-                            DynamicPropertyId = SelectedItem.Id
-                        }), GetAllPropertiesOfAnEntity);
+                await appService.Add(new DynamicEntityPropertyDto()
+                {
+                    TenantId = context.CurrentTenant?.TenantId,
+                    EntityFullName = EntityFullName,
+                    DynamicPropertyId = SelectedItem.Id
+                })
+                .WebAsync(GetAllPropertiesOfAnEntity);
             });
         }
 
@@ -161,11 +155,10 @@ namespace AppFramework.Admin.ViewModels
 
             await SetBusyAsync(async () =>
             {
-                await WebRequest.Execute(() =>
-                        appService.GetAllPropertiesOfAnEntity(new DynamicEntityPropertyGetAllInput()
-                        {
-                            EntityFullName = EntityFullName,
-                        }), dataPager.SetList);
+                await appService.GetAllPropertiesOfAnEntity(new DynamicEntityPropertyGetAllInput()
+                {
+                    EntityFullName = EntityFullName
+                }).WebAsync(dataPager.SetList);
             });
         }
 

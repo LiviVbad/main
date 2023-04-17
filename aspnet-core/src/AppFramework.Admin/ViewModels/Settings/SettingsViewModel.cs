@@ -78,7 +78,7 @@ namespace AppFramework.Admin.ViewModels
             var input = Map<HostSettingsEditDto>(Setting);
             await SetBusyAsync(async () =>
              {
-                 await WebRequest.Execute(() => appService.UpdateAllSettings(input));
+                 await appService.UpdateAllSettings(input).WebAsync();
              });
         }
 
@@ -88,12 +88,11 @@ namespace AppFramework.Admin.ViewModels
         /// <returns></returns>
         private async Task GetSettings()
         {
-            await WebRequest.Execute(() => appService.GetAllSettings(),
-                async result =>
-                {
-                    Setting = Map<HostSettingsEditModel>(result);
-                    await Task.CompletedTask;
-                });
+            await appService.GetAllSettings().WebAsync(async result =>
+              {
+                  Setting = Map<HostSettingsEditModel>(result);
+                  await Task.CompletedTask;
+              });
         }
 
         /// <summary>
@@ -102,14 +101,13 @@ namespace AppFramework.Admin.ViewModels
         /// <returns></returns>
         private async Task GetEditions()
         {
-            await WebRequest.Execute(() => lookupAppService.GetEditionsForCombobox(),
-               async result =>
-               {
-                   foreach (var item in result.Items)
-                       Editions.Add(item);
+            await lookupAppService.GetEditionsForCombobox().WebAsync(async result =>
+              {
+                  foreach (var item in result.Items)
+                      Editions.Add(item);
 
-                   await Task.CompletedTask;
-               });
+                  await Task.CompletedTask;
+              });
         }
 
         public override async Task OnNavigatedToAsync(NavigationContext navigationContext)

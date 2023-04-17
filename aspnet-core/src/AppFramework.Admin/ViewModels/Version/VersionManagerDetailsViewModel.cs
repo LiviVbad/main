@@ -1,6 +1,6 @@
 ﻿using AppFramework.Authorization.Users.Profile;
 using AppFramework.Shared;
-using AppFramework.Admin.Models; 
+using AppFramework.Admin.Models;
 using AppFramework.Version.Dtos;
 using Microsoft.Win32;
 using Prism.Commands;
@@ -43,7 +43,7 @@ namespace AppFramework.Admin.ViewModels.Version
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "压缩文件(*.zip)|*.zip";
             var dialogResult = fileDialog.ShowDialog();
-            if (dialogResult!=null&&(bool)dialogResult)
+            if (dialogResult != null && (bool)dialogResult)
                 FilePath = fileDialog.FileName;
         }
 
@@ -62,25 +62,25 @@ namespace AppFramework.Admin.ViewModels.Version
                     stream = new MemoryStream(fileBytes);
                 }
 
-                await WebRequest.Execute(() => profileControllerService.UploadVersionFile(content =>
-                {
-                    if (stream != null)
-                        content.AddFile("file", stream, "file.zip");
+                await profileControllerService.UploadVersionFile(content =>
+                 {
+                     if (stream != null)
+                         content.AddFile("file", stream, "file.zip");
 
-                    if (Model.Id > 0)
-                        content.AddString(nameof(CreateOrEditAbpVersionDto.Id), Model.Id.ToString());
+                     if (Model.Id > 0)
+                         content.AddString(nameof(CreateOrEditAbpVersionDto.Id), Model.Id.ToString());
 
-                    content.AddString(nameof(CreateOrEditAbpVersionDto.Name), Model.Name);
-                    content.AddString(nameof(CreateOrEditAbpVersionDto.Version), Model.Version);
-                    content.AddString(nameof(CreateOrEditAbpVersionDto.IsForced), Model.IsForced.ToString());
-                    content.AddString(nameof(CreateOrEditAbpVersionDto.IsEnable), Model.IsEnable.ToString());
-                    content.AddString(nameof(CreateOrEditAbpVersionDto.MinimumVersion), Model.MinimumVersion.ToString());
-                }), async () =>
-                {
-                    stream?.Dispose();
-                    stream?.Close();
-                    await base.Save();
-                });
+                     content.AddString(nameof(CreateOrEditAbpVersionDto.Name), Model.Name);
+                     content.AddString(nameof(CreateOrEditAbpVersionDto.Version), Model.Version);
+                     content.AddString(nameof(CreateOrEditAbpVersionDto.IsForced), Model.IsForced.ToString());
+                     content.AddString(nameof(CreateOrEditAbpVersionDto.IsEnable), Model.IsEnable.ToString());
+                     content.AddString(nameof(CreateOrEditAbpVersionDto.MinimumVersion), Model.MinimumVersion.ToString());
+                 }).WebAsync(async () =>
+                 {
+                     stream?.Dispose();
+                     stream?.Close();
+                     await base.Save();
+                 }); 
             });
         }
 

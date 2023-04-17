@@ -98,10 +98,10 @@ namespace AppFramework.Admin.ViewModels
                 GetSelectedNodes(Features, ref featureValues);
 
                 CreateOrUpdateEditionDto editionDto = new CreateOrUpdateEditionDto();
-                editionDto.Edition=Map<EditionCreateDto>(Model);
-                editionDto.FeatureValues=featureValues;
+                editionDto.Edition = Map<EditionCreateDto>(Model);
+                editionDto.FeatureValues = featureValues;
 
-                await WebRequest.Execute(() => appService.CreateOrUpdate(editionDto), base.Save);
+                await appService.CreateOrUpdate(editionDto).WebAsync(base.Save);
             });
         }
 
@@ -113,22 +113,14 @@ namespace AppFramework.Admin.ViewModels
                 if (parameters.ContainsKey("Value"))
                     id = parameters.GetValue<EditionListDto>("Value").Id;
 
-                await WebRequest.Execute(() => appService.GetEditionForEdit(new NullableIdDto(id)),
-                  async result =>
-                  {
-                      //设置编辑版本信息对应的内容
-                      Model = Map<EditionCreateModel>(result.Edition);
-                      //设置所包含对应的功能结点
-                      var flats = Map<List<FlatFeatureModel>>(result.Features);
-                      Features = CreateFeatureTrees(flats, null);
-                      //更新选中的版本功能结点信息 
-                      UpdateSelectedNodes(Features, result.FeatureValues);
-
-                      await PopulateEditionsCombobox(() =>
-                      {
-                          SetSelectedEdition(Model.Id);
-                      });
-                  });
+                await appService.GetEditionForEdit(new NullableIdDto(id)).WebAsync(async result =>
+                {
+                    Model = Map<EditionCreateModel>(result.Edition);
+                    var flats = Map<List<FlatFeatureModel>>(result.Features);
+                    Features = CreateFeatureTrees(flats, null);
+                    UpdateSelectedNodes(Features, result.FeatureValues);
+                    await PopulateEditionsCombobox(() => { SetSelectedEdition(Model.Id); });
+                });
             });
         }
 
@@ -205,18 +197,14 @@ namespace AppFramework.Admin.ViewModels
         /// <returns></returns>
         private async Task PopulateEditionsCombobox(Action editionsPopulated)
         {
-            await WebRequest.Execute(() => commonLookupAppService.GetEditionsForCombobox(),
-                async result =>
-                {
-                    Editions.Clear();
-
-                    AddNotAssignedItem();
-
-                    foreach (var item in result.Items)
-                        Editions.Add(item);
-
-                    await Task.CompletedTask;
-                });
+            await commonLookupAppService.GetEditionsForCombobox().WebAsync(async result =>
+             {
+                 Editions.Clear();
+                 AddNotAssignedItem();
+                 foreach (var item in result.Items)
+                     Editions.Add(item);
+                 await Task.CompletedTask;
+             });
 
             editionsPopulated();
         }
@@ -312,5 +300,5 @@ namespace AppFramework.Admin.ViewModels
         }
 
         #endregion 功能列表
-    } 
+    }
 }
