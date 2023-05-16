@@ -52,6 +52,11 @@ namespace AppFramework.Admin.HandyUI
             base.ConfigureRegionAdapterMappings(regionAdapterMappings);
         }
 
+        public void ShowBalloonTip(string title, string message, BalloonIcon balloonIcon)
+        {
+            taskBar.ShowBalloonTip(title, message, balloonIcon);
+        }
+
         public void Initialization()
         {
             taskBar = (TaskbarIcon)FindResource("taskBar");

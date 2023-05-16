@@ -98,7 +98,7 @@ namespace AppFramework.Admin.ViewModels
         }
 
         private async void LoginAsThisUser()
-        {
+        { 
             await accountService.LoginCurrentUserAsync(SelectedItem);
         }
 
@@ -109,7 +109,7 @@ namespace AppFramework.Admin.ViewModels
                 await SetBusyAsync(async () =>
                 {
                     await appService.DeleteUser(new EntityDto<long>(SelectedItem.Id))
-                     .WebAsync(async () => await OnNavigatedToAsync()); 
+                     .WebAsync(async () => await OnNavigatedToAsync());
                 });
             }
         }

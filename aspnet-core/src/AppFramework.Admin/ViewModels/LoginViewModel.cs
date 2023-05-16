@@ -186,7 +186,7 @@ namespace AppFramework.Admin.ViewModels
         }
 
         private async Task LoginUserAsync()
-        {
+        { 
             await SetBusyAsync(async () =>
             {
                 await accountService.LoginUserAsync().WebAsync(LoginUserSuccessed);
