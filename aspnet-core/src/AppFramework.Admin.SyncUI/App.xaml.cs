@@ -60,7 +60,7 @@ namespace AppFramework.Admin.SyncUI
             taskBar = (TaskbarIcon)FindResource("taskBar"); 
 
             Syncfusion.SfSkinManager.SfSkinManager.ApplyStylesOnApplication = true;
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjI5NjkxQDMyMzAyZTMxMmUzMG4yeGhZNm01STJSdnVKQVJiUHpzM3ZMUEc5K1hZTXd3TVFTbGZ1UERrQlU9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjM1NDUyOUAzMjMxMmUzMDJlMzBvTWpMSjdPcWlJYzRlS2RRamlVNkxWSE8rL202M2lUaWp5Z1dzSmc0ZXo4PQ==");
         }
 
         public void Dispose() => taskBar?.Dispose(); 
