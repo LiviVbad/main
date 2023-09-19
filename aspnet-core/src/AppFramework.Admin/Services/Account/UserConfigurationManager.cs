@@ -23,20 +23,20 @@ namespace AppFramework.Admin.Services.Account
         private static IAccessTokenManager AccessTokenManager =>
             ContainerLocator.Container.Resolve<IAccessTokenManager>();
 
-        public static async Task GetIfNeedsAsync()
+        public static async Task GetIfNeedsAsync(Func<System.Exception, Task> failCallback = null)
         {
             if (appContext.Value.Configuration != null)
                 return;
 
-            await GetAsync();
+            await GetAsync(failCallback);
         }
 
-        public static async Task GetAsync()
+        public static async Task GetAsync(Func<System.Exception, Task> failCallback = null)
         {
             var userConfigurationService = ContainerLocator.Container.Resolve<UserConfigurationService>();
 
             await WebRequest.Execute(() => userConfigurationService.GetAsync(AccessTokenManager.IsUserLoggedIn),
-                GetConfigurationSuccessed);
+                GetConfigurationSuccessed, failCallback);
         }
 
         private static async Task GetConfigurationSuccessed(AbpUserConfigurationDto result)

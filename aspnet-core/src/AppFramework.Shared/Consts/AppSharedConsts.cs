@@ -32,5 +32,10 @@
         /// 弹出窗口中的唯一会话标识
         /// </summary>
         public const string DialogIdentifier = "DialogRoot";
+
+        /// <summary>
+        /// 初始化页的唯一会话标识
+        /// </summary>
+        public const string SplashScreenIdentifier = "SplashScreen";
     }
 }

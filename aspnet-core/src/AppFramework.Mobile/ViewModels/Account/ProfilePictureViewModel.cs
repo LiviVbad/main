@@ -1,9 +1,5 @@
-﻿using AppFramework.Shared.Services;
-using AppFramework.Shared.Services;
-using Prism.Commands;
-using Prism.Navigation;
-using System.IO;
-using Xamarin.Forms;
+﻿using AppFramework.Shared.Services; 
+using Prism.Commands; 
 
 namespace AppFramework.Shared.ViewModels
 {

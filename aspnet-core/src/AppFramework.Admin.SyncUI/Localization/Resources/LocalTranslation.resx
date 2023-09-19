@@ -133,10 +133,10 @@
     <value>LoadResource...</value>
   </data>
   <data name="MessageTitle" xml:space="preserve">
-    <value>AppFramework</value>
+    <value>Application</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value />
+    <value>No</value>
   </data>
   <data name="NoInternet" xml:space="preserve">
     <value>No internet connection! Do you want to enable internet and try again?</value>

@@ -24,8 +24,7 @@
     mc:Ignorable="d">
     <sync:ChromelessWindow.Resources>
         <ControlTemplate x:Key="UserPanelButton" TargetType="{x:Type ToggleButton}">
-            <Border
-                x:Name="ThemeButtonBorder"
+            <Border x:Name="ThemeButtonBorder"
                 Padding="{TemplateBinding Padding}"
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -71,33 +70,30 @@
                             VerticalAlignment="Center"
                             Source="/Assets/Images/logo.ico" />
                         <TextBlock
+                            Text="APP"
                             Margin="5,0"
                             VerticalAlignment="Center"
                             FontWeight="Bold"
-                            Foreground="{DynamicResource PrimaryBackground}"
-                            Text="APP" />
-                        <TextBlock VerticalAlignment="Center" Text="FRAMEWORK" />
+                            Foreground="{DynamicResource PrimaryBackground}" />
+                        <TextBlock Text="FRAMEWORK" VerticalAlignment="Center" />
                     </StackPanel>
 
-                    <ToggleButton
-                        x:Name="BtnDoubleLeft"
+                    <ToggleButton x:Name="BtnDoubleLeft"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Background="Transparent"
                         BorderThickness="0"
                         DockPanel.Dock="Right"
                         Template="{StaticResource UserPanelButton}">
-                        <TextBlock
-                            x:Name="TxtDoubleTitle"
+                        <TextBlock x:Name="TxtDoubleTitle"
+                            Text="&#xe74c;"
                             FontFamily="/Assets/Fonts/#iconfont"
-                            FontSize="22"
-                            Text="&#xe74c;" />
+                            FontSize="22" />
                     </ToggleButton>
                 </DockPanel>
 
                 <!--  左侧系统菜单  -->
-                <sync:SfTreeView
-                    x:Name="treeViewItems"
+                <sync:SfTreeView x:Name="treeViewItems"
                     HorizontalContentAlignment="Center"
                     AutoExpandMode="AllNodes"
                     BorderBrush="Transparent"
@@ -122,10 +118,10 @@
                                     Source="{Binding Icon, Converter={StaticResource menuConverter}}"
                                     ToolTip="{Binding Title}" />
                                 <TextBlock
+                                    Text="{Binding Title}"
                                     VerticalAlignment="Center"
                                     FontSize="14"
-                                    Style="{x:Null}"
-                                    Text="{Binding Title}" />
+                                    Style="{x:Null}" />
                             </StackPanel>
                         </DataTemplate>
                     </sync:SfTreeView.ItemTemplate>
@@ -138,8 +134,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Border
-                    x:Name="HeaderBorder"
+                <Border x:Name="HeaderBorder"
                     Opacity="0.3"
                     Style="{DynamicResource HeaderBorderStyle}" />
 
@@ -149,11 +144,10 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Orientation="Horizontal">
-                    <ToggleButton
-                        x:Name="toggleNotification"
+                    <ToggleButton x:Name="toggleNotification"
+                        IsChecked="{Binding NotificationPanelIsOpen}"
                         Margin="5"
                         Padding="5"
-                        IsChecked="{Binding NotificationPanelIsOpen}"
                         Template="{StaticResource UserPanelButton}">
                         <StackPanel Orientation="Horizontal">
                             <Image
@@ -164,10 +158,10 @@
                     </ToggleButton>
 
                     <ToggleButton
+                        IsChecked="{Binding IsShowFriendsPanel, Mode=TwoWay}"
                         Margin="5"
                         Padding="5"
                         VerticalAlignment="Center"
-                        IsChecked="{Binding IsShowFriendsPanel, Mode=TwoWay}"
                         Template="{StaticResource UserPanelButton}">
                         <ToggleButton.Content>
                             <Image
@@ -177,45 +171,40 @@
                         </ToggleButton.Content>
                     </ToggleButton>
 
-                    <ToggleButton
-                        x:Name="toggleShowPanel"
+                    <ToggleButton x:Name="toggleShowPanel"
+                        IsChecked="{Binding IsShowUserPanel, Mode=TwoWay}"
                         Margin="5"
                         Padding="10,5"
-                        IsChecked="{Binding IsShowUserPanel, Mode=TwoWay}"
                         Template="{StaticResource UserPanelButton}">
                         <StackPanel Orientation="Horizontal">
                             <Image
                                 Width="20"
                                 Height="20"
                                 Source="{Binding appService.Photo, Converter={StaticResource bytesToImageConverter}}" />
-                            <TextBlock Margin="5,0" Text="{Binding appService.UserNameAndSurname}" />
+                            <TextBlock Text="{Binding appService.UserNameAndSurname}" Margin="5,0" />
                         </StackPanel>
                     </ToggleButton>
 
-                    <Button
-                        x:Name="BtnMin"
+                    <Button x:Name="BtnMin"
+                        Content="{StaticResource Reduce}"
                         VerticalAlignment="Center"
                         Background="Transparent"
-                        Content="{StaticResource Reduce}"
                         Style="{DynamicResource IconButtonStyle}" />
-                    <Button
-                        x:Name="BtnMax"
+                    <Button x:Name="BtnMax"
+                        Content="{StaticResource MaxWindow}"
                         Margin="5,0"
                         VerticalAlignment="Center"
                         Background="Transparent"
-                        Content="{StaticResource MaxWindow}"
                         Style="{DynamicResource IconButtonStyle}" />
-                    <Button
-                        x:Name="BtnClose"
+                    <Button x:Name="BtnClose"
+                        Content="{StaticResource Close}"
                         VerticalAlignment="Center"
                         Background="Transparent"
-                        Content="{StaticResource Close}"
                         Style="{DynamicResource IconButtonStyle}" />
                 </StackPanel>
 
                 <!--  通知  -->
-                <Popup
-                    Grid.Row="1"
+                <Popup Grid.Row="1"
                     Width="400"
                     Height="400"
                     AllowsTransparency="True"
@@ -250,18 +239,18 @@
                         <Border Background="{DynamicResource PrimaryBackground}" CornerRadius="5,5,0,0" />
 
                         <TextBlock
+                            Text="{Binding notificationService.Title}"
                             Margin="15"
                             FontSize="18"
-                            FontWeight="Bold"
-                            Text="{Binding notificationService.Title}" />
+                            FontWeight="Bold" />
 
                         <Button
+                            Command="{Binding SettingsCommand}"
                             Margin="8,0"
                             Padding="10,5"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
-                            Background="Transparent"
-                            Command="{Binding SettingsCommand}">
+                            Background="Transparent">
                             <Button.Content>
                                 <Image
                                     Width="20"
@@ -270,8 +259,7 @@
                             </Button.Content>
                         </Button>
 
-                        <ItemsControl
-                            Grid.Row="1"
+                        <ItemsControl Grid.Row="1"
                             Margin="10"
                             ItemsSource="{Binding notificationService.Items}">
                             <ItemsControl.ItemTemplate>
@@ -289,7 +277,7 @@
 
                                         <StackPanel Grid.Column="1" Margin="10,0">
                                             <TextBlock Text="{Binding Converter={StaticResource notifycationConverter}}" TextWrapping="Wrap" />
-                                            <TextBlock Margin="0,2" Text="{Binding Notification.CreationTime, StringFormat='yyyy-MM-dd hh:mm:ss'}" />
+                                            <TextBlock Text="{Binding Notification.CreationTime, StringFormat='yyyy-MM-dd hh:mm:ss'}" Margin="0,2" />
                                         </StackPanel>
                                     </Grid>
                                 </DataTemplate>
@@ -298,23 +286,22 @@
 
                         <DockPanel Grid.Row="2" Margin="5">
                             <Button
-                                Margin="5"
-                                Command="{Binding SetAllNotificationsAsReadCommand}"
                                 Content="{Binding notificationService.SetAllAsRead}"
+                                Command="{Binding SetAllNotificationsAsReadCommand}"
+                                Margin="5"
                                 Style="{StaticResource SimpleButton}"
                                 Visibility="{Binding notificationService.IsUnRead, Converter={StaticResource inverseBoolToVisibility}}" />
                             <Button
-                                Margin="5"
-                                Command="{Binding SeeAllNotificationsCommand}"
                                 Content="{Binding notificationService.SeeAllNotifications}"
+                                Command="{Binding SeeAllNotificationsCommand}"
+                                Margin="5"
                                 Style="{StaticResource SimpleButton}" />
                         </DockPanel>
                     </Grid>
                 </Popup>
 
                 <!--  选项卡  -->
-                <sync:TabControlExt
-                    Grid.Row="1"
+                <sync:TabControlExt Grid.Row="1"
                     prism:RegionManager.RegionName="{x:Static region:AppRegions.Main}"
                     AllowDragDrop="False"
                     BorderThickness="0"
@@ -332,8 +319,7 @@
                     </sync:TabControlExt.ItemTemplate>
                 </sync:TabControlExt>
 
-                <Border
-                    Grid.Row="1"
+                <Border Grid.Row="1"
                     Width="300"
                     Margin="0,0,-305,0"
                     HorizontalAlignment="Right"

@@ -32,8 +32,7 @@ namespace AppFramework.Web.Controllers
         private readonly ITempFileCacheManager _tempFileCacheManager;
         private readonly IProfileAppService _profileAppService;
         private readonly IAbpVersionsAppService versionsAppService;
-        private readonly IWebHostEnvironment environment;
-
+        private readonly IWebHostEnvironment environment; 
         private const int MaxProfilePictureSize = 5242880; //5MB
 
         protected ProfileControllerBase(

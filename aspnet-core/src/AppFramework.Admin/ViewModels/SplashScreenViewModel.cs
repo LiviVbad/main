@@ -4,6 +4,7 @@ using AppFramework.Shared.Services;
 using AppFramework.Admin.Services.Account;
 using Prism.Services.Dialogs;
 using System.Threading.Tasks;
+using System;
 
 namespace AppFramework.Admin.ViewModels
 {
@@ -44,16 +45,22 @@ namespace AppFramework.Admin.ViewModels
 
                 //加载系统资源
                 DisplayText = LocalTranslationHelper.Localize("LoadResource");
-                await UserConfigurationManager.GetIfNeedsAsync();
+                await UserConfigurationManager.GetIfNeedsAsync(GetIfNeedsFailCallback);
 
                 //如果本地授权存在,直接进入系统首页
                 if (accessTokenManager.IsUserLoggedIn && applicationContext.Configuration != null)
                     OnDialogClosed();
-                else if (applicationContext.Configuration!=null)
+                else if (applicationContext.Configuration != null)
                     OnDialogClosed(ButtonResult.Ignore);
                 else
                     OnDialogClosed(ButtonResult.No);
             });
+        }
+
+        private async Task GetIfNeedsFailCallback(Exception ex)
+        {
+            OnDialogClosed(ButtonResult.No);
+            await Task.CompletedTask;
         }
     }
 }

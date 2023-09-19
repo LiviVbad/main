@@ -260,7 +260,7 @@ namespace AppFramework
         {
             var accepted = dialogService.Question(
                 LocalTranslationHelper.Localize("MessageTitle"),
-                LocalTranslationHelper.Localize("UnhandledWebRequestException"));
+                LocalTranslationHelper.Localize("HttpException"));
 
             if (accepted)
                 await Execute(func, successCallback, failCallback);

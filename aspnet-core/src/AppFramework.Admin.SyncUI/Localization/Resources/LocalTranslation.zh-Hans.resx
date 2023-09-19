@@ -133,7 +133,7 @@
     <value>加载系统资源...</value>
   </data>
   <data name="MessageTitle" xml:space="preserve">
-    <value>AppFramework</value>
+    <value>应用程序</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>取消</value>

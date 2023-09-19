@@ -46,40 +46,38 @@
                     VerticalAlignment="Bottom"
                     Source="/Assets/Images/info.png" />
                 <TextBlock
+                    Text="{Binding Title}"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     d:Text="This is a warning message"
                     FontSize="16"
-                    FontWeight="Bold"
-                    Text="{Binding Title}" />
+                    FontWeight="Bold" />
             </StackPanel>
 
-            <TextBlock
-                Grid.Row="1"
+            <TextBlock Grid.Row="1"
+                Text="{Binding Message}"
+                TextWrapping="Wrap"
                 Margin="50,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 d:Text="Alert message content！"
-                Opacity="0.6"
-                Text="{Binding Message}"
-                TextWrapping="Wrap" />
+                Opacity="0.6" />
         </Grid>
 
-        <StackPanel
-            Grid.Row="1"
+        <StackPanel Grid.Row="1"
             Margin="10"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Orientation="Horizontal">
             <Button
-                Command="{Binding SaveCommand}"
                 Content="{extensions:Translate Yes}"
+                Command="{Binding SaveCommand}"
                 Style="{StaticResource SimpleButton}" />
             <Button
-                Margin="10,0,0,0"
-                Command="{Binding CancelCommand}"
                 Content="{extensions:Translate No}"
+                Command="{Binding CancelCommand}"
+                Margin="10,0,0,0"
                 Style="{StaticResource SimpleButton}" />
         </StackPanel>
     </Grid>

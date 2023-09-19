@@ -19,13 +19,12 @@
             Style="{StaticResource HeaderBorderStyle}" />
 
         <TextBlock
+            Text="{extensions:Translate ChangeTenant}"
             Margin="15"
             FontSize="18"
-            FontWeight="Bold"
-            Text="{extensions:Translate ChangeTenant}" />
+            FontWeight="Bold" />
 
-        <Grid
-            Grid.Row="1"
+        <Grid Grid.Row="1"
             Margin="20,0"
             VerticalAlignment="Center">
             <Grid.RowDefinitions>
@@ -39,44 +38,39 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock
+                Text="{extensions:Translate LoginForTenants}"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Text="{extensions:Translate LoginForTenants}" />
-            <CheckBox
-                Grid.Column="1"
-                VerticalAlignment="Center"
+                VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1"
                 Content="{extensions:Translate Enable}"
-                IsChecked="{Binding IsLoginForTenants}" />
+                IsChecked="{Binding IsLoginForTenants}"
+                VerticalAlignment="Center" />
 
-            <TextBlock
-                Grid.Row="1"
+            <TextBlock Grid.Row="1"
+                Text="{extensions:Translate TenancyName}"
                 Margin="0,20,0,0"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Text="{extensions:Translate TenancyName}" />
+                VerticalAlignment="Center" />
 
-            <TextBox
-                Grid.Row="1"
-                Grid.Column="1"
+            <TextBox Grid.Row="1" Grid.Column="1"
+                Text="{Binding TenancyName}"
                 Margin="0,20,0,0"
-                VerticalAlignment="Center"
-                Text="{Binding TenancyName}" />
+                VerticalAlignment="Center" />
         </Grid>
 
-        <StackPanel
-            Grid.Row="2"
+        <StackPanel Grid.Row="2"
             Margin="15"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
             <Button
-                Margin="10,0"
-                Padding="10,5"
+                Content="{extensions:Translate Cancel}"
                 Command="{Binding CancelCommand}"
-                Content="{extensions:Translate Cancel}" />
+                Margin="10,0"
+                Padding="10,5" />
             <Button
-                Padding="10,5"
+                Content="{extensions:Translate Save}"
                 Command="{Binding SaveCommand}"
-                Content="{extensions:Translate Save}" />
+                Padding="10,5" />
         </StackPanel>
     </Grid>
 </UserControl>
